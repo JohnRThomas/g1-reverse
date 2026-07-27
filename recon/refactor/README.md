@@ -62,6 +62,12 @@ directory glob**. `input_set.py` derives the set from those lists, plus:
 
 Total: **2,629** transformable, 36 quarantined-protected.
 
+From stage 04 on, one stage output may be derived from MANY manifest inputs (a
+merged translation unit). `Stage.emit` therefore takes `extra_sources` and
+records `additional_sources`, and `staleness()` checks every one of them — a
+staleness mechanism that watched only the first member would report "current"
+while an upstream defect fix sat unnoticed inside member 7.
+
 A transformer may also emit **generated artifacts** that are outputs rather
 than inputs (stage 02's `recon/headers/g1_dedupe.h`, stage 03's 16 module
 headers). They are deliberately absent from `MANIFEST["files"]` — staleness
@@ -163,11 +169,10 @@ the end gives a pass/fail with no diagnostic value.
 | 01 | literal inlining | value-preserving substitution in argument position; no control flow, no MMIO, no layout |
 | 02 | **block dedupe (LANDED)** — volatile-accessor spelling normalisation (one type only), plus the `G1_NORETURN_CALL` / `G1_LOG_ROUTE` / `G1_ASSERT_FAIL` macros and the log-prototype convergence residue. Stage 03's `__ASSERT` / noreturn extraction was folded in here because it is the same class of token-identical statement macro. | textual, codegen-identical; gate is a byte-identical `.o`, and it held: both cores' `zephyr.bin` byte-identical to stage 01, 4,594/4,598 objects byte-identical. Report: `recon/analysis/staged_refactor_stage02.md` |
 | 03 | **module structure (LANDED, app core only)** — the `input_set.py` `.h`-fragment fix stage 02 filed as blocking, plus the first STRUCTURAL transform: 1,621 app sources moved into 22 cohesive module directories (build lists regenerated in the same transaction, list order preserved exactly), and 99 module-wide type-identical `extern` declarations hoisted into 16 generated module headers. Net untouched and therefore byte-identical by construction. | file layout + declaration siting only; gate is a byte-identical `zephyr.bin`, and it held on both cores. **Harvest: 1,014 symbol/module type disagreements, 446 of them against the symbol's own definition, 175 about arity.** Report: `recon/analysis/staged_refactor_stage03.md` |
-| 03b (next) | **repair the 1,014 declaration disagreements** in the CANONICAL trees (stage 03 `DEFECTS.json`), arity first | blocking prerequisite for any cohesive-TU merge: today several hundred TUs would fail to compile at once. R1 means this work is the parity agent's, not the pipeline's. |
-| 03c | cohesive-TU merge (many functions per `.c`) | **the first transformation that cannot be gated on `cmp zephyr.bin`** — merging changes archive member granularity and therefore section layout. Oracle per sub-batch. Blocked on 03b. |
-| 04 | MMIO accessor macros per width, with a signedness audit | **first stage that can change codegen** by value; C8 applies. Stage 02 already reduced 84 accessor spellings to 52, which is the prerequisite. |
-| 05 | net renaming from upstream-identified symbols | 0 B, gated by a real link (C6) |
-| 06 | module materialisation / directory move | file-layout only; both builds must emit byte-identical images |
+| 03b (partly done, upstream) | **repair the declaration disagreements** in the CANONICAL trees (stage 03 `DEFECTS.json`). The parity agent's type-disagreement pass took the census from 1,014 to **833** (measured by re-running stage 03's own agreement test at HEAD `50929c5d`). | blocking prerequisite for a *blanket* cohesive-TU merge; still the single thing standing between stage 04's 695 translation units and 243. R1 means this work is the parity agent's, not the pipeline's. |
+| 04 | **scoped cohesive-TU merge (LANDED, app core only)** — no module is disagreement-free, so the scope is finer: maximal ORDER-PRESERVING runs of consecutive retained sources inside one module that provably cannot collide. 1,615 app TUs → **695**, 318 cohesive units absorbing 1,238 files, build lists rewritten in the same transaction. Seven refusal rules (`type`, `dupdef`, `static`, `typedef`, `macro`, `asmname`, `tag`/`enumconst`, `includes`); quoted repository headers are *read* and folded rather than refused. | **the first stage that CANNOT be gated on `cmp zephyr.bin`** — merging changes inlining opportunities and archive-member pull order. `.text` −112 B, 9 functions changed size, 0 symbols added or removed, 1,600 of 1,601 comparable objects byte-identical. **ORACLE REQUIRED, not yet run.** Report: `recon/analysis/staged_refactor_stage04.md` |
+| 05 | MMIO accessor macros per width, with a signedness audit | **stage that can change codegen** by value; C8 applies. Stage 02 already reduced 84 accessor spellings to 52, which is the prerequisite. |
+| 06 | net renaming from upstream-identified symbols | 0 B, gated by a real link (C6) |
 | 07 | struct typing | the stage that can grow the image; budget it |
 
 ---
@@ -329,6 +334,11 @@ $V recon/emulator/scripts/build_display_sensor_oracle.py \
 
 **Run every navigation capture at least twice.** A single-run EQ/NE on
 navigation `twim2 p1_boot` or `twim1 p1_boot` is not evidence.
+
+**`$rtinfo_pc` must be re-read from the ELF actually booted.** Stage 04 moves
+`runtime_info_sync` from `0x00015c04` to `0x0001632c`; the value hard-coded in
+every earlier recipe is wrong for that image. `_end` is unchanged
+(`0x2003ff45`), so the three RAM probe addresses carry over.
 
 **Timing note on that record.** All Stage 02 builds and all six our-build
 captures completed by 04:15:48; the concurrent parity agent landed a ~1,800-file

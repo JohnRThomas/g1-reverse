@@ -1,0 +1,1150 @@
+{
+ "schema": "g1.refactor.stage-hazards/1",
+ "note": "A local typedef/macro redefinition is harmless in its own translation unit and becomes wrong only when two files share one.  No gate in this project observes this class; stage 04 rules 3-5 refuse it structurally.",
+ "totals": {
+  "typedef_names_with_incompatible_definitions": 30,
+  "macro_names_with_differing_bodies": 35,
+  "static_names_used_in_more_than_one_file": 17
+ },
+ "incompatible_local_typedefs": {
+  "undefined1": {
+   "unsigned char @": [
+    "battery_model_state_update.c",
+    "spec_ble_command_hook.c",
+    "fuel_gauge_update.c",
+    "random.c",
+    "process_task_sync_event.c",
+    "master_process_audio_fw_load_req.c",
+    "process_for_new_message_come_on.c",
+    "process_for_message_show.c",
+    "audioStreamFileManagerHandler.c",
+    "DashBoard_Reflash.c",
+    "ui_DashBoard_task.c",
+    "navigation_panoramic_map_display.c",
+    "onboarding_render_step_screen.c",
+    "render_onboarding_screen.c",
+    "ui_onboarding_task.c",
+    "resource_manger_get.c",
+    "proxy_thread_handler.c",
+    "parse_app_id_config_stream.c",
+    "smp_pairing_req.c",
+    "bt_smp_distribute_keys.c"
+   ],
+   "unsigned char undefined,undefined1,byte,uchar,@": [
+    "hci_vs_init.c",
+    "SettingStoreHandler.c",
+    "check_work_mode.c",
+    "l2cap_recv.c",
+    "uarte_nrfx_isr.c",
+    "cjson_print_value.c"
+   ]
+  },
+  "undefined4": {
+   "unsigned int @": [
+    "battery_model_state_update.c",
+    "random.c",
+    "process_task_sync_event.c",
+    "master_process_audio_fw_load_req.c",
+    "app_codec_lc3_test.c",
+    "verify_whitelist_json.c",
+    "onboarding_render_step_screen.c",
+    "render_onboarding_screen.c",
+    "ui_onboarding_task.c",
+    "parse_app_id_config_stream.c",
+    "smp_pairing_req.c",
+    "smp_ident_addr_info.c",
+    "bt_smp_distribute_keys.c",
+    "saadc_start_read.c"
+   ],
+   "unsigned long @": [
+    "spec_ble_command_hook.c",
+    "fuel_gauge_update.c",
+    "cjson_parse_value.c",
+    "ble_whitelist_app.c",
+    "process_for_message_show.c",
+    "audioStreamFileManagerHandler.c",
+    "confirm_message.c",
+    "format_message_relative_time.c",
+    "gui_draw_timer_hms.c",
+    "DashBoard_Reflash.c",
+    "ui_DashBoard_task.c",
+    "ui_even_ai_draw_mic_status_icon.c",
+    "navigation_panoramic_map_display.c",
+    "gui_clock_draw.c",
+    "gui_utf_draw_dark_light_split.c",
+    "gui_utf_draw_middle.c",
+    "resource_manger_get.c",
+    "proxy_thread_handler.c",
+    "discovery_callback.c",
+    "pdm_configure_clock_and_init.c",
+    "panel_temp_calibration_init.c",
+    "__sfvwrite_r.c"
+   ]
+  },
+  "uint": {
+   "unsigned int @": [
+    "battery_model_state_update.c",
+    "compute_lux_brightness_bucket.c",
+    "cjson_parse_value.c",
+    "change_work_mode_to.c",
+    "random.c",
+    "audio_fw_load_get_wrapper.c",
+    "ble_whitelist_app.c",
+    "try_enter_low_power_mode.c",
+    "esb_pairing_sync_step.c",
+    "process_task_sync_event.c",
+    "master_process_audio_fw_load_req.c",
+    "process_for_new_message_come_on.c",
+    "process_for_message_show.c",
+    "app_codec_lc3_test.c",
+    "get_assign_channel_info.c",
+    "push_message_3439c.c",
+    "confirm_message.c",
+    "verify_whitelist_json.c",
+    "gui_draw_timer_hms.c",
+    "ui_even_ai_draw_mic_status_icon.c",
+    "onboarding_render_step_screen.c",
+    "render_onboarding_screen.c",
+    "ui_onboarding_task.c",
+    "gui_verticalLine_process_bar.c",
+    "gui_bitmap_draw.c",
+    "gui_clock_draw.c",
+    "gui_utf_draw_dark_light_split.c",
+    "gui_utf_draw_middle.c",
+    "set_brightness_to_panel_reg_in_running.c",
+    "utf8_to_unicode.c",
+    "md5_process_block.c",
+    "unix_timestamp_to_datetime.c",
+    "gatt_dm_attr_alloc.c",
+    "discovery_callback.c",
+    "parse_app_id_config_stream.c",
+    "legacy_adv_stop_cleanup.c",
+    "ble_conn_set_state.c",
+    "ble_notify_identity_resolved.c",
+    "smp_pairing_req.c",
+    "bt_smp_distribute_keys.c",
+    "pdm_trigger_command.c",
+    "pdm_configure_clock_and_init.c",
+    "qspi_nor_pm_action.c",
+    "panel_temp_calibration_init.c",
+    "resolve_dual_slot_state_code.c",
+    "gpiote_in_init.c",
+    "g1_recon_nrfx_gpiote_init.c",
+    "g1_recon_nrfx_wdt_channel_alloc.c",
+    "rpmsg_virtio_send_copy.c",
+    "cbor_min_encoded_size.c",
+    "__ieee754_expf.c",
+    "atanf.c",
+    "__sfvwrite_r.c",
+    "vfprintf_core.c"
+   ],
+   "unsigned long @": [
+    "spec_ble_command_hook.c",
+    "fuel_gauge_update.c",
+    "audioStreamFileManagerHandler.c",
+    "format_message_relative_time.c",
+    "DashBoard_Reflash.c",
+    "ui_DashBoard_task.c",
+    "navigation_panoramic_map_display.c",
+    "resource_manger_get.c"
+   ],
+   "unsigned int undefined4,uint,uint3,code_t,undefined3,undefined5,undefined6,@": [
+    "hci_vs_init.c",
+    "check_work_mode.c"
+   ],
+   "unsigned int undefined4,uint,uint3,@": [
+    "SettingStoreHandler.c",
+    "l2cap_recv.c",
+    "uarte_nrfx_isr.c",
+    "cjson_print_value.c"
+   ]
+  },
+  "ulonglong": {
+   "unsigned long long @": [
+    "battery_model_state_update.c",
+    "spec_ble_command_hook.c",
+    "fuel_gauge_update.c",
+    "audioStreamFileManagerHandler.c",
+    "DashBoard_Reflash.c",
+    "ui_DashBoard_task.c",
+    "navigation_panoramic_map_display.c",
+    "render_onboarding_screen.c",
+    "gui_bitmap_draw.c",
+    "resource_manger_get.c"
+   ],
+   "unsigned long long undefined8,@": [
+    "hci_vs_init.c",
+    "SettingStoreHandler.c",
+    "check_work_mode.c",
+    "l2cap_recv.c",
+    "uarte_nrfx_isr.c",
+    "cjson_print_value.c"
+   ]
+  },
+  "byte": {
+   "unsigned char @": [
+    "spec_ble_command_hook.c",
+    "compute_lux_brightness_bucket.c",
+    "fuel_gauge_update.c",
+    "cjson_parse_value.c",
+    "change_work_mode_to.c",
+    "ble_whitelist_app.c",
+    "try_enter_low_power_mode.c",
+    "master_process_audio_fw_load_req.c",
+    "process_for_new_message_come_on.c",
+    "process_for_message_show.c",
+    "opt3007_chip_init.c",
+    "audioStreamFileManagerHandler.c",
+    "get_assign_channel_info.c",
+    "confirm_message.c",
+    "format_message_relative_time.c",
+    "gui_draw_timer_hms.c",
+    "DashBoard_Reflash.c",
+    "ui_DashBoard_task.c",
+    "navigation_panoramic_map_display.c",
+    "onboarding_render_step_screen.c",
+    "render_onboarding_screen.c",
+    "ui_onboarding_task.c",
+    "gui_bitmap_draw.c",
+    "gui_clock_draw.c",
+    "gui_utf_draw_dark_light_split.c",
+    "gui_utf_draw_middle.c",
+    "resource_manger_get.c",
+    "utf8_to_unicode.c",
+    "proxy_thread_handler.c",
+    "discovery_callback.c",
+    "smp_pairing_req.c",
+    "pdm_configure_clock_and_init.c",
+    "panel_temp_calibration_init.c",
+    "gpiote_in_init.c",
+    "vfprintf_core.c",
+    "scanf_convert_integer_field.c"
+   ],
+   "unsigned char undefined,undefined1,byte,uchar,@": [
+    "hci_vs_init.c",
+    "SettingStoreHandler.c",
+    "check_work_mode.c",
+    "l2cap_recv.c",
+    "uarte_nrfx_isr.c",
+    "cjson_print_value.c"
+   ]
+  },
+  "u8": {
+   "unsigned char @": [
+    "imu_fusion_thread.c",
+    "switch_to_dfu_mode.c",
+    "get_current_work_mode.c",
+    "gatt_discover.c",
+    "check_bind_status.c",
+    "display_dispatch_thread.c",
+    "key_event_thread.c",
+    "update_persist_task_status.c",
+    "update_persist_task_status_to_idle.c",
+    "process_for_new_task.c",
+    "dmic_stream_start.c",
+    "is_battery_critical.c",
+    "message_table_contains_id.c",
+    "handle_touch_single_click.c",
+    "send_dashboard_status_sync.c",
+    "onboarding_ble_process.c",
+    "gui_utf_Wordwrap_draw.c",
+    "SendSystemLanguageInfoToSlave.c",
+    "bt_dev_settings_commit.c",
+    "hci_read_static_addresses.c",
+    "ble_conn_le_prepare_and_connect.c",
+    "l2cap_chan_add.c",
+    "gatt_remove_peer_from_attr.c",
+    "bt_smp_send_pairing_confirm.c",
+    "smp_ident_addr_info.c",
+    "saadc_start_read.c",
+    "qspi_nor_send_cinstr.c",
+    "dev_configure_channel.c",
+    "cbor_encode_length_header.c"
+   ],
+   "unsigned long long @": [
+    "__ieee754_exp.c"
+   ]
+  },
+  "u32": {
+   "unsigned int @": [
+    "imu_fusion_thread.c",
+    "__ieee754_pow.c",
+    "switch_to_dfu_mode.c",
+    "get_current_work_mode.c",
+    "check_bind_status.c",
+    "display_dispatch_thread.c",
+    "update_persist_task_status.c",
+    "process_for_new_task.c",
+    "message_table_contains_id.c",
+    "onboarding_ble_process.c",
+    "gui_utf_Wordwrap_draw.c",
+    "get_localized_string_ptr.c",
+    "SendSystemLanguageInfoToSlave.c",
+    "smp_ident_addr_info.c",
+    "saadc_start_read.c",
+    "metal_bus_register_device.c",
+    "__fpclassifyf.c"
+   ],
+   "unsigned long @": [
+    "gatt_discover.c",
+    "opt3007_chip_init.c",
+    "fuel_gauge_read_voltage_current_temp.c",
+    "dmic_stream_start.c",
+    "send_dashboard_status_sync.c",
+    "rpmsg_virtio_init_vdev.c",
+    "bt_dev_settings_commit.c",
+    "hci_read_static_addresses.c",
+    "ble_conn_le_prepare_and_connect.c",
+    "ble_notify_le_param_updated.c",
+    "l2cap_chan_add.c",
+    "gatt_write_ccc_rsp.c",
+    "gatt_remove_peer_from_attr.c",
+    "bt_smp_send_pairing_confirm.c",
+    "qspi_nor_send_cinstr.c",
+    "scanf_convert_integer_field.c",
+    "gatt_recompute_max_mtu.c",
+    "dev_configure_channel.c",
+    "cbor_encode_length_header.c"
+   ]
+  },
+  "uchar": {
+   "unsigned char undefined,undefined1,byte,uchar,@": [
+    "hci_vs_init.c",
+    "SettingStoreHandler.c",
+    "check_work_mode.c",
+    "l2cap_recv.c",
+    "uarte_nrfx_isr.c",
+    "cjson_print_value.c"
+   ],
+   "unsigned char @": [
+    "DashBoard_Reflash.c",
+    "ui_DashBoard_task.c",
+    "navigation_panoramic_map_display.c",
+    "resource_manger_get.c"
+   ]
+  },
+  "wchar_t": {
+   "unsigned short undefined2,ushort,uint2,@": [
+    "hci_vs_init.c",
+    "SettingStoreHandler.c",
+    "check_work_mode.c",
+    "l2cap_recv.c",
+    "uarte_nrfx_isr.c",
+    "cjson_print_value.c"
+   ],
+   "unsigned short @": [
+    "ui_DashBoard_task.c",
+    "navigation_panoramic_map_display.c",
+    "resource_manger_get.c"
+   ]
+  },
+  "ushort": {
+   "unsigned short undefined2,ushort,uint2,@": [
+    "hci_vs_init.c",
+    "SettingStoreHandler.c",
+    "check_work_mode.c",
+    "l2cap_recv.c",
+    "uarte_nrfx_isr.c",
+    "cjson_print_value.c"
+   ],
+   "unsigned short @": [
+    "format_message_relative_time.c",
+    "gui_draw_timer_hms.c",
+    "DashBoard_Reflash.c",
+    "ui_DashBoard_task.c",
+    "navigation_panoramic_map_display.c",
+    "gui_clock_draw.c",
+    "gui_utf_draw_dark_light_split.c",
+    "gui_utf_draw_middle.c",
+    "resource_manger_get.c",
+    "proxy_thread_handler.c",
+    "discovery_callback.c",
+    "pdm_configure_clock_and_init.c",
+    "panel_temp_calibration_init.c",
+    "gpiote_in_init.c",
+    "__sfvwrite_r.c"
+   ]
+  },
+  "uint3": {
+   "unsigned int undefined4,uint,uint3,code_t,undefined3,undefined5,undefined6,@": [
+    "hci_vs_init.c",
+    "check_work_mode.c"
+   ],
+   "unsigned int undefined4,uint,uint3,@": [
+    "SettingStoreHandler.c",
+    "l2cap_recv.c",
+    "uarte_nrfx_isr.c",
+    "cjson_print_value.c"
+   ],
+   "unsigned int @": [
+    "ui_DashBoard_task.c",
+    "resource_manger_get.c"
+   ]
+  },
+  "code_t": {
+   "unsigned int undefined4,uint,uint3,code_t,undefined3,undefined5,undefined6,@": [
+    "hci_vs_init.c",
+    "check_work_mode.c"
+   ],
+   "unsigned int undefined4,uint,uint3,@": [
+    "SettingStoreHandler.c",
+    "l2cap_recv.c",
+    "uarte_nrfx_isr.c",
+    "cjson_print_value.c"
+   ]
+  },
+  "code": {
+   "long long(*@)()": [
+    "hci_vs_init.c",
+    "check_work_mode.c",
+    "uarte_nrfx_isr.c",
+    "cjson_print_value.c"
+   ],
+   "unsigned int(*@)(unsigned int,unsigned int,unsigned int,unsigned int)": [
+    "SettingStoreHandler.c"
+   ],
+   "void @": [
+    "master_process_audio_fw_load_req.c"
+   ]
+  },
+  "codeptr": {
+   "int(*@)(int,...)": [
+    "ble_whitelist_app.c",
+    "write_font_to_flash_with_verify.c",
+    "send_whitelist_json_chunked.c",
+    "sc_set.c",
+    "gatt_ccc_settings_set.c",
+    "stdio_flush_write_buffer.c"
+   ],
+   "undefined4(*@)(int,...)": [
+    "gui_utf_draw_dark_light_split.c",
+    "gui_utf_draw_middle.c"
+   ],
+   "int(*@)(int,unsigned int,unsigned int)": [
+    "bt_settings_set_name_identity.c"
+   ],
+   "uint(*@)(int,...)": [
+    "__sfvwrite_r.c"
+   ]
+  },
+  "flash_read_fn": {
+   "int(*@)(int context,int address,void*destination,int count)": [
+    "calc_flash_crc.c"
+   ],
+   "int(*@)(void*context,unsigned long address,void*destination,unsigned int length)": [
+    "getAppLanguageInfofromFlash.c"
+   ],
+   "int(*@)(void*owner,unsigned long address,void*destination,unsigned long length)": [
+    "getQuickNoteBKPQueueCacheData.c"
+   ]
+  },
+  "fp774_t": {
+   "void(*@)(void*,int)": [
+    "sync_to_slave.c"
+   ],
+   "void(*@)(void*,unsigned long)": [
+    "esb_send_command_and_wait_ack.c"
+   ]
+  },
+  "fnptr": {
+   "int(*@)(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int)": [
+    "watchdog_feed_retry.c"
+   ],
+   "int(*@)(unsigned int,struct g1_i2c_msg*,int,int)": [
+    "misc_dev_api_transfer_op12.c",
+    "misc_dev_api_write_op12.c"
+   ],
+   "void(*@)(int,unsigned int)": [
+    "dispatch_via_object_index.c"
+   ],
+   "int(*@)(int,void*)": [
+    "vfprintf_core.c"
+   ],
+   "unsigned int(*@)(int,unsigned int,unsigned int,unsigned int)": [
+    "dev_api_call_slot0.c"
+   ],
+   "void(*@)(int,void*,int,short,void*)": [
+    "dev_ctrl_write1.c"
+   ],
+   "void(*@)(int,void*,int,short)": [
+    "transport_send_type2_via_ops.c"
+   ],
+   "int(*@)(int)": [
+    "alloc_zeroed_node.c"
+   ],
+   "void(*@)(void)": [
+    "invoke_optional_callback_7c.c"
+   ]
+  },
+  "fp_t": {
+   "int(*@)(unsigned int)": [
+    "disable_watchdog.c"
+   ],
+   "int(*@)(void*,int)": [
+    "attr_store_set.c"
+   ],
+   "int(*@)(int,int,void*,int)": [
+    "get_demo_image_source_from_flash.c"
+   ],
+   "int(*@)(unsigned int,void*,void*)": [
+    "gatt_parse_find_by_type_rsp.c"
+   ],
+   "void(*@)(unsigned int,void*,int)": [
+    "list_unlink_and_release.c"
+   ],
+   "unsigned int(*@)(int,int,unsigned int,int,unsigned int)": [
+    "foreach_attr_entry_invoke_callback.c"
+   ]
+  },
+  "fn2_t": {
+   "void(*@)(unsigned int)": [
+    "global_system_suspend.c"
+   ],
+   "void(*@)(unsigned long,unsigned long)": [
+    "put_whitelist_app_from_app.c"
+   ],
+   "int(*@)(int,int)": [
+    "rpmsg_virtqueue_channel_init.c"
+   ]
+  },
+  "transfer_fn": {
+   "int(*@)(unsigned long,struct io_part*,unsigned long,unsigned long)": [
+    "opt3001_reg_read.c"
+   ],
+   "int(*@)(unsigned int,void*,unsigned long,short)": [
+    "opt3001_chip_init.c"
+   ]
+  },
+  "fp": {
+   "int(*@)(int,int)": [
+    "fuel_gauge_read_voltage_current_temp.c"
+   ],
+   "void(*@)(int,u32,u32,u32)": [
+    "ble_notify_le_param_updated.c"
+   ],
+   "void(*@)(int,...)": [
+    "ble_notify_remote_info_available.c"
+   ],
+   "void(*@)(u32,void*,int,int)": [
+    "gatt_write_ccc_rsp.c"
+   ],
+   "void(*@)(int)": [
+    "gatt_remove_peer_from_attr.c"
+   ]
+  },
+  "fn_t": {
+   "void(*@)(void)": [
+    "attr_store_retry_delay.c",
+    "sensor_channel_get_trampoline.c"
+   ],
+   "void(*@)(int,unsigned char)": [
+    "bt_conn_notify_connected.c"
+   ],
+   "int(*@)(unsigned int,unsigned int,unsigned int)": [
+    "gatt_hash_settings_set.c"
+   ],
+   "void(*@)(unsigned int,unsigned int,unsigned int)": [
+    "discovery_complete_error.c"
+   ],
+   "void(*@)(int,unsigned int)": [
+    "bt_ancs_cp_write_callback.c"
+   ],
+   "unsigned int(*@)(int,void*,int,short)": [
+    "emit_u8_value_via_vtable.c"
+   ],
+   "void(*@)(int*)": [
+    "dma_xfer_end_handler.c"
+   ]
+  },
+  "int": {
+   "long long code(@,...)": [
+    "ui_DashBoard_task.c",
+    "resource_manger_get.c"
+   ],
+   "@(*volatile codeptr)(int,int)": [
+    "bt_smp_recv.c"
+   ]
+  },
+  "fnptr_t": {
+   "u32(*@)(u32,u32,u32,u32,u32)": [
+    "gui_utf_Wordwrap_draw.c"
+   ],
+   "int(*@)(int,int,int)": [
+    "net_buf_destroy.c"
+   ],
+   "unsigned int(*@)(int*)": [
+    "opt_node_value_len.c"
+   ],
+   "void(*@)(void)": [
+    "gatt_ccc_changed.c"
+   ]
+  },
+  "dispatch_record": {
+   "struct { unsigned long kind; unsigned int label; unsigned long owner_value; unsigned long data_value; unsigned int operation_name; unsigned long encoding; unsigned short encoding_size; } @": [
+    "module_state_event_log_handler.c"
+   ],
+   "struct { unsigned long kind; unsigned int label; unsigned long owner_value; unsigned int indexed_value; unsigned int operation_name; unsigned long encoding; unsigned short encoding_size; } @": [
+    "power_manager_restrict_event_log.c"
+   ]
+  },
+  "dispatch_fn_t": {
+   "unsigned long(*@)(void)": [
+    "bt_hci_driver_send.c"
+   ],
+   "unsigned long(*@)(unsigned int object)": [
+    "bt_le_adv_legacy_invoke.c"
+   ]
+  },
+  "allocate": {
+   "struct { unsigned char reserved_00[12]; packet_t*(*@)(transfer_t*transfer); unsigned char reserved_10[12]; void(*drained)(transfer_t*transfer); } transfer_ops_t": [
+    "l2cap_chan_le_send_seg.c"
+   ],
+   "struct { unsigned char reserved_00[0x10]; unsigned int(*@)(transfer_t*transfer); int(*submit)(transfer_t*transfer,void*request); } transfer_ops_t": [
+    "l2cap_le_recv_pdu.c"
+   ]
+  },
+  "codep": {
+   "void(*@)(unsigned int,...)": [
+    "att_handle_rsp.c"
+   ],
+   "int(*@)(int,void*,int*)": [
+    "gatt_parse_read_by_type_rsp_128.c"
+   ],
+   "unsigned int(*@)(int,unsigned int,unsigned int)": [
+    "gpio_pin_configure_dt.c"
+   ],
+   "int(*@)(int,int*,unsigned int,void*,unsigned int**)": [
+    "vfprintf_field_scan_match.c"
+   ]
+  },
+  "record_consumer_t": {
+   "int(*@)(unsigned long,void*,void*)": [
+    "gatt_parse_read_by_type_rsp.c"
+   ],
+   "int(*@)(unsigned long context,void*record,void*consumer)": [
+    "gatt_parse_find_info_rsp.c"
+   ]
+  },
+  "callback_t": {
+   "long(*@)(unsigned long,unsigned long,unsigned long,unsigned long)": [
+    "audio_codec_reg_op_dispatch.c"
+   ],
+   "void(*@)(unsigned char*object,unsigned char**holder,unsigned long context)": [
+    "att_optional_sent_cb_dispatch.c"
+   ],
+   "int(*@)(unsigned char*object,unsigned long event,unsigned long context)": [
+    "transport_notify_callback.c"
+   ]
+  }
+ },
+ "macros_with_differing_bodies": {
+  "NAN": {
+   "(x)= __builtin_isnan(x)": [
+    "battery_model_state_update.c"
+   ],
+   "(x)= __builtin_isnan((x))": [
+    "fuel_gauge_update.c"
+   ],
+   "(x)= __builtin_isnan((double)(x))": [
+    "hci_vs_init.c",
+    "SettingStoreHandler.c",
+    "check_work_mode.c",
+    "l2cap_recv.c"
+   ],
+   "= (__builtin_nanf(\"\"))": [
+    "ui_DashBoard_task.c",
+    "resource_manger_get.c"
+   ]
+  },
+  "B": {
+   "(a)= (*(volatile signed char *)(a))": [
+    "imu_fusion_thread.c"
+   ],
+   "(o)= (*(volatile u8 *)(display+(o)))": [
+    "display_dispatch_thread.c"
+   ],
+   "(a)= (*(volatile byte *)(a))": [
+    "onboarding_render_step_screen.c"
+   ]
+  },
+  "CONCAT11": {
+   "(a,b)= ((unsigned short)(((unsigned)(unsigned char)(a)<<8)|(unsigned char)(b)))": [
+    "hci_vs_init.c",
+    "SettingStoreHandler.c",
+    "check_work_mode.c",
+    "l2cap_recv.c",
+    "uarte_nrfx_isr.c",
+    "cjson_print_value.c"
+   ],
+   "(a,b)= ((ushort)(((ushort)(uint8_t)(a)<<8)|(uint8_t)(b)))": [
+    "DashBoard_Reflash.c",
+    "ui_DashBoard_task.c",
+    "resource_manger_get.c"
+   ]
+  },
+  "CONCAT21": {
+   "(a,b)= (((unsigned)(unsigned short)(a)<<8)|(unsigned char)(b))": [
+    "hci_vs_init.c",
+    "SettingStoreHandler.c",
+    "check_work_mode.c",
+    "l2cap_recv.c",
+    "uarte_nrfx_isr.c",
+    "cjson_print_value.c"
+   ],
+   "(a,b)= ((uint)(((uint)(ushort)(a)<<8)|(uint8_t)(b)))": [
+    "ui_DashBoard_task.c",
+    "resource_manger_get.c"
+   ]
+  },
+  "CONCAT12": {
+   "(a,b)= (((unsigned)(unsigned char)(a)<<16)|(unsigned short)(b))": [
+    "hci_vs_init.c",
+    "SettingStoreHandler.c",
+    "check_work_mode.c",
+    "l2cap_recv.c",
+    "uarte_nrfx_isr.c",
+    "cjson_print_value.c"
+   ],
+   "(a,b)= ((uint)(((uint)(uint8_t)(a)<<16)|(ushort)(b)))": [
+    "ui_DashBoard_task.c",
+    "resource_manger_get.c"
+   ]
+  },
+  "CONCAT31": {
+   "(a,b)= (((unsigned)(a)<<8)|(unsigned char)(b))": [
+    "hci_vs_init.c",
+    "SettingStoreHandler.c",
+    "check_work_mode.c",
+    "l2cap_recv.c",
+    "uarte_nrfx_isr.c",
+    "cjson_print_value.c"
+   ],
+   "(a,b)= ((uint)(((uint)(a)<<8)|(uint8_t)(b)))": [
+    "ui_DashBoard_task.c",
+    "resource_manger_get.c"
+   ]
+  },
+  "CONCAT13": {
+   "(a,b)= (((unsigned)(unsigned char)(a)<<24)|((unsigned)(b)&0xffffffu))": [
+    "hci_vs_init.c",
+    "SettingStoreHandler.c",
+    "check_work_mode.c",
+    "l2cap_recv.c",
+    "uarte_nrfx_isr.c",
+    "cjson_print_value.c"
+   ],
+   "(a,b)= ((uint)(((uint)(uint8_t)(a)<<24)|((uint)(b)&0xffffff)))": [
+    "ui_DashBoard_task.c",
+    "resource_manger_get.c"
+   ]
+  },
+  "CONCAT22": {
+   "(a,b)= (((unsigned)(unsigned short)(a)<<16)|(unsigned short)(b))": [
+    "hci_vs_init.c",
+    "SettingStoreHandler.c",
+    "check_work_mode.c",
+    "l2cap_recv.c",
+    "uarte_nrfx_isr.c",
+    "cjson_print_value.c"
+   ],
+   "(a,b)= ((uint)(((uint)(ushort)(a)<<16)|(ushort)(b)))": [
+    "DashBoard_Reflash.c",
+    "ui_DashBoard_task.c",
+    "resource_manger_get.c"
+   ]
+  },
+  "CONCAT44": {
+   "(a,b)= (((unsigned long long)(unsigned)(a)<<32)|(unsigned)(b))": [
+    "hci_vs_init.c",
+    "SettingStoreHandler.c",
+    "check_work_mode.c",
+    "l2cap_recv.c",
+    "uarte_nrfx_isr.c",
+    "cjson_print_value.c"
+   ],
+   "(a,b)= ((ulonglong)(((ulonglong)(uint)(a)<<32)|(uint)(b)))": [
+    "ui_DashBoard_task.c",
+    "resource_manger_get.c"
+   ]
+  },
+  "SUB41": {
+   "(x,n)= ((unsigned char)((unsigned)(x)>>((n)*8)))": [
+    "hci_vs_init.c",
+    "SettingStoreHandler.c",
+    "check_work_mode.c",
+    "l2cap_recv.c",
+    "uarte_nrfx_isr.c",
+    "cjson_print_value.c"
+   ],
+   "(x,o)= ((uint8_t)((uint)(x)>>((o)*8)))": [
+    "ui_DashBoard_task.c",
+    "resource_manger_get.c"
+   ]
+  },
+  "SUB42": {
+   "(x,n)= ((unsigned short)((unsigned)(x)>>((n)*8)))": [
+    "hci_vs_init.c",
+    "SettingStoreHandler.c",
+    "check_work_mode.c",
+    "l2cap_recv.c",
+    "uarte_nrfx_isr.c",
+    "cjson_print_value.c"
+   ],
+   "(x,o)= ((ushort)((uint)(x)>>((o)*8)))": [
+    "ui_DashBoard_task.c",
+    "resource_manger_get.c"
+   ]
+  },
+  "SUB84": {
+   "(x,n)= ((unsigned)((unsigned long long)(x)>>((n)*8)))": [
+    "hci_vs_init.c",
+    "SettingStoreHandler.c",
+    "check_work_mode.c",
+    "l2cap_recv.c",
+    "uarte_nrfx_isr.c",
+    "cjson_print_value.c"
+   ],
+   "(x,o)= ((uint)((ulonglong)(x)>>((o)*8)))": [
+    "ui_DashBoard_task.c",
+    "resource_manger_get.c"
+   ]
+  },
+  "SUB81": {
+   "(x,n)= ((unsigned char)((unsigned long long)(x)>>((n)*8)))": [
+    "hci_vs_init.c",
+    "SettingStoreHandler.c",
+    "check_work_mode.c",
+    "l2cap_recv.c",
+    "uarte_nrfx_isr.c",
+    "cjson_print_value.c"
+   ],
+   "(x,o)= ((uint8_t)((ulonglong)(x)>>((o)*8)))": [
+    "ui_DashBoard_task.c",
+    "resource_manger_get.c"
+   ]
+  },
+  "SUB82": {
+   "(x,n)= ((unsigned short)((unsigned long long)(x)>>((n)*8)))": [
+    "hci_vs_init.c",
+    "SettingStoreHandler.c",
+    "check_work_mode.c",
+    "l2cap_recv.c",
+    "uarte_nrfx_isr.c",
+    "cjson_print_value.c"
+   ],
+   "(x,o)= ((ushort)((ulonglong)(x)>>((o)*8)))": [
+    "ui_DashBoard_task.c",
+    "resource_manger_get.c"
+   ]
+  },
+  "LOG_LEVEL": {
+   "= (*(volatile int32_t *)((unsigned long)&g_log_level) )": [
+    "local_esbs_ipc_service_recv.c",
+    "local_ipc_service_recv.c",
+    "local_esbm_ipc_service_recv.c",
+    "ble_process_get_req.c",
+    "reset_all_usr_data.c",
+    "set_imu_thread_delay.c",
+    "imu_fusion_resume.c",
+    "imu_fusion_suspend.c",
+    "imu_fusion_init.c",
+    "update_imu_mode.c",
+    "touch_key_thread.c",
+    "ui_translate_task.c"
+   ],
+   "= (*(volatile int *)((unsigned long)&g_log_level) )": [
+    "ancs_main.c",
+    "try_to_save_file.c",
+    "sendAudioStram2Cache.c",
+    "is_ext_flash_burned.c"
+   ],
+   "= (*(volatile int32_t *)(uintptr_t)((unsigned long)&g_log_level) )": [
+    "ui_navigation_task.c"
+   ]
+  },
+  "LOG_SINK": {
+   "= (*(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) )": [
+    "local_esbs_ipc_service_recv.c",
+    "local_ipc_service_recv.c",
+    "local_esbm_ipc_service_recv.c",
+    "set_imu_thread_delay.c",
+    "imu_fusion_resume.c",
+    "imu_fusion_suspend.c",
+    "imu_fusion_init.c"
+   ],
+   "= (*(volatile int *)((unsigned long)&g_log_use_alt_sink) )": [
+    "try_to_save_file.c"
+   ]
+  },
+  "LOG_TAG": {
+   "= ((unsigned long)\"local_esbs_ipc_service_recv\")": [
+    "local_esbs_ipc_service_recv.c"
+   ],
+   "= ((unsigned long)\"local_ipc_service_recv\")": [
+    "local_ipc_service_recv.c"
+   ],
+   "= ((unsigned long)\"local_esbm_ipc_service_recv\")": [
+    "local_esbm_ipc_service_recv.c"
+   ],
+   "= ((unsigned long)\"imu_fusion_init\")": [
+    "imu_fusion_init.c"
+   ]
+  },
+  "g_log_level": {
+   "= (*(volatile int32_t *)((unsigned long)&g_log_level) )": [
+    "main.c",
+    "ui_QuickNote_task.c",
+    "display_thread_handler.c"
+   ],
+   "= (*(volatile s32 *)((unsigned long)&g_log_level) )": [
+    "display_dispatch_thread.c"
+   ],
+   "= (*(volatile int *)((unsigned long)&g_log_level) )": [
+    "update_persist_task_status.c",
+    "process_for_new_task.c",
+    "dmic_stream_start.c",
+    "cal_panel_canvas_coord.c"
+   ]
+  },
+  "g_log_use_alt_sink": {
+   "= (*(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) )": [
+    "main.c",
+    "display_thread_handler.c"
+   ],
+   "= (*(volatile u32 *)((unsigned long)&g_log_use_alt_sink) )": [
+    "display_dispatch_thread.c"
+   ],
+   "= (*(volatile int *)((unsigned long)&g_log_use_alt_sink) )": [
+    "update_persist_task_status.c",
+    "process_for_new_task.c",
+    "dmic_stream_start.c",
+    "cal_panel_canvas_coord.c"
+   ]
+  },
+  "B8": {
+   "(base, off)= (*(volatile uint8_t *)((base) + (off)))": [
+    "main.c"
+   ],
+   "(o)= (*(volatile unsigned char *)(param_1 + (o)))": [
+    "parse_app_id_config_stream.c"
+   ]
+  },
+  "LOG_MODE": {
+   "= (*(volatile int32_t *)((unsigned long)&g_log_use_alt_sink) )": [
+    "ble_process_get_req.c"
+   ],
+   "= (*mode_address)": [
+    "delVoiceBlock.c"
+   ]
+  },
+  "LOG_ROUTE": {
+   "= (*(volatile uint32_t *)((unsigned long)&g_log_use_alt_sink) )": [
+    "update_imu_mode.c",
+    "send_notification_app_whitelist.c",
+    "ui_ancs_notification_task.c",
+    "ui_new_message_task.c",
+    "ui_translate_task.c"
+   ],
+   "= V32(((unsigned long)&g_log_use_alt_sink) )": [
+    "ui_navigation_task.c"
+   ]
+  },
+  "VB": {
+   "(a)= (*(volatile unsigned char *)(a))": [
+    "check_disp_onboarding.c",
+    "uart_callback.c",
+    "get_demo_image_source_from_flash.c",
+    "init_dashboard_info.c",
+    "gui_bitmps_merge_draw.c",
+    "gatt_cf_settings_set.c",
+    "gatt_find_ccc_for_conn.c"
+   ],
+   "(a)= (*(volatile byte *)(a))": [
+    "pdm_configure_clock_and_init.c"
+   ]
+  },
+  "wait_for_event": {
+   "= wait_for_event": [
+    "display_dispatch_thread.c"
+   ],
+   "= FUN_0007ce5c": [
+    "process_for_new_task.c"
+   ]
+  },
+  "log_message": {
+   "= log_message": [
+    "display_dispatch_thread.c",
+    "process_for_new_task.c",
+    "render_ancs_notification_animation.c",
+    "display_thread_handler.c"
+   ],
+   "= z_log_msg_runtime_create": [
+    "hci_set_ad.c"
+   ]
+  },
+  "H": {
+   "(o)= (*(volatile s16 *)(display+(o)))": [
+    "display_dispatch_thread.c"
+   ],
+   "(p,off)= (*(u16*)((char*)(p)+(off)))": [
+    "gatt_recompute_max_mtu.c"
+   ]
+  },
+  "DBG2": {
+   "(msg, ctx)= do { int mode_ = LOG_MODE; if (mode_ == 0) log_message((msg), (ctx)); else debug_print((msg), (ctx)); } while (0)": [
+    "delVoiceBlock.c"
+   ],
+   "(ID)= do { \\ int sink = *p_7554; \\ if (sink == 0) log_message(((unsigned long)\"%s(): exit screen_id = %d\\n\") , ((unsigned long)\"ui_refalsh_warp\") , (ID), sink); \\ else debug_print(((unsigned long)\"%s(): exit screen_id = %d\\n\") , ((unsigned long)\"ui_refalsh_warp\") , (ID), sink); \\ } while (0)": [
+    "ui_refalsh_warp.c"
+   ]
+  },
+  "LOG_FUNCTION_NAME": {
+   "= ((uintptr_t)((unsigned long)\"draw_message\") )": [
+    "draw_message.c"
+   ],
+   "= ((uintptr_t)((unsigned long)\"cal_panel_canvas_coord\") )": [
+    "cal_panel_canvas_coord.c"
+   ]
+  },
+  "TASK_LOG": {
+   "(format)= do { \\ if (LOG_ROUTE == 0u) log_message((format)); \\ else debug_print((format)); \\ } while (0)": [
+    "ui_ancs_notification_task.c"
+   ],
+   "(format, ...)= do { \\ if (LOG_ROUTE == 0u) log_message((format), ##__VA_ARGS__); \\ else debug_print((format), ##__VA_ARGS__); \\ } while (0)": [
+    "ui_new_message_task.c",
+    "ui_translate_task.c"
+   ]
+  },
+  "LOG_FUNCTION": {
+   "= ((uintptr_t)((unsigned long)\"ui_QuickNote_task\") )": [
+    "ui_QuickNote_task.c"
+   ],
+   "= ((uintptr_t)((unsigned long)\"ui_even_ai_task\") )": [
+    "ui_even_ai_task.c"
+   ]
+  },
+  "LOG_INIT": {
+   "= ((uintptr_t)((unsigned long)\"%s(): QUICK NOTE INIT.....\\n\") )": [
+    "ui_QuickNote_task.c"
+   ],
+   "= ((uintptr_t)((unsigned long)\"%s(): ENTER evenai INIT process...\\n\") )": [
+    "ui_even_ai_task.c"
+   ]
+  },
+  "U16": {
+   "(a)= (*(volatile uint16_t *)(uintptr_t)(a))": [
+    "ui_teleprompter_task.c"
+   ],
+   "(o)= (*(volatile unsigned short *)(param_1 + (o)))": [
+    "parse_app_id_config_stream.c"
+   ],
+   "(a)= (*(volatile uint16_t *)(a))": [
+    "conn_tx_send_to_driver.c"
+   ]
+  },
+  "U32": {
+   "(a)= (*(volatile uint32_t *)(uintptr_t)(a))": [
+    "ui_teleprompter_task.c"
+   ],
+   "(o)= (*(volatile uint *)(param_1 + (o)))": [
+    "parse_app_id_config_stream.c"
+   ],
+   "(a)= (*(volatile uint32_t *)(a))": [
+    "conn_tx_send_to_driver.c"
+   ]
+  },
+  "S16": {
+   "(o)= (*(volatile short *)(param_1 + (o)))": [
+    "parse_app_id_config_stream.c"
+   ],
+   "(a)= (*(volatile int16_t *)(a))": [
+    "conn_tx_send_to_driver.c"
+   ]
+  },
+  "I32": {
+   "(o)= (*(volatile int *)(param_1 + (o)))": [
+    "parse_app_id_config_stream.c"
+   ],
+   "(a)= (*(volatile int32_t *)(a))": [
+    "conn_tx_send_to_driver.c"
+   ]
+  }
+ },
+ "statics_in_more_than_one_file": {
+  "g1_float_bits": [
+   "fuel_gauge_update.c",
+   "panel_temp_calibration_init.c"
+  ],
+  "load_u32": [
+   "local_esbs_ipc_service_recv.c",
+   "local_ipc_service_recv.c",
+   "local_esbm_ipc_service_recv.c",
+   "ble_process_req_dispatch.c"
+  ],
+  "store_u32": [
+   "local_esbs_ipc_service_recv.c",
+   "local_ipc_service_recv.c",
+   "local_esbm_ipc_service_recv.c",
+   "ble_process_req_dispatch.c"
+  ],
+  "load_u16": [
+   "local_ipc_service_recv.c",
+   "local_esbm_ipc_service_recv.c",
+   "ble_process_req_dispatch.c"
+  ],
+  "store_u16": [
+   "local_ipc_service_recv.c",
+   "local_esbm_ipc_service_recv.c",
+   "ble_process_req_dispatch.c"
+  ],
+  "log_level_reg": [
+   "flash_ops_thread.c",
+   "slave_display_thread.c"
+  ],
+  "g_log_backend": [
+   "flash_ops_thread.c",
+   "slave_display_thread.c"
+  ],
+  "log_level": [
+   "getQuickNoteBKPQueueCacheData.c",
+   "gui_utf_draw_truncate.c",
+   "gui_utf_draw_align_right.c"
+  ],
+  "mkf": [
+   "fuel_gauge_read_voltage_current_temp.c",
+   "__ieee754_log10f.c"
+  ],
+  "active_canvas": [
+   "gui_utf_draw_truncate.c",
+   "gui_utf_draw_align_right.c"
+  ],
+  "use_alternate_log_sink": [
+   "gui_utf_draw_truncate.c",
+   "gui_utf_draw_align_right.c"
+  ],
+  "glyph_dither_mask": [
+   "gui_utf_draw_truncate.c",
+   "gui_utf_draw_align_right.c"
+  ],
+  "F": [
+   "__ieee754_asinf.c",
+   "__ieee754_logf.c"
+  ],
+  "B": [
+   "__ieee754_asinf.c",
+   "__ieee754_logf.c"
+  ],
+  "bits": [
+   "__ieee754_expf.c",
+   "atanf.c"
+  ],
+  "sbits": [
+   "__ieee754_expf.c",
+   "atanf.c"
+  ],
+  "fp": [
+   "__ieee754_expf.c",
+   "atanf.c"
+  ]
+ }
+}

@@ -57,6 +57,15 @@ STAGES = [
      "byte-identically-spelled extern declarations into a generated module "
      "header.  The net core is frozen and is not touched.",
      "t03_module_structure"),
+    (4, "cohesive_tu", "SCOPED cohesive translation-unit merge, app core only: "
+     "concatenate each maximal ORDER-PRESERVING run of consecutive retained "
+     "sources within one module directory that provably cannot collide (no "
+     "symbol declared with two types, no internal-linkage identifier named by "
+     "another member, no local typedef or macro visible to a member that names "
+     "it, no duplicate assembler name), rewriting the generated source list in "
+     "the same transaction.  This is the FIRST stage whose image cannot be "
+     "byte-identical by construction: merging changes inlining opportunities.",
+     "t04_cohesive_tu"),
     (99, "defect_probe", "DIAGNOSTIC, NOT A STAGE: stage 02 with "
      "G1_STAGE02_FORCE_LOG_HEADER=1, which withdraws the local log externs in "
      "the files stage 02 quarantines.  This tree is EXPECTED NOT TO COMPILE; "

@@ -517,6 +517,51 @@ def _divergence_class(canon_forms: list[str]) -> str:
     return "other"
 
 
+#: names that ``<stdint.h>`` / ``<stddef.h>`` themselves typedef.  A generated
+#: module header MUST include those two headers to be self-contained (round 1
+#: of this transformer, `int64_t` unknown) -- but a source that typedefs one of
+#: these names itself then meets the real one in the same translation unit and
+#: the compiler rejects one of them.  Which order they arrive in does not
+#: matter: `typedef unsigned short ... wchar_t;` and stddef's
+#: `typedef unsigned int wchar_t;` are conflicting types either way.
+#:
+#: This is a bucket-(b) find rather than a design choice: it did not exist when
+#: stage 03 first landed and appeared when the concurrent parity agent's
+#: type-disagreement repair made `check_work_mode.c` newly eligible for a hoist.
+#: The file is a genuine latent reconstruction defect -- a Ghidra
+#: `typedef unsigned short undefined2,ushort,uint2,wchar_t;` line -- and until it
+#: is repaired in the canonical tree the honest move is to leave that file out
+#: of the hoist, not to drop the header's self-containment for everyone else.
+_STDLIB_TYPEDEF_NAMES = frozenset("""
+wchar_t size_t ptrdiff_t max_align_t
+int8_t int16_t int32_t int64_t uint8_t uint16_t uint32_t uint64_t
+intptr_t uintptr_t intmax_t uintmax_t
+int_least8_t int_least16_t int_least32_t int_least64_t
+uint_least8_t uint_least16_t uint_least32_t uint_least64_t
+int_fast8_t int_fast16_t int_fast32_t int_fast64_t
+uint_fast8_t uint_fast16_t uint_fast32_t uint_fast64_t
+""".split())
+
+_TYPEDEF_STMT = re.compile(r'\btypedef\b([^;{}]*);')
+
+
+def _typedef_declared_names(text: str) -> set[str]:
+    """Names a source declares with ``typedef``, including comma lists."""
+    out: set[str] = set()
+    for m in _TYPEDEF_STMT.finditer(text):
+        body = re.sub(r'\s+', ' ', m.group(1)).strip()
+        fp = re.search(r'\(\s*\*+\s*([A-Za-z_]\w*)\s*\)\s*\(', body)
+        if fp:
+            out.add(fp.group(1))
+            continue
+        # `unsigned short undefined2,ushort,uint2,wchar_t`
+        for part in body.split(","):
+            ids = re.findall(r'[A-Za-z_]\w*', re.sub(r'\[[^\]]*\]', '', part))
+            if ids:
+                out.add(ids[-1])
+    return out
+
+
 def batch_b(moves, text, stats, defects):
     """Hoist module-wide type-identical extern declarations into a module header."""
     # group the moved .c/.inc files by their new directory
@@ -532,8 +577,16 @@ def batch_b(moves, text, stats, defects):
     divergent_total = 0
     multi_total = 0
 
+    stdlib_shadow: list[str] = []
     for d in sorted(by_dir):
-        files = sorted(by_dir[d])
+        files = []
+        for r in sorted(by_dir[d]):
+            shadowed = _typedef_declared_names(text[r]) & _STDLIB_TYPEDEF_NAMES
+            if shadowed:
+                stdlib_shadow.append("%s: %s" % (os.path.basename(r),
+                                                 ",".join(sorted(shadowed))))
+                continue
+            files.append(r)
         if len(files) < 2:
             continue
         # symbol -> {canonical type -> {source spelling -> [files]}}
@@ -688,6 +741,8 @@ def batch_b(moves, text, stats, defects):
 
     stats["B_module_headers"] = {
         "headers_generated": len(headers),
+        "files_excluded_shadowing_a_stdlib_typedef": sorted(stdlib_shadow),
+        "files_excluded_shadowing_a_stdlib_typedef_count": len(stdlib_shadow),
         "files_with_multi_declaration_lines": multi_total,
         "declarations_hoisted": hoisted_total,
         "symbols_refused_divergent_spelling": divergent_total,

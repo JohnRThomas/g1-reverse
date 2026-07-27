@@ -1,7 +1,7 @@
 {
  "schema": "g1.refactor.stage-defects/1",
  "stage": 3,
- "count": 1014,
+ "count": 833,
  "entries": [
   {
    "module_dir": "recon/symbolized/app/analytics",
@@ -111,7 +111,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int load_sys_setting(void);": 1,
+    "extern int load_sys_setting(unsigned long);": 1,
     "extern int load_sys_setting(uintptr_t);": 1
    },
    "definition_file": "load_sys_setting.c",
@@ -165,20 +165,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/audio",
-   "symbol": "sendAudioStram2Cache",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern void sendAudioStram2Cache(int);": 1,
-    "extern uint32_t sendAudioStram2Cache(const void*);": 1
-   },
-   "definition_file": "sendAudioStram2Cache.c",
-   "files": [
-    "app_codec_lc3_test.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
    "symbol": "qspi_nor_write",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -194,194 +180,18 @@
   {
    "module_dir": "recon/symbolized/app/audio",
    "symbol": "z_device_is_ready",
-   "class": "return_type_differs",
-   "distinct_types": 4,
+   "class": "parameter_type_differs",
+   "distinct_types": 3,
    "types": {
     "extern int z_device_is_ready(int);": 2,
     "extern int z_device_is_ready(unsigned int);": 1,
-    "extern int z_device_is_ready(void*);": 1,
-    "extern uint32_t z_device_is_ready(uintptr_t,);": 1
+    "extern int z_device_is_ready(void*);": 1
    },
    "files": [
     "app_codec_lc3_test.c",
-    "audioStreamFileManagerHandler.c",
     "check_device_readiness.c",
     "delVoiceBlock.c",
     "mic_transm_thread.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "get_device_info",
-   "class": "arity_differs",
-   "distinct_types": 5,
-   "types": {
-    "extern int get_device_info(void);": 3,
-    "extern uint32_t get_device_info(uintptr_t,);": 1,
-    "extern uint8_t*get_device_info(void);": 2,
-    "extern unsigned int get_device_info(void);": 1,
-    "extern void*get_device_info(void);": 1
-   },
-   "files": [
-    "audioStreamFileManagerHandler.c",
-    "delVoiceBlock.c",
-    "dmic_record_start.c",
-    "gui_bmp_dynamic_bitmap_draw.c",
-    "master_process_audio_fw_load_req.c",
-    "mic_transm_thread.c",
-    "send_dmic_msg.c",
-    "startAudioStreamRecord.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "getAudioMessageQueueCacheData",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern uint32_t getAudioMessageQueueCacheData(uintptr_t,);": 1,
-    "extern int getAudioMessageQueueCacheData(unsigned int,unsigned int,unsigned int,unsigned int);": 1
-   },
-   "definition_file": "getAudioMessageQueueCacheData.c",
-   "files": [
-    "audioStreamFileManagerHandler.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "delVoiceBlock",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern uint32_t delVoiceBlock(uintptr_t,);": 1,
-    "extern void delVoiceBlock(unsigned int,int,int,int);": 1
-   },
-   "definition_file": "delVoiceBlock.c",
-   "files": [
-    "audioStreamFileManagerHandler.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "drain_audio_msgq",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern uint32_t drain_audio_msgq(uintptr_t,);": 1,
-    "extern void drain_audio_msgq(void);": 1
-   },
-   "files": [
-    "audioStreamFileManagerHandler.c",
-    "dmic_record_start.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "requestAudioInfoToApp",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern uint32_t requestAudioInfoToApp(uintptr_t,);": 1,
-    "extern int requestAudioInfoToApp(unsigned char);": 1
-   },
-   "definition_file": "requestAudioInfoToApp.c",
-   "files": [
-    "audioStreamFileManagerHandler.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "display_DelayClose",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern uint32_t display_DelayClose(uintptr_t,);": 1,
-    "extern void display_DelayClose(unsigned int);": 1
-   },
-   "files": [
-    "audioStreamFileManagerHandler.c",
-    "startAudioStreamRecord.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "memcpy",
-   "class": "arity_differs",
-   "distinct_types": 11,
-   "types": {
-    "extern int memcpy(int,);": 1,
-    "extern int memcpy(int,byte*,int);": 1,
-    "extern int memcpy(int,int,int);": 1,
-    "extern uint32_t memcpy(uintptr_t,);": 1,
-    "extern void memcpy(int,int,unsigned int);": 1,
-    "extern void memcpy(uintptr_t,int,int);": 1,
-    "extern void memcpy(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);": 1,
-    "extern void memcpy(unsigned int,void*,int);": 1,
-    "extern void memcpy(void*,const void*,int);": 1,
-    "extern void memcpy(void*,unsigned int,int);": 1,
-    "extern void memcpy(void*,void*,int);": 1
-   },
-   "files": [
-    "audioStreamFileManagerHandler.c",
-    "build_str_response_frame.c",
-    "delVoiceBlock.c",
-    "dequeue_file.c",
-    "enqueue_dmic.c",
-    "master_process_audio_fw_load_req.c",
-    "opt_node_serialize.c",
-    "qspi_nor_write.c",
-    "ringbuf_flush_chunk.c",
-    "sendAudioStram2Cache.c",
-    "uarte_nrfx_tx_start.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "memset_bytes",
-   "class": "arity_differs",
-   "distinct_types": 8,
-   "types": {
-    "extern int memset_bytes(void*,int,int);": 1,
-    "extern uint32_t memset_bytes(uintptr_t,);": 1,
-    "extern uint64_t memset_bytes(void*,uint32_t,uint32_t,);": 1,
-    "extern void memset_bytes(uintptr_t,int,int);": 1,
-    "extern void memset_bytes(void*,int,int);": 8,
-    "extern void memset_bytes(void*,int,unsigned int);": 3,
-    "extern void memset_bytes(void*,uint32_t,uint32_t);": 1,
-    "extern void*memset_bytes(void*,uint32_t,uint32_t);": 1
-   },
-   "files": [
-    "audioStreamFileManagerHandler.c",
-    "build_str_response_frame.c",
-    "delAudioStreamRecord.c",
-    "delVoiceBlock.c",
-    "master_process_audio_fw_load_req.c",
-    "mic_transm_thread.c",
-    "post_event_tag2_from_node.c",
-    "post_event_tag4_and_clear.c",
-    "post_event_tag5.c",
-    "requestAudioInfoToApp.c",
-    "sendAudioStram2Cache.c",
-    "sendAudioStreamFileToApp.c",
-    "send_dmic_msg.c",
-    "startAudioStreamRecord.c",
-    "stopAudioStreamRecord.c",
-    "uarte_blocking_transfer.c",
-    "uarte_nrfx_isr.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "sync_to_slave",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern uint32_t sync_to_slave(uintptr_t,);": 1,
-    "extern void sync_to_slave(unsigned int,unsigned int,void*,unsigned int);": 1
-   },
-   "files": [
-    "audioStreamFileManagerHandler.c",
-    "startAudioStreamRecord.c"
    ]
   },
   {
@@ -496,21 +306,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/audio",
-   "symbol": "audio_codec_read_trim_word",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int audio_codec_read_trim_word(uint32_t,void*);": 2,
-    "extern int audio_codec_read_trim_word(unsigned int,unsigned int);": 1
-   },
-   "definition_file": "audio_codec_read_trim_word.c",
-   "files": [
-    "audio_codec_set_gain_ch0.c",
-    "audio_codec_set_gain_ch1.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
    "symbol": "audio_codec_read_gain_step_mode",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -544,7 +339,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern uint32_t master_process_audio_fw_load_req(int,uint32_t,uint8_t*,uint32_t);": 1,
+    "extern int master_process_audio_fw_load_req(char*,unsigned char*,unsigned char*,unsigned int);": 1,
     "extern int master_process_audio_fw_load_req(char*,byte*,byte*,undefined4);": 1
    },
    "definition_file": "master_process_audio_fw_load_req.c",
@@ -558,7 +353,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern void audio_fw_load_get_wrapper(void);": 1,
+    "extern void audio_fw_load_get_wrapper(unsigned long,unsigned long,unsigned long);": 1,
     "extern uint32_t audio_fw_load_get_wrapper(int,uint8_t*,uint32_t);": 1
    },
    "definition_file": "audio_fw_load_get_wrapper.c",
@@ -576,7 +371,7 @@
     "extern int k_sem_give(int,);": 1,
     "extern void k_sem_give(int);": 2,
     "extern void k_sem_give(unsigned int);": 2,
-    "extern void k_sem_give(void*);": 4
+    "extern void k_sem_give(void*);": 3
    },
    "files": [
     "audio_i2s_start_channels.c",
@@ -586,7 +381,6 @@
     "qspi_nor_acquire.c",
     "qspi_nor_erase.c",
     "qspi_nor_write.c",
-    "sendAudioStram2Cache.c",
     "startAudioStreamRecord.c",
     "stopAudioStreamRecord.c"
    ]
@@ -597,7 +391,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern void audio_hw_lock_release(int);": 1,
+    "extern void audio_hw_lock_release(unsigned char*);": 1,
     "extern void audio_hw_lock_release(uint8_t*);": 1
    },
    "definition_file": "audio_hw_lock_release.c",
@@ -611,7 +405,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern unsigned long long audio_hw_lock_acquire(void);": 1,
+    "extern unsigned long long audio_hw_lock_acquire(unsigned long);": 1,
     "extern void audio_hw_lock_acquire(void*);": 1
    },
    "definition_file": "audio_hw_lock_acquire.c",
@@ -639,17 +433,60 @@
   },
   {
    "module_dir": "recon/symbolized/app/audio",
-   "symbol": "get_device_serial_buf",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
+   "symbol": "memcpy",
+   "class": "arity_differs",
+   "distinct_types": 9,
    "types": {
-    "extern int get_device_serial_buf(void);": 2,
-    "extern unsigned int get_device_serial_buf(void);": 1
+    "extern int memcpy(int,);": 1,
+    "extern int memcpy(int,byte*,int);": 1,
+    "extern int memcpy(int,int,int);": 1,
+    "extern void memcpy(int,int,unsigned int);": 1,
+    "extern void memcpy(uintptr_t,int,int);": 1,
+    "extern void memcpy(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);": 1,
+    "extern void memcpy(unsigned int,void*,int);": 1,
+    "extern void memcpy(void*,unsigned int,int);": 1,
+    "extern void memcpy(void*,void*,int);": 1
    },
-   "definition_file": "get_device_serial_buf.c",
    "files": [
     "build_str_response_frame.c",
-    "master_process_audio_fw_load_req.c"
+    "delVoiceBlock.c",
+    "dequeue_file.c",
+    "enqueue_dmic.c",
+    "master_process_audio_fw_load_req.c",
+    "opt_node_serialize.c",
+    "qspi_nor_write.c",
+    "ringbuf_flush_chunk.c",
+    "uarte_nrfx_tx_start.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/audio",
+   "symbol": "memset_bytes",
+   "class": "return_type_differs",
+   "distinct_types": 6,
+   "types": {
+    "extern int memset_bytes(void*,int,int);": 1,
+    "extern void memset_bytes(uintptr_t,int,int);": 1,
+    "extern void memset_bytes(void*,int,int);": 7,
+    "extern void memset_bytes(void*,int,unsigned int);": 3,
+    "extern void memset_bytes(void*,uint32_t,uint32_t);": 1,
+    "extern void*memset_bytes(void*,uint32_t,uint32_t);": 1
+   },
+   "files": [
+    "build_str_response_frame.c",
+    "delAudioStreamRecord.c",
+    "delVoiceBlock.c",
+    "master_process_audio_fw_load_req.c",
+    "mic_transm_thread.c",
+    "post_event_tag2_from_node.c",
+    "post_event_tag4_and_clear.c",
+    "post_event_tag5.c",
+    "requestAudioInfoToApp.c",
+    "sendAudioStreamFileToApp.c",
+    "send_dmic_msg.c",
+    "startAudioStreamRecord.c",
+    "stopAudioStreamRecord.c",
+    "uarte_blocking_transfer.c"
    ]
   },
   {
@@ -670,12 +507,11 @@
    "module_dir": "recon/symbolized/app/audio",
    "symbol": "k_msgq_put",
    "class": "parameter_type_differs",
-   "distinct_types": 5,
+   "distinct_types": 4,
    "types": {
     "extern int k_msgq_put(int,void*,int,int);": 1,
     "extern int k_msgq_put(uintptr_t,void*,uint32_t,uint32_t);": 1,
     "extern int k_msgq_put(unsigned int,void*,int,int);": 5,
-    "extern int k_msgq_put(void*,const void*,int,int);": 1,
     "extern int k_msgq_put(void*,void*,int,int);": 1
    },
    "files": [
@@ -685,8 +521,28 @@
     "enqueue_uid.c",
     "pdm_mic_event_handler.c",
     "requestAudioInfoToApp.c",
-    "sendAudioStram2Cache.c",
     "sendAudioStreamFileToApp.c",
+    "startAudioStreamRecord.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/audio",
+   "symbol": "get_device_info",
+   "class": "return_type_differs",
+   "distinct_types": 4,
+   "types": {
+    "extern int get_device_info(void);": 3,
+    "extern uint8_t*get_device_info(void);": 2,
+    "extern unsigned int get_device_info(void);": 1,
+    "extern void*get_device_info(void);": 1
+   },
+   "files": [
+    "delVoiceBlock.c",
+    "dmic_record_start.c",
+    "gui_bmp_dynamic_bitmap_draw.c",
+    "master_process_audio_fw_load_req.c",
+    "mic_transm_thread.c",
+    "send_dmic_msg.c",
     "startAudioStreamRecord.c"
    ]
   },
@@ -718,16 +574,14 @@
    "module_dir": "recon/symbolized/app/audio",
    "symbol": "__aeabi_uldivmod",
    "class": "arity_differs",
-   "distinct_types": 3,
+   "distinct_types": 2,
    "types": {
     "extern int __aeabi_uldivmod(int,);": 1,
-    "extern uint64_t __aeabi_uldivmod(uint32_t,uint32_t,uint32_t,uint32_t);": 1,
     "extern unsigned long long __aeabi_uldivmod(int,int,int,int);": 1
    },
    "files": [
     "dmic_read_block.c",
-    "pdm_configure_clock_and_init.c",
-    "uarte_nrfx_isr.c"
+    "pdm_configure_clock_and_init.c"
    ]
   },
   {
@@ -751,6 +605,20 @@
   },
   {
    "module_dir": "recon/symbolized/app/audio",
+   "symbol": "drain_audio_msgq",
+   "class": "declaration_disagrees_with_definition",
+   "distinct_types": 2,
+   "types": {
+    "extern void drain_audio_msgq(void);": 1,
+    "extern unsigned int drain_audio_msgq(void);": 1
+   },
+   "definition_file": "drain_audio_msgq.c",
+   "files": [
+    "dmic_record_start.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/audio",
    "symbol": "startAudioStreamRecord",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -766,45 +634,29 @@
   {
    "module_dir": "recon/symbolized/app/audio",
    "symbol": "uarte_blocking_transfer",
-   "class": "return_type_differs",
+   "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
     "extern int uarte_blocking_transfer(int,int,int);": 1,
-    "extern uint64_t uarte_blocking_transfer(uint32_t,uint32_t,uint32_t);": 1
+    "extern uint32_t uarte_blocking_transfer(uintptr_t*,uint8_t*,uint32_t);": 1
    },
+   "definition_file": "uarte_blocking_transfer.c",
    "files": [
-    "flowctl_release_credit_and_kick.c",
-    "uarte_nrfx_isr.c"
+    "flowctl_release_credit_and_kick.c"
    ]
   },
   {
    "module_dir": "recon/symbolized/app/audio",
    "symbol": "post_event_tag2_from_node",
    "class": "arity_differs",
-   "distinct_types": 3,
+   "distinct_types": 2,
    "types": {
     "extern int post_event_tag2_from_node(int,int);": 1,
-    "extern uint64_t post_event_tag2_from_node(uint32_t);": 1,
     "extern void post_event_tag2_from_node(int,int,int,int,unsigned int);": 1
    },
    "files": [
     "flowctl_schedule_next_send.c",
-    "uarte_nrfx_isr.c",
     "uarte_nrfx_tx_start.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "z_impl_k_timer_stop",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern uint64_t z_impl_k_timer_stop(uint32_t);": 1,
-    "extern void z_impl_k_timer_stop(int);": 1
-   },
-   "files": [
-    "flowctl_schedule_next_send.c",
-    "uarte_nrfx_isr.c"
    ]
   },
   {
@@ -869,7 +721,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern long long audio_hw_lock_get_aux_flag(void);": 1,
+    "extern long long audio_hw_lock_get_aux_flag(unsigned long);": 1,
     "extern unsigned int audio_hw_lock_get_aux_flag(unsigned char*);": 1
    },
    "definition_file": "audio_hw_lock_get_aux_flag.c",
@@ -879,119 +731,20 @@
   },
   {
    "module_dir": "recon/symbolized/app/audio",
-   "symbol": "opt_node_total_len",
-   "class": "parameter_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int opt_node_total_len(int);": 2,
-    "extern int opt_node_total_len(unsigned char*);": 1
-   },
-   "files": [
-    "opt_list_append_node.c",
-    "opt_list_total_len.c",
-    "opt_node_serialize.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "opt_node_serialize",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int opt_node_serialize(int,void*);": 1,
-    "extern int opt_node_serialize(int,int*);": 1
-   },
-   "definition_file": "opt_node_serialize.c",
-   "files": [
-    "opt_list_encode.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "opt_list_total_len",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int opt_list_total_len(int*,void*);": 1,
-    "extern int opt_list_total_len(int*,int*);": 1
-   },
-   "definition_file": "opt_list_total_len.c",
-   "files": [
-    "opt_list_encode.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
    "symbol": "opt_node_value_len",
-   "class": "arity_differs",
+   "class": "return_type_differs",
    "distinct_types": 4,
    "types": {
     "extern int opt_node_value_len(int);": 1,
     "extern int opt_node_value_len(unsigned int);": 1,
     "extern unsigned int opt_node_value_len(unsigned char*);": 1,
-    "extern unsigned int opt_node_value_len(void);": 1
+    "extern unsigned int opt_node_value_len(unsigned long);": 1
    },
    "files": [
     "opt_node_serialize.c",
     "opt_node_serialize_7c5ba.c",
     "opt_node_total_len.c",
     "opt_record_bind_value.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "opt_node_serialize_7c5ba",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int opt_node_serialize_7c5ba(int,void*);": 1,
-    "extern unsigned int opt_node_serialize_7c5ba(unsigned char*,int*);": 1
-   },
-   "definition_file": "opt_node_serialize_7c5ba.c",
-   "files": [
-    "opt_node_serialize.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "serialization_read_or_copy",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int serialization_read_or_copy(int,void*,int);": 1,
-    "extern int serialization_read_or_copy(int,int*,int);": 1
-   },
-   "definition_file": "serialization_read_or_copy.c",
-   "files": [
-    "opt_node_serialize.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "opt_node_header_len",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int opt_node_header_len(unsigned int);": 1,
-    "extern unsigned char*opt_node_header_len(unsigned char*);": 1
-   },
-   "definition_file": "opt_node_header_len.c",
-   "files": [
-    "opt_node_total_len.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "opt_record_init",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int opt_record_init(unsigned char*);": 1,
-    "extern unsigned int opt_record_init(unsigned char*);": 1
-   },
-   "definition_file": "opt_record_init.c",
-   "files": [
-    "opt_record_decode.c"
    ]
   },
   {
@@ -1066,20 +819,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/audio",
-   "symbol": "pdm_start_and_check",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern uint32_t pdm_start_and_check(void*);": 1,
-    "extern unsigned int pdm_start_and_check(unsigned int*);": 1
-   },
-   "definition_file": "pdm_start_and_check.c",
-   "files": [
-    "pdm_trigger_command.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
    "symbol": "dppi_apply_channel_config_table",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -1097,18 +836,16 @@
   {
    "module_dir": "recon/symbolized/app/audio",
    "symbol": "transport_notify_callback",
-   "class": "return_type_differs",
-   "distinct_types": 3,
+   "class": "parameter_type_differs",
+   "distinct_types": 2,
    "types": {
-    "extern uint64_t transport_notify_callback(uint32_t,const void*);": 1,
     "extern void transport_notify_callback(int,void*);": 2,
     "extern void transport_notify_callback(unsigned int,void*);": 1
    },
    "files": [
     "post_event_tag2_from_node.c",
     "post_event_tag4_and_clear.c",
-    "post_event_tag5.c",
-    "uarte_nrfx_isr.c"
+    "post_event_tag5.c"
    ]
   },
   {
@@ -1123,20 +860,6 @@
    "definition_file": "enqueue_uid.c",
    "files": [
     "post_uid_event_mode2.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "buffer_append_sum_checksum",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int buffer_append_sum_checksum(void*,void*);": 1,
-    "extern int buffer_append_sum_checksum(int*,unsigned char*);": 1
-   },
-   "definition_file": "buffer_append_sum_checksum.c",
-   "files": [
-    "pt_cmd_dispatch_and_encode_response.c"
    ]
   },
   {
@@ -1175,14 +898,14 @@
   {
    "module_dir": "recon/symbolized/app/audio",
    "symbol": "audio_i2s_stop_and_reset_channels",
-   "class": "arity_differs",
+   "class": "return_type_differs",
    "distinct_types": 5,
    "types": {
     "extern int audio_i2s_stop_and_reset_channels(int);": 1,
     "extern int audio_i2s_stop_and_reset_channels(int,);": 1,
     "extern uint64_t audio_i2s_stop_and_reset_channels(void*);": 1,
     "extern void audio_i2s_stop_and_reset_channels(u32);": 1,
-    "extern void audio_i2s_stop_and_reset_channels(void);": 1
+    "extern void audio_i2s_stop_and_reset_channels(unsigned long);": 1
    },
    "files": [
     "qspi_nor_acquire.c",
@@ -1215,12 +938,12 @@
   {
    "module_dir": "recon/symbolized/app/audio",
    "symbol": "qspi_nor_acquire",
-   "class": "arity_differs",
+   "class": "parameter_type_differs",
    "distinct_types": 4,
    "types": {
     "extern int qspi_nor_acquire(int);": 1,
     "extern int qspi_nor_acquire(int,);": 1,
-    "extern int qspi_nor_acquire(void);": 1,
+    "extern int qspi_nor_acquire(unsigned long);": 1,
     "extern int qspi_nor_acquire(void*);": 1
    },
    "files": [
@@ -1266,34 +989,6 @@
     "qspi_nor_log_erase_range_error.c",
     "qspi_nor_send_cinstr.c",
     "qspi_nor_write.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "audio_apply_config_cmd_0xab",
-   "class": "parameter_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int audio_apply_config_cmd_0xab(int);": 1,
-    "extern int audio_apply_config_cmd_0xab(void*);": 1
-   },
-   "files": [
-    "qspi_nor_configure.c",
-    "qspi_nor_pm_action.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "qspi_nor_log_erase_range_error",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int qspi_nor_log_erase_range_error(int,int);": 1,
-    "extern unsigned int qspi_nor_log_erase_range_error(unsigned int,unsigned int);": 1
-   },
-   "definition_file": "qspi_nor_log_erase_range_error.c",
-   "files": [
-    "qspi_nor_erase.c"
    ]
   },
   {
@@ -1358,7 +1053,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int audio_hw_lock_is_busy(void);": 1,
+    "extern int audio_hw_lock_is_busy(unsigned long);": 1,
     "extern unsigned int audio_hw_lock_is_busy(unsigned char*);": 1
    },
    "definition_file": "audio_hw_lock_is_busy.c",
@@ -1396,20 +1091,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/audio",
-   "symbol": "get_dmic_msgq_count",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int get_dmic_msgq_count(void);": 1,
-    "extern unsigned int get_dmic_msgq_count(void);": 1
-   },
-   "definition_file": "get_dmic_msgq_count.c",
-   "files": [
-    "send_dmic_msg.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
    "symbol": "serialization_copy_fields_0c_10",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -1424,84 +1105,14 @@
   },
   {
    "module_dir": "recon/symbolized/app/audio",
-   "symbol": "event_record_init",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int event_record_init(void*,const void*);": 1,
-    "extern unsigned int event_record_init(unsigned char*,unsigned int*);": 1
-   },
-   "definition_file": "event_record_init.c",
-   "files": [
-    "st25dv_build_and_write_ndef_records.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "fill_record_type8",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int fill_record_type8(void*,const void*);": 1,
-    "extern unsigned int fill_record_type8(unsigned char*,unsigned int*);": 1
-   },
-   "definition_file": "fill_record_type8.c",
-   "files": [
-    "st25dv_build_and_write_ndef_records.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
    "symbol": "invoke_optional_op_offset12",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int invoke_optional_op_offset12(void*,void*);": 1,
+    "extern unsigned int invoke_optional_op_offset12(unsigned char*,void*);": 1,
     "extern uint32_t invoke_optional_op_offset12(uint8_t*,void*);": 1
    },
    "definition_file": "invoke_optional_op_offset12.c",
-   "files": [
-    "st25dv_build_and_write_ndef_records.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "opt_record_decode",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int opt_record_decode(void*,void*);": 1,
-    "extern unsigned int opt_record_decode(int*,unsigned char*);": 1
-   },
-   "definition_file": "opt_record_decode.c",
-   "files": [
-    "st25dv_build_and_write_ndef_records.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "opt_list_encode",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int opt_list_encode(void*,void*,void*,unsigned int);": 1,
-    "extern int opt_list_encode(int*,int*,int,unsigned int);": 1
-   },
-   "definition_file": "opt_list_encode.c",
-   "files": [
-    "st25dv_build_and_write_ndef_records.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "opt_list_append_node",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int opt_list_append_node(void*,const void*);": 1,
-    "extern unsigned int opt_list_append_node(unsigned int*,unsigned char*);": 1
-   },
-   "definition_file": "opt_list_append_node.c",
    "files": [
     "st25dv_build_and_write_ndef_records.c"
    ]
@@ -1538,76 +1149,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/audio",
-   "symbol": "post_event_tag4_and_clear",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int post_event_tag4_and_clear(int,int);": 1,
-    "extern uint64_t post_event_tag4_and_clear(uint32_t,uint32_t);": 1
-   },
-   "files": [
-    "uarte_nrfx_isr.c",
-    "uarte_nrfx_tx_start.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "post_event_tag5",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int post_event_tag5(int);": 1,
-    "extern uint64_t post_event_tag5(uint32_t);": 1
-   },
-   "files": [
-    "uarte_nrfx_isr.c",
-    "uarte_nrfx_tx_start.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "ringbuf_flush_chunk",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int32_t ringbuf_flush_chunk(uint32_t);": 1,
-    "extern unsigned int ringbuf_flush_chunk(int,unsigned int,unsigned int,unsigned int);": 1
-   },
-   "definition_file": "ringbuf_flush_chunk.c",
-   "files": [
-    "uarte_nrfx_isr.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "uarte_nrfx_tx_complete",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern uint64_t uarte_nrfx_tx_complete(uint32_t,uint32_t);": 1,
-    "extern void uarte_nrfx_tx_complete(unsigned int);": 1
-   },
-   "definition_file": "uarte_nrfx_tx_complete.c",
-   "files": [
-    "uarte_nrfx_isr.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
-   "symbol": "flowctl_release_credit_and_kick",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern uint64_t flowctl_release_credit_and_kick(uint32_t,uint32_t);": 1,
-    "extern void flowctl_release_credit_and_kick(int,uint32_t);": 1
-   },
-   "definition_file": "flowctl_release_credit_and_kick.c",
-   "files": [
-    "uarte_nrfx_isr.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/audio",
    "symbol": "pinctrl_apply_state",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -1621,15 +1162,42 @@
    ]
   },
   {
+   "module_dir": "recon/symbolized/app/audio",
+   "symbol": "post_event_tag4_and_clear",
+   "class": "declaration_disagrees_with_definition",
+   "distinct_types": 2,
+   "types": {
+    "extern int post_event_tag4_and_clear(int,int);": 1,
+    "extern void post_event_tag4_and_clear(unsigned int,int*);": 1
+   },
+   "definition_file": "post_event_tag4_and_clear.c",
+   "files": [
+    "uarte_nrfx_tx_start.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/audio",
+   "symbol": "post_event_tag5",
+   "class": "declaration_disagrees_with_definition",
+   "distinct_types": 2,
+   "types": {
+    "extern int post_event_tag5(int);": 1,
+    "extern void post_event_tag5(int);": 1
+   },
+   "definition_file": "post_event_tag5.c",
+   "files": [
+    "uarte_nrfx_tx_start.c"
+   ]
+  },
+  {
    "module_dir": "recon/symbolized/app/ble",
    "symbol": "bt_hci_cmd_create",
    "class": "arity_differs",
-   "distinct_types": 6,
+   "distinct_types": 5,
    "types": {
     "extern int bt_hci_cmd_create(int,);": 1,
     "extern int bt_hci_cmd_create(int,int);": 2,
     "extern int bt_hci_cmd_create(u32,u32);": 1,
-    "extern long long bt_hci_cmd_create(int,int);": 1,
     "extern unsigned long long bt_hci_cmd_create(int,int);": 1,
     "extern void*bt_hci_cmd_create(uint32_t,uint32_t);": 1
    },
@@ -1638,7 +1206,6 @@
     "ble_conn_le_prepare_and_connect.c",
     "ble_privacy_id_remove.c",
     "hci_le_generate_dhkey.c",
-    "hci_vs_init.c",
     "le_conn_param_neg_reply.c",
     "le_remote_conn_param_req.c"
    ]
@@ -1649,8 +1216,8 @@
    "class": "return_type_differs",
    "distinct_types": 2,
    "types": {
-    "extern uint32_t bt_conn_get_field_0x90(void);": 1,
-    "extern uintptr_t bt_conn_get_field_0x90(void);": 2
+    "extern uint32_t bt_conn_get_field_0x90(unsigned long);": 1,
+    "extern uintptr_t bt_conn_get_field_0x90(unsigned long);": 2
    },
    "files": [
     "auth_cancel.c",
@@ -1714,11 +1281,11 @@
   {
    "module_dir": "recon/symbolized/app/ble",
    "symbol": "adv_is_directed",
-   "class": "arity_differs",
+   "class": "parameter_type_differs",
    "distinct_types": 2,
    "types": {
     "extern int adv_is_directed(uint32_t);": 1,
-    "extern int adv_is_directed(void);": 1
+    "extern int adv_is_directed(unsigned long);": 1
    },
    "files": [
     "ble_conn_addr_resolve_or_create.c",
@@ -1796,14 +1363,13 @@
    "module_dir": "recon/symbolized/app/ble",
    "symbol": "bt_hci_cmd_send_sync",
    "class": "arity_differs",
-   "distinct_types": 6,
+   "distinct_types": 5,
    "types": {
     "extern int bt_hci_cmd_send_sync(int,);": 1,
     "extern int bt_hci_cmd_send_sync(int,int,int);": 1,
     "extern int bt_hci_cmd_send_sync(int,int,void*);": 2,
     "extern int bt_hci_cmd_send_sync(u32,int,u32);": 1,
-    "extern int bt_hci_cmd_send_sync(uint16_t,void*,void*);": 1,
-    "extern long long bt_hci_cmd_send_sync(int,int,);": 1
+    "extern int bt_hci_cmd_send_sync(uint16_t,void*,void*);": 1
    },
    "files": [
     "ble_conn_le_prepare_and_connect.c",
@@ -1811,22 +1377,7 @@
     "ble_privacy_request_random_address.c",
     "hci_le_generate_dhkey.c",
     "hci_read_static_addresses.c",
-    "hci_set_ad.c",
-    "hci_vs_init.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ble",
-   "symbol": "ble_conn_addr_resolve_or_create",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int ble_conn_addr_resolve_or_create(u8*,int*);": 1,
-    "extern unsigned int ble_conn_addr_resolve_or_create(unsigned char*,int*);": 1
-   },
-   "definition_file": "ble_conn_addr_resolve_or_create.c",
-   "files": [
-    "ble_conn_le_prepare_and_connect.c"
+    "hci_set_ad.c"
    ]
   },
   {
@@ -1850,20 +1401,6 @@
     "le_conn_param_update_handle.c",
     "le_remote_conn_param_req.c",
     "legacy_adv_stop_cleanup.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ble",
-   "symbol": "normalize_to_bool",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int normalize_to_bool(u8*);": 1,
-    "extern int normalize_to_bool(int);": 1
-   },
-   "definition_file": "normalize_to_bool.c",
-   "files": [
-    "ble_conn_le_prepare_and_connect.c"
    ]
   },
   {
@@ -1914,26 +1451,12 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern void bt_addr_le_copy(void*,u32);": 1,
+    "extern void bt_addr_le_copy(unsigned int*,unsigned int*);": 1,
     "extern void bt_addr_le_copy(uint32_t*,uint32_t*);": 1
    },
    "definition_file": "bt_addr_le_copy.c",
    "files": [
     "ble_conn_le_prepare_and_connect.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ble",
-   "symbol": "bt_le_adv_set_enable_legacy",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int bt_le_adv_set_enable_legacy(u8*,int);": 1,
-    "extern uint bt_le_adv_set_enable_legacy(uint32_t,int);": 1
-   },
-   "files": [
-    "ble_conn_le_prepare_and_connect.c",
-    "legacy_adv_stop_cleanup.c"
    ]
   },
   {
@@ -1971,10 +1494,9 @@
    "module_dir": "recon/symbolized/app/ble",
    "symbol": "memset_bytes",
    "class": "arity_differs",
-   "distinct_types": 7,
+   "distinct_types": 6,
    "types": {
     "extern int memset_bytes();": 2,
-    "extern uint32_t memset_bytes(uintptr_t,);": 1,
     "extern void memset_bytes(void*,int,int);": 2,
     "extern void memset_bytes(void*,int,uint32_t);": 2,
     "extern void memset_bytes(void*,int,unsigned int);": 2,
@@ -1991,7 +1513,6 @@
     "ble_work_thread.c",
     "dequeue_bt_data.c",
     "le_adv_update.c",
-    "spec_ble_command_hook.c",
     "subcontracing_send_data_pkcs7.c"
    ]
   },
@@ -2065,11 +1586,11 @@
   {
    "module_dir": "recon/symbolized/app/ble",
    "symbol": "ble_conn_ref",
-   "class": "arity_differs",
+   "class": "return_type_differs",
    "distinct_types": 2,
    "types": {
     "extern unsigned int ble_conn_ref(unsigned int);": 1,
-    "extern void ble_conn_ref(void);": 1
+    "extern void ble_conn_ref(unsigned long);": 1
    },
    "files": [
     "ble_conn_set_state.c",
@@ -2091,20 +1612,6 @@
     "conn_tx_send_to_driver.c",
     "hci_cmd_complete_handle.c",
     "pairing_complete.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ble",
-   "symbol": "k_work_schedule",
-   "class": "parameter_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern void k_work_schedule(int,uint32_t,int,int);": 1,
-    "extern void k_work_schedule(int,uint32_t,uint32_t,uint32_t);": 1
-   },
-   "files": [
-    "ble_conn_set_state.c",
-    "le_conn_param_update_handle.c"
    ]
   },
   {
@@ -2138,78 +1645,46 @@
   },
   {
    "module_dir": "recon/symbolized/app/ble",
-   "symbol": "dequeue_debug",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int dequeue_debug(void*);": 1,
-    "extern int dequeue_debug(unsigned int);": 1
-   },
-   "definition_file": "dequeue_debug.c",
-   "files": [
-    "ble_flush_queued_indications.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ble",
    "symbol": "strlen",
    "class": "return_type_differs",
-   "distinct_types": 4,
+   "distinct_types": 3,
    "types": {
     "extern int strlen(const void*);": 1,
     "extern short strlen(void*);": 1,
-    "extern uint32_t strlen(uintptr_t,);": 1,
     "extern uint8_t strlen(int);": 1
    },
    "files": [
     "ble_flush_queued_indications.c",
     "le_adv_update.c",
-    "read_name.c",
-    "spec_ble_command_hook.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ble",
-   "symbol": "bt_le_conn_params_valid",
-   "class": "parameter_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int bt_le_conn_params_valid(const struct bt_le_conn_param_view*);": 1,
-    "extern int bt_le_conn_params_valid(int);": 1
-   },
-   "files": [
-    "ble_notify_disconnected.c",
-    "send_conn_le_param_update.c"
+    "read_name.c"
    ]
   },
   {
    "module_dir": "recon/symbolized/app/ble",
    "symbol": "debug_print_hex_dump",
-   "class": "arity_differs",
-   "distinct_types": 3,
+   "class": "parameter_type_differs",
+   "distinct_types": 2,
    "types": {
-    "extern uint32_t debug_print_hex_dump(uintptr_t,);": 1,
     "extern void debug_print_hex_dump(unsigned int,unsigned int,unsigned int);": 1,
     "extern void debug_print_hex_dump(void*,void*,uint32_t);": 1
    },
    "files": [
     "ble_packet_receive_dispatch.c",
-    "ble_process_get_req.c",
-    "spec_ble_command_hook.c"
+    "ble_process_get_req.c"
    ]
   },
   {
    "module_dir": "recon/symbolized/app/ble",
    "symbol": "ble_requeue_command_via_dispatch",
-   "class": "arity_differs",
+   "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern uint32_t ble_requeue_command_via_dispatch(uintptr_t,);": 1,
-    "extern void ble_requeue_command_via_dispatch(unsigned int,unsigned int);": 1
+    "extern void ble_requeue_command_via_dispatch(unsigned int,unsigned int);": 1,
+    "extern void ble_requeue_command_via_dispatch(unsigned char*,unsigned int,unsigned int);": 1
    },
+   "definition_file": "ble_requeue_command_via_dispatch.c",
    "files": [
-    "ble_packet_receive_dispatch.c",
-    "spec_ble_command_hook.c"
+    "ble_packet_receive_dispatch.c"
    ]
   },
   {
@@ -2230,10 +1705,9 @@
    "module_dir": "recon/symbolized/app/ble",
    "symbol": "net_buf_simple_add",
    "class": "arity_differs",
-   "distinct_types": 5,
+   "distinct_types": 4,
    "types": {
     "extern int net_buf_simple_add(int,);": 1,
-    "extern long long net_buf_simple_add(int,int);": 1,
     "extern short*net_buf_simple_add(int,int);": 1,
     "extern uint16_t*net_buf_simple_add(int,int);": 1,
     "extern void*net_buf_simple_add(int,int);": 2
@@ -2241,7 +1715,6 @@
    "files": [
     "ble_privacy_id_remove.c",
     "hci_le_generate_dhkey.c",
-    "hci_vs_init.c",
     "le_conn_param_neg_reply.c",
     "le_remote_conn_param_req.c",
     "send_pairing_rsp.c"
@@ -2295,9 +1768,8 @@
    "module_dir": "recon/symbolized/app/ble",
    "symbol": "net_buf_unref",
    "class": "arity_differs",
-   "distinct_types": 4,
+   "distinct_types": 3,
    "types": {
-    "extern long long net_buf_unref(int,);": 1,
     "extern void net_buf_unref(int);": 1,
     "extern void net_buf_unref(void);": 1,
     "extern void net_buf_unref(void*);": 1
@@ -2305,8 +1777,7 @@
    "files": [
     "ble_privacy_request_random_address.c",
     "hci_cmd_complete_handle.c",
-    "hci_read_static_addresses.c",
-    "hci_vs_init.c"
+    "hci_read_static_addresses.c"
    ]
   },
   {
@@ -2349,10 +1820,10 @@
   {
    "module_dir": "recon/symbolized/app/ble",
    "symbol": "audio_fw_load_get_wrapper",
-   "class": "arity_differs",
+   "class": "return_type_differs",
    "distinct_types": 2,
    "types": {
-    "extern int audio_fw_load_get_wrapper();": 2,
+    "extern int audio_fw_load_get_wrapper(unsigned long,unsigned long,unsigned long);": 2,
     "extern void audio_fw_load_get_wrapper(void*,void*,uint32_t);": 2
    },
    "files": [
@@ -2364,26 +1835,11 @@
   },
   {
    "module_dir": "recon/symbolized/app/ble",
-   "symbol": "is_system_idle_ready",
-   "class": "parameter_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int is_system_idle_ready();": 1,
-    "extern int is_system_idle_ready(void);": 1
-   },
-   "files": [
-    "ble_process_get_req.c",
-    "ble_process_put_ops_0b_18.inc"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ble",
    "symbol": "memcpy",
    "class": "arity_differs",
-   "distinct_types": 6,
+   "distinct_types": 5,
    "types": {
     "extern int memcpy();": 2,
-    "extern uint32_t memcpy(uintptr_t,);": 1,
     "extern void memcpy(unsigned int,void*,int);": 1,
     "extern void memcpy(unsigned int,void*,unsigned int);": 1,
     "extern void memcpy(void*,const void*,uint32_t);": 2,
@@ -2396,35 +1852,31 @@
     "ble_process_req_dispatch.c",
     "ble_work_thread.c",
     "dequeue_bt_data.c",
-    "dequeue_debug.c",
-    "spec_ble_command_hook.c"
+    "dequeue_debug.c"
    ]
   },
   {
    "module_dir": "recon/symbolized/app/ble",
    "symbol": "safe_memcpy_checked",
    "class": "arity_differs",
-   "distinct_types": 3,
+   "distinct_types": 2,
    "types": {
     "extern int safe_memcpy_checked();": 1,
-    "extern uint32_t safe_memcpy_checked(uintptr_t,);": 1,
     "extern void safe_memcpy_checked(void*,const void*,uint32_t,uint32_t);": 2
    },
    "files": [
     "ble_process_get_req.c",
     "ble_process_put_ops_09_10.inc",
-    "ble_process_req_dispatch.c",
-    "spec_ble_command_hook.c"
+    "ble_process_req_dispatch.c"
    ]
   },
   {
    "module_dir": "recon/symbolized/app/ble",
    "symbol": "strcpy",
    "class": "arity_differs",
-   "distinct_types": 4,
+   "distinct_types": 3,
    "types": {
     "extern int strcpy();": 3,
-    "extern uint32_t strcpy(uintptr_t,);": 1,
     "extern void strcpy(char*,const char*);": 1,
     "extern void strcpy(void*,const void*);": 1
    },
@@ -2433,8 +1885,7 @@
     "ble_process_put_ops_0b_18.inc",
     "ble_process_put_ops_19_20.inc",
     "ble_process_put_ops_21_27.inc",
-    "ble_process_req_dispatch.c",
-    "spec_ble_command_hook.c"
+    "ble_process_req_dispatch.c"
    ]
   },
   {
@@ -2482,42 +1933,24 @@
   {
    "module_dir": "recon/symbolized/app/ble",
    "symbol": "mark_master_or_low_battery_flag",
-   "class": "arity_differs",
-   "distinct_types": 3,
+   "class": "return_type_differs",
+   "distinct_types": 2,
    "types": {
     "extern int mark_master_or_low_battery_flag();": 1,
-    "extern uint32_t mark_master_or_low_battery_flag(uintptr_t,);": 1,
     "extern void mark_master_or_low_battery_flag(void);": 1
    },
    "files": [
     "ble_process_put_ops_0b_18.inc",
-    "ble_process_req_dispatch.c",
-    "spec_ble_command_hook.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ble",
-   "symbol": "process_sync_buffer",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int process_sync_buffer();": 3,
-    "extern uint32_t process_sync_buffer(uintptr_t,);": 1
-   },
-   "files": [
-    "ble_process_put_ops_0b_18.inc",
-    "ble_process_put_ops_19_20.inc",
-    "ble_process_put_ops_21_27.inc",
-    "spec_ble_command_hook.c"
+    "ble_process_req_dispatch.c"
    ]
   },
   {
    "module_dir": "recon/symbolized/app/ble",
    "symbol": "device_info_set_bytes_cc_ce",
-   "class": "arity_differs",
+   "class": "return_type_differs",
    "distinct_types": 2,
    "types": {
-    "extern int device_info_set_bytes_cc_ce();": 1,
+    "extern int device_info_set_bytes_cc_ce(unsigned long,unsigned long);": 1,
     "extern void device_info_set_bytes_cc_ce(uint32_t,uint32_t);": 1
    },
    "files": [
@@ -2583,20 +2016,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/ble",
-   "symbol": "ancs_get_conn_ctx",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int ancs_get_conn_ctx(void);": 1,
-    "extern uint32_t ancs_get_conn_ctx(uintptr_t,);": 1
-   },
-   "files": [
-    "ble_requeue_command_via_dispatch.c",
-    "spec_ble_command_hook.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ble",
    "symbol": "ble_process_req_dispatch",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -2607,20 +2026,6 @@
    "definition_file": "ble_process_req_dispatch.c",
    "files": [
     "ble_requeue_command_via_dispatch.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ble",
-   "symbol": "k_sleep",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern uint32_t k_sleep(uintptr_t,);": 1,
-    "extern void k_sleep(uint32_t,uint32_t);": 1
-   },
-   "files": [
-    "ble_work_thread.c",
-    "spec_ble_command_hook.c"
    ]
   },
   {
@@ -2641,30 +2046,14 @@
    "module_dir": "recon/symbolized/app/ble",
    "symbol": "z_impl_k_sem_take",
    "class": "arity_differs",
-   "distinct_types": 3,
+   "distinct_types": 2,
    "types": {
     "extern int z_impl_k_sem_take(void);": 1,
-    "extern uint32_t z_impl_k_sem_take(uintptr_t,);": 1,
     "extern void z_impl_k_sem_take(uintptr_t,uint32_t,uint32_t,uint32_t);": 1
    },
    "files": [
     "ble_work_thread.c",
-    "conn_tx_send_to_driver.c",
-    "spec_ble_command_hook.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ble",
-   "symbol": "ble_packet_receive_dispatch",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern void ble_packet_receive_dispatch(void*,uint32_t,uint32_t);": 1,
-    "extern void ble_packet_receive_dispatch(unsigned int,unsigned int,int);": 1
-   },
-   "definition_file": "ble_packet_receive_dispatch.c",
-   "files": [
-    "ble_work_thread.c"
+    "conn_tx_send_to_driver.c"
    ]
   },
   {
@@ -2683,25 +2072,11 @@
   },
   {
    "module_dir": "recon/symbolized/app/ble",
-   "symbol": "k_work_reschedule",
-   "class": "parameter_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern void k_work_reschedule(int,int,int,int);": 1,
-    "extern void k_work_reschedule(int,int,unsigned int,unsigned int);": 1
-   },
-   "files": [
-    "conn_ctx_cleanup_if_pending.c",
-    "conn_le_param_update_submit.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ble",
    "symbol": "active_transfer_conn_match",
-   "class": "arity_differs",
+   "class": "return_type_differs",
    "distinct_types": 2,
    "types": {
-    "extern int active_transfer_conn_match(void);": 1,
+    "extern int active_transfer_conn_match(unsigned long);": 1,
     "extern unsigned long long active_transfer_conn_match(unsigned int);": 1
    },
    "files": [
@@ -2729,7 +2104,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int legacy_adv_stop_cleanup(void);": 1,
+    "extern unsigned int legacy_adv_stop_cleanup(void);": 1,
     "extern uint legacy_adv_stop_cleanup(void);": 1
    },
    "definition_file": "legacy_adv_stop_cleanup.c",
@@ -2785,10 +2160,9 @@
   {
    "module_dir": "recon/symbolized/app/ble",
    "symbol": "bt_log_forward_3arg",
-   "class": "arity_differs",
-   "distinct_types": 6,
+   "class": "parameter_type_differs",
+   "distinct_types": 5,
    "types": {
-    "extern long long bt_log_forward_3arg(int,int,);": 1,
     "extern void bt_log_forward_3arg(int,int,const void*);": 1,
     "extern void bt_log_forward_3arg(uint32_t,int,void*);": 1,
     "extern void bt_log_forward_3arg(uint32_t,uint32_t,const void*);": 1,
@@ -2799,7 +2173,6 @@
     "hci_cmd_alloc_failure_log.c",
     "hci_cmd_complete_handle.c",
     "hci_event_dispatch_handler.c",
-    "hci_vs_init.c",
     "le_conn_param_update_handle.c",
     "le_remote_conn_param_req.c"
    ]
@@ -2848,48 +2221,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/ble",
-   "symbol": "ble_rng_get_random_bytes",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern long long ble_rng_get_random_bytes(void);": 1,
-    "extern int ble_rng_get_random_bytes(void);": 1
-   },
-   "definition_file": "ble_rng_get_random_bytes.c",
-   "files": [
-    "hci_vs_init.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ble",
-   "symbol": "hci_vs_setup_stub",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern long long hci_vs_setup_stub(void);": 1,
-    "extern unsigned int hci_vs_setup_stub(void);": 1
-   },
-   "definition_file": "hci_vs_setup_stub.c",
-   "files": [
-    "hci_vs_init.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ble",
-   "symbol": "bt_dev_get",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int bt_dev_get(void);": 1,
-    "extern unsigned int bt_dev_get(void);": 1
-   },
-   "files": [
-    "le_adv_update.c",
-    "read_name.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ble",
    "symbol": "hci_set_ad",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -2932,20 +2263,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/ble",
-   "symbol": "ble_notify_disconnected",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int ble_notify_disconnected(int,const void*);": 1,
-    "extern int ble_notify_disconnected(int,int);": 1
-   },
-   "definition_file": "ble_notify_disconnected.c",
-   "files": [
-    "le_remote_conn_param_req.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ble",
    "symbol": "le_conn_param_neg_reply",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -2956,20 +2273,6 @@
    "definition_file": "le_conn_param_neg_reply.c",
    "files": [
     "le_remote_conn_param_req.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ble",
-   "symbol": "cancel_delayable_work_field18",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern void cancel_delayable_work_field18(uint32_t);": 1,
-    "extern void cancel_delayable_work_field18(int);": 1
-   },
-   "definition_file": "cancel_delayable_work_field18.c",
-   "files": [
-    "legacy_adv_stop_cleanup.c"
    ]
   },
   {
@@ -3001,48 +2304,6 @@
    ]
   },
   {
-   "module_dir": "recon/symbolized/app/ble",
-   "symbol": "refresh_and_read_box_field_timer",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern uint32_t refresh_and_read_box_field_timer(uintptr_t,);": 1,
-    "extern unsigned int refresh_and_read_box_field_timer(void);": 1
-   },
-   "definition_file": "refresh_and_read_box_field_timer.c",
-   "files": [
-    "spec_ble_command_hook.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ble",
-   "symbol": "check_is_release_mode",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern uint32_t check_is_release_mode(uintptr_t,);": 1,
-    "extern unsigned int check_is_release_mode(int);": 1
-   },
-   "definition_file": "check_is_release_mode.c",
-   "files": [
-    "spec_ble_command_hook.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ble",
-   "symbol": "checked_strncpy_zero_pad",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern uint32_t checked_strncpy_zero_pad(uintptr_t,);": 1,
-    "extern void checked_strncpy_zero_pad(void*,const void*,unsigned int,unsigned int);": 1
-   },
-   "definition_file": "checked_strncpy_zero_pad.c",
-   "files": [
-    "spec_ble_command_hook.c"
-   ]
-  },
-  {
    "module_dir": "recon/symbolized/app/common",
    "symbol": "memset_bytes",
    "class": "declaration_disagrees_with_definition",
@@ -3060,13 +2321,12 @@
    "module_dir": "recon/symbolized/app/core",
    "symbol": "get_device_info",
    "class": "arity_differs",
-   "distinct_types": 8,
+   "distinct_types": 7,
    "types": {
     "extern char*get_device_info(void);": 1,
     "extern int get_device_info();": 1,
     "extern int get_device_info(int,);": 1,
     "extern int get_device_info(void);": 12,
-    "extern long long get_device_info(void);": 1,
     "extern uintptr_t get_device_info(void);": 2,
     "extern unsigned int get_device_info(void);": 2,
     "extern void*get_device_info(void);": 2
@@ -3074,7 +2334,6 @@
    "files": [
     "SendPowerInfoToSlave.c",
     "build_device_info_response.c",
-    "check_work_mode.c",
     "device_info_set_bytes_cc_ce.c",
     "device_info_set_mode.c",
     "device_info_store_chunk.c",
@@ -3217,20 +2476,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/core",
-   "symbol": "attr_store_init_sequence",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int attr_store_init_sequence(unsigned int);": 1,
-    "extern int attr_store_init_sequence(int);": 1
-   },
-   "definition_file": "attr_store_init_sequence.c",
-   "files": [
-    "attr_configure_pair_with_init.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/core",
    "symbol": "attr_store_set",
    "class": "parameter_type_differs",
    "distinct_types": 2,
@@ -3282,6 +2527,20 @@
     "extern void update_box_presence_flag(int,unsigned char*);": 1
    },
    "definition_file": "update_box_presence_flag.c",
+   "files": [
+    "box_placement_animation_step.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/core",
+   "symbol": "get_elapsed_ms_since_mark",
+   "class": "declaration_disagrees_with_definition",
+   "distinct_types": 2,
+   "types": {
+    "extern uint32_t get_elapsed_ms_since_mark(void);": 1,
+    "extern int get_elapsed_ms_since_mark(void);": 1
+   },
+   "definition_file": "get_elapsed_ms_since_mark.c",
    "files": [
     "box_placement_animation_step.c"
    ]
@@ -3344,142 +2603,6 @@
     "enable_ship_mode.c",
     "global_system_resume.c",
     "switch_to_dfu_mode.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/core",
-   "symbol": "esb_send_command_and_wait_ack",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern long long esb_send_command_and_wait_ack(long long,long long,long long,long long);": 1,
-    "extern uint32_t esb_send_command_and_wait_ack(uint8_t*,uint32_t,uint32_t);": 1
-   },
-   "files": [
-    "check_work_mode.c",
-    "low_speed_peripheral_dispatch_thread.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/core",
-   "symbol": "debounce_read_pending_flag_2",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern long long debounce_read_pending_flag_2(void);": 1,
-    "extern unsigned int debounce_read_pending_flag_2(unsigned int,unsigned int,unsigned int,unsigned int);": 1
-   },
-   "definition_file": "debounce_read_pending_flag_2.c",
-   "files": [
-    "check_work_mode.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/core",
-   "symbol": "flash_get_ready_status_bit",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int flash_get_ready_status_bit(void);": 1,
-    "extern long long flash_get_ready_status_bit(void);": 1
-   },
-   "files": [
-    "check_work_mode.c",
-    "pt_nfc_eeprom_link_init.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/core",
-   "symbol": "pt_nfc_eeprom_link_start",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern long long pt_nfc_eeprom_link_start(void);": 1,
-    "extern void pt_nfc_eeprom_link_start(void);": 1
-   },
-   "definition_file": "pt_nfc_eeprom_link_start.c",
-   "files": [
-    "check_work_mode.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/core",
-   "symbol": "k_uptime_get_1",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern long long k_uptime_get_1(void);": 1,
-    "extern uint64_t k_uptime_get_1(void);": 3
-   },
-   "files": [
-    "check_work_mode.c",
-    "low_speed_peripheral_dispatch_thread.c",
-    "set_delay_deadline.c",
-    "transport_dispatch_thread.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/core",
-   "symbol": "set_shutdown_flag",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern long long set_shutdown_flag(long long,long long);": 1,
-    "extern void set_shutdown_flag(uintptr_t,uint32_t);": 1
-   },
-   "files": [
-    "check_work_mode.c",
-    "low_speed_peripheral_dispatch_thread.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/core",
-   "symbol": "change_work_mode_to",
-   "class": "arity_differs",
-   "distinct_types": 4,
-   "types": {
-    "extern int change_work_mode_to();": 1,
-    "extern int change_work_mode_to(int,);": 1,
-    "extern long long change_work_mode_to(long long);": 1,
-    "extern void change_work_mode_to(uint32_t);": 1
-   },
-   "files": [
-    "check_work_mode.c",
-    "low_speed_peripheral_dispatch_thread.c",
-    "process_pt_data.c",
-    "proxy_thread_handler.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/core",
-   "symbol": "send_event",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern long long send_event(long long);": 1,
-    "extern void send_event(int,unsigned int,unsigned int);": 1
-   },
-   "definition_file": "send_event.c",
-   "files": [
-    "check_work_mode.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/core",
-   "symbol": "sync_to_slave",
-   "class": "arity_differs",
-   "distinct_types": 4,
-   "types": {
-    "extern int sync_to_slave();": 1,
-    "extern int sync_to_slave(uint8_t*,uint32_t,uint32_t);": 1,
-    "extern int sync_to_slave(void*,);": 1,
-    "extern long long sync_to_slave(long long,long long,long long,long long);": 1
-   },
-   "files": [
-    "check_work_mode.c",
-    "low_speed_peripheral_dispatch_thread.c",
-    "process_for_message_show.c",
-    "proxy_thread_handler.c"
    ]
   },
   {
@@ -3557,20 +2680,6 @@
     "regulator_write_voltage_reg.c",
     "wdt_feed.c",
     "wdt_install_timeout.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/core",
-   "symbol": "dev_write_channel_mode",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int dev_write_channel_mode(int,int,int);": 1,
-    "extern unsigned int dev_write_channel_mode(int,int*,int);": 1
-   },
-   "definition_file": "dev_write_channel_mode.c",
-   "files": [
-    "dev_configure_channel.c"
    ]
   },
   {
@@ -3718,7 +2827,7 @@
     "extern int build_and_send_device_status_report(int,);": 1,
     "extern int build_and_send_device_status_report(int,int);": 2,
     "extern void build_and_send_device_status_report(unsigned int,int);": 1,
-    "extern void build_and_send_device_status_report(void);": 1
+    "extern void build_and_send_device_status_report(unsigned long);": 1
    },
    "files": [
     "get_assign_channel_info.c",
@@ -3865,20 +2974,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/core",
-   "symbol": "pt_comm_bind_device",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int pt_comm_bind_device(unsigned int);": 1,
-    "extern unsigned int pt_comm_bind_device(unsigned int);": 1
-   },
-   "definition_file": "pt_comm_bind_device.c",
-   "files": [
-    "init_nfc_comm.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/core",
    "symbol": "process_pt_data",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -3889,20 +2984,6 @@
    "definition_file": "process_pt_data.c",
    "files": [
     "init_nfc_comm.c",
-    "init_serial_comm.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/core",
-   "symbol": "init_serial_port",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int init_serial_port(void);": 1,
-    "extern unsigned int init_serial_port(void);": 1
-   },
-   "definition_file": "init_serial_port.c",
-   "files": [
     "init_serial_comm.c"
    ]
   },
@@ -3923,12 +3004,13 @@
   {
    "module_dir": "recon/symbolized/app/core",
    "symbol": "activate_foreach_backend",
-   "class": "return_type_differs",
+   "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern uintptr_t activate_foreach_backend(uintptr_t);": 1,
-    "extern unsigned int activate_foreach_backend(unsigned int);": 1
+    "extern unsigned int activate_foreach_backend(unsigned int);": 2,
+    "extern uint32_t activate_foreach_backend(uint32_t);": 1
    },
+   "definition_file": "activate_foreach_backend.c",
    "files": [
     "log_msg_process.c",
     "log_process_thread.c"
@@ -3964,6 +3046,22 @@
   },
   {
    "module_dir": "recon/symbolized/app/core",
+   "symbol": "change_work_mode_to",
+   "class": "arity_differs",
+   "distinct_types": 3,
+   "types": {
+    "extern int change_work_mode_to();": 1,
+    "extern int change_work_mode_to(int,);": 1,
+    "extern void change_work_mode_to(uint32_t);": 1
+   },
+   "files": [
+    "low_speed_peripheral_dispatch_thread.c",
+    "process_pt_data.c",
+    "proxy_thread_handler.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/core",
    "symbol": "update_persist_task_status_to_idle",
    "class": "return_type_differs",
    "distinct_types": 2,
@@ -3978,6 +3076,22 @@
   },
   {
    "module_dir": "recon/symbolized/app/core",
+   "symbol": "sync_to_slave",
+   "class": "arity_differs",
+   "distinct_types": 3,
+   "types": {
+    "extern int sync_to_slave();": 1,
+    "extern int sync_to_slave(uint8_t*,uint32_t,uint32_t);": 1,
+    "extern int sync_to_slave(void*,);": 1
+   },
+   "files": [
+    "low_speed_peripheral_dispatch_thread.c",
+    "process_for_message_show.c",
+    "proxy_thread_handler.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/core",
    "symbol": "debounce_read_pending_flag_1",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -3986,20 +3100,6 @@
     "extern unsigned int debounce_read_pending_flag_1(unsigned int,unsigned int,unsigned int,unsigned int);": 1
    },
    "definition_file": "debounce_read_pending_flag_1.c",
-   "files": [
-    "low_speed_peripheral_dispatch_thread.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/core",
-   "symbol": "check_bind_status",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern void check_bind_status(uint8_t*,uint32_t,uint32_t);": 1,
-    "extern void check_bind_status(int,int,int);": 1
-   },
-   "definition_file": "check_bind_status.c",
    "files": [
     "low_speed_peripheral_dispatch_thread.c"
    ]
@@ -4105,7 +3205,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern void reset_all_usr_data(uint8_t*,uint32_t);": 1,
+    "extern void reset_all_usr_data(unsigned char*,int);": 1,
     "extern void reset_all_usr_data(uint8_t*,int);": 1
    },
    "definition_file": "reset_all_usr_data.c",
@@ -4269,20 +3369,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/core",
-   "symbol": "pt_nfc_eeprom_link_init",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int pt_nfc_eeprom_link_init(unsigned int);": 1,
-    "extern int pt_nfc_eeprom_link_init(int*);": 1
-   },
-   "definition_file": "pt_nfc_eeprom_link_init.c",
-   "files": [
-    "pt_nfc_eeprom_link_start.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/core",
    "symbol": "regulator_write_voltage_reg",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -4311,20 +3397,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/core",
-   "symbol": "app_msleep_thunk_b",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern void app_msleep_thunk_b(uint32_t);": 1,
-    "extern void app_msleep_thunk_b(int);": 1
-   },
-   "definition_file": "app_msleep_thunk_b.c",
-   "files": [
-    "reset_all_usr_data.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/core",
    "symbol": "reset_usr_setting",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -4349,20 +3421,6 @@
    "definition_file": "reset_all_static_info.c",
    "files": [
     "reset_all_usr_data.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/core",
-   "symbol": "set_test_mode",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern void set_test_mode(uint32_t);": 1,
-    "extern void set_test_mode(unsigned int);": 1
-   },
-   "definition_file": "set_test_mode.c",
-   "files": [
-    "reset_usr_setting.c"
    ]
   },
   {
@@ -4485,7 +3543,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern void device_info_set_bytes_cc_ce(void);": 1,
+    "extern void device_info_set_bytes_cc_ce(unsigned long,unsigned long);": 1,
     "extern void device_info_set_bytes_cc_ce(unsigned char,unsigned char);": 1
    },
    "definition_file": "device_info_set_bytes_cc_ce.c",
@@ -4519,20 +3577,6 @@
    "definition_file": "dev_set_threshold_and_arm.c",
    "files": [
     "wdt_install_timeout.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/display",
-   "symbol": "get_box_field_state",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int get_box_field_state(void);": 1,
-    "extern unsigned int get_box_field_state(void);": 1
-   },
-   "definition_file": "get_box_field_state.c",
-   "files": [
-    "box_field_state_to_display_code.c"
    ]
   },
   {
@@ -4659,20 +3703,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/display",
-   "symbol": "display_close",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int display_close(void*,int);": 1,
-    "extern int display_close(const void*,unsigned int);": 1
-   },
-   "definition_file": "display_close.c",
-   "files": [
-    "display_close_screen.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/display",
    "symbol": "mutex_unlock_syscall_handler",
    "class": "return_type_differs",
    "distinct_types": 2,
@@ -4703,10 +3733,10 @@
   {
    "module_dir": "recon/symbolized/app/display",
    "symbol": "display_panel_is_secondary",
-   "class": "arity_differs",
+   "class": "return_type_differs",
    "distinct_types": 3,
    "types": {
-    "extern int display_panel_is_secondary(void);": 1,
+    "extern int display_panel_is_secondary(unsigned long);": 1,
     "extern int display_panel_is_secondary(void*);": 1,
     "extern s64 display_panel_is_secondary(void*);": 1
    },
@@ -4914,11 +3944,11 @@
   {
    "module_dir": "recon/symbolized/app/display",
    "symbol": "projector_fill_framebuffer",
-   "class": "arity_differs",
+   "class": "parameter_type_differs",
    "distinct_types": 2,
    "types": {
     "extern void projector_fill_framebuffer(uint32_t);": 1,
-    "extern void projector_fill_framebuffer(void);": 1
+    "extern void projector_fill_framebuffer(unsigned long);": 1
    },
    "files": [
     "panel_init.c",
@@ -5016,11 +4046,11 @@
   {
    "module_dir": "recon/symbolized/app/display",
    "symbol": "net_pkt_write_be16",
-   "class": "arity_differs",
+   "class": "parameter_type_differs",
    "distinct_types": 2,
    "types": {
     "extern void net_pkt_write_be16(int);": 1,
-    "extern void net_pkt_write_be16(void);": 1
+    "extern void net_pkt_write_be16(unsigned long);": 1
    },
    "files": [
     "panel_write_xy_reg_cached.c",
@@ -5163,36 +4193,6 @@
    "definition_file": "display_reflash.c",
    "files": [
     "projector_reflash_and_release.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/display",
-   "symbol": "projector_bus_lock",
-   "class": "parameter_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern void projector_bus_lock(uint32_t,uint32_t);": 2,
-    "extern void projector_bus_lock(unsigned int,unsigned int);": 2
-   },
-   "files": [
-    "projector_send_cmd_immediate.c",
-    "projector_spi_write_chunked.c",
-    "projector_transfer_pixel_chunk.c",
-    "spi_read_id.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/display",
-   "symbol": "projector_spi_write_chunked",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern void projector_spi_write_chunked(const void*,unsigned int);": 1,
-    "extern void projector_spi_write_chunked(int,unsigned int);": 1
-   },
-   "definition_file": "projector_spi_write_chunked.c",
-   "files": [
-    "projector_send_command.c"
    ]
   },
   {
@@ -5351,34 +4351,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/display",
-   "symbol": "is_box_field_timer_expired",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int is_box_field_timer_expired(void);": 1,
-    "extern unsigned int is_box_field_timer_expired(void);": 1
-   },
-   "definition_file": "is_box_field_timer_expired.c",
-   "files": [
-    "update_box_field_debounce.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/display",
-   "symbol": "get_demo_image_source",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern void get_demo_image_source(int);": 1,
-    "extern void get_demo_image_source(unsigned int);": 1
-   },
-   "definition_file": "get_demo_image_source.c",
-   "files": [
-    "update_demo_image_display.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/display",
    "symbol": "reflash_fb_data_to_lcd",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -5387,20 +4359,6 @@
     "extern unsigned int reflash_fb_data_to_lcd(int,int,int,int,int,int);": 1
    },
    "definition_file": "reflash_fb_data_to_lcd.c",
-   "files": [
-    "update_demo_image_display.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/display",
-   "symbol": "demo_image_get_position",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern unsigned int demo_image_get_position(int,int*,int*);": 1,
-    "extern int demo_image_get_position(int,int*,int*);": 1
-   },
-   "definition_file": "demo_image_get_position.c",
    "files": [
     "update_demo_image_display.c"
    ]
@@ -5423,16 +4381,14 @@
    "module_dir": "recon/symbolized/app/esb",
    "symbol": "get_device_info",
    "class": "return_type_differs",
-   "distinct_types": 4,
+   "distinct_types": 3,
    "types": {
     "extern int get_device_info(void);": 3,
-    "extern uint32_t get_device_info(void);": 1,
     "extern uint8_t*get_device_info(void);": 1,
     "extern unsigned int get_device_info(void);": 2
    },
    "files": [
     "esb_pairing_sync_step.c",
-    "not_disturb_sync_data.c",
     "process_task_sync_event.c",
     "reset_esb_sync_state.c",
     "set_device_sync_timestamp.c",
@@ -5444,30 +4400,14 @@
    "module_dir": "recon/symbolized/app/esb",
    "symbol": "esb_send_command_and_wait_ack",
    "class": "arity_differs",
-   "distinct_types": 3,
+   "distinct_types": 2,
    "types": {
-    "extern uint32_t esb_send_command_and_wait_ack(uint32_t,uint32_t,void*,uint32_t,void*);": 1,
     "extern void esb_send_command_and_wait_ack(int,int,int,int);": 1,
     "extern void esb_send_command_and_wait_ack(unsigned int,int,int);": 1
    },
    "files": [
     "esb_pairing_sync_step.c",
-    "not_disturb_sync_data.c",
     "process_task_sync_event.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/esb",
-   "symbol": "stage_pending_message_for_resend",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int stage_pending_message_for_resend(void);": 1,
-    "extern unsigned int stage_pending_message_for_resend(void);": 1
-   },
-   "definition_file": "stage_pending_message_for_resend.c",
-   "files": [
-    "esb_pairing_sync_step.c"
    ]
   },
   {
@@ -5486,32 +4426,16 @@
   },
   {
    "module_dir": "recon/symbolized/app/esb",
-   "symbol": "confirm_message",
-   "class": "parameter_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern void confirm_message(int);": 1,
-    "extern void confirm_message(uint32_t);": 1
-   },
-   "files": [
-    "esb_pairing_sync_step.c",
-    "local_esbs_ipc_service_recv.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/esb",
    "symbol": "sync_to_slave",
    "class": "arity_differs",
-   "distinct_types": 4,
+   "distinct_types": 3,
    "types": {
     "extern int sync_to_slave(int,int,int,int);": 1,
     "extern int sync_to_slave(unsigned int,int,int);": 1,
-    "extern uint32_t sync_to_slave(uint32_t,uint32_t,void*,uint32_t);": 1,
     "extern unsigned int sync_to_slave(unsigned int,int,void*,int,unsigned int);": 1
    },
    "files": [
     "esb_pairing_sync_step.c",
-    "not_disturb_sync_data.c",
     "process_task_sync_event.c",
     "sync_message_signal_to_slave.c"
    ]
@@ -5535,15 +4459,13 @@
    "module_dir": "recon/symbolized/app/esb",
    "symbol": "memcpy",
    "class": "arity_differs",
-   "distinct_types": 3,
+   "distinct_types": 2,
    "types": {
-    "extern void memcpy(uint32_t,void*,uint32_t);": 1,
     "extern void memcpy(unsigned int,unsigned int,int,int,unsigned int);": 1,
     "extern void memcpy(void*,void*,uint32_t);": 2
    },
    "files": [
     "esb_send_command_and_wait_ack.c",
-    "not_disturb_sync_data.c",
     "stage_pending_message_for_resend.c",
     "sync_to_slave.c"
    ]
@@ -5565,20 +4487,6 @@
     "reset_esb_sync_state.c",
     "spi_master_init.c",
     "sync_to_slave.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/esb",
-   "symbol": "find_message_pool_entry_by_id",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern void*find_message_pool_entry_by_id(uint32_t);": 1,
-    "extern int find_message_pool_entry_by_id(int);": 1
-   },
-   "definition_file": "find_message_pool_entry_by_id.c",
-   "files": [
-    "local_esbs_ipc_service_recv.c"
    ]
   },
   {
@@ -5689,12 +4597,11 @@
    "module_dir": "recon/symbolized/app/gui",
    "symbol": "get_device_info",
    "class": "arity_differs",
-   "distinct_types": 6,
+   "distinct_types": 5,
    "types": {
     "extern int get_device_info(int,);": 5,
-    "extern int get_device_info(void);": 8,
+    "extern int get_device_info(void);": 7,
     "extern u32 get_device_info(void);": 1,
-    "extern uint32_t get_device_info(void);": 1,
     "extern uintptr_t get_device_info(void);": 5,
     "extern void*get_device_info(void);": 3
    },
@@ -5705,7 +4612,6 @@
     "find_chinese_bitmap_by_unicode.c",
     "format_message_relative_time.c",
     "gui_4bit_bitmap_override.c",
-    "gui_area_clear.c",
     "gui_bitmap_draw.c",
     "gui_bitmps_merge_draw.c",
     "gui_bmp_bitmap_draw.c",
@@ -5719,7 +4625,6 @@
     "gui_utf_draw_dark_light_split.c",
     "gui_utf_draw_middle.c",
     "gui_verticalLine_process_bar.c",
-    "resource_manger_get.c",
     "ui_render_scroll_text_frame.c",
     "write_font_to_flash_with_verify.c"
    ]
@@ -5728,20 +4633,18 @@
    "module_dir": "recon/symbolized/app/gui",
    "symbol": "memset_bytes",
    "class": "return_type_differs",
-   "distinct_types": 6,
+   "distinct_types": 5,
    "types": {
     "extern int memset_bytes(void*,int,int);": 1,
     "extern void memset_bytes(int,void*,int);": 1,
     "extern void memset_bytes(uint32_t,uint32_t,uint32_t);": 1,
     "extern void memset_bytes(void*,int,int);": 1,
-    "extern void memset_bytes(void*,int,unsigned int);": 1,
-    "extern void*memset_bytes(void*,int,uint32_t);": 1
+    "extern void memset_bytes(void*,int,unsigned int);": 1
    },
    "files": [
     "clean_fb_data.c",
     "find_chinese_bitmap_by_unicode.c",
     "format_message_relative_time.c",
-    "resource_manger_get.c",
     "utf8_string_to_utf16.c",
     "write_font_to_flash_with_verify.c"
    ]
@@ -5815,7 +4718,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern void format_message_relative_time(char*,uint32_t);": 1,
+    "extern void format_message_relative_time(unsigned int,int);": 1,
     "extern void format_message_relative_time(undefined4,int);": 1
    },
    "definition_file": "format_message_relative_time.c",
@@ -5846,14 +4749,13 @@
     "extern int reflash_fb_data_to_lcd(int,);": 3,
     "extern int reflash_fb_data_to_lcd(int,int,int,int,int,int);": 1,
     "extern void reflash_fb_data_to_lcd(int,int,int,int,int,int);": 3,
-    "extern void reflash_fb_data_to_lcd(uint32_t,uint32_t,uint32_t,uint32_t,uint32_t,uint32_t);": 2,
+    "extern void reflash_fb_data_to_lcd(uint32_t,uint32_t,uint32_t,uint32_t,uint32_t,uint32_t);": 1,
     "extern void reflash_fb_data_to_lcd(uint32_t,uint32_t,unsigned int,unsigned int,int,int);": 1,
     "extern void reflash_fb_data_to_lcd(uintptr_t,uintptr_t,int,int,int,int);": 1
    },
    "files": [
     "draw_status_icon_by_state.c",
     "gui_4bit_bitmap_override.c",
-    "gui_area_clear.c",
     "gui_bitmap_draw.c",
     "gui_bitmps_merge_draw.c",
     "gui_bmp_bitmap_draw.c",
@@ -5970,20 +4872,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/gui",
-   "symbol": "fb_blit_rows_or",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern void fb_blit_rows_or(uint32_t,uint32_t,int,int,unsigned int,unsigned int);": 1,
-    "extern void fb_blit_rows_or(int,int,int,int,int,int);": 1
-   },
-   "definition_file": "fb_blit_rows_or.c",
-   "files": [
-    "gui_4bit_bitmap_override.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/gui",
    "symbol": "clean_fb_data",
    "class": "arity_differs",
    "distinct_types": 6,
@@ -5992,11 +4880,10 @@
     "extern int clean_fb_data(int,int,int,int,int,int);": 1,
     "extern void clean_fb_data(int,int,int,int,int,int);": 2,
     "extern void clean_fb_data(int,int,int,int,int,int,int);": 1,
-    "extern void clean_fb_data(uint32_t,uint32_t,uint32_t,uint32_t,uint32_t,uint32_t);": 2,
+    "extern void clean_fb_data(uint32_t,uint32_t,uint32_t,uint32_t,uint32_t,uint32_t);": 1,
     "extern void clean_fb_data(uintptr_t,int,int,int,int,int);": 2
    },
    "files": [
-    "gui_area_clear.c",
     "gui_bitmap_draw.c",
     "gui_bitmps_merge_draw.c",
     "gui_bmp_bitmap_draw.c",
@@ -6007,20 +4894,6 @@
     "gui_utf_draw.c",
     "gui_verticalLine_process_bar.c",
     "ui_render_scroll_text_frame.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/gui",
-   "symbol": "get_projector_controller",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int get_projector_controller(void);": 1,
-    "extern uint32_t get_projector_controller(void);": 1
-   },
-   "files": [
-    "gui_area_clear.c",
-    "gui_screen_clear.c"
    ]
   },
   {
@@ -6184,62 +5057,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/gui",
-   "symbol": "get_clock_digit_glyph_offset_large",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int get_clock_digit_glyph_offset_large(uint16_t,uint32_t*,uint32_t*);": 1,
-    "extern int get_clock_digit_glyph_offset_large(unsigned int,int*,unsigned int*);": 1
-   },
-   "definition_file": "get_clock_digit_glyph_offset_large.c",
-   "files": [
-    "resource_manger_get.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/gui",
-   "symbol": "get_clock_digit_glyph_offset_small",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int get_clock_digit_glyph_offset_small(uint16_t,uint32_t*,uint32_t*);": 1,
-    "extern int get_clock_digit_glyph_offset_small(unsigned int,int*,unsigned int*);": 1
-   },
-   "definition_file": "get_clock_digit_glyph_offset_small.c",
-   "files": [
-    "resource_manger_get.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/gui",
-   "symbol": "get_font_style3_glyph_offset",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int get_font_style3_glyph_offset(uint16_t,uint32_t*,uint32_t*);": 1,
-    "extern int get_font_style3_glyph_offset(unsigned int,int*,unsigned int*);": 1
-   },
-   "definition_file": "get_font_style3_glyph_offset.c",
-   "files": [
-    "resource_manger_get.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/gui",
-   "symbol": "get_default_font_glyph_offset",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int get_default_font_glyph_offset(uint16_t,uint32_t*,uint32_t*);": 1,
-    "extern int get_default_font_glyph_offset(unsigned int,int*,unsigned int*);": 1
-   },
-   "definition_file": "get_default_font_glyph_offset.c",
-   "files": [
-    "resource_manger_get.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/gui",
    "symbol": "fortify_chk_fail",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -6258,7 +5075,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int ui_even_ai_task(int,int,int);": 1,
+    "extern unsigned long ui_even_ai_task(unsigned int*,unsigned long,int);": 1,
     "extern uintptr_t ui_even_ai_task(uint32_t*,uintptr_t,int);": 1
    },
    "definition_file": "ui_even_ai_task.c",
@@ -6296,25 +5113,11 @@
   },
   {
    "module_dir": "recon/symbolized/app/gui",
-   "symbol": "fb_blit_rows_halved",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern void fb_blit_rows_halved(uintptr_t,int,int,int,int,int,int);": 1,
-    "extern void fb_blit_rows_halved(int,int,int,int,int,int,int);": 1
-   },
-   "definition_file": "fb_blit_rows_halved.c",
-   "files": [
-    "ui_render_scroll_text_frame.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/gui",
    "symbol": "utf8_to_unicode",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int utf8_to_unicode(int,int);": 1,
+    "extern unsigned int utf8_to_unicode(unsigned char*,int);": 1,
     "extern uint utf8_to_unicode(byte*,int);": 1
    },
    "definition_file": "utf8_to_unicode.c",
@@ -6367,12 +5170,13 @@
   {
    "module_dir": "recon/symbolized/app/ipc",
    "symbol": "ipc_transport_ops_dispatch",
-   "class": "parameter_type_differs",
+   "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int ipc_transport_ops_dispatch(int,void*,int,int);": 1,
-    "extern int ipc_transport_ops_dispatch(uint32_t,void*,uint32_t,uint32_t);": 1
+    "extern int ipc_transport_ops_dispatch(unsigned char*,void*,unsigned int,unsigned int);": 2,
+    "extern int ipc_transport_ops_dispatch(uint8_t*,void*,uint32_t,uint32_t);": 1
    },
+   "definition_file": "ipc_transport_ops_dispatch.c",
    "files": [
     "dev_send_cmd16_payload.c",
     "ipc_send_len_prefixed_packet.c"
@@ -6624,39 +5428,11 @@
   },
   {
    "module_dir": "recon/symbolized/app/ipc",
-   "symbol": "st25dv_write_reg_pair",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int st25dv_write_reg_pair(void*,uint32_t,uint32_t,uint32_t);": 1,
-    "extern int st25dv_write_reg_pair(int,unsigned int,unsigned int,unsigned int);": 1
-   },
-   "definition_file": "st25dv_write_reg_pair.c",
-   "files": [
-    "st25dv_mailbox_send_message.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ipc",
-   "symbol": "read_bool_attr_0x2004",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern void read_bool_attr_0x2004(uint32_t,void*);": 1,
-    "extern void read_bool_attr_0x2004(int,unsigned char*);": 1
-   },
-   "definition_file": "read_bool_attr_0x2004.c",
-   "files": [
-    "st25dv_mailbox_set_enabled.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ipc",
    "symbol": "st25dv_mailbox_send_id_pair",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern void st25dv_mailbox_send_id_pair(uint32_t,void*);": 1,
+    "extern void st25dv_mailbox_send_id_pair(int,unsigned int*);": 1,
     "extern void st25dv_mailbox_send_id_pair(int,uint32_t*);": 1
    },
    "definition_file": "st25dv_mailbox_send_id_pair.c",
@@ -6721,34 +5497,6 @@
    ]
   },
   {
-   "module_dir": "recon/symbolized/app/ipc",
-   "symbol": "ipc_ept_op_b_guarded",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int ipc_ept_op_b_guarded(unsigned int,void*);": 1,
-    "extern unsigned int ipc_ept_op_b_guarded(unsigned int,int);": 1
-   },
-   "definition_file": "ipc_ept_op_b_guarded.c",
-   "files": [
-    "st25dv_write_control_and_ack.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ipc",
-   "symbol": "st25dv_reg_modify_low5",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern void st25dv_reg_modify_low5(unsigned int,unsigned int);": 1,
-    "extern void st25dv_reg_modify_low5(int,int);": 1
-   },
-   "definition_file": "st25dv_reg_modify_low5.c",
-   "files": [
-    "st25dv_write_control_and_ack.c"
-   ]
-  },
-  {
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "fabsf",
    "class": "arity_differs",
@@ -6797,9 +5545,8 @@
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "dcmp_negate_rhs",
    "class": "return_type_differs",
-   "distinct_types": 4,
+   "distinct_types": 3,
    "types": {
-    "extern long long dcmp_negate_rhs(int,int,int,int);": 1,
     "extern long long dcmp_negate_rhs(unsigned int,unsigned int,unsigned int,unsigned int);": 1,
     "extern u64 dcmp_negate_rhs(u32,u32,u32,u32);": 1,
     "extern u8 dcmp_negate_rhs(u4,u4,u4,u4);": 1
@@ -6807,7 +5554,6 @@
    "files": [
     "__ieee754_exp.c",
     "__ieee754_pow.c",
-    "cjson_print_value.c",
     "rint.c"
    ]
   },
@@ -6849,9 +5595,8 @@
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "__muldf3",
    "class": "return_type_differs",
-   "distinct_types": 5,
+   "distinct_types": 4,
    "types": {
-    "extern long long __muldf3(int,int,int,int);": 1,
     "extern u64 __muldf3(u32,u32,u32,u32);": 1,
     "extern u8 __muldf3(u4,u4,u4,u4);": 1,
     "extern uint64_t __muldf3(uint32_t,uint32_t,uint32_t,uint32_t);": 1,
@@ -6860,7 +5605,6 @@
    "files": [
     "__ieee754_exp.c",
     "__ieee754_pow.c",
-    "cjson_print_value.c",
     "scalbn.c",
     "strtod_sulp.c"
    ]
@@ -6884,16 +5628,14 @@
   {
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "__aeabi_dcmplt",
-   "class": "arity_differs",
-   "distinct_types": 3,
+   "class": "return_type_differs",
+   "distinct_types": 2,
    "types": {
     "extern int __aeabi_dcmplt(uint32_t,uint32_t,uint32_t,uint32_t);": 2,
-    "extern long long __aeabi_dcmplt(int,int,int,int,int,int);": 1,
     "extern u8 __aeabi_dcmplt(u4,u4,u4,u4);": 1
    },
    "files": [
     "__ieee754_exp.c",
-    "cjson_print_value.c",
     "exp.c",
     "pow.c"
    ]
@@ -6959,29 +5701,15 @@
   {
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "__sinit",
-   "class": "arity_differs",
+   "class": "parameter_type_differs",
    "distinct_types": 2,
    "types": {
     "extern void __sinit(int);": 1,
-    "extern void __sinit(void);": 1
+    "extern void __sinit(unsigned long);": 1
    },
    "files": [
     "_fflush_r.c",
     "stdio_fclose.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "stdio_flush_write_buffer",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern uint32_t stdio_flush_write_buffer(int,int);": 1,
-    "extern unsigned int stdio_flush_write_buffer(int*,int*);": 1
-   },
-   "definition_file": "stdio_flush_write_buffer.c",
-   "files": [
-    "_fflush_r.c"
    ]
   },
   {
@@ -7032,11 +5760,10 @@
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "memset_bytes",
    "class": "arity_differs",
-   "distinct_types": 12,
+   "distinct_types": 11,
    "types": {
     "extern int memset_bytes(int,);": 2,
     "extern int memset_bytes(int,int,int);": 1,
-    "extern long long memset_bytes(int,int,int);": 1,
     "extern void memset_bytes(int,int,int);": 3,
     "extern void memset_bytes(uint32_t,int,int);": 1,
     "extern void memset_bytes(unsigned int,unsigned int,unsigned int);": 1,
@@ -7057,7 +5784,6 @@
     "bt_smp_distribute_keys.c",
     "cjson_parse_with_opts.c",
     "cjson_print.c",
-    "cjson_print_value.c",
     "flash_settings_write_and_verify.c",
     "g1_recon_nrfx_gpiote_init.c",
     "gatt_notify_config_change.c",
@@ -7115,41 +5841,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
-   "symbol": "thunk_FUN_00071678",
-   "class": "return_type_differs",
-   "distinct_types": 3,
-   "types": {
-    "extern int*thunk_FUN_00071678(void);": 2,
-    "extern uint32_t*thunk_FUN_00071678(void);": 2,
-    "extern unsigned int*thunk_FUN_00071678(void);": 3
-   },
-   "files": [
-    "asinf.c",
-    "exp.c",
-    "expf.c",
-    "ldexpf.c",
-    "log10f.c",
-    "pow.c",
-    "sqrtf.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "nanf",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern float nanf(unsigned int);": 2,
-    "extern float nanf(const char*);": 1
-   },
-   "definition_file": "nanf.c",
-   "files": [
-    "asinf.c",
-    "log10f.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
    "symbol": "bt_conn_create_pdu_timeout",
    "class": "arity_differs",
    "distinct_types": 4,
@@ -7170,11 +5861,10 @@
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "net_buf_simple_add",
    "class": "arity_differs",
-   "distinct_types": 14,
+   "distinct_types": 13,
    "types": {
     "extern int net_buf_simple_add(int,);": 2,
     "extern int net_buf_simple_add(int,int);": 4,
-    "extern long long net_buf_simple_add(int,);": 1,
     "extern short*net_buf_simple_add(int,int);": 2,
     "extern stop_record_t*net_buf_simple_add(uintptr_t,uint32_t);": 1,
     "extern u32 net_buf_simple_add(int,int);": 1,
@@ -7201,7 +5891,6 @@
     "gatt_notify_send.c",
     "gatt_send_service_changed_ind.c",
     "l2cap_chan_send_disconnect.c",
-    "l2cap_recv.c",
     "l2cap_send_conn_param_req.c",
     "net_buf_push_le16.c",
     "net_buf_push_u8.c",
@@ -7219,7 +5908,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern void att_optional_sent_cb_dispatch(void);": 3,
+    "extern void att_optional_sent_cb_dispatch(unsigned long,unsigned long);": 3,
     "extern void att_optional_sent_cb_dispatch(uint32_t,uint8_t**,uint32_t);": 1
    },
    "definition_file": "att_optional_sent_cb_dispatch.c",
@@ -7232,12 +5921,13 @@
   {
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "atomic_clear_bit_0",
-   "class": "parameter_type_differs",
+   "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern void atomic_clear_bit_0(int,unsigned int);": 2,
-    "extern void atomic_clear_bit_0(void*,uint32_t);": 1
+    "extern void atomic_clear_bit_0(volatile int*,int);": 3,
+    "extern void atomic_clear_bit_0(volatile int32_t*,int);": 1
    },
+   "definition_file": "atomic_clear_bit_0.c",
    "files": [
     "att_cfm_sent.c",
     "att_chan_tx_complete.c",
@@ -7510,27 +6200,12 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
-   "symbol": "net_buf_slist_get",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int net_buf_slist_get(int);": 1,
-    "extern void*net_buf_slist_get(void*);": 1
-   },
-   "files": [
-    "att_exec_write_process.c",
-    "bt_att_disconnected.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
    "symbol": "net_buf_unref",
    "class": "return_type_differs",
-   "distinct_types": 8,
+   "distinct_types": 7,
    "types": {
     "extern int net_buf_unref(int);": 4,
     "extern int net_buf_unref(int,);": 2,
-    "extern long long net_buf_unref(int,);": 1,
     "extern void net_buf_unref(int);": 9,
     "extern void net_buf_unref(packet_t*);": 1,
     "extern void net_buf_unref(uintptr_t);": 2,
@@ -7557,7 +6232,6 @@
     "l2cap_chan_le_recv_seg.c",
     "l2cap_chan_le_send_seg.c",
     "l2cap_chan_send_disconnect.c",
-    "l2cap_recv.c",
     "l2cap_send_conn_param_req.c",
     "smp_error.c",
     "smp_pairing_confirm_send.c",
@@ -7586,16 +6260,14 @@
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "net_buf_simple_add_mem",
    "class": "arity_differs",
-   "distinct_types": 3,
+   "distinct_types": 2,
    "types": {
     "extern int net_buf_simple_add_mem(int,);": 1,
-    "extern long long net_buf_simple_add_mem(int,);": 1,
     "extern void net_buf_simple_add_mem(void*,uintptr_t);": 1
    },
    "files": [
     "att_exec_write_process.c",
-    "l2cap_chan_le_send_seg.c",
-    "l2cap_recv.c"
+    "l2cap_chan_le_send_seg.c"
    ]
   },
   {
@@ -7634,20 +6306,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
-   "symbol": "k_work_cancel_delayable",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int k_work_cancel_delayable(void*,unsigned int,unsigned int,unsigned int);": 1,
-    "extern long long k_work_cancel_delayable(int,);": 1
-   },
-   "files": [
-    "att_handle_rsp.c",
-    "l2cap_recv.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
    "symbol": "att_req_send_process",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -7663,11 +6321,10 @@
   {
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "net_buf_simple_pull_5f594",
-   "class": "arity_differs",
-   "distinct_types": 4,
+   "class": "return_type_differs",
+   "distinct_types": 3,
    "types": {
     "extern int net_buf_simple_pull_5f594(int,int);": 2,
-    "extern long long net_buf_simple_pull_5f594(int,);": 1,
     "extern short*net_buf_simple_pull_5f594(int,int);": 1,
     "extern void*net_buf_simple_pull_5f594(void*,uint32_t);": 1
    },
@@ -7675,8 +6332,7 @@
     "att_prepare_write_req.c",
     "bt_att_recv.c",
     "bt_smp_recv.c",
-    "gatt_mult_notify_dispatch.c",
-    "l2cap_recv.c"
+    "gatt_mult_notify_dispatch.c"
    ]
   },
   {
@@ -7797,34 +6453,13 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
-   "symbol": "k_work_reschedule",
-   "class": "parameter_type_differs",
-   "distinct_types": 5,
-   "types": {
-    "extern void k_work_reschedule(int,int*,int,int);": 1,
-    "extern void k_work_reschedule(int,int,unsigned int,int);": 1,
-    "extern void k_work_reschedule(uint32_t,uint32_t,int,int);": 1,
-    "extern void k_work_reschedule(unsigned int*,unsigned int,unsigned int,unsigned int);": 1,
-    "extern void k_work_reschedule(void*,uint32_t,uint32_t,uint32_t);": 1
-   },
-   "files": [
-    "att_req_sent.c",
-    "att_send_and_schedule_tx.c",
-    "bt_conn_tx_drain_and_reset.c",
-    "bt_smp_send_pdu.c",
-    "gatt_delayed_store_enqueue.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
    "symbol": "bt_conn_create_pdu",
    "class": "arity_differs",
-   "distinct_types": 6,
+   "distinct_types": 5,
    "types": {
     "extern int bt_conn_create_pdu(int,int,int,int,int);": 1,
     "extern int bt_conn_create_pdu(int,int,int,int,int,int);": 2,
     "extern int bt_conn_create_pdu(unsigned int,int,int,int,int);": 1,
-    "extern long long bt_conn_create_pdu(int,);": 1,
     "extern long long bt_conn_create_pdu(unsigned int,int,unsigned int,unsigned int,int);": 1,
     "extern unsigned long long bt_conn_create_pdu(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);": 1
    },
@@ -7832,7 +6467,6 @@
     "att_send_and_schedule_tx.c",
     "att_send_simple.c",
     "bt_smp_send_pdu.c",
-    "l2cap_recv.c",
     "l2cap_send_conn_param_req.c",
     "smp_error.c",
     "smp_send_security_req.c"
@@ -7944,16 +6578,14 @@
   {
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "strcpy",
-   "class": "return_type_differs",
-   "distinct_types": 3,
+   "class": "parameter_type_differs",
+   "distinct_types": 2,
    "types": {
-    "extern long long strcpy(int,int);": 1,
     "extern void strcpy(void*,uint32_t);": 1,
     "extern void strcpy(void*,unsigned int);": 1
    },
    "files": [
     "att_timeout.c",
-    "cjson_print_value.c",
     "random.c"
    ]
   },
@@ -7969,22 +6601,6 @@
    "definition_file": "bt_att_disconnected.c",
    "files": [
     "att_timeout.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "net_buf_simple_pull_le16",
-   "class": "return_type_differs",
-   "distinct_types": 3,
-   "types": {
-    "extern int net_buf_simple_pull_le16(int);": 1,
-    "extern uint32_t net_buf_simple_pull_le16(const void*);": 1,
-    "extern unsigned int net_buf_simple_pull_le16(int);": 1
-   },
-   "files": [
-    "att_write_cmd.c",
-    "att_write_req_recv.c",
-    "l2cap_le_recv_pdu.c"
    ]
   },
   {
@@ -8081,7 +6697,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int att_chan_send(void);": 1,
+    "extern int att_chan_send(unsigned long,unsigned long);": 1,
     "extern int att_chan_send(uint32_t**,struct packet_58a54*);": 1
    },
    "definition_file": "att_chan_send.c",
@@ -8567,13 +7183,13 @@
   {
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "find_cf_cfg_by_addr",
-   "class": "arity_differs",
+   "class": "return_type_differs",
    "distinct_types": 4,
    "types": {
     "extern int find_cf_cfg_by_addr(int,int);": 1,
     "extern int find_cf_cfg_by_addr(int,void*);": 1,
     "extern int find_cf_cfg_by_addr(unsigned int,int);": 1,
-    "extern unsigned long long find_cf_cfg_by_addr(void);": 1
+    "extern unsigned long long find_cf_cfg_by_addr(unsigned long,unsigned long);": 1
    },
    "files": [
     "bt_gatt_store_cf.c",
@@ -8600,10 +7216,10 @@
   {
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "bt_hci_cmd_create",
-   "class": "arity_differs",
+   "class": "return_type_differs",
    "distinct_types": 2,
    "types": {
-    "extern int bt_hci_cmd_create(void);": 1,
+    "extern int bt_hci_cmd_create(unsigned long,unsigned long);": 1,
     "extern void*bt_hci_cmd_create(uint32_t,uint32_t);": 1
    },
    "files": [
@@ -8645,7 +7261,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int bt_hci_evt_get_flags(unsigned int);": 1,
+    "extern unsigned int bt_hci_evt_get_flags(unsigned int);": 1,
     "extern uint32_t bt_hci_evt_get_flags(uint32_t);": 1
    },
    "definition_file": "bt_hci_evt_get_flags.c",
@@ -8765,40 +7381,6 @@
    "files": [
     "bt_settings_set_name_identity.c",
     "cjson_parse_with_opts.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "bt_addr_le_str",
-   "class": "return_type_differs",
-   "distinct_types": 3,
-   "types": {
-    "extern int bt_addr_le_str(int);": 2,
-    "extern uint32_t bt_addr_le_str(int);": 1,
-    "extern unsigned int bt_addr_le_str(int);": 1
-   },
-   "files": [
-    "bt_smp_distribute_keys.c",
-    "smp_alloc_pairing_keys.c",
-    "smp_central_ident.c",
-    "smp_ident_addr_info.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "bt_rand",
-   "class": "parameter_type_differs",
-   "distinct_types": 3,
-   "types": {
-    "extern int bt_rand(unsigned int,unsigned int);": 1,
-    "extern int bt_rand(void*,int);": 2,
-    "extern int bt_rand(void*,size_t);": 1
-   },
-   "files": [
-    "bt_smp_distribute_keys.c",
-    "smp_init.c",
-    "smp_pairing_req.c",
-    "smp_public_key_periph.c"
    ]
   },
   {
@@ -8943,11 +7525,10 @@
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "memcpy",
    "class": "arity_differs",
-   "distinct_types": 9,
+   "distinct_types": 8,
    "types": {
     "extern int memcpy(int,);": 3,
     "extern int memcpy(int,int,int);": 1,
-    "extern long long memcpy(int,int,int);": 1,
     "extern void memcpy(int,unsigned int,int);": 1,
     "extern void memcpy(int,void*,unsigned int);": 1,
     "extern void memcpy(void*,const void*,size_t);": 1,
@@ -8959,7 +7540,6 @@
     "bt_smp_distribute_keys.c",
     "cjson_print.c",
     "cjson_print_string.c",
-    "cjson_print_value.c",
     "cjson_strdup.c",
     "gatt_dm_data_add_attribute.c",
     "gatt_indicate.c",
@@ -9004,20 +7584,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
-   "symbol": "k_msleep_ticks32768_d",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern void k_msleep_ticks32768_d(uint32_t);": 1,
-    "extern void k_msleep_ticks32768_d(int);": 1
-   },
-   "definition_file": "k_msleep_ticks32768_d.c",
-   "files": [
-    "bt_start.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
    "symbol": "get_device_info",
    "class": "return_type_differs",
    "distinct_types": 3,
@@ -9037,17 +7603,15 @@
   {
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "strlen",
-   "class": "arity_differs",
-   "distinct_types": 4,
+   "class": "return_type_differs",
+   "distinct_types": 3,
    "types": {
     "extern int strlen(const char*);": 1,
-    "extern int strlen(void);": 1,
-    "extern long long strlen(void);": 1,
+    "extern int strlen(unsigned long);": 1,
     "extern uint32_t strlen(uintptr_t);": 1
    },
    "files": [
     "bt_start.c",
-    "cjson_print_value.c",
     "cjson_strdup.c",
     "vsnprintf_setup.c"
    ]
@@ -9072,7 +7636,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int cbor_decode_precheck(void);": 2,
+    "extern int cbor_decode_precheck(unsigned long);": 2,
     "extern int cbor_decode_precheck(unsigned int*);": 1
    },
    "definition_file": "cbor_decode_precheck.c",
@@ -9187,20 +7751,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
-   "symbol": "cbor_min_encoded_size",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int cbor_min_encoded_size(u8*,u32);": 1,
-    "extern size_t cbor_min_encoded_size(const void*,size_t);": 1
-   },
-   "files": [
-    "cbor_encode_length_header.c",
-    "zcbor_str_encode.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
    "symbol": "cbor_encode_check_ok",
    "class": "return_type_differs",
    "distinct_types": 2,
@@ -9308,34 +7858,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
-   "symbol": "cjson_strdup",
-   "class": "parameter_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int cjson_strdup(int);": 1,
-    "extern int cjson_strdup(unsigned int);": 1
-   },
-   "files": [
-    "cjson_add_item_to_object.c",
-    "cjson_create_string.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "cjson_create_string",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int cjson_create_string(int);": 1,
-    "extern int cjson_create_string(unsigned int);": 1
-   },
-   "definition_file": "cjson_create_string.c",
-   "files": [
-    "cjson_add_string_to_object.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
    "symbol": "alloc_zeroed_node",
    "class": "arity_differs",
    "distinct_types": 4,
@@ -9352,20 +7874,6 @@
     "cjson_create_object.c",
     "cjson_create_string.c",
     "cjson_parse_with_opts.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "__aeabi_dcmple",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int __aeabi_dcmple(int,int,int,int);": 1,
-    "extern long long __aeabi_dcmple(int,int,int,int);": 1
-   },
-   "files": [
-    "cjson_create_number.c",
-    "cjson_print_value.c"
    ]
   },
   {
@@ -9402,26 +7910,12 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int cjson_parse_value(uintptr_t,uintptr_t);": 1,
+    "extern unsigned int cjson_parse_value(int,int*);": 1,
     "extern undefined4 cjson_parse_value(int,int*);": 1
    },
    "definition_file": "cjson_parse_value.c",
    "files": [
     "cjson_parse_with_opts.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "cursor_advance_past_cstring",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern long long cursor_advance_past_cstring(int);": 1,
-    "extern void cursor_advance_past_cstring(struct encoded_buffer*);": 1
-   },
-   "files": [
-    "cjson_print.c",
-    "cjson_print_value.c"
    ]
   },
   {
@@ -9441,86 +7935,16 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
-   "symbol": "growbuf_ensure_capacity",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern long long growbuf_ensure_capacity(int,int);": 1,
-    "extern uint8_t*growbuf_ensure_capacity(struct output_buffer*,uint32_t);": 1
-   },
-   "files": [
-    "cjson_print_string.c",
-    "cjson_print_value.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
    "symbol": "strncpy_zero_pad",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern long long strncpy_zero_pad(int,int,int);": 1,
-    "extern void strncpy_zero_pad(uint8_t*,const void*,size_t);": 1
-   },
-   "files": [
-    "cjson_print_string.c",
-    "cjson_print_value.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "snprintf",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern long long snprintf(int,int,int);": 1,
-    "extern void snprintf(uint8_t*,size_t,uintptr_t);": 1
-   },
-   "files": [
-    "cjson_print_string.c",
-    "cjson_print_value.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "double_is_unordered",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int double_is_unordered(uint32_t,uint32_t,uint32_t,uint32_t);": 1,
-    "extern long long double_is_unordered(int,int,int,int);": 1
-   },
-   "files": [
-    "cjson_print_value.c",
-    "pow.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "cjson_print_string",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern long long cjson_print_string(int,);": 1,
-    "extern int cjson_print_string(const uint8_t*,struct output_buffer*,uint32_t);": 1
+    "extern void strncpy_zero_pad(uint8_t*,const void*,size_t);": 1,
+    "extern void strncpy_zero_pad(char*,const char*,uint32_t);": 1
    },
-   "definition_file": "cjson_print_string.c",
+   "definition_file": "strncpy_zero_pad.c",
    "files": [
-    "cjson_print_value.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "vsnprintf_setup",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern long long vsnprintf_setup(int,int,int);": 1,
-    "extern void vsnprintf_setup(unsigned int,unsigned int,unsigned int,unsigned int);": 1
-   },
-   "definition_file": "vsnprintf_setup.c",
-   "files": [
-    "cjson_print_value.c"
+    "cjson_print_string.c"
    ]
   },
   {
@@ -9535,21 +7959,6 @@
    "definition_file": "__ieee754_exp.c",
    "files": [
     "exp.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "finite",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int finite(double);": 2,
-    "extern unsigned int finite(double);": 1
-   },
-   "definition_file": "finite.c",
-   "files": [
-    "exp.c",
-    "pow.c"
    ]
   },
   {
@@ -9848,20 +8257,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
-   "symbol": "gatt_settings_delete_key",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int gatt_settings_delete_key(unsigned int,int);": 1,
-    "extern unsigned int gatt_settings_delete_key(unsigned char*,int);": 1
-   },
-   "definition_file": "gatt_settings_delete_key.c",
-   "files": [
-    "gatt_connected.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
    "symbol": "bt_gatt_clear_sc",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -9872,20 +8267,6 @@
    "definition_file": "bt_gatt_clear_sc.c",
    "files": [
     "gatt_connected.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "list_unlink_and_release",
-   "class": "parameter_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern void list_unlink_and_release(int,int,int,void*);": 1,
-    "extern void list_unlink_and_release(u32,int,u32*,u32*);": 1
-   },
-   "files": [
-    "gatt_connected.c",
-    "gatt_write_ccc_rsp.c"
    ]
   },
   {
@@ -9991,20 +8372,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
-   "symbol": "bt_gatt_discover",
-   "class": "parameter_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int bt_gatt_discover(uint32_t,uint32_t);": 1,
-    "extern int bt_gatt_discover(void*,void*);": 1
-   },
-   "files": [
-    "gatt_discover_next.c",
-    "gatt_dm_start.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
    "symbol": "gatt_dm_attr_alloc",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -10094,20 +8461,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
-   "symbol": "bt_att_req_send",
-   "class": "parameter_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int bt_att_req_send(uintptr_t,uintptr_t);": 1,
-    "extern int bt_att_req_send(unsigned int,int);": 1
-   },
-   "files": [
-    "gatt_indicate.c",
-    "gatt_req_send.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
    "symbol": "gatt_find_ccc_for_conn",
    "class": "arity_differs",
    "distinct_types": 3,
@@ -10145,7 +8498,7 @@
    "distinct_types": 3,
    "types": {
     "extern int gatt_find_conn_in_known_table(u32);": 1,
-    "extern uint8_t*gatt_find_conn_in_known_table(void);": 1,
+    "extern uint8_t*gatt_find_conn_in_known_table(unsigned long);": 1,
     "extern void*gatt_find_conn_in_known_table(void);": 1
    },
    "files": [
@@ -10216,18 +8569,16 @@
   {
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "att_alloc_pdu_with_hdr",
-   "class": "arity_differs",
-   "distinct_types": 3,
+   "class": "parameter_type_differs",
+   "distinct_types": 2,
    "types": {
     "extern int att_alloc_pdu_with_hdr(int,int,int);": 3,
-    "extern int att_alloc_pdu_with_hdr(uint32_t,uintptr_t,uint32_t);": 1,
-    "extern long long att_alloc_pdu_with_hdr(int,);": 1
+    "extern int att_alloc_pdu_with_hdr(uint32_t,uintptr_t,uint32_t);": 1
    },
    "files": [
     "gatt_notify_send.c",
     "gatt_send_service_changed_ind.c",
     "l2cap_chan_send_disconnect.c",
-    "l2cap_recv.c",
     "l2cap_send_conn_param_req.c"
    ]
   },
@@ -10249,11 +8600,11 @@
   {
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "active_transfer_conn_match",
-   "class": "arity_differs",
+   "class": "return_type_differs",
    "distinct_types": 2,
    "types": {
     "extern int active_transfer_conn_match(int,);": 1,
-    "extern uint64_t active_transfer_conn_match(void);": 1
+    "extern uint64_t active_transfer_conn_match(unsigned long);": 1
    },
    "files": [
     "gatt_notify_send_chunked.c",
@@ -10350,34 +8701,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
-   "symbol": "ctx_list_unlink_node",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern long long ctx_list_unlink_node(int,);": 1,
-    "extern void ctx_list_unlink_node(void*,struct listener*);": 1
-   },
-   "files": [
-    "gatt_process_listener_notifications.c",
-    "l2cap_recv.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "context_release_and_notify",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern long long context_release_and_notify(int,);": 1,
-    "extern void context_release_and_notify(struct listener*);": 1
-   },
-   "files": [
-    "gatt_process_listener_notifications.c",
-    "l2cap_recv.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
    "symbol": "atomic_and_4",
    "class": "return_type_differs",
    "distinct_types": 3,
@@ -10426,7 +8749,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int gatt_dm_char_by_uuid(unsigned int,void*);": 1,
+    "extern unsigned int gatt_dm_char_by_uuid(unsigned int,const void*);": 1,
     "extern uint32_t gatt_dm_char_by_uuid(uint32_t,const void*);": 1
    },
    "definition_file": "gatt_dm_char_by_uuid.c",
@@ -10482,26 +8805,12 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int gatt_write_ccc(int,int*);": 1,
+    "extern int gatt_write_ccc(void*,unsigned char*);": 1,
     "extern int gatt_write_ccc(void*,uint8_t*);": 1
    },
    "definition_file": "gatt_write_ccc.c",
    "files": [
     "gatt_subscribe_add.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "gatt_subscribe_add",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int gatt_subscribe_add(uint32_t,void*);": 1,
-    "extern int gatt_subscribe_add(int,int*);": 1
-   },
-   "definition_file": "gatt_subscribe_add.c",
-   "files": [
-    "gatt_subscribe_service_changed.c"
    ]
   },
   {
@@ -10919,26 +9228,11 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
-   "symbol": "l2cap_accept_no_ctx",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern uint32_t l2cap_accept_no_ctx(uint32_t);": 1,
-    "extern unsigned int l2cap_accept_no_ctx(unsigned int);": 1
-   },
-   "definition_file": "l2cap_accept_no_ctx.c",
-   "files": [
-    "l2cap_accept.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
    "symbol": "log_msg_3arg_thunk",
-   "class": "arity_differs",
-   "distinct_types": 6,
+   "class": "return_type_differs",
+   "distinct_types": 5,
    "types": {
     "extern int log_msg_3arg_thunk(int,int,void*);": 1,
-    "extern long long log_msg_3arg_thunk(int,);": 1,
     "extern void log_msg_3arg_thunk(u32,int,void*);": 1,
     "extern void log_msg_3arg_thunk(uintptr_t,uint32_t,const void*);": 2,
     "extern void log_msg_3arg_thunk(unsigned int,int,void*);": 1,
@@ -10950,8 +9244,7 @@
     "l2cap_chan_le_recv_seg.c",
     "l2cap_chan_rx_init.c",
     "l2cap_chan_send_disconnect.c",
-    "l2cap_le_recv_pdu.c",
-    "l2cap_recv.c"
+    "l2cap_le_recv_pdu.c"
    ]
   },
   {
@@ -10972,32 +9265,28 @@
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "conn_ctx_cleanup_if_pending",
    "class": "arity_differs",
-   "distinct_types": 3,
+   "distinct_types": 2,
    "types": {
     "extern int conn_ctx_cleanup_if_pending(int);": 1,
-    "extern long long conn_ctx_cleanup_if_pending(int,);": 1,
     "extern void conn_ctx_cleanup_if_pending(void);": 1
    },
    "files": [
     "l2cap_chan_disconnected_cb.c",
-    "l2cap_disconnect_tx_chan.c",
-    "l2cap_recv.c"
+    "l2cap_disconnect_tx_chan.c"
    ]
   },
   {
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "bt_l2cap_le_lookup_tx_cid",
-   "class": "arity_differs",
-   "distinct_types": 3,
+   "class": "parameter_type_differs",
+   "distinct_types": 2,
    "types": {
     "extern int bt_l2cap_le_lookup_tx_cid(int,int);": 1,
-    "extern int bt_l2cap_le_lookup_tx_cid(unsigned int,unsigned short);": 1,
-    "extern long long bt_l2cap_le_lookup_tx_cid(int,);": 1
+    "extern int bt_l2cap_le_lookup_tx_cid(unsigned int,unsigned short);": 1
    },
    "files": [
     "l2cap_chan_disconnected_cb.c",
-    "l2cap_disconnect_tx_chan.c",
-    "l2cap_recv.c"
+    "l2cap_disconnect_tx_chan.c"
    ]
   },
   {
@@ -11018,34 +9307,30 @@
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "atomic_get_word",
    "class": "return_type_differs",
-   "distinct_types": 3,
+   "distinct_types": 2,
    "types": {
     "extern int atomic_get_word(int);": 1,
-    "extern long long atomic_get_word(int,);": 1,
     "extern uint32_t atomic_get_word(const uint32_t*);": 3
    },
    "files": [
     "l2cap_chan_le_recv_seg.c",
     "l2cap_chan_le_send_seg.c",
     "l2cap_chan_send_disconnect.c",
-    "l2cap_le_recv_pdu.c",
-    "l2cap_recv.c"
+    "l2cap_le_recv_pdu.c"
    ]
   },
   {
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "gatt_send_service_changed_ind",
    "class": "return_type_differs",
-   "distinct_types": 3,
+   "distinct_types": 2,
    "types": {
     "extern int gatt_send_service_changed_ind(int);": 1,
-    "extern long long gatt_send_service_changed_ind(int,);": 1,
     "extern void gatt_send_service_changed_ind(transfer_t*);": 1
    },
    "files": [
     "l2cap_chan_le_recv_seg.c",
-    "l2cap_le_recv_pdu.c",
-    "l2cap_recv.c"
+    "l2cap_le_recv_pdu.c"
    ]
   },
   {
@@ -11107,29 +9392,15 @@
   {
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "att_send_simple",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern long long att_send_simple(int,);": 1,
-    "extern void att_send_simple(uintptr_t,int);": 1
-   },
-   "files": [
-    "l2cap_chan_send_disconnect.c",
-    "l2cap_recv.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "l2cap_chan_le_recv_seg",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern void l2cap_chan_le_recv_seg(transfer_t*,request_t*);": 1,
-    "extern void l2cap_chan_le_recv_seg(int,int);": 1
+    "extern void att_send_simple(uintptr_t,int);": 1,
+    "extern void att_send_simple(int,int);": 1
    },
-   "definition_file": "l2cap_chan_le_recv_seg.c",
+   "definition_file": "att_send_simple.c",
    "files": [
-    "l2cap_le_recv_pdu.c"
+    "l2cap_chan_send_disconnect.c"
    ]
   },
   {
@@ -11144,104 +9415,6 @@
    "definition_file": "gatt_prepare_write_rsp.c",
    "files": [
     "l2cap_reassemble_frag.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "l2cap_chan_rx_init",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern long long l2cap_chan_rx_init(int,);": 1,
-    "extern void l2cap_chan_rx_init(int);": 1
-   },
-   "definition_file": "l2cap_chan_rx_init.c",
-   "files": [
-    "l2cap_recv.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "l2cap_chan_tx_init",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern long long l2cap_chan_tx_init(int,);": 1,
-    "extern void l2cap_chan_tx_init(int);": 1
-   },
-   "definition_file": "l2cap_chan_tx_init.c",
-   "files": [
-    "l2cap_recv.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "l2cap_chan_add",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern long long l2cap_chan_add(int,);": 1,
-    "extern u32 l2cap_chan_add(int,int,int);": 1
-   },
-   "definition_file": "l2cap_chan_add.c",
-   "files": [
-    "l2cap_recv.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "l2cap_find_chan_by_id",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern long long l2cap_find_chan_by_id(int,);": 1,
-    "extern void l2cap_find_chan_by_id(unsigned int);": 1
-   },
-   "definition_file": "l2cap_find_chan_by_id.c",
-   "files": [
-    "l2cap_recv.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "g1_recon_bt_conn_set_security",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern long long g1_recon_bt_conn_set_security(int,);": 1,
-    "extern int g1_recon_bt_conn_set_security(int,unsigned char,unsigned int,unsigned int);": 1
-   },
-   "definition_file": "g1_recon_bt_conn_set_security.c",
-   "files": [
-    "l2cap_recv.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "l2cap_lookup_chan_by_ident",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern long long l2cap_lookup_chan_by_ident(int,);": 1,
-    "extern int*l2cap_lookup_chan_by_ident(int,unsigned int,int,unsigned int);": 1
-   },
-   "definition_file": "l2cap_lookup_chan_by_ident.c",
-   "files": [
-    "l2cap_recv.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "scalbnf",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern float scalbnf(float,unsigned int);": 1,
-    "extern float scalbnf(float,int);": 1
-   },
-   "definition_file": "scalbnf.c",
-   "files": [
-    "ldexpf.c"
    ]
   },
   {
@@ -11264,7 +9437,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int _write_r(int*,int,int,int);": 1,
+    "extern int _write_r(int*,int,const void*,unsigned int);": 1,
     "extern int _write_r(int*,int,const void*,size_t);": 1
    },
    "definition_file": "_write_r.c",
@@ -11320,7 +9493,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern void g1_recon_z_log_msg_free(uint32_t);": 1,
+    "extern void g1_recon_z_log_msg_free(volatile unsigned int*);": 1,
     "extern void g1_recon_z_log_msg_free(volatile uint32_t*);": 1
    },
    "definition_file": "g1_recon_z_log_msg_free.c",
@@ -11386,25 +9559,11 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
-   "symbol": "md5_final",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern void md5_final(void*,void*);": 1,
-    "extern void md5_final(int*,void*);": 1
-   },
-   "definition_file": "md5_final.c",
-   "files": [
-    "md5_compute_digest.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
    "symbol": "md5_process_block",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern void md5_process_block(void*,const void*);": 1,
+    "extern void md5_process_block(volatile unsigned int*,void*);": 1,
     "extern void md5_process_block(volatile uint*,void*);": 1
    },
    "definition_file": "md5_process_block.c",
@@ -11461,7 +9620,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int __nrfy_internal_twim_events_process(uintptr_t,uint32_t);": 1,
+    "extern unsigned int __nrfy_internal_twim_events_process(unsigned long,unsigned int);": 1,
     "extern uint32_t __nrfy_internal_twim_events_process(uintptr_t,uint32_t);": 1
    },
    "definition_file": "__nrfy_internal_twim_events_process.c",
@@ -11543,20 +9702,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
-   "symbol": "rpmsg_virtio_shm_pool_get_buffer",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int rpmsg_virtio_shm_pool_get_buffer(int,int);": 1,
-    "extern int*rpmsg_virtio_shm_pool_get_buffer(uint32_t,uint32_t);": 1
-   },
-   "files": [
-    "rpmsg_virtio_get_tx_buffer_wait.c",
-    "rpmsg_virtqueue_channel_init.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
    "symbol": "rpmsg_virtqueue_channel_init",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -11575,26 +9720,12 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int rpmsg_virtio_tx_enqueue(int,uint32_t,uint32_t,int,int);": 1,
+    "extern unsigned int rpmsg_virtio_tx_enqueue(unsigned char*,unsigned int,unsigned int,unsigned char*,unsigned int);": 1,
     "extern uint32_t rpmsg_virtio_tx_enqueue(uint8_t*,uint32_t,uint32_t,uint8_t*,uint32_t);": 1
    },
    "definition_file": "rpmsg_virtio_tx_enqueue.c",
    "files": [
     "rpmsg_virtio_send_copy.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "metal_io_block_write",
-   "class": "parameter_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int metal_io_block_write(int*,uint,int,int);": 1,
-    "extern int metal_io_block_write(void*,uint32_t,const void*,uint32_t);": 1
-   },
-   "files": [
-    "rpmsg_virtio_send_copy.c",
-    "rpmsg_virtio_tx_enqueue.c"
    ]
   },
   {
@@ -11659,7 +9790,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern void virtqueue_ring_setup_flags(int);": 1,
+    "extern void virtqueue_ring_setup_flags(int*);": 1,
     "extern void virtqueue_ring_setup_flags(int32_t*);": 1
    },
    "definition_file": "virtqueue_ring_setup_flags.c",
@@ -11679,20 +9810,6 @@
    "files": [
     "settings_nvs_load.c",
     "settings_nvs_read_fn.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "settings_nvs_delete_id",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern void settings_nvs_delete_id(int,int);": 1,
-    "extern void settings_nvs_delete_id(unsigned int,unsigned int);": 1
-   },
-   "definition_file": "settings_nvs_delete_id.c",
-   "files": [
-    "settings_nvs_load.c"
    ]
   },
   {
@@ -11746,10 +9863,11 @@
    "module_dir": "recon/symbolized/app/lib",
    "symbol": "conn_auth_cb_get_or_init",
    "class": "arity_differs",
-   "distinct_types": 3,
+   "distinct_types": 4,
    "types": {
     "extern int conn_auth_cb_get_or_init(int);": 1,
-    "extern int conn_auth_cb_get_or_init(void);": 3,
+    "extern int conn_auth_cb_get_or_init(unsigned long);": 1,
+    "extern int conn_auth_cb_get_or_init(void);": 2,
     "extern struct bt_conn_auth_cb_raw*conn_auth_cb_get_or_init(void*);": 1
    },
    "files": [
@@ -11802,34 +9920,6 @@
    "files": [
     "smp_dhkey_ready_cb.c",
     "smp_public_key_periph.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "smp_dhkey_generate",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int smp_dhkey_generate(void*);": 1,
-    "extern int32_t smp_dhkey_generate(void*);": 1
-   },
-   "files": [
-    "smp_dhkey_ready_cb.c",
-    "smp_public_key_periph.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "smp_dhkey_check_generate",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int32_t smp_dhkey_check_generate(void*);": 1,
-    "extern int smp_dhkey_check_generate(int);": 1
-   },
-   "definition_file": "smp_dhkey_check_generate.c",
-   "files": [
-    "smp_dhkey_ready_cb.c"
    ]
   },
   {
@@ -11891,20 +9981,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/lib",
-   "symbol": "smp_build_auth_flags",
-   "class": "parameter_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int smp_build_auth_flags(int,int);": 1,
-    "extern int smp_build_auth_flags(int,uint);": 1
-   },
-   "files": [
-    "smp_pairing_req.c",
-    "smp_send_security_req.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
    "symbol": "smp_public_key_periph",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -11923,7 +9999,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int bt_smp_send_pairing_confirm(void*);": 1,
+    "extern unsigned int bt_smp_send_pairing_confirm(int);": 1,
     "extern u32 bt_smp_send_pairing_confirm(int);": 1
    },
    "definition_file": "bt_smp_send_pairing_confirm.c",
@@ -11945,34 +10021,6 @@
     "stdio_fclose.c",
     "stdio_flush_write_buffer.c",
     "stdio_reset_ungetc_buffer.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "vfprintf_field_scan_match",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int vfprintf_field_scan_match(int,void*,void*,void*);": 1,
-    "extern unsigned int vfprintf_field_scan_match(int,unsigned int*,int*,unsigned int**);": 1
-   },
-   "definition_file": "vfprintf_field_scan_match.c",
-   "files": [
-    "vfprintf_core.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/lib",
-   "symbol": "stdio_reset_ungetc_buffer",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern void*stdio_reset_ungetc_buffer(void*,void*);": 1,
-    "extern int stdio_reset_ungetc_buffer(int,unsigned int*);": 1
-   },
-   "definition_file": "stdio_reset_ungetc_buffer.c",
-   "files": [
-    "vfprintf_core.c"
    ]
   },
   {
@@ -12118,20 +10166,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/notify",
-   "symbol": "k_uptime_get_32",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int k_uptime_get_32(void);": 1,
-    "extern unsigned int k_uptime_get_32(void);": 1
-   },
-   "files": [
-    "ancs_connected.c",
-    "bt_ancs_data_source_handler.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/notify",
    "symbol": "bt_conn_get_field_0x90",
    "class": "return_type_differs",
    "distinct_types": 2,
@@ -12177,17 +10211,15 @@
    "module_dir": "recon/symbolized/app/notify",
    "symbol": "malloc",
    "class": "return_type_differs",
-   "distinct_types": 4,
+   "distinct_types": 3,
    "types": {
     "extern int malloc(int);": 1,
     "extern int malloc(int,);": 2,
-    "extern uint32_t malloc(uint32_t);": 1,
     "extern unsigned int malloc(int);": 1
    },
    "files": [
     "ancs_ctx_init.c",
     "post_notification_cmd_process.c",
-    "put_whitelist_app_from_app.c",
     "revalidate_whitelist_json.c",
     "send_whitelist_json_chunked.c"
    ]
@@ -12196,14 +10228,13 @@
    "module_dir": "recon/symbolized/app/notify",
    "symbol": "memset_bytes",
    "class": "arity_differs",
-   "distinct_types": 14,
+   "distinct_types": 13,
    "types": {
     "extern int memset_bytes(int,);": 3,
     "extern int memset_bytes(int,int,int);": 2,
     "extern int memset_bytes(int,int,int,int,int);": 1,
     "extern void memset_bytes(int*,int,int);": 1,
     "extern void memset_bytes(int,int,int);": 1,
-    "extern void memset_bytes(uint32_t,uint32_t,uint32_t);": 1,
     "extern void memset_bytes(unsigned int,int,int);": 1,
     "extern void memset_bytes(unsigned int,int,int,unsigned int);": 1,
     "extern void memset_bytes(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);": 1,
@@ -12230,7 +10261,6 @@
     "parse_ncs_notification.c",
     "parse_whitelist_json.c",
     "post_notification_cmd_process.c",
-    "put_whitelist_app_from_app.c",
     "revalidate_whitelist_json.c",
     "send_notification_app_whitelist.c",
     "send_whitelist_json_chunked.c",
@@ -12254,42 +10284,14 @@
   },
   {
    "module_dir": "recon/symbolized/app/notify",
-   "symbol": "k_msleep_ticks32768_d",
-   "class": "parameter_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern void k_msleep_ticks32768_d(uint32_t);": 1,
-    "extern void k_msleep_ticks32768_d(unsigned int);": 1
-   },
-   "files": [
-    "ancs_main.c",
-    "ancs_security_changed.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/notify",
    "symbol": "send_data_in_ble_chunks",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern void send_data_in_ble_chunks(void*);": 2,
+    "extern void send_data_in_ble_chunks(const unsigned char*);": 2,
     "extern void send_data_in_ble_chunks(const uint8_t*);": 1
    },
    "definition_file": "send_data_in_ble_chunks.c",
-   "files": [
-    "ancs_notification_forward.c",
-    "post_notification_cmd_response.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/notify",
-   "symbol": "is_on_whitelist_by_identifier",
-   "class": "parameter_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int is_on_whitelist_by_identifier(const void*);": 1,
-    "extern int is_on_whitelist_by_identifier(void*);": 1
-   },
    "files": [
     "ancs_notification_forward.c",
     "post_notification_cmd_response.c"
@@ -12309,20 +10311,6 @@
     "ancs_notification_forward.c",
     "parse_ncs_notification.c",
     "simulator_ancs_calendar_schedule_trigger.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/notify",
-   "symbol": "format_log_timestamp_mmdd_hhmm",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int format_log_timestamp_mmdd_hhmm(void*);": 1,
-    "extern int format_log_timestamp_mmdd_hhmm(unsigned char*);": 1
-   },
-   "definition_file": "format_log_timestamp_mmdd_hhmm.c",
-   "files": [
-    "ancs_notification_forward.c"
    ]
   },
   {
@@ -12370,7 +10358,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int ancs_gatt_client_cb_set(void*);": 1,
+    "extern int ancs_gatt_client_cb_set(const unsigned int*);": 1,
     "extern int ancs_gatt_client_cb_set(const uint32_t*);": 1
    },
    "definition_file": "ancs_gatt_client_cb_set.c",
@@ -12391,21 +10379,6 @@
    "files": [
     "ancs_security_changed.c",
     "ancs_set_notification_enabled.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/notify",
-   "symbol": "atomic_clear_bit",
-   "class": "parameter_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern void atomic_clear_bit(int,unsigned int);": 1,
-    "extern void atomic_clear_bit(void*,int);": 2
-   },
-   "files": [
-    "ancs_subscribe_data_source.c",
-    "ancs_subscribe_notification_source.c",
-    "bt_ancs_cp_write_callback.c"
    ]
   },
   {
@@ -12482,20 +10455,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/notify",
-   "symbol": "const_return_zero_80d3a",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int const_return_zero_80d3a(void);": 1,
-    "extern unsigned int const_return_zero_80d3a(void);": 1
-   },
-   "definition_file": "const_return_zero_80d3a.c",
-   "files": [
-    "bt_id_set_static_random_addr.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/notify",
    "symbol": "bt_addr_le_eq",
    "class": "arity_differs",
    "distinct_types": 2,
@@ -12506,20 +10465,6 @@
    "files": [
     "bt_id_set_static_random_addr.c",
     "id_find.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/notify",
-   "symbol": "ptr_read_u32",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int ptr_read_u32(unsigned int);": 1,
-    "extern unsigned int ptr_read_u32(unsigned int*);": 1
-   },
-   "definition_file": "ptr_read_u32.c",
-   "files": [
-    "bt_id_set_static_random_addr.c"
    ]
   },
   {
@@ -12629,7 +10574,7 @@
    "distinct_types": 5,
    "types": {
     "extern int strlen(int);": 1,
-    "extern uint32_t strlen(uint32_t);": 2,
+    "extern uint32_t strlen(uint32_t);": 1,
     "extern uint8_t strlen(const char*);": 1,
     "extern unsigned int strlen(const void*);": 1,
     "extern unsigned int strlen(unsigned int);": 1
@@ -12637,7 +10582,6 @@
    "files": [
     "convert_app_whitelist_to_json.c",
     "is_on_whitelist_by_identifier.c",
-    "mobile_send_notification_to_ble_device_test.c",
     "notification_icon_type_from_package.c",
     "request_ancs_attr_ext.c",
     "send_data_in_ble_chunks.c"
@@ -12647,15 +10591,13 @@
    "module_dir": "recon/symbolized/app/notify",
    "symbol": "cjson_delete",
    "class": "return_type_differs",
-   "distinct_types": 3,
+   "distinct_types": 2,
    "types": {
     "extern int cjson_delete(int);": 2,
-    "extern void cjson_delete(int);": 2,
-    "extern void cjson_delete(uint32_t);": 1
+    "extern void cjson_delete(int);": 2
    },
    "files": [
     "convert_app_whitelist_to_json.c",
-    "mobile_send_notification_to_ble_device_test.c",
     "parse_ncs_notification.c",
     "parse_whitelist_json.c",
     "verify_whitelist_json.c"
@@ -12663,63 +10605,19 @@
   },
   {
    "module_dir": "recon/symbolized/app/notify",
-   "symbol": "cjson_create_object",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int cjson_create_object(void);": 1,
-    "extern uint32_t cjson_create_object(void);": 1
-   },
-   "files": [
-    "convert_app_whitelist_to_json.c",
-    "mobile_send_notification_to_ble_device_test.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/notify",
    "symbol": "free",
    "class": "return_type_differs",
-   "distinct_types": 4,
+   "distinct_types": 3,
    "types": {
     "extern int free(int);": 1,
     "extern int free(int,);": 2,
-    "extern void free(int);": 1,
-    "extern void free(uint32_t);": 1
+    "extern void free(int);": 1
    },
    "files": [
     "convert_app_whitelist_to_json.c",
     "post_notification_cmd_process.c",
-    "put_whitelist_app_from_app.c",
     "revalidate_whitelist_json.c",
     "send_whitelist_json_chunked.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/notify",
-   "symbol": "cjson_add_item_to_object_thunk",
-   "class": "parameter_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern void cjson_add_item_to_object_thunk(int,int,int);": 1,
-    "extern void cjson_add_item_to_object_thunk(uint32_t,uint32_t,uint32_t);": 1
-   },
-   "files": [
-    "convert_app_whitelist_to_json.c",
-    "mobile_send_notification_to_ble_device_test.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/notify",
-   "symbol": "cjson_add_string_to_object",
-   "class": "parameter_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern void cjson_add_string_to_object(int,int,void*);": 1,
-    "extern void cjson_add_string_to_object(uint32_t,uint32_t,uint32_t);": 1
-   },
-   "files": [
-    "convert_app_whitelist_to_json.c",
-    "mobile_send_notification_to_ble_device_test.c"
    ]
   },
   {
@@ -12795,20 +10693,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/notify",
-   "symbol": "load_whitelist",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int load_whitelist(void);": 1,
-    "extern unsigned int load_whitelist(void);": 1
-   },
-   "definition_file": "load_whitelist.c",
-   "files": [
-    "dump_whitelist_init.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/notify",
    "symbol": "strncmp",
    "class": "parameter_type_differs",
    "distinct_types": 3,
@@ -12822,50 +10706,6 @@
     "notification_icon_type_from_package.c",
     "send_data_in_ble_chunks.c",
     "whitelist_contains_app.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/notify",
-   "symbol": "get_ancs_conn_handle",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int get_ancs_conn_handle(void);": 1,
-    "extern unsigned int get_ancs_conn_handle(void);": 1
-   },
-   "definition_file": "get_ancs_conn_handle.c",
-   "files": [
-    "notify_config_change_if_connected.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/notify",
-   "symbol": "sllist_find_by_name_ci",
-   "class": "parameter_type_differs",
-   "distinct_types": 3,
-   "types": {
-    "extern int sllist_find_by_name_ci(int,int);": 1,
-    "extern int sllist_find_by_name_ci(int,uint32_t);": 1,
-    "extern int sllist_find_by_name_ci(int,unsigned int);": 1
-   },
-   "files": [
-    "parse_ncs_notification.c",
-    "parse_whitelist_json.c",
-    "verify_whitelist_json.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/notify",
-   "symbol": "sllist_count_nodes",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int sllist_count_nodes(int);": 1,
-    "extern unsigned int sllist_count_nodes(int);": 1
-   },
-   "files": [
-    "parse_whitelist_json.c",
-    "verify_whitelist_json.c"
    ]
   },
   {
@@ -12954,62 +10794,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/notify",
-   "symbol": "parse_receiver_pack_pkcs7",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern uint32_t parse_receiver_pack_pkcs7(uint32_t,uint32_t,uint32_t);": 1,
-    "extern unsigned int parse_receiver_pack_pkcs7(int,unsigned char*,unsigned int);": 1
-   },
-   "definition_file": "parse_receiver_pack_pkcs7.c",
-   "files": [
-    "put_whitelist_app_from_app.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/notify",
-   "symbol": "parse_whitelist_json",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern uint32_t parse_whitelist_json(uint32_t);": 1,
-    "extern uint32_t parse_whitelist_json(uint32_t,uint32_t,uint32_t);": 1
-   },
-   "definition_file": "parse_whitelist_json.c",
-   "files": [
-    "put_whitelist_app_from_app.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/notify",
-   "symbol": "verify_whitelist_json",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern uint32_t verify_whitelist_json(uint32_t);": 1,
-    "extern undefined4 verify_whitelist_json(void);": 1
-   },
-   "definition_file": "verify_whitelist_json.c",
-   "files": [
-    "put_whitelist_app_from_app.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/notify",
-   "symbol": "store_whitelist",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern uint32_t store_whitelist(void);": 1,
-    "extern int store_whitelist(void);": 1
-   },
-   "definition_file": "store_whitelist.c",
-   "files": [
-    "put_whitelist_app_from_app.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/notify",
    "symbol": "draw_message",
    "class": "parameter_type_differs",
    "distinct_types": 2,
@@ -13043,7 +10827,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int thunk_FUN_0007f7d2(unsigned int,unsigned int,unsigned int,unsigned int);": 1,
+    "extern int thunk_FUN_0007f7d2(void*,const unsigned char*,unsigned int,void*);": 1,
     "extern int thunk_FUN_0007f7d2(void*,const uint8_t*,uint32_t,void*);": 1
    },
    "definition_file": "thunk_FUN_0007f7d2.c",
@@ -13085,7 +10869,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int whitelist_contains_app(void*,void*);": 1,
+    "extern unsigned int whitelist_contains_app(const void*,const void*);": 1,
     "extern uint32_t whitelist_contains_app(const void*,const void*);": 1
    },
    "definition_file": "whitelist_contains_app.c",
@@ -13137,20 +10921,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/sensors/imu",
-   "symbol": "orientation_filter_update_dt",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern float orientation_filter_update_dt(void*);": 1,
-    "extern float orientation_filter_update_dt(int);": 1
-   },
-   "definition_file": "orientation_filter_update_dt.c",
-   "files": [
-    "imu_fusion_thread.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/sensors/imu",
    "symbol": "imu_mahony_ahrs_update",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -13183,7 +10953,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern void quaternion_to_euler(void);": 3,
+    "extern void quaternion_to_euler(unsigned long);": 3,
     "extern void quaternion_to_euler(uint8_t*);": 1
    },
    "definition_file": "quaternion_to_euler.c",
@@ -13608,20 +11378,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/sensors/power",
-   "symbol": "fuel_gauge_read_voltage_current_temp",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int fuel_gauge_read_voltage_current_temp(int,void*,void*,void*);": 1,
-    "extern int fuel_gauge_read_voltage_current_temp(int,float*,float*,float*);": 1
-   },
-   "definition_file": "fuel_gauge_read_voltage_current_temp.c",
-   "files": [
-    "fuel_gauge_sample_init_timestamp.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/sensors/power",
    "symbol": "get_device_info",
    "class": "return_type_differs",
    "distinct_types": 6,
@@ -13712,72 +11468,6 @@
    "files": [
     "opt3001_read_lux_raw.c",
     "opt3007_chip_init.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/sensors/power",
-   "symbol": "get_product_code_buf",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern char*get_product_code_buf(void);": 1,
-    "extern unsigned int get_product_code_buf(void);": 1
-   },
-   "definition_file": "get_product_code_buf.c",
-   "files": [
-    "product_code_is_supported_egp_family.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/storage",
-   "symbol": "get_device_info",
-   "class": "return_type_differs",
-   "distinct_types": 3,
-   "types": {
-    "extern char*get_device_info(void);": 1,
-    "extern int get_device_info(void);": 4,
-    "extern unsigned int get_device_info(void);": 2
-   },
-   "files": [
-    "SettingStoreHandler.c",
-    "calc_flash_crc.c",
-    "ext_flash_api_init.c",
-    "get_demo_image_source_from_flash.c",
-    "get_flash_info.c",
-    "resolve_not_disturb_context.c",
-    "try_to_save_file.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/storage",
-   "symbol": "k_msgq_get",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int k_msgq_get(unsigned int,void*,unsigned int,unsigned int);": 1,
-    "extern unsigned int k_msgq_get(unsigned int,void*,unsigned int,unsigned int);": 1
-   },
-   "files": [
-    "SettingStoreHandler.c",
-    "drain_setting_storage_queue.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/storage",
-   "symbol": "z_device_is_ready",
-   "class": "return_type_differs",
-   "distinct_types": 4,
-   "types": {
-    "extern int z_device_is_ready(const void*);": 1,
-    "extern int z_device_is_ready(int);": 1,
-    "extern int z_device_is_ready(unsigned int);": 1,
-    "extern unsigned int z_device_is_ready(unsigned int);": 1
-   },
-   "files": [
-    "SettingStoreHandler.c",
-    "calc_flash_crc.c",
-    "ext_flash_api_init.c",
-    "get_flash_info.c"
    ]
   },
   {
@@ -13900,7 +11590,7 @@
     "extern int memcpy(void*,int,int);": 1,
     "extern void memcpy(int,int,int);": 1,
     "extern void memcpy(unsigned int,unsigned int,unsigned int);": 1,
-    "extern void memcpy(void*,const void*,uint32_t);": 2,
+    "extern void memcpy(void*,const void*,uint32_t);": 1,
     "extern void memcpy(void*,const void*,uint32_t,uint32_t,uint32_t);": 1
    },
    "files": [
@@ -13909,8 +11599,41 @@
     "get_demo_image_source_from_flash.c",
     "get_flash_info.c",
     "pt_nfc_link_transfer_fw_packet.c",
-    "storage_read_with_word_cache.c",
-    "try_to_save_file.c"
+    "storage_read_with_word_cache.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/storage",
+   "symbol": "get_device_info",
+   "class": "return_type_differs",
+   "distinct_types": 3,
+   "types": {
+    "extern char*get_device_info(void);": 1,
+    "extern int get_device_info(void);": 3,
+    "extern unsigned int get_device_info(void);": 1
+   },
+   "files": [
+    "calc_flash_crc.c",
+    "ext_flash_api_init.c",
+    "get_demo_image_source_from_flash.c",
+    "get_flash_info.c",
+    "resolve_not_disturb_context.c"
+   ]
+  },
+  {
+   "module_dir": "recon/symbolized/app/storage",
+   "symbol": "z_device_is_ready",
+   "class": "return_type_differs",
+   "distinct_types": 3,
+   "types": {
+    "extern int z_device_is_ready(const void*);": 1,
+    "extern int z_device_is_ready(int);": 1,
+    "extern unsigned int z_device_is_ready(unsigned int);": 1
+   },
+   "files": [
+    "calc_flash_crc.c",
+    "ext_flash_api_init.c",
+    "get_flash_info.c"
    ]
   },
   {
@@ -13959,10 +11682,10 @@
   {
    "module_dir": "recon/symbolized/app/storage",
    "symbol": "find_cf_cfg",
-   "class": "arity_differs",
+   "class": "return_type_differs",
    "distinct_types": 2,
    "types": {
-    "extern int find_cf_cfg(void);": 1,
+    "extern int find_cf_cfg(unsigned long);": 1,
     "extern void*find_cf_cfg(int);": 1
    },
    "files": [
@@ -14032,7 +11755,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern unsigned int flash_read_boot_swap_ate(unsigned int,unsigned int);": 1,
+    "extern unsigned int flash_read_boot_swap_ate(int,unsigned char*);": 1,
     "extern uint32_t flash_read_boot_swap_ate(int,uint8_t*);": 1
    },
    "definition_file": "flash_read_boot_swap_ate.c",
@@ -14074,7 +11797,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int pt_nfc_link_transfer_fw_packet(uint32_t,uint32_t,void*,uint32_t);": 1,
+    "extern int pt_nfc_link_transfer_fw_packet(unsigned int,unsigned int,const unsigned char*,unsigned int);": 1,
     "extern int pt_nfc_link_transfer_fw_packet(uint32_t,uint32_t,const uint8_t*,uint32_t);": 1
    },
    "definition_file": "pt_nfc_link_transfer_fw_packet.c",
@@ -14116,12 +11839,13 @@
   {
    "module_dir": "recon/symbolized/app/storage",
    "symbol": "flash_data_checksum_neg_sum",
-   "class": "return_type_differs",
+   "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int flash_data_checksum_neg_sum(int,int,int);": 1,
-    "extern uint32_t flash_data_checksum_neg_sum(uint32_t,uint32_t,uint32_t);": 1
+    "extern unsigned int flash_data_checksum_neg_sum(const unsigned char*,unsigned int,unsigned int);": 2,
+    "extern uint32_t flash_data_checksum_neg_sum(const uint8_t*,uint32_t,uint32_t);": 1
    },
+   "definition_file": "flash_data_checksum_neg_sum.c",
    "files": [
     "flash_firmware_update_transfer.c",
     "flash_write_and_verify_blob.c"
@@ -14163,20 +11887,6 @@
    "types": {
     "extern int flash_area_read(int,int,char*,int,int);": 1,
     "extern int flash_area_read(int,int,void*,);": 1
-   },
-   "files": [
-    "flash_read_boot_swap_ate.c",
-    "flash_write_byte_and_verify.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/storage",
-   "symbol": "flash_region_is_erased",
-   "class": "parameter_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int flash_region_is_erased(int,char*,int);": 1,
-    "extern int flash_region_is_erased(int,void*,int);": 1
    },
    "files": [
     "flash_read_boot_swap_ate.c",
@@ -14228,29 +11938,15 @@
   {
    "module_dir": "recon/symbolized/app/storage",
    "symbol": "flash_area_erased_val",
-   "class": "arity_differs",
+   "class": "parameter_type_differs",
    "distinct_types": 2,
    "types": {
     "extern unsigned int flash_area_erased_val(unsigned int);": 1,
-    "extern unsigned int flash_area_erased_val(void);": 1
+    "extern unsigned int flash_area_erased_val(unsigned long);": 1
    },
    "files": [
     "flash_region_is_erased.c",
     "flash_write_padded_entry.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/storage",
-   "symbol": "attr_configure_pair",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int attr_configure_pair(int,int);": 1,
-    "extern int attr_configure_pair(unsigned int,unsigned int);": 1
-   },
-   "definition_file": "attr_configure_pair.c",
-   "files": [
-    "flash_write_and_verify_blob.c"
    ]
   },
   {
@@ -14263,20 +11959,6 @@
     "extern void pixelto4bithex_for_flash(int,int,int,int);": 1
    },
    "definition_file": "pixelto4bithex_for_flash.c",
-   "files": [
-    "get_demo_image_source_from_flash.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/storage",
-   "symbol": "ptr_load_u32",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int ptr_load_u32(void*);": 1,
-    "extern unsigned int ptr_load_u32(unsigned int*);": 1
-   },
-   "definition_file": "ptr_load_u32.c",
    "files": [
     "get_demo_image_source_from_flash.c"
    ]
@@ -14373,20 +12055,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/storage",
-   "symbol": "const_return_one",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int const_return_one(void);": 1,
-    "extern unsigned int const_return_one(void);": 1
-   },
-   "definition_file": "const_return_one.c",
-   "files": [
-    "sc_restore_rsp.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/storage",
    "symbol": "set_change_aware",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -14429,20 +12097,6 @@
   },
   {
    "module_dir": "recon/symbolized/app/storage",
-   "symbol": "storage_ctx_get_field0c",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int storage_ctx_get_field0c(int);": 1,
-    "extern unsigned int storage_ctx_get_field0c(char*);": 1
-   },
-   "definition_file": "storage_ctx_get_field0c.c",
-   "files": [
-    "storage_erase_handler.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/storage",
    "symbol": "qspi_nor_lock_if_magic",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
@@ -14453,20 +12107,6 @@
    "definition_file": "qspi_nor_lock_if_magic.c",
    "files": [
     "storage_read_with_word_cache.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/storage",
-   "symbol": "update_persist_task_status",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern void update_persist_task_status(uint32_t,int,int);": 1,
-    "extern u32 update_persist_task_status(u8*,u32,u32);": 1
-   },
-   "definition_file": "update_persist_task_status.c",
-   "files": [
-    "try_to_save_file.c"
    ]
   },
   {
@@ -14487,13 +12127,12 @@
    "module_dir": "recon/symbolized/app/ui/dashboard",
    "symbol": "get_device_info",
    "class": "arity_differs",
-   "distinct_types": 7,
+   "distinct_types": 6,
    "types": {
     "extern char*get_device_info(void);": 1,
     "extern int get_device_info(void);": 2,
     "extern long long get_device_info(int,);": 1,
     "extern uint8_t*get_device_info(void);": 1,
-    "extern uintptr_t get_device_info(void);": 1,
     "extern unsigned int get_device_info(void);": 1,
     "extern void*get_device_info(void);": 1
    },
@@ -14504,38 +12143,21 @@
     "get_dashboard_sum_time.c",
     "init_dashboard_info.c",
     "send_dashboard_status_sync.c",
-    "send_dashboard_status_sync_compact.c",
-    "ui_DashBoard_task.c"
+    "send_dashboard_status_sync_compact.c"
    ]
   },
   {
    "module_dir": "recon/symbolized/app/ui/dashboard",
    "symbol": "msg_content_recalc_unread",
    "class": "arity_differs",
-   "distinct_types": 3,
-   "types": {
-    "extern int msg_content_recalc_unread(void);": 1,
-    "extern long long msg_content_recalc_unread(int,);": 1,
-    "extern uint32_t msg_content_recalc_unread(void);": 1
-   },
-   "files": [
-    "DashBoard_Reflash.c",
-    "send_dashboard_status_sync.c",
-    "ui_DashBoard_task.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ui/dashboard",
-   "symbol": "gui_screen_clear",
-   "class": "arity_differs",
    "distinct_types": 2,
    "types": {
-    "extern int gui_screen_clear(void);": 1,
-    "extern long long gui_screen_clear(int,);": 1
+    "extern int msg_content_recalc_unread(void);": 1,
+    "extern long long msg_content_recalc_unread(int,);": 1
    },
    "files": [
     "DashBoard_Reflash.c",
-    "ui_DashBoard_task.c"
+    "send_dashboard_status_sync.c"
    ]
   },
   {
@@ -14554,44 +12176,16 @@
   },
   {
    "module_dir": "recon/symbolized/app/ui/dashboard",
-   "symbol": "reflash_fb_data_to_lcd",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int reflash_fb_data_to_lcd(uint32_t,uint32_t,uint32_t,uint32_t,uint32_t,uint32_t);": 1,
-    "extern long long reflash_fb_data_to_lcd(int,);": 1
-   },
-   "files": [
-    "DashBoard_Reflash.c",
-    "ui_DashBoard_task.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ui/dashboard",
    "symbol": "dashboard_read_word",
-   "class": "return_type_differs",
+   "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
     "extern long long dashboard_read_word(int,);": 1,
-    "extern uint32_t dashboard_read_word(uintptr_t);": 1
+    "extern unsigned int dashboard_read_word(volatile unsigned int*);": 1
    },
+   "definition_file": "dashboard_read_word.c",
    "files": [
-    "DashBoard_Reflash.c",
-    "ui_DashBoard_task.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ui/dashboard",
-   "symbol": "get_timestamp",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern long long get_timestamp(int,);": 1,
-    "extern uint32_t get_timestamp(void);": 1
-   },
-   "files": [
-    "DashBoard_Reflash.c",
-    "ui_DashBoard_task.c"
+    "DashBoard_Reflash.c"
    ]
   },
   {
@@ -14612,16 +12206,14 @@
    "module_dir": "recon/symbolized/app/ui/dashboard",
    "symbol": "memset_bytes",
    "class": "arity_differs",
-   "distinct_types": 3,
+   "distinct_types": 2,
    "types": {
     "extern long long memset_bytes(int,);": 1,
-    "extern void memset_bytes(void*,int,int);": 1,
-    "extern void*memset_bytes(void*,int,uint32_t);": 1
+    "extern void memset_bytes(void*,int,int);": 1
    },
    "files": [
     "DashBoard_Reflash.c",
-    "SendDashBoardStartupModeInfoToSlave.c",
-    "ui_DashBoard_task.c"
+    "SendDashBoardStartupModeInfoToSlave.c"
    ]
   },
   {
@@ -14644,9 +12236,8 @@
    "module_dir": "recon/symbolized/app/ui/dashboard",
    "symbol": "send_response_data_to_msgqueue",
    "class": "arity_differs",
-   "distinct_types": 4,
+   "distinct_types": 3,
    "types": {
-    "extern int send_response_data_to_msgqueue(const void*,uint32_t);": 1,
     "extern int send_response_data_to_msgqueue(void*,);": 1,
     "extern void send_response_data_to_msgqueue(void*,int);": 1,
     "extern void send_response_data_to_msgqueue(void*,uint32_t);": 1
@@ -14654,8 +12245,7 @@
    "files": [
     "SendDashboardLockInfoToApp.c",
     "send_dashboard_status_sync.c",
-    "send_dashboard_status_sync_compact.c",
-    "ui_DashBoard_task.c"
+    "send_dashboard_status_sync_compact.c"
    ]
   },
   {
@@ -14664,14 +12254,13 @@
    "class": "return_type_differs",
    "distinct_types": 2,
    "types": {
-    "extern int send_response_data_to_ble(void);": 2,
+    "extern int send_response_data_to_ble(void);": 1,
     "extern void send_response_data_to_ble(void);": 2
    },
    "files": [
     "SendDashboardLockInfoToApp.c",
     "send_dashboard_status_sync.c",
-    "send_dashboard_status_sync_compact.c",
-    "ui_DashBoard_task.c"
+    "send_dashboard_status_sync_compact.c"
    ]
   },
   {
@@ -14709,12 +12298,11 @@
    "distinct_types": 2,
    "types": {
     "extern int sync_dashboard_default_language(void);": 1,
-    "extern uint32_t sync_dashboard_default_language(void);": 2
+    "extern uint32_t sync_dashboard_default_language(void);": 1
    },
    "files": [
     "send_dashboard_status_sync.c",
-    "send_dashboard_status_sync_compact.c",
-    "ui_DashBoard_task.c"
+    "send_dashboard_status_sync_compact.c"
    ]
   },
   {
@@ -14724,12 +12312,11 @@
    "distinct_types": 2,
    "types": {
     "extern int getStocksIndex(void);": 1,
-    "extern uint32_t getStocksIndex(void);": 2
+    "extern uint32_t getStocksIndex(void);": 1
    },
    "files": [
     "send_dashboard_status_sync.c",
-    "send_dashboard_status_sync_compact.c",
-    "ui_DashBoard_task.c"
+    "send_dashboard_status_sync_compact.c"
    ]
   },
   {
@@ -14739,116 +12326,25 @@
    "distinct_types": 2,
    "types": {
     "extern int getNewsIndex(void);": 1,
-    "extern uint32_t getNewsIndex(void);": 2
+    "extern uint32_t getNewsIndex(void);": 1
    },
    "files": [
     "send_dashboard_status_sync.c",
-    "send_dashboard_status_sync_compact.c",
-    "ui_DashBoard_task.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ui/dashboard",
-   "symbol": "send_dashboard_status_sync",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int send_dashboard_status_sync(void);": 1,
-    "extern void send_dashboard_status_sync(u32,u32,u32,u32);": 1
-   },
-   "definition_file": "send_dashboard_status_sync.c",
-   "files": [
-    "ui_DashBoard_task.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ui/dashboard",
-   "symbol": "send_dashboard_status_sync_compact",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int send_dashboard_status_sync_compact(void);": 1,
-    "extern void send_dashboard_status_sync_compact(void);": 1
-   },
-   "definition_file": "send_dashboard_status_sync_compact.c",
-   "files": [
-    "ui_DashBoard_task.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ui/dashboard",
-   "symbol": "set_dashboard_display_level_clamped",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int set_dashboard_display_level_clamped(uint32_t);": 1,
-    "extern unsigned int set_dashboard_display_level_clamped(int);": 1
-   },
-   "definition_file": "set_dashboard_display_level_clamped.c",
-   "files": [
-    "ui_DashBoard_task.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ui/dashboard",
-   "symbol": "check_dashboard_device_status_range",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern uint32_t check_dashboard_device_status_range(void);": 1,
-    "extern int check_dashboard_device_status_range(void);": 1
-   },
-   "definition_file": "check_dashboard_device_status_range.c",
-   "files": [
-    "ui_DashBoard_task.c"
+    "send_dashboard_status_sync_compact.c"
    ]
   },
   {
    "module_dir": "recon/symbolized/app/ui/navigation",
    "symbol": "memset_bytes",
-   "class": "arity_differs",
-   "distinct_types": 3,
+   "class": "parameter_type_differs",
+   "distinct_types": 2,
    "types": {
-    "extern long long memset_bytes(int,);": 1,
     "extern void memset_bytes(unsigned int,int,int);": 1,
     "extern void memset_bytes(void*,uint32_t,uint32_t);": 1
    },
    "files": [
     "decode_rle_byte_pairs.c",
-    "navigation_overview_map_display.c",
-    "navigation_panoramic_map_display.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ui/navigation",
-   "symbol": "device_info_text_width_get",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int device_info_text_width_get(void);": 3,
-    "extern long long device_info_text_width_get(int,);": 1
-   },
-   "files": [
-    "navigation_direction_img_display.c",
-    "navigation_overview_map_display.c",
-    "navigation_panoramic_map_display.c",
-    "ui_navigation_task.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ui/navigation",
-   "symbol": "device_info_text_height_get_clamped",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int device_info_text_height_get_clamped(void);": 3,
-    "extern long long device_info_text_height_get_clamped(int,);": 1
-   },
-   "files": [
-    "navigation_direction_img_display.c",
-    "navigation_overview_map_display.c",
-    "navigation_panoramic_map_display.c",
-    "ui_navigation_task.c"
+    "navigation_overview_map_display.c"
    ]
   },
   {
@@ -14867,132 +12363,29 @@
   },
   {
    "module_dir": "recon/symbolized/app/ui/navigation",
-   "symbol": "get_device_info",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int get_device_info(void);": 1,
-    "extern long long get_device_info(int,);": 1
-   },
-   "files": [
-    "navigation_overview_map_display.c",
-    "navigation_panoramic_map_display.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ui/navigation",
-   "symbol": "reflash_fb_data_to_lcd",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern long long reflash_fb_data_to_lcd(int,);": 1,
-    "extern void reflash_fb_data_to_lcd(unsigned int,unsigned int,int,int,int,int);": 1
-   },
-   "files": [
-    "navigation_overview_map_display.c",
-    "navigation_panoramic_map_display.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ui/navigation",
-   "symbol": "gui_canvas_flags_clear_bit1",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern long long gui_canvas_flags_clear_bit1(int,);": 1,
-    "extern void gui_canvas_flags_clear_bit1(void);": 1
-   },
-   "files": [
-    "navigation_overview_map_display.c",
-    "navigation_panoramic_map_display.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ui/navigation",
-   "symbol": "gui_canvas_flags_set_bit1",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern long long gui_canvas_flags_set_bit1(int,);": 1,
-    "extern void gui_canvas_flags_set_bit1(void);": 1
-   },
-   "files": [
-    "navigation_overview_map_display.c",
-    "navigation_panoramic_map_display.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ui/navigation",
-   "symbol": "clean_fb_data",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern long long clean_fb_data(int,);": 1,
-    "extern void clean_fb_data(int,int,int,int,int,int);": 1
-   },
-   "files": [
-    "navigation_overview_map_display.c",
-    "navigation_panoramic_map_display.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ui/navigation",
-   "symbol": "get_timestamp",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int get_timestamp(void);": 2,
-    "extern long long get_timestamp(int,);": 1
-   },
-   "files": [
-    "navigation_overview_map_display.c",
-    "navigation_panoramic_map_display.c",
-    "ui_navigation_task.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ui/navigation",
    "symbol": "gui_bitmps_merge_draw",
    "class": "arity_differs",
-   "distinct_types": 3,
+   "distinct_types": 2,
    "types": {
-    "extern long long gui_bitmps_merge_draw(int,);": 1,
     "extern void gui_bitmps_merge_draw(int,);": 1,
     "extern void gui_bitmps_merge_draw(int,int,int,int,int,int,int,int);": 1
    },
    "files": [
     "navigation_overview_map_display.c",
-    "navigation_panoramic_map_display.c",
     "ui_navigation_task.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ui/navigation",
-   "symbol": "memcpy",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern long long memcpy(int,);": 1,
-    "extern void memcpy(unsigned int,unsigned int,int);": 1
-   },
-   "files": [
-    "navigation_overview_map_display.c",
-    "navigation_panoramic_map_display.c"
    ]
   },
   {
    "module_dir": "recon/symbolized/app/ui/navigation",
    "symbol": "gui_utf_draw",
    "class": "arity_differs",
-   "distinct_types": 3,
+   "distinct_types": 2,
    "types": {
-    "extern long long gui_utf_draw(int,);": 1,
     "extern void gui_utf_draw(int,);": 1,
     "extern void gui_utf_draw(int,unsigned int,int,int,int,int,int,int,int,int,int,int);": 1
    },
    "files": [
     "navigation_overview_map_display.c",
-    "navigation_panoramic_map_display.c",
     "ui_navigation_task.c"
    ]
   },
@@ -15000,15 +12393,13 @@
    "module_dir": "recon/symbolized/app/ui/navigation",
    "symbol": "gui_clock_draw",
    "class": "arity_differs",
-   "distinct_types": 3,
+   "distinct_types": 2,
    "types": {
-    "extern long long gui_clock_draw(int,);": 1,
     "extern void gui_clock_draw(int,);": 1,
     "extern void gui_clock_draw(int,int,int,int,int,int,int);": 1
    },
    "files": [
     "navigation_overview_map_display.c",
-    "navigation_panoramic_map_display.c",
     "ui_navigation_task.c"
    ]
   },
@@ -15029,68 +12420,25 @@
   {
    "module_dir": "recon/symbolized/app/ui/navigation",
    "symbol": "decode_rle_byte_pairs",
-   "class": "arity_differs",
+   "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern long long decode_rle_byte_pairs(int,);": 1,
-    "extern void decode_rle_byte_pairs(unsigned int,unsigned int,unsigned int);": 1
+    "extern void decode_rle_byte_pairs(unsigned int,unsigned int,unsigned int);": 1,
+    "extern uint32_t decode_rle_byte_pairs(const uint8_t*,uint32_t,uint8_t*);": 1
    },
+   "definition_file": "decode_rle_byte_pairs.c",
    "files": [
-    "navigation_overview_map_display.c",
-    "navigation_panoramic_map_display.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ui/navigation",
-   "symbol": "FUN_0007d376",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern long long FUN_0007d376(int,);": 1,
-    "extern void FUN_0007d376(unsigned int,unsigned int,unsigned int,unsigned int);": 1
-   },
-   "files": [
-    "navigation_overview_map_display.c",
-    "navigation_panoramic_map_display.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ui/navigation",
-   "symbol": "FUN_0007d37a",
-   "class": "return_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern long long FUN_0007d37a(uint32_t);": 1,
-    "extern void FUN_0007d37a(unsigned int);": 1
-   },
-   "files": [
-    "navigation_overview_map_display.c",
-    "navigation_panoramic_map_display.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ui/navigation",
-   "symbol": "get_ui_mode_flag_byte1",
-   "class": "arity_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern int get_ui_mode_flag_byte1(void);": 1,
-    "extern long long get_ui_mode_flag_byte1(int,);": 1
-   },
-   "files": [
-    "navigation_panoramic_map_display.c",
-    "ui_navigation_task.c"
+    "navigation_overview_map_display.c"
    ]
   },
   {
    "module_dir": "recon/symbolized/app/ui/onboarding",
    "symbol": "get_device_info",
    "class": "return_type_differs",
-   "distinct_types": 3,
+   "distinct_types": 2,
    "types": {
     "extern int get_device_info(void);": 9,
-    "extern u32 get_device_info(void);": 1,
-    "extern uint32_t get_device_info(void);": 1
+    "extern u32 get_device_info(void);": 1
    },
    "files": [
     "arm_onboarding_watchdog.c",
@@ -15101,7 +12449,6 @@
     "onboarding_mark_retry_if_reset.c",
     "onboarding_render_step_screen.c",
     "onboarding_retry_watchdog_update.c",
-    "onboarding_sync_data.c",
     "render_onboarding_screen.c",
     "ui_onboarding_task.c"
    ]
@@ -15118,21 +12465,6 @@
    "files": [
     "arm_onboarding_watchdog.c",
     "render_onboarding_screen.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/ui/onboarding",
-   "symbol": "onboarding_sync_data",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern int onboarding_sync_data(void*,int);": 2,
-    "extern uint32_t onboarding_sync_data(uint8_t*,uint32_t,uint32_t);": 1
-   },
-   "definition_file": "onboarding_sync_data.c",
-   "files": [
-    "check_disp_onboarding.c",
-    "ui_onboarding_task.c"
    ]
   },
   {
@@ -15304,7 +12636,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern int32_t getDelayExitValue(void);": 1,
+    "extern unsigned int getDelayExitValue(void);": 1,
     "extern uint32_t getDelayExitValue(void);": 1
    },
    "definition_file": "getDelayExitValue.c",
@@ -15571,25 +12903,11 @@
   },
   {
    "module_dir": "recon/symbolized/app/unsorted",
-   "symbol": "chunk_set",
-   "class": "parameter_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern void chunk_set(unsigned int,unsigned int,unsigned int,unsigned int);": 1,
-    "extern void chunk_set(void*,void*,uint32_t,void*);": 1
-   },
-   "files": [
-    "chunk_set_used_flag.c",
-    "free_list_add.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/unsorted",
    "symbol": "bt_addr_le_copy_83062",
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern void bt_addr_le_copy_83062(int,int);": 1,
+    "extern void bt_addr_le_copy_83062(unsigned int*,unsigned int*);": 1,
     "extern void bt_addr_le_copy_83062(uint32_t*,uint32_t*);": 1
    },
    "definition_file": "bt_addr_le_copy_83062.c",
@@ -15614,11 +12932,11 @@
   {
    "module_dir": "recon/symbolized/app/unsorted",
    "symbol": "strlen",
-   "class": "arity_differs",
+   "class": "parameter_type_differs",
    "distinct_types": 2,
    "types": {
     "extern int strlen(int);": 1,
-    "extern int strlen(void);": 1
+    "extern int strlen(unsigned long);": 1
    },
    "files": [
     "cursor_advance_past_cstring.c",
@@ -15631,7 +12949,7 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern void svc_attr_memory_release(void);": 2,
+    "extern void svc_attr_memory_release(unsigned long);": 2,
     "extern void svc_attr_memory_release(int);": 1
    },
    "definition_file": "svc_attr_memory_release.c",
@@ -15735,29 +13053,15 @@
   {
    "module_dir": "recon/symbolized/app/unsorted",
    "symbol": "dev_api_call_slot0",
-   "class": "declaration_disagrees_with_definition",
+   "class": "return_type_differs",
    "distinct_types": 2,
    "types": {
     "extern int dev_api_call_slot0(uint32_t,int,void*);": 1,
-    "extern unsigned int dev_api_call_slot0(int,unsigned int,unsigned int);": 1
+    "extern int32_t dev_api_call_slot0(uintptr_t,uint32_t,void*);": 1
    },
-   "definition_file": "dev_api_call_slot0.c",
    "files": [
-    "imu_fusion_init.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/unsorted",
-   "symbol": "pt_queue_get_free_slot",
-   "class": "declaration_disagrees_with_definition",
-   "distinct_types": 2,
-   "types": {
-    "extern void*pt_queue_get_free_slot(void);": 1,
-    "extern unsigned int pt_queue_get_free_slot(void);": 1
-   },
-   "definition_file": "pt_queue_get_free_slot.c",
-   "files": [
-    "local_esbm_ipc_service_recv.c"
+    "imu_fusion_init.c",
+    "update_imu_mode.c"
    ]
   },
   {
@@ -15880,26 +13184,12 @@
    "class": "declaration_disagrees_with_definition",
    "distinct_types": 2,
    "types": {
-    "extern void us_to_ticks_scaled_v2(int,int,unsigned int);": 1,
+    "extern void us_to_ticks_scaled_v2(unsigned int*,unsigned int,unsigned int);": 1,
     "extern void us_to_ticks_scaled_v2(uint32_t*,uint32_t,uint32_t);": 1
    },
    "definition_file": "us_to_ticks_scaled_v2.c",
    "files": [
     "timing_channel_dispatch.c"
-   ]
-  },
-  {
-   "module_dir": "recon/symbolized/app/unsorted",
-   "symbol": "__floatdidf",
-   "class": "parameter_type_differs",
-   "distinct_types": 2,
-   "types": {
-    "extern uint64_t __floatdidf(int32_t,int32_t);": 1,
-    "extern uint64_t __floatdidf(uint32_t,uint32_t);": 1
-   },
-   "files": [
-    "us_to_ticks_scaled.c",
-    "us_to_ticks_scaled_v2.c"
    ]
   },
   {

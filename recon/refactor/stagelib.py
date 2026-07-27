@@ -75,8 +75,18 @@ class Stage:
 
     # -- writing -------------------------------------------------------
     def emit(self, relpath: str, data: bytes, source_abs: str,
-             source_sha: str, transforms: dict) -> None:
-        """Write one materialised file into the stage tree."""
+             source_sha: str, transforms: dict,
+             extra_sources: list[tuple[str, str]] | None = None) -> None:
+        """Write one materialised file into the stage tree.
+
+        ``extra_sources`` is a list of ``(absolute path, sha256)`` for the
+        FURTHER inputs an output was derived from.  Stage 04 merges N sources
+        into one translation unit; without this, staleness would watch only the
+        first member and an upstream defect fix landing inside member 7 would
+        never mark the stage stale -- the single most dangerous failure mode a
+        staleness mechanism can have, because it reports "current" while it is
+        not.
+        """
         out = os.path.join(self.tree, relpath)
         check_write(out, self.dir)
         os.makedirs(os.path.dirname(out), exist_ok=True)
@@ -84,13 +94,18 @@ class Stage:
             os.unlink(out)
         with open(out, "wb") as fh:
             fh.write(data)
-        self.files[relpath] = {
+        rec = {
             "source": os.path.relpath(source_abs, REPO_ROOT).replace(os.sep, "/"),
             "source_sha256": source_sha,
             "output_sha256": sha256_bytes(data),
             "bytes": len(data),
             "transformations": transforms,
         }
+        if extra_sources:
+            rec["additional_sources"] = {
+                os.path.relpath(p, REPO_ROOT).replace(os.sep, "/"): s
+                for p, s in extra_sources}
+        self.files[relpath] = rec
 
     # -- manifests -----------------------------------------------------
     def write_manifest(self, extra: dict) -> str:
@@ -141,24 +156,40 @@ class Stage:
 
 
 def parity_rows(tree_root: str, relpaths: list[str]) -> list[dict]:
-    """Extract (original address, canonical raw name, stage path, symbol) rows."""
+    """Extract (original address, canonical raw name, stage path, symbol) rows.
+
+    EVERY ``identity:`` banner in the file yields a row, not just the first one
+    in the first 4 KiB.  Stage 04 merges many one-function files into one
+    cohesive translation unit, so a stage file legitimately carries dozens of
+    identities; the earlier "first banner in the first 4096 bytes" rule would
+    have reported 1,340 functions as vanished and made ``check-addresses``
+    meaningless exactly where it is most needed.
+
+    This widening is a **strict no-op for stages 00-03**, and that is measured
+    rather than assumed: over stage 03's 2,629 manifest entries, 2,567 files
+    carry an identity banner, **2,567** banners in total, **0** files carry more
+    than one, and **0** banners sit beyond byte 4096.  Both rules therefore
+    yield the same 2,567 addresses on those stages.
+    """
     rows = []
     for rp in relpaths:
         ap = os.path.join(tree_root, rp)
         if not ap.endswith((".c", ".inc")) or not os.path.exists(ap):
             continue
         with open(ap, encoding="utf-8", errors="replace") as fh:
-            head = fh.read(4096)
-        m = _IDENTITY.search(head)
-        if not m:
-            continue
-        pm = _PUBLIC.search(head)
-        rows.append({
-            "address": m.group("va").lower(),
-            "canonical_name": m.group("raw"),
-            "symbol": pm.group("name") if pm else m.group("raw"),
-            "stage_path": rp,
-        })
+            body = fh.read()
+        hits = list(_IDENTITY.finditer(body))
+        for i, m in enumerate(hits):
+            # the public-name line belongs to the banner it FOLLOWS, so the
+            # search window ends at the next identity banner.
+            end = hits[i + 1].start() if i + 1 < len(hits) else len(body)
+            pm = _PUBLIC.search(body, m.end(), end)
+            rows.append({
+                "address": m.group("va").lower(),
+                "canonical_name": m.group("raw"),
+                "symbol": pm.group("name") if pm else m.group("raw"),
+                "stage_path": rp,
+            })
     rows.sort(key=lambda r: (r["address"], r["stage_path"]))
     return rows
 
@@ -178,14 +209,17 @@ def staleness(number: int, slug: str) -> dict:
         return {"stage": number, "state": "absent"}
     changed, missing, ok = [], [], 0
     for rel, rec in man["files"].items():
-        src = os.path.join(REPO_ROOT, rec["source"])
-        if not os.path.exists(src):
-            missing.append(rec["source"])
-            continue
-        if sha256_file(src) != rec["source_sha256"]:
-            changed.append(rec["source"])
-        else:
-            ok += 1
+        watched = [(rec["source"], rec["source_sha256"])]
+        watched += sorted(rec.get("additional_sources", {}).items())
+        for relsrc, sha in watched:
+            src = os.path.join(REPO_ROOT, relsrc)
+            if not os.path.exists(src):
+                missing.append(relsrc)
+                continue
+            if sha256_file(src) != sha:
+                changed.append(relsrc)
+            else:
+                ok += 1
     return {
         "stage": number,
         "slug": slug,
