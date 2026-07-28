@@ -230,7 +230,7 @@ the end gives a pass/fail with no diagnostic value.
 | 02 | **block dedupe (LANDED)** — volatile-accessor spelling normalisation (one type only), plus the `G1_NORETURN_CALL` / `G1_LOG_ROUTE` / `G1_ASSERT_FAIL` macros and the log-prototype convergence residue. Stage 03's `__ASSERT` / noreturn extraction was folded in here because it is the same class of token-identical statement macro. | textual, codegen-identical; gate is a byte-identical `.o`, and it held: both cores' `zephyr.bin` byte-identical to stage 01, 4,594/4,598 objects byte-identical. Report: `recon/analysis/staged_refactor_stage02.md` |
 | 03 | **module structure (LANDED, app core only)** — the `input_set.py` `.h`-fragment fix stage 02 filed as blocking, plus the first STRUCTURAL transform: 1,621 app sources moved into 22 cohesive module directories (build lists regenerated in the same transaction, list order preserved exactly), and 99 module-wide type-identical `extern` declarations hoisted into 16 generated module headers. Net untouched and therefore byte-identical by construction. | file layout + declaration siting only; gate is a byte-identical `zephyr.bin`, and it held on both cores. **Harvest: 1,014 symbol/module type disagreements, 446 of them against the symbol's own definition, 175 about arity.** Report: `recon/analysis/staged_refactor_stage03.md` |
 | 03b (partly done, upstream) | **repair the declaration disagreements** in the CANONICAL trees (stage 03 `DEFECTS.json`). The parity agent's type-disagreement pass took the census from 1,014 to **833** (measured by re-running stage 03's own agreement test at HEAD `50929c5d`). | blocking prerequisite for a *blanket* cohesive-TU merge; still the single thing standing between stage 04's 695 translation units and 243. R1 means this work is the parity agent's, not the pipeline's. |
-| 04 | **scoped cohesive-TU merge, app core only — DEFAULT IS NOW SUB-BATCH `B`** — maximal ORDER-PRESERVING runs of consecutive retained sources inside one module that provably cannot collide. Seven refusal rules (`type`, `dupdef`, `static`, `typedef`, `macro`, `asmname`, `tag`/`enumconst`, `includes`); quoted repository headers are *read* and folded rather than refused. `A` and `B` now **partition** the clean runs and the R7 gate below charged 100 % of the damage to `A`, so `B` is the default: **1,615 → 743 TUs, 249 merged units, 1,121 files absorbed, 31 shape-quarantined** *(re-measured 2026-07-28; the row previously read 700 / 1,164, and 705 / 1,154 before that — every generation of this row has been stale. `staged_refactor_stage09.md` §1 measured 742 / 1,122; the comma-declarator repair since moved it by one file each way.)* | **the first stage that CANNOT be gated on `cmp zephyr.bin`.** Declared codegen class **`size-changing`**, measured `.text` **−76 B** for `B` alone (−12 B for `A`, −88 B for `AB`) — so **an oracle run is REQUIRED and has NOT been done for `B`**. Reports: `recon/analysis/staged_refactor_stage04.md` (the original AB build), `recon/analysis/stage04_r7_validation.md` (the gate), `recon/analysis/staged_refactor_stage05.md` (the rework). |
+| 04 | **scoped cohesive-TU merge, app core only — DEFAULT IS NOW SUB-BATCH `B`** — maximal ORDER-PRESERVING runs of consecutive retained sources inside one module that provably cannot collide. Seven refusal rules (`type`, `dupdef`, `static`, `typedef`, `macro`, `asmname`, `tag`/`enumconst`, `includes`); quoted repository headers are *read* and folded rather than refused. `A` and `B` now **partition** the clean runs and the R7 gate below charged 100 % of the damage to `A`, so `B` is the default: **1,615 → 743 TUs, 249 merged units, 1,121 files absorbed, 31 shape-quarantined** *(re-measured 2026-07-28; the row previously read 700 / 1,164, and 705 / 1,154 before that — every generation of this row has been stale. `staged_refactor_stage09.md` §1 measured 742 / 1,122; the comma-declarator repair since moved it by one file each way.)* | **the first stage that CANNOT be gated on `cmp zephyr.bin`.** Declared codegen class **`size-changing`**, measured `.text` **−76 B** for `B` alone (−12 B for `A`, −88 B for `AB`) — so **an oracle run is REQUIRED** — ~~and has NOT been done for `B`~~ **DONE 2026-07-28 and `B` PASSES**, see the slot-quantised R7 gate record at the end of this file. Reports: `recon/analysis/staged_refactor_stage04.md` (the original AB build), `recon/analysis/stage04_r7_validation.md` (the gate), `recon/analysis/staged_refactor_stage05.md` (the rework). |
 | 05 | **cohesive composition, app core only** — turns stage 04's concatenated units into composed ones: one include block per unit (repeats of *provably idempotent* headers withdrawn, never moved — 2,423 → 850 directives, worst unit 49 → 6), one declaration site per symbol per unit (146 duplicates withdrawn), one-line member banners, every `identity:` banner preserved byte for byte. Sub-batch `S` (internal linkage for TU-private symbols: 241 candidates) is opt-in and **not applied**. | declared `size-neutral`, **measured `byte-identical` — `zephyr.bin` `cmp`-identical to stage 04's, 956,276 B.** Needs no oracle of its own; inherits stage 04's unproven status. Report: `recon/analysis/staged_refactor_stage05.md` |
 | 06 | **composition depth (LANDED)** — module-private declaration demotion (a generated module-header declaration whose users have collapsed to ONE merged unit moves into that unit, at the include point) and include hoisting (a late `#include` moves to the unit's first block only when no preprocessor directive intervenes AND no identifier in the code it jumps over is a macro of that header, per the measured evidence; a header with no name-level macro evidence is refused). | declared `byte-identical`, **measured `byte-identical` — `cmp`-identical `zephyr.bin`, 956,276 B.** 251 of 285 late includes hoisted; units at exactly one include block **21 → 112**; 4 of 215 module-header declarations demoted (211 genuinely still have ≥2 users). Report: `recon/analysis/staged_refactor_stage06.md` |
 | 07 | **internal linkage (BUILT, NOT PROVEN)** — `static` for TU-private symbols, decided by **link evidence** (`recon/refactor/link_evidence.py`: `nm --undefined-only` over all 66 inputs of the app link, archives scanned whole) rather than by a source-text scan. The source scan was wrong on **58 of its 240 candidates**. **132 applied** *(re-measured 2026-07-28 after the evidence was regenerated against the tree that actually consumes it; the row read 137, and 135 before that. `display_close` was the 133rd candidate and is the symbol whose `static` broke the link — see `recon/analysis/ladder_link_repair.md`.)* | declared `size-changing`, measured `size-changing`, `.text` **−200 B, `rodata` −8 B** *(2026-07-28; was −276/−8 at the previous partition)*. **Gated by a real link (C6), which caught two hazards no `nm` evidence can see: a `PROVIDE()` in one of the 18 linker fragments the rule had listed 3 of, and 112 `-Wl,--undefined=` gc-roots reached through a `foreach(… IN LISTS …)`.** Side-finding: 120 recovered functions are now provably dead. **Oracle REQUIRED, not run.** |
@@ -1115,8 +1115,11 @@ are byte-different from the ones the earlier passes booted (same sizes, differen
 bytes). Stage 01/02/03's images ARE `cmp`-identical to what was booted, so those
 captures stand.
 
-> **At HEAD there is no valid behavioural evidence for stages 04–08, and no
-> valid base reference. Three captures per image are needed to close it.**
+> ~~**At HEAD there is no valid behavioural evidence for stages 04–08, and no
+> valid base reference. Three captures per image are needed to close it.**~~
+> **CLOSED 2026-07-28** — ten seeded captures of six images built from the
+> trees now on disk; see the slot-quantised R7 gate record at the end of this
+> file. Verdicts: 01/02/03 PASS, 04/05/06 PASS, 07/08 FAIL, 09 FAIL (inherited).
 
 ## Static ladder, this pass
 
@@ -1124,12 +1127,14 @@ captures stand.
 9 app builds (00..08 + base)  exit 0        (stage 04 only after the C7c repair)
 nm -u                         0 on all nine
 duplicate GLOBAL definitions  0 on all nine
-check_ram_pin_collisions app  596 bound OK / 0 escaping / 0 unknown (627 -> 596 upstream)
+check_ram_pin_collisions app  596 bound OK / 0 escaping / 0 unknown  <- STALE: re-measured
+                              2026-07-28 as 627 bound OK on base/01/04 and 598 on 07/09
+                              (stage 07 makes 29 symbols static); gates still 0 / 0
 check_thread_create_stack_args --trials 120   10/10, exit 0
 tools/verify_data.py          995/995 byte-exact, 56,279 B, 100.00 %
 check-addresses, 8 pairs      identical, 2,567
 stage trees 01..08            BYTE-IDEMPOTENT (content + symlink targets)
-refactor test suite           157 / 157   (was 139; +6 tag-forwards, +12 criterion_probe)
+refactor test suite           157 / 157   <- STALE: 215 / 215 at 2026-07-28
 net core                      NOT BUILT, NOT TOUCHED -- check_net_raw_literals and
                               verify_net_stock_data_window NOT RUN
 ```
@@ -1358,7 +1363,9 @@ ladder that no longer exists; **all nine are re-measured here** against
 
 ### ⚠ WHAT THIS RECORD DOES NOT CLAIM
 
-**No oracle was run. Renode was not touched** (a concurrent agent owns it).
+~~**No oracle was run. Renode was not touched**~~ — true when written;
+**SUPERSEDED 2026-07-28** by the slot-quantised R7 gate record at the end of
+this file, which built and captured all four `oracle_required` stages.
 Stages **01, 04, 07 and 09 declare `size-changing` / `oracle_required: true`
 and every one of those obligations is OUTSTANDING.** Nothing above is a
 behavioural claim: linking is not equivalence, and a `.text` delta of ±8 B is
@@ -1366,3 +1373,149 @@ precisely the order this project has three times measured to re-phase the boot
 path. The R7 verdicts in the consolidated record above stand unchanged and
 un-re-tested — and note that those verdicts were measured on **different
 images** from the ones tabulated here.
+
+---
+
+## R7 GATE RECORD — THE SLOT-QUANTISED RULE, THE REPAIRED LADDER, run 2026-07-28
+
+**This record supersedes every R7 verdict above it.** All of them were measured
+either on images that no longer exist or under a bound that has since been shown
+not to measure our build's error at all. Full working:
+`recon/emulator/reports/our_boot_bringup.md` **§47**.
+
+### The rule these verdicts were measured under
+
+`recon/emulator/scripts/slot_quantised_compare.py`, derived and justified in
+`recon/analysis/criterion_bound_redesign.md`. Per stream `(bus, device)`, over
+the trains common to both oracles, on the **DIRECT `base → stage` pairing**:
+
+```
+D = median(delta)      the displacement          (NOT max|delta|)
+S = P95 - P5           the spread
+k = round(D / W)       the integer slot index    W = 100.513 ms
+r = D - k*W            the SUB-SLOT RESIDUAL
+
+Q1   |r| <= R = 1.160 ms   on every gated stream        <- THE GATE
+Q2   k is REPORTED, NEVER GATED
+Q3   S <= Sigma[device]
+Q4   P1 content / P2 population / P5 order              <- unchanged
+```
+
+`W`, `R` and `Sigma` come from shipped-vs-shipped across emulator seeds and from
+a 204-byte inert `.rodata` pad — **never from how far our build sits from
+shipped**, so a firmware repair can no longer widen the gate. The old
+`Delta = 145.440 ms` is withdrawn: applied to the *shipped firmware against
+itself at another seed* it returns 141.170 ms, i.e. it was the stimulus noise
+floor.
+
+### Provenance — what was built and captured
+
+Six clean `-p always` builds at HEAD `ea910faa`, and **all five stage images are
+byte-identical to the ladder-repair pass's builds**, so the trees on disk are
+that generation:
+
+| image | `zephyr.bin` | sha256 (12) | `$rtinfo_pc` |
+|---|---:|---|---|
+| in-tree base | 956,496 | `2c510a78366b` | `0x00015c04` |
+| stage 00 | 956,496 | `2c510a78366b` | `0x00015c04` |
+| stage 01 = 02 = 03 | 956,356 | `a868a9fba012` | `0x00015c04` |
+| stage 04 = 05 = 06 | 956,292 | `3345b40a4662` | `0x00016c14` |
+| stage 07 = 08 | 956,076 | `b369a08c7162` | `0x00016c14` |
+| stage 09 | 956,092 | `bfa3bfae1d94` | `0x000170f8` |
+
+Ten seeded Renode captures (`G1_SEED=305419896`, both stimuli, `$rtinfo_pc`
+re-read from every ELF, frozen `g1-i30e-net` 225,581 B). Determinism control:
+the base capture is **byte-identical in all 18 trace/framebuffer files** to
+iteration 46's, and stage 01's capture is byte-identical to iteration 46's
+stage 03 capture — which is the stage 01 = 02 = 03 image identity confirmed all
+the way through to the observation.
+
+**Stage 04's image MOVED** since iteration 46 (`3345b40a4662` vs `fd5405b089c0`)
+because of the comma-declarator repair, so no stage-04 verdict from before this
+pass carries.
+
+### THE VERDICTS
+
+| stage | declared | size gate | **slot-quantised Q1/Q3** | strict `cmp3` | **R7** |
+|---|---|---|---|---|---|
+| 01 = 02 = 03 | `size-changing` | PASS | **0 failures** — nav & dash, T = 0.790 and 5.000 ms | 0 REG both stimuli | **PASS** |
+| 04 = 05 = 06 | `size-changing` | PASS | **0 failures** — nav & dash, both thresholds | 0 REG nav; **1 REG dash: `RADIO_TX` 0x232 → 0x234** | **PASS**, with the `RADIO_TX` residue named and not absorbed |
+| 07 = 08 | `size-changing` | PASS | **5 of 6 streams FAIL Q1** on navigation, 5 of 6 + 2 Q3 on dashboard, at **both** thresholds | 0 REG nav; **4 REG dash**, incl. `twim2 lsm6dso` p2_render **1206 → 1202 transactions** | **FAIL** |
+| 09 | `size-changing` | PASS | **5 of 6 streams FAIL Q1**, matching stage 07 to within **0.06 ms** | 0 REG nav; 3 REG dash, the same −4 IMU transactions | **FAIL — inherited. Stage 09 adds nothing measurable of its own and cannot be gated until 07 is fixed.** |
+
+**All four `oracle_required` obligations (01, 04, 07, 09) are now DISCHARGED.**
+The "OUTSTANDING — NOT RUN" rows in the ladder-repair record above are closed by
+this one.
+
+### What passes, and what the PASSes rest on
+
+* **Stage 01** moves both slot-locked devices by one whole slot together
+  (`spim_a` +99.950 ms, `opt3001` +100.026 ms — 0.076 ms apart) and the four
+  free-running devices not at all. `k` goes −1 → 0 against shipped, so its
+  **eight strict `cmp3` "improvements" are slot-attributable and are not eight
+  repairs.**
+* **Stage 04 does not move a slot at all.** Every stream inside 0.52 ms on
+  navigation, 0.51 ms on dashboard, `k = 0` everywhere, and `k` unchanged
+  against shipped on every device. This is the cleanest stage result the
+  project has measured — and it is on the **new** 743-TU image.
+
+### What fails, and why it is not a lattice artefact
+
+1. **The +31.250 ms three-device coherence survived the repair unchanged.**
+   `npm1300`, `st25dv_nfc_eeprom` and `st25dv_system_port` all move together by
+   30.18 – 31.46 ms on every stimulus/threshold combination, and at T = 5.000 ms
+   navigation the figure is **31.250 ms exactly** — the same number measured on
+   the *pre-i45* stage-07 image, across a partition change, 133 → 132 applied
+   symbols and `.text` −276 → −200 B.
+2. **§46.6.3's falsification test was finally RUN** (§47.5): halving the
+   modelled BLE connection interval 30 → 15 ms halves the residue (ratios
+   0.470 – 0.489), so it **is** one connection interval. **But it halves `W`
+   too** (99.950 → 50.260 and 100.026 → 50.960), so the test's own
+   discriminator was wrong. The rule was **not** widened to admit a 1-interval
+   quantum — deriving a gate parameter at the moment it would flip a failing
+   stage is the defect the redesign exists to remove.
+3. **`spim_a` fails at both connection intervals and scales like neither.**
+   −19.650 ms at 30 ms becomes −35.410 ms at 15 ms (ratio 1.80, when a lattice
+   quantity gives 0.5 and a firmware quantity 1.0). Stage 07's display-bus
+   displacement is explained by **no lattice this project has measured**.
+4. **Stage 07 and 09 lose four transactions on a FREE-RUNNING device.**
+   `twim2 lsm6dso` p2_render 1206 → 1202, and its `sha_regprog` changes. That
+   device reads 0.000 ms across every shipped-vs-shipped seed pair and is the
+   one stream that *passes* Q1 on stage 07. A transaction **count** on a
+   free-running device cannot be charged to a slot, a burst-gap threshold or a
+   connection interval.
+
+### The acceptance bar — HELD ON EVERY IMAGE, including the two that FAIL
+
+```
+navigation p1_boot    1d617c65a688f10e    656 px    cmp exit 0 on all five images
+navigation p2_render  b26c73b37d441fc8  1,098 px    cmp exit 0 on all five images
+dashboard  p1_boot    0c5cc90b079d0d9c      0 px    cmp exit 0 on all five images
+dashboard  p2_render  19b1f24a09f97a8d  2,923 px    cmp exit 0 on all five images
+nm -u                 0, app (six images) and net           duplicate globals 0
+pin gates             inside_a_live_object 0 / escaping 0, exit 0, all five
+check_thread_create_stack_args --trials 120          10 / 10, exit 0
+tools/verify_data.py  995 / 995 files, 56,279 B, 100.00 %
+net zephyr.bin        225,581 B FROZEN, e09b9481a3154e16..., not rebuilt
+app flash (base)      956,496 B / 982,528 B = 97.35 %   RAM 253,765 B / 56.32 %
+refactor test suite   215 / 215
+```
+
+**The framebuffers are therefore not the instrument that separates stage 07
+from stage 04.** They did not move across five images spanning 956,076 –
+956,496 bytes, three `$rtinfo_pc` values and two slot assignments.
+
+### Corrections to rows above this one
+
+* `check_ram_pin_collisions` **596 bound OK** → **627** on base / 01 / 04 and
+  **598** on 07 / 09 (stage 07 gives 29 symbols internal linkage, so they leave
+  the global symbol table). The *gates* are 0 / 0 on all five either way.
+* "refactor test suite 157 / 157" → **215 / 215**.
+* "**At HEAD there is no valid behavioural evidence for stages 04–08, and no
+  valid base reference**" — **CLOSED.** There now is, for 01, 04, 07 and 09,
+  from ten seeded captures of images built from the trees on disk.
+* The stage 04 row's "an oracle run is REQUIRED and has NOT been done for `B`"
+  — **done, and it PASSES.**
+* "No oracle was run. Renode was not touched" in the ladder-repair record —
+  true when written, superseded by this record.
+

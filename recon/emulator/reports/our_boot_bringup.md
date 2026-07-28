@@ -21577,3 +21577,634 @@ bash /private/tmp/g1-i46/queue.sh /private/tmp/g1-i46-base    base   nav,dash \
 bash /private/tmp/g1-i46/final.sh                # every derivation and comparison
 bash /private/tmp/g1-i46/decomp.sh <pairs>       # the per-burst decomposition
 ```
+
+---
+
+## Iteration 47 — the REPAIRED ladder re-captured at HEAD and re-gated under the
+## slot-quantised rule.  Written incrementally as the work ran; every number
+## comes from a command run in this pass.
+
+Two things landed since the last captures and together they invalidate every
+existing stage verdict:
+
+1. **The ladder was repaired** (`d3032244`) — all 10 stages now build and link;
+   they did not, from stage 07 up.  Stage 07 itself changed: 132 applied
+   symbols, `.text` −200 B (not the 137 / −276 every prior record published).
+2. **The gate was replaced** (`ea910faa`) — `recon/emulator/scripts/slot_quantised_compare.py`
+   decomposes the per-stream displacement `D = median(δ)` as `D = k·W + r` with
+   `W = 100.513 ms`, gates the **sub-slot residual** `|r| ≤ R = 1.160 ms`, and
+   **reports `k` without gating it**.  Nothing in `W`, `R`, `Σ` or the seed
+   floor derives from our own build's error.
+
+Every published verdict rests on iteration 46's captures, and iteration 46's
+stage-07 row is a **pre-i45 image**.  So: rebuild, re-capture, re-gate.
+
+HEAD at the start of this pass: **`ea910faa`**, working tree clean apart from
+the untracked `.xapk`.
+
+### 47.0 Ladder state at HEAD — regenerated?  NO.  Already current.
+
+```
+driver.py status      0..9 ALL `current`, 0 inputs changed on every stage
+                      07 additionally reports  evidence_partition.state = "agrees"
+                                               (743 tree objects, 1,769 evidence objects,
+                                                0 retained sources with no object)
+                      99 `stale` on 863 changed inputs -- the retired probe, as
+                         every prior pass has left it
+```
+
+**No stage was regenerated and nothing was patched**, because nothing was stale.
+The transformer digest and the partition-state check that `d3032244` added are
+both live in that output — the two staleness holes that let the previous
+generation report `current` while stage 07 could not link.
+
+### 47.1 Six images rebuilt at HEAD — and all six are BYTE-IDENTICAL to the
+### ladder-repair pass's builds, so the trees on disk are that generation
+
+`/private/tmp/g1-i48/buildall.sh`, one clean `-p always` build per image:
+
+| image | `zephyr.bin` | sha256 (12) | `nm -u` | duplicate globals | **`$rtinfo_pc`** | `_end` |
+|---|---:|---|---:|---:|---|---|
+| in-tree base | 956,496 | `2c510a78366b` | 0 | 0 | `0x00015c04` | `0x2003ff45` |
+| stage 00 | 956,496 | `2c510a78366b` | 0 | 0 | `0x00015c04` | `0x2003ff45` |
+| stage 01 | 956,356 | `a868a9fba012` | 0 | 0 | `0x00015c04` | `0x2003ff45` |
+| stage 04 | 956,292 | `3345b40a4662` | 0 | 0 | **`0x00016c14`** | `0x2003ff45` |
+| stage 07 | 956,076 | `b369a08c7162` | 0 | 0 | **`0x00016c14`** | `0x2003ff45` |
+| stage 09 | 956,092 | `bfa3bfae1d94` | 0 | 0 | **`0x000170f8`** | `0x2003ff45` |
+
+**Three distinct `$rtinfo_pc` values across five images, and stage 07 shares
+stage 04's.**  Re-read from every ELF, as the standing rule requires.  `_end` is
+unchanged on all six, so the `G1_CTX_FE8` / `G1_CTX_105A` / `G1_SCREEN_ID`
+probes (`0x20040F38` / `0x20040FAA` / `0x20040025`) still address the same
+pinned `device_ctx` — checked, not assumed.
+
+```
+cmp against the ladder-repair builds (/private/tmp/g1-lr-s0N):
+    s00 s01 s04 s07 s09      ALL IDENTICAL
+cmp base vs stage 00                       IDENTICAL
+cmp base vs /private/tmp/g1-i46-base       IDENTICAL
+```
+
+Two consequences, both measured rather than assumed:
+
+* **The trees on disk are the ladder-repair generation.**  Every stage tree was
+  re-materialised at 07:53–07:54 *after* those builds; a fresh clean build of
+  each reproduces them byte for byte, which is a stronger idempotence check than
+  the fingerprint comparison because it goes through the compiler.
+* **The in-tree base image has not moved since iteration 46**, so §46's base
+  captures are still of this image — re-captured here anyway, and used as a
+  determinism control (§47.2).
+
+And two that decide what must be re-captured:
+
+```
+i48 stage 01 (a868a9fba012)  ==  i46 stage 01  ==  i46 stage 03        SAME IMAGE
+i48 stage 04 (3345b40a4662)  !=  i46 stage 04 (fd5405b089c0)           IMAGE MOVED
+i46 stage 07                     never built -- no zephyr.bin exists
+```
+
+**Stage 04's image changed under the comma-declarator repair** (742 → 743 TUs).
+Every stage-04 verdict in §46 and in the criterion redesign is about a
+*different image* and does not carry.
+
+`app flash, re-measured, not quoted`: base **956,496 B / 982,528 B = 97.35 %**,
+RAM 253,765 B / 56.32 %.
+
+`tools/verify_data.py`: **995 / 995 files, 56,279 / 56,279 B, 100.00 %.**
+
+Net core **FROZEN and untouched**: `/private/tmp/g1-i30e-net/zephyr/zephyr.bin`
+**225,581 B**, sha256 `e09b9481a3154e16…`, booted in every capture below.
+
+### 47.2 Ten fresh seeded captures — and the determinism control is EXACT
+
+`/private/tmp/g1-i48/cap.sh` per image: a per-image `.resc` whose `$rtinfo_pc`
+is re-read from **that ELF** by `nm`, then
+`capture_display_sensor_oracle.sh` through a `mkfifo` stdin writer, frozen
+`g1-i30e-net` on the net core, `G1_SEED=305419896` echoed back by every run
+(`ORACLE_EMULATION_SEED: 305419896`, checked in all ten `run.out`s).
+
+Two controls, both free and both exact:
+
+```
+i48 base capture  vs  i46 base capture   (byte-identical image, a day apart)
+   nav :  spim_a.p1 p2  spim_b.p1 p2  twim1.p1 p2  twim2.p1 p2
+          fb_p1_boot.ppm  fb_p2_render.ppm          ALL 10 IDENTICAL
+   dash:  8 files                                   ALL 8  IDENTICAL
+
+i48 stage 01 capture  vs  i46 stage 03 capture   (proven same image)
+   nav :  8 files                                   ALL IDENTICAL
+```
+
+The second one is worth more than it looks: it confirms *by measurement* that
+the stage 01 = 02 = 03 image identity carries all the way through to an
+identical capture, so one capture pair really does cover three stages.
+
+### 47.3 ACCEPTANCE FRAMEBUFFERS — 4 / 4 BYTE-IDENTICAL ON EVERY IMAGE,
+### INCLUDING STAGE 07 AND STAGE 09
+
+The four shipped reference framebuffers, re-derived from the committed `.raw`
+files in this pass rather than quoted:
+
+| framebuffer | sha256 (16) | non-zero px |
+|---|---|---:|
+| navigation `p1_boot` | `1d617c65a688f10e` | **656** |
+| navigation `p2_render` | `b26c73b37d441fc8` | **1,098** |
+| dashboard `p1_boot` | `0c5cc90b079d0d9c` | **0** (all-zero) |
+| dashboard `p2_render` | `19b1f24a09f97a8d` | **2,923** |
+
+`cmp` of each image's SPI-reconstructed framebuffer against those four:
+
+```
+base   4/4      s01   4/4      s04   4/4      s07   4/4      s09   4/4
+```
+
+**Every one of the five images reproduces all four shipped framebuffers byte
+for byte.**  That includes the two stages that fail the phase gate below.  The
+gate and the framebuffers are measuring different things and this pass does not
+collapse them: the pixels the panel is left holding are identical; *when* the
+transactions that produce them happen is not.
+
+### 47.4 THE SLOT-QUANTISED GATE, RUN ON THE REPAIRED LADDER
+
+`slot_quantised_compare.py gate`, `W = 100.513 ms`, `R = 1.160 ms`,
+seed-noise annotation floor 50.110 ms, DIRECT `base → stage` pairing, both
+stimuli, both burst-gap thresholds.
+
+| stage | navigation T=0.790 | navigation T=5.000 | dashboard T=0.790 | dashboard T=5.000 | **verdict** |
+|---|---|---|---|---|---|
+| **01 = 02 = 03** | 0 failures | 0 failures | 0 failures | 0 failures | **PASS** |
+| **04 = 05 = 06** | 0 failures | 0 failures | 0 failures | 0 failures | **PASS** |
+| **07 = 08** | **5 of 6 streams FAIL Q1** | **5 of 6 FAIL Q1** | **5 of 6 FAIL Q1 + 2 Q3** | **5 of 6 FAIL Q1 + 2 Q3** | **FAIL** |
+| **09** | **5 of 6 streams FAIL Q1** | **5 of 6 FAIL Q1** | **5 of 6 FAIL Q1 + 2 Q3** | **5 of 6 FAIL Q1 + 2 Q3** | **FAIL** |
+
+**The verdict is the same at both burst-gap thresholds on both stimuli**, as it
+was in the redesign — the segmentation constant is not load-bearing for a phase
+verdict.
+
+#### 47.4.1 Stage 01 — PASS, and the slot it moves is REPORTED, not charged
+
+Navigation, T = 0.790 ms, base → stage 01:
+
+```
+bus/device                          n    D med ms    k      r ms    S p95-p5    max|d|
+spim_a/jbd_display                166      99.950   +1    -0.563      33.240   117.220   PASS
+twim1/opt3001_ambient_light        48     100.026   +1    -0.487       1.156   101.868   PASS
+twim1/npm1300_charger_fuelgauge   248      -0.272    0    -0.272      53.622  2547.852   PASS
+twim1/st25dv_nfc_eeprom            21      -0.060    0    -0.060       7.240     6.870   PASS
+twim1/st25dv_system_port           15      -0.060    0    -0.060       7.201     6.840   PASS
+twim2/lsm6dso_imu                 552       0.120    0     0.120       1.500   100.040   PASS
+```
+
+This is exactly the shape the rule was written for: the two slot-locked devices
+move by **one whole slot together** (99.950 and 100.026 ms, 0.076 ms apart) and
+the four free-running ones do not move at all.  Against shipped, `k` goes
+**−1 → 0** on both, so stage 01's strict `cmp3` movements on those buses are
+**slot-attributable and are neither regressions nor repairs**.  Under the old
+`max|δ|` rule the same image carried `max|δ| = 117.220 ms` on `spim_a` and
+2,547.852 ms on `npm1300`.
+
+#### 47.4.2 Stage 04 — PASS, and it does NOT move a slot at all
+
+```
+spim_a/jbd_display                166      -0.370    0    -0.370      17.120    83.220   PASS
+twim1/npm1300_charger_fuelgauge   250      -0.458    0    -0.458       1.039     1.070   PASS
+twim1/opt3001_ambient_light        49      -0.427    0    -0.427       2.137     2.131   PASS
+twim1/st25dv_nfc_eeprom            21      -0.520    0    -0.520       0.378     0.830   PASS
+twim1/st25dv_system_port           15      -0.490    0    -0.490       0.498     0.800   PASS
+twim2/lsm6dso_imu                 552      -0.310    0    -0.310       0.305     0.530   PASS
+```
+
+Every stream inside half a millisecond, `k = 0` everywhere, and **`k` is
+unchanged against shipped on every device** — no `SLOT MOVED` annotation
+anywhere.  Dashboard is the same picture (max `|r|` 0.510 ms).  **This is the
+cleanest stage result the project has measured**, and it is on the *new*
+743-TU stage-04 image, not the one §46 gated.
+
+#### 47.4.3 **Stage 07 STILL FAILS after the repair — and the +31.250 ms
+#### three-device coherence is STILL THERE, to the microsecond**
+
+Navigation, T = 0.790 ms:
+
+```
+spim_a/jbd_display                166     -19.650    0   -19.650      33.100    68.350   FAIL Q1
+twim1/npm1300_charger_fuelgauge   248      30.820    0    30.820      40.191    40.010   FAIL Q1
+twim1/opt3001_ambient_light        48    -354.019   -4    48.033       4.826   362.490   FAIL Q1
+twim1/st25dv_nfc_eeprom            21      30.399    0    30.399       1.470    31.650   FAIL Q1
+twim1/st25dv_system_port           15      30.390    0    30.390      32.750    31.620   FAIL Q1
+twim2/lsm6dso_imu                 552      -0.610    0    -0.610       0.914     3.060   PASS
+```
+
+and at T = 5.000 ms the `npm1300` displacement is **`D = 31.250 ms` exactly** —
+**the same number §46.6.3 measured on the pre-i45 stage-07 image.**  Three
+independent `twim1` devices move together by 30.18 – 31.46 ms on every
+stimulus/threshold combination.
+
+> **Correcting the expectation this pass was set up with:** the brief asked
+> whether the repaired stage 07 "still shows either" of the two old residues.
+> The answer is **both, and the second one is numerically unchanged across a
+> partition change, a symbol-count change (133 → 132) and a `.text` change
+> (−276 → −200 B).**  A residue that survives all of that is not an artefact of
+> which symbols stage 07 happened to make `static`.
+
+The old `−119.510 ms = −1.189 slots` display move does **not** reproduce: the
+repaired stage 07 moves `spim_a` by **−19.650 ms = −0.195 slots**.  Different
+number, same conclusion — it is not a slot, and `|r|` is **16.9×** the bound.
+
+`opt3001` navigation is the loudest single row: `D = −354.019 ms`, which the
+tool reports as `k = −4` **and explicitly labels NOT MEANINGFUL** (−3.522
+slots, residual 48.033 ms = 41× the bound).  That is the rule refusing to
+launder a non-lattice displacement as four slots.
+
+#### 47.4.4 Stage 09 fails, and it fails as stage 07's INHERITOR, not on its own
+
+Side by side, dashboard, T = 0.790 ms:
+
+| stream | stage 07 `D` | stage 09 `D` | difference |
+|---|---:|---:|---:|
+| `spim_a` jbd_display | 98.170 | 98.170 | **0.000** |
+| `twim1` npm1300 | 31.463 | 31.463 | **0.000** |
+| `twim1` opt3001 | −23.575 | −23.575 | **0.000** |
+| `twim1` st25dv_nfc | 30.450 | 30.460 | 0.010 |
+| `twim1` st25dv_system_port | 30.430 | 30.450 | 0.020 |
+| `twim2` lsm6dso | −0.700 | −0.640 | 0.060 |
+
+**Stage 09's `.text` +8 B moves the dashboard displacement by at most 0.060 ms**
+— three of six streams to the microsecond.  Navigation is the same story
+(`spim_a` −19.650 vs −19.630).  So stage 09 is **not independently damaging**;
+it inherits stage 07's failure essentially intact.  The honest form of the
+verdict is: **stage 09 cannot be gated until stage 07 is fixed**, because on
+this evidence stage 09 adds nothing measurable of its own.
+
+### 47.5 THE SECOND-QUANTUM FALSIFICATION TEST — RUN AT LAST, and it comes back
+### **CONFIRMED for the residue and FALSIFIED FOR ITS OWN DISCRIMINATOR**
+
+§46.6.3 raised the +31.250 ms three-device coherence as *"possibly a second
+quantum, one 30 ms BLE connection interval"* and stated a falsification test
+that has now gone unrun for five passes:
+
+> halve the modelled connection interval; the residue must halve **while `W`
+> does not**.
+
+The residue persists on the repaired stage 07 (§47.4.3), so the test was run.
+
+**Method.** `~/Projects/armemul/models/BLE_VirtualCentral.cs:372`,
+`Interval = { 0x18, 0x00 }` (24 × 1.25 ms = **30 ms**) → `{ 0x0C, 0x00 }`
+(12 × 1.25 ms = **15 ms**).  Three navigation captures at the halved interval
+(base, stage 01, stage 07), same seed, same everything else.  **The model file
+was then restored and its sha256 re-checked byte-exact**
+(`1f10e117632a1bb3…` before and after); nothing in `~/Projects/armemul` is left
+modified.  The probe's captures are internally consistent and are used for
+nothing but this test — no gate verdict anywhere in this report is computed on
+them.
+
+Navigation, `D = median(δ)` in ms:
+
+| stream | **W probe**: base→s01 @30 ms | @15 ms | ratio | **residue**: base→s07 @30 ms | @15 ms | ratio |
+|---|---:|---:|---:|---:|---:|---:|
+| `spim_a` jbd_display | **+99.950** | **−50.260** | **0.503** | −19.650 | −35.410 | 1.80 |
+| `twim1` opt3001 | **+100.026** | **−50.960** | **0.510** | −354.019 | −354.810 | 1.00 |
+| `twim1` npm1300 | −0.272 | −0.061 | — | **+30.820** | **+15.045** | **0.488** |
+| `twim1` st25dv_nfc | −0.060 | −0.091 | — | **+30.399** | **+14.284** | **0.470** |
+| `twim1` st25dv_sys_port | −0.060 | −0.060 | — | **+30.390** | **+14.310** | **0.471** |
+| `twim2` lsm6dso | +0.120 | +43.734 | — | −0.610 | −0.851 | — |
+
+At T = 5.000 ms the same two columns give **31.250 → 15.047** (0.481) on
+`npm1300` and **30.414 → 14.572** (0.479) on `st25dv_nfc`.
+(`st25dv_system_port` at T = 5.000 ms has `n = 5` and reads 30.180 → 7.570; it
+is quoted for completeness and is not load-bearing at that population.)
+
+**Three findings, in the order they matter.**
+
+1. **The residue IS one connection interval.**  All three `twim1` devices scale
+   by 0.47 – 0.49 when the interval is halved, on both burst-gap thresholds.
+   §46.6.3's hypothesis is **confirmed**: the +30.4 – 31.5 ms coherent move is
+   a **stimulus-lattice quantum of one BLE connection event**, not a firmware
+   displacement.
+
+2. **The test's own discriminator is wrong — `W` halves too.**  The clean
+   one-slot hop's magnitude goes **99.950 → 50.260** and **100.026 → 50.960**,
+   i.e. `W` is proportional to the connection interval, exactly like the
+   residue.  "It must halve while `W` does not" could never have discriminated.
+   *This is a correction to §46.6.3, not a result it predicted.*
+
+3. **§44.5's "≈1 answered response in 3⅓ connection events" now has independent
+   support at a second interval.**  `W / CI = 100.513 / 30 = 3.350` and
+   `W₁₅ / CI₁₅ ≈ 50.61 / 15 = 3.374`.  The 3⅓ is a property of the DUT's
+   response policy, not an accident of the number 30.  The mechanism is still
+   not derived from first principles, and `SweepDwell 4 → 8` (§44.5's other
+   unrun test) was **still not run**.
+
+#### 47.5.1 What this does NOT do: it does not make stage 07 pass, and I am not
+#### changing the rule to let it
+
+The obvious next thought is: if 30 ms is a lattice unit, decompose against it
+too, and three of stage 07's five failing streams clear.  **I am not doing
+that, and the reason is the defect this whole criterion redesign exists to
+remove.** `W`, `R`, `Σ` were derived from shipped-vs-shipped and from an inert
+pad — never from how far our build sits from anything.  Adding a second
+quantum *now*, at the moment it would flip a failing stage to passing, is
+deriving a gate parameter from the answer it produces.  The measurement is on
+the record; the decision to widen the lattice is a separate, deliberate one and
+belongs to whoever owns the criterion, with a control that does not involve
+stage 07.
+
+And it would not rescue stage 07 anyway:
+
+* **`spim_a` does not scale with the lattice in either direction.**
+  −19.650 ms at 30 ms becomes −35.410 ms at 15 ms — a ratio of **1.80**, when
+  a lattice quantity must give 0.5 and a firmware quantity 1.0.  It is neither
+  0, nor 1 CI, nor `W`, at either interval.  Stage 07's display-bus
+  displacement is **not explained by any lattice this project has measured.**
+* **Correcting my own reading of `opt3001` mid-run.** I first read its
+  −354.019 → −354.810 (ratio 1.00) as an interval-*independent*, therefore
+  real, displacement — the strongest single piece of evidence against stage 07.
+  **That is wrong.** The same stream at T = 5.000 ms reads −3.360 → −4.367.
+  A number that moves by 350 ms when the burst-gap threshold changes is a
+  segmentation artefact on that device, not a displacement, and I withdraw it.
+  `spim_a` above is the surviving evidence, and it survives at both thresholds
+  (−19.650 at T = 0.790 and −19.650 at T = 5.000, identical).
+
+### 47.6 The committed oracles REGENERATED — after the prediction was verified
+### against measurement, not before
+
+`criterion_bound_redesign.md` §9 item 5 left the two committed oracle JSONs
+unregenerated and stated the expected diff **in advance**:
+
+> 0 fields removed, 18 added, 5 `separated` booleans flipped to `false`,
+> framebuffers byte-identical.
+
+**Verified first, on both stimuli, before anything was overwritten** — the
+regenerated files were built into a scratch directory and diffed field by
+field against the committed ones:
+
+```
+display_sensor_oracle.json            REMOVED 0   ADDED 18   CHANGED 5
+display_sensor_oracle_dashboard.json  REMOVED 0   ADDED 18   CHANGED 5
+   the 18 added, both files: separation_ratio x6, separation_ratio_required x6,
+                             separated_by_construction_LEGACY x6
+   the 5 changed, both files: EXACTLY the `separated` booleans, True -> False
+                             (spim_a/jbd_display, twim1/npm1300,
+                              twim1/st25dv_nfc_eeprom, twim1/st25dv_system_port,
+                              twim2/lsm6dso_imu -- opt3001 stays true)
+```
+
+**The prediction is exact, and it holds on the dashboard oracle too**, which
+the redesign measured only on navigation.
+
+Preservation checks, all run before overwriting:
+
+```
+parity_criteria block                       equal on BOTH oracles
+`screen` block (dashboard)                  equal
+D-1 x2, D-2..D-7 x1 each (dashboard)        counts identical
+all 15 golden framebuffer artifacts
+  (.raw/.pgm/.png + 3 crops, both stimuli)  cmp exit 0, BYTE-IDENTICAL
+```
+
+Regenerated in place at the **published default** `BURST_GAP_NS = 5 ms`
+(`G1_BURST_GAP_NS` deliberately *not* set), from the same shipped captures the
+committed files came from — proven by the framebuffers matching byte for byte:
+
+```
+recon/emulator/scripts/build_display_sensor_oracle.py \
+    /private/tmp/g1_ship_seed_q1        recon/emulator/reports
+recon/emulator/scripts/build_display_sensor_oracle.py --screen=dashboard \
+    /private/tmp/g1_ship_seed_dash_d1   recon/emulator/reports
+```
+
+`git status` afterwards: the two JSONs modified, **zero golden framebuffer
+files modified**.  Re-diffed against `git show HEAD:` on the committed files
+themselves: still 0 / 18 / 5, and every one of the 5 changes is a `separated`
+boolean.
+
+### 47.7 The STRICT `cmp3` fields, unchanged and still computed — and they
+### disagree with the phase gate in an informative way
+
+`/private/tmp/g1-s4r7/cmp3.py`, three-way (shipped | base | stage), T = 5.000 ms:
+
+| stage | nav REGRESSION | nav improvement | dash REGRESSION | dash improvement | `EQ on both` nav / dash |
+|---|---:|---:|---:|---:|---|
+| 01 = 02 = 03 | **0** | 8 | **0** | 0 | 49 / 56 |
+| 04 = 05 = 06 | **0** | 2 | **1** | 2 | 49 / 55 |
+| 07 = 08 | **0** | 4 | **4** | 4 | 49 / 52 |
+| 09 | **0** | 4 | **3** | 4 | 49 / 53 |
+
+Read with the slot annotation, which is what the new rule is *for*:
+
+* **Stage 01's eight navigation "improvements" are slot-attributable.**  `k`
+  moves −1 → 0 on `spim_a` and `opt3001` against shipped (§47.4.1).  They are
+  not eight repairs, exactly as the redesign's §5.4 predicted for the previous
+  generation of this stage.
+* **Stage 04's single dashboard regression is `counters/RADIO_TX`**, and it is
+  **NOT** slot-attributable: stage 04's dashboard `k` is −1 on `spim_a`, the
+  same as the base's, so there is no slot move to charge it to.
+  `RADIO_TX` ship `0x232` = base `0x232` → s04 `0x234`, **+2 frames**.  This is
+  the one strict field on which stage 04 is worse than the base, on a counter
+  the phase criterion does not cover at all (§8 item 5 of the redesign).
+  It is reported here and **not** absorbed into the PASS.
+* **Stages 07 and 09 lose four IMU transactions on a FREE-RUNNING device.**
+
+```
+twim2 / p2_render / count                     ship 1206   base 1206   s07 1202   s09 1202
+twim2 / p2_render / dev:lsm6dso_imu / count   ship 1206   base 1206   s07 1202   s09 1202
+twim2 / p2_render / sha_regprog          ship=base 98fbd253a5214e…   s07=s09 406045ce844cdb…
+```
+
+`twim2 lsm6dso` is **not slot-locked** — it is the stream that reads 0.000 ms
+across every seed pair in the redesign's §2.5 table, and the one stream that
+**passes Q1** on stage 07.  Losing four of its transactions, and changing its
+register-programming hash, cannot be charged to a BLE slot, to the burst-gap
+threshold, or to the connection interval.  It is the hardest single piece of
+evidence against stage 07 in this pass, and it is a **count**, not a phase.
+It is corroborated by the only Q3 failure in the ladder: `lsm6dso` dashboard
+`S = 47.18 ms` against `Σ = 34.393 ms`.
+
+`RADIO_TX` on stage 07 goes `0x232` → `0x230` (−2 frames) on the dashboard and
+`0x233` → `0x230` on navigation; stage 09 returns to `0x232` on the dashboard,
+which is why its regression count is 3 rather than 4.
+
+### 47.8 THE ACCEPTANCE BAR, held or not — every line re-measured in this pass
+
+| gate | required | **measured** | |
+|---|---|---|---|
+| dashboard `p2_render` framebuffer | `19b1f24a…`, 2,923 px | `19b1f24a09f97a8d`, **2,923 px**, `cmp` exit 0 on all 5 images | ✔ |
+| dashboard `p1_boot` framebuffer | all-zero | `0c5cc90b079d0d9c`, **0 non-zero px**, `cmp` exit 0 on all 5 | ✔ |
+| navigation `p2_render` framebuffer | `b26c73b3…`, 1,098 px | `b26c73b37d441fc8`, **1,098 px**, `cmp` exit 0 on all 5 | ✔ |
+| navigation `p1_boot` framebuffer | `1d617c65…`, 656 px | `1d617c65a688f10e`, **656 px**, `cmp` exit 0 on all 5 | ✔ |
+| `nm -u`, app core | 0 | **0** on base, s00, s01, s04, s07, s09 | ✔ |
+| `nm -u`, net core | 0 | **0** | ✔ |
+| duplicate globals | 0 | **0** on all six app images and on the net image | ✔ |
+| pin gates | 0 / 0 | `raw_literal_pins_inside_a_live_object` **0**, `bound_pins_escaping_their_owner` **0**, exit 0, on all five images | ✔ |
+| `check_thread_create_stack_args --trials 120` | 10/10 | **10 / 10**, exit 0 | ✔ |
+| `tools/verify_data.py` | 995/995 | **995 / 995 files, 56,279 / 56,279 B, 100.00 %** | ✔ |
+| net `zephyr.bin` FROZEN | 225,581 B | **225,581 B**, sha256 `e09b9481a3154e16…`, not rebuilt, not touched | ✔ |
+| app flash | *re-measure* | **956,496 B / 982,528 B = 97.35 %** (base), RAM 253,765 B / 56.32 % | measured |
+| refactor test suite | — | **215 / 215 OK** | ✔ |
+
+Two notes where a quoted figure moved:
+
+* `bound_pins_ok` is **627** on base / s01 / s04 and **598** on s07 / s09.  The
+  README's standing row says 596.  The s07/s09 drop is not a defect — stage 07
+  gives 29 symbols internal linkage, so they leave the global symbol table.
+  The *gates* (`inside_a_live_object`, `escaping_their_owner`) are 0 on all
+  five.
+* `abs_symbols_not_in_linker_scripts` is **3** on every image, unchanged and
+  pre-existing.
+
+**The acceptance bar HOLDS on every image, including the two that fail the
+phase gate.**  That is stated deliberately: the four framebuffers did not move
+across five images spanning 956,076 – 956,496 bytes, three distinct
+`$rtinfo_pc` values and two slot assignments, and they are therefore **not**
+the instrument that separates stage 07 from stage 04.
+
+### 47.9 THE LADDER'S VERDICT AT HEAD, under the slot-quantised rule
+
+| stage | image | size gate | **slot-quantised Q1/Q3** | strict `cmp3` | **R7 verdict** |
+|---|---|---|---|---|---|
+| 00 | 956,496 `2c510a78` | n/a (identity, `cmp`-equal to base) | n/a | n/a | **n/a** |
+| 01 = 02 = 03 | 956,356 `a868a9fb` | `size-changing`, PASS | **0 failures**, 4 of 4 runs | 0 REG both stimuli | **PASS** |
+| 04 = 05 = 06 | 956,292 `3345b40a` | `size-changing`, PASS | **0 failures**, 4 of 4 runs | 0 REG nav, **1 REG dash (`RADIO_TX` +2)** | **PASS, with the `RADIO_TX` residue named** |
+| 07 = 08 | 956,076 `b369a08c` | `size-changing`, PASS | **5 of 6 streams FAIL Q1** on nav, 5 of 6 + 2 Q3 on dash, at both thresholds | 0 REG nav, **4 REG dash incl. −4 IMU transactions** | **FAIL** |
+| 09 | 956,092 `bfa3bfae` | `size-changing`, PASS | **5 of 6 streams FAIL Q1**, same as 07 to ≤ 0.06 ms | 0 REG nav, 3 REG dash, same −4 IMU | **FAIL — inherited from 07, adds nothing measurable of its own** |
+
+Every `oracle_required` obligation the ladder-repair pass left OUTSTANDING is
+now **discharged**: stages 01, 04, 07 and 09 have all been built at HEAD,
+captured seeded on both stimuli, and gated.
+
+### 47.10 WHAT I DID NOT CLOSE, AND WHY
+
+1. **Stage 07's defect is not localised.**  This pass proves it is real, that
+   it is not the BLE lattice, and that it reaches a free-running device's
+   transaction *count* — it does not say **which** of the 132 symbols stage 07
+   makes `static` causes it.  The obvious next instrument is a bisection over
+   the applied candidate set (the transformer already emits it), which is a
+   build-and-capture per bisection step and was not started here.
+2. **Stage 09 is untested on its own.**  Its measured effect is ≤ 0.06 ms on
+   top of stage 07 on every stream, so this pass cannot distinguish "stage 09
+   is clean" from "stage 09's damage is masked by stage 07's".  Gating it
+   requires stage 07 fixed, or a stage-09-on-top-of-stage-06 tree, which the
+   ladder does not currently produce.
+3. **The rule was NOT widened to admit a one-connection-interval quantum**,
+   although §47.5 shows one exists.  Deliberate (§47.5.1).  It is the single
+   largest open question about the criterion and it needs a control that does
+   not involve stage 07.
+4. **`slot_edge_margin` / metastability is still not discharged.**  The
+   redesign requires an inert-pad rebuild for any image whose `k` differs from
+   the base's.  Stage 01 (`k` +1 on two devices), stage 07 and stage 09 all
+   qualify, and **none of them was probed with a pad in this pass.**  Stage 04
+   does not need one — its `k` is 0 everywhere.
+5. **Stage 04's `RADIO_TX` +2 is named, not explained.**  It is not
+   slot-attributable (stage 04's `k` does not move) and `RADIO_TX` has no train
+   decomposition, so the phase rule cannot see it at all.  Stage 04's PASS is a
+   PASS of Q1–Q3 with that residue on the record.
+6. **`SweepDwell 4 → 8`** — §44.5's other unrun falsification test for the
+   3⅓-connection-events mechanism.  **Still not run**, sixth pass running.  The
+   15 ms probe supports the ratio at a second interval but does not derive it.
+7. **Only one seed.**  Every gate verdict here is at `G1_SEED=305419896`.  The
+   redesign's seed floor (`R_seed = 50.110 ms`) means stage 07's failures on
+   `npm1300` / `st25dv` / `spim_a` are all *below* what a seed change can
+   produce on the shipped firmware against itself — the tool labels them
+   `BELOW-STIMULUS-NOISE` and this report does not hide that.  What carries the
+   verdict is their **coherence** and the `twim2` transaction-count loss, not
+   their magnitude.  A multi-seed re-run of stage 07 was not done.
+8. **The `spim_a` navigation `P1 content` failure** (one animation-frame train
+   present in shipped and not in ours, and vice versa, on every image) is
+   untouched, as in the redesign.
+9. **The −37.3 ms navigation / −29.0 ms dashboard structural offsets** our
+   builds carry against shipped on every image are still unexplained.
+   Re-measured here and still stable: base `spim_a` nav `r = −36.727 ms`,
+   dash `r = −29.042 ms`.
+10. **The net core was not built.**  `check_net_raw_literals` and
+    `verify_net_stock_data_window` were **NOT RUN**.  What *was* checked on the
+    frozen image: size 225,581 B, sha256, `nm -u` = 0, duplicate globals = 0.
+11. **`cfg_verify` was not run** and is cited nowhere.  Per the standing rule a
+    green `cfg_verify` is not evidence.
+12. **`battery_model_state_update` (`FUN_0000c358`)** — the open float defect
+    `AGENTS.md` §1b names.  Untouched.
+13. **Stage 99** left stale, as every prior pass has.
+14. **Nothing was committed.**  The tree is left dirty; §47.11 says exactly how.
+
+### 47.11 FOOTPRINT
+
+```
+ M recon/emulator/reports/display_sensor_oracle.json            REGENERATED (0/-, 18/+, 5 `separated`)
+ M recon/emulator/reports/display_sensor_oracle_dashboard.json  REGENERATED (0/-, 18/+, 5 `separated`)
+ M recon/emulator/reports/our_boot_bringup.md                   this section 47
+ M recon/refactor/README.md                                     new R7 gate record + 5 stale rows corrected
+?? Even+Realities_1.9.0.xapk                                    pre-existing, untouched, not mine
+```
+
+**Zero golden framebuffer files modified** — verified with `git status` after
+the regeneration.  No stage tree, no transformer, no `driver.py`/`stagelib.py`,
+no `recon/app/src`, no `recon/symbolized`, no `recon/symbols`, no `tools/`, no
+linker script and no net-core file was written.
+
+`~/Projects/armemul` was modified **temporarily** for §47.5's probe
+(`models/BLE_VirtualCentral.cs`, one constant) and **restored byte-exactly** —
+sha256 `1f10e117632a1bb35668b68a8d70d5f9c3682740116eac7a077bbb2046112572`
+before and after.  Nothing there is left changed.
+
+Outside the repository:
+
+```
+/private/tmp/g1-i48/{buildall.sh,cap.sh,cap15.sh,capall.sh,mko.sh,gate.sh,fbcheck.sh,
+                     ours-*.resc,*.log,BLE_VirtualCentral.cs.ORIG}
+/private/tmp/g1-i48-{base,s00,s01,s04,s07,s09}          six builds
+/private/tmp/g1_i48_{base,s01,s04,s07,s09}_{nav,dash}   ten seeded captures
+/private/tmp/g1_i48ci15_{base,s01,s07}_nav              three 15 ms-interval probe captures
+<scratchpad>/i48/T{790000,5000000}/**                   26 oracles
+```
+
+### 47.12 REPRODUCING
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+V="env PYTHONSAFEPATH=1 .venv/bin/python"
+
+$V recon/refactor/driver.py status                 # 00-09 all `current`
+bash /private/tmp/g1-i48/buildall.sh               # base + 00/01/04/07/09
+bash /private/tmp/g1-i48/capall.sh                 # ten seeded captures, both stimuli
+# WAIT for renode to EXIT before building an oracle (section 46.8)
+bash /private/tmp/g1-i48/mko.sh 790000  <name:cap:screen> ...
+bash /private/tmp/g1-i48/mko.sh 5000000 <name:cap:screen> ...
+bash /private/tmp/g1-i48/fbcheck.sh                # 4/4 on every image
+T=790000  bash /private/tmp/g1-i48/gate.sh         # THE GATE
+T=5000000 bash /private/tmp/g1-i48/gate.sh         # ... same verdicts
+
+# the second-quantum probe (armemul Interval 0x18 -> 0x0C, then RESTORE)
+for t in base s01 s07; do bash /private/tmp/g1-i48/cap15.sh $t /private/tmp/g1-i48-$t nav; done
+
+# the committed oracles, at the PUBLISHED default gap (do not set G1_BURST_GAP_NS)
+$V recon/emulator/scripts/build_display_sensor_oracle.py \
+   /private/tmp/g1_ship_seed_q1 recon/emulator/reports
+$V recon/emulator/scripts/build_display_sensor_oracle.py --screen=dashboard \
+   /private/tmp/g1_ship_seed_dash_d1 recon/emulator/reports
+```
+
+### 47.13 The one-paragraph answer
+
+Rebuilt at HEAD, all five stage images come back **byte-identical to the
+ladder-repair builds**, so the ladder that links is the ladder that was gated.
+Ten seeded captures later, under the slot-quantised rule — which gates the
+sub-slot residual `|r| ≤ 1.160 ms` and never gates the slot index `k` —
+**stages 01/02/03 and 04/05/06 PASS on both stimuli at both burst-gap
+thresholds**, stage 04 without moving a slot at all and with every stream inside
+0.52 ms, which is the cleanest result the project has measured.  **The repaired
+stage 07 STILL FAILS**, 5 of 6 streams, and the +31.250 ms coherence on three
+independent `twim1` devices reproduces **to the microsecond** across a partition
+change, 133 → 132 symbols and `.text` −276 → −200 B.  The falsification test
+§46.6.3 stated and never ran was run: halving the modelled BLE connection
+interval halves that residue — it **is** one connection interval — **but it
+halves `W` too**, so the test's own discriminator was wrong, and the rule was
+deliberately **not** widened to absorb it.  What survives every lattice
+explanation is `spim_a`, which scales like neither (ratio 1.80), and the four
+`twim2 lsm6dso` transactions stages 07 and 09 lose on a device that never moves
+across seeds.  Stage 09 tracks stage 07 to within **0.06 ms** on every stream
+and therefore cannot be gated on its own.  All four acceptance framebuffers are
+byte-identical on all five images including the two that fail, `nm -u` and
+duplicate globals are 0 on both cores, the pin and thread gates pass, data is
+995/995, and the net image is frozen at **225,581 B**.  The committed oracles
+were regenerated only after the redesign's predicted diff — 0 removed, 18 added,
+5 `separated` flipped — was **verified against measurement on both stimuli**,
+with all 15 golden framebuffer artifacts byte-identical.
+
