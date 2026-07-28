@@ -1,0 +1,132 @@
+{
+ "cases": [
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "kind": "fault",
+    "ncalls": 0
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943568,
+     536948040,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 20
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "kind": "fault",
+    "ncalls": 0
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944304,
+     536942044,
+     6,
+     617681966
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 3184315597,
+     "1": 1266679808
+    },
+    "id": "fp-13",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 13,
+    "xpsr": 0
+   },
+   "new_instructions": 23
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [
+    "('R', 1092616200, 4, 0)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "2998afd8ad66f9f30b89a61705513bd34c207f3adaa8789026a0935023d3a2f2",
+    "kind": "fault",
+    "ncalls": 0
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536949256,
+     536943660,
+     1966003740,
+     0
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 2147483648,
+     "1": 0
+    },
+    "id": "fp-60",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 60,
+    "xpsr": 0
+   },
+   "new_instructions": 23
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 23,
+  "ratio": 0.7419,
+  "total": 31,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 74,
+ "globals": [],
+ "module": "sensors",
+ "nptr": 2,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "ret_kind": "i32",
+ "search": {
+  "candidates": 121,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 3
+ },
+ "size": 74,
+ "symbol": "i2c_read_reg16_be",
+ "va": "0x000847d8"
+}

@@ -1,0 +1,1919 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 3694469211, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0720c382c6f7afcd1910f82028ba5d1483420a105460e598ed6c707b82309021",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943568,
+     536948040,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [],
+   "expect": {
+    "events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536947244,
+     536943120,
+     2147483648,
+     315044147
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-1",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 1,
+    "xpsr": 0
+   },
+   "new_instructions": 9
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 471345317, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "6aaec9a3faf8b6bf61967b3b91bab609614c9b97f7031fb619909d5e8ecf37ef",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943312,
+     536942680,
+     3677430904,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-2",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 2,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 1, 2655161023, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1277a23196163587da0ac4631d3cfd66905fcdaef2dd8dbf15abd9fdff6f16e6",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     1
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945864,
+     536944284,
+     3842370354,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-4",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 4,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [],
+   "expect": {
+    "events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [
+     1
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536950900,
+     536936920,
+     5,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-6",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 6,
+    "xpsr": 0
+   },
+   "new_instructions": 9
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 1, 3178863954, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "378b4ea5984ece8b115033a38dc7087ed32d51f265398a5b59959428f2e8dea1",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     1
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944692,
+     536947080,
+     499087790,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-9",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 9,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 3586673693, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "b2bdd3922fb3e2346404ec450cf75be00af4c4a8ce60e4cf2ec25ee9839bf234",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939204,
+     536945020,
+     8,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-10",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 10,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 801746852, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "f99e41384cb5c789f570422c93bfd6e80db44add7c98f61b96d9a82f015a703d",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536937040,
+     536948284,
+     256,
+     1426281073
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-11",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 11,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 1542880163, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "549a0c56cebe69de60d602f8758638497d9f576307de4f3dc18dcd2b2c28cf40",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944520,
+     536936976,
+     5,
+     1103693227
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-12",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 12,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 1, 287561451, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "96cc1f327e7954041ef867063c0f711dd5e4eeecd87fa4211cef97b20d2029e9",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     1
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944304,
+     536942044,
+     6,
+     617681966
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-13",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 13,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 886755549, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "76b0a163e17876545db5aa6d4756ad1661a480daf4c1e1fd22a6da0021b7ca2a",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943260,
+     536942972,
+     3454407978,
+     16
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-16",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 16,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 4075769455, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "4cc27b69697f23602af02c323db64d6f80280e6072d841f61522775da29d03e8",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939284,
+     536944944,
+     4178753371,
+     255
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-19",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 19,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 2217669457, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0b487a9a7a6cabd4ec8111ff3f9604918926095250416d5bc597721818e85d2b",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941420,
+     536936640,
+     2870852768,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-21",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 21,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 3712121755, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "74a0fedd75c270753ea8dee8e4322444e4fda3affd29b3a91103f3426af038a7",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536938252,
+     536941512,
+     2149248134,
+     604019693
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-25",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 25,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 1775869161, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "2af2dba4aa5d50f8b0d0dcdab0770ed045d25b69387620ca6f55956f5413d681",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945192,
+     536949524,
+     3639365232,
+     4125446660
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-27",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 27,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 1542213390, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "87927ff6b2a87c63149100d8ae3cd9d74853b87e4238de5ee1880871a65d3ed5",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946084,
+     536949992,
+     1,
+     2592385448
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-28",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 28,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 2417460406, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c474985bbb2e30f3b248845faabdee1a63d0fc39493db6cae3885c0a2f45d4be",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952796,
+     536941720,
+     1,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-30",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 30,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 1988174091, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e2a048ea4eb5bb1df3cf40a871f2777cbe3c0b43667a6a30272453cee51f8b9f",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952300,
+     536948548,
+     7,
+     53351545
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-31",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 31,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 615009301, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "3aec0676951788befcd0a8e46d8b1ca648b0841174f034d39b01786f7efb6ca4",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946568,
+     536940812,
+     3442053927,
+     1170652979
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-32",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 32,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 2360084761, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "49fb2e3abe24ddefa9f31047e0843a2d7cd9a8deed98575519beda170f0a1008",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536950120,
+     536940724,
+     922796015,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-34",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 34,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 1, 4019880274, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "13eb012b8ec7b1f2e4a4b664112c3de4886110f720a738f8129d8b38ac7e81cd",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     1
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952432,
+     536943604,
+     4001652011,
+     1
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-35",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 35,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 823752600, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "39be45d271e30d0feec1f33681ffe9650556d54d205382bfdc08642c9b27e603",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944224,
+     536949832,
+     2147483647,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-36",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 36,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 2944518647, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e6e2da8c90a25c56fde17f06cf199e0f8b524cc92cc5a0ac0ed456eccaa4bbd6",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941424,
+     536942500,
+     3774328631,
+     1997155928
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-39",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 39,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 2096484019, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "7ecfb51cbaf49d2214c35263c96f08c2327910ff87c2cb652048d700ace9f5ef",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941236,
+     536950764,
+     3059135833,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-41",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 41,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 509112996, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "10fdf94ec0904d205d714dc9a2aedea06862ccf1dda83cb6675efd4e1374e983",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952228,
+     536940324,
+     12,
+     3983748582
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-42",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 42,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 217414738, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "79a45fb15cdc2f66a598f103ccacf7659901ca8e639451e02d9e2aa02236cf12",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939280,
+     536948744,
+     1643521744,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-44",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 44,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 2987881189, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "78f7f66807e528e90ab21715644280f4af0e1e16e8ab2ccbab32134fcd3b0268",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939100,
+     536937324,
+     2147483647,
+     2671219995
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 1065353216,
+     "1": 3204448256
+    },
+    "id": "fp-49",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 49,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 1, 3904235970, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "32bfedf510c4654b1c7bb556b998816118421a9ae59c69933b324e4d74191025",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     1
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536951908,
+     536937524,
+     3,
+     3948225427
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 3212836864,
+     "1": 0
+    },
+    "id": "fp-50",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 50,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 735384069, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "b9a34ddd0ce23a1c2527b4bad55c683d263c4f36f133905b215548efbe1f6d64",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536951376,
+     536939712,
+     2147483647,
+     2092907358
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 3204448256,
+     "1": 3239897098
+    },
+    "id": "fp-52",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 52,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 1, 3921118200, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c6813bc68ad94b53757132ee661a64a1ff6dfc96b235d2651e7f6019166f2a3a",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     1
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952284,
+     536945960,
+     2147483647,
+     2556506514
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 2147483648,
+     "1": 3204448256
+    },
+    "id": "fp-54",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 54,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 1028059815, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "68a933b3172664ff2c952a3a93a1590cf2c30894c162d4706993c03c3b4083d1",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536940824,
+     536950616,
+     3578670822,
+     8
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 1065353216,
+     "1": 0
+    },
+    "id": "fp-55",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 55,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 1, 480847480, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "915159abf70d68a503e4668db2ddfc5d76063f1851613951cbf88f9981551393",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     1
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536947668,
+     536936660,
+     206381930,
+     1
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 3212836864,
+     "1": 3184315597
+    },
+    "id": "fp-56",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 56,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 1, 2444602602, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "594d5b1b9ce32ff02d04d938e4f772546e7ae99102b4a321fbe21239d316861c",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     1
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945696,
+     536949260,
+     1677850251,
+     7
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 1056964608,
+     "1": 3239897098
+    },
+    "id": "fp-57",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 57,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 1, 2059510718, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "5e51ff36e52d07a813fc0b13c0e0511b8e78e4ba3849ff4f6f89c93256a16514",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     1
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536947512,
+     536936544,
+     4,
+     2495041172
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 3204448256,
+     "1": 1266679808
+    },
+    "id": "fp-58",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 58,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 913139319, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "293693f3d9bee88d4e196ff6eb2f37a81f48bec3cfb100b3b06f287be56c9836",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536949256,
+     536943660,
+     1966003740,
+     0
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 2147483648,
+     "1": 0
+    },
+    "id": "fp-60",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 60,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 1, 3330584012, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "6ec7f35e0cca418bd93eb129731426033c7a81728f51061fd0caa6fb6e9c82e0",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     1
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952380,
+     536950100,
+     1,
+     0
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 1065353216,
+     "1": 3184315597
+    },
+    "id": "fp-61",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 61,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 1, 2313802153, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "300ab8360157adca80adbd560021a2140941f364d248a989b3633b222d0d4c74",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     1
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536951224,
+     536944796,
+     1271289561,
+     5
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 3212836864,
+     "1": 3239897098
+    },
+    "id": "fp-62",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 62,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 1, 1154554417, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "5cb8eec7972bfa226a7987802b9daec34b64e0b53e81ea3fce9276538403a761",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     1
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536949424,
+     536938800,
+     2463392783,
+     0
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 3204448256,
+     "1": 3204448256
+    },
+    "id": "fp-64",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 64,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 2205054065, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "f5c65785b7ac0acdbc530fd0497a999f286a63dbed5b7f46fb9e6ef0155132a1",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536879884,
+      "03000000"
+     ]
+    ],
+    "args": [
+     536945628,
+     536940936,
+     8,
+     3619521758
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-0-3",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 3,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 151242190, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "bdc25831fdca5d4be4c2d5b6106a52e96957c3e8e5f100451a2c3567c52ac8e0",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536879884,
+      "ffffff7f"
+     ]
+    ],
+    "args": [
+     536939588,
+     536951592,
+     8,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-0-5",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 5,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 1060514798, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "2a51e1994596a62decf68bf222a29c43fa204cfaef73bb9fb0f76f7f25c5c762",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536879884,
+      "00200120"
+     ]
+    ],
+    "args": [
+     536941592,
+     536944956,
+     1,
+     2363272863
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-0-7",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 7,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    515492
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): bIsCharging is :%d \\n\\n'), ('RO', b'get_glassbox_charge_status'), 0, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "3bf5f42dc83f9f93998b611f5926eb12afc881d03d0c6b77badc4335bfa368c7",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536900948,
+      "00000000"
+     ]
+    ],
+    "args": [
+     536939044,
+     536940560,
+     558645175,
+     4
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-2-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 16,
+    "xpsr": 0
+   },
+   "new_instructions": 18
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 19,
+  "ratio": 1.0,
+  "total": 19,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 42,
+ "globals": [
+  "0x2000230c",
+  "0x20019ef4",
+  "0x20007554"
+ ],
+ "module": "sensors",
+ "nptr": 2,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "ret_kind": "i32",
+ "search": {
+  "candidates": 163,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 42
+ },
+ "size": 42,
+ "symbol": "get_glassbox_charge_status",
+ "va": "0x00032784"
+}

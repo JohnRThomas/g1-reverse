@@ -1,0 +1,131 @@
+{
+ "cases": [
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "kind": "fault",
+    "ncalls": 0
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943568,
+     536948040,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 8
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "kind": "fault",
+    "ncalls": 0
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945628,
+     536940936,
+     8,
+     3619521758
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-3",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 3,
+    "xpsr": 0
+   },
+   "new_instructions": 8
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [
+    "('W', 956, 4, 1)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "a6b937fc9928b5e6a63038b14325d3181d6f64174b1173ac80e86b49ca5253c8",
+    "kind": "fault",
+    "ncalls": 0
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944016,
+     536942692,
+     1168623309,
+     4252165479
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 1028443341,
+     "1": 3239897098
+    },
+    "id": "fp-17",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 17,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 17,
+  "ratio": 0.1172,
+  "total": 145,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 404,
+ "globals": [
+  "0x2002a268"
+ ],
+ "module": "ipc",
+ "nptr": 2,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "ret_kind": "i32",
+ "search": {
+  "candidates": 165,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 3,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 3
+ },
+ "size": 404,
+ "symbol": "ipc_rpmsg_backend_register",
+ "va": "0x0004cd4c"
+}

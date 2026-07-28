@@ -1,0 +1,494 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    0
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    549772
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "224e60b24cfba8ccbb749ad0735912f56546fc3b88ccc22503219362cc1fd656",
+    "kind": "fault",
+    "ncalls": 1
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943568,
+     536948040,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 23
+  },
+  {
+   "call_arities": [
+    0
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    549772
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('R', 1089076537, 4, 0)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "93f557ec12085f44e745151135f0741fcb7dbecc0f4d3838f91445e88020a7bb",
+    "kind": "fault",
+    "ncalls": 1
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536950900,
+     536936920,
+     5,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-6",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 6,
+    "xpsr": 0
+   },
+   "new_instructions": 27
+  },
+  {
+   "call_arities": [
+    0
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    549772
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('R', 1092733198, 4, 0)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "dbfd8d25313b4ba655fd503b583df9ce42c16d33c579cadaac6472edda6357e9",
+    "kind": "fault",
+    "ncalls": 1
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943108,
+     536941484,
+     2205369221,
+     2288169737
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-46",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 46,
+    "xpsr": 0
+   },
+   "new_instructions": 27
+  },
+  {
+   "call_arities": [
+    0
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    549772
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "224e60b24cfba8ccbb749ad0735912f56546fc3b88ccc22503219362cc1fd656",
+    "kind": "fault",
+    "ncalls": 1
+   },
+   "fixture": {
+    "abs": [
+     [
+      536880124,
+      "00000000"
+     ]
+    ],
+    "args": [
+     536943568,
+     536948040,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-0-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 27
+  },
+  {
+   "call_arities": [
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    549772,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): Bus device is not ready\\n'), ('RO', b'opt3001_reg_read'), 1935641720, 4140973137, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "029897d9ed403db4d1d5a19f34d2f887874811fb09f665382106fbf74ac29b98",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967277
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536951308,
+     536947088,
+     1935641720,
+     554330043
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 400,
+    "xpsr": 0
+   },
+   "new_instructions": 23
+  },
+  {
+   "call_arities": [
+    0
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    549772
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "224e60b24cfba8ccbb749ad0735912f56546fc3b88ccc22503219362cc1fd656",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967277
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943048,
+     536949788,
+     2874002338,
+     3321765362
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-0-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 500,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    549772,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): Bus device is not ready\\n'), ('RO', b'opt3001_reg_read'), 2, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "346b06dadf8a72c5badfece86566ac18f2ec6c133c44983a10f7f93f296daa09",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967277
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536880124,
+      "01000000"
+     ],
+     [
+      536879884,
+      "01000000"
+     ],
+     [
+      536900948,
+      "01000000"
+     ]
+    ],
+    "args": [
+     536941656,
+     536944228,
+     2,
+     2147483648
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "combo-1-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 604,
+    "xpsr": 0
+   },
+   "new_instructions": 23
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 40,
+  "ratio": 0.625,
+  "total": 64,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 154,
+ "globals": [
+  "0x200023fc",
+  "0x2000230c",
+  "0x20007554"
+ ],
+ "module": "sensors",
+ "nptr": 2,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "ret_kind": "i32",
+ "search": {
+  "candidates": 171,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 7
+ },
+ "size": 154,
+ "symbol": "opt3001_reg_read",
+ "va": "0x0002e594"
+}

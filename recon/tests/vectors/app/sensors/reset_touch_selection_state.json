@@ -1,0 +1,78 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    1
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    91948
+   ],
+   "events_head": [
+    "('W', 536889681, 1, 0)",
+    "('W', 536983574, 1, 0)",
+    "('C', 0, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "fb9383332aa7a630a144ead0e2463ba29546b37a7735a9a75d829f1683872598",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943568,
+     536948040,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 6
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 6,
+  "ratio": 1.0,
+  "total": 6,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 14,
+ "globals": [
+  "0x20004950",
+  "0x2001b816"
+ ],
+ "module": "sensors",
+ "nptr": 2,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "ret_kind": "void",
+ "search": {
+  "candidates": 133,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 1
+ },
+ "size": 14,
+ "symbol": "reset_touch_selection_state",
+ "va": "0x00037098"
+}

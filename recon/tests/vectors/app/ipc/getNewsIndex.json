@@ -1,0 +1,1719 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('W', 536889685, 1, 233)",
+    "('C', 0, ('RO', b'%s():  %s index = %d\\n'), ('RO', b'getNewsIndex'), ('RO', b'getNewsIndex'), 233, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "a1e7ca018c5124853b0a23f970d471297cb0fb9b91c4bc89122298716379352d",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     233
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943568,
+     536948040,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 18
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [
+    "('W', 536889685, 1, 144)"
+   ],
+   "expect": {
+    "events": "f493fd71ed87ed15febaa296f37d598bd663e94db2b70cafb3869ca406e92c53",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [
+     144
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536947244,
+     536943120,
+     2147483648,
+     315044147
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-1",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 1,
+    "xpsr": 0
+   },
+   "new_instructions": 11
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('W', 536889685, 1, 121)",
+    "('C', 0, ('RO', b'%s():  %s index = %d\\n'), ('RO', b'getNewsIndex'), ('RO', b'getNewsIndex'), 121, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c31776a7d73028a9d96199a18f6269b00793f10d46c3298eb46c22cfba5c0fc3",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     121
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943312,
+     536942680,
+     3677430904,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-2",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 2,
+    "xpsr": 0
+   },
+   "new_instructions": 18
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [
+    "('W', 536889685, 1, 247)"
+   ],
+   "expect": {
+    "events": "c54b469d6f7938a4da809211dd4cbee51ef3f6aabd7d8afee991badb51f0fe0f",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [
+     247
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945628,
+     536940936,
+     8,
+     3619521758
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-3",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 3,
+    "xpsr": 0
+   },
+   "new_instructions": 11
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('W', 536889685, 1, 85)",
+    "('C', 0, ('RO', b'%s():  %s index = %d\\n'), ('RO', b'getNewsIndex'), ('RO', b'getNewsIndex'), 85, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "6ff19a5a700cc028dabc2a1c8a77a53c5121fd25265604af9f9ea64df31f4c83",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     85
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945864,
+     536944284,
+     3842370354,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-4",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 4,
+    "xpsr": 0
+   },
+   "new_instructions": 18
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [
+    "('W', 536889685, 1, 172)"
+   ],
+   "expect": {
+    "events": "b7e72aa9785fed20d2127f965a6fb5e6ddce3bf30a71c86714f82f6af5ff78b3",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [
+     172
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939588,
+     536951592,
+     8,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-5",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 5,
+    "xpsr": 0
+   },
+   "new_instructions": 11
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [
+    "('W', 536889685, 1, 50)"
+   ],
+   "expect": {
+    "events": "3465a3a4f6f6a6154a6cf390809e7e27291200cf0cc780fef4bdfd445f73b6c2",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [
+     50
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536950900,
+     536936920,
+     5,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-6",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 6,
+    "xpsr": 0
+   },
+   "new_instructions": 11
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [
+    "('W', 536889685, 1, 113)"
+   ],
+   "expect": {
+    "events": "cc247915678dbff83c10fabc1126915f037576d5503d32fcae6cb28282726ac3",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [
+     113
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941592,
+     536944956,
+     1,
+     2363272863
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-7",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 7,
+    "xpsr": 0
+   },
+   "new_instructions": 11
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [
+    "('W', 536889685, 1, 153)"
+   ],
+   "expect": {
+    "events": "f0b45b9f74683327a054419b83900416ebaca89bd04478267d4822fbafc918f3",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [
+     153
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939044,
+     536940560,
+     558645175,
+     4
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-8",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 8,
+    "xpsr": 0
+   },
+   "new_instructions": 11
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('W', 536889685, 1, 7)",
+    "('C', 0, ('RO', b'%s():  %s index = %d\\n'), ('RO', b'getNewsIndex'), ('RO', b'getNewsIndex'), 7, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "5f70f712ef25bbf224de1cf8813ad591c58dd653e35e8053d90e0b89c362a56d",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     7
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944692,
+     536947080,
+     499087790,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-9",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 9,
+    "xpsr": 0
+   },
+   "new_instructions": 18
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('W', 536889685, 1, 128)",
+    "('C', 0, ('RO', b'%s():  %s index = %d\\n'), ('RO', b'getNewsIndex'), ('RO', b'getNewsIndex'), 128, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ba24f017703e89e6573509df81392533cd9031bca86face5c9cda2bd6fc06b97",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     128
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939204,
+     536945020,
+     8,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-10",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 10,
+    "xpsr": 0
+   },
+   "new_instructions": 18
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('W', 536889685, 1, 196)",
+    "('C', 0, ('RO', b'%s():  %s index = %d\\n'), ('RO', b'getNewsIndex'), ('RO', b'getNewsIndex'), 196, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "9687f25c4570e28f04d3bc99ac5a4f45a967f10002aa05c4dca9a0aae99dea61",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     196
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536937040,
+     536948284,
+     256,
+     1426281073
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-11",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 11,
+    "xpsr": 0
+   },
+   "new_instructions": 18
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('W', 536889685, 1, 144)",
+    "('C', 0, ('RO', b'%s():  %s index = %d\\n'), ('RO', b'getNewsIndex'), ('RO', b'getNewsIndex'), 144, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "859efb83ba6d42af3da93ae3b1b799c541d686afdada6b0f2b64d7fe8a723420",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     144
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944520,
+     536936976,
+     5,
+     1103693227
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-12",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 12,
+    "xpsr": 0
+   },
+   "new_instructions": 18
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('W', 536889685, 1, 98)",
+    "('C', 0, ('RO', b'%s():  %s index = %d\\n'), ('RO', b'getNewsIndex'), ('RO', b'getNewsIndex'), 98, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "bdea432aaeb6a4ca04c71a6c60abc17338cbfe3edb9d7629387c36387e7caa65",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     98
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944304,
+     536942044,
+     6,
+     617681966
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-13",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 13,
+    "xpsr": 0
+   },
+   "new_instructions": 18
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [
+    "('W', 536889685, 1, 170)"
+   ],
+   "expect": {
+    "events": "dd39b5aef529817a1b93606cd9ce7a891120d31680a19b7a47b2bc7ce1fdcefb",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [
+     170
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943892,
+     536949848,
+     3,
+     470668832
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-14",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 14,
+    "xpsr": 0
+   },
+   "new_instructions": 11
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [
+    "('W', 536889685, 1, 64)"
+   ],
+   "expect": {
+    "events": "df0d40e166c31029ae28d1f401249c6c517d41a12feeb2fd1559c401bbb71419",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [
+     64
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952404,
+     536941132,
+     5,
+     4
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-15",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 15,
+    "xpsr": 0
+   },
+   "new_instructions": 11
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('W', 536889685, 1, 14)",
+    "('C', 0, ('RO', b'%s():  %s index = %d\\n'), ('RO', b'getNewsIndex'), ('RO', b'getNewsIndex'), 14, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "d8c891dc0baa004055247eb7f6a0e81ec8ad2e165181b9ebd0e06d8251048bd6",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     14
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943260,
+     536942972,
+     3454407978,
+     16
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-16",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 16,
+    "xpsr": 0
+   },
+   "new_instructions": 18
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [
+    "('W', 536889685, 1, 174)"
+   ],
+   "expect": {
+    "events": "cd31178e9ea2e11e54a8c98babb2c5883315faee98ae26e9167b8582c637846b",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [
+     174
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944016,
+     536942692,
+     1168623309,
+     4252165479
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-17",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 17,
+    "xpsr": 0
+   },
+   "new_instructions": 11
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [
+    "('W', 536889685, 1, 194)"
+   ],
+   "expect": {
+    "events": "91e50d06eef1fca7ff88fd004d9dafd35c71a5ed982f1791cf752374033a5f86",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [
+     194
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944948,
+     536937440,
+     697236451,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-18",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 18,
+    "xpsr": 0
+   },
+   "new_instructions": 11
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('W', 536889685, 1, 2)",
+    "('C', 0, ('RO', b'%s():  %s index = %d\\n'), ('RO', b'getNewsIndex'), ('RO', b'getNewsIndex'), 2, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "97658797b1015c9256b9a0d69805d60f4aa866064fb4293b48c19a304930e056",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939284,
+     536944944,
+     4178753371,
+     255
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-19",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 19,
+    "xpsr": 0
+   },
+   "new_instructions": 18
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [
+    "('W', 536889685, 1, 16)"
+   ],
+   "expect": {
+    "events": "90aded79b3e47ba0575565f752239424790b732892240cc1e890ed8b2076fe31",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [
+     16
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952740,
+     536939460,
+     2,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-20",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 20,
+    "xpsr": 0
+   },
+   "new_instructions": 11
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('W', 536889685, 1, 16)",
+    "('C', 0, ('RO', b'%s():  %s index = %d\\n'), ('RO', b'getNewsIndex'), ('RO', b'getNewsIndex'), 16, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "bd9c7d796a731cfa393e1fc38843edf44f9a8ca3aa181acc8d4a54db3257321e",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     16
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941420,
+     536936640,
+     2870852768,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-21",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 21,
+    "xpsr": 0
+   },
+   "new_instructions": 18
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [
+    "('W', 536889685, 1, 197)"
+   ],
+   "expect": {
+    "events": "1fba823334a838a5383e05b340f35f9dc9200378dd418569722579b42e673309",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [
+     197
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536937396,
+     536946088,
+     4294967295,
+     2451975022
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-22",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 22,
+    "xpsr": 0
+   },
+   "new_instructions": 11
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [
+    "('W', 536889685, 1, 219)"
+   ],
+   "expect": {
+    "events": "f91c099b90c9dc7fe36ae06716166e6abc912c2c5959b9ad1c927d332a304dac",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [
+     219
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536949908,
+     536944852,
+     2967241396,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-24",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 24,
+    "xpsr": 0
+   },
+   "new_instructions": 11
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('W', 536889685, 1, 51)",
+    "('C', 0, ('RO', b'%s():  %s index = %d\\n'), ('RO', b'getNewsIndex'), ('RO', b'getNewsIndex'), 51, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "82c60e936e75ddf370c8d59bd5d6fd373bc75f33878d036db087f4f76a92fce7",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     51
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536938252,
+     536941512,
+     2149248134,
+     604019693
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-25",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 25,
+    "xpsr": 0
+   },
+   "new_instructions": 18
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('W', 536889685, 1, 105)",
+    "('C', 0, ('RO', b'%s():  %s index = %d\\n'), ('RO', b'getNewsIndex'), ('RO', b'getNewsIndex'), 105, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c5d0000c9b337919c5ccbec5bff58e56be11bdccc7f0f425d72556614835fc47",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     105
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945192,
+     536949524,
+     3639365232,
+     4125446660
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-27",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 27,
+    "xpsr": 0
+   },
+   "new_instructions": 18
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('W', 536889685, 1, 159)",
+    "('C', 0, ('RO', b'%s():  %s index = %d\\n'), ('RO', b'getNewsIndex'), ('RO', b'getNewsIndex'), 159, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "8e7226c9471407952bffa80f8e2f3ba4ae58ffff8973b016cfe84a72f5e97882",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     159
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946084,
+     536949992,
+     1,
+     2592385448
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-28",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 28,
+    "xpsr": 0
+   },
+   "new_instructions": 18
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [
+    "('W', 536889685, 1, 238)"
+   ],
+   "expect": {
+    "events": "fba968030d185ddf0021f8657c2575e4baf54d972502734fc61237083ab2bde6",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [
+     238
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536947488,
+     536937084,
+     3886541357,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-29",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 29,
+    "xpsr": 0
+   },
+   "new_instructions": 11
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('W', 536889685, 1, 113)",
+    "('C', 0, ('RO', b'%s():  %s index = %d\\n'), ('RO', b'getNewsIndex'), ('RO', b'getNewsIndex'), 113, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "287e4033db4805776329eb08cf6d60b07e26b97fbf2f08ab0d00540a578335e6",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     113
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952796,
+     536941720,
+     1,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-30",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 30,
+    "xpsr": 0
+   },
+   "new_instructions": 18
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('W', 536889685, 1, 212)",
+    "('C', 0, ('RO', b'%s():  %s index = %d\\n'), ('RO', b'getNewsIndex'), ('RO', b'getNewsIndex'), 212, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "f869fd1b57923783466d34d363b7fec28d6f299ce786d0a7c00bbfb6198ff293",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     212
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952300,
+     536948548,
+     7,
+     53351545
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-31",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 31,
+    "xpsr": 0
+   },
+   "new_instructions": 18
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('W', 536889685, 1, 226)",
+    "('C', 0, ('RO', b'%s():  %s index = %d\\n'), ('RO', b'getNewsIndex'), ('RO', b'getNewsIndex'), 226, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "44847a855575d6f9c1b624aeaf639e74a6bf035f5f1935ad19339d299a05a7fe",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     226
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946568,
+     536940812,
+     3442053927,
+     1170652979
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-32",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 32,
+    "xpsr": 0
+   },
+   "new_instructions": 18
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [
+    "('W', 536889685, 1, 93)"
+   ],
+   "expect": {
+    "events": "592a051156031e02e5f63e944308884cfd6344f9e2aaba1e4a789154cb205a17",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [
+     93
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946060,
+     536942020,
+     7,
+     5
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-33",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 33,
+    "xpsr": 0
+   },
+   "new_instructions": 11
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('W', 536889685, 1, 131)",
+    "('C', 0, ('RO', b'%s():  %s index = %d\\n'), ('RO', b'getNewsIndex'), ('RO', b'getNewsIndex'), 131, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "fe7d6ff3ea75f1a9679931555c2613de741e5e5168b477e202fba747a5fb3088",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     131
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536950120,
+     536940724,
+     922796015,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-34",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 34,
+    "xpsr": 0
+   },
+   "new_instructions": 18
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('W', 536889685, 1, 149)",
+    "('C', 0, ('RO', b'%s():  %s index = %d\\n'), ('RO', b'getNewsIndex'), ('RO', b'getNewsIndex'), 149, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "aa1408522552f08cebb9eed9593634ea69348adb3938aab42a2c98174c4c160a",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     149
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952432,
+     536943604,
+     4001652011,
+     1
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-35",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 35,
+    "xpsr": 0
+   },
+   "new_instructions": 18
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('W', 536889685, 1, 213)",
+    "('C', 0, ('RO', b'%s():  %s index = %d\\n'), ('RO', b'getNewsIndex'), ('RO', b'getNewsIndex'), 213, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "81ea673dc597427402f36129d08ab06fd629085364373bb14b53865febfb6b62",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     213
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944224,
+     536949832,
+     2147483647,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-36",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 36,
+    "xpsr": 0
+   },
+   "new_instructions": 18
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [
+    "('W', 536889685, 1, 138)"
+   ],
+   "expect": {
+    "events": "f0f38dfc15e4c3302f8f6966aa15a4701f26a033729c07d3594b7742c4581968",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [
+     138
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536951728,
+     536951136,
+     2725586938,
+     1299241558
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-37",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 37,
+    "xpsr": 0
+   },
+   "new_instructions": 11
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [
+    "('W', 536889685, 1, 131)"
+   ],
+   "expect": {
+    "events": "e08008a2088f5276e3f0d3c762cad8d0d7a20e3ed72d50e6c5b75032ac3f2a1d",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [
+     131
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939760,
+     536941672,
+     1,
+     2
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-38",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 38,
+    "xpsr": 0
+   },
+   "new_instructions": 11
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('W', 536889685, 1, 252)",
+    "('C', 0, ('RO', b'%s():  %s index = %d\\n'), ('RO', b'getNewsIndex'), ('RO', b'getNewsIndex'), 252, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "136e9e403f840c21157302bb9ec0241f60e576b532054b503946684316e9e7f1",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     252
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941424,
+     536942500,
+     3774328631,
+     1997155928
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-39",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 39,
+    "xpsr": 0
+   },
+   "new_instructions": 18
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [
+    "('W', 536889685, 1, 115)"
+   ],
+   "expect": {
+    "events": "94cc92dda4e26d8603c8effcbf3eee0fe89029634cd64cac564d8e6c17f67ba2",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [
+     115
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943600,
+     536946992,
+     1786326658,
+     1835695343
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-40",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 40,
+    "xpsr": 0
+   },
+   "new_instructions": 11
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('W', 536889685, 1, 199)",
+    "('C', 0, ('RO', b'%s():  %s index = %d\\n'), ('RO', b'getNewsIndex'), ('RO', b'getNewsIndex'), 199, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "429c9bcb4435d5d77c64bdd0ccae4ca1833dcbaefd71fa182b4a9cabfed42535",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     199
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941236,
+     536950764,
+     3059135833,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-41",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 41,
+    "xpsr": 0
+   },
+   "new_instructions": 18
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('W', 536889685, 1, 5)",
+    "('C', 0, ('RO', b'%s():  %s index = %d\\n'), ('RO', b'getNewsIndex'), ('RO', b'getNewsIndex'), 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "eeb28d4f4b179e48bad4f6448e04c0bfe32b0866e78c4d646e349055c474846f",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     5
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952228,
+     536940324,
+     12,
+     3983748582
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-42",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 42,
+    "xpsr": 0
+   },
+   "new_instructions": 18
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 18,
+  "ratio": 0.7826,
+  "total": 23,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 50,
+ "globals": [
+  "0x2000230c",
+  "0x2001b814",
+  "0x20004950",
+  "0x20007554"
+ ],
+ "module": "ipc",
+ "nptr": 2,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "ret_kind": "i32",
+ "search": {
+  "candidates": 171,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 41
+ },
+ "size": 50,
+ "symbol": "getNewsIndex",
+ "va": "0x0003719c"
+}

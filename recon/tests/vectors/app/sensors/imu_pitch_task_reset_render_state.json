@@ -1,0 +1,77 @@
+{
+ "cases": [
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [
+    "('W', 536911896, 4, 0)",
+    "('W', 536911900, 4, 0)",
+    "('W', 536911904, 4, 0)",
+    "('W', 536911908, 4, 0)",
+    "('W', 536911912, 4, 0)",
+    "('W', 536911916, 4, 0)"
+   ],
+   "expect": {
+    "events": "8d55f6cddcbc7df102d212e00a8ec7da8b557cd944d9214046c2414ab3c1c86e",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943568,
+     536948040,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 14
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 14,
+  "ratio": 1.0,
+  "total": 14,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 28,
+ "globals": [
+  "0x2000a02c",
+  "0x2000a028",
+  "0x2000a024",
+  "0x2000a020",
+  "0x2000a01c",
+  "0x2000a018"
+ ],
+ "module": "sensors",
+ "nptr": 2,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "ret_kind": "void",
+ "search": {
+  "candidates": 165,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 1
+ },
+ "size": 28,
+ "symbol": "imu_pitch_task_reset_render_state",
+ "va": "0x000436f8"
+}

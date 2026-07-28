@@ -1,0 +1,127 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    0
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    144056
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "224e60b24cfba8ccbb749ad0735912f56546fc3b88ccc22503219362cc1fd656",
+    "kind": "fault",
+    "ncalls": 1
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943568,
+     536948040,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 3
+  },
+  {
+   "call_arities": [
+    0
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    144056
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "224e60b24cfba8ccbb749ad0735912f56546fc3b88ccc22503219362cc1fd656",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536951308,
+     536947088,
+     1935641720,
+     554330043
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 400,
+    "xpsr": 0
+   },
+   "new_instructions": 8
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 8,
+  "ratio": 0.2963,
+  "total": 27,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 56,
+ "globals": [],
+ "module": "sensors",
+ "nptr": 2,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "ret_kind": "i32",
+ "search": {
+  "candidates": 121,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 2
+ },
+ "size": 56,
+ "symbol": "product_code_is_supported_egp_family",
+ "va": "0x0007cefc"
+}

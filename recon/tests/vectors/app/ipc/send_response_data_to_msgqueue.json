@@ -1,0 +1,714 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    0
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "224e60b24cfba8ccbb749ad0735912f56546fc3b88ccc22503219362cc1fd656",
+    "kind": "fault",
+    "ncalls": 1
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943568,
+     536948040,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 6
+  },
+  {
+   "call_arities": [
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    92072,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b\"%s(): send data length more than %d,can't load it,exit ...\\n\"), ('RO', b'send_response_data_to_msgqueue'), 20, 4140973137, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "b85ed416073166bcdc46b1bf89af613f014656f16c1d866cacd31a6c3d133068",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536951308,
+     536947088,
+     1935641720,
+     554330043
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 400,
+    "xpsr": 0
+   },
+   "new_instructions": 29
+  },
+  {
+   "call_arities": [
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    92072,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b\"%s(): send data length more than %d,can't load it,exit ...\\n\"), ('RO', b'send_response_data_to_msgqueue'), 20, 2235425154, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "65dc91ed54288f8b5f6a17310cf352b010cdba939a9767cbe5c1d88edbfcf43b",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943352,
+     536946944,
+     168044460,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-1",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [
+     [
+      0,
+      0,
+      1
+     ],
+     [
+      1,
+      0,
+      1
+     ],
+     [
+      2,
+      0,
+      1
+     ],
+     [
+      3,
+      0,
+      1
+     ],
+     [
+      4,
+      0,
+      1
+     ],
+     [
+      5,
+      0,
+      1
+     ],
+     [
+      6,
+      0,
+      1
+     ],
+     [
+      0,
+      1,
+      1
+     ],
+     [
+      1,
+      1,
+      1
+     ],
+     [
+      2,
+      1,
+      1
+     ],
+     [
+      3,
+      1,
+      1
+     ],
+     [
+      4,
+      1,
+      1
+     ],
+     [
+      5,
+      1,
+      1
+     ],
+     [
+      6,
+      1,
+      1
+     ]
+    ],
+    "scratch_seed": 401,
+    "xpsr": 0
+   },
+   "new_instructions": 29
+  },
+  {
+   "call_arities": [
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    92072,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b\"%s(): send data length more than %d,can't load it,exit ...\\n\"), ('RO', b'send_response_data_to_msgqueue'), 20, 1593104201, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "9bbbfb96f77fe1fb67f0fc2d40795c635220c4d2026dd5824fa8fa94fac4365e",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939648,
+     536938124,
+     5,
+     888612868
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-2",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [
+     [
+      0,
+      0,
+      2
+     ],
+     [
+      1,
+      0,
+      2
+     ],
+     [
+      2,
+      0,
+      2
+     ],
+     [
+      3,
+      0,
+      2
+     ],
+     [
+      4,
+      0,
+      2
+     ],
+     [
+      5,
+      0,
+      2
+     ],
+     [
+      6,
+      0,
+      2
+     ],
+     [
+      0,
+      1,
+      2
+     ],
+     [
+      1,
+      1,
+      2
+     ],
+     [
+      2,
+      1,
+      2
+     ],
+     [
+      3,
+      1,
+      2
+     ],
+     [
+      4,
+      1,
+      2
+     ],
+     [
+      5,
+      1,
+      2
+     ],
+     [
+      6,
+      1,
+      2
+     ]
+    ],
+    "scratch_seed": 402,
+    "xpsr": 0
+   },
+   "new_instructions": 29
+  },
+  {
+   "call_arities": [
+    0,
+    3
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    92072,
+    552056
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 0), 0, 24, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e4efae1be69ddf546c7d328474df1b1addee1cca34d6ae4014a161b512dbccc8",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943048,
+     536949788,
+     2874002338,
+     3321765362
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-0-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 500,
+    "xpsr": 0
+   },
+   "new_instructions": 22
+  },
+  {
+   "call_arities": [
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    92072,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b\"%s(): send data length more than %d,can't load it,exit ...\\n\"), ('RO', b'send_response_data_to_msgqueue'), 20, 3899291380, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "6712f4d748848557ca4efddf1789cf220fac9532f0310387eed1a52420d7f705",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536936924,
+     536943788,
+     2892155724,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-0-1",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [
+     [
+      0,
+      0,
+      1
+     ],
+     [
+      0,
+      1,
+      1
+     ]
+    ],
+    "scratch_seed": 501,
+    "xpsr": 0
+   },
+   "new_instructions": 29
+  },
+  {
+   "call_arities": [
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    92072,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b\"%s(): send data length more than %d,can't load it,exit ...\\n\"), ('RO', b'send_response_data_to_msgqueue'), 20, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "6948c0d2ed0d40cfdb9f74c1c053dda7e8b41f5a9e2db2a8f7ac420524caf4a0",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536879884,
+      "01000000"
+     ],
+     [
+      536900948,
+      "01000000"
+     ],
+     [
+      536885548,
+      "01000000"
+     ]
+    ],
+    "args": [
+     536941656,
+     536944228,
+     2,
+     2147483648
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "combo-1-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 604,
+    "xpsr": 0
+   },
+   "new_instructions": 29
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 29,
+  "ratio": 0.5918,
+  "total": 49,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 116,
+ "globals": [
+  "0x2000230c",
+  "0x20007554",
+  "0x2000392c"
+ ],
+ "module": "ipc",
+ "nptr": 2,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "ret_kind": "i32",
+ "search": {
+  "candidates": 178,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 7
+ },
+ "size": 116,
+ "symbol": "send_response_data_to_msgqueue",
+ "va": "0x00047b1c"
+}

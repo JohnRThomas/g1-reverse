@@ -1,0 +1,3373 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 4, 3694469211, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "6da39d0294138a6ebf4d1b5c5799b4063b2c91bd14766a843ef30a7a9f637dbd",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943568,
+     536948040,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 2147483648, 2429414634, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "80b23dc5e429348698f386859570236263a72bafd896628970412cfd2750e080",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536947244,
+     536943120,
+     2147483648,
+     315044147
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-1",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 1,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 3677430904, 471345317, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "a8eabf336d4d4e984b70d4bbbe9eaec638916e1b1ce4e2e545d51c6de490af81",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943312,
+     536942680,
+     3677430904,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-2",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 2,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 8, 2205054065, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "13f2fb0935886c4c569abe20dddf3c2f96fdbc23dd31ac4111e32ac9f38240e2",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945628,
+     536940936,
+     8,
+     3619521758
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-3",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 3,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 3842370354, 2655161023, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "5a510bff27f78fcef16476c5593149f4e775e19d9918c0faae9ebcf6a33b73e7",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945864,
+     536944284,
+     3842370354,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-4",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 4,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 8, 151242190, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "4b4e2df9a58ccf3ac179bb52fcabc4a375f73dc52f3ab09afd1f6195c4acbc6c",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939588,
+     536951592,
+     8,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-5",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 5,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 5, 1447905683, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "291abadb239cfc06a057591ef4cdeb93cf8ddba555eec527c2dd612900906f86",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536950900,
+     536936920,
+     5,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-6",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 6,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 1, 1060514798, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "6d4e0651b4161e6989da3a9f327844218e2eed64c84db7cb9edd39eaa7d27707",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941592,
+     536944956,
+     1,
+     2363272863
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-7",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 7,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 558645175, 2352949406, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "0c3bbf0323eadbd1c459a9fbcf64a08bd133538b514ab146c352e78a7762dfae",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939044,
+     536940560,
+     558645175,
+     4
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-8",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 8,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 499087790, 3178863954, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "330a982c27db25396e3cb9d87f9e24613acdf88b396f41eb4893e848fd869e78",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944692,
+     536947080,
+     499087790,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-9",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 9,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 8, 3586673693, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "c446f124da2a451d55f440fb752ad145637b669fab8925b3dc05408c4b761f92",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939204,
+     536945020,
+     8,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-10",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 10,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 256, 801746852, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "d344ade6f43af11437fea71e8d5e91ca61d7c2f992e7f6a8fb5b2c8f9ba52f21",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536937040,
+     536948284,
+     256,
+     1426281073
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-11",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 11,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 5, 1542880163, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "3a8b9e1cf3f1f8750400021a70b7a2538618c109bf248fe2d139657da30c07a2",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944520,
+     536936976,
+     5,
+     1103693227
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-12",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 12,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 6, 287561451, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "384bd9559806a286d3a06b96ec7faf75d01e76c2cfec8111e76ff8bdf9646f06",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944304,
+     536942044,
+     6,
+     617681966
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-13",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 13,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 3, 1403193323, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "8af67c41c3769f8d6f18599021678db103763a04bdd5a8312c59a2e04363a019",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943892,
+     536949848,
+     3,
+     470668832
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-14",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 14,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 5, 2417077168, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "299eedc8eac7e2f7efb0c83ec46fba878528735de91aa345a5639b60385e44ba",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952404,
+     536941132,
+     5,
+     4
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-15",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 15,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 3454407978, 886755549, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "1c4270f3da4dfcfb51a29bb88a0c072b8edde4d6cabdf910afe7ce6ad34c1a18",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943260,
+     536942972,
+     3454407978,
+     16
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-16",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 16,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 1168623309, 3896400791, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "0684c24ac17a60afca1a454a24c4addc64e6c49557173c51a93005f32dde8f38",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944016,
+     536942692,
+     1168623309,
+     4252165479
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-17",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 17,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 697236451, 2620901234, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "5744a1f367c8b70c1eb95d2db2382f80994c98282aa8cddfaa5a81cfdaf63b95",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944948,
+     536937440,
+     697236451,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-18",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 18,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 4178753371, 4075769455, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "16be45eca2a78180f35aef45bd5ab9c1a36e74951e637318ccdd695d94984d34",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939284,
+     536944944,
+     4178753371,
+     255
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-19",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 19,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 2, 3043713821, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "ddd4ae95d99aae18d8cc3966c0680fc62a1704f569996038a45ff5f58d72745b",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952740,
+     536939460,
+     2,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-20",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 20,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 2870852768, 2217669457, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "ea0eeeec1c1afef08d39a8a024910394b170930cb49e16b8902c068d9a9576e2",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941420,
+     536936640,
+     2870852768,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-21",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 21,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 4294967295, 1480053828, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "1c7047ed612bed8dd230d774ac9924b72ae1a56d4c157e3078edbdead2482d88",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536937396,
+     536946088,
+     4294967295,
+     2451975022
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-22",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 22,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 2034212132, 2142178815, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "8ada12a741b6328a017af9bcb3c53f4106141f3e0b08f7acc99cfb5c489e5fbe",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952228,
+     536939712,
+     2034212132,
+     1515885587
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-23",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 23,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 2967241396, 1304546403, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "30c10956f184d53b0c57a8d27b13ed9a62500b258555c779e9ac8b9cd1b34b8b",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536949908,
+     536944852,
+     2967241396,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-24",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 24,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 2149248134, 3712121755, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "341a92ad2a7e92763efb3ab72b271876a20eb944f25d1c879ef8f43d21baed7e",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536938252,
+     536941512,
+     2149248134,
+     604019693
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-25",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 25,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 3037640278, 4058280526, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "6547b51d32f37b58cd949880d8fb33ed5692c0fdde5a4dcfcefe2f2f260a100f",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536942224,
+     536937032,
+     3037640278,
+     2678623347
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-26",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 26,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 3639365232, 1775869161, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "0823f8c2f6f233a2a56116d0f123e859756c936e73d71e5a28f4571cfc5db5bf",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945192,
+     536949524,
+     3639365232,
+     4125446660
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-27",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 27,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 1, 1542213390, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "24ee847e73c5182736b85b6869c28066f0b6db281be853658f1c82a059aafe9e",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946084,
+     536949992,
+     1,
+     2592385448
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-28",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 28,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 3886541357, 2490855531, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "99d289f83461bc867cab6fb819f0993bed71507bbf951b6a06086f9da62acf77",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536947488,
+     536937084,
+     3886541357,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-29",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 29,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 1, 2417460406, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "f37b86eacaf23c792ced98c6a7d022f26c07ca02adc22d90062bc5987f50e9cd",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952796,
+     536941720,
+     1,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-30",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 30,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 7, 1988174091, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "0ba0bae357d4944d359a4d6fdd57735becf51e99255c4c2bae511f41a2fd955a",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952300,
+     536948548,
+     7,
+     53351545
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-31",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 31,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 3442053927, 615009301, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "6a246dc7fb4889178d3bddc6637d4c911d10a89001848a0696ff01d6fdc7b81f",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946568,
+     536940812,
+     3442053927,
+     1170652979
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-32",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 32,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 7, 1452493058, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "2842e52f8aa4bdf0a9fc6d5879683a73a543694153d5468f9104e919ed4b534b",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946060,
+     536942020,
+     7,
+     5
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-33",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 33,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 922796015, 2360084761, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "d85e441152b7db327db665e8820e06878e8554200d02504ce9a43908193fa382",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536950120,
+     536940724,
+     922796015,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-34",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 34,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 4001652011, 4019880274, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "6331cfe766cb13f1c40f3629731c73724b4271836aaabb13065d925cbd533da1",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952432,
+     536943604,
+     4001652011,
+     1
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-35",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 35,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 2147483647, 823752600, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "fe063525ac163ebef4ec2f041208d5a66f750df10c259c1ba2cadf81e9631596",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944224,
+     536949832,
+     2147483647,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-36",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 36,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 2725586938, 2373057660, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "e06949cc82f49c5ad70efaa711ba781e8278fad1b1e845b45ef16314e76e3d7f",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536951728,
+     536951136,
+     2725586938,
+     1299241558
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-37",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 37,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 1, 1627783973, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "0610e7ee5b6142fab3922a8bd3b7d1546d6c822cd0fbee8cb1a9b0af672da988",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939760,
+     536941672,
+     1,
+     2
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-38",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 38,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 3774328631, 2944518647, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "f9fb2ff4ed55183eb28d052c7ad8b9d44d0f7ee11f66f7346dbad34f5b105b7f",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941424,
+     536942500,
+     3774328631,
+     1997155928
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-39",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 39,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 1786326658, 2382425351, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "ebc8f535bed1fdf7212c3a068cf41996112d5ebde0935dbd9a8e61f685c23c1b",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943600,
+     536946992,
+     1786326658,
+     1835695343
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-40",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 40,
+    "xpsr": 0
+   },
+   "new_instructions": 17
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    515492,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 4, 0, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "ec0218d8999cef18c6719c8f5a4483a626ca8bd3f54b722dd733b5157a0841f3",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [
+     [
+      536900948,
+      "00000000"
+     ]
+    ],
+    "args": [
+     536943568,
+     536948040,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-0-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 18
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    214032,
+    92072,
+    214076,
+    92072,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 0, 1935641720, 4140973137, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)",
+    "('C', 6, 0, 'S', 'F', 'T', None)",
+    "('C', 7, 'S', 'F', 'T', None)",
+    "('C', 8, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e9d6aa4ceb838969c413698ac4937894b942d85df6aa6f4d4721d94079448853",
+    "kind": "return",
+    "ncalls": 9,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536951308,
+     536947088,
+     1935641720,
+     554330043
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      12,
+      0,
+      0
+     ],
+     [
+      13,
+      0,
+      0
+     ],
+     [
+      14,
+      0,
+      0
+     ],
+     [
+      15,
+      0,
+      0
+     ],
+     [
+      16,
+      0,
+      0
+     ],
+     [
+      17,
+      0,
+      0
+     ],
+     [
+      18,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ],
+     [
+      12,
+      1,
+      0
+     ],
+     [
+      13,
+      1,
+      0
+     ],
+     [
+      14,
+      1,
+      0
+     ],
+     [
+      15,
+      1,
+      0
+     ],
+     [
+      16,
+      1,
+      0
+     ],
+     [
+      17,
+      1,
+      0
+     ],
+     [
+      18,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 400,
+    "xpsr": 0
+   },
+   "new_instructions": 29
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0,
+    2,
+    0,
+    0,
+    1,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    105584,
+    214032,
+    213620,
+    92072,
+    181004,
+    92072,
+    92072,
+    214076,
+    92072,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 2, 5, 1593104201, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)",
+    "('C', 6, 0, 15, 'S', 'F', 'T', None)",
+    "('C', 7, 'S', 'F', 'T', None)",
+    "('W', 221, 1, 2)",
+    "('C', 8, 'S', 'F', 'T', None)",
+    "('C', 9, 0, 'S', 'F', 'T', None)",
+    "('C', 10, 'S', 'F', 'T', None)",
+    "('C', 11, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "264d5a960eb53ce7ef107ff1f9865064b91f45e436d873877cb4e8a2e8ecd27e",
+    "kind": "return",
+    "ncalls": 12,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939648,
+     536938124,
+     5,
+     888612868
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-2",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [
+     [
+      0,
+      0,
+      2
+     ],
+     [
+      1,
+      0,
+      2
+     ],
+     [
+      2,
+      0,
+      2
+     ],
+     [
+      3,
+      0,
+      2
+     ],
+     [
+      4,
+      0,
+      2
+     ],
+     [
+      5,
+      0,
+      2
+     ],
+     [
+      6,
+      0,
+      2
+     ],
+     [
+      7,
+      0,
+      2
+     ],
+     [
+      8,
+      0,
+      2
+     ],
+     [
+      9,
+      0,
+      2
+     ],
+     [
+      10,
+      0,
+      2
+     ],
+     [
+      11,
+      0,
+      2
+     ],
+     [
+      12,
+      0,
+      2
+     ],
+     [
+      13,
+      0,
+      2
+     ],
+     [
+      14,
+      0,
+      2
+     ],
+     [
+      15,
+      0,
+      2
+     ],
+     [
+      16,
+      0,
+      2
+     ],
+     [
+      17,
+      0,
+      2
+     ],
+     [
+      18,
+      0,
+      2
+     ],
+     [
+      0,
+      1,
+      2
+     ],
+     [
+      1,
+      1,
+      2
+     ],
+     [
+      2,
+      1,
+      2
+     ],
+     [
+      3,
+      1,
+      2
+     ],
+     [
+      4,
+      1,
+      2
+     ],
+     [
+      5,
+      1,
+      2
+     ],
+     [
+      6,
+      1,
+      2
+     ],
+     [
+      7,
+      1,
+      2
+     ],
+     [
+      8,
+      1,
+      2
+     ],
+     [
+      9,
+      1,
+      2
+     ],
+     [
+      10,
+      1,
+      2
+     ],
+     [
+      11,
+      1,
+      2
+     ],
+     [
+      12,
+      1,
+      2
+     ],
+     [
+      13,
+      1,
+      2
+     ],
+     [
+      14,
+      1,
+      2
+     ],
+     [
+      15,
+      1,
+      2
+     ],
+     [
+      16,
+      1,
+      2
+     ],
+     [
+      17,
+      1,
+      2
+     ],
+     [
+      18,
+      1,
+      2
+     ]
+    ],
+    "scratch_seed": 402,
+    "xpsr": 0
+   },
+   "new_instructions": 34
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 42,
+  "ratio": 0.7368,
+  "total": 57,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 168,
+ "globals": [
+  "0x20007554",
+  "0x20018d9e"
+ ],
+ "module": "sensors",
+ "nptr": 2,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "ret_kind": "void",
+ "search": {
+  "candidates": 175,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 44
+ },
+ "size": 168,
+ "symbol": "update_touch_key_flag",
+ "va": "0x0002c324"
+}

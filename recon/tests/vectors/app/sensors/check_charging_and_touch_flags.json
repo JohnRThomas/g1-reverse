@@ -1,0 +1,307 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    92072,
+    92072,
+    105260
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "e298e62082a8e3a707b7bb18741d0f81979dd1b4857b2b865354dfd9415b6c5f",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943568,
+     536948040,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 11
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    92072,
+    92072,
+    105260,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "f59cb4b4d59e11acaf33bbaab93e7f1d174c4374f8780c2ef837cf3ab83e6e06",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [
+     [
+      536972689,
+      "03000000"
+     ]
+    ],
+    "args": [
+     536945628,
+     536940936,
+     8,
+     3619521758
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-0-3",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 3,
+    "xpsr": 0
+   },
+   "new_instructions": 14
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    92072,
+    92072,
+    105260
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e298e62082a8e3a707b7bb18741d0f81979dd1b4857b2b865354dfd9415b6c5f",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536951308,
+     536947088,
+     1935641720,
+     554330043
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 400,
+    "xpsr": 0
+   },
+   "new_instructions": 16
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    92072,
+    92072,
+    105260,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "f59cb4b4d59e11acaf33bbaab93e7f1d174c4374f8780c2ef837cf3ab83e6e06",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946896,
+     536951120,
+     2141959162,
+     257798706
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-3-1",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [
+     [
+      3,
+      0,
+      1
+     ],
+     [
+      3,
+      1,
+      1
+     ]
+    ],
+    "scratch_seed": 507,
+    "xpsr": 0
+   },
+   "new_instructions": 16
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 22,
+  "ratio": 0.7097,
+  "total": 31,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 86,
+ "globals": [
+  "0x20018d91"
+ ],
+ "module": "sensors",
+ "nptr": 2,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "ret_kind": "i32",
+ "search": {
+  "candidates": 151,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 4
+ },
+ "size": 86,
+ "symbol": "check_charging_and_touch_flags",
+ "va": "0x00026c28"
+}
