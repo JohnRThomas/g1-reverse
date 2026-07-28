@@ -30,16 +30,16 @@ int active_mode_shutdown(uint8_t *device)
     device[0xfe6] = 3U;
     if (*log_level > 1) {
         if (*log_backend != 0)
-            debug_print(0x000a24ebUL, 0x000a2505UL);
+            debug_print(0x000a24ebUL, ((unsigned long)"global_system_resume") /*=0xa2505*/);
         else
-            log_message(0x000a24ebUL, 0x000a2505UL);
+            log_message(0x000a24ebUL, ((unsigned long)"global_system_resume") /*=0xa2505*/);
     }
     ((void (*)(void *))(*(uint32_t *)(device + 0xb74)))(device + 0xb6c);
     if (*log_level > 1) {
         if (*log_backend != 0)
-            debug_print(0x000a24f9UL, 0x000a2505UL);
+            debug_print(0x000a24f9UL, ((unsigned long)"global_system_resume") /*=0xa2505*/);
         else
-            log_message(0x000a24f9UL, 0x000a2505UL);
+            log_message(0x000a24f9UL, ((unsigned long)"global_system_resume") /*=0xa2505*/);
     }
     device[0xfe6] = 0U;
     return 0;

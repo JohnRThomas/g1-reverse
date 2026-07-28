@@ -1743,3 +1743,93 @@ refactor test suite   240 / 240
   against stage 07**: after the repair the base itself reads **1,202**.
 * `boot_cost_per_byte.md`'s "**four** proven-live sites" and its "117 distinct
   literals" upper bound — **both undercounts**; see §49.0 and §49.2.
+
+---
+
+## R7 GATE RECORD — ITERATION 50, THE `%s`-ARGUMENT REPAIR, run 2026-07-28
+
+**This record supersedes the one above it.** Working:
+`recon/emulator/reports/our_boot_bringup.md` **§50**.
+
+**`W = 100.513 ms` and `R = 1.160 ms` are UNCHANGED.** Nothing was retuned.
+
+### What changed underneath the ladder
+
+Three raw original-image addresses passed as printf **`%s` arguments** (not
+format pointers, which is why iteration 49's probe could not see them) were
+inlined as C string literals, plus one format/module **transposition** in
+`update_imu_mode` proved against the shipped literal pool at `0x26238`/`0x2623c`:
+
+```
+0x000a1a2b -> "ble_msg_dispatch_thread"   master_display_thread.c
+0x000a2505 -> "global_system_resume"      active_mode_shutdown.c
+0x0009f773 -> "update_imu_mode"           update_imu_mode.c   (module arg; the format was 0x9fb32 and is swapped back)
+27 occurrences, 9 files, 3 trees.  .rodata +60 B, .text +0.
+```
+
+Measured effect: **the per-byte boot cost went from 2.000 console characters
+and ~186 cpuapp instructions per byte of image to EXACTLY ZERO** over a
+204-byte inert-pad sweep at `RunFor 0.2` (uart 4,262 B and `cpuapp` insns
+`0x7E2597` on all six images, and `uart0`/`twim1`/`twim2`/`spim_a` `cmp`-identical).
+
+### The verdicts
+
+| pairing | navigation | dashboard |
+|---|---|---|
+| `rbase -> rbasepad204` (204 dead `.rodata` bytes) | **0 failures — all 12 trace files and 4 framebuffers BYTE-IDENTICAL** | **0 failures — byte-identical** |
+| `rbase -> rbasetpad216` (216 dead `.text` bytes, **2,180 code addresses moved**) | **0 failures — byte-identical** | **0 failures — byte-identical** |
+| `rbase -> rs04` (**stage 04 = 05 = 06**) | **0 failures — 6/6 traces BYTE-IDENTICAL** | **0 failures — 6/6 BYTE-IDENTICAL** |
+| `rs04 -> rs07` (**stage 07**, all 132 symbols) | **2 failures** — `spim_a` `D = 49.960 ms`, `opt3001` `D = 50.442 ms`, coherent | **0 failures**, every stream ≤ 0.030 ms |
+| `rs04 -> rs07pad216` (stage 07 padded to **exactly** stage 04's 956,636 B) | **2 failures, IDENTICAL to the microsecond** | **0 failures** |
+| `rs07 -> rs07pad216` | **all 12 traces + 4 framebuffers BYTE-IDENTICAL** | idem |
+
+### Corrections to every row above this one
+
+* **Stage 04 = 05 = 06 is now a `cmp`, not a verdict.** §49's unexplained
+  navigation regression (`opt3001 |r| = 48.742 ms`) is **closed**: it was the
+  `%s`-argument NUL walk reading the 204-byte `.rodata` size difference.
+* **The inert-pad knife-edge is GONE.** Iteration 46's headline, §49.7's
+  "reproduces with its sign flipped", and `criterion_bound_redesign.md`'s
+  Defect B were **one defect, and it was ours**.
+* **§48.8 is OVERTURNED.** *"Stage 07's failure … is caused by the image getting
+  216 bytes shorter. Put the 216 bytes back … and the failure goes away."*
+  Restoring the 216 bytes now changes **nothing** (byte-identical capture) and
+  stage 07 still fails. §48's pad control was buying back boot-path time our own
+  stale-pointer NUL walk was consuming.
+* **Stage 07 is not observationally null.** Its first divergence is at
+  **t = 126.561 ms**, 3.6 s before the BLE trigger: `rbase`/`rs04` run the
+  `clear_timeout_message` copy loop and the `is_msg_expiration` expiry report,
+  `rs07` does not, and `rs07` executes **132,320 fewer** cpuapp instructions in
+  the first 0.2 s. Which of the 14 symbols causes it is **not identified**;
+  `msg_content_check_timeout_state` alone was probed and is **not** it.
+* **§44.5's `SweepDwell 4 -> 8` falsification test is RUN and PASSES.** The
+  quantum is unchanged (`rs07 − rbase` = +49.960 ms at both dwells) and the
+  lattice period is measured from the stimulus alone at **100.0975 ms per acked
+  DUT BLE response** (`2,402.340 ms / 24 extra acks`), corroborating
+  `W = 100.513 ms` to 0.41 %. **The shipped image shows the identical
+  +2,402.340 ms.**
+* **Stage 07's residue is a coherent HALF slot** (0.497 / 0.502 of `W`), which
+  the lattice does not explain and which the gate therefore fails. Recorded as
+  a measurement, not as a reason to move `W`.
+
+### Acceptance, re-measured in this pass
+
+```
+builds (exit 0, 0 errors, 0 undefined)
+   rbase 956,840 98f7fc230bf6 | rs04 956,636 f79709c1a507 | rs07 956,420 e92af2acb7c4
+   rbasepad204 957,044 a74f50b47924 | rs07pad216 956,636 946079245a97
+   rbasetpad216 957,048 6f16167c2759 | + rbasepad{4,8,16,24}
+4 framebuffers        cmp exit 0 -- 4/4 on rbase, rs04, rs07, rbasepad204, rs07pad216
+nm -u                 0 on all six app images; 0 on net
+duplicate globals     0 (rbase, rs07)
+pin gates             raw_literal_pins_inside_a_live_object 0, bound_pins_escaping_their_owner 0,
+                      unknown_inside_a_live_object 0 on all six
+                      (bound_pins_ok 627 base-family / 598 stage-07 family, as section 48.12)
+check_thread_create_stack_args --trials 120   10/10, exit 0
+tools/verify_data.py  995 / 995 files, 56,279 / 56,279 B, 100.00 %
+check_app_flash_literals  exit 0 on --build rbase AND on ALL TEN stage trees
+net zephyr.bin        225,581 B FROZEN, e09b9481a3154e16..., not rebuilt, not touched
+app flash (rbase)     956,840 B / 982,528 B = 97.39 %   RAM 253,765 B / 56.32 %
+driver.py status      0..9 all `current`, 0 inputs changed (99 stale, as always)
+refactor test suite   240 / 240
+```

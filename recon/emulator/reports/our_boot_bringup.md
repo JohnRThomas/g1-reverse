@@ -23602,3 +23602,704 @@ about the build, not a reading of the CMake file — `compile_commands.json` of
 `recon/app/src` (`FUN_0007f772.c`, `FUN_0007f79e.c`, the two ANCS bodies
 iteration 20 pinned) and **none** from `recon/verified`.  Neither carries any of
 the eight literals.
+
+## Iteration 50 — the navigation slot sensitivity ROOT-CAUSED, and §49's
+## headline is WRONG: the per-byte boot cost is **not** zero, it is exactly
+## **2 console characters and ~186 cpuapp instructions per byte of image**, and
+## it is produced by THREE live stale `%s` ARGUMENT pointers that §49's
+## format-pointer probe was structurally unable to see.  Written incrementally
+## as the work ran; every number comes from a command run in this pass.
+
+HEAD at the start of this pass: **`e9f1c938`** ("P4 iter-49: EIGHT live
+format-pointer defects (not four) -- per-byte boot cost now exactly ZERO"),
+working tree clean apart from the untracked `.xapk`.  **Correcting my own first
+draft of this line:** I wrote it as `6fd3427f` with §49's repair uncommitted,
+because that is what the work order's snapshot said; `git log` says the
+repository had advanced **three** commits past that snapshot and §49's repair,
+its gate script, its 257-entry ledger, its 25 controls and the two transform
+files the snapshot listed as dirty are all **committed**.  §49's five builds
+(`/private/tmp/g1-i51-{base,s04,s07,basepad204,s04pad204}`) and its ten seeded
+captures were still on disk and are re-used verbatim wherever this section says
+so; nothing inherited is quoted without re-deriving it.
+
+### 50.0 THE CORRECTION, stated first because everything follows from it
+
+§49.5 published:
+
+> *"the per-byte boot cost is now **exactly zero in the image**, not under a
+> hook … across five images spanning 624 bytes, `uart0` is `cmp`-identical at
+> 1,656 bytes, `twim2` boots at 77.840 ms to the tick"*
+
+That measurement is correct and it is **`RunFor "0.1"`**.  Re-run with one
+number changed — `RunFor "0.2"`, everything else identical (same `G1_SEED`,
+same frozen net image, same `g1-ours-paired.resc`, no hook, `sysbus.uart0
+CreateFileBackend`) — on §49's own five builds plus five new inert-`.rodata` pad
+builds of the base:
+
+```
+image          zephyr.bin   uart0 bytes @0.2 s   cpuapp insns @0.2 s
+base             956,780         4,263             8,266,190
+basepad4         956,784         4,271             8,266,934
+basepad8         956,788         4,279             8,267,678
+basepad16        956,796         4,295             8,269,166
+basepad24        956,804         4,311             8,270,828
+basepad204       956,984         4,236             8,264,178
+basepad208       956,988         4,244             8,265,690
+```
+
+The console output grows by **exactly 8, 16, 32 and 48 characters** for pads of
+**4, 8, 16 and 24 bytes** — i.e. **2.000 characters per byte of image, exactly,
+over four points** — and the app core executes **744 more instructions per 4
+bytes = 186 instructions per byte**.  At the ~64 MIPS this platform runs, 186
+instructions is **2.9 µs**, which is §48.6.1's *"~2.7 µs per byte"* and
+§48.11's *"~2.9 µs per byte"* **to the figure**.
+
+> **§48.13 item 1 — "WHY the boot path costs ~2.9 µs per byte of image is not
+> derived … this is now the single largest open question in the emulator
+> model" — is hereby ANSWERED, and the answer is not the emulator.  It is our
+> own firmware, and it is the same defect class §49 repaired, in the argument
+> position instead of the format position.**
+
+§49 is not withdrawn: it repaired eight real defects and it made the first
+100 ms flat.  What it could not see is that its instrument — a hook on the
+**format** pointer (`z_cbvprintf_impl` r2, `log_message`/`debug_print` r0) —
+never observes a `%s` **argument**, and the residual sites are all arguments.
+
+### 50.1 The instrument, and why its discriminator cannot produce a false
+### positive
+
+Every `%s` conversion in this build reaches `strlen` (`0x0000d36a`); the caller
+is `z_cbvprintf_impl+0x6ba` (`0x0000e08b`) on every hit that matters.  One
+Renode hook, printing `r0` and `LR`, over the **full 20 s acceptance capture**
+(`capture_display_sensor_oracle.sh`, `G1_SEED=305419896`, real stimulus, both
+phases, frozen `g1-i30e-net`) — `/private/tmp/g1-i52/sl20.sh`.
+
+The discriminator is **the 204-byte inert `.rodata` pad itself**, and it is
+mechanical rather than a judgement:
+
+* the pad object lands at `0x0009074c`, inside `rodata` (`0x000850f0 …
+  0x000f49e0`);
+* `nm` on the two ELFs: **778 `R` + 258 `r` + 126 `A` symbols move by exactly
+  +204, and ZERO text-class (`T`/`t`/`W`/`w`) symbols move at all**;
+* therefore **a correct pointer to our own `.rodata` at or above `0x9074c`
+  MUST read +204 in the padded image, and a stale absolute original-image
+  address MUST read the same value in both.**
+
+No string content, no address window and no "does this look like a shipped
+string" reasoning enters.  §49.2's trap — our own image occupies the original
+image's address window, so reading the shipped image at a pointer produces a
+plausible string and invites a false positive — is closed by construction.
+
+**The census, 20 s, both stimuli:**
+
+```
+navigation   base 484 strlen calls / 108 distinct   pad 487 / 108
+             in-window, at or above the pad:  71 correct (shifted +204)   3 STALE
+dashboard    base 696 / 109                    pad 696 / 109
+             in-window, at or above the pad:  70 correct                  2 STALE
+in-window BELOW the pad (undiscriminated by this pad):  0 distinct, both stimuli
+```
+
+| stale `%s` argument | nav calls | dash calls | shipped bytes at that address | source site |
+|---|---:|---:|---|---|
+| `0x000a1a2b` | 1 | 1 | `"ble_msg_dispatch_thread"` | `master_display_thread.c` |
+| `0x000a2505` | 2 | 0 | `"global_system_resume"` | `active_mode_shutdown.c` |
+| `0x0009f773` | 2 | 1 | `"%s(): imu_fusion: algo is existed\n\n"` | `update_imu_mode.c` |
+
+The first two are §49's own class — a **correct** shipped literal-pool value
+left as a raw address, which our relocated image resolves to unrelated bytes.
+The third is not.
+
+### 50.2 `update_imu_mode` — a real reconstruction defect, not a convention:
+### the format and module arguments are TRANSPOSED
+
+`update_imu_mode` is `FUN_00026100`.  Disassembling the **shipped** image
+(`tools/extract.py`, capstone Thumb) and resolving its literal pool by hand:
+
+```
+00026120  ldr r1, [pc, #0x114]     ->  Align(0x26120+4,4)+0x114 = 0x26238
+00026124  ldr r0, [pc, #0x114]     ->  Align(0x26124+4,4)+0x114 = 0x2623c
+
+0x026238: 0x0009fb32   "update_imu_mode"
+0x02623c: 0x0009f773   "%s(): imu_fusion: algo is existed\n\n"
+```
+
+so the shipped call is `log_message(r0 = 0x9f773, r1 = 0x9fb32)` — **format
+`0x9f773`, module `0x9fb32`**.  The same two words are re-used at the other
+three call sites through `sb`/`sl` (`ldr.w sb,[pc,#0xd8]` → `0x26238`,
+i.e. `r1 = 0x9fb32` at every site).
+
+Our reconstruction has them the other way round, consistently, in
+`recon/named`, `recon/symbolized/app`, `recon/readable_sources/app/g1` **and in
+the parity tree `recon/app/src/FUN_00026100.c`**:
+
+```c
+#define IMU_LOG(format, arg0, arg1) ... log_message((format), 0x0009f773u, (arg0), (arg1))
+...        IMU_LOG(0x0009fb32u, 0u, 0u);
+```
+
+The observable consequence is on the console of every capture this project has
+taken: the line reads
+
+```
+(): imu sensor update to mode 1              <- ours, module name EMPTY
+```
+
+because `0x9f773` in our relocated image is not a string at all.
+
+### 50.3 THE REPAIR — three values, 27 occurrences, 9 files, and the same
+### convention §49 used
+
+`/private/tmp/g1-i52/repair_pct_args.py` (dry run first, `--apply` writes).
+Every replacement is an exact full-token string:
+
+```c
+/* master_display_thread.c */  0x000a1a2bu  -> ((unsigned long)"ble_msg_dispatch_thread") /*=0xa1a2b*/
+/* active_mode_shutdown.c  */  0x000a2505UL -> ((unsigned long)"global_system_resume")    /*=0xa2505*/
+/* update_imu_mode.c       */  0x0009f773u  -> ((unsigned long)"update_imu_mode")         /*=0x9fb32*/
+/* update_imu_mode.c       */  IMU_LOG(0x0009fb32u, 0u, 0u)
+                            -> IMU_LOG(((unsigned long)"%s(): imu_fusion: algo is existed\n\n") /*=0x9f773*/, 0u, 0u)
+```
+
+```
+27 occurrences in 9 tracked files (3 trees x 3 files)
+recon/named, recon/symbolized/app, recon/readable_sources/app/g1
+```
+
+**Which tree the image actually comes from, measured rather than assumed.**
+§49.3 recorded that `recon/application/src/*.c` are per-file symlinks into
+`recon/named`.  That is true, but it is **not** where these four functions come
+from: `compile_commands.json` of `/private/tmp/g1-i51-base` (2,982 TUs) resolves
+`master_display_thread.c`, `active_mode_shutdown.c`, `update_imu_mode.c` and
+`imu_fusion_init.c` to **`recon/symbolized/app/`**.  The build's composition is
+1,615 TUs from `recon/symbolized`, 995 from `recon/data`, 27 from
+`recon/application`, **2** from `recon/app/src`, 343 other.
+
+**`recon/app/src` was NOT edited**, per §49.3's boundary — but the transposition
+in `recon/app/src/FUN_00026100.c` is a genuine defect there too and is recorded
+as an open item (§50.x), not as a convention.
+
+### 50.4 THE MEASUREMENT THAT SETTLES IT — the per-byte cost, before and after,
+### over the same 204-byte span, with no hook
+
+Same probe both times: one seeded `RunFor "0.2"` per image, `sysbus.uart0
+CreateFileBackend`, `twim1`/`twim2`/`spim_a` traced, `sysbus.cpuapp
+ExecutedInstructions` read at the end.  `/private/tmp/g1-i52/probe.sh`.
+
+**BEFORE (§49's repaired base plus five inert `.rodata` pads):**
+
+| pad bytes | `zephyr.bin` | uart0 bytes | Δ uart | cpuapp insns | Δ insns |
+|---:|---:|---:|---:|---:|---:|
+| 0 | 956,780 | 4,263 | — | 8,266,190 | — |
+| 4 | 956,784 | 4,271 | **+8** | 8,266,934 | **+744** |
+| 8 | 956,788 | 4,279 | **+16** | 8,267,678 | **+1,488** |
+| 16 | 956,796 | 4,295 | **+32** | 8,269,166 | **+2,976** |
+| 24 | 956,804 | 4,311 | **+48** | 8,270,828 | **+4,638** |
+
+**exactly 2.000 console characters and ~186 cpuapp instructions per byte of
+image, over four points.**
+
+**AFTER the three-value repair, same probe, same pads:**
+
+| image | `zephyr.bin` | uart0 bytes | cpuapp insns |
+|---|---:|---:|---:|
+| `rbase` | 956,840 | **4,262** | **8,266,135** |
+| `rbasepad4` | 956,844 | **4,262** | **8,266,135** |
+| `rbasepad8` | 956,848 | **4,262** | **8,266,135** |
+| `rbasepad16` | 956,856 | **4,262** | **8,266,135** |
+| `rbasepad24` | 956,864 | **4,262** | **8,266,135** |
+| `rbasepad204` | 957,044 | **4,262** | **8,266,135** |
+
+and `uart0.txt`, `twim1.trace`, `twim2.trace` and `spim_a.trace` are **`cmp`-identical
+on all five padded images against `rbase`** — 4/4 files each.
+
+> **Over a 204-byte span the app core now executes the SAME instruction, the
+> same number of times, and prints the same 4,262 characters.  The per-byte
+> cost is zero at 0.2 s, where before the repair it was 186 instructions per
+> byte.**
+
+### 50.5 THE KNIFE-EDGE IS GONE — 204 dead `.rodata` bytes now change NOTHING
+### over the full 20 s acceptance capture
+
+Eight new seeded 20 s captures (`G1_SEED=305419896`, both stimuli, `$rtinfo_pc`
+re-read per ELF, frozen `g1-i30e-net`, `mkfifo` stdin writer).
+
+```
+rbase  vs  rbasepad204   (204 bytes of dead, unreferenced .rodata)
+    navigation   twim1.p1 twim1.p2 twim2.p1 twim2.p2 spim_a.p1 spim_a.p2   ALL 6 BYTE-IDENTICAL
+    dashboard    the same 6                                                ALL 6 BYTE-IDENTICAL
+    fb_p1_boot.ppm / fb_p2_render.ppm, both stimuli                        ALL 4 BYTE-IDENTICAL
+    slot-quantised gate:  D = 0.000, k = 0, r = 0.000, S = 0.000, max|d| = 0.000
+                          on all six streams on BOTH stimuli.  0 failures.
+    ORACLE_VC_DATA_EVENTS 524 = 524 ; BLE frames (RADIO_TX - ESB) 190 = 190
+```
+
+For contrast, the **same pad on the same source before the repair** (§49.6,
+re-derived here from the counters in §49's own captures on disk):
+
+```
+base  vs  basepad204   ORACLE_VC_DATA_EVENTS 524 -> 523    BLE frames 190 -> 189
+                       spim_a D = 99.210 ms = 0.987 slots   FAIL
+   full-stream alignment (difflib over spim_a+twim1+twim2, 4,928 events):
+       the two images agree to 0.158 ms for 3.71 s, then at
+       t = 3.711830 s the displacement steps 0.158 -> 100.260 ms
+       on the event  twim1 6B|W|080001   (the nPM1300 rail enable)
+   -- the same event and the same step size section 44.5 localised.
+```
+
+> **Iteration 46's headline, §49.7's "reproduces with its sign flipped", and
+> `criterion_bound_redesign.md`'s Defect B are all ONE DEFECT, and it was
+> OURS.  A semantics-free perturbation flipped the gate because it changed how
+> far two stale `%s` pointers walked through `.rodata` before hitting a NUL,
+> which changed how many characters the console printed, which moved the whole
+> app-core timeline, which moved which BLE connection-event response the GATT
+> sweep's write to handle 0x14 was acked in.**
+
+### 50.6 STAGE 04 IS NOW A `cmp`, NOT A VERDICT — and §49.11 item 2's
+### unexplained regression is CLOSED
+
+§49.11 item 2 recorded stage 04's navigation verdict regressing from 0 failures
+to `opt3001 |r| = 48.742 ms`, surviving exact size compensation, and marked it
+**"Not explained."**
+
+```
+rbase  vs  rs04   (stage 04 = 05 = 06, rebuilt from the repaired tree)
+    navigation   6/6 trace files BYTE-IDENTICAL
+    dashboard    6/6 trace files BYTE-IDENTICAL
+    all four acceptance framebuffers byte-identical to the shipped goldens
+    slot gate:   D = 0.000, k = 0, r = 0.000, S = 0.000, max|d| = 0.000
+                 on all six streams on BOTH stimuli.  0 failures.
+```
+
+Explained: the 204-byte `.rodata` difference between `base` (956,780) and `s04`
+(956,576) fed the same NUL-walk.  With the walk gone, the stage-04 transform is
+observationally a **no-op at `cmp` strength**, which is a strictly stronger
+result than any verdict the gate can return.
+
+### 50.7 STAGE 07 — **§48.8's central conclusion is OVERTURNED.**  Restoring the
+### 216 bytes no longer removes the failure, and stage 07's navigation
+### displacement is REAL and SIZE-INDEPENDENT
+
+§48.6.2/§48.8 concluded, from an inert `text` pad:
+
+> *"Stage 07's failure is not caused by internal linkage.  It is caused by the
+> image getting 216 bytes shorter.  Put the 216 bytes back as data no
+> instruction reads, keep every `static`, and the failure goes away."*
+
+That control is re-run here on the repaired tree.  `rs07` is 956,420 B;
+`rs07pad216` is `rs07` plus 216 bytes of dead `.rodata`, landing at **956,636 B
+= EXACTLY `rs04`'s size**:
+
+| pairing | navigation | dashboard |
+|---|---|---|
+| `rs04 -> rs07` | **2 failures** — `spim_a` `D = 49.960 ms = 0.497 slots`; `opt3001` `D = 50.442 = 0.502 slots` | **0 failures**, every stream ≤ 0.030 ms |
+| `rs04 -> rs07pad216` (exact size compensation) | **2 failures — `D = 49.960` and `50.442`, IDENTICAL to the microsecond, same `S`, same `max\|d\|`** | **0 failures** |
+| `rs07 -> rs07pad216` | **all 12 trace files and all 4 framebuffers BYTE-IDENTICAL** | idem |
+
+> **The 216-byte pad is now completely inert — it produces a byte-identical
+> capture on both stimuli — and stage 07 still fails.  §48's pad control was
+> not measuring the emulator's boot path; it was buying back the boot-path time
+> our own stale-pointer NUL walk was consuming.  With that consumption removed,
+> the pad buys nothing and stage 07's effect stands on its own.**
+
+Stage 07's residue is now a **coherent half-slot**: both slot-locked devices
+move together (`spim_a` +49.960, `opt3001` +50.442, agreeing to 0.48 ms) while
+`npm1300`, `st25dv` ×2 and `lsm6dso` do not move at all (−0.030 / 0.000).  Full
+stream alignment says where it starts:
+
+```
+rs04 vs rs07, navigation, difflib over spim_a+twim1+twim2:
+   displacement is EXACTLY 0.000 ms for the first 3.711890 s
+   then steps 0.000 -> 49.960 ms on   twim1 6B|W|080001   (the nPM1300 rail enable)
+```
+
+— the same trigger event as every other slot move in this project, at half the
+usual step.  `ORACLE_VC_DATA_EVENTS` 524 → **525**: the DUT opened one more
+connection-event RX window, while the BLE TX count is **190 on both**.
+
+**I did NOT retune `W`.**  `W = 100.513 ms` and `R = 1.160 ms` are untouched and
+stage 07 with all 132 symbols **FAILS** the published gate on navigation.  What
+this section adds to the record is that the failure is no longer explained away
+by image size, and that a **coherent 50 ms hop now exists in the data**, which
+is 0.497/0.502 of the published `W` — evidence that the lattice quantum may be
+`W/2` and that every hop previously measured at ~100.5 ms was two quanta.  That
+is a measurement for the criterion's owner, not a change I made.
+
+### 50.8 THE `.text` CONTROL §48 could not run cleanly — 216 dead bytes that
+### move **2,180 code addresses** change NOTHING
+
+`rbasetpad216` = the repaired base plus
+
+```c
+__attribute__((section(".text.g1_i52_text_pad"), used, retain, aligned(4)))
+const unsigned char g1_i52_text_pad[216] = { 0 };
+```
+
+entering through `app/CMakeLists.txt`'s documented `G1_AUDIT_EXTRA_SOURCES`
+hook.  The pad lands at **`0x0004bb90`, in the middle of `text`**, and `nm`
+says what it moves:
+
+```
+rbase -> rbasetpad216 :  T 1,337   t 828   W 15   (= 2,180 text-class symbols moved)
+                         R 1,859   r 302   A 141   D 33   d 11   b 4
+zephyr.bin 956,840 -> 957,048
+```
+
+```
+capture:  navigation  6/6 trace files BYTE-IDENTICAL to rbase
+          dashboard   6/6 trace files BYTE-IDENTICAL to rbase
+          navigation trigger (twim1 6B|W|080001) at 3,711.890 ms -- the SAME TICK
+```
+
+> **Moving 2,180 code addresses is observationally free.  Stage 07 moves a
+> comparable number and is not.  So stage 07's effect is neither image size
+> (§50.7) nor code-address displacement (this section) — it is what the
+> `static` keywords do to the generated code.**
+
+### 50.9 SweepDwell 4 → 8 — §44.5's falsification test, RUN at last, and it
+### PASSES.  The lattice quantum is measured at **100.0975 ms** from the
+### stimulus side alone, and the SHIPPED image behaves identically.
+
+`G1_SWEEP_DWELL` was added to `recon/emulator/scripts/capture_display_sensor_oracle.sh`
+as an env override with the **default unchanged at 4**, in the pattern §7.2 of
+`criterion_bound_redesign.md` used for `G1_BURST_GAP_NS`.  Proof the default is
+a no-op: a fresh shipped capture at the default reproduces §47's `shipA_nav`
+**and** the project's day-old reference `g1_ship_seed_q1` — **all six trace
+files and both framebuffers byte-identical** — and the generated `capture.resc`
+differs from §47's only in file paths.
+
+Navigation-startup trigger time (the `twim1 6B|W|080001` nPM1300 rail enable):
+
+| image | `SweepDwell 4` | `SweepDwell 8` | Δ |
+|---|---:|---:|---:|
+| **shipped `app_update.bin`** | 3,906.360 ms | 6,308.700 ms | **+2,402.340** |
+| `rbase` (ours, repaired) | 3,711.890 | 6,114.230 | **+2,402.340** |
+| `rs07` (stage 07) | 3,761.850 | 6,164.190 | **+2,402.340** |
+
+Three things fall out, and the first is the answer to a test that has been
+listed as "not run" for **nine** consecutive iterations:
+
+1. **The quantum does not change with the dwell.**  `rs07 − rbase` is
+   **+49.960 ms at dwell 4 and +49.960 ms at dwell 8**, to the microsecond.
+   §44.5 predicted exactly this — *"changing `SweepDwell` from 4 to 8 must NOT
+   change the slot width (it is one response, not one dwell)"* — and it is
+   **CONFIRMED**.
+2. **The lattice quantum is now measured from the stimulus alone, with no image
+   comparison in it at all.**  Doubling the dwell adds 4 acks per handle over
+   the 6 handles `0x0F…0x14`, i.e. **24 extra acked master writes**:
+   `2,402.340 / 24 = ` **100.0975 ms per acked DUT BLE response.**  That is an
+   independent corroboration of `W = 100.513 ms` to **0.41 %**, from a source
+   `criterion_bound_redesign.md` §1.4 would rank above both of the ones it used.
+3. **The shipped firmware answers the same lattice.**  `+2,402.340 ms` is
+   identical on the shipped image and on both of ours, and the shipped trigger
+   sits a constant **194.470 ms** later than ours at *both* dwell settings.  So
+   the sweep→ack→trigger mechanism is a property of the stimulus and the link
+   that the shipped firmware shares, and our build's offset from it is a fixed
+   number, not a metastable one.
+
+The sweep log itself (`logLevel -1 sysbus.vcentral`, 20 s) confirms the
+structure §44.5 measured: handles complete in the order `0xF, 0x10, 0x11, 0x12,
+0x13, 0x14, 0x15` and loop, **47 completions in 20 s**, and `0x14` — the NUS RX
+value handle — is the **6th**.  With `dwell = d` the first `0x14` completion is
+at ack `6d + 1` (25 at `d = 4`, 49 at `d = 8`), which reproduces the
+`24 × 100.0975 ms` exactly.
+
+> **The whole navigation stimulus is now a closed formula:
+> `t_trigger = t_connect + (6·SweepDwell + 1) × 100.0975 ms`,
+> and dashboard has no such trigger at all — which is why every slot phenomenon
+> in this project has been navigation-only.**
+
+### 50.10 WHAT STAGE 07 ACTUALLY DOES — localised to a console event at
+### **126.561 ms**, and it is NOT a slot artefact
+
+A Renode hook on `z_cbvprintf_impl` printing
+`cpu.GetMachine().ElapsedVirtualTime` gives every console line a **virtual**
+timestamp.  Aligning `rbase` and `rs07` over the full 20 s navigation capture:
+
+```
+printf events        rbase 511      rs07 500
+identical to the nanosecond for the first 72 events
+first divergence     event #72, t = 00:00:00.126561 s
+                     rbase fmt = 0xa545f   "%s(): ######clear_timeout_message copy data from %d to  i %d\n"
+                     rs07  fmt = 0xa4800   (the next line rbase reaches nine lines later)
+```
+
+and the 0.2 s console diff names the whole of it:
+
+```
+rbase / rs04 print, rs07 does NOT:
+    clear_timeout_message(): ###### ... copy data from 1..9        (9 lines)
+    is_msg_expiration(): [csh_debug_msg]the msg has expirtion, ... startShowTime is 4294967295 ...
+    error startShowTime, greate than now time !
+cpuapp instructions at 0.2 s:   rbase 8,266,135   rs04 8,266,135   rs07 8,133,815   (-132,320)
+`rs04`'s console at 0.2 s is `cmp`-IDENTICAL to `rbase`'s.
+```
+
+> **Stage 07 is not observationally null and it is not a phase artefact.  At
+> t = 126.561 ms — 3.6 seconds BEFORE the BLE trigger — it takes a different
+> branch on the message-timeout path and executes 132,320 fewer app-core
+> instructions in the first 0.2 s.  The 49.960 ms navigation displacement is
+> downstream of that, not the other way round.**
+
+That is a materially different finding from §48.8's *"Stage 07 does not damage
+the firmware"*, and it is stated against this pass's own convenience: the
+repair made stage 04 a `cmp` and it made stage 07 **worse-understood-as-real**,
+not better.
+
+**What I could NOT determine, and the one experiment that settles it.**  Which
+of the 14 symbols causes the 126 ms branch change is **not identified**.  One
+probe was run: `msg_content_check_timeout_state` alone was returned to external
+linkage in the stage-07 tree (`g1_notify_11.c`, both the definition and the
+forward declaration), rebuilt (956,436 B) and probed — the console is
+**unchanged from `rs07`** (uart 3,375 B, `cpuapp` `0x7C0CB7`), so it is **not**
+that symbol.  The tree was restored and the restoration proved by hash
+(`g1_notify_11.c` sha256 `aeda079c5d7e3432…` before and after).  The settling
+experiment is §48's own subset instrument, `/private/tmp/g1-i49/subset.py`, run
+as a 14-way bisection with **the 0.2 s console probe as the read-out instead of
+the 20 s capture** — one 2.5-minute build and one 40-second probe per point, so
+a 4-step bisection is under 15 minutes.  I did not run it.
+
+**The mechanism is inlining, not a linkage break.**  In the composed stage-07
+tree each of the 14 is called from inside its own composed TU (e.g.
+`msg_content_check_timeout_state` is called by `check_message_expired_or_timeout`
+in `g1_notify_11.c`), so `static` does not orphan it — it lets `-Os` inline it,
+which is why 12 of the 14 disappear from the ELF entirely while the build keeps
+**0 undefined references and 0 duplicate globals**.  A behaviour change under
+inlining is the signature of a reconstruction whose C is not fully faithful
+about what may be cached across a call.
+
+### 50.11 THE VERDICT ON THE THREE HYPOTHESES THE WORK ORDER OFFERED
+
+**(a) our firmware — CONFIRMED, and it is the whole of the inert-byte
+knife-edge.**  Three stale `%s` argument pointers made the app-core timeline a
+function of `.rodata` layout at 2 console characters and ~186 instructions per
+byte.  Repaired, and 204 dead `.rodata` bytes and 216 dead `.text` bytes both
+become byte-identical no-ops on both stimuli over the full 20 s capture.
+
+**(b) the stimulus / emulated link — the mechanism is REAL but it is NOT
+metastable, and the shipped image proves it.**  The navigation trigger is the
+virtual central's GATT handle sweep reaching NUS RX handle `0x14`, which happens
+at ack `6·SweepDwell + 1`, one acked DUT BLE response every **100.0975 ms**.
+That is a property of the stimulus — the shipped firmware answers it with the
+**identical** `+2,402.340 ms` under `SweepDwell 4 → 8` — but with our own
+per-byte cost removed nothing semantics-free reaches it any more.  The
+**shipped-image control the work order called decisive was run in the form that
+is actually available**: padding the shipped `.bin` is a null experiment (it
+relinks nothing), so the shipped image was perturbed on the *stimulus* axis
+instead, and it moved by exactly the same 2,402.340 ms as both of our images.
+
+**(c) genuinely metastable — REJECTED for the base, and `slot_edge_margin` is
+now measurable.**  §4b of `criterion_bound_redesign.md` said the margin is *"not
+computable from the oracle's observables"*.  It is computable now, because the
+observable exists: **the virtual time of the `twim1 6B|W|080001` nPM1300 rail
+enable in `p1`** is the navigation trigger, it is in every navigation capture
+already on disk, and the lattice period is measured at 100.0975 ms.  So
+
+```
+slot_edge_margin(image) = distance from  t_trigger(image) mod 100.0975 ms
+                          to the nearest boundary,
+```
+
+and the ensemble version — sweep an inert pad, count `k` flips — costs one
+build and one 40-second `RunFor 0.2` console probe per point instead of a 20 s
+capture, because after the repair the console is a **sufficient** statistic:
+identical console ⇒ identical capture, on ten images tested here.
+
+Measured margins at this seed:
+
+```
+rbase / rs04 / rbasepad204 / rbasetpad216 / rbasepad{4,8,16,24}   t_trigger = 3,711.890 ms   (all identical)
+rs07 / rs07pad216                                                  t_trigger = 3,761.850 ms   (+49.960)
+shipped                                                            t_trigger = 3,906.360 ms   (+194.470)
+```
+
+### 50.12 THE ACCEPTANCE BAR — re-measured in this pass
+
+| gate | required | **measured** | |
+|---|---|---|---|
+| navigation `p1_boot` / `p2_render` framebuffers | `cmp` vs shipped golden | exit 0 on `rbase`, `rs04`, `rs07`, `rbasepad204`, `rs07pad216` | ✔ |
+| dashboard `p1_boot` / `p2_render` framebuffers | idem | exit 0 on all five | ✔ |
+| **4/4 per image** | | **4/4 each** | ✔ |
+| `nm -u`, app core | 0 | **0** on all six built images | ✔ |
+| `nm -u`, net core | 0 | **0** | ✔ |
+| duplicate globals | 0 | **0** (`rbase`, `rs07`) | ✔ |
+| pin gates | 0 / 0 | `raw_literal_pins_inside_a_live_object` **0**, `bound_pins_escaping_their_owner` **0**, `unknown_inside_a_live_object` **0** on all six (`bound_pins_ok` 627 / 598, `abs_symbols_not_in_linker_scripts` 3, both pre-existing) | ✔ |
+| `check_thread_create_stack_args --trials 120` | 10/10 | **10 / 10**, exit 0 | ✔ |
+| `tools/verify_data.py` | 995/995 | **995 / 995 files, 56,279 / 56,279 B, 100.00 %** | ✔ |
+| refactor test suite | 240/240 | **240 / 240 OK** | ✔ |
+| `check_app_flash_literals.py` | exit 0 on all ten stage trees | **exit 0 on all ten**, and on `--build g1-i52-rbase` (225 distinct / 376 occurrences / 105 files, 0 unreviewed) | ✔ |
+| net `zephyr.bin` FROZEN | 225,581 B | **225,581 B**, sha256 `e09b9481a3154e16…`, **not rebuilt, not touched** | ✔ |
+| app flash | *re-measure* | **956,840 B / 982,528 B = 97.39 %** (`rbase`; was 956,780 / 97.38 %). RAM **253,765 B / 56.32 %**, unchanged | measured |
+| `driver.py status` | 0..9 current | **0..9 all `current`, 0 inputs changed**; 99 stale, as every prior pass | ✔ |
+
+`~/Projects/armemul` **not modified**: `models/BLE_VirtualCentral.cs` sha256
+`1f10e117632a1bb3…`, `NRF5340_SPIM.cs` **3** `TraceFile` occurrences,
+`NRF5340_TWIM.cs` **2** — both uncommitted hooks intact, `git status` unchanged
+from the pre-pass state.
+
+### 50.13 WHAT I DID NOT CLOSE, AND WHY
+
+1. **Which of stage 07's 14 symbols causes the 126.561 ms branch change is NOT
+   identified.**  One was excluded by experiment (`msg_content_check_timeout_state`);
+   the other 13 were not probed.  The settling experiment is named in §50.10 and
+   costs ~15 minutes.
+2. **Stage 07 with all 132 symbols still FAILS** the published gate on
+   navigation, 2 streams, `D = 49.960` and `50.442 ms`.  `W` and `R` were not
+   touched.
+3. **The half-slot is not explained.**  49.960 ms is 0.4991 of the *measured*
+   ack period 100.0975 ms and 0.497 of the published `W`.  Whether the lattice
+   has a `W/2` sub-structure (which would make every ~100.5 ms hop in this
+   project two quanta) is **not determined**; the experiment that would settle
+   it is halving the modelled connection interval in `BLE_VirtualCentral.cs`
+   (`Interval = {0x18,0x00}` → `{0x0C,0x00}`) and re-measuring the ack period —
+   §46.6.3's test, still unrun, and it needs an `armemul` change I did not make.
+4. **Stages 01, 02, 03, 05, 06, 08, 09 were NOT rebuilt or re-captured.**  Only
+   `base`, `04` and `07` were.  Their §47/§48 verdicts were measured under the
+   defect this pass removed and should be re-run.
+5. **`recon/app/src/FUN_00026100.c` and `recon/verified/src` still carry the
+   `update_imu_mode` format/module transposition.**  It is a genuine defect
+   there, proved against the shipped literal pool, and it is **not** the
+   raw-address convention §49.3 defended.  Not repaired, because the parity
+   trees are the harness's evidence and changing them needs a re-proof this pass
+   did not run.  Recorded, not deferred silently.
+6. **`update_imu_mode`'s other three raw format pointers** (`0x9f9d9`,
+   `0x9fa36`, and the module-arg sites in files this pass did not touch) are
+   still raw.  They are stale in our image but were **not** observed live by
+   either probe at this seed, so they stay quarantined.
+7. **186 `defect_dead_at_seed` ledger entries remain quarantined.**  Their
+   verdict survives — the post-repair census finds **0** stale pointers of
+   either kind over 20 s on **both** stimuli — but §49's stated *reason* for
+   that verdict was measured with an instrument that could only see format
+   pointers, and every one of the 186 entries has been annotated with that
+   correction.
+8. **One seed, two stimuli.**  `G1_SEED=305419896`.
+9. **`cfg_verify` was not run** and is cited nowhere.
+10. **The net core was not built and not touched.**  Size, sha256, `nm -u` and
+    duplicate globals checked; `check_net_raw_literals` and
+    `verify_net_stock_data_window` **NOT RUN**.
+11. **`battery_model_state_update` (`FUN_0000c358`)** — untouched.
+12. **Stage 99** left stale, as every prior pass has.
+13. **Nothing was committed.**  §50.14 says exactly what is dirty.
+
+### 50.14 FOOTPRINT
+
+```
+ M recon/emulator/reports/our_boot_bringup.md              this section 50
+ M recon/refactor/README.md                                the iteration-50 R7 gate record
+ M recon/emulator/scripts/capture_display_sensor_oracle.sh G1_SWEEP_DWELL env override,
+                                                           DEFAULT UNCHANGED at 4 and proved
+                                                           a no-op by a byte-identical shipped capture
+ M recon/emulator/scripts/app_flash_literal_ledger.json    4 entries -> repaired_in_iteration_50,
+                                                           186 defect_dead_at_seed re-annotated
+ M recon/named/{master_display_thread,active_mode_shutdown,update_imu_mode}.c
+ M recon/symbolized/app/{the same three}
+ M recon/readable_sources/app/g1/{the same three}          27 literal rewrites, 9 files
+ M recon/refactor/stage_0{0..9}/MANIFEST.json              ladder re-materialised
+?? Even+Realities_1.9.0.xapk                               pre-existing, untouched, not mine
+
+(nothing from iteration 49 is dirty: it is committed at HEAD e9f1c938.)
+```
+
+`recon/app/src`, `recon/app/src_sym`, `recon/verified/src`,
+`recon/verified/src_sym` are **untouched**.  No transformer, no
+`driver.py`/`stagelib.py`/`link_evidence.py`, no linker script, no `tools/`, no
+oracle JSON, no golden framebuffer, no `recon/data`, no net-core file was
+written.  The stage-07 tree was mutated once (`g1_notify_11.c`) and restored;
+the restoration is proved by sha256 `aeda079c5d7e3432…` before and after.
+
+Outside the repository (all new, under `/private/tmp/g1-i52/`):
+`b.sh`, `probe.sh` (the 0.2 s console probe), `sprobe.sh`, `sl20.sh` (the 20 s
+`strlen` liveness probe), `fm20.sh`, `tslog.sh` (virtual-time-stamped printf),
+`vclog.sh` (the vcentral sweep log), `cap.sh`, `shipcap.sh`, `mko.sh`,
+`gate.sh`, `fb.sh`, `repair_pct_args.py`, `pad{4,8,16,24,204,208,216}.c`,
+`tpad216.c`; plus `/private/tmp/g1-i52-*` (14 builds),
+`/private/tmp/g1_i52_*` (20 captures) and `<scratchpad>/i52/T790000/**`
+(10 oracles).
+
+### 50.15 REPRODUCING
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+V="env PYTHONSAFEPATH=1 .venv/bin/python"
+
+# 1. THE MEASUREMENT THAT OVERTURNS SECTION 49.5 -- one number changed, 0.1 -> 0.2 s
+for n in 4 8 16 24 204; do bash /private/tmp/g1-i52/b.sh basepad$n \
+    ./recon/application/build_cohesive.sh /private/tmp/g1-i52/pad$n.c; done
+for t in base basepad4 basepad8 basepad16 basepad24 basepad204; do
+    bash /private/tmp/g1-i52/probe.sh $t 0.2; done      # 2.000 chars/byte, 186 insns/byte
+
+# 2. the liveness instrument whose discriminator is the pad itself
+bash /private/tmp/g1-i52/sl20.sh base       /private/tmp/g1-i51-base       nav
+bash /private/tmp/g1-i52/sl20.sh basepad204 /private/tmp/g1-i51-basepad204 nav
+#   a value in [0xC200,0xFAB8D) at or above the pad object (0x9074c) that reads the
+#   SAME in both images did not shift with .rodata and is therefore STALE.
+
+# 3. the repair
+$V /private/tmp/g1-i52/repair_pct_args.py            # dry run
+$V /private/tmp/g1-i52/repair_pct_args.py --apply
+for n in 0 1 2 3 4 5 6 7 8 9; do $V recon/refactor/driver.py materialize $n; done
+
+# 4. rebuild + the per-byte cost re-measured: FLAT
+bash /private/tmp/g1-i52/b.sh rbase ./recon/application/build_cohesive.sh
+for n in 4 8 16 24 204; do bash /private/tmp/g1-i52/b.sh rbasepad$n \
+    ./recon/application/build_cohesive.sh /private/tmp/g1-i52/pad$n.c; done
+for t in rbase rbasepad4 rbasepad8 rbasepad16 rbasepad24 rbasepad204; do
+    bash /private/tmp/g1-i52/probe.sh $t 0.2; done      # uart 4,262 and insns 0x7E2597 on all six
+
+# 5. captures, oracles, gate
+for t in rbase rbasepad204 rs04 rs07 rs07pad216 rbasetpad216; do
+    bash /private/tmp/g1-i52/cap.sh $t both; done
+bash /private/tmp/g1-i52/mko.sh 790000 rbase rbasepad204 rs04 rs07 rs07pad216 rbasetpad216
+bash /private/tmp/g1-i52/fb.sh   rbase rbasepad204 rs04 rs07 rs07pad216
+bash /private/tmp/g1-i52/gate.sh rbasepad204 rbase      # 0 failures, byte-identical
+bash /private/tmp/g1-i52/gate.sh rs04        rbase      # 0 failures, byte-identical
+bash /private/tmp/g1-i52/gate.sh rs07        rs04       # 2 nav failures, 0 dash
+bash /private/tmp/g1-i52/gate.sh rs07pad216  rs04       # IDENTICAL to the row above
+
+# 6. section 44.5's falsification test, and the shipped control
+bash /private/tmp/g1-i52/shipcap.sh ship_d4 nav                     # must reproduce shipA_nav byte-for-byte
+G1_SWEEP_DWELL=8 bash /private/tmp/g1-i52/shipcap.sh ship_d8 nav
+G1_SWEEP_DWELL=8 TAGSFX=_d8 bash /private/tmp/g1-i52/cap.sh rbase nav
+grep 'data=080001' /private/tmp/g1_i52_*/twim1.p1.trace   # the trigger time
+```
+
+### 50.16 THE ONE-PARAGRAPH ANSWER
+
+The navigation slot sensitivity is **(a) our firmware**, and §49's headline is
+wrong: the per-byte boot cost is not zero, it is **2.000 console characters and
+~186 cpuapp instructions per byte of image**, measured over four inert-pad
+points at `RunFor "0.2"` — §49 measured at `RunFor "0.1"`, and the residual
+sites fire between 100 and 200 ms.  They were invisible to §49 because its
+instrument hooked the printf **format** pointer, and these are printf **`%s`
+arguments**; a `strlen` hook whose discriminator is the 204-byte pad itself — a
+correct pointer to our `.rodata` at or above the pad must read +204, a stale
+original-image address must not — finds exactly **three** live over the full 20 s
+two-stimulus capture, all three already sitting in §49's own ledger as
+*"dead at this seed"*.  Two are §49's class in the argument position
+(`0xa1a2b` = `"ble_msg_dispatch_thread"`, `0xa2505` = `"global_system_resume"`);
+the third is a **real reconstruction defect** — `update_imu_mode` has its format
+and module arguments transposed relative to the shipped literal pool at
+`0x26238`/`0x2623c`, which is why every capture this project has taken prints
+`(): imu sensor update to mode 1` with an empty module name.  Repaired (27
+occurrences, 9 files, `.rodata +60 B`, `.text +0`), the per-byte cost is
+**exactly zero**, and **204 dead `.rodata` bytes and 216 dead `.text` bytes that
+move 2,180 code addresses both produce BYTE-IDENTICAL 20 s captures on both
+stimuli** — iteration 46's headline, §49.7's sign-flipped reproduction and
+`criterion_bound_redesign.md`'s Defect B are one defect and it was ours.
+**Stage 04 = 05 = 06 is now a `cmp`, not a verdict** (6/6 traces byte-identical
+to the base on both stimuli), closing §49.11 item 2.  **§48.8 is overturned**:
+stage 07 padded to exactly stage 04's size fails identically to the microsecond,
+the pad is now inert on stage 07 too (byte-identical capture), and stage 07's
+first divergence is a **console event at t = 126.561 ms** — 3.6 s before the BLE
+trigger — where the base runs the `clear_timeout_message` loop and the expiry
+report and stage 07 does not, executing 132,320 fewer instructions in 0.2 s.
+Finally, **§44.5's `SweepDwell 4 → 8` test, listed as not-run for nine
+iterations, was run and PASSES**: the quantum is unchanged (`rs07 − rbase` =
++49.960 ms at both dwells) and the lattice period falls out of the stimulus
+alone as `2,402.340 ms / 24 extra acks =` **100.0975 ms per acked DUT BLE
+response**, corroborating `W = 100.513 ms` to 0.41 % from a source with no image
+comparison in it — and the **shipped firmware shows the identical
++2,402.340 ms**, so the sweep→ack→trigger lattice is the stimulus's and is
+shared.  `W` and `R` were not touched; stage 07 with all 132 symbols still
+FAILS, now with a coherent **half**-slot displacement that neither size nor
+code-address movement explains.

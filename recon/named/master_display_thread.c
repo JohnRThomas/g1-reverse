@@ -25,9 +25,9 @@ void master_display_thread(uint8_t *context)
 {
     if (*(volatile int32_t *)0x2000230cu > 1) {
         if (*(volatile uint32_t *)0x20007554u == 0)
-            log_message(0x00099969u, 0x000a1a2bu);
+            log_message(0x00099969u, ((unsigned long)"ble_msg_dispatch_thread") /*=0xa1a2b*/);
         else
-            debug_print(0x00099969u, 0x000a1a2bu);
+            debug_print(0x00099969u, ((unsigned long)"ble_msg_dispatch_thread") /*=0xa1a2b*/);
     }
 
     uint8_t *buffers = context + 0x1000;

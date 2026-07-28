@@ -98,6 +98,13 @@ G1_SCREEN_ID="${G1_SCREEN_ID:-0x20053225}"
 # (spim_a 764/2881, twim1 371/599, twim2 1089/1200).  Do not change the default
 # without regenerating display_sensor_oracle*.json.
 G1_SEED="${G1_SEED:-305419896}"
+# P4 iteration 50: the virtual central's GATT handle-sweep dwell, in acked
+# master writes per handle.  DEFAULT UNCHANGED at 4 -- this is only an env
+# override so that section 44.5's stated falsification test (`SweepDwell 4 -> 8`
+# must NOT change the 100.5 ms slot width) can be run from the repository
+# instead of from a private copy of this script.  Do not change the default
+# without regenerating display_sensor_oracle*.json.
+G1_SWEEP_DWELL="${G1_SWEEP_DWELL:-4}"
 # Emitted verbatim into the capture script; empty => the phone sends no command.
 if [ -n "$G1_ATT_WRITE" ]; then
   G1_ATT_WRITE_LINE="vcentral QueueAttWrite \"$G1_ATT_WRITE\""
@@ -150,7 +157,7 @@ vcentral SweepHandles true
 vcentral SweepLoop true
 vcentral SweepStartHandle 0x0F
 vcentral SweepMaxHandle 0x15
-vcentral SweepDwell 4
+vcentral SweepDwell $G1_SWEEP_DWELL
 $G1_ATT_WRITE_LINE
 esbslave Enabled true
 esbslave AnnounceResponse true

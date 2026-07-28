@@ -24,9 +24,9 @@ extern void wait_for_event(uint32_t ticks, uint32_t unused);
 
 #define IMU_LOG(format, arg0, arg1) do { \
     if (LOG_ROUTE == 0u) \
-        log_message((format), 0x0009f773u, (arg0), (arg1)); \
+        log_message((format), ((unsigned long)"update_imu_mode") /*=0x9fb32*/, (arg0), (arg1)); \
     else \
-        debug_print((format), 0x0009f773u, (arg0), (arg1)); \
+        debug_print((format), ((unsigned long)"update_imu_mode") /*=0x9fb32*/, (arg0), (arg1)); \
 } while (0)
 
 uint32_t update_imu_mode(uint8_t *fusion, uint32_t mode,
@@ -42,7 +42,7 @@ uint32_t update_imu_mode(uint8_t *fusion, uint32_t mode,
 
     if (fusion[0x14] != 0u) {
         if (LOG_LEVEL > 1)
-            IMU_LOG(0x0009fb32u, 0u, 0u);
+            IMU_LOG(((unsigned long)"%s(): imu_fusion: algo is existed\n\n") /*=0x9f773*/, 0u, 0u);
         return 0xffffffffu;
     }
 
