@@ -70,7 +70,7 @@ control_label_00015e82:
         }
         if(0 < *piVar1){
             iVar4 = *(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
-            puVar3 = (unsigned char*)0x000993c9;
+            puVar3 = (unsigned char*)((unsigned long)"%s(): set buck2 to 1.2v\n") /*=0x993c9*/;
             goto control_label_00015e82;
         }
     }
@@ -95,7 +95,7 @@ control_label_00015e82:
             app_msleep_thunk_a(0xf);
             if(*piVar1 < 1) return 0;
             iVar2 = *(volatile int*)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
-            puVar3 = (unsigned char*)0x0009943c;
+            puVar3 = (unsigned char*)((unsigned long)"%s(): turn on -2v for panel.\n") /*=0x9943c*/;
         }
     }
 control_label_00015e1a:

@@ -305,8 +305,8 @@ void main(void)
     if (g_ambient_light_sensor_ready == 0) {
         B8(context, 0) = 1;
         if (g_log_level > 0) {
-            if (g_log_use_alt_sink == 0) log_message(0x00099919, ((unsigned long)"role_init") /*=0x99b4c*/);
-            else debug_print(0x00099919, ((unsigned long)"role_init") /*=0x99b4c*/);
+            if (g_log_use_alt_sink == 0) log_message(((unsigned long)"%s(): Master!------\n") /*=0x99919*/, ((unsigned long)"role_init") /*=0x99b4c*/);
+            else debug_print(((unsigned long)"%s(): Master!------\n") /*=0x99919*/, ((unsigned long)"role_init") /*=0x99b4c*/);
         }
     } else if (g_ambient_light_sensor_ready == 1) {
         B8(context, 0) = 2;

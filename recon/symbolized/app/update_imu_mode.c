@@ -87,6 +87,6 @@ uint32_t update_imu_mode(uint8_t *fusion, uint32_t mode,
         return 0xfffffffcu;
 
     if (LOG_LEVEL > 1)
-        IMU_LOG(0x0009fa78u, mode, 0u);
+        IMU_LOG(((unsigned long)"%s(): imu sensor update to mode %d\n") /*=0x9fa78*/, mode, 0u);
     return 0u;
 }

@@ -1636,3 +1636,110 @@ refactor test suite   215 / 215
 * `check_ram_pin_collisions` "**598** on 07 / 09" is caused by the **105-symbol
   inert group**, not by the 14 — `s118` also reads 598 while `A7b3pad112` and
   `T14pad200`, which include all 14, read 627.
+
+---
+
+## R7 GATE RECORD — THE RAW-FLASH-LITERAL REPAIR, run 2026-07-28 (iteration 49)
+
+**This record supersedes the stage 04 and stage 07 rows above it.**  Every
+image above was built from sources that passed a raw ORIGINAL-image `.rodata`
+address to `printf` as a format string at **eight** live call sites, so every
+image's console length — and with it its boot offset — was a function of link
+layout.  The repair inlines the shipped strings (`.rodata` **+284 B**, `.text`
+**+0**) and the layout term is gone.  Full working: `our_boot_bringup.md` §49.
+
+### What changed in the sources
+
+`recon/named` (which `recon/application/src` symlinks to), `recon/symbolized/app`
+and `recon/readable_sources/app/g1`: **33 literal rewrites in 18 files**, six
+files per tree (`main`, `power_down_panel`, `power_for_imu_and_mic`,
+`power_for_panel`, `sync_to_slave`, `update_imu_mode`).  `recon/app/src`,
+`recon/app/src_sym`, `recon/verified/src`, `recon/verified/src_sym` are
+**untouched**: there the raw address is the shipped literal-pool VALUE, the
+build does not compile those files, and every one of ~800 sibling strings is raw
+for the same reason.  No transformer, no linker script, no `recon/data`.
+
+### The boot-path term is now ZERO — measured on the images, not under a hook
+
+```
+image        zephyr.bin   uart0   twim2 t0    cpuapp insns
+s07            956,360    1,656   77.840 ms    6,034,103
+s04            956,576    1,656   77.840       6,034,117
+base           956,780    1,656   77.840       6,034,117
+s04pad204      956,780    1,656   77.840       6,034,117
+basepad204     956,984    1,656   77.840       6,034,117
+      -> all five uart0.txt are cmp-IDENTICAL over a 624-byte span
+      -> the pre-repair figure was 4.00 printed chars per image byte
+```
+
+### THE VERDICTS, re-measured (`W = 100.513 ms`, `R = 1.160 ms`, UNTOUCHED)
+
+| pairing | navigation | dashboard | **R7** |
+|---|---|---|---|
+| `base -> s04` (stage 04 = 05 = 06) | **1 failure** — `opt3001` `\|r\| = 48.742 ms`, below the 50.110 ms seed floor, `k = 3` annotated NOT MEANINGFUL | **0 failures**, ≤ 0.12 ms | **REGRESSED from "0 failures" and NOT EXPLAINED** — it survives exact size compensation (`base -> s04pad204` gives the identical figure) |
+| `s04 -> s07` (stage 07 = 08, all 132 symbols) | **2 failures** — `spim_a` `\|r\| = 50.020` (below the floor), `opt3001` `\|r\| = 1.339` (1.15 × R) | **0 failures**, ≤ 0.03 ms — including `twim2 lsm6dso` **1,202 on every image, base included** | **FAIL on navigation; the DASHBOARD case is CLOSED and CLEAN** |
+| `s04 -> s04pad204` (204 dead `.rodata` B on stage 04) | **0 failures** | **0 failures** | iteration 46's probe: **the pad now does NOTHING on stage 04** |
+| `base -> basepad204` (the same 204 B on the base) | **2 failures** — `spim_a` `D = 99.210 ms = 0.987 slots` | **0 failures** | iteration 46's control: **the pad now moves a WHOLE SLOT on the base** |
+
+> **Iteration 46's headline reproduces with its sign FLIPPED.**  "204 inert bytes
+> shift the navigation cluster by a whole BLE slot on stage 04 and by nothing on
+> the base" is **false at HEAD**; the same experiment now says the opposite.  The
+> general claim it was evidence for — *the navigation gate is a knife-edge on
+> `.rodata` layout and is not a measurement of the refactor* — is **confirmed and
+> strengthened**, because it now bites the **unrefactored base**.  The repair
+> removed the BOOT-PATH mechanism completely and did **not** remove this one.
+
+### The gate that would have caught it — NEW, and wired in
+
+`recon/emulator/scripts/check_app_flash_literals.py` +
+`app_flash_literal_ledger.json` (**257 quarantine entries**) +
+`recon/refactor/test_app_flash_literals.py` (**25 controls**, in the discovered
+suite: **215 -> 240**).  Token-based (a real C tokenizer, never line-anchored),
+two-tier by a measured boundary (`APP_TEXT_END = 0x88846` = `max(entry+size)`
+over the 2,417 shipped functions), classified by USE not by numeric range, and
+**fail-closed**: `magic` passes, `pointer` and `unknown` fail unless ledgered,
+and only `disposition: pointer_reviewed` can cover a dereference.  Run it as:
+
+```sh
+$V recon/emulator/scripts/check_app_flash_literals.py --build <build-dir>       # exact, -E
+$V recon/emulator/scripts/check_app_flash_literals.py --tree <stage>/tree/recon # no build needed
+```
+
+### The class, swept
+
+| | n | action |
+|---|---:|---|
+| live and wrong (executed format pointers, caller-attributed) | **8** | **repaired** |
+| live and harmless (`magic` — compared, never dereferenced) | **3** | pass |
+| wrong but dead at `G1_SEED=305419896` on both stimuli | **190** | quarantined `defect_dead_at_seed` |
+| dereferenced — needs a byte-exact object, not a string | **67** | quarantined `pointer_reviewed` |
+
+### Acceptance
+
+```
+5 builds              base 956,780 3f47fc414164 | s04 956,576 bf19cde48857
+                      s07 956,360 4384f632b614 | basepad204 956,984 6abc466330ca
+                      s04pad204 956,780 6134284c8b7b     (exit 0, 0 errors, 0 undef)
+4 framebuffers        cmp exit 0 -- 4/4 on ALL FIVE images
+nm -u 0 (app x5, net) | duplicate globals 0 | pin gates 0/0/0 | thread args 10/10
+tools/verify_data.py  995 / 995 files, 56,279 / 56,279 B, 100.00 %
+check_app_flash_literals  0 unreviewed on --build base, --build s07, --tree stage 07
+net zephyr.bin        225,581 B FROZEN, e09b9481a3154e16..., not rebuilt, not touched
+app flash (base)      956,780 B / 982,528 B = 97.38 %   RAM 253,765 B / 56.32 %
+driver.py status      0..9 all `current`, 0 inputs changed (99 stale, as always)
+refactor test suite   240 / 240
+```
+
+### Corrections to rows above this one
+
+* Stage 04 = 05 = 06 "**0 failures** — nav & dash, both thresholds" — **no
+  longer true**; navigation now has one `opt3001` failure that exact size
+  compensation does not remove.  Not explained.
+* Stage 07 "5 of 6 streams FAIL Q1 on navigation, 5 of 6 + 2 Q3 on dashboard" —
+  the **dashboard half is gone entirely** (0 failures, ≤ 0.03 ms); navigation is
+  down from 5 failures to 2, both at or below the seed-noise floor or within
+  1.15 × R.
+* "`twim2 lsm6dso` p2_render **1206 -> 1202**" — **withdrawn as evidence
+  against stage 07**: after the repair the base itself reads **1,202**.
+* `boot_cost_per_byte.md`'s "**four** proven-live sites" and its "117 distinct
+  literals" upper bound — **both undercounts**; see §49.0 and §49.2.

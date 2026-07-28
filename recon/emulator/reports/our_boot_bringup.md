@@ -22959,3 +22959,646 @@ not a verdict**.  And **stage 09, gated for the first time on its own merits**
 against stage 06 — a tree the ladder does not produce and the subset instrument
 does — comes back **0 failures, every stream inside 0.40 ms, no slot moved, no
 count changed, both stimuli, both thresholds: STAGE 09 PASSES.**
+
+## Iteration 49 — the raw-flash-literal class REPAIRED and GATED.  The
+## investigation's "four proven-live sites" is an UNDERCOUNT: a 20 s
+## two-stimulus capture measures **EIGHT**.  Written incrementally as the work
+## ran; every number comes from a command run in this pass.
+
+HEAD at the start of this pass: **`bbbb394b`** ("Boot cost per byte: NOT an
+emulator artefact and NOT firmware-real -- it is OUR defect"), working tree
+clean apart from the untracked `.xapk`.  (The work order's snapshot named
+`6fd3427f` and two dirty transform files; the repository had advanced two
+commits past that and both files were committed, so nothing in this pass rests
+on them.)
+
+### 49.0 What this pass was asked to do, and the two things it found first
+
+`recon/analysis/boot_cost_per_byte.md` root-caused the criterion's ~4 µs/byte
+layout sensitivity to **four** `log_message()` call sites that pass a raw
+ORIGINAL-image `.rodata` address as their format pointer, and left three things
+open: repair them, sweep the rest of the class (it counted "117 distinct
+`0x0009xxxx`–`0x000exxxx` literals, 284 occurrences, 107 files" as an upper
+bound), and build the gate that would have caught them.
+
+Two of that report's framing numbers do not survive re-derivation, and I am
+stating both before anything else.
+
+**(1) The "117 distinct / 284 occurrences / 107 files" figure is reproducible
+but it is NOT an upper bound on the class.**  It is exactly what the regex
+`0x000[9a-e][0-9a-f]{4}` finds in the stage-07 tree's `.c` files:
+
+```
+strict 8-digit spelling, .c only   ->  117 distinct   284 occ   107 files   (reproduced exactly)
+same window, ANY spelling of the same number
+                                   ->  185 distinct   469 occ   163 files
+```
+
+The counting regex requires the leading-zero 8-digit form.  `sync_to_slave.c`
+writes `log_format = 0x9ff38;` and `log_message(0xa00d0, ...)` in the short
+form — **and both of those turned out to be live defects.**  A scanner anchored
+on a spelling cannot bound a class defined by a value.
+
+**(2) There are EIGHT live sites, not four.**  `boot_cost_per_byte.md` §5
+identified the four whose format pointer fires inside a `RunFor "0.1"` probe.
+The gate captures 20 s.  Re-run over the real capture window, hooking the
+printf funnel rather than one wrapper, four more appear.
+
+### 49.1 The liveness instrument, and why it is stronger than §5's
+
+`/private/tmp/g1-i51/fmt20.sh <tag> <builddir> <nav|dash>` runs the **full
+acceptance capture** — `recon/emulator/scripts/capture_display_sensor_oracle.sh`,
+`G1_SEED=305419896`, 6 s phase 1 + 14 s phase 2, real stimulus, `$rtinfo_pc`
+re-read from the ELF, frozen `g1-i30e-net` on the net core, `mkfifo` stdin
+writer — with three Renode hooks added through the documented `G1_RESC` hook:
+
+```
+z_cbvprintf_impl   r2 = format pointer   (the funnel EVERY printf-family call reaches)
+log_message        r0 = format pointer
+debug_print        r0 = format pointer
+```
+
+Hooking `z_cbvprintf_impl` is the improvement: §5 hooked `log_message` only, so
+a format pointer reaching `printf` through any other wrapper was invisible.
+The image is untouched; the hooks only print.
+
+Run on the **pre-repair** in-tree base (`/private/tmp/g1-i48-base`,
+956,496 B), both stimuli:
+
+```
+navigation   861 format-pointer calls
+dashboard    522
+union        130 distinct format pointers, 1,383 calls
+```
+
+### 49.2 Separating "stale literal" from "our own relocated string" — the trap,
+### and the discriminator
+
+129 of those 130 pointers fall inside the ORIGINAL image's address window
+`[0xC200, 0xFAB8D)`.  That is **not** evidence: our own image occupies the same
+window, so a perfectly correct pointer to our own `.rodata` lands there too.
+Reading the SHIPPED image at such an address then produces a plausible-looking
+string and invites a false positive.
+
+The discriminator that works is two-part and both parts are mechanical:
+
+1. the value must appear as a **raw integer literal in a translation unit the
+   build actually compiles** (found by the tokenizer below, by VALUE not by
+   spelling), and
+2. the **caller** must be the function whose source carries that literal
+   (`LR`, resolved through `nm -S` on the same ELF).
+
+Applying both:
+
+| format pointer | calls | caller (from LR) | shipped bytes | our bytes at the same address |
+|---|---:|---|---|---|
+| `0x000993c9` | 7 | `power_for_panel` | `"%s(): set buck2 to 1.2v\n"` | float-table binary |
+| `0x0009943c` | 7 | `power_for_panel` | `"%s(): turn on -2v for panel.\n"` | float-table binary |
+| `0x00099476` | 4 | `power_for_imu_and_mic` | `"%s(): enable ldsw2 for imu and mic\n"` | float-table binary |
+| **`0x000994d3`** | **4** | **`power_down_panel`** | `"%s(): disable ldsw1 1.8v for panel\n"` | float-table binary |
+| `0x00099919` | 4 | `main` | `"%s(): Master!------\n"` | float-table binary |
+| **`0x0009fa78`** | **7** | **`update_imu_mode`** | `"%s(): imu sensor update to mode %d\n"` | `"ancs F\n"` (mid-string) |
+| **`0x0009ff38`** | **1** | **`sync_to_slave`** | `"%s(): ESB send data after resume cmd, ignore it.\n"` | mid-string |
+| **`0x000a00d0`** | **4** | **`sync_to_slave`** | `"%s(): ESB send package id is changed, ignore it.\n"` | `"er authorization info callbacks.\n"` (mid-string) |
+
+and one value the discriminator **rejects**, which is the whole reason it
+exists:
+
+```
+0x000a26f7  4 calls  caller = st25dv_read_chip_ids
+            shipped: "[csh_debug_msg] set touch key flag ..."
+            OURS   : "UUID = %02X %02X %02X %02X %02X %02X %02X %02X.\n"
+            the only raw-literal site for this value is recon/app/src/FUN_0002c324.c,
+            which the cohesive build does NOT compile.  It is our own correct
+            pointer landing on a coincident address.  NOT a defect.
+```
+
+> **Eight live-and-wrong sites, measured.  The four
+> `boot_cost_per_byte.md` named are a subset; `power_down_panel`,
+> `update_imu_mode` and two in `sync_to_slave` were missed because they fire
+> after the first 100 ms.**
+
+### 49.3 THE REPAIR — which trees, and why the parity trees are NOT among them
+
+The brief listed seven parallel trees.  What the trees actually contain decides
+where the defect lives, and they do not all carry it:
+
+| tree | what it holds at these addresses | repaired? |
+|---|---|---|
+| `recon/app/src`, `recon/verified/src` | the **raw address, uniformly, for every string pointer** — `0x9992e`, `0x99942`, `0x99345` and 800 more are raw there too.  This is the literal-pool VALUE of the shipped image; it is the EVIDENCE the parity harness reconstructs against, and it is *correct* in that tree. | **no** |
+| `recon/app/src_sym`, `recon/verified/src_sym` | the same functions with their log calls **stubbed to zero arguments** (`DEBUG_PRINT();`).  One occurrence total (`power_down_panel.c`), and it is a dead assignment to a variable no call reads. | **no** |
+| `recon/named`, `recon/symbolized/app`, `recon/readable_sources/app/g1` | the **relinked, human-readable** trees, where the convention is already an inline C string — `((unsigned long)"%s(): Slave!------\n") /*=0x9992e*/` sits on the very next line of `main.c`.  These four/eight addresses are the ones symbolization MISSED. | **YES** |
+| `recon/application/src` | not a tree: every file is a **symlink into `recon/named`** (`main.c -> ../../named/main.c`).  Repairing `named` repairs it, and the scan proves it: 11 occurrences before, 0 after, with no separate write. | via `named` |
+
+So it is **three** distinct trees, not seven, and `recon/application` is a
+symlink *per file* — a sharper form of what iteration 43 recorded.
+
+**Why the parity trees stay raw, stated plainly:** `recon/app/src` is not
+compiled into the image (the cohesive `CMakeLists.txt` pulls exactly two files
+from it, `FUN_0007f772.c` and `FUN_0007f79e.c`, neither of which is involved),
+so repairing it would change nothing observable while making the shipped
+literal-pool value unrecoverable from the tree that exists to record it.  The
+brief authorised a canonical edit; it did not require one, and it explicitly
+said to follow what the surrounding code does.  The surrounding code in
+`recon/app/src` is raw for every one of ~800 sibling strings.
+
+**The convention chosen, and it is the repository's own newest one.**
+`recon/application/app/src/g1_app_string_rodata.c` documents two: an emitted
+`rodata_<hex>` byte object bound to a `PROVIDE` pin (iteration 21, 562 objects
+still live), and — G6-B1 and G6-B3 — *"every reference is now a C string
+literal and the matching numeric PROVIDE pin is deleted"*, which withdrew 499
+then 725 objects.  The repair uses the second, so it touches no linker script
+and no generated file:
+
+```c
+/* recon/symbolized/app/main.c:308, before */   log_message(0x00099919, ((unsigned long)"role_init") /*=0x99b4c*/);
+/* after */                                     log_message(((unsigned long)"%s(): Master!------\n") /*=0x99919*/, ((unsigned long)"role_init") /*=0x99b4c*/);
+/* recon/symbolized/app/power_for_panel.c:73, before */  puVar3 = (unsigned char*)0x000993c9;
+/* after */                                              puVar3 = (unsigned char*)((unsigned long)"%s(): set buck2 to 1.2v\n") /*=0x993c9*/;
+```
+
+Applied by `/private/tmp/g1-i51/repair_live_literals.py`, **automated and
+token-exact**: each literal is located by the C tokenizer's character offsets,
+so a comment or a string body can never be rewritten, and every spelling of the
+value is found because the match is on the integer.  Strings are read from
+`app_update.bin` through `tools/extract.py`.
+
+```
+33 occurrences rewritten in 18 tracked files
+   named/{main,power_down_panel,power_for_imu_and_mic,power_for_panel,sync_to_slave,update_imu_mode}.c
+   symbolized/app/{same six}
+   readable_sources/app/g1/{same six}
+re-scan after the rewrite: 0 occurrences remain in any of the four trees
+```
+
+### 49.4 The size cost, measured — and it is PURE `.rodata`
+
+```
+                    zephyr.bin      text        rodata      bss      noinit
+base       before      956,496     492,696     456,660   189,230    60,021
+base       after       956,780     492,696     456,944   189,230    60,021     rodata +284, text +0
+stage 04   before      956,292     492,616     456,536
+stage 04   after       956,576     492,616     456,820                          rodata +284, text +0
+stage 07   before      956,076     492,416     456,528
+stage 07   after       956,360     492,416     456,812                          rodata +284, text +0
+```
+
+**Not one byte of `.text` moves.**  The eight strings total 277 bytes and land
+in 284 bytes of merged `.rodata.str1.1` after alignment, on all three images
+identically.  Stage 07 still costs exactly `text −200 / rodata −8` against its
+input, unchanged from §48.2, so the repair is orthogonal to the stage.
+
+All five builds: `exit 0`, `0 errors`, `0 undefined reference`.
+
+```
+base        956,780  sha 3f47fc414164
+s04         956,576  sha bf19cde48857
+s07         956,360  sha 4384f632b614
+basepad204  956,984  sha 6abc466330ca      (= base + 204, iteration 46's control)
+s04pad204   956,780  sha 6134284c8b7b      (= EXACTLY base's size, iteration 46's probe)
+```
+
+### 49.5 THE RESULT — the per-byte boot cost is now **EXACTLY ZERO IN THE
+### IMAGE**, not under a hook
+
+`boot_cost_per_byte.md` §7 collapsed the spread with a Renode hook that skipped
+four calls.  This is the same measurement with **no hook**: five real images,
+one 0.1 s seeded run each, `sysbus.uart0 CreateFileBackend`, `twim2` traced.
+
+| image | `zephyr.bin` | uart0 bytes | `twim2` t0 | cpuapp insns |
+|---|---:|---:|---:|---:|
+| `s07` | 956,360 | **1,656** | **77.840 ms** | 6,034,103 |
+| `s04` | 956,576 | **1,656** | **77.840** | 6,034,117 |
+| `base` | 956,780 | **1,656** | **77.840** | 6,034,117 |
+| `s04pad204` | 956,780 | **1,656** | **77.840** | 6,034,117 |
+| `basepad204` | 956,984 | **1,656** | **77.840** | 6,034,117 |
+
+**All five `uart0.txt` are `cmp`-identical.**  Over a **624-byte** span — three
+times the 208-byte span that produced §48/§50's 4.00 chars/byte and
+0.830 ms — the console output does not change by one character and the boot
+offset does not move by one tick.  The residual instruction difference between
+`s07` and the other four is **14 instructions**, which is exactly the figure the
+hooked control produced for the same 14 static-ifications.
+
+And the console now says what the shipped firmware says:
+
+```
+role_init(): Master!------
+power_for_panel(): enable ldsw1 1.8v for panel
+power_for_panel(): set buck2 to 1.2v
+power_for_panel(): enable buck2.
+power_for_panel(): turn on -2v for panel.
+power_for_imu_and_mic(): enable ldsw2 for imu and mic
+```
+
+The liveness probe re-run on the **repaired** base finds **zero** live stale
+format pointers.  Three in-window pointers still coincide with a raw literal
+somewhere in the corpus (`0x9eda4`, `0x9f487`, `0x9f5a9`) and all three fail the
+caller test — their callers are `power_for_panel`, `main` and `button_init`
+while the only literal sites are in `upgradeAppLanguageInfoToFlash.c`,
+`FUN_000259d4.c` and `global_ipc_service_send.c` under `recon/app/src`, which
+the cohesive build does not compile.  They are our own correct strings at
+addresses the +284 B `.rodata` shift moved them to.
+
+### 49.6 THE LADDER RE-GATED — stage 07's DASHBOARD verdict is now CLEAN, its
+### NAVIGATION verdict is NOT, and I am not claiming a pass
+
+`W = 100.513 ms`, `R = 1.160 ms`, untouched.  `T = 790,000 ns`.  Reference for
+stage 07 is its own input image `s04`, as in §48.
+
+| pairing | navigation | dashboard |
+|---|---|---|
+| `base -> s04` (stage 04) | **1 failure** — `opt3001` `D = 350.281 ms = 3.485 slots`, `r = 48.742` | **0 failures**, every stream ≤ 0.12 ms |
+| `s04 -> s07` (stage 07, all 132 symbols) | **2 failures** — `spim_a` `D = 50.020 = 0.498 slots`; `opt3001` `D = −300.200 = −2.987 slots` | **0 failures**, every stream ≤ 0.03 ms |
+| `s04 -> s04pad204` (204 dead `.rodata` bytes on stage 04) | **0 failures** | **0 failures** |
+| `base -> basepad204` (the same 204 bytes on the base — iteration 46's control) | **2 failures** — `spim_a` `D = 99.210 = 0.987 slots`; `opt3001` `D = 450.930 = 4.486 slots` | **0 failures** |
+
+Strict transaction counts, all five images:
+
+| | dash `twim2.p2` | dash `spim_a.p2` | nav `spim_a.p2` | nav `twim2.p2` |
+|---|---:|---:|---:|---:|
+| `base` | 1,202 | 12,225 | 2,815 | 1,200 |
+| `s04` | 1,202 | 12,225 | 2,815 | 1,200 |
+| `s07` | 1,202 | 12,225 | **2,837** | 1,200 |
+| `s04pad204` | 1,202 | 12,225 | 2,815 | 1,200 |
+| `basepad204` | 1,202 | 12,225 | **2,837** | 1,200 |
+
+Three things follow, and the second is against my own convenience.
+
+1. **Stage 07's dashboard case is closed.**  §47 called `twim2 lsm6dso`
+   `1206 -> 1202` *"the hardest single piece of evidence against stage 07"* and
+   §48 decomposed it into one late IMU poll.  After the repair the dashboard
+   count is **1,202 on every image including the base**, `s04 -> s07` reads
+   `D = −0.030 ms` on all six streams, and the dashboard gate returns **0
+   failures for stage 04 AND stage 07**.  Whatever that count was tracking, it
+   was not stage 07.
+2. **Stage 07 STILL FAILS the published gate**, on navigation, with all 132
+   symbols.  The brief asked whether the repair makes it pass.  **It does
+   not**, and I am not retuning anything to make it.
+3. **But the navigation failure is still not attributable to stage 07.**  The
+   control says so with a semantics-free variable: **204 bytes of dead,
+   unreferenced, unexecutable `.rodata` on the BASE produce two navigation
+   failures of the same shape and larger magnitude** (`spim_a` 0.987 slots,
+   `opt3001` 4.486 slots) than stage 07's (0.498 slots, 2.987 slots), while
+   changing nothing else in the image at all.
+
+### 49.7 ITERATION 46'S HEADLINE — it still reproduces, and **its sign has
+### flipped**
+
+Iteration 46: *"204 bytes of dead, unreferenced, unexecutable `.rodata` —
+moving not one code address — shift the navigation cluster by a WHOLE 100.5 ms
+BLE slot on stage 04, and by NOTHING on the base."*
+
+Re-run at HEAD after the repair, same 204-byte pad, same construction
+(`G1_AUDIT_EXTRA_SOURCES`, `.rodata.g1_i51_size_pad`, `used, retain`), same
+sizing rule (`s04pad204` = 956,780 B = **exactly** the base's size):
+
+```
+s04  -> s04pad204     navigation 0 failures   dashboard 0 failures     (the pad does NOTHING on stage 04)
+base -> basepad204    navigation 2 failures   dashboard 0 failures     (the pad moves ONE WHOLE SLOT on the base:
+                                                                        spim_a D = 99.210 ms = 0.987 slots)
+```
+
+> **The phenomenon reproduces exactly — dead bytes still move the navigation
+> cluster by a whole BLE connection event — but it has moved from stage 04 to
+> the base.  Iteration 46's specific claim ("on stage 04, and by NOTHING on the
+> base") is therefore FALSE at HEAD, while the general claim it was evidence
+> for ("the navigation gate is a knife-edge on image size and not a measurement
+> of the refactor") is CONFIRMED, and confirmed more strongly than before,
+> because it now bites the unrefactored base.**
+
+This is the honest limit of the repair.  **Removing the printf defect removed
+the BOOT-PATH mechanism completely (§49.5) and did NOT remove the navigation
+knife-edge.**  The two are separate: the boot offset is now identical to the
+tick across 624 bytes, so whatever displaces the navigation cluster happens
+*after* boot, is not mediated by console characters, and is still a modular
+function of `.rodata` layout.  `boot_cost_per_byte.md` §8.3's forecast — *"fixing
+the four literals ... removes ~4 µs/byte of layout noise from every future gate
+run and would let stage 07's 14 symbols be judged on their semantics"* — is
+**half right**: it did remove the noise, and stage 07's dashboard case is now
+judgeable and clean, but navigation is governed by a second mechanism the
+repair does not touch.
+
+#### 49.7.1 Two further controls, and they narrow it further
+
+**Exact size compensation does NOT remove stage 04's navigation residue.**
+`s04pad204` is the stage-04 tree padded to **exactly the base's 956,780 B** —
+iteration 46's experiment, re-run:
+
+```
+base -> s04         nav  opt3001  D = 350.281 ms  k = 3  r = 48.742 ms   FAIL Q1
+base -> s04pad204   nav  opt3001  D = 350.281 ms  k = 3  r = 48.742 ms   FAIL Q1   (IDENTICAL)
+```
+
+Same figure to the microsecond with the size difference removed, so `opt3001`'s
+navigation displacement under stage 04 is **not** a size effect.
+
+**Every navigation failure in this pass is at or below the criterion's own
+seed-noise annotation floor, or within 1.2× of `R`.**
+
+| pairing | stream | `\|r\|` | vs floor / bound |
+|---|---|---:|---|
+| `base -> s04` | `opt3001` | 48.742 ms | **below** the 50.110 ms seed floor; gate prints `BELOW-STIMULUS-NOISE` and `k = 3 is NOT MEANINGFUL` |
+| `base -> s04pad204` | `opt3001` | 48.742 ms | idem |
+| `s04 -> s07` | `spim_a` | 50.020 ms | **below** the floor, same annotation |
+| `s04 -> s07` | `opt3001` | 1.339 ms | **1.15 × R** |
+| `base -> basepad204` | `spim_a` | 1.303 ms | **1.12 × R** — produced by 204 DEAD BYTES |
+| `base -> basepad204` | `opt3001` | 48.878 ms | below the floor |
+
+Stage 07's worst *lattice-explicable* residue (1.339 ms) and the **dead-byte
+control's** worst (1.303 ms) are the same magnitude, and §48.11 recorded
+1.348 ms for `T14pad200`.  **1.3 ms against a 1.160 ms bound is the floor of
+what this instrument can resolve on navigation, whatever is in the image.**
+
+### 49.8 THE NEW GATE — `check_app_flash_literals.py`
+
+`recon/emulator/scripts/check_app_flash_literals.py`, written in the style of
+`check_net_raw_literals.py` (same `compile_commands.json` + `-E` re-run, same
+summary/JSON shape, same exit convention), plus a ledger.
+
+**What it scores.** Every integer constant in an app-core reconstruction source
+whose value lands in the ORIGINAL image window `[0xC200, 0xFAB8D)`, classified
+by **what the value is used for**:
+
+* `pointer` — the constant is, or feeds, a cast to a pointer type;
+* `magic` — a direct operand of a comparison or a `case` label (the class
+  iteration 5 established with the retained-block validity magic `0x12345678`);
+* `unknown` — anything else.  **A call argument is `unknown`, and `unknown`
+  FAILS**, because a call argument is exactly the shape of all eight
+  proven-live defects.
+
+Two tiers, and the boundary is a measurement, not a taste judgement:
+`APP_TEXT_END = 0x88846` is `max(entry + size)` over the 2,417 functions of the
+Ghidra catalogue.  Above it — the shipped read-only-data region — every use is
+scored.  Below it, in the code region, only `pointer` uses are scored, because
+ordinary program constants (bit masks, sizes, HCI opcodes) occupy the same
+numeric range and scoring them by value would be exactly the numeric-range
+reasoning the brief forbade.
+
+**Fail-closed.** `magic` passes.  Everything else fails unless the value carries
+a ledger entry with a non-empty `reason`, and a `pointer` use is only covered by
+a ledger entry whose disposition is exactly `pointer_reviewed`.
+
+**Not defeatable the way six prior scanners here were.**  It never matches a
+line, never anchors at end of line and never regex-scans the file.  It runs a
+real C tokenizer that consumes comments, string literals and character
+constants as it goes, and classifies from the token stream with a paren stack.
+
+**The controls, and the proof they discriminate.**
+`recon/refactor/test_app_flash_literals.py`, 25 tests, in the discovered suite:
+
+```
+POSITIVE  log_message(0x00099919, 0x00099b4c);        -> exit 1   (caught)
+NEGATIVE  return x == 0x000c0ffe;                     -> exit 0   (not flagged)
+NOT DEGENERATE   both in ONE file -> exit 1;
+                 ledger ONLY the bad value  -> exit 0;
+                 ledger ONLY the magic value-> exit 1
+                 (so neither control can be passing for the other's reason)
+the same magic value dereferenced  *(volatile int*)0x000c0ffe  -> `pointer`, not `magic`
+0x00099919 / 0x99919 / 0x99919UL / 0X99919u / 629017 -> ALL found (same value)
+0x999190 / 0x000999190                                -> NOT found (different number)
+value inside /* */, //, "..." , '...'                  -> never a token
+`log_message(0x00099919, 0); /* memset */`             -> still caught
+`int *a=(int*)0x99919, *b=(int*)0x9943c;`              -> BOTH caught
+`#define FMT 0x00099919`                               -> caught
+ledger entry with an empty reason                      -> does NOT cover
+ledger `dead_at_seed` over a `pointer` use             -> does NOT cover
+```
+
+**Preprocessing is not a nicety.**  `--build` finds 30 dereferences the raw-tree
+walk cannot: `#define PTR 0x8278b` used as `(void *)PTR` reads `unknown` in the
+tree and `pointer` after `-E`.
+
+**Exclusions, both principled.**  Generated byte-exact data TUs (`recon/data/**`,
+`recon/application/rodata/**`, `g1_app_*rodata*.c`, `g1_app_data_image.c`) are
+image CONTENT, not source references — `tools/verify_data.py` byte-compares
+every one of them (995/995).  CPUNET sources are excluded because the net core
+links at 0x01008800 and has its own gate.  Without the first exclusion the
+build-mode scan reports 2,657 values instead of 229, almost all of them float
+bit-patterns inside verified tables.
+
+### 49.9 TASK 2 — THE SWEEP, and the split
+
+Scope: the linked closure (the `--build` scan of the base and stage-07 builds)
+plus the stage-07 tree.  Ledger:
+`recon/emulator/scripts/app_flash_literal_ledger.json`, **257 entries**.
+
+| class | n | what it is | action |
+|---|---:|---|---|
+| **live and wrong** | **8** | measured as an executed format pointer, caller-attributed | **REPAIRED** (§49.3) |
+| **live and harmless** | **3** | `magic` — a comparison or a `case` label, never dereferenced | pass, no entry needed |
+| **wrong but dead at this seed** | **190** | the shipped image holds a NUL-terminated string, every use is a log/format shape, never observed as a format pointer in the 20 s two-stimulus probe | **quarantined**, `defect_dead_at_seed` |
+| **dereferenced, needs an OBJECT not a string** | **67** | table bases indexed by a run-time value, non-string shipped objects, and literal-pool words inside the shipped `.text` | **quarantined**, `pointer_reviewed` |
+
+Nothing in the ledger is asserted to be *correct*.  `defect_dead_at_seed` means
+the literal **is** wrong — the address names unrelated bytes in our relocated
+image — but repairing it would move `.rodata` with no behavioural evidence to
+gate the move against, which §49.7 shows is not a free action.
+
+**One correction to the brief's framing, and it matters:** the 113 "remaining"
+literals were never the class.  The class in the linked closure is **229
+distinct values in 392 occurrences across 107 files** (build-mode), or **257
+across the ladder's stage tree as well**, because the survey regex saw only the
+8-digit spelling and could not see macro-expanded uses at all.
+
+### 49.10 THE ACCEPTANCE BAR — re-measured in this pass
+
+| gate | required | **measured this pass** | |
+|---|---|---|---|
+| navigation `p1_boot` framebuffer | `cmp` vs shipped golden | exit 0 on **all five** images | ✔ |
+| navigation `p2_render` framebuffer | idem | exit 0 on all five | ✔ |
+| dashboard `p1_boot` framebuffer | idem | exit 0 on all five | ✔ |
+| dashboard `p2_render` framebuffer | idem | exit 0 on all five | ✔ |
+| **4/4 per image** | | `base`, `s04`, `s07`, `basepad204`, `s04pad204` — **4/4 each** | ✔ |
+| `nm -u`, app core | 0 | **0** on all five | ✔ |
+| `nm -u`, net core | 0 | **0** | ✔ |
+| duplicate globals | 0 | **0** on all five app images and on the net image | ✔ |
+| pin gates | 0 / 0 | `raw_literal_pins_inside_a_live_object` **0**, `bound_pins_escaping_their_owner` **0**, `unknown_inside_a_live_object` **0** (base: `bound_pins_ok` **627**; s07: **598** — the 105-symbol inert group, §48.12) | ✔ |
+| `check_thread_create_stack_args --trials 120` | 10/10 | **10 / 10**, exit 0 | ✔ |
+| `tools/verify_data.py` | 995/995 | **995 / 995 files, 56,279 / 56,279 B, 100.00 %** | ✔ |
+| refactor test suite | 215/215 + the new gate's | **240 / 240 OK** (215 + 25) | ✔ |
+| **`check_app_flash_literals.py`** (NEW) | 0 unreviewed | **0 / 0** on `--build g1-i51-base`, `--build g1-i51-s07` and `--tree stage_07/tree/recon` | ✔ |
+| net `zephyr.bin` FROZEN | 225,581 B | **225,581 B**, sha256 `e09b9481a3154e16…`, **not rebuilt, not touched** | ✔ |
+| app flash | *re-measure* | **956,780 B / 982,528 B = 97.38 %** (base; was 956,496 / 97.35 %). RAM **253,765 B / 56.32 %**, unchanged | measured |
+| `driver.py status` | 0..9 current | **0..9 all `current`, 0 inputs changed**; 99 stale on 864, as every prior pass has left it | ✔ |
+
+`~/Projects/armemul` **not modified**: `models/BLE_VirtualCentral.cs` sha256
+`1f10e117632a1bb3…`, `NRF5340_SPIM.cs` **3** `TraceFile` occurrences,
+`NRF5340_TWIM.cs` **2** — both uncommitted hooks intact, `git status` unchanged
+from the pre-pass state.
+
+### 49.11 WHAT I DID NOT CLOSE, AND WHY
+
+1. **Stage 07 does NOT pass.**  All 132 symbols, navigation, 2 failures.  The
+   dashboard half of its case is closed and clean; the navigation half is not,
+   and the dead-byte control produces failures of the same shape on the base.
+   **`W` and `R` were not touched** and nothing was retuned.
+2. **Stage 04's navigation verdict REGRESSED from the record.**  §47/§48 record
+   stage 04 = 05 = 06 as `0 failures` on both stimuli.  At HEAD after the repair
+   it is **0 on dashboard, 1 on navigation** (`opt3001`, `|r| = 48.742 ms`,
+   below the 50.110 ms seed floor, `k = 3` annotated NOT MEANINGFUL).  It
+   survives exact size compensation (§49.7.1), so it is not the size change,
+   and stage 04's own transform did not change in this pass.  **Not explained.**
+3. **The navigation knife-edge is NOT fixed** and is now demonstrated on the
+   *unrefactored base*: 204 bytes of dead `.rodata` move `spim_a` by 0.987 of a
+   BLE slot.  The mechanism is not the boot path — boot t0 is identical to the
+   tick over 624 bytes — so it is a second, post-boot mechanism that this pass
+   did not chase.
+4. **190 string-valued raw format pointers and 67 dereferences are QUARANTINED,
+   not repaired.**  They are the same defect; they were not exercised by the
+   liveness probe at this seed on these two stimuli.  Repairing them would add
+   roughly 7 KB of `.rodata` and move every image again, which §49.7 shows is
+   not free.  They are enumerated with their measured evidence in the ledger.
+5. **The liveness probe is ONE SEED and TWO STIMULI.**  `G1_SEED=305419896`,
+   navigation and dashboard.  A site that fires only on another path is scored
+   dead here and is not.
+6. **The unlinked corpus is not covered.**  Scanning `recon/named` /
+   `recon/readable_sources` / `recon/application` wholesale finds **2,228**
+   in-window values; the ledger covers the **257** in the linked closure and the
+   ladder's stage tree.  The rest belong to reconstructions the adoption
+   manifest excludes from the link.
+7. **`recon/app/src` / `recon/verified/src` and their `_sym` siblings were NOT
+   edited** (§49.3), deliberately, with the reason stated.  The brief authorised
+   a canonical edit; this pass declined it.
+8. **The reduced 118-symbol stage 07 is still NOT landed** in the transformer
+   (§48.10 item 3) and the `app_text_symbols` evidence field is still designed,
+   not written.
+9. **`SweepDwell 4 -> 8`** (§44.5) — still not run, ninth pass running.
+10. **`cfg_verify` was not run** and is cited nowhere, per the standing rule.
+11. **The net core was not built and not touched.**  `check_net_raw_literals`
+    and `verify_net_stock_data_window` were **NOT RUN**.  Checked: size
+    225,581 B, sha256 `e09b9481a3154e16…`, `nm -u` 0, duplicate globals 0.
+12. **`battery_model_state_update` (`FUN_0000c358`)** — the open float defect
+    `AGENTS.md` §1b names.  Untouched.
+13. **Stage 99** left stale, as every prior pass has.
+14. **Nothing was committed.**  §49.12 says exactly what is dirty.
+
+### 49.12 FOOTPRINT
+
+```
+ M recon/emulator/reports/our_boot_bringup.md          this section 49
+ M recon/refactor/README.md                            R7 gate record updated
+ M recon/named/{main,power_down_panel,power_for_imu_and_mic,
+                power_for_panel,sync_to_slave,update_imu_mode}.c
+ M recon/symbolized/app/{the same six}
+ M recon/readable_sources/app/g1/{the same six}        33 literal rewrites, 18 files
+ M recon/refactor/stage_0{0..9}_*/MANIFEST.json        ladder re-materialised
+?? recon/emulator/scripts/check_app_flash_literals.py  the new gate
+?? recon/emulator/scripts/app_flash_literal_ledger.json 257 quarantine entries
+?? recon/refactor/test_app_flash_literals.py           25 controls
+?? Even+Realities_1.9.0.xapk                           pre-existing, untouched, not mine
+```
+
+`recon/application/src/*.c` are **symlinks into `recon/named`** and therefore
+carry the repair without a separate write; `recon/app/src`, `recon/app/src_sym`,
+`recon/verified/src`, `recon/verified/src_sym` are **untouched**.
+No transformer, no `driver.py`/`stagelib.py`/`link_evidence.py`, no linker
+script, no `tools/`, no oracle JSON, no golden framebuffer, no `recon/data`, no
+net-core file was written.  The ten stage `tree/` directories were re-generated
+by `driver.py materialize 0..9` (they are gitignored; the ten MANIFESTs move
+because the stage-0 input changed, which is exactly what the watchdog is for —
+it flagged stage 0 stale naming precisely the six edited files).
+
+Outside the repository (all new, all under `/private/tmp/g1-i51/`):
+`fmt20.sh` (the 20 s liveness probe), `repair_live_literals.py` (the repair),
+`gen_ledger.py`, `b.sh`, `bpad.sh`, `pad204.c`, `cap.sh`, `mko.sh`, `gate.sh`,
+`fb.sh`, `uart.sh`, plus `/private/tmp/g1-i51-{base,s04,s07,basepad204,s04pad204}`
+(5 builds), `/private/tmp/g1_i51_*_{nav,dash}` (10 seeded captures),
+`/private/tmp/g1-i51/fmt20_*` (4 probe runs), `/private/tmp/g1-i51/uart_*`
+(5 uart probes) and `<scratchpad>/i51/T{790000,5000000}/**` (20 oracles).
+
+### 49.13 REPRODUCING
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+V="env PYTHONSAFEPATH=1 .venv/bin/python"
+
+# the liveness measurement that found EIGHT sites, not four
+bash /private/tmp/g1-i51/fmt20.sh base /private/tmp/g1-i48-base nav
+bash /private/tmp/g1-i51/fmt20.sh base /private/tmp/g1-i48-base dash
+
+# the repair (dry run first; --apply writes)
+$V /private/tmp/g1-i51/repair_live_literals.py
+$V /private/tmp/g1-i51/repair_live_literals.py --apply
+for n in 0 1 2 3 4 5 6 7 8 9; do $V recon/refactor/driver.py materialize $n; done
+
+# builds
+bash /private/tmp/g1-i51/b.sh          # base / s04 / s07
+bash /private/tmp/g1-i51/bpad.sh       # + 204 B of dead .rodata on base and s04
+
+# THE RESULT: uart0 and boot t0 flat over 624 bytes, no hook
+for t in s07 s04 base s04pad204 basepad204; do bash /private/tmp/g1-i51/uart.sh $t; done
+cmp /private/tmp/g1-i51/uart_s07/uart0.txt /private/tmp/g1-i51/uart_base/uart0.txt
+
+# captures, oracles, gate
+bash /private/tmp/g1-i51/capall.sh
+bash /private/tmp/g1-i51/fb.sh base s04 s07 basepad204 s04pad204
+bash /private/tmp/g1-i51/gate.sh s07 s04
+bash /private/tmp/g1-i51/gate.sh s04 base
+bash /private/tmp/g1-i51/gate.sh s04pad204 s04       # iteration 46's probe
+bash /private/tmp/g1-i51/gate.sh basepad204 base     # iteration 46's control
+bash /private/tmp/g1-i51/gate.sh s04pad204 base      # exact size compensation
+
+# the new gate and its controls
+$V recon/emulator/scripts/check_app_flash_literals.py --build /private/tmp/g1-i51-base
+$V recon/emulator/scripts/check_app_flash_literals.py \
+   --tree recon/refactor/stage_07_internal_linkage/tree/recon
+$V -m unittest discover -s recon/refactor -p 'test_*.py'    # 240/240
+```
+
+### 49.14 THE ONE-PARAGRAPH ANSWER
+
+The raw-flash-literal defect is **repaired and gated, and it was bigger than the
+investigation said**: hooking the printf funnel `z_cbvprintf_impl` over the real
+**20 s** two-stimulus capture instead of a 0.1 s probe, and attributing every
+format pointer to its caller by `LR`, finds **eight** live-and-wrong sites, not
+four — `power_down_panel`, `update_imu_mode` and two in `sync_to_slave` join the
+four `boot_cost_per_byte.md` named, and two of them are spelled `0x9ff38` /
+`0xa00d0`, which the survey's `0x000[9a-e][0-9a-f]{4}` regex could not see, so
+its "117 distinct" was never an upper bound (185 by value, 229 in the linked
+closure once macros are expanded).  A ninth candidate was **rejected** by the
+caller test: `0x000a26f7` is our own correct string at a coincident address.
+The eight were inlined as C string literals in the three relinked trees by an
+automated token-exact rewrite (`recon/named` — which `recon/application/src`
+symlinks to — `recon/symbolized/app`, `recon/readable_sources/app/g1`); the
+parity trees keep the raw address deliberately, because there it is the shipped
+literal-pool VALUE and the build does not compile it.  Cost: **`.rodata` +284 B,
+`.text` +0 on all three images.**  The result is the control from
+`boot_cost_per_byte.md` §7 achieved **in the image instead of under a Renode
+hook**: across **five images spanning 624 bytes**, `uart0` is **`cmp`-identical
+at 1,656 bytes**, `twim2` boots at **77.840 ms to the tick**, and the only
+residual is **14 instructions** — the per-byte boot cost is **exactly zero**, and
+the console now prints what the shipped firmware prints.  **Stage 07's dashboard
+case is closed and clean** — 0 failures, every stream ≤ 0.03 ms, and §47's
+"hardest evidence", `twim2 lsm6dso` 1206 → 1202, is now **1,202 on the base
+too** — but **stage 07 with all 132 symbols STILL FAILS on navigation** and I am
+not retuning `W` or `R` to change that.  Iteration 46's inert-pad finding
+**reproduces with its sign flipped**: the same 204 dead `.rodata` bytes are now
+inert on stage 04 and move `spim_a` by **0.987 of a BLE slot on the
+unrefactored base**, so the knife-edge is real, is *not* the boot path (which is
+now flat), and is not a measurement of any refactor.  The gate that should have
+caught all of this now exists — `check_app_flash_literals.py`, a token-based,
+fail-closed, two-tier classifier with 25 discriminating controls including a
+positive/negative pair proved non-degenerate by ledgering each control
+separately — and the class is swept: **8 repaired, 3 harmless magics, 190
+wrong-but-dead-at-this-seed and 67 dereferences quarantined with their measured
+evidence** in a 257-entry ledger.
+
+### 49.15 ONE MORE CHECK, ADDED AFTER §49.14 WAS WRITTEN
+
+The new gate was run over **all ten stage trees**, not just stage 07:
+
+```
+stage_00_snapshot  stage_01_literal_inline  stage_02_block_dedupe
+stage_03_module_structure  stage_04_cohesive_tu  stage_05_cohesive_composition
+stage_06_unit_composition  stage_07_internal_linkage  stage_08_call_order
+stage_09_call_cohesion
+        -> exit 0 on every one
+```
+
+and the claim in §49.3 that the parity trees do not reach the image is a fact
+about the build, not a reading of the CMake file — `compile_commands.json` of
+`/private/tmp/g1-i51-base` contains exactly **two** translation units from
+`recon/app/src` (`FUN_0007f772.c`, `FUN_0007f79e.c`, the two ANCS bodies
+iteration 20 pinned) and **none** from `recon/verified`.  Neither carries any of
+the eight literals.

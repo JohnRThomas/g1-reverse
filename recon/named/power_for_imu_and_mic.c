@@ -25,9 +25,9 @@ unsigned int power_for_imu_and_mic(void)
     }
     int flag = *(volatile int*)0x20007554UL;
     if (flag == 0) {
-        log_message(iVar1 < 0 ? ((unsigned long)"%s(): Could not set ldsw2.\n") : 0x00099476, ((unsigned long)"power_for_imu_and_mic"));
+        log_message(iVar1 < 0 ? ((unsigned long)"%s(): Could not set ldsw2.\n") : ((unsigned long)"%s(): enable ldsw2 for imu and mic\n") /*=0x99476*/, ((unsigned long)"power_for_imu_and_mic"));
     } else {
-        debug_print(iVar1 < 0 ? ((unsigned long)"%s(): Could not set ldsw2.\n") : 0x00099476, ((unsigned long)"power_for_imu_and_mic"));
+        debug_print(iVar1 < 0 ? ((unsigned long)"%s(): Could not set ldsw2.\n") : ((unsigned long)"%s(): enable ldsw2 for imu and mic\n") /*=0x99476*/, ((unsigned long)"power_for_imu_and_mic"));
     }
     return 0;
 }

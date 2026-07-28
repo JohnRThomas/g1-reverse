@@ -66,7 +66,7 @@ unsigned int power_down_panel(void)
                 return 0;
             }
             iVar2 = *(volatile int*)0x20007554UL;
-            format_string = 0x000994d3UL;
+            format_string = ((unsigned long)"%s(): disable ldsw1 1.8v for panel\n") /*=0x994d3*/;
         }
     }
     if (iVar2 == 0) {

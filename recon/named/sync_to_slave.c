@@ -173,7 +173,7 @@ LAB_00027148:
           }
           if (0 < *(volatile int32_t *)0x2000230cUL) {
             iVar8 = *(volatile int32_t *)0x20007554UL;
-            log_format = 0x9ff38;
+            log_format = ((unsigned long)"%s(): ESB send data after resume cmd, ignore it.\n") /*=0x9ff38*/;
             goto LAB_000270b8;
           }
         }
@@ -258,10 +258,10 @@ LAB_00027372:
               uVar16 = uVar17;
               if (0 < *piVar6) {
                 if (*(volatile int32_t *)0x20007554UL == 0) {
-                  log_message(0xa00d0, ((unsigned long)"sync_to_slave"), uVar17);
+                  log_message(((unsigned long)"%s(): ESB send package id is changed, ignore it.\n") /*=0xa00d0*/, ((unsigned long)"sync_to_slave"), uVar17);
                 }
                 else {
-                  debug_print(0xa00d0, ((unsigned long)"sync_to_slave"), uVar17);
+                  debug_print(((unsigned long)"%s(): ESB send package id is changed, ignore it.\n") /*=0xa00d0*/, ((unsigned long)"sync_to_slave"), uVar17);
                 }
                 if (param_1[0x105a] == '\x02') break;
               }
