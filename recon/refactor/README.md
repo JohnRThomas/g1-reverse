@@ -1945,3 +1945,139 @@ refactor test suite   240 / 240 OK
 determinism control   three byte-identical images captured in different concurrent
                       Renode streams -> 16/16 byte-identical captures
 ```
+
+## R7 GATE RECORD — ITERATION 52, STAGE 07's NAVIGATION FAILURE BISECTED TO
+## **ONE SYMBOL**, run 2026-07-28
+
+**This record supersedes the one above it.** Working:
+`recon/emulator/reports/our_boot_bringup.md` **§52**.
+
+**`W = 100.513 ms` and `R = 1.160 ms` are UNCHANGED.** Nothing was retuned.
+**Nothing underneath the ladder changed either**: no transformer, no stage
+tree, no MANIFEST, no source file. `transforms_digest` did not move and the
+ten stages stayed `current` throughout.
+
+### What was measured
+
+The read-out is a new **fast trigger probe** — §51's own seeded navigation
+capture with `G1_P1_SECS=4.5 G1_P2_SECS=0.1`, reading the nPM1300 rail enable
+(`TWIM1 seq=233 … data=080001`) out of `twim1.p1.trace`. It was validated to
+the tick against §51's full 20 s captures (`nbase` 3,711,430,000; `r07`
+3,761,850,000) **before** being used, and it makes a bisection point cost
+**69 s** (one clean build + one probe) instead of ~4 min. §48's subset
+instrument is re-used verbatim; both controls close (`NONE` → 956,636 /
+`6a53d0a8a22afc03` = `r04`; `ALL` → 956,420 / `37f097919dcc62ad` = `r07`;
+`files_rewritten = 0` against the restored tree).
+
+All **thirteen** candidates §51.5.3 implicated were probed **one at a time** —
+not a bisection, so a combination could not hide.
+
+### THE VERDICTS
+
+| pairing | navigation | dashboard |
+|---|---|---|
+| `r04 -> serialization_ipc_ept_register` **ALONE** (1 of 132 `static`) | **2 failures** — `spim_a` `D = 50.410 ms` (0.502 slots), `opt3001` `D = 50.600 ms` (0.503) — **§51.6.1's stage-07 figures to the microsecond** | **0 failures**, every stream ≤ 0.58 ms |
+| `r04 -> x131` = stage 07 **minus that one symbol** (131 of 132 `static`) | **0 failures — `D = 0.000 ms` on ALL SIX streams**, `k = 0`, `S = 0.000`, `max|d| ≤ 0.006 ms` | **0 failures — `D = 0.000 ms` on all six**, `max|d| ≤ 0.031 ms` |
+| each of the other **twelve** singletons | trigger at the **base's** tick, 3,711.430 ms | — |
+| framebuffers vs shipped goldens | **4/4** on `r04`, `r07`, `x131` and the one-symbol image | |
+
+> **`serialization_ipc_ept_register` is necessary AND sufficient for the whole
+> of stage 07's navigation failure.** A 131-symbol stage 07 passes the
+> published gate with `D = 0.000 ms` on every stream of both stimuli.
+
+**Stage 07 as it stands, all 132 symbols, still FAILS.** That verdict is not
+withdrawn; it is localised.
+
+### Controls, and what they kill
+
+* **Size is not the cause.** `serialization_ipc_ept_register` + 16 B of inert
+  `.text` lands the image at **956,636 B — the base's exact size** — and the
+  trigger does **not** move (3,761.850 ms). §50.7's overturning of §48.8 is
+  reconfirmed at single-symbol resolution.
+* **Displacement is not the cause.** Base + 16 B and base + 32 B of inert
+  `.text` are byte-exactly inert: `D = 0.0 µs` on **all 318** traced `twim1`
+  events of the first 4.5 s.
+* **The other 131 static-ifications are byte-exactly null** over the same 318
+  events.
+* **Eight of the thirteen singletons build to exactly 956,620 B** — seven clean,
+  one the defect. §48.6's "the predictor is `zephyr.bin` size" fails again.
+
+### The mechanism, measured end to end (§52.4)
+
+`static` → GCC inlines the function into its one in-unit caller
+`st25dv_read_chip_ids` (`0x88 + 0xa8 → 0x128`; both forms disassembled and
+**semantically identical**) → its ST25DV I²C traffic moves **−30 µs at
+t = 98.720 ms**, the first departing event in the capture → a few hundred µs of
+scheduler drift by 1.7 s → the app core's ack of one of the virtual central's
+first twenty GATT-sweep writes crosses a **30 ms** BLE connection-event
+boundary → the navigation frame is delivered at data event **#70** instead of
+**#69** (read directly from `vcentral DataEventsAnswered`, identical in both
+images at all forty samples) → those two events are **60.3 ms** apart (one
+window in five is unanswered) and the panel-rail chain's own latency differs by
+9.9 ms → **+50.42 ms**.
+
+The firmware's own 4.2 s console is **185 lines, identical text** in base,
+stage 07 and the one-symbol image, with every Zephyr-timestamped line inside
+0.5 ms.
+
+> **`W = 100.513 ms` is NOT the BLE connection interval** — the interval is
+> 30 ms (`CONNECT_IND` `Interval = 0x0018`, confirmed by the measured event
+> grid), and `W` is ≈ 3.35 of them. `D = 0.502 slots` is therefore **one
+> connection-event crossing**, not half a quantum. Recorded as an observation
+> for the criterion's owner; **no parameter was changed.**
+
+### Corrections to rows above this one
+
+* **§48.4's "no single symbol is the culprit, and neither seven-symbol half
+  is"** — superseded. It is one symbol, and §51 already showed §48 was summing
+  two independent effects.
+* **§48.10's designed exclusion rule ("refuse a candidate the link still emits
+  as an out-of-line body") is OVER-BROAD BY TWELVE SYMBOLS.** It refuses 14; 12
+  are measured null here and the 13th (`pt_nfc_eeprom_link_init`) carries only
+  the console divergence §51 root-caused to a defect in the **base**. Landing it
+  would spend 200 B of `text` to buy an effect that costs 8.
+* **Its obvious refinement is no better**: 11 of the 13 vanish from the linked
+  image when made `static`; only 1 moves the trigger.
+* **§51.9 item 4 is CLOSED** — the symbol is named, and the bisection was
+  exhaustive rather than binary.
+
+### The decision — NOT landed, and the reason is new
+
+There is **nothing to repair** (§52.4.1/§52.4.3), and the exclusion, though
+fully measured, has **no admissible rule** (§52.5): the only property that
+separates this symbol from the other twelve is the gate's own answer, and
+writing that into a transformer would make the gate part of what it checks.
+§48 declined to land for cost; this pass declines because **the rule §48
+designed is now known to be wrong by twelve symbols**. The owner's decision is
+now a one-liner:
+
+```
+refuse `serialization_ipc_ept_register` in t07, citing our_boot_bringup.md
+section 52.1 / 52.2 -- 131 of 132 applied, gate D = 0.000 ms on every stream
+of both stimuli, cost 8 bytes of .text
+```
+
+### Acceptance, re-measured in this pass
+
+```
+in-tree base rebuild   956,840 B  6553c55bb676b191   == section 51's nbase
+stage 07 rebuild       956,420 B  37f097919dcc62ad   == section 51's r07
+subset.py ALL          files_rewritten = 0 against the restored tree
+4 framebuffers         4/4 on r04, r07, x131, one-symbol image
+nm -u                  0 on nbase2, st07r, x131, one-symbol; 0 on net
+duplicate globals      0 on all four app images
+pin gates              raw_literal_pins_inside_a_live_object 0,
+                       bound_pins_escaping_their_owner 0,
+                       unknown_inside_a_live_object 0
+                       (bound_pins_ok 627 / 598, abs_symbols_not_in_linker_scripts 3)
+check_thread_create_stack_args --trials 120   10/10 sites, EXIT=0
+tools/verify_data.py   995 / 995 files, 56,279 / 56,279 B, 100.00 %
+check_app_flash_literals  exit 0 on ALL TEN stage trees AND on --build nbase2
+                       (dereferenced-and-unreviewed 0, unclassified-and-unreviewed 0)
+net zephyr.bin         225,581 B FROZEN, e09b9481a3154e16..., not rebuilt, not touched
+app flash              956,840 B / 982,528 B = 97.39 %   RAM 253,765 B / 56.32 %
+driver.py status       0..9 all `current`, 0 inputs changed (99 stale, as always)
+refactor test suite    240 / 240 OK
+armemul                NOT modified -- BLE_VirtualCentral.cs 1f10e117632a1bb3...,
+                       NRF5340_SPIM.cs 3 TraceFile, NRF5340_TWIM.cs 2
+```

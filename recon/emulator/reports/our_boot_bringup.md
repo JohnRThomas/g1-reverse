@@ -25012,3 +25012,545 @@ are now decided by `cmp` instead of by a verdict**, all ten stages match the
 four shipped golden framebuffers, and the single surviving comparison
 `04 -> 07` reproduces §50.7 to the microsecond.  `W = 100.513 ms` and
 `R = 1.160 ms` were not touched.
+
+## Iteration 52 — stage 07's navigation half-slot BISECTED to **one symbol**,
+## `serialization_ipc_ept_register`, and the mechanism measured end to end: it
+## is **one BLE connection event**, not half a slot.  Written incrementally as
+## the work ran; every number comes from a command run in this pass.
+
+HEAD at the start of this pass: **`55d6c719`** ("P4 iter-51: the BASE was wrong,
+not stage 07 -- 9 of 10 ladder steps are now cmp-identical"), working tree clean
+apart from the untracked `.xapk`.  §51's builds, captures and oracles are still
+on disk under `/private/tmp/g1-i53*` and are re-used only where this section
+says so.
+
+### 52.0 The instrument, its two controls, and a NEW read-out that makes a
+### bisection point cost **69 seconds** instead of four minutes
+
+§48's subset instrument `/private/tmp/g1-i49/subset.py` is re-used **verbatim**
+— it imports `t07_internal_linkage.candidates()`/`apply_static()` and runs them
+over stage 06's tree with the candidate list filtered.  No transformer is
+edited.  Both controls close, on the §51-repaired ladder:
+
+| control | symbols | `zephyr.bin` | sha256 (16) | is |
+|---|---:|---:|---|---|
+| `NONE` | 0 | **956,636** | `6a53d0a8a22afc03` | **byte-identical to §51's `r04`** (= stage 04 = 05 = 06) |
+| `ALL` | 132 | **956,420** | `37f097919dcc62ad` | **byte-identical to §51's `r07`** (= stage 07 = 08) |
+
+§51 established the discriminator (base trigger 3,711.430 ms vs stage 07
+3,761.850 ms) but read it out of a full 20 s two-stimulus capture.  The trigger
+— `TWIM1 seq=233 … dev=0x6B dir=W n=3 data=080001`, the nPM1300 rail enable —
+happens at 3.71 s, i.e. inside **phase 1**.  So this pass runs the same capture
+script with `G1_P1_SECS=4.5 G1_P2_SECS=0.1` and reads the tick straight out of
+`twim1.p1.trace`.  Everything else is unchanged: `G1_SEED=305419896`, real
+navigation stimulus, frozen `g1-i30e-net`, `$rtinfo_pc` re-read from **every**
+ELF, `mkfifo` stdin writer.
+
+**The short probe was validated against §51's own 20 s captures before it was
+used for anything**, on two images:
+
+```
+ft nbase  -> TWIM1 seq=233 tick=3711430000     (§51 full capture: 3,711,430,000)
+ft r07    -> TWIM1 seq=233 tick=3761850000     (§51 full capture: 3,761,850,000)
+both, concurrently, in 33 s wall
+```
+
+A bisection point is therefore one clean `-p always` build plus one 33 s probe:
+measured **69 s** end to end (`ctlN`).  That is what made a 13-point exhaustive
+sweep cheaper than a 4-point bisection would have been.
+
+### 52.1 THE ANSWER — it is **ONE SYMBOL**, and §48.4's "no single symbol is the
+### culprit" does not survive the clean instrument
+
+All **thirteen** were probed one at a time — no bisection, no halves, no
+assumption that the effect is additive.  One build and one probe each.
+
+| subset (1 symbol `static`) | `zephyr.bin` | sha256 (16) | trigger | verdict |
+|---|---:|---|---:|---|
+| `NONE` (reference) | 956,636 | `6a53d0a8a22afc03` | **3,711.430** | base |
+| `ble_packet_receive_dispatch` | 956,596 | `7fbeeab005833ce4` | 3,711.430 | base |
+| `dev_ctrl_write2` | 956,620 | `d5fa64fb58b43840` | 3,711.430 | base |
+| `get_demo_image_source` | 956,620 | `2eec4585517a47da` | 3,711.430 | base |
+| `is_box_field_timer_expired` | 956,620 | `0f3576044f838537` | 3,711.430 | base |
+| `msg_content_check_timeout_state` | 956,620 | `5d7c30c1e74a067e` | 3,711.430 | base |
+| `panel_write_xy_reg_cached` | 956,620 | `1703ffba4c72138e` | 3,711.430 | base |
+| `projector_spi_write_chunked` | 956,620 | `4767e40844663849` | 3,711.430 | base |
+| **`serialization_ipc_ept_register`** | **956,620** | `88a01b596e61ee8b` | **3,761.850** | **STAGE 07's, to the tick** |
+| `serialization_read_or_copy` | 956,604 | `56da3a2bca2a3b24` | 3,711.430 | base |
+| `svc_attr_memory_release` | 956,636 | `59160ec0e4f2d196` | 3,711.430 | base |
+| `trigger_touch_key_hw_reset` | 956,636 | `6a53d0a8a22afc03` | 3,711.430 | base (**byte-identical image**) |
+| `utf8_decode_to_utf16_buffer` | 956,604 | `5cd472b131e2b261` | 3,711.430 | base |
+| `vfprintf_field_scan_match` | 956,620 | `24e718915f4e6577` | 3,711.430 | base |
+| **`ALL` minus `serialization_ipc_ept_register` (131)** | **956,436** | `7e47d39987e11696` | **3,711.430** | **base** |
+| `ALL` (132) | 956,420 | `37f097919dcc62ad` | 3,761.850 | stage 07 |
+
+> **`serialization_ipc_ept_register` alone is SUFFICIENT and NECESSARY.**  It
+> alone puts the trigger on stage 07's tick; the other twelve each leave it on
+> the base's; and stage 07 with that one symbol removed — **131 of 132 still
+> `static`** — puts it back on the base's tick.
+
+Three side results fall out of the same table and are worth recording because
+each contradicts something on the record:
+
+* **`serialization_ipc_ept_register` is NOT the largest of the fourteen.**  Its
+  `text` cost is −8 B (§48.4's own per-symbol table); `pt_nfc_eeprom_link_init`
+  costs −36 and is null here.  Size is not the ordering.
+* **§48.6's "the predictor is `zephyr.bin` size" is dead on this read-out too.**
+  Eight of the thirteen singletons land at exactly **956,620 B**; seven are
+  clean and one is the defect.  Same size, opposite verdict, seven times over.
+* `trigger_touch_key_hw_reset` alone produces sha `6a53d0a8a22afc03` — a
+  **byte-identical image** to `NONE`, reproducing §48.4's observation on the
+  repaired ladder.
+
+### 52.2 CONFIRMED ON THE FULL GATE — the one symbol reproduces stage 07's
+### failure **to the microsecond**, and the 131-symbol stage 07 **PASSES**
+
+Two fresh 20 s seeded two-stimulus captures (`G1_SEED=305419896`, both stimuli,
+frozen `g1-i30e-net`, `$rtinfo_pc` re-read per ELF), gated with
+`W = 100.513 ms` and `R = 1.160 ms` **untouched**, against `r04` (= stage
+04 = 05 = 06, §51's own capture, re-used unmodified):
+
+```
+r04 -> serialization_ipc_ept_register ALONE     navigation   2 FAILURES
+        spim_a/jbd_display      D = 50.410 ms = 0.502 slots   |r| = 50.103   FAIL Q1
+        twim1/opt3001_ambient   D = 50.600 ms = 0.503 slots   |r| = 49.913   FAIL Q1
+        npm1300 0.241   st25dv_nfc 0.370   st25dv_sys 0.310   lsm6dso 0.240   PASS
+r04 -> serialization_ipc_ept_register ALONE     dashboard    0 failures  (every stream |D| <= 0.58 ms)
+
+r04 -> x131 (stage 07 minus that one symbol)    navigation   0 failures
+        D = 0.000 ms on ALL SIX streams, k = 0, S = 0.000, max|d| <= 0.006 ms
+r04 -> x131                                     dashboard    0 failures
+        D = 0.000 ms on ALL SIX streams, k = 0, S = 0.000, max|d| <= 0.031 ms
+
+framebuffers vs the shipped goldens:  4/4 on r04, r07, x131 AND on the one-symbol image
+```
+
+`D = 50.410` and `D = 50.600` are **§51.6.1's stage-07 figures to the
+microsecond**, produced here by a single `static` keyword on a single function
+out of 132.
+
+> **A 131-symbol stage 07 passes the published gate with `D = 0.000 ms` on
+> every stream of both stimuli.  All of stage 07's navigation failure is one
+> symbol.**
+
+### 52.3 IT IS NOT SIZE AND IT IS NOT CODE-ADDRESS DISPLACEMENT — the two
+### controls, run at this read-out
+
+The pad enters through `app/CMakeLists.txt`'s documented
+`G1_AUDIT_EXTRA_SOURCES` hook (§48.6.2's `.text` pad, 16 bytes, landing at
+`0x0004bb80`/`0x0004bb88`); no stage tree and no transformer is touched.
+
+| probe | symbols | pad | `zephyr.bin` | trigger |
+|---|---:|---:|---:|---:|
+| `NONE` | 0 | — | 956,636 | 3,711.430 |
+| `NONE` + 16 B `.text` | 0 | 16 | 956,652 | **3,711.430** |
+| `NONE` + 32 B `.text` | 0 | 32 | 956,668 | **3,711.430** |
+| `serialization_ipc_ept_register` | 1 | — | 956,620 | 3,761.850 |
+| **`serialization_ipc_ept_register` + 16 B `.text`** | 1 | 16 | **956,636 — EXACTLY the base's size** | **3,761.850 — unmoved** |
+
+and the padded base is inert not just at the trigger but everywhere:
+
+```
+twim1.p1 event-by-event, base vs base+16 B pad, 318 events to 4.5 s:
+    D = 0.0 us on EVERY event
+twim1.p1 event-by-event, base vs x131 (131 symbols static), 318 events to 4.5 s:
+    D = 0.0 us on EVERY event
+```
+
+> **Compensating the size exactly does not move the trigger back, and inert
+> padding on the base does not move it at all.  §50.7's overturning of §48.8
+> ("the failure is caused by the image getting 216 bytes shorter") is
+> independently reconfirmed here at single-symbol resolution.**  The second
+> line is the stronger statement: **131 of the 132 static-ifications are
+> byte-exactly null on the traced buses for the whole 4.5 s leading up to the
+> trigger.**
+
+### 52.4 THE MECHANISM, measured from the change outward.  It is **ONE BLE
+### CONNECTION EVENT** — and "half a slot" is a coincidence of `W`, not a
+### quantum of anything
+
+#### 52.4.1 What the `static` keyword actually does to the code
+
+`nm -S` on the two ELFs:
+
+```
+NONE  00023928  0x88  T serialization_ipc_ept_register
+      000239b0  0xa8  T st25dv_read_chip_ids
+ONE   (serialization_ipc_ept_register absent)
+      000237c4  0x128 T st25dv_read_chip_ids
+```
+
+The callee is **inlined into its single in-unit caller** and the out-of-line
+body deleted: `0x88 + 0xa8 = 0x130` becomes `0x128`, the −8 B §48.4 measured.
+Both bodies were disassembled in full and compared instruction by instruction
+(`objdump -d` over both ranges): the inlined form keeps `r8`/`r9` live across
+the `DEBUG_PRINT`s, writes the descriptor to `g_st25dv_dev` on both paths
+instead of returning it, and is otherwise the **same program** — same two
+`z_device_is_ready` calls, same three `DEBUG_PRINT` sites with the same
+literals, same `k_sleep(656)`, same `st25dv_ipc_request_chip_ids` /
+`nfc_ipc_send_op20` / `st25dv_ipc_request` / `adc_nfc_init` /
+`clear_pending_state_flags` sequence.  **There is no semantic difference to
+find, and I looked for one.**
+
+#### 52.4.2 The FIRST event whose delta departs is the changed function itself
+
+`twim1.p1.trace`, event-by-event, base vs the one-symbol image, in
+**microseconds**:
+
+```
+idx    0   t=    53.390 ms   D =     +0.0 us   TWIM1 dev=0x6B W data=060206
+idx   51   t=    98.720 ms   D =    -30.0 us   TWIM1 dev=0x57 W data=0018     <-- FIRST DEPARTURE
+idx   53   t=    99.860 ms   D =    -60.0 us   TWIM1 dev=0x57 W data=0020
+idx  111   t=   125.770 ms   D =    +61.0 us
+idx  119   t=   667.380 ms   D =   +310.0 us
+idx  133   t=  1508.990 ms   D =   +370.0 us
+idx  168   t=  1712.950 ms   D =   +330.4 us   TWIM1 dev=0x53 W data=2002
+idx  184   t=  1922.570 ms   D =   +280.0 us
+idx  233   t=  3711.430 ms   D = +50420.0 us   TWIM1 dev=0x6B W data=080001   <-- the trigger
+idx  248   t=  3808.500 ms   D =  +7562.6 us
+```
+
+`dev=0x57` is the **ST25DV system port** — the device `st25dv_read_chip_ids`
+talks to, i.e. the very function the keyword changes.  The first departure is
+**−30 µs at t = 98.720 ms**, at the changed code, and it then drifts to a few
+hundred microseconds of ordinary scheduling jitter over the next 1.8 s.
+
+#### 52.4.3 The firmware's own console is IDENTICAL
+
+A 4.2 s seeded console probe (`sysbus.uart0 CreateFileBackend`) of base, of
+stage 07 and of the one-symbol image:
+
+```
+185 lines in all three, IDENTICAL TEXT through line 179
+every Zephyr-timestamped line: |D| < 0.5 ms between base and the one-symbol image
+first text divergence, line 180: base prints bt_receive_cb() there, the other two
+                                 print fuel_gauge_update() -- i.e. the BLE frame
+                                 has not arrived yet
+the one-symbol image's console is IDENTICAL to stage 07's
+```
+
+So nothing the firmware *does* moves.  What moves is **when the phone's GATT
+write reaches it**.
+
+#### 52.4.4 The BLE link, measured: the connection interval is **30 ms**, and
+#### the write arrives **one connection event later**
+
+`BLE_VirtualCentral.cs` sends `CONNECT_IND` with `Interval = { 0x18, 0x00 }` =
+24 × 1.25 ms = **30 ms**, and the emulation agrees.  Sampling
+`vcentral DataEventsAnswered` on a virtual-time grid by interleaving
+`emulation RunFor` slices with the property read (the sliced run reproduces the
+trigger tick `3,711,430,000` exactly, so slicing does not perturb the
+emulation):
+
+```
+5 ms grid, 3.55 -> 3.95 s, base image -- data events at:
+   3.590  3.620  3.650  3.680   [ nothing near 3.710 ]   3.740  3.770  3.800  3.830
+   [ nothing near 3.860 ]  3.890  3.920  3.950
+   => a 30 ms grid with one unanswered window in five
+100 ms grid, 1.0 -> 5.0 s:  base and stage 07 agree at EVERY ONE of the 40 samples
+```
+
+Then, bracketing the arrival by running short seeded console probes and reading
+both the `bt_receive_cb` count and `DataEventsAnswered` at the stop point:
+
+| image | first `bt_receive_cb` | data event index at that moment |
+|---|---|---:|
+| base | in **(3.675, 3.678] s** | **0x45 = 69** |
+| `serialization_ipc_ept_register` static | in **(3.734, 3.740] s** | **0x46 = 70** |
+
+> **Our firmware answers the central's sweep one connection event later.**  The
+> virtual central writes the navigation frame to a swept handle at *every*
+> connection event and advances the sweep only on an acked write; the frame
+> first lands on the NUS RX handle `0x14` at data event **#69** in the base and
+> at **#70** with the one symbol made `static`.  The count of data events is
+> identical in both images at every sample — what shifts is **which** of them
+> carries the first `0x14` write.
+
+#### 52.4.5 Why the step measures 50.42 ms and not 30
+
+Two things stack, and both are measured:
+
+1. **The two candidate events are 60.3 ms apart, not 30.**  The connection
+   window at ≈ 3.707 s is unanswered — in *both* images — so #69 lands at
+   ≈ 3.6765 s and #70 at ≈ 3.737 s.
+2. **The app-side latency from `bt_receive_cb` to the nPM1300 rail enable is
+   not constant**: ≈ 34.8 ms in the base (3.6765 → 3.711430) and ≈ 24.9 ms in
+   the one-symbol image (3.737 → 3.761850).
+
+`60.3 − 9.9 = 50.4`.  That is the whole of the "half slot".
+
+> **`W = 100.513 ms` is NOT the BLE connection interval.**  The interval is
+> 30 ms, from the `CONNECT_IND` field and from the measured event grid; `W` is
+> ≈ 3.35 of them.  So `D = 0.502 slots` is not a half-quantum needing an
+> explanation — it is **one connection-event boundary crossing**, landing where
+> it lands.  I am **not** proposing any change to `W` or `R`, and I did not
+> touch them; this is a statement about what the number means, recorded for the
+> criterion's owner.
+
+#### 52.4.6 The causal chain, stated once
+
+`static` on `serialization_ipc_ept_register` → GCC inlines it into
+`st25dv_read_chip_ids` and the linker drops the out-of-line body (−8 B `text`,
+semantics unchanged) → that function's ST25DV I²C traffic moves by **−30 µs at
+t = 98.7 ms** → ordinary scheduler jitter carries the offset to a few hundred
+microseconds by 1.7 s → at the GATT sweep the app core's acknowledgement of one
+of the first twenty sweep writes falls on the other side of a 30 ms
+connection-event boundary → the navigation frame is delivered at connection
+event **#70** instead of **#69**, which here are **60.3 ms** apart → the panel
+rail enable, whose own latency differs by 9.9 ms, lands **+50.42 ms** later.
+This is the amplification the capture script's own header documents ("a
+sub-microsecond divergence at t ~ 2 s that amplified into a 100 ms scheduling
+shift by t ~ 3.9 s"), measured for the first time from one end to the other.
+
+### 52.5 WHY NO LINK-DECIDABLE RULE ISOLATES IT — §48.10's designed exclusion
+### rule is **over-broad by twelve symbols**, and the obvious refinement is too
+
+§48.10 designed the rule *"refuse a candidate the evidence build's link still
+emits as an out-of-line text symbol"*, which reproduces the 118/14 split.  It
+is decidable, it fails closed, and it is now **measurably over-broad**: twelve
+of the fourteen it refuses are shown null above, and the thirteenth
+(`pt_nfc_eeprom_link_init`) carries only the console divergence §51 root-caused
+to a defect in the **base**.  Landing it would spend 200 bytes of `text` to buy
+an effect that costs 8.
+
+The obvious refinement — *"refuse a candidate that internal linkage lets the
+link inline away entirely"* — does not discriminate either.  `nm` on the
+thirteen singleton ELFs:
+
+```
+symbol vanishes from the linked image when made `static`   11 of 13
+survives as a local (`t`)                                   2 of 13
+        svc_attr_memory_release, trigger_touch_key_hw_reset
+```
+
+Eleven candidates are inlined away and **one** of the eleven moves the trigger.
+
+> **The only property that separates `serialization_ipc_ept_register` from the
+> other twelve is the measurement itself.**  There is no rule available to the
+> transformer — from the link evidence, from the shipped image, or from the
+> source — that names this symbol and not the others.  Any exclusion narrower
+> than §48.10's is therefore *the gate's own answer written back into the
+> stage*, which is the one thing the pipeline's rules are not allowed to be.
+
+### 52.6 THE DECISION
+
+**Repair is not available: there is nothing wrong.**  §52.4.1 disassembled both
+forms and they are the same program; §52.4.3 shows the firmware's console is
+line-for-line identical; the compiler and linker agree (0 errors, 0 undefined,
+0 duplicate globals, `nm -u` 0); and the trigger displacement is produced by a
+−30 µs bus-timing change at t = 98.7 ms amplified across a connection-event
+boundary 3.6 s later.
+
+**Exclusion is available and is measured, but the rule for it is not.**  The
+131-symbol stage 07 is not a verdict-by-tolerance: it reads `D = 0.000 ms` on
+all six streams of both stimuli with 4/4 framebuffers.  What is missing is a
+predicate a transformer may legitimately hold (§52.5).
+
+**So I did NOT change `t07_internal_linkage.py`, and I state the reason rather
+than hiding behind §48's.**  §48 declined to land its rule because landing cost
+a ladder re-materialisation; that cost is indeed lower now.  I decline for a
+different and stronger reason: **the rule §48 designed is now known to be wrong
+by twelve symbols, and the correct exclusion has no admissible rule.**  Writing
+one symbol's name into a transformer, sourced from an emulator verdict, would
+convert the gate from an independent check into part of the thing it checks.
+That is a decision for the pipeline owner, and this pass has made it a one-line
+decision by naming the symbol, proving it necessary and sufficient, and gating
+the reduced stage:
+
+```
+the one-line quarantine, if the owner wants it:
+    refuse `serialization_ipc_ept_register` in t07, citing our_boot_bringup.md
+    section 52.1/52.2 -- 131 of 132 applied, gate D = 0.000 ms on every stream
+    of both stimuli, cost 8 bytes of .text
+```
+
+**And the honest headline: stage 07 as it stands, with all 132 symbols, still
+FAILS the published navigation gate**, at `D = 50.410 / 50.600 ms`.  `W` and
+`R` were not retuned, not re-derived and not discussed.  What changed is that
+the FAIL is now attributed to **one named symbol** and to a **measured chain**
+that ends in a BLE connection-event boundary, instead of to image size (§48,
+overturned by §50), to a downstream consequence of the `notification_system_init`
+defect (§50.10, falsified by §51), or to an unlocalised set of thirteen (§51.9
+item 4, closed here).
+
+### 52.7 THE ACCEPTANCE BAR — re-measured in this pass
+
+| gate | required | **measured** | |
+|---|---|---|---|
+| in-tree base rebuild | — | **956,840 B**, sha `6553c55bb676b191` — §51's `nbase` to the byte | ✔ |
+| stage 07 rebuild from the RESTORED tree | — | **956,420 B**, sha `37f097919dcc62ad` — §51's `r07` to the byte | ✔ |
+| `subset.py ALL` round trip | 0 files rewritten | **`files_rewritten = 0`** against the restored tree | ✔ |
+| 4 framebuffers vs shipped goldens | 4/4 | **4/4** on `r04`, `r07`, `x131`, and the one-symbol image | ✔ |
+| `nm -u`, app core | 0 | **0** on `nbase2`, `st07r`, `x131`, one-symbol | ✔ |
+| `nm -u`, net core | 0 | **0** (frozen image, not rebuilt) | ✔ |
+| duplicate globals | 0 | **0** on all four app images | ✔ |
+| pin gates | 0 / 0 | `raw_literal_pins_inside_a_live_object` **0**, `bound_pins_escaping_their_owner` **0**, `unknown_inside_a_live_object` **0**; `bound_pins_ok` 627 (`nbase2`) / 598 (`st07r`); `abs_symbols_not_in_linker_scripts` **3**, pre-existing | ✔ |
+| `check_thread_create_stack_args --trials 120` | 10/10 | **10 / 10 sites pass**, `EXIT=0` | ✔ |
+| `tools/verify_data.py` | 995/995 | **995 / 995 files, 56,279 / 56,279 B, 100.00 %** | ✔ |
+| refactor test suite | 240/240 | **240 tests, OK** | ✔ |
+| `check_app_flash_literals.py` | exit 0 on all ten trees + build | **exit 0 on all ten stage trees** (`dereferenced_and_unreviewed` 0, `unclassified_and_unreviewed` 0 on every one) and on `--build nbase2` (223 reviewed, 0/0) | ✔ |
+| net `zephyr.bin` FROZEN | 225,581 B | **225,581 B**, sha256 `e09b9481a3154e16…`, not rebuilt, not touched | ✔ |
+| app flash | *re-measure* | **956,840 B / 982,528 B = 97.39 %**; RAM **253,765 B / 440 KB = 56.32 %** — unchanged from §51 | measured |
+| `driver.py status` | 0..9 current | **0..9 all `current`, 0 inputs changed** after the restore; 99 stale as always | ✔ |
+
+`~/Projects/armemul` **not modified**: `models/BLE_VirtualCentral.cs` sha256
+`1f10e117632a1bb3…`, `NRF5340_SPIM.cs` **3** `TraceFile` occurrences,
+`NRF5340_TWIM.cs` **2** — both uncommitted hooks intact.
+
+### 52.8 WHAT I DID NOT CLOSE, AND WHY
+
+1. **The exclusion is NOT landed** (§52.6).  The transformer, `driver.py`,
+   `stagelib.py`, `link_evidence.py` and every MANIFEST are untouched; nothing
+   moved `transforms_digest`, and the ten stages stayed `current` throughout.
+   The decision needs an owner because no admissible rule exists.
+2. **WHY the app-side latency from `bt_receive_cb` to the panel rail enable
+   differs by 9.9 ms between the two images is NOT derived.**  §52.4.5 measures
+   it (34.8 ms vs 24.9 ms) and uses it, but does not explain it; a periodic
+   thread or poll cadence in the display path is the obvious candidate and was
+   not chased.
+3. **The unanswered connection window at ≈ 3.707 s is measured, not
+   explained.**  Roughly one window in five goes unanswered on this seed, in
+   both images; that pattern is what makes events #69 and #70 60.3 ms apart
+   rather than 30, and its cause is in the net core / radio model.
+4. **`W` and `R` were NOT touched.**  `W = 100.513 ms`, `R = 1.160 ms`.
+   §52.4.4 records that `W` is ≈ 3.35 BLE connection intervals rather than one,
+   which is an observation for the criterion's owner and **not** a proposal.
+5. **One seed, two stimuli.**  `G1_SEED=305419896`.  Every number here is at
+   that seed.
+6. **The full ladder was NOT re-captured.**  Nothing under stages 00–06 or
+   08–09 changed in this pass and §51's captures stand; the two new 20 s
+   two-stimulus captures are the one-symbol image and the 131-symbol image.
+7. **`cfg_verify` was not run and is cited nowhere**, per §51.1.1/§51.4 — it is
+   blind in both directions on this code.
+8. **The net core was not built and not touched.**  Size, sha256 and `nm -u`
+   checked; `check_net_raw_literals` and `verify_net_stock_data_window` NOT RUN.
+9. **§51.9 items 1 (the five remaining console differences from the shipped
+   firmware, including the empty `%s` in `trigger_screen_state_change`), 2
+   (`cfg_verify` not taught about `r0`-preserving callees) and 3 (the
+   `int`/`void` cross-TU sweep) are all still open.**  Item 3 is worth
+   repeating: `serialization_ipc_ept_register` itself declares
+   `extern uint64_t z_device_is_ready(uint32_t)` and passes the high half to a
+   log call.  It is harmless here — both formats it feeds take no `%` argument
+   — but it is the same shape as the defect §51 repaired, and the sweep that
+   would find every instance was still not run.
+10. **`battery_model_state_update` (`FUN_0000c358`)** — untouched, still open
+    from AGENTS.md.
+11. **Stage 99** left stale, as every prior pass.
+12. **Nothing was committed.**  §52.9 says exactly what is dirty.
+
+### 52.9 FOOTPRINT
+
+```
+ M recon/emulator/reports/our_boot_bringup.md   this section 52
+ M recon/refactor/README.md                     the iteration-52 R7 gate record
+?? Even+Realities_1.9.0.xapk                    pre-existing, untouched, not mine
+```
+
+**No transformer, no stage tree, no MANIFEST, no `driver.py`/`stagelib.py`/
+`link_evidence.py`, no `recon/app/src`, no `recon/verified/src`, no
+`recon/symbolized`, no `recon/symbols`, no linker script, no `tools/`, no
+oracle JSON, no golden framebuffer, no `recon/data` and no net-core file was
+written.**  The subset instrument was run over the stage-07 tree **21** times
+(18 of them away from the shipped content) and the tree restored: `subset.py ALL` followed by `driver.py materialize 0..9` gives
+`0..9 current, 0 inputs changed`, a rebuild reproducing `37f097919dcc62ad`, and
+a second `subset.py ALL` reporting **`files_rewritten = 0`**.  `git status`
+shows only the two report files and the pre-existing `.xapk`.
+
+`~/Projects/armemul` **not modified at all**: `BLE_VirtualCentral.cs`
+`1f10e117632a1bb3…`, `NRF5340_SPIM.cs` 3 `TraceFile`, `NRF5340_TWIM.cs` 2,
+`git status` there unchanged from the pre-pass state.
+
+Outside the repository, all new under `/private/tmp/g1-i54/`: `ft.sh`, `sb.sh`,
+`one.sh`, `bp.sh`, `bb.sh`, `cap.sh`, `cmpcap.sh`, `mko.sh`, `gate.sh`, `fb.sh`,
+`vc.sh`, `slice.sh`, `cprobe.sh`, `acc.sh`, `acc2.sh`, `batch1.sh`, `batch2.sh`,
+the 13 singleton lists and `x131.txt`; plus `/private/tmp/g1-i54-*` (22 builds),
+`/private/tmp/g1_i54_*` (short probes and 4 full captures) and
+`<scratchpad>/i54/T790000/**` (8 oracles).
+
+### 52.10 REPRODUCING
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+V="env PYTHONSAFEPATH=1 .venv/bin/python"
+
+# the instrument (section 48's, unmodified) and its two controls
+$V /private/tmp/g1-i49/subset.py ALL          # files_rewritten = 0
+bash /private/tmp/g1-i54/one.sh ctlN NONE     # 956,636  6a53d0a8a22afc03  3,711.430
+bash /private/tmp/g1-i54/one.sh ctlA ALL      # 956,420  37f097919dcc62ad  3,761.850
+
+# the fast trigger probe, validated against section 51's 20 s captures
+bash /private/tmp/g1-i54/ft.sh nbase 4.5      # 3,711,430,000
+bash /private/tmp/g1-i54/ft.sh r07   4.5      # 3,761,850,000
+
+# THE BISECTION -- all thirteen, one at a time
+bash /private/tmp/g1-i54/batch1.sh            # 13 singletons + ALL
+bash /private/tmp/g1-i54/one.sh x131 /private/tmp/g1-i54/x131.txt
+
+# the size / displacement controls
+bash /private/tmp/g1-i54/bp.sh padN16 NONE 16
+bash /private/tmp/g1-i54/bp.sh padO16 /private/tmp/g1-i54/one_serialization_ipc_ept_register.txt 16
+
+# the full gate
+bash /private/tmp/g1-i54/cap.sh o_serialization_ipc_ept_register both
+bash /private/tmp/g1-i54/cap.sh x131 both
+bash /private/tmp/g1-i54/mko.sh 790000 r04 r07 o_serialization_ipc_ept_register x131
+bash /private/tmp/g1-i54/gate.sh x131 r04
+bash /private/tmp/g1-i54/gate.sh o_serialization_ipc_ept_register r04
+bash /private/tmp/g1-i54/fb.sh r04 r07 x131 o_serialization_ipc_ept_register
+
+# THE MECHANISM
+bash /private/tmp/g1-i54/vc.sh    ctlN 4.2        # console, 185 lines
+bash /private/tmp/g1-i54/slice.sh ctlN 3.55 0.005 80   # the 30 ms connection-event grid
+bash /private/tmp/g1-i54/cprobe.sh ctlN 3.678          # bt_receive_cb=1, DEA=0x45
+bash /private/tmp/g1-i54/cprobe.sh o_serialization_ipc_ept_register 3.740  # bt=1, DEA=0x46
+
+# RESTORE (mandatory) and prove it
+$V /private/tmp/g1-i49/subset.py ALL
+for n in 0 1 2 3 4 5 6 7 8 9; do $V recon/refactor/driver.py materialize $n; done
+$V recon/refactor/driver.py status          # 0..9 current, 0 inputs changed
+bash /private/tmp/g1-i54/acc.sh ; bash /private/tmp/g1-i54/acc2.sh
+```
+
+### 52.11 THE ONE-PARAGRAPH ANSWER
+
+§51.9 item 4 — *"WHICH of the thirteen carries the navigation half-slot is NOT
+identified"* — is **closed, and it is one symbol**:
+**`serialization_ipc_ept_register`**.  Probing all thirteen one at a time
+(never a bisection, so a combination could not hide) on a new 69-second
+read-out — the same seeded navigation capture truncated to `G1_P1_SECS=4.5`,
+validated to the tick against §51's 20 s captures — puts twelve of them on the
+base's trigger (3,711.430 ms) and that one on stage 07's (3,761.850 ms); and
+**stage 07 with just that symbol removed, 131 of 132 still `static`, goes back
+to the base's tick** and then **PASSES the published gate with `D = 0.000 ms`
+on all six streams of both stimuli**, 4/4 framebuffers, while the symbol
+**alone** reproduces stage 07's failure at `D = 50.410` and `50.600 ms` —
+§51.6.1's numbers to the microsecond.  It is not size and not code-address
+displacement: 16 bytes of inert `.text` restoring the image to the base's exact
+956,636 B leaves the trigger unmoved, while the same pad on the base is
+byte-exactly inert, as are the other 131 static-ifications, over all 318 traced
+bus events of the first 4.5 s.  The mechanism is measured end to end and it is
+**not** a half-slot: `static` lets GCC inline the function into its one caller
+`st25dv_read_chip_ids` (`0x88 + 0xa8 -> 0x128`, semantically identical
+instruction for instruction), whose ST25DV I²C traffic then moves **−30 µs at
+t = 98.720 ms** — the first departing event in the whole capture is the changed
+function's own bus — drifting to a few hundred microseconds by 1.7 s, at which
+point the app core's acknowledgement of one of the virtual central's first
+twenty GATT sweep writes falls on the far side of a **30 ms** BLE connection
+event (the `CONNECT_IND` `Interval` field is `0x0018`, and the measured event
+grid agrees), so the navigation frame is delivered at data event **#70**
+instead of **#69** — measured directly from `vcentral DataEventsAnswered`,
+which is otherwise identical in the two images at every one of forty samples —
+and those two events are **60.3 ms** apart because one window in five goes
+unanswered, of which the panel-rail chain's own 9.9 ms latency difference gives
+back the balance: **60.3 − 9.9 = 50.4**.  So `D = 0.502 slots` is **one
+connection-event boundary crossing**, not half a quantum: `W = 100.513 ms` is
+≈ 3.35 connection intervals, and I neither retuned nor re-derived it.  The
+decision is **neither of the two the work order offered**: there is nothing to
+repair (the two code forms are the same program and the firmware's 185-line
+console is identical text), and the exclusion — though fully measured — has
+**no admissible rule**, because §48.10's designed predicate is now over-broad
+by twelve symbols and its obvious refinement ("refuse what the link inlines
+away") catches eleven of the thirteen while only one matters.  So the
+transformer is untouched and **stage 07 with all 132 symbols still FAILS**,
+with its FAIL reduced from an unlocalised set of thirteen to one named symbol,
+one named caller, and one named 30 ms boundary.
