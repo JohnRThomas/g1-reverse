@@ -11,7 +11,7 @@
  "generated_by": "recon/refactor/driver.py",
  "reproduce": "PYTHONSAFEPATH=1 .venv/bin/python recon/refactor/driver.py materialize 6",
  "repair_policy": "A stale or failing stage is REGENERATED, never hand-edited. A compile failure in a stage tree is proof the transformer is wrong, not a task to hand-fix.",
- "file_count": 1756,
+ "file_count": 1757,
  "files": {
   "recon/application/app/CMakeLists.txt": {
    "source": "recon/refactor/stage_05_cohesive_composition/tree/recon/application/app/CMakeLists.txt",
@@ -330,9 +330,9 @@
   },
   "recon/generated/app_retained_sources.cmake": {
    "source": "recon/refactor/stage_05_cohesive_composition/tree/recon/generated/app_retained_sources.cmake",
-   "source_sha256": "d45fb86fc692edcc2923b9b4a5686b9d08aeaea91eef8d08cab5ffaecf912686",
-   "output_sha256": "d45fb86fc692edcc2923b9b4a5686b9d08aeaea91eef8d08cab5ffaecf912686",
-   "bytes": 55779,
+   "source_sha256": "36199279c89a0df3032924b3c639127546106a905286ae4f6e7e8e9318cb0bbc",
+   "output_sha256": "36199279c89a0df3032924b3c639127546106a905286ae4f6e7e8e9318cb0bbc",
+   "bytes": 55863,
    "transformations": {}
   },
   "recon/generated/net_retained_sources.cmake": {
@@ -1330,6 +1330,13 @@
    "bytes": 1270,
    "transformations": {}
   },
+  "recon/symbolized/app/core/box_placement_animation_step.c": {
+   "source": "recon/refactor/stage_05_cohesive_composition/tree/recon/symbolized/app/core/box_placement_animation_step.c",
+   "source_sha256": "ae03bfcde815e23ae389373f4ecab21341e0da714c65743a0330ee10a412cd28",
+   "output_sha256": "ae03bfcde815e23ae389373f4ecab21341e0da714c65743a0330ee10a412cd28",
+   "bytes": 3768,
+   "transformations": {}
+  },
   "recon/symbolized/app/core/change_work_mode_to.c": {
    "source": "recon/refactor/stage_05_cohesive_composition/tree/recon/symbolized/app/core/change_work_mode_to.c",
    "source_sha256": "8beca64ff010f605a740c09e820deb7604f724b508877762f5962b3b15ab0bb3",
@@ -1388,9 +1395,9 @@
   },
   "recon/symbolized/app/core/g1_core_01.c": {
    "source": "recon/refactor/stage_05_cohesive_composition/tree/recon/symbolized/app/core/g1_core_01.c",
-   "source_sha256": "f6513d760a616d9b77cfc99e9125aee14dc9ff72406c64d4013146c351c0e0c3",
-   "output_sha256": "7ab14bfe6cfe2b29c2ae0b47c6f0a6514911a60996c72188032897f8a6a85e06",
-   "bytes": 11000,
+   "source_sha256": "4de43d4a1771a0ee371416780f4cbb5914ca36349eb245ae9cabe5441652cb79",
+   "output_sha256": "158564ff9eba03e25fddfd0da169ae41515a39374e83734ac12e8c1ff5608c00",
+   "bytes": 7176,
    "transformations": {
     "content_changed": true
    }
@@ -12478,8 +12485,9 @@
  },
  "evidence_inputs": {
   "recon/refactor/sdk_declared_symbols.json": "3b7c3558364b4b3bdb35504aed2c996f9356ee7a10777c3b411be6b25b078d31",
-  "recon/refactor/link_referenced_symbols.json": "05f7ff66d6937b8e7ab70c7d6b7a7f626a9fc098a507483a176d8bd02efb112e"
+  "recon/refactor/link_referenced_symbols.json": "cd60f0e6f7c65846f090ce0db02718c839c4176ab08a3ec171ed06b0933a2de8"
  },
+ "transforms_digest": "46b70c24a2630ba24eb7dffb6a23555bfc3af6267a99f1a32bed9fb1b4dc3a26",
  "declared_codegen_class": "byte-identical",
  "oracle_required": false,
  "inherited_generated_outputs": [
@@ -12531,8 +12539,8 @@
  },
  "include_hoisting": {
   "totals": {
-   "H_late_includes_seen": 157,
-   "H_includes_hoisted": 146
+   "H_late_includes_seen": 155,
+   "H_includes_hoisted": 144
   },
   "refused": {
    "unit_has_no_leading_include_block": 107,

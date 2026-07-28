@@ -43,7 +43,7 @@
   "rom_start": 340,
   "settings_handler_static_area": 120,
   "sw_isr_table": 552,
-  "text": 492336
+  "text": 492416
  },
  "stage_sections": {
   "ARM.exidx": 8,
@@ -73,12 +73,12 @@
   "rom_start": 340,
   "settings_handler_static_area": 120,
   "sw_isr_table": 552,
-  "text": 492336
+  "text": 492416
  },
  "oracle_required": false,
  "why_oracle_required": "Linked size did not move; every previously captured behavioural measurement carries over by construction, not by argument.",
- "base_elf": "/private/tmp/g1-cons-s07/zephyr/zephyr.elf",
- "stage_elf": "/private/tmp/g1-cons-s08/zephyr/zephyr.elf",
+ "base_elf": "/private/tmp/g1-lr-s07/zephyr/zephyr.elf",
+ "stage_elf": "/private/tmp/g1-lr-s08/zephyr/zephyr.elf",
  "stage": 8,
  "slug": "call_order"
 }

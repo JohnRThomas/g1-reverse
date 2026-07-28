@@ -230,12 +230,12 @@ the end gives a pass/fail with no diagnostic value.
 | 02 | **block dedupe (LANDED)** — volatile-accessor spelling normalisation (one type only), plus the `G1_NORETURN_CALL` / `G1_LOG_ROUTE` / `G1_ASSERT_FAIL` macros and the log-prototype convergence residue. Stage 03's `__ASSERT` / noreturn extraction was folded in here because it is the same class of token-identical statement macro. | textual, codegen-identical; gate is a byte-identical `.o`, and it held: both cores' `zephyr.bin` byte-identical to stage 01, 4,594/4,598 objects byte-identical. Report: `recon/analysis/staged_refactor_stage02.md` |
 | 03 | **module structure (LANDED, app core only)** — the `input_set.py` `.h`-fragment fix stage 02 filed as blocking, plus the first STRUCTURAL transform: 1,621 app sources moved into 22 cohesive module directories (build lists regenerated in the same transaction, list order preserved exactly), and 99 module-wide type-identical `extern` declarations hoisted into 16 generated module headers. Net untouched and therefore byte-identical by construction. | file layout + declaration siting only; gate is a byte-identical `zephyr.bin`, and it held on both cores. **Harvest: 1,014 symbol/module type disagreements, 446 of them against the symbol's own definition, 175 about arity.** Report: `recon/analysis/staged_refactor_stage03.md` |
 | 03b (partly done, upstream) | **repair the declaration disagreements** in the CANONICAL trees (stage 03 `DEFECTS.json`). The parity agent's type-disagreement pass took the census from 1,014 to **833** (measured by re-running stage 03's own agreement test at HEAD `50929c5d`). | blocking prerequisite for a *blanket* cohesive-TU merge; still the single thing standing between stage 04's 695 translation units and 243. R1 means this work is the parity agent's, not the pipeline's. |
-| 04 | **scoped cohesive-TU merge, app core only — DEFAULT IS NOW SUB-BATCH `B`** — maximal ORDER-PRESERVING runs of consecutive retained sources inside one module that provably cannot collide. Seven refusal rules (`type`, `dupdef`, `static`, `typedef`, `macro`, `asmname`, `tag`/`enumconst`, `includes`); quoted repository headers are *read* and folded rather than refused. `A` and `B` now **partition** the clean runs and the R7 gate below charged 100 % of the damage to `A`, so `B` is the default: **1,615 → 700 TUs, 249 merged units, 1,164 files absorbed.** | **the first stage that CANNOT be gated on `cmp zephyr.bin`.** Declared codegen class **`size-changing`**, measured `.text` **−76 B** for `B` alone (−12 B for `A`, −88 B for `AB`) — so **an oracle run is REQUIRED and has NOT been done for `B`**. Reports: `recon/analysis/staged_refactor_stage04.md` (the original AB build), `recon/analysis/stage04_r7_validation.md` (the gate), `recon/analysis/staged_refactor_stage05.md` (the rework). |
+| 04 | **scoped cohesive-TU merge, app core only — DEFAULT IS NOW SUB-BATCH `B`** — maximal ORDER-PRESERVING runs of consecutive retained sources inside one module that provably cannot collide. Seven refusal rules (`type`, `dupdef`, `static`, `typedef`, `macro`, `asmname`, `tag`/`enumconst`, `includes`); quoted repository headers are *read* and folded rather than refused. `A` and `B` now **partition** the clean runs and the R7 gate below charged 100 % of the damage to `A`, so `B` is the default: **1,615 → 743 TUs, 249 merged units, 1,121 files absorbed, 31 shape-quarantined** *(re-measured 2026-07-28; the row previously read 700 / 1,164, and 705 / 1,154 before that — every generation of this row has been stale. `staged_refactor_stage09.md` §1 measured 742 / 1,122; the comma-declarator repair since moved it by one file each way.)* | **the first stage that CANNOT be gated on `cmp zephyr.bin`.** Declared codegen class **`size-changing`**, measured `.text` **−76 B** for `B` alone (−12 B for `A`, −88 B for `AB`) — so **an oracle run is REQUIRED and has NOT been done for `B`**. Reports: `recon/analysis/staged_refactor_stage04.md` (the original AB build), `recon/analysis/stage04_r7_validation.md` (the gate), `recon/analysis/staged_refactor_stage05.md` (the rework). |
 | 05 | **cohesive composition, app core only** — turns stage 04's concatenated units into composed ones: one include block per unit (repeats of *provably idempotent* headers withdrawn, never moved — 2,423 → 850 directives, worst unit 49 → 6), one declaration site per symbol per unit (146 duplicates withdrawn), one-line member banners, every `identity:` banner preserved byte for byte. Sub-batch `S` (internal linkage for TU-private symbols: 241 candidates) is opt-in and **not applied**. | declared `size-neutral`, **measured `byte-identical` — `zephyr.bin` `cmp`-identical to stage 04's, 956,276 B.** Needs no oracle of its own; inherits stage 04's unproven status. Report: `recon/analysis/staged_refactor_stage05.md` |
 | 06 | **composition depth (LANDED)** — module-private declaration demotion (a generated module-header declaration whose users have collapsed to ONE merged unit moves into that unit, at the include point) and include hoisting (a late `#include` moves to the unit's first block only when no preprocessor directive intervenes AND no identifier in the code it jumps over is a macro of that header, per the measured evidence; a header with no name-level macro evidence is refused). | declared `byte-identical`, **measured `byte-identical` — `cmp`-identical `zephyr.bin`, 956,276 B.** 251 of 285 late includes hoisted; units at exactly one include block **21 → 112**; 4 of 215 module-header declarations demoted (211 genuinely still have ≥2 users). Report: `recon/analysis/staged_refactor_stage06.md` |
-| 07 | **internal linkage (BUILT, NOT PROVEN)** — `static` for TU-private symbols, decided by **link evidence** (`recon/refactor/link_evidence.py`: `nm --undefined-only` over all 66 inputs of the app link, archives scanned whole) rather than by a source-text scan. The source scan was wrong on **58 of its 240 candidates**. 137 applied. | declared `size-changing`, measured `size-changing`, `.text` **−276 B**. **Gated by a real link (C6), which caught two hazards no `nm` evidence can see: a `PROVIDE()` in one of the 18 linker fragments the rule had listed 3 of, and 112 `-Wl,--undefined=` gc-roots reached through a `foreach(… IN LISTS …)`.** Side-finding: 120 recovered functions are now provably dead. **Oracle REQUIRED, not run.** |
+| 07 | **internal linkage (BUILT, NOT PROVEN)** — `static` for TU-private symbols, decided by **link evidence** (`recon/refactor/link_evidence.py`: `nm --undefined-only` over all 66 inputs of the app link, archives scanned whole) rather than by a source-text scan. The source scan was wrong on **58 of its 240 candidates**. **132 applied** *(re-measured 2026-07-28 after the evidence was regenerated against the tree that actually consumes it; the row read 137, and 135 before that. `display_close` was the 133rd candidate and is the symbol whose `static` broke the link — see `recon/analysis/ladder_link_repair.md`.)* | declared `size-changing`, measured `size-changing`, `.text` **−200 B, `rodata` −8 B** *(2026-07-28; was −276/−8 at the previous partition)*. **Gated by a real link (C6), which caught two hazards no `nm` evidence can see: a `PROVIDE()` in one of the 18 linker fragments the rule had listed 3 of, and 112 `-Wl,--undefined=` gc-roots reached through a `foreach(… IN LISTS …)`.** Side-finding: 120 recovered functions are now provably dead. **Oracle REQUIRED, not run.** |
 | 08 | **call-order reordering (LANDED AS A MEASURED NO-OP)** — stable topological sort of a merged unit's member blocks, callee before caller. | declared `size-changing` on principle. Result: **0 units reordered.** The 249 merged units contain **11 internal call edges in total**, all already callee-before-caller; stage 08's tree is byte-for-byte stage 07's. The finding is that stage 04 merges by link-order adjacency, which is nearly orthogonal to call structure. |
-| 09 | **call cohesion (BUILT, NOT PROVEN)** — group translation units that CALL ONE ANOTHER inside a module, instead of stage 04's runs of link-order-adjacent sources. First-fit greedy, a call edge required, `t04.conflicts`'s seven rules unchanged and evaluated against every member already in the group. Sub-batch `M` (the no-adjacency ceiling) is opt-in and not the default. | declared `size-changing` / `oracle_required`. **742 → 659 TUs, 55 merged units, 138 absorbed; call edges inside a unit 11 → 85.** Compiles first try after one transformer round; **the link failure it hits is stage 08's own** (see the gate record). **Oracle REQUIRED, not run.** Report: `recon/analysis/staged_refactor_stage09.md` |
+| 09 | **call cohesion (BUILT, NOT PROVEN)** — group translation units that CALL ONE ANOTHER inside a module, instead of stage 04's runs of link-order-adjacent sources. First-fit greedy, a call edge required, `t04.conflicts`'s seven rules unchanged and evaluated against every member already in the group. Sub-batch `M` (the no-adjacency ceiling) is opt-in and not the default. | declared `size-changing` / `oracle_required`. **743 → 660 TUs, 55 merged units, 138 absorbed; call edges inside a unit 11 → 85** *(re-measured 2026-07-28; the row read 742 → 659)*. **The link failure recorded here is REPAIRED**: it was stage 07 reading link evidence generated against a translation-unit partition stage 04 had since moved, and stages 07/08/09 now build and link with `nm -u` **0**. **First-ever stage 09 `SIZE_GATE.json`: declared `size-changing`, measured `size-changing`, `.text` +8 B — PASS.** **Oracle REQUIRED, still NOT run.** Reports: `recon/analysis/staged_refactor_stage09.md`, `recon/analysis/ladder_link_repair.md` |
 | 10 (was 09, was 06) | MMIO accessor macros per width, with a signedness audit | **stage that can change codegen** by value; C8 applies. Stage 02 already reduced 84 accessor spellings to 52, which is the prerequisite. |
 | 11 (was 10) | net renaming from upstream-identified symbols | 0 B, gated by a real link (C6) |
 | 12 (was 11) | struct typing | the stage that can grow the image; budget it |
@@ -1273,3 +1273,96 @@ identifies `npm1300` as the one genuinely mis-assigned train, which is the same
 device whose train-membership swap blows the ambiguity rule's Δ to 7,498.630 ms.
 The falsifiable replacement (`min_inter >= 4 × max_intra`) is written out in the
 stage 09 report §6.1; the file belongs to another agent and was **not edited**.
+
+---
+
+# ★ GATE RECORD — THE LADDER LINKS AGAIN, 2026-07-28
+
+Full working: **`recon/analysis/ladder_link_repair.md`**. HEAD `6fd3427f`,
+**nothing committed**. This record supersedes the "link failure" rows above.
+
+**What was broken.** Stages 07, 08 and 09 did not link:
+`undefined reference to 'display_close'`. Stage 07 decides internal linkage
+from `link_referenced_symbols.json`, which was generated from a build at an
+older generation where `display_close`'s caller was absorbed into the *same*
+object — so the symbol looked file-local and was made `static`. Stage 04's
+partition moved since; the caller became its own TU; the reference dangled.
+**`driver.py status` reported all three stages `current` throughout**, because
+`stagelib.EVIDENCE_INPUTS` watches the evidence file's **content hash** and the
+file's bytes had not changed. Only the tree it describes had.
+
+**What was fixed — the rule, not the two symbols.**
+
+1. `link_evidence.generate` now records **`app_objects`** (the object partition
+   it measured — 1,769 objects) *inside* the evidence, so the partition survives
+   `/private/tmp` reaping the build directory and needs no cross-compiler to read.
+2. `link_evidence.partition_state(tree)` compares that against the tree's own
+   `app_retained_sources.cmake`. Toolchain-free, so it runs on every `status`.
+   States: `agrees` / `STALE` / `unrecorded` (**fails closed**) / `no_evidence`
+   (not a fault) / `unverifiable`.
+3. A transformer that consumes it declares `CONSUMES_PARTITION_EVIDENCE`
+   (only `t07`); `materialize` records the agreement, `staleness` re-derives it.
+4. On disagreement the `repair` line no longer says "materialize" — that would
+   re-read the same stale evidence. It prints rebuild → regenerate → materialize.
+
+**And a FIFTH staleness hole, found while closing the fourth.** A stage is
+`transformer(input)`; staleness watched the input and the evidence and **never
+the transformer**. Editing `t04` left stages 04-09 reporting `current` against
+trees no transformer would now produce. Closed with
+`stagelib.transforms_digest()` recorded per stage. *Still not covered, stated
+plainly:* `stagelib.py`, `driver.py`, `input_set.py`.
+
+**Evidence regenerated** from a clean stage 06 build: `referenced` 5,420 →
+**5,422**, only `_puts_r` and `display_close` added, none removed — **exactly**
+the two symbols predicted. Stage 07 applies **132** candidates, not 133.
+
+**The comma-declarator patch (stage 09 §3.1) is APPLIED**, in `t04` where the
+blind spot lives, de-duplicated (t09 aliases it). It fires on the *source*
+`box_placement_animation_step.c`, one stage earlier than stage 09 saw it: 0
+stage 04 units now carry both spellings of `k_sleep`.
+
+### The ladder, measured 2026-07-28
+
+```
+regenerated 00 -> 09 in order, never patched      zero transformer rounds
+app builds 00..09                    10 of 10 exit 0, 0 compile errors
+LINKS                                10 of 10, 0 undefined references
+nm -u, all ten images                0 everywhere
+duplicate GLOBAL definitions         0 on every image
+driver.py check-addresses, 9 pairs   identical, 2,567 on both sides, every pair
+idempotence, all ten stage trees     byte-identical over a full re-materialisation
+refactor test suite                  215 / 215 PASS   (was 203; +9 partition, +3 digest)
+driver.py status, stages 00-09       current; stage 07 evidence_partition = agrees
+                                     (stage 99 stale, as every prior pass left it)
+net core                             NOT BUILT, NOT TOUCHED, NOT RE-MEASURED
+```
+
+| stage | declared | **measured** | pass | nonzero `.text`/`rodata` deltas | `zephyr.bin` |
+|---|---|---|---|---|---:|
+| 00 | `byte-identical` | *(identity)* | — | — | 956,496 |
+| 01 | `size-changing` | `size-changing` | ✔ | `text` −4, `rodata` −124 | 956,356 |
+| 02 | `byte-identical` | `byte-identical` | ✔ | — | 956,356 |
+| 03 | `byte-identical` | `byte-identical` | ✔ | — | 956,356 |
+| 04 | `size-changing` | `size-changing` | ✔ | `text` −76 | 956,292 |
+| 05 | `size-neutral` | `byte-identical` *(better)* | ✔ | — | 956,292 |
+| 06 | `byte-identical` | `byte-identical` | ✔ | — | 956,292 |
+| 07 | `size-changing` | `size-changing` | ✔ | `text` −200, `rodata` −8 | 956,076 |
+| 08 | `size-changing` | `byte-identical` *(better)* | ✔ | — | 956,076 |
+| 09 | `size-changing` | `size-changing` | ✔ | `text` **+8** | 956,092 |
+
+**All nine size gates PASS. No stage came out worse than it declared.** Stage
+09 has a `SIZE_GATE.json` for the first time. The eight gates that existed
+before this pass were measured against `/private/tmp/g1-cons-s0N`, built from a
+ladder that no longer exists; **all nine are re-measured here** against
+`/private/tmp/g1-lr-s0N`, built from the trees now on disk.
+
+### ⚠ WHAT THIS RECORD DOES NOT CLAIM
+
+**No oracle was run. Renode was not touched** (a concurrent agent owns it).
+Stages **01, 04, 07 and 09 declare `size-changing` / `oracle_required: true`
+and every one of those obligations is OUTSTANDING.** Nothing above is a
+behavioural claim: linking is not equivalence, and a `.text` delta of ±8 B is
+precisely the order this project has three times measured to re-phase the boot
+path. The R7 verdicts in the consolidated record above stand unchanged and
+un-re-tested — and note that those verdicts were measured on **different
+images** from the ones tabulated here.

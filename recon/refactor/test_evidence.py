@@ -193,3 +193,195 @@ class TestLinkEvidencePartitionCheck(unittest.TestCase):
             self.assertIn("gone", r["reason"])
         finally:
             os.unlink(p)
+
+
+class TestPartitionIsWatchedNotJustHashed(unittest.TestCase):
+    """THE FOURTH STALENESS HOLE, pinned.
+
+    `link_referenced_symbols.json' is only valid against the translation-unit
+    partition it was measured from.  `stagelib.EVIDENCE_INPUTS' watched its
+    CONTENT HASH, so when stage 04's merge partition moved underneath it the
+    file's bytes were unchanged, `driver.py status' reported stages 07, 08 and
+    09 `current', and the app link failed with `undefined reference to
+    `display_close''.
+
+    These tests fix the RULE, not the two symbols: an evidence file must be
+    invalidated when the tree it describes changes, not merely when its own
+    bytes change.
+    """
+
+    def _tree(self, td, sources):
+        """A minimal tree carrying only a retained-source list."""
+        d = os.path.join(td, "recon", "generated")
+        os.makedirs(d, exist_ok=True)
+        with open(os.path.join(d, "app_retained_sources.cmake"), "w",
+                  encoding="utf-8") as fh:
+            for s in sources:
+                fh.write('  "${CMAKE_CURRENT_LIST_DIR}/../symbolized/%s"\n' % s)
+        return td
+
+    def _evidence(self, td, objs, name="ev.json"):
+        import json as _json
+        p = os.path.join(td, name)
+        with open(p, "w", encoding="utf-8") as fh:
+            _json.dump({"provenance": {"build_dir": "/nonexistent/build"},
+                        "app_objects": sorted(objs)}, fh)
+        return p
+
+    def test_the_tree_partition_is_read_without_a_toolchain(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as td:
+            self._tree(td, ["app/display/g1_display_12.c", "net/ignored.c"])
+            self.assertEqual(link_evidence.retained_app_objects(td),
+                             {"g1_display_12.c.obj"})
+
+    def test_a_tree_with_no_retained_list_is_not_an_empty_partition(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as td:
+            self.assertIsNone(link_evidence.retained_app_objects(td))
+
+    def test_the_display_close_case_is_reported_stale(self):
+        """The measured failure, reproduced from set logic alone: the evidence
+        knew only `g1_display_12.c.obj'; the tree has split
+        `display_close_screen.c' back out into its own translation unit."""
+        import tempfile
+        with tempfile.TemporaryDirectory() as td:
+            tree = self._tree(td, ["app/display/g1_display_12.c",
+                                   "app/display/display_close_screen.c"])
+            ev = self._evidence(td, {"g1_display_12.c.obj"})
+            r = link_evidence.partition_state(tree, data=ev)
+            self.assertEqual(r["state"], "STALE")
+            self.assertEqual(r["only_in_tree"], ["display_close_screen.c.obj"])
+
+    def test_an_agreeing_partition_is_reported_agreeing(self):
+        """Validated in BOTH directions -- a checker that only ever says STALE
+        is not a checker."""
+        import tempfile
+        with tempfile.TemporaryDirectory() as td:
+            tree = self._tree(td, ["app/display/g1_display_12.c"])
+            ev = self._evidence(td, {"g1_display_12.c.obj", "rodata_0.c.obj"})
+            r = link_evidence.partition_state(tree, data=ev)
+            self.assertEqual(r["state"], "agrees")
+
+    def test_evidence_without_a_recorded_partition_fails_CLOSED(self):
+        """An evidence file that cannot say which objects it describes cannot
+        be shown to describe this tree.  That is the exact condition that
+        produced the link failure, so it must not read as agreement."""
+        import json as _json
+        import tempfile
+        with tempfile.TemporaryDirectory() as td:
+            tree = self._tree(td, ["app/a.c"])
+            p = os.path.join(td, "old.json")
+            with open(p, "w", encoding="utf-8") as fh:
+                _json.dump({"provenance": {"build_dir": "/nonexistent"},
+                            "referenced": []}, fh)
+            r = link_evidence.partition_state(tree, data=p)
+            self.assertEqual(r["state"], "unrecorded")
+            self.assertNotEqual(r["state"], "agrees")
+
+    def test_absent_evidence_is_not_a_staleness_fault(self):
+        """Absent evidence already means `apply nothing' to every consumer, so
+        it must not make every stage permanently stale."""
+        import tempfile
+        with tempfile.TemporaryDirectory() as td:
+            tree = self._tree(td, ["app/a.c"])
+            r = link_evidence.partition_state(
+                tree, data=os.path.join(td, "does-not-exist.json"))
+            self.assertEqual(r["state"], "no_evidence")
+
+    def test_staleness_reports_STALE_although_every_hash_matches(self):
+        """The regression that matters: identical evidence bytes, identical
+        source hashes, and the stage must still be reported stale."""
+        man = {
+            "files": {},
+            "evidence_inputs": stagelib.evidence_hashes(),
+            "input_stage": {"stage": 6, "slug": "unit_composition",
+                            "tree": "recon/refactor/stage_06_unit_composition/tree"},
+            "evidence_partition": {"state": "agrees"},
+        }
+        real_man, real_part = stagelib.load_manifest, stagelib.evidence_partition_state
+        try:
+            stagelib.load_manifest = lambda n, s: man
+            stagelib.evidence_partition_state = lambda t: {
+                "state": "STALE", "only_in_tree": ["display_close_screen.c.obj"]}
+            st = stagelib.staleness(7, "internal_linkage")
+            self.assertEqual(st["state"], "stale")
+            self.assertEqual(st["inputs_missing"], [])
+            self.assertTrue(any("PARTITION" in c for c in st["inputs_changed"]),
+                            st["inputs_changed"])
+            # and the repair must NOT be "regenerate the stage": regenerating
+            # it would read the same stale evidence and decide the same way.
+            self.assertIn("link_evidence.py generate", st["repair"])
+
+            stagelib.evidence_partition_state = lambda t: {"state": "agrees"}
+            self.assertEqual(stagelib.staleness(7, "internal_linkage")["state"],
+                             "current")
+        finally:
+            stagelib.load_manifest, stagelib.evidence_partition_state = (
+                real_man, real_part)
+
+    def test_only_a_consuming_stage_is_subject_to_the_check(self):
+        """A stage that never reads the evidence must not be made stale by it,
+        or the check becomes noise and gets ignored."""
+        import importlib
+        t07 = importlib.import_module("transforms.t07_internal_linkage")
+        self.assertTrue(getattr(t07, "CONSUMES_PARTITION_EVIDENCE", False))
+        for mod in ("t04_cohesive_tu", "t08_call_order", "t09_call_cohesion"):
+            m = importlib.import_module("transforms." + mod)
+            self.assertFalse(getattr(m, "CONSUMES_PARTITION_EVIDENCE", False),
+                             mod)
+
+    def test_a_transformer_edit_makes_its_stage_stale(self):
+        """THE FIFTH HOLE.  A stage is `transformer(input)'.  Watching only the
+        input meant editing a transformer left every downstream stage reporting
+        `current' against a tree no transformer would now produce -- measured
+        in this pass, when the comma-declarator repair landed in
+        `t04_cohesive_tu.py' and stages 04-09 all still said `current'."""
+        man = {"files": {},
+               "evidence_inputs": stagelib.evidence_hashes(),
+               "transforms_digest": stagelib.transforms_digest()}
+        real = stagelib.load_manifest
+        try:
+            stagelib.load_manifest = lambda n, s: man
+            self.assertEqual(stagelib.staleness(4, "cohesive_tu")["state"],
+                             "current")
+            man["transforms_digest"] = "0" * 64
+            st = stagelib.staleness(4, "cohesive_tu")
+            self.assertEqual(st["state"], "stale")
+            self.assertTrue(any("TRANSFORMER CHANGED" in c
+                                for c in st["inputs_changed"]), st)
+        finally:
+            stagelib.load_manifest = real
+
+    def test_the_digest_is_deterministic_and_order_independent(self):
+        """It must not be derived from `sys.modules': stage 04's record would
+        then depend on whether stage 09 had been materialised first in the same
+        process, and MANIFEST idempotence would break."""
+        self.assertEqual(stagelib.transforms_digest(),
+                         stagelib.transforms_digest())
+        self.assertEqual(len(stagelib.transforms_digest()), 64)
+
+    def test_a_manifest_without_the_digest_is_not_fabricated_stale(self):
+        """Absence of the field means `written before the check existed', not
+        `wrong'.  It is reported, not asserted."""
+        man = {"files": {}, "evidence_inputs": stagelib.evidence_hashes()}
+        real = stagelib.load_manifest
+        try:
+            stagelib.load_manifest = lambda n, s: man
+            st = stagelib.staleness(4, "cohesive_tu")
+            self.assertEqual(st["state"], "current")
+            self.assertIn("NOT RECORDED", st["transforms_digest"])
+        finally:
+            stagelib.load_manifest = real
+
+    def test_the_generator_records_the_partition_it_measured(self):
+        """Without this field the check degrades to `unverifiable' the moment
+        /private/tmp reaps the build directory."""
+        if not os.path.exists(link_evidence.DATA):
+            self.skipTest("link_referenced_symbols.json not generated")
+        with open(link_evidence.DATA, encoding="utf-8") as fh:
+            doc = json.load(fh)
+        self.assertIn("app_objects", doc,
+                      "the evidence must record the object partition it "
+                      "describes; regenerate it with link_evidence.py generate")
+        self.assertGreater(len(doc["app_objects"]), 0)

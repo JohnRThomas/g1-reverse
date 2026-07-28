@@ -120,6 +120,16 @@ def nm_symbols(nm: str, path: str) -> tuple[set[str], set[str]]:
 def generate(build_dir: str, nm: str, map_name: str = "zephyr.map") -> dict:
     map_path = os.path.join(build_dir, "zephyr", map_name)
     inputs = load_lines(map_path)
+    #: THE PARTITION THIS EVIDENCE IS ONLY VALID AGAINST, recorded IN the
+    #: evidence.  See `check_partition' for the failure that made this
+    #: necessary.  Recording it here rather than re-deriving it later from the
+    #: build directory is the whole point: a build directory in /private/tmp is
+    #: deleted by the OS, and once it is gone the evidence's own claim about
+    #: which objects existed becomes unrecoverable -- at which moment the only
+    #: honest answer a checker could give is "unverifiable", i.e. the check
+    #: silently stops checking.  A recorded set never evaporates and needs no
+    #: cross-compiler to read.
+    app_objects: set[str] = set()
 
     referenced: set[str] = set()
     app_defined: set[str] = set()
@@ -142,6 +152,7 @@ def generate(build_dir: str, nm: str, map_name: str = "zephyr.map") -> dict:
         is_app = rel == "app/libapp.a"
         if is_app:
             app_defined |= defined
+            app_objects |= archive_members(nm, path)
         else:
             non_app_referenced |= undef
         for s in undef:
@@ -170,7 +181,9 @@ def generate(build_dir: str, nm: str, map_name: str = "zephyr.map") -> dict:
             "app_archive": "app/libapp.a",
             "app_defined_symbol_count": len(app_defined),
             "referenced_by_a_non_app_input": len(non_app_referenced),
+            "app_object_count": len(app_objects),
         },
+        "app_objects": sorted(app_objects),
         "referenced_count": len(referenced),
         "referenced": sorted(referenced),
         "referenced_by_non_app_inputs": sorted(non_app_referenced),
@@ -237,6 +250,94 @@ def archive_members(nm: str, archive: str) -> set[str]:
     return out
 
 
+def retained_app_objects(tree_root: str) -> set[str] | None:
+    """The app translation units of a TREE, as object basenames.
+
+    Read from the tree's own generated retained-source list, so this is pure
+    text: no toolchain, no build directory, no ELF.  ``None`` means the tree
+    has no retained source list at all, which is not the same as an empty
+    partition and must not be read as one.
+    """
+    cmake = os.path.join(tree_root, RETAINED_CMAKE)
+    if not os.path.exists(cmake):
+        return None
+    with open(cmake, encoding="utf-8") as fh:
+        text = fh.read()
+    return {os.path.basename(m.group(1)) + ".obj"
+            for m in _CMAKE_SRC.finditer(text)
+            if m.group(1).startswith("app/")}
+
+
+def evidence_app_objects(data: str | None = None) -> tuple[str, set[str]]:
+    """The object partition the recorded evidence was measured against.
+
+    Returns ``(state, objects)`` where state is one of:
+
+    ``"no_evidence"``   the evidence file does not exist.  Consumers already
+                        treat absent evidence as "apply nothing", so this is
+                        not a staleness fault.
+    ``"unrecorded"``    the evidence predates ``app_objects`` being recorded.
+                        **Fail closed**: an evidence file that cannot state
+                        which objects it describes cannot be shown to describe
+                        THIS tree, and "cannot be shown" is exactly the
+                        condition that produced the link failure this machinery
+                        exists to stop.
+    ``"recorded"``      usable.
+    """
+    path = data or DATA
+    if not os.path.exists(path):
+        return "no_evidence", set()
+    with open(path, encoding="utf-8") as fh:
+        doc = json.load(fh)
+    objs = doc.get("app_objects")
+    if objs is None:
+        return "unrecorded", set()
+    return "recorded", set(objs)
+
+
+def partition_state(tree_root: str, data: str | None = None) -> dict:
+    """Does the recorded evidence describe THIS tree's TU partition?
+
+    The toolchain-free form of ``check_partition``, and the one
+    ``stagelib.staleness`` calls.  It answers from two text files -- the
+    evidence's own ``app_objects`` list and the tree's generated retained
+    source list -- so it runs everywhere, on every ``driver.py status``, at no
+    cost, which is the only way a staleness check is ever actually run.
+    """
+    ev_state, ev_objs = evidence_app_objects(data)
+    if ev_state != "recorded":
+        return {"state": ev_state,
+                "reason": "the evidence file does not exist"
+                          if ev_state == "no_evidence" else
+                          "the evidence records no `app_objects': it cannot "
+                          "state which translation-unit partition it describes, "
+                          "so it cannot be shown to describe this tree.  "
+                          "Regenerate it.",
+                "evidence": data or DATA}
+    tree_objs = retained_app_objects(tree_root)
+    if tree_objs is None:
+        return {"state": "unverifiable",
+                "reason": "tree has no retained source list",
+                "tree": tree_root,
+                "expected": os.path.join(tree_root, RETAINED_CMAKE)}
+    missing = sorted(tree_objs - ev_objs)
+    gone = sorted(ev_objs - tree_objs)
+    # the reverse direction is filtered exactly as `check_partition' filters
+    # it: the app archive also carries ~1,000 `rodata_*.c.obj' from a DIFFERENT
+    # generated list, and objects that were absorbed into a merged unit.  Only
+    # the forward direction is disqualifying on its own.
+    return {
+        "state": "agrees" if not missing else "STALE",
+        "tree": tree_root,
+        "evidence": data or DATA,
+        "objects_in_evidence": len(ev_objs),
+        "objects_in_tree": len(tree_objs),
+        "retained_sources_with_no_object_in_the_evidence": len(missing),
+        "objects_in_the_evidence_no_longer_retained": len(gone),
+        "only_in_tree": missing[:200],
+    }
+
+
 def partition_diff(ev_objs: set[str], tree_objs: set[str],
                    present_sources: set[str]) -> tuple[list[str], list[str]]:
     """The pure set logic of ``check_partition``, so it is testable with no
@@ -289,7 +390,13 @@ def check_partition(tree_root: str, nm: str = DEFAULT_NM,
     build = doc["provenance"]["build_dir"]
     archive = os.path.join(build, APP_ARCHIVE)
     cmake = os.path.join(tree_root, RETAINED_CMAKE)
-    if not os.path.exists(archive):
+    #: prefer the partition RECORDED IN THE EVIDENCE.  An evidence file written
+    #: by the current `generate' states its own object partition, so the check
+    #: needs neither the build directory (which /private/tmp reaps) nor a
+    #: cross-compiler.  The `nm' path below stays for evidence files written
+    #: before that field existed.
+    recorded = doc.get("app_objects")
+    if recorded is None and not os.path.exists(archive):
         return {"state": "unverifiable",
                 "reason": "evidence build directory is gone",
                 "evidence_build": build, "archive": archive}
@@ -301,7 +408,7 @@ def check_partition(tree_root: str, nm: str = DEFAULT_NM,
     tree_objs = {os.path.basename(m.group(1)) + ".obj"
                  for m in _CMAKE_SRC.finditer(text)
                  if m.group(1).startswith("app/")}
-    ev_objs = archive_members(nm, archive)
+    ev_objs = set(recorded) if recorded is not None else archive_members(nm, archive)
 
     # The archive also carries the byte-verified rodata and fixed-data objects,
     # which come from OTHER generated lists and are not app translation units.
@@ -336,6 +443,8 @@ def check_partition(tree_root: str, nm: str = DEFAULT_NM,
         "tree": tree_root,
         "evidence": path,
         "evidence_build": build,
+        "partition_source": "recorded in the evidence" if recorded is not None
+                            else "nm over the evidence build's app archive",
         "objects_in_evidence_archive": len(ev_objs),
         "objects_in_tree_source_list": len(tree_objs),
         "retained_sources_with_no_object_in_the_evidence": len(missing_from_evidence),

@@ -18,8 +18,8 @@
    "ui_even_ai_draw_mic_status_icon.c": "multi_declaration_line_types_unknown",
    "ble_process_put_req.c": "includes_a_definition_carrying_inc_fragment",
    "hci_vs_init.c": "file_scope_pragma_leaks_forward",
+   "box_placement_animation_step.c": "multi_declarator_extern_statement_types_unknown",
    "check_work_mode.c": "file_scope_pragma_leaks_forward",
-   "g1_core_01.c": "multi_declarator_extern_statement_types_unknown",
    "try_enter_low_power_mode.c": "multi_declaration_line_types_unknown",
    "panel_temp_calibration_init.c": "multi_declaration_line_types_unknown",
    "gui_utf_draw_dark_light_split.c": "multi_declaration_line_types_unknown",
@@ -48,14 +48,14 @@
   }
  },
  "pairwise_refusals": {
-  "placements_blocked": 1548,
+  "placements_blocked": 1545,
   "by_rule": {
    "enumconst": 4,
-   "includes": 78,
+   "includes": 79,
    "macro": 224,
    "static": 11,
    "tag": 1,
-   "type": 1192,
+   "type": 1188,
    "typedef": 38
   },
   "top_symbols_per_rule": {
@@ -66,7 +66,7 @@
    },
    "includes": {
     "<stdbool.h>": 31,
-    "<zephyr/sys_clock.h>": 17,
+    "<zephyr/sys_clock.h>": 18,
     "<cmsis_gcc.h>": 16,
     "<zephyr/kernel.h>": 5,
     "<cmsis_gcc.h>,<zephyr/sys/dlist.h>": 3,
@@ -122,8 +122,8 @@
     "assert_post_action": 17,
     "net_buf_simple_add": 17,
     "atomic_test_bit": 16,
+    "dev_write_reg3": 16,
     "attr_store_retry_delay": 16,
-    "dev_write_reg3": 15,
     "audio_codec_bus_write": 13,
     "net_buf_unref": 12,
     "bt_log_forward_3arg": 11,
@@ -137,7 +137,7 @@
     "bt_att_chan_send_rsp": 7,
     "atomic_or_0": 7,
     "get_pin_idx": 7,
-    "app_msleep_thunk_a": 7
+    "audio_i2s_stop_and_reset_channels": 7
    },
    "typedef": {
     "uint32_t": 10,
@@ -153,7 +153,7 @@
    }
   }
  },
- "no_call_edge_refusals": 31606,
- "groups_of_length_one": 573,
+ "no_call_edge_refusals": 31651,
+ "groups_of_length_one": 574,
  "note": "A group of length one is a translation unit this stage left exactly as stage 08 emitted it.  `no_call_edge_refusals' counts candidate/group pairs skipped for want of a call edge, which is the measurement of what sub-batch M would additionally absorb."
 }

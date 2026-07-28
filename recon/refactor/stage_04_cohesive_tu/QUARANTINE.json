@@ -3,12 +3,13 @@
  "stage": 4,
  "sub_batch": "B",
  "shape_refusals": {
-  "count": 30,
+  "count": 31,
   "by_reason": {
    "attribute_alias_definition": 1,
    "file_scope_pragma_leaks_forward": 9,
    "includes_a_definition_carrying_inc_fragment": 1,
    "multi_declaration_line_types_unknown": 13,
+   "multi_declarator_extern_statement_types_unknown": 1,
    "named_by_path_in_app_cmakelists": 1,
    "per_tu_ffp_contract_body": 5
   },
@@ -17,6 +18,7 @@
    "ui_even_ai_draw_mic_status_icon.c": "multi_declaration_line_types_unknown",
    "ble_process_put_req.c": "includes_a_definition_carrying_inc_fragment",
    "hci_vs_init.c": "file_scope_pragma_leaks_forward",
+   "box_placement_animation_step.c": "multi_declarator_extern_statement_types_unknown",
    "check_work_mode.c": "file_scope_pragma_leaks_forward",
    "try_enter_low_power_mode.c": "multi_declaration_line_types_unknown",
    "panel_temp_calibration_init.c": "multi_declaration_line_types_unknown",
@@ -168,6 +170,6 @@
    }
   }
  },
- "runs_of_length_one": 337,
+ "runs_of_length_one": 338,
  "clean_runs_not_selected_by_this_sub_batch": 48
 }

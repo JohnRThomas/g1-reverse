@@ -11,7 +11,7 @@
  "generated_by": "recon/refactor/driver.py",
  "reproduce": "PYTHONSAFEPATH=1 .venv/bin/python recon/refactor/driver.py materialize 7",
  "repair_policy": "A stale or failing stage is REGENERATED, never hand-edited. A compile failure in a stage tree is proof the transformer is wrong, not a task to hand-fix.",
- "file_count": 1756,
+ "file_count": 1757,
  "files": {
   "recon/application/app/CMakeLists.txt": {
    "source": "recon/refactor/stage_06_unit_composition/tree/recon/application/app/CMakeLists.txt",
@@ -330,9 +330,9 @@
   },
   "recon/generated/app_retained_sources.cmake": {
    "source": "recon/refactor/stage_06_unit_composition/tree/recon/generated/app_retained_sources.cmake",
-   "source_sha256": "d45fb86fc692edcc2923b9b4a5686b9d08aeaea91eef8d08cab5ffaecf912686",
-   "output_sha256": "d45fb86fc692edcc2923b9b4a5686b9d08aeaea91eef8d08cab5ffaecf912686",
-   "bytes": 55779,
+   "source_sha256": "36199279c89a0df3032924b3c639127546106a905286ae4f6e7e8e9318cb0bbc",
+   "output_sha256": "36199279c89a0df3032924b3c639127546106a905286ae4f6e7e8e9318cb0bbc",
+   "bytes": 55863,
    "transformations": {}
   },
   "recon/generated/net_retained_sources.cmake": {
@@ -1332,6 +1332,13 @@
    "bytes": 1270,
    "transformations": {}
   },
+  "recon/symbolized/app/core/box_placement_animation_step.c": {
+   "source": "recon/refactor/stage_06_unit_composition/tree/recon/symbolized/app/core/box_placement_animation_step.c",
+   "source_sha256": "ae03bfcde815e23ae389373f4ecab21341e0da714c65743a0330ee10a412cd28",
+   "output_sha256": "ae03bfcde815e23ae389373f4ecab21341e0da714c65743a0330ee10a412cd28",
+   "bytes": 3768,
+   "transformations": {}
+  },
   "recon/symbolized/app/core/change_work_mode_to.c": {
    "source": "recon/refactor/stage_06_unit_composition/tree/recon/symbolized/app/core/change_work_mode_to.c",
    "source_sha256": "8beca64ff010f605a740c09e820deb7604f724b508877762f5962b3b15ab0bb3",
@@ -1390,9 +1397,9 @@
   },
   "recon/symbolized/app/core/g1_core_01.c": {
    "source": "recon/refactor/stage_06_unit_composition/tree/recon/symbolized/app/core/g1_core_01.c",
-   "source_sha256": "7ab14bfe6cfe2b29c2ae0b47c6f0a6514911a60996c72188032897f8a6a85e06",
-   "output_sha256": "7ab14bfe6cfe2b29c2ae0b47c6f0a6514911a60996c72188032897f8a6a85e06",
-   "bytes": 11000,
+   "source_sha256": "158564ff9eba03e25fddfd0da169ae41515a39374e83734ac12e8c1ff5608c00",
+   "output_sha256": "158564ff9eba03e25fddfd0da169ae41515a39374e83734ac12e8c1ff5608c00",
+   "bytes": 7176,
    "transformations": {}
   },
   "recon/symbolized/app/core/g1_core_02.c": {
@@ -1846,11 +1853,9 @@
   "recon/symbolized/app/display/g1_display_12.c": {
    "source": "recon/refactor/stage_06_unit_composition/tree/recon/symbolized/app/display/g1_display_12.c",
    "source_sha256": "61e712316615824fa6637f8bac5f8e25769f99fe2e3ad54a5d821ec4846aa39e",
-   "output_sha256": "f1de823cd5d5cceba47ab604f3eee69551e128f5440f6315894d3b6d46ee4025",
-   "bytes": 8938,
-   "transformations": {
-    "content_changed": true
-   }
+   "output_sha256": "61e712316615824fa6637f8bac5f8e25769f99fe2e3ad54a5d821ec4846aa39e",
+   "bytes": 8931,
+   "transformations": {}
   },
   "recon/symbolized/app/display/g1_display_13.c": {
    "source": "recon/refactor/stage_06_unit_composition/tree/recon/symbolized/app/display/g1_display_13.c",
@@ -12454,8 +12459,9 @@
  },
  "evidence_inputs": {
   "recon/refactor/sdk_declared_symbols.json": "3b7c3558364b4b3bdb35504aed2c996f9356ee7a10777c3b411be6b25b078d31",
-  "recon/refactor/link_referenced_symbols.json": "05f7ff66d6937b8e7ab70c7d6b7a7f626a9fc098a507483a176d8bd02efb112e"
+  "recon/refactor/link_referenced_symbols.json": "cd60f0e6f7c65846f090ce0db02718c839c4176ab08a3ec171ed06b0933a2de8"
  },
+ "transforms_digest": "46b70c24a2630ba24eb7dffb6a23555bfc3af6267a99f1a32bed9fb1b4dc3a26",
  "declared_codegen_class": "size-changing",
  "oracle_required": true,
  "inherited_generated_outputs": [
@@ -12480,10 +12486,20 @@
   "recon/symbolized/app/ui/quicknote/g1_quicknote.h",
   "recon/symbolized/app/unsorted/g1_unsorted.h"
  ],
+ "evidence_partition": {
+  "state": "agrees",
+  "tree": "/Users/freedomcoder/Projects/G1disasm2/recon/refactor/stage_06_unit_composition/tree",
+  "evidence": "/Users/freedomcoder/Projects/G1disasm2/recon/refactor/link_referenced_symbols.json",
+  "objects_in_evidence": 1769,
+  "objects_in_tree": 743,
+  "retained_sources_with_no_object_in_the_evidence": 0,
+  "objects_in_the_evidence_no_longer_retained": 1026,
+  "only_in_tree": []
+ },
  "transform": "internal linkage for TU-private symbols, decided by link evidence (app core only)",
  "sub_batch": "S",
  "internal_linkage": {
-  "candidates": 133,
+  "candidates": 132,
   "candidate_symbols": [
    "accumulate_app_usage_time",
    "adc_channel_config",
@@ -12520,7 +12536,6 @@
    "dev_ctrl_write2",
    "dispatch_sync_buffer_if_pending",
    "dispatch_via_object_index",
-   "display_close",
    "dppi_channel_disable_and_free",
    "dynbuf_push_byte_grow",
    "emit_u8_value_via_vtable",
@@ -12620,16 +12635,16 @@
    "write_r_capture_errno"
   ],
   "refused": {
-   "referenced_by_a_relocation": 752,
-   "named_by_a_linker_fragment_or_the_symbols_header": 225,
+   "referenced_by_a_relocation": 753,
+   "named_by_a_linker_fragment_or_the_symbols_header": 224,
    "asm_named_or_macro_renamed": 4,
    "declared_by_an_sdk_header": 3
   },
   "evidence": {
    "link_evidence_present": true,
-   "link_evidence_build": "/private/tmp/g1-s6-base",
-   "link_referenced_symbols": 5420,
-   "external_linkage_definitions_in_merged_units": 1117,
+   "link_evidence_build": "/private/tmp/g1-lr-s06",
+   "link_referenced_symbols": 5422,
+   "external_linkage_definitions_in_merged_units": 1116,
    "linker_fragments_and_build_pins_discovered": [
     "--undefined= roots from 8 CMake files: 112 symbols",
     "recon/application/app/g1_verified_rodata_keep.ld",
@@ -12654,7 +12669,7 @@
    "identifiers_pinned_by_the_build": 10126
   },
   "applied": {
-   "definitions_given_internal_linkage": 133,
+   "definitions_given_internal_linkage": 132,
    "in_unit_extern_declarations_made_static": 18,
    "module_header_declarations_withdrawn": 0
   },

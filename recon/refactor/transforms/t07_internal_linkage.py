@@ -96,6 +96,20 @@ from transforms import t04_cohesive_tu as t4  # noqa: E402
 from transforms import t05_cohesive_composition as t5  # noqa: E402
 from transforms import t06_unit_composition as t6  # noqa: E402
 
+#: THIS STAGE'S CORRECTNESS DEPENDS ON A TRANSLATION-UNIT PARTITION, not just
+#: on the bytes of the evidence file it reads.  `link_referenced_symbols.json'
+#: answers "what does something outside this symbol's own OBJECT reference?",
+#: and that question has a different answer when the sources are grouped into
+#: objects differently.  On 2026-07-27 stage 04's partition moved underneath
+#: frozen evidence, `display_close_screen.c' left `g1_display_12.c', its call
+#: to `display_close' became a relocation, this stage still read the old
+#: evidence and made `display_close' static, and the app link failed from here
+#: upward while `driver.py status' said `current'.
+#:
+#: Declaring this makes `driver.py materialize' record the partition agreement
+#: in the MANIFEST and `stagelib.staleness' re-check it on every `status'.
+CONSUMES_PARTITION_EVIDENCE = True
+
 BATCHES = frozenset(("S", "OFF"))
 DEFAULT_BATCH = "S"
 

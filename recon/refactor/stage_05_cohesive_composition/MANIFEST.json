@@ -11,7 +11,7 @@
  "generated_by": "recon/refactor/driver.py",
  "reproduce": "PYTHONSAFEPATH=1 .venv/bin/python recon/refactor/driver.py materialize 5",
  "repair_policy": "A stale or failing stage is REGENERATED, never hand-edited. A compile failure in a stage tree is proof the transformer is wrong, not a task to hand-fix.",
- "file_count": 1756,
+ "file_count": 1757,
  "files": {
   "recon/application/app/CMakeLists.txt": {
    "source": "recon/refactor/stage_04_cohesive_tu/tree/recon/application/app/CMakeLists.txt",
@@ -330,9 +330,9 @@
   },
   "recon/generated/app_retained_sources.cmake": {
    "source": "recon/refactor/stage_04_cohesive_tu/tree/recon/generated/app_retained_sources.cmake",
-   "source_sha256": "d45fb86fc692edcc2923b9b4a5686b9d08aeaea91eef8d08cab5ffaecf912686",
-   "output_sha256": "d45fb86fc692edcc2923b9b4a5686b9d08aeaea91eef8d08cab5ffaecf912686",
-   "bytes": 55779,
+   "source_sha256": "36199279c89a0df3032924b3c639127546106a905286ae4f6e7e8e9318cb0bbc",
+   "output_sha256": "36199279c89a0df3032924b3c639127546106a905286ae4f6e7e8e9318cb0bbc",
+   "bytes": 55863,
    "transformations": {}
   },
   "recon/generated/net_retained_sources.cmake": {
@@ -1442,6 +1442,13 @@
    "bytes": 1270,
    "transformations": {}
   },
+  "recon/symbolized/app/core/box_placement_animation_step.c": {
+   "source": "recon/refactor/stage_04_cohesive_tu/tree/recon/symbolized/app/core/box_placement_animation_step.c",
+   "source_sha256": "ae03bfcde815e23ae389373f4ecab21341e0da714c65743a0330ee10a412cd28",
+   "output_sha256": "ae03bfcde815e23ae389373f4ecab21341e0da714c65743a0330ee10a412cd28",
+   "bytes": 3768,
+   "transformations": {}
+  },
   "recon/symbolized/app/core/change_work_mode_to.c": {
    "source": "recon/refactor/stage_04_cohesive_tu/tree/recon/symbolized/app/core/change_work_mode_to.c",
    "source_sha256": "8beca64ff010f605a740c09e820deb7604f724b508877762f5962b3b15ab0bb3",
@@ -1500,12 +1507,12 @@
   },
   "recon/symbolized/app/core/g1_core_01.c": {
    "source": "recon/refactor/stage_04_cohesive_tu/tree/recon/symbolized/app/core/g1_core_01.c",
-   "source_sha256": "e837b256a34aee25d2f24f6274534c8f07811bd51a71d0b321b5d115c420183f",
-   "output_sha256": "f6513d760a616d9b77cfc99e9125aee14dc9ff72406c64d4013146c351c0e0c3",
-   "bytes": 11000,
+   "source_sha256": "0c8aac0ecd8784cc46313b2e99dfab524a6fb38f287d7bdaefc173dc9570d10d",
+   "output_sha256": "4de43d4a1771a0ee371416780f4cbb5914ca36349eb245ae9cabe5441652cb79",
+   "bytes": 7176,
    "transformations": {
-    "N3_member_banners_compressed": 4,
-    "N1_duplicate_includes_withdrawn": 6,
+    "N3_member_banners_compressed": 3,
+    "N1_duplicate_includes_withdrawn": 5,
     "N2_duplicate_declarations_withdrawn": 1
    }
   },
@@ -13130,8 +13137,9 @@
  },
  "evidence_inputs": {
   "recon/refactor/sdk_declared_symbols.json": "3b7c3558364b4b3bdb35504aed2c996f9356ee7a10777c3b411be6b25b078d31",
-  "recon/refactor/link_referenced_symbols.json": "05f7ff66d6937b8e7ab70c7d6b7a7f626a9fc098a507483a176d8bd02efb112e"
+  "recon/refactor/link_referenced_symbols.json": "cd60f0e6f7c65846f090ce0db02718c839c4176ab08a3ec171ed06b0933a2de8"
  },
+ "transforms_digest": "46b70c24a2630ba24eb7dffb6a23555bfc3af6267a99f1a32bed9fb1b4dc3a26",
  "declared_codegen_class": "size-neutral",
  "oracle_required": false,
  "inherited_generated_outputs": [
@@ -13162,9 +13170,9 @@
   "merged_units_seen": 249,
   "merged_units_composed": 249,
   "totals": {
-   "N1_duplicate_includes_withdrawn": 1526,
+   "N1_duplicate_includes_withdrawn": 1525,
    "N2_duplicate_declarations_withdrawn": 143,
-   "N3_member_banners_compressed": 1122
+   "N3_member_banners_compressed": 1121
   },
   "headers_checked_for_idempotence": {
    "\"../../../../headers/g1_dedupe.h\"": true,
@@ -13202,7 +13210,7 @@
    "refused": {
     "asm_named_or_macro_renamed": 6,
     "declared_by_an_sdk_header": 31,
-    "named_by_a_linker_fragment_or_the_symbols_header": 96,
+    "named_by_a_linker_fragment_or_the_symbols_header": 95,
     "named_outside_the_translation_unit": 742,
     "reserved_identifier_the_implementation_may_call": 12
    },

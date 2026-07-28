@@ -301,9 +301,21 @@ def materialize(number: int) -> dict:
 
     extra = {"input_stage": input_stage,
              "evidence_inputs": stagelib.evidence_hashes(),
+             #: a stage is `transformer(input)'; watching only the input let a
+             #: transformer edit leave every downstream stage reporting
+             #: `current' against a tree no transformer would now produce.
+             "transforms_digest": stagelib.transforms_digest(),
              "declared_codegen_class": codegen_class,
              "oracle_required": codegen_class == "size-changing",
              "inherited_generated_outputs": inherited}
+    #: A transformer that reads PARTITION-DEPENDENT evidence says so, and the
+    #: driver records whether that evidence described the input tree AT THE
+    #: MOMENT THE STAGE WAS GENERATED.  `stagelib.staleness' re-derives it on
+    #: every `status' and marks the stage stale when it stops agreeing -- the
+    #: hole that let stage 07 make `display_close' static against a partition
+    #: that no longer existed and still report `current'.
+    if getattr(mod, "CONSUMES_PARTITION_EVIDENCE", False):
+        extra["evidence_partition"] = stagelib.evidence_partition_state(source_root)
     if iset is not None:
         extra["input_provenance"] = iset.provenance
         extra["quarantined_protected_build_inputs"] = iset.quarantined_protected

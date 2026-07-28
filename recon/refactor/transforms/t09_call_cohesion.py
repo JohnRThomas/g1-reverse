@@ -145,77 +145,13 @@ DEFAULT_BATCH = "C"
 _MOD_SLUG = re.compile(r"[^A-Za-z0-9]+")
 
 
-def _blank_groups(s: str) -> str:
-    """Length-preserving blanking of every ``(...)``/``[...]``/``{...}`` group.
-
-    What survives is the declarator list's own top-level punctuation, so a
-    comma inside a parameter list or an array bound cannot be mistaken for a
-    declarator separator.
-    """
-    out = list(s)
-    depth = 0
-    for i, ch in enumerate(s):
-        if ch in "([{":
-            depth += 1
-            out[i] = " "
-        elif ch in ")]}":
-            depth = max(0, depth - 1)
-            out[i] = " "
-        elif depth > 0 and ch != "\n":
-            out[i] = " "
-    return "".join(out)
-
-
-def multi_declarator_externs(text: str) -> list[str]:
-    """File-scope ``extern`` statements that declare MORE THAN ONE symbol.
-
-    THE SIXTH INSTANCE OF THIS PROJECT'S RECURRING DEFECT CLASS -- "a textual
-    comparison that cannot see a semantic difference" -- and it was found by a
-    stage 09 compile failure, not predicted.
-
-    Stage 04 already has a shape rule whose stated intent is exactly this:
-    a multi-declaration source line makes its declarations' types UNKNOWN to
-    the safety rules, and an unknown type cannot be proven not to collide.  Its
-    implementation is ``line.count(";") > 1 or line.count("extern") > 1``, which
-    reads a comma-separated declarator list as ONE declaration::
-
-        extern void update_box_presence_flag(void*,void*),
-                    init_config_fields_default9(void*),
-                    k_sleep(int,int),
-                    st25dv_build_and_write_ndef_records(void*,void*,void*),
-                    set_time_mark(void);
-
-    One ``;``, one ``extern``, FIVE declarations -- and ``t03._decl_symbol``
-    returns the identifier before the FIRST ``(``, so rules 1 and 2 see only
-    ``update_box_presence_flag``.  The declaration of ``k_sleep(int,int)`` is
-    invisible to every refusal rule in the pipeline.  Stage 09 grouped that file
-    with a member declaring ``extern int32_t k_sleep(k_timeout_t);`` and GCC
-    rejected it: ``conflicting types for 'k_sleep'``.
-
-    This function is the fail-closed repair: a file carrying such a statement is
-    shape-quarantined, restoring the rule's intent rather than extending its
-    reach.  Decomposing the list into one canonical declaration per declarator
-    would be strictly better -- the rules would then SEE the types instead of
-    refusing to look -- and is deliberately not attempted here, because
-    ``_decl_symbol`` misreads a function-pointer declarator (``extern int
-    (*f)(void), g;`` yields ``int``) and a decomposition that is wrong is worse
-    than a refusal that is total.  MEASURED COST OF REFUSING: **2 files of the
-    742 retained** at stage 08, and the same 2 of 1,615 at stage 03.
-    """
-    code = t4.strip_comments(text)
-    nostr = t4.strip_comments(text, drop_strings=True)
-    depth = t4._depths(nostr)
-    out: list[str] = []
-    for m in re.finditer(r"\bextern\b", nostr):
-        if depth[m.start()] != 0:
-            continue
-        j = nostr.find(";", m.end())
-        if j < 0:
-            continue
-        stmt = code[m.start():j + 1]
-        if "," in _blank_groups(stmt):
-            out.append(re.sub(r"\s+", " ", stmt).strip())
-    return out
+#: The multi-declarator-extern rule now lives in stage 04, where the blind
+#: spot it repairs actually lives.  Stage 09 keeps these names so that its own
+#: tests -- which are the record of how the sixth instance of the defect class
+#: was found -- go on exercising the SAME code the merge now uses, rather than
+#: a copy that could drift away from it.
+_blank_groups = t4._blank_groups
+multi_declarator_externs = t4.multi_declarator_externs
 
 
 def shape_refusal(base: str, d: dict, text: str, cmake_named: set[str]) -> str | None:

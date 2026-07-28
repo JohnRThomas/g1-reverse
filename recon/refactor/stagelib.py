@@ -231,8 +231,95 @@ def evidence_hashes() -> dict[str, str]:
     return out
 
 
+#: EVIDENCE WHOSE VALIDITY IS A PROPERTY OF A TREE, NOT OF ITS OWN BYTES.
+#:
+#: ``link_referenced_symbols.json`` answers "which symbols does something
+#: outside their own OBJECT reference?".  That answer is only meaningful
+#: relative to a particular partition of sources into objects.  Stage 04's
+#: merge partition moved on 2026-07-27 while the evidence file's bytes did not,
+#: `display_close_screen.c` stopped being a member of `g1_display_12.c` and
+#: became its own translation unit, its call to `display_close` turned from an
+#: intra-object reference (invisible to ``nm``) into a relocation, stage 07
+#: read the frozen evidence, made `display_close` ``static``, and the app link
+#: failed from stage 07 upward -- while ``driver.py status`` reported stages
+#: 07, 08 and 09 **current** throughout.
+#:
+#: THE HASH WAS NOT THE THING TO WATCH.  This is the FOURTH staleness hole in
+#: this pipeline and every one of them has the same shape: something was
+#: watched that is *correlated* with the input rather than *being* the input
+#: (the first member of a merged unit rather than all members; an input set
+#: that did not list the evidence at all; an evidence hash rather than the
+#: partition the evidence describes).  The rule that follows from all four:
+#: **watch the thing the consumer's correctness actually depends on.**
+PARTITION_DEPENDENT_EVIDENCE = ("recon/refactor/link_referenced_symbols.json",)
+
+#: THE FIFTH HOLE, same family, found while closing the fourth.
+#:
+#: A stage is ``transformer(input)``.  Staleness watched the INPUT and the
+#: EVIDENCE and never the TRANSFORMER, so editing a transformer left every
+#: downstream stage reporting ``current`` while its tree was the output of code
+#: that no longer exists.  Measured in this pass: the comma-declarator repair
+#: was applied to ``t04_cohesive_tu.py`` and ``driver.py status`` went on
+#: reporting stages 04-09 ``current``, with stage 04's tree still carrying the
+#: 742-unit partition the unpatched rule produced.  Nothing but an agent
+#: remembering to regenerate stood between that and a gate measured against a
+#: tree no transformer would now produce.
+#:
+#: The digest is over the WHOLE ``transforms/`` directory rather than the
+#: modules a given stage imports.  Deliberately:
+#:
+#:   * it is deterministic and invocation-order independent -- deriving it from
+#:     ``sys.modules`` after the import would make stage 04's record depend on
+#:     whether stage 09 had been materialised first in the same process, which
+#:     would break MANIFEST idempotence;
+#:   * transformers import each other heavily (t05-t09 all use ``t04.conflicts``
+#:     and ``t03._decl_symbol``), so the true dependency closure is nearly the
+#:     whole directory anyway;
+#:   * it OVER-refuses, which is the safe direction: the cost of a spurious
+#:     stale is one regeneration of a pipeline this pass proves byte-idempotent.
+#:
+#: WHAT IT STILL DOES NOT COVER, stated rather than implied: ``stagelib.py``,
+#: ``driver.py``, ``input_set.py`` and the evidence generators are not in the
+#: digest.  A change to those can still move a stage's output without marking
+#: it stale.  That is a smaller hole than the one this closes, not no hole.
+TRANSFORMS_DIR = os.path.join(REFACTOR_DIR, "transforms")
+
+
+def transforms_digest() -> str:
+    """One hash over every transformer source file."""
+    h = hashlib.sha256()
+    if not os.path.isdir(TRANSFORMS_DIR):
+        return "(absent)"
+    for name in sorted(os.listdir(TRANSFORMS_DIR)):
+        if not name.endswith(".py"):
+            continue
+        h.update(name.encode())
+        h.update(sha256_file(os.path.join(TRANSFORMS_DIR, name)).encode())
+    return h.hexdigest()
+
+
+def evidence_partition_state(tree_root: str) -> dict:
+    """Does the recorded link evidence still describe ``tree_root``'s partition?
+
+    Delegates to ``link_evidence.partition_state``, which compares the
+    evidence's own recorded ``app_objects`` against the tree's generated
+    retained-source list.  Both are text files inside the repository, so this
+    costs a read and runs on every ``status`` -- deliberately, because a check
+    that needs a cross-compiler and a surviving ``/private/tmp`` build is a
+    check that does not run.
+    """
+    import link_evidence                       # local: avoids an import cycle
+    return link_evidence.partition_state(tree_root)
+
+
 def staleness(number: int, slug: str) -> dict:
-    """A stage is stale iff an input content hash changed."""
+    """A stage is stale iff an input content hash changed, **or** the evidence
+    it consumed no longer describes its input tree's object partition.
+
+    The second clause is not a refinement of the first: the evidence file's
+    hash can be unchanged while the answer it encodes has become wrong.  See
+    ``PARTITION_DEPENDENT_EVIDENCE``.
+    """
     man = load_manifest(number, slug)
     if man is None:
         return {"stage": number, "state": "absent"}
@@ -245,6 +332,31 @@ def staleness(number: int, slug: str) -> dict:
                 changed.append(rel)
             else:
                 ok += 1
+
+    #: the transformer that produced this tree (see TRANSFORMS_DIR above).
+    #: Absent from a manifest written before the digest existed, and absence
+    #: must not fabricate a stale: the tree may be perfectly current.  It is
+    #: reported instead, so it is visible rather than silent.
+    tdigest = man.get("transforms_digest")
+    if tdigest is not None and tdigest != transforms_digest():
+        changed.append("recon/refactor/transforms/ (TRANSFORMER CHANGED)")
+
+    #: only stages that CONSUME partition-dependent evidence record this key,
+    #: so a stage that never reads the evidence is never made stale by it.
+    partition = None
+    if man.get("evidence_partition") is not None:
+        ist = man.get("input_stage") or {}
+        rel_tree = ist.get("tree")
+        if not rel_tree:
+            partition = {"state": "unverifiable",
+                         "reason": "manifest records no input tree"}
+        else:
+            partition = evidence_partition_state(
+                os.path.join(REPO_ROOT, rel_tree))
+        if partition["state"] not in ("agrees", "no_evidence"):
+            changed.append(
+                "recon/refactor/link_referenced_symbols.json"
+                " (PARTITION: %s)" % partition["state"])
     for rel, rec in man["files"].items():
         watched = [(rec["source"], rec["source_sha256"])]
         watched += sorted(rec.get("additional_sources", {}).items())
@@ -257,7 +369,7 @@ def staleness(number: int, slug: str) -> dict:
                 changed.append(relsrc)
             else:
                 ok += 1
-    return {
+    out = {
         "stage": number,
         "slug": slug,
         "state": "stale" if (changed or missing) else "current",
@@ -267,6 +379,28 @@ def staleness(number: int, slug: str) -> dict:
         "repair": "PYTHONSAFEPATH=1 .venv/bin/python recon/refactor/driver.py materialize %d"
                   % number,
     }
+    if tdigest is None:
+        out["transforms_digest"] = "NOT RECORDED -- regenerate to start watching"
+    if partition is not None:
+        out["evidence_partition"] = partition
+        if partition["state"] not in ("agrees", "no_evidence"):
+            # REGENERATING THE STAGE WOULD NOT FIX THIS.  The stage would read
+            # the same stale evidence and make the same wrong decision.  The
+            # repair is upstream of the stage, so it is stated upstream of the
+            # stage's own repair line.
+            out["repair"] = (
+                "The link evidence no longer describes this stage's input "
+                "tree.  Regenerating the stage would reproduce the same wrong "
+                "decisions.  Rebuild the input tree, regenerate the evidence, "
+                "THEN materialize:\n"
+                "  ./%s/recon/application/build_cohesive.sh app <BUILD>\n"
+                "  PYTHONSAFEPATH=1 .venv/bin/python recon/refactor/"
+                "link_evidence.py generate --build <BUILD>\n"
+                "  PYTHONSAFEPATH=1 .venv/bin/python recon/refactor/driver.py "
+                "materialize %d" % ((man.get("input_stage") or {}).get("tree",
+                                                                       "<input tree>"),
+                                    number))
+    return out
 
 
 # ------------------------------------------------------- codegen size class

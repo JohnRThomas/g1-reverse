@@ -11,7 +11,7 @@
  "generated_by": "recon/refactor/driver.py",
  "reproduce": "PYTHONSAFEPATH=1 .venv/bin/python recon/refactor/driver.py materialize 4",
  "repair_policy": "A stale or failing stage is REGENERATED, never hand-edited. A compile failure in a stage tree is proof the transformer is wrong, not a task to hand-fix.",
- "file_count": 1756,
+ "file_count": 1757,
  "files": {
   "recon/application/app/CMakeLists.txt": {
    "source": "recon/refactor/stage_03_module_structure/tree/recon/application/app/CMakeLists.txt",
@@ -331,8 +331,8 @@
   "recon/generated/app_retained_sources.cmake": {
    "source": "recon/refactor/stage_03_module_structure/tree/recon/generated/app_retained_sources.cmake",
    "source_sha256": "1301ba2a41ff49d71a7037368a63fe1b7f83d636460a6a67c8210f7a1c7c9416",
-   "output_sha256": "d45fb86fc692edcc2923b9b4a5686b9d08aeaea91eef8d08cab5ffaecf912686",
-   "bytes": 55779,
+   "output_sha256": "36199279c89a0df3032924b3c639127546106a905286ae4f6e7e8e9318cb0bbc",
+   "bytes": 55863,
    "transformations": {
     "content_changed": true
    }
@@ -1021,6 +1021,13 @@
    "source_sha256": "86a343235f78dc83770ac875f49a4d76e7725c82f4bab43c83594722b38bd182",
    "output_sha256": "86a343235f78dc83770ac875f49a4d76e7725c82f4bab43c83594722b38bd182",
    "bytes": 1270,
+   "transformations": {}
+  },
+  "recon/symbolized/app/core/box_placement_animation_step.c": {
+   "source": "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/core/box_placement_animation_step.c",
+   "source_sha256": "ae03bfcde815e23ae389373f4ecab21341e0da714c65743a0330ee10a412cd28",
+   "output_sha256": "ae03bfcde815e23ae389373f4ecab21341e0da714c65743a0330ee10a412cd28",
+   "bytes": 3768,
    "transformations": {}
   },
   "recon/symbolized/app/core/change_work_mode_to.c": {
@@ -11358,20 +11365,18 @@
    }
   },
   "recon/symbolized/app/core/g1_core_01.c": {
-   "source": "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/core/box_placement_animation_step.c",
-   "source_sha256": "ae03bfcde815e23ae389373f4ecab21341e0da714c65743a0330ee10a412cd28",
-   "output_sha256": "e837b256a34aee25d2f24f6274534c8f07811bd51a71d0b321b5d115c420183f",
-   "bytes": 11806,
+   "source": "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/core/switch_to_dfu_mode.c",
+   "source_sha256": "cb10033355d86bccf836c339415c39a423c72ed8c44ce277adec787343814d68",
+   "output_sha256": "0c8aac0ecd8784cc46313b2e99dfab524a6fb38f287d7bdaefc173dc9570d10d",
+   "bytes": 7822,
    "transformations": {
     "merged_from": [
-     "recon/symbolized/app/core/box_placement_animation_step.c",
      "recon/symbolized/app/core/switch_to_dfu_mode.c",
      "recon/symbolized/app/core/power_for_imu_and_mic.c",
      "recon/symbolized/app/core/power_down_imu_and_mic.c"
     ]
    },
    "additional_sources": {
-    "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/core/switch_to_dfu_mode.c": "cb10033355d86bccf836c339415c39a423c72ed8c44ce277adec787343814d68",
     "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/core/power_for_imu_and_mic.c": "ae01506954c51be61d2be1f044c617f33f407363015a1eada5f84de53e50475e",
     "recon/refactor/stage_03_module_structure/tree/recon/symbolized/app/core/power_down_imu_and_mic.c": "550268cf7f7c62b44807c3b943d6aac7222ab37a758bc5b18f783888963a5929"
    }
@@ -15550,8 +15555,9 @@
  },
  "evidence_inputs": {
   "recon/refactor/sdk_declared_symbols.json": "3b7c3558364b4b3bdb35504aed2c996f9356ee7a10777c3b411be6b25b078d31",
-  "recon/refactor/link_referenced_symbols.json": "05f7ff66d6937b8e7ab70c7d6b7a7f626a9fc098a507483a176d8bd02efb112e"
+  "recon/refactor/link_referenced_symbols.json": "cd60f0e6f7c65846f090ce0db02718c839c4176ab08a3ec171ed06b0933a2de8"
  },
+ "transforms_digest": "46b70c24a2630ba24eb7dffb6a23555bfc3af6267a99f1a32bed9fb1b4dc3a26",
  "declared_codegen_class": "size-changing",
  "oracle_required": true,
  "inherited_generated_outputs": [
@@ -15579,14 +15585,14 @@
  "transform": "scoped cohesive translation-unit merge (app core only)",
  "sub_batches": {
   "retained_cmake_lines_repointed": 249,
-  "retained_cmake_lines_removed": 873,
+  "retained_cmake_lines_removed": 872,
   "sub_batch": "B",
   "merge_candidates": 1615,
   "translation_units_before": 1615,
-  "translation_units_after": 742,
+  "translation_units_after": 743,
   "merged_tus": 249,
-  "files_absorbed": 1122,
-  "shape_quarantined": 30,
+  "files_absorbed": 1121,
+  "shape_quarantined": 31,
   "quoted_headers_folded": {
    "ble_process_put_common.h": 1,
    "ble_process_put_ops_01_08.inc": 1,
@@ -15620,7 +15626,7 @@
    },
    "core": {
     "merged_tus": 26,
-    "files_absorbed": 110,
+    "files_absorbed": 109,
     "largest": 17
    },
    "display": {
@@ -15700,10 +15706,10 @@
    }
   },
   "run_length_histogram": {
-   "1": 337,
+   "1": 338,
    "2": 108,
-   "3": 60,
-   "4": 31,
+   "3": 61,
+   "4": 30,
    "5": 27,
    "6": 27,
    "7": 9,

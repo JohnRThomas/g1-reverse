@@ -338,6 +338,82 @@ def _depths(struct_view: str) -> list[int]:
     return out
 
 
+def _blank_groups(s: str) -> str:
+    """Length-preserving blanking of every ``(...)``/``[...]``/``{...}`` group.
+
+    What survives is the declarator list's own top-level punctuation, so a
+    comma inside a parameter list or an array bound cannot be mistaken for a
+    declarator separator.
+    """
+    out = list(s)
+    depth = 0
+    for i, ch in enumerate(s):
+        if ch in "([{":
+            depth += 1
+            out[i] = " "
+        elif ch in ")]}":
+            depth = max(0, depth - 1)
+            out[i] = " "
+        elif depth > 0 and ch != "\n":
+            out[i] = " "
+    return "".join(out)
+
+
+def multi_declarator_externs(text: str) -> list[str]:
+    """File-scope ``extern`` statements that declare MORE THAN ONE symbol.
+
+    THE SIXTH INSTANCE OF THIS PROJECT'S RECURRING DEFECT CLASS -- "a textual
+    comparison that cannot see a semantic difference".  Found by a stage 09
+    compile failure on 2026-07-27, reported in
+    ``recon/analysis/staged_refactor_stage09.md`` section 3, and LANDED HERE
+    (in stage 04, where the blind spot actually lives) by the repair pass.
+
+    ``multi_decl_line`` below is a shape rule whose stated intent is exactly
+    this case: a multi-declaration source line makes its declarations' types
+    UNKNOWN to the safety rules, and an unknown type cannot be proven not to
+    collide.  Its implementation is ``line.count(";") > 1 or
+    line.count("extern") > 1``, which reads a comma-separated declarator list
+    as ONE declaration::
+
+        extern void update_box_presence_flag(void*,void*),
+                    init_config_fields_default9(void*),
+                    k_sleep(int,int),
+                    st25dv_build_and_write_ndef_records(void*,void*,void*),
+                    set_time_mark(void);
+
+    One ``;``, one ``extern``, FIVE declarations -- and ``t03._decl_symbol``
+    returns the identifier before the FIRST ``(``, so ``d["decls"]`` records
+    ``update_box_presence_flag`` and nothing else.  The declaration of
+    ``k_sleep(int,int)`` is invisible to refusal rules 1 and 2, and it collides
+    with ``extern int32_t k_sleep(k_timeout_t);``.
+
+    This function is the fail-closed repair: a file carrying such a statement is
+    shape-quarantined, restoring the rule's intent rather than extending its
+    reach.  Decomposing the list into one canonical declaration per declarator
+    would be strictly better -- the rules would then SEE the types instead of
+    refusing to look -- and is deliberately not attempted here, because
+    ``_decl_symbol`` misreads a function-pointer declarator (``extern int
+    (*f)(void), g;`` yields ``int``) and a decomposition that is wrong is worse
+    than a refusal that is total.  ``decl_oracle.py`` is the general answer:
+    it asks the COMPILER for the declaration census instead of parsing the
+    text, and it reads all five of the declarators above.
+    """
+    code = strip_comments(text)
+    nostr = strip_comments(text, drop_strings=True)
+    depth = _depths(nostr)
+    out: list[str] = []
+    for m in re.finditer(r"\bextern\b", nostr):
+        if depth[m.start()] != 0:
+            continue
+        j = nostr.find(";", m.end())
+        if j < 0:
+            continue
+        stmt = code[m.start():j + 1]
+        if "," in _blank_groups(stmt):
+            out.append(re.sub(r"\s+", " ", stmt).strip())
+    return out
+
+
 def norm_type(s: str) -> str:
     s = re.sub(r"\s+", " ", s).strip()
     for a, b in _TDNORM:
@@ -505,6 +581,11 @@ def analyse(text: str, module_header: str | None = None) -> dict:
     d["multi_decl_line"] = any(
         line.count(";") > 1 or line.count("extern") > 1
         for line in (m.group(0) for m in t3._DECL_LINE.finditer(code)))
+    #: the SAME rule's intent, applied to the shape it was structurally blind
+    #: to -- a comma-separated declarator list.  Kept as its own key rather
+    #: than OR-ed into `multi_decl_line` so the QUARANTINE.json reason names
+    #: which shape fired; the two are independent and a file can carry both.
+    d["multi_declarator_extern"] = multi_declarator_externs(text)
 
     # assembler-name bindings, keyed by the asm name and valued by the WHOLE
     # normalised statement that binds it.  Two files that bind the same asm
@@ -657,6 +738,8 @@ def shape_refusal(base: str, d: dict, cmake_named: set[str]) -> str | None:
         return "attribute_alias_definition"
     if d["multi_decl_line"]:
         return "multi_declaration_line_types_unknown"
+    if d.get("multi_declarator_extern"):
+        return "multi_declarator_extern_statement_types_unknown"
     return None
 
 
