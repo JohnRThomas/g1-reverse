@@ -1833,3 +1833,115 @@ app flash (rbase)     956,840 B / 982,528 B = 97.39 %   RAM 253,765 B / 56.32 %
 driver.py status      0..9 all `current`, 0 inputs changed (99 stale, as always)
 refactor test suite   240 / 240
 ```
+
+---
+
+## R7 GATE RECORD — ITERATION 51, THE LADDER REBUILT AND RE-CAPTURED END TO END,
+## run 2026-07-28
+
+**This record supersedes the one above it.** Working:
+`recon/emulator/reports/our_boot_bringup.md` **§51**.
+
+**`W = 100.513 ms` and `R = 1.160 ms` are UNCHANGED.** Nothing was retuned.
+
+### What changed underneath the ladder — two defect repairs, both proved
+### against the shipped image before being applied
+
+1. **`update_imu_mode` format/module transposition, in the CANONICAL parity
+   trees** (`recon/app/src/FUN_00026100.c`, `recon/verified/src/FUN_00026100.c`;
+   §50 had repaired only the built trees). The shipped image loads
+   `r1 = 0x0009fb32` = `"update_imu_mode"` at **all four** call sites
+   (`0x26120`, `0x2615c`, `0x261c0`, `0x2620c`) and `r0` = the format;
+   our reconstruction pinned `0x0009f773` in the `r1` slot. Size-neutral.
+2. **`notification_system_init`'s message-pool `memset` fill** — a **cross-TU
+   `int`/`void` type disagreement**: `extern int msg_content_decrement_timer(void)`
+   at the call site, `void msg_content_decrement_timer(void)` at the definition,
+   with the non-existent return value used as the fill byte. The shipped image
+   does `movs r0,#0` before the call and the real callee never writes `r0`, so
+   the shipped fill is **0**; ours was an undefined leftover, measured **0xFF
+   across the whole 8,720-byte pool**. Repaired in five files including both
+   canonical parity trees. **Also size-neutral** (`zephyr.bin` 956,840 B before
+   and after).
+
+Measured effect: the base's 0.2 s console loses the nine
+`clear_timeout_message` compaction lines and the `is_msg_expiration` expiry
+report — matching the **shipped firmware**, which prints neither — and the
+base→stage-07 `cpuapp` instruction gap at 0.2 s falls from **132,320 to 157**.
+
+### The size gate — post-repair, all ten stages, `exit 0`, 0 errors, 0 undefined
+
+```
+00  956,840  6553c55bb676b191        05  956,636  6a53d0a8a22afc03  = 04
+01  956,700  01627fd1e404cce7        06  956,636  6a53d0a8a22afc03  = 04
+02  956,700  01627fd1e404cce7  = 01  07  956,420  37f097919dcc62ad
+03  956,700  01627fd1e404cce7  = 01  08  956,420  37f097919dcc62ad  = 07
+04  956,636  6a53d0a8a22afc03        09  956,436  abcd17db93a71213
+```
+
+Stages **02, 03, 05, 06 and 08 are byte-identical images** to their input.
+
+### The verdicts
+
+| pairing | navigation | dashboard |
+|---|---|---|
+| `st00 -> st01 -> st02 -> st03 -> st04 -> st05 -> st06` (pre-repair ladder) | **0 failures — every step 16/16 files BYTE-IDENTICAL** | idem |
+| `st00 -> st04` (cumulative, image 204 B smaller) | **0 failures — 16/16 BYTE-IDENTICAL** | idem |
+| `st04 -> st07` (pre-repair) | **2 failures** — `spim_a` `D = 49.960 ms` (0.497 slots), `opt3001` `D = 50.442 ms` (0.502) | **0 failures**, every stream ≤ 0.030 ms |
+| `st07 -> st08 -> st09` | **0 failures — 16/16 BYTE-IDENTICAL each step** | idem |
+| `nbase -> r04` (post-repair) | **0 failures — 16/16 BYTE-IDENTICAL** | idem |
+| `r04 -> r07` (post-repair) | **2 failures** — `spim_a` `D = 50.410 ms` (0.502 slots), `opt3001` `D = 50.600 ms` (0.503) | **0 failures**, every stream ≤ 0.58 ms |
+| `r07 -> r09` (post-repair) | **0 failures — 16/16 BYTE-IDENTICAL** | idem |
+| framebuffers vs shipped goldens | **4/4 on ALL TEN pre-repair stages and on `nbase`, `r04`, `r07`, `r09`** | |
+
+> **Nine of the ladder's ten steps are now decided by `cmp`, not by a verdict.
+> Stage 07 with all 132 symbols is the only surviving FAIL, and it fails on
+> navigation only.**
+
+### Corrections to every row above this one
+
+* **§50.10 is FALSIFIED on its central causal claim.** *"The 49.960 ms
+  navigation displacement is downstream of [the 126.561 ms branch change]"* — it
+  is not. Removing the branch change entirely (the base's trigger moves
+  −0.460 ms, stage 07's does not move **at all**) leaves the displacement at
+  **50.420 ms**. The two are **independent**, and two subset builds show the
+  symbol sets are **disjoint**: `pt_nfc_eeprom_link_init` alone reproduces the
+  console change and puts the navigation trigger at the **base's** tick;
+  the other 13 alone put it at **stage 07's** tick.
+* **§50.10's stated mechanism ("inlining … a reconstruction that is not
+  faithful about what may be cached across a call") named the wrong function.**
+  The unfaithful reconstruction is `notification_system_init`, not any of the 14.
+* **§50.13 item 1 is CLOSED** — the symbol is `pt_nfc_eeprom_link_init`, found in
+  four bisection steps, and `msg_content_check_timeout_state`'s exclusion is
+  independently reconfirmed (it is in the clean half `H1`).
+* **§50.13 item 4 is CLOSED** — stages 01, 02, 03, 05, 06, 08, 09 were rebuilt
+  and re-captured; all seven are `cmp`-identical to their input.
+* **§50.13 item 5 is CLOSED** — the canonical parity trees are repaired.
+* **§48.4's "no single symbol is the culprit" is superseded**: it was measuring
+  the sum of two independent effects on a read-out that could not separate them.
+* **A red `cfg_verify` is now known to be as untrustworthy as a green one.** It
+  PASSes `FUN_00034944` with the defect and FAILs it with the repair, because
+  its opaque callee stub always clobbers `r0` while the real callee preserves it.
+  The shipped-image memory dump decides, and it decides against the harness.
+
+### Acceptance, re-measured in this pass
+
+```
+builds (exit 0, 0 errors, 0 undefined) -- 10 pre-repair + 10 post-repair + 7 subset
+4 framebuffers        cmp exit 0 -- 4/4 on st00..st09 and on nbase, r04, r07, r09
+nm -u                 0 on every app image checked; 0 on net
+duplicate globals     0 (nbase, r07)
+pin gates             raw_literal_pins_inside_a_live_object 0, bound_pins_escaping_their_owner 0,
+                      unknown_inside_a_live_object 0 (bound_pins_ok 627 / 598,
+                      abs_symbols_not_in_linker_scripts 3, both pre-existing)
+check_thread_create_stack_args --trials 120   10/10 sites, EXIT=0
+tools/verify_data.py  995 / 995 files, 56,279 / 56,279 B, 100.00 %
+check_app_flash_literals  exit 0 on ALL TEN stage trees AND on --build nbase
+                      (376 occurrences / 105 files; dereferenced-and-unreviewed 0,
+                       unclassified-and-unreviewed 0)
+net zephyr.bin        225,581 B FROZEN, e09b9481a3154e16..., not rebuilt, not touched
+app flash (nbase)     956,840 B / 982,528 B = 97.39 %   RAM 253,765 B / 56.32 %  (unchanged)
+driver.py status      0..9 all `current`, 0 inputs changed (99 stale, as always)
+refactor test suite   240 / 240 OK
+determinism control   three byte-identical images captured in different concurrent
+                      Renode streams -> 16/16 byte-identical captures
+```

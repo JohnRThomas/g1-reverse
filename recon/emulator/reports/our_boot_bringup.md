@@ -18433,7 +18433,7 @@ iteration):
    break three gates, REVERTED** (§42.8). Still `vmla 8` against the shipped
    `vfma 10`; the 2-op shortfall is a *reconstruction* gap, not an fp-contract
    one, and must be closed before fusion is worth attempting again.
-7. **`battery_model_state_update` (`FUN_0000c358`) not touched** — `vmla 29 +
+8. **`battery_model_state_update` (`FUN_0000c358`) not touched** — `vmla 29 +
    vmls 3` against the shipped `vfma 13 + vfnms 1`. Still the open defect
    `AGENTS.md` §1b names. Fusing it would be a cosmetic edit on a known-wrong
    body and would perturb the battery EKF feeding the WLCSTAI byte this
@@ -24303,3 +24303,712 @@ comparison in it — and the **shipped firmware shows the identical
 shared.  `W` and `R` were not touched; stage 07 with all 132 symbols still
 FAILS, now with a coherent **half**-slot displacement that neither size nor
 code-address movement explains.
+
+## Iteration 51 — stage 07's 126 ms branch change BISECTED, the
+## `update_imu_mode` transposition repaired in the canonical parity trees, and
+## the whole ladder re-gated on the clean instrument.  Written incrementally as
+## the work ran; every number comes from a command run in this pass.
+##
+## *(This heading was first drafted with a conclusion in it before the
+## bisection had finished.  It is rewritten here to say only what had been
+## measured at the time it was written; the conclusion is in §51.3.)*
+
+HEAD at the start of this pass: **`0e16a7d8`** ("P4 iter-50: the knife-edge was
+OURS -- inert-pad sensitivity GONE, stage 04 now a cmp"), working tree clean
+apart from the untracked `.xapk`.  §50's fourteen builds and twenty captures
+were still on disk under `/private/tmp/g1-i52*` and are re-used only where this
+section says so; every inherited number below was re-derived by a command in
+this pass, and where the re-derivation disagreed with the inherited figure the
+disagreement is stated.
+
+### 51.0 The instrument, and its two controls — BOTH close, exactly
+
+§48's subset instrument `/private/tmp/g1-i49/subset.py` is re-used verbatim: it
+imports `t07_internal_linkage.candidates()`/`apply_static()` and runs them over
+**stage 06's tree** with the candidate list filtered, writing the result into
+stage 07's tree.  Nothing in the transformer is edited.
+
+```
+subset.py ALL   candidates=132 selected=132 files_touching_candidates=72 files_rewritten=0
+                applied={'definitions_given_internal_linkage': 132,
+                         'in_unit_extern_declarations_made_static': 18}
+```
+
+`files_rewritten = 0` against the **shipped, §50-repaired** stage-07 tree: the
+round trip still closes after iteration 50 re-materialised the ladder.
+
+The read-out is §50.10's 0.2 s console probe, not the 20 s capture — one clean
+`-p always` build (~2.5 min) plus one seeded `RunFor "0.2"` (~40 s) per point.
+`/private/tmp/g1-i53/{sb.sh,probe.sh,pt.sh}`; `G1_SEED=305419896`, real
+navigation stimulus, frozen `g1-i30e-net`, `$rtinfo_pc` re-read from every ELF,
+`sysbus.uart0 CreateFileBackend`, `twim1`/`twim2`/`spim_a` traced,
+`sysbus.cpuapp ExecutedInstructions` read at the end.
+
+| control | `zephyr.bin` | sha256 (16) | uart0 B | cpuapp insns | `clear_timeout_message` lines |
+|---|---:|---|---:|---|---:|
+| `NONE` (= stage 06) | **956,636** | `f79709c1a507e629` | **4,262** | `0x7E2597` = **8,266,135** | **9** |
+| `ALL` (= stage 07) | **956,420** | `e92af2acb7c44be7` | **3,375** | `0x7C0CB7` = **8,133,815** | **0** |
+
+Both shas are **bit-for-bit** §50's `rs04` (`f79709c1a507e629`) and `rs07`
+(`e92af2acb7c44be7`), and the instruction delta is **132,320**, reproducing
+§50.10's figure exactly from a fresh build.  So the discriminator for the whole
+bisection is mechanical: **9 `clear_timeout_message` lines and 4,262 console
+bytes = clean; 0 lines and 3,375 bytes = the defect.**
+
+### 51.1 TASK 2 — the `update_imu_mode` transposition, re-proved from the
+### shipped image and repaired in the CANONICAL parity trees
+
+**Re-derived, not quoted.**  `tools/extract.py` + capstone over the shipped
+`app_update.bin`, resolving every PC-relative literal by hand
+(`/private/tmp/g1-i53/dis26100.py`):
+
+```
+00026120  ldr   r1, [pc, #0x114]   ; pool 0x26238 -> 0x0009fb32  'update_imu_mode'
+00026124  ldr   r0, [pc, #0x114]   ; pool 0x2623c -> 0x0009f773  '%s(): imu_fusion: algo is existed\n\n'
+0002615c  ldr.w sb, [pc, #0xd8]    ; pool 0x26238 -> 0x0009fb32  'update_imu_mode'
+00026160  ldr.w sl, [pc, #0xe4]    ; pool 0x26248 -> 0x0009f9d9  '%s(): c->imu_fusion: Cannot set sampling frequency for accelerom...'
+000261c0  ldr.w sb, [pc, #0x74]    ; pool 0x26238 -> 0x0009fb32  'update_imu_mode'
+000261c4  ldr.w sl, [pc, #0x84]    ; pool 0x2624c -> 0x0009fa36  '%s(): c->imu_fusion: Cannot set sampling frequency for gyro %d.\n'
+0002620c  ldr   r1, [pc, #0x28]    ; pool 0x26238 -> 0x0009fb32  'update_imu_mode'
+0002620e  ldr   r0, [pc, #0x34]    ; pool 0x26244 -> 0x0009fa78  '%s(): imu sensor update to mode %d\n'
+```
+
+`r1` (via `sb` at the three loop sites) is `0x0009fb32` = the **module name** at
+**all four** call sites; `r0` is the format.  §50.2's finding is confirmed
+independently, and this pass adds the two sites §50 did not disassemble
+(`0x261c0` and `0x2620c`).
+
+`recon/app/src/FUN_00026100.c` and `recon/verified/src/FUN_00026100.c` were
+**byte-identical** (`cmp` exit 0, sha256 `090e2a37adf7f245…`) and both pinned
+`0x0009f773` in the `r1` slot and passed `0x0009fb32` as the first site's
+format — exactly transposed.  `recon/app/src_sym` and `recon/verified/src_sym`
+do **not** contain this function (checked: neither `FUN_00026100.c` nor
+`update_imu_mode.c` exists in either), so the canonical footprint is two files.
+
+Repaired by script, not by hand — `/private/tmp/g1-i53/repair_imu_transposition.py`,
+three exact full-token substitutions each guarded by an expected occurrence
+count that the script refuses to proceed without:
+
+```
+DEBUG_PRINT((format), 0x0009f773u, ...)   -> 0x0009fb32u     1/1
+FUN_00019c70((format), 0x0009f773u, ...)  -> 0x0009fb32u     1/1
+IMU_LOG(0x0009fb32u, 0u, 0u);             -> 0x0009f773u     1/1
+sha256 090e2a37adf7f245 -> 59bb32df880494e7   on BOTH files
+```
+
+**`imu_fusion_init` was checked and is NOT affected** — it carries `0x0009f773`
+as its *format* with `LOG_TAG = 0x9fae1` (`"imu_fusion_init"`) in `r1`, which is
+the correct order.  The transposition is confined to `update_imu_mode`.
+
+#### 51.1.1 Why the harness never caught it — a NEW instance of the
+#### degenerate-fixture class, and it is not a float this time
+
+`cfg_verify app FUN_00026100` returns `PASS cases=4 sel={1: [0,1,2,3]}`
+**before** the repair and **after** it.  That is not a green light; it is a
+measurement of what the harness covers.  The negative control settles it — with
+**every** log pointer in the file replaced by garbage:
+
+```
+DEBUG_PRINT/FUN_00019c70 module arg  0x0009fb32u -> 0xdeadbeefu
+IMU_LOG formats  0x9f773 -> 0xcafebabe, 0x9f9d9 -> 0xcafebab1,
+                 0x9fa36 -> 0xcafebab2, 0x9fa78 -> 0xcafebab3
+        =>  FUN_00026100 PASS cases=4    (identical verdict)
+```
+
+(the file was restored from a copy immediately afterwards and the restoration
+proved by sha256 `59bb32df880494e7` before and after).
+
+The reason is structural: every log call in this function is guarded by
+`LOG_LEVEL > 1` where `LOG_LEVEL` is `*(volatile int32_t *)0x2000230c` — a
+**global**, not an argument.  `cfg_verify`'s case derivation taint-tracks which
+**argument** each selector derives from; a predicate that derives from memory is
+outside its model, so all four `cases` are the `mode` switch and the logging
+subtree is never entered.  **AGENTS.md finding #1/#1b generalises: the harness's
+blind spot is not "small-range integers" or "float values", it is
+`any branch whose selector is not derived from an argument`.**  The
+`%s`-argument defect class §49 and §50 chased is therefore *systematically*
+invisible to parity, which is why it took a Renode console to find it.
+
+### 51.2 TASK 1 — the bisection.  It is **ONE symbol**, and it is
+### `pt_nfc_eeprom_link_init`
+
+Four bisection steps over the 14, each one build + one 0.2 s probe.  §50
+excluded `msg_content_check_timeout_state` by experiment; **that exclusion is
+not relied on here** — all 14 entered the search space, because a
+one-at-a-time exclusion cannot rule out a symbol that is one of several
+sufficient causes.
+
+| probe | symbols | `zephyr.bin` | sha256 (16) | uart0 B | cpuapp insns | `ctm` lines | verdict |
+|---|---:|---:|---|---:|---|---:|---|
+| `NONE` | 0 | 956,636 | `f79709c1a507e629` | 4,262 | `0x7E2597` | 9 | clean (reference) |
+| `H1` (first 7 alphabetically) | 7 | 956,532 | `b3cfe62d79611778` | **4,262** | `0x7E2519` | **9** | **clean** |
+| `H2` (last 7) | 7 | 956,524 | `010733492b211664` | **3,375** | `0x7C0D35` | **0** | **DEFECT** |
+| `H2a` (first 4 of H2) | 4 | 956,572 | `e343b740c40554fe` | **3,375** | `0x7C0D35` | **0** | **DEFECT** |
+| `H2b` (last 3 of H2) | 3 | 956,588 | `27c50cb8842324dd` | **4,262** | `0x7E2597` | **9** | clean |
+| `H2a1` (first 2 of H2a) | 2 | 956,588 | `202941d0f6600994` | **3,375** | `0x7C0D35` | **0** | **DEFECT** |
+| `H2a2` (last 2 of H2a) | 2 | 956,604 | `fbf268bf6d72910b` | **4,262** | `0x7E2597` | **9** | clean |
+| **`pt_nfc_eeprom_link_init` alone** | **1** | 956,588 | `f100794e42dcd3d8` | **3,375** | `0x7C0D4A` | **0** | **DEFECT** |
+| `serialization_ipc_ept_register` alone | 1 | 956,620 | `e9b8cf9dd9263169` | **4,262** | `0x7E2582` | **9** | clean |
+| `ALL` | 132 | 956,420 | `e92af2acb7c44be7` | 3,375 | `0x7C0CB7` | 0 | DEFECT |
+
+> **A single `static` keyword on `pt_nfc_eeprom_link_init` reproduces the whole
+> of stage 07's 126.561 ms console divergence** — the same 12 missing lines,
+> and `zephyr.bin` is *larger* than several clean probes (956,588 B clean at
+> `H2b`, 956,588 B **defective** at `s_pt`: the **same size, opposite
+> verdict**), which independently re-kills §48.6's "the predictor is image
+> size" on this read-out as well.
+
+Note `H2b` and `H2a2` return `cpuapp` insns `0x7E2597` — **bit-identical to the
+reference** — so seven of the fourteen are exactly null on this probe, not
+merely console-equal.
+
+### 51.3 THE MECHANISM — and it is **NOT** what §50.10 said, and stage 07 is
+### **NOT** the thing that is wrong
+
+§50.10 concluded *"The mechanism is inlining … A behaviour change under
+inlining is the signature of a reconstruction whose C is not fully faithful
+about what may be cached across a call."*  The first clause is right, the
+second is the wrong reconstruction.  **I contradict §50.10's attribution
+plainly: the defect is not in any of the 14 symbols, and it is not in stage 07.
+It is in `notification_system_init`, and it is in the base.**
+
+#### The shipped-firmware oracle, run first because it decides the direction
+
+A 0.4 s seeded console probe of the **shipped `app_update.bin`** through
+`g1.resc`, same seed, same stimulus (`/private/tmp/g1-i53/shipprobe.sh`):
+
+```
+shipped   uart 3,635 B / 98 lines   clear_timeout_message lines: 0   is_msg_expiration lines: 0
+ours base                          clear_timeout_message lines: 9   is_msg_expiration lines: 1 (+2)
+ours s_pt (= stage 07's behaviour) clear_timeout_message lines: 0   is_msg_expiration lines: 0
+```
+
+The shipped firmware goes straight from `ble_msg_dispatch_thread(): enter` to
+`trigger_screen_state_change(): … ignore:0.` with **no** timeout-message
+compaction and **no** expiry report.
+
+> **Stage 07 matches the shipped firmware at t = 126.561 ms.  Our base does
+> not.  The 132,320 "missing" instructions are 132,320 instructions our base
+> should never have executed.**
+
+#### The chain, measured
+
+1. `clear_timeout_message` compacts only if the message records look occupied.
+   A byte watchpoint and a memory dump at `t = 0.125 s` (`/private/tmp/g1-i53/{wp.sh,dump2.sh}`),
+   over the first five words of all ten 0x1b4-byte records at `g_message_pool`
+   (`0x2002d13c`, the **same address in both builds**, and `g1_message_pool` is
+   a real 8,720-byte `.bss` object at that address in both):
+
+```
+   base   record 0..9, +0x0/+0x4/+0x8/+0xc/+0x10   ALL 0xFFFFFFFF
+   s_pt   the same 50 words                        ALL 0x00000000
+```
+
+2. `sysbus AddWatchpointHook 0x2002d13c 1 2` names every writer of the pool's
+   first byte, with `LR`:
+
+```
+   base :  memset  LR=z_bss_zero+0xe      memset LR=notification_system_init+0x22
+           memset  LR=clear_timeout_message+0xbc   memcpy LR=clear_timeout_message+0x168
+   s_pt :  memset  LR=z_bss_zero+0xe      memset LR=notification_system_init+0x22
+```
+
+   The last two `base` entries are the *compaction itself*.  **The only
+   candidate for the 0xFF fill is `notification_system_init`'s `memset`.**
+
+3. `notification_system_init` (`FUN_00034944`) is reconstructed as
+
+```c
+extern int msg_content_decrement_timer(void);          /* <-- declared int */
+...
+int uVar1 = msg_content_decrement_timer();
+memset_bytes(g_message_pool, uVar1, 0x2210);           /* fill = its "return" */
+```
+
+   but `msg_content_decrement_timer` (`FUN_0003441c`) is reconstructed, in a
+   **different translation unit**, as `void msg_content_decrement_timer(void)`.
+   Disassembled in both builds and in the shipped image, it **never writes
+   `r0`** — `mov.w r2,#0x1b4 / ldrb r3 / muls / ldr r2 / cbz / subs / str / bx lr`.
+   So the fill byte is *whatever the caller left in `r0`*, which C does not
+   define and which the linker's layout decides.
+
+4. And the shipped code says exactly what the fill is meant to be:
+
+```
+   SHIPPED 0x34944           OURS (identical in `none` and `s_pt`)
+     movs r2, #0xa             movs r2, #10
+     movs r0, #0        <<<    push {r3, lr}
+     push {r3, lr}             ldr r3,=...      strb r2,[r3]
+     ...strb r2/r0/r0...       movs r3, #0      strb r3 / strb r3
+     bl  0x3441c               bl msg_content_decrement_timer
+     mov r1, r0                mov r1, r0       <<< r0 NEVER SET in this function
+     movw r2, #0x2210          movw r2, #0x2210
+     ldr r0, =pool             ldr r0, =pool
+     bl  memset                bl memset_bytes
+```
+
+   **The shipped firmware sets `r0 = 0` before the call and reuses it as the
+   memset fill: it zeroes the message pool.  Our reconstruction dropped the
+   `movs r0,#0`, modelled the fill as a `void` function's return value, and
+   therefore fills the pool with an undefined leftover register.**
+
+> **THE CLASS, named: a *type disagreement across translation units* —
+> `extern int f(void)` at the call site against `void f(void)` at the
+> definition — turns an undefined register into program data.  It is invisible
+> while the whole program is one link and the leftover happens to be benign,
+> and any change that perturbs the caller's register allocation flips it.
+> `static` on `pt_nfc_eeprom_link_init` is such a change.  This is the same
+> class as the repository's "Type-disagreement repair" campaign (HEAD~5,
+> "89 shadow entries closed"); this instance was missed because the disagreeing
+> pair is `int`/`void` rather than a width or signedness mismatch, and because
+> the *value* is only observable through a `memset` fill.**
+
+`recon/app/src/FUN_00034944.c` and `recon/verified/src/FUN_00034944.c` carry the
+identical defect (`extern int FUN_0003441c(void);` … `FUN_00086c78(0x20007dac, uVar1, 0x2210)`)
+against `void FUN_0003441c(void)` in `recon/app/src/FUN_0003441c.c`.
+
+**The decision this evidence forces is neither of the two the work order
+offered.**  It is not "repair stage 07" and not "exclude the symbol with a
+measured reason": `pt_nfc_eeprom_link_init` is not defective, and excluding it
+would preserve a base that disagrees with the shipped firmware.  The repair
+belongs in `notification_system_init`.
+
+### 51.4 THE REPAIR, and the one experiment that decides between our two
+### candidate fills
+
+The two candidate readings of the shipped `0x34946 movs r0,#0` are:
+
+* **(A)** it is the memset fill, and it survives `bl 0x3441c` because GCC's
+  interprocedural register allocation proved the same-TU callee does not
+  clobber `r0` — so the pool is zeroed;
+* **(B)** it is only the `strb` source, `mov r1,r0` at `0x3495a` picks up a real
+  **return value**, and our `extern int` is faithful.
+
+**`cfg_verify` votes (B), and it is wrong.**  With the fill changed to a literal
+`0`, `cfg_verify app FUN_00034944` goes `PASS cases=0` → **`FAIL … mismatches=40`**,
+and the mismatch is exactly the memset argument:
+
+```
+original  ('C', 1, 536903084, 2556510175, 8720, ...)      memset(pool, 0x9863..., 8720)
+candidate ('C', 1, 536903084,          0, 8720, ...)      memset(pool, 0,        8720)
+```
+
+The harness models every callee as an opaque order-keyed oracle that **writes
+`r0`**, so when the *original bytes* run under Unicorn, `mov r1,r0` reads the
+stub's garbage.  It cannot represent a callee that preserves `r0`, which is
+precisely what reading (A) depends on.  This is the harness's *third* structural
+blind spot on the same function.
+
+**The decisive experiment is the shipped firmware itself.**  Same seed, same
+stimulus, `RunFor "0.125"`, then read the ten 0x1b4-byte records at the
+**original** pool address `0x20007dac` (`/private/tmp/g1-i53/shipdump.sh`):
+
+```
+shipped app_update.bin, 50 words at +0x0/+0x4/+0x8/+0xc/+0x10 of records 0..9:
+    50 x 0x00000000
+ours, base                                        50 x 0xFFFFFFFF
+ours, base + static pt_nfc_eeprom_link_init       50 x 0x00000000
+```
+
+> **Reading (A) is correct: the shipped firmware zeroes the message pool.  The
+> `cfg_verify` FAIL is a harness artefact, and is recorded as such rather than
+> obeyed.  Note carefully that the harness gave the *defect* a PASS and gives
+> the *repair* a FAIL — a green `cfg_verify` was already known to be worthless
+> here; this pass shows a red one can be too, whenever the reconstruction turns
+> on a register the real callee preserves.**
+
+Repaired by script, `/private/tmp/g1-i53/repair_notify_init.py`, occurrence-count
+guarded, five files:
+
+```
+recon/named/notification_system_init.c                     cdb5e1e7086e2820 -> 6213340e99383f7d
+recon/symbolized/app/notification_system_init.c            c9c532a2986edb74 -> e56356707947d0ea
+recon/readable_sources/app/g1/notification_system_init.c   c9c532a2986edb74 -> e56356707947d0ea
+recon/app/src/FUN_00034944.c                               dd2e99e3332fe375 -> 2db2e2d275d512b7
+recon/verified/src/FUN_00034944.c                          dd2e99e3332fe375 -> 2db2e2d275d512b7
+
+  extern int  msg_content_decrement_timer(void);  ->  extern void ...
+  int uVar1 = msg_content_decrement_timer();      ->  msg_content_decrement_timer();
+  memset_bytes(pool, uVar1, 0x2210);              ->  memset_bytes(pool, 0, 0x2210);
+```
+
+This touches the canonical parity trees, which the owner's rule permits for
+**defect repairs** (the class of iterations 39–45), not for refactoring
+transforms.
+
+### 51.5 TASK 3 — the full ladder rebuilt.  The SIZE gate first, and three of
+### the nine comparisons are `cmp`-identical **images**
+
+Ten clean `-p always` builds, one per stage tree, all `exit 0`, `0` compiler
+errors, `0` undefined references (`/private/tmp/g1-i53/stbuild.sh`).  **These
+are the trees as they stood at HEAD `0e16a7d8` plus §51.1's `update_imu_mode`
+repair — i.e. BEFORE §51.4's `notification_system_init` repair**, which is
+stated because §51.6 measures the same ladder after it.
+
+| stage | slug | `zephyr.bin` | sha256 (16) | image relation |
+|---|---|---:|---|---|
+| 00 | snapshot | 956,840 | `98f7fc230bf66546` | **byte-identical to the in-tree base build** (§50's `rbase`) |
+| 01 | literal_inline | 956,700 | `7d75e2a263bf4bc9` | −140 B vs 00 |
+| 02 | block_dedupe | 956,700 | `7d75e2a263bf4bc9` | **byte-identical to 01** |
+| 03 | module_structure | 956,700 | `7d75e2a263bf4bc9` | **byte-identical to 01 and 02** |
+| 04 | cohesive_tu | 956,636 | `f79709c1a507e629` | −64 B vs 03; = §50's `rs04` |
+| 05 | cohesive_composition | 956,636 | `f79709c1a507e629` | **byte-identical to 04** |
+| 06 | unit_composition | 956,636 | `f79709c1a507e629` | **byte-identical to 04 and 05** |
+| 07 | internal_linkage | 956,420 | `e92af2acb7c44be7` | −216 B vs 06; = §50's `rs07` |
+| 08 | call_order | 956,420 | `e92af2acb7c44be7` | **byte-identical to 07 — stage 08 is a `cmp`, not a verdict** |
+| 09 | call_cohesion | 956,436 | `5de22575a78eb954` | +16 B vs 08 |
+
+> Stages **02, 03, 05, 06 and 08** produce a **byte-identical `zephyr.bin`** to
+> their input stage.  For those five the R7 question does not arise at all: the
+> emulator cannot distinguish images that are equal.  That is the strongest
+> result available and it had never been recorded for **08**, whose §48.9-era
+> verdict was inferred rather than measured.
+
+### 51.6 THE RESULT OF THE REPAIR — the 126.561 ms divergence is GONE, and
+### the base moved to stage 07's side, not the other way round
+
+Four clean builds from the re-materialised ladder (`driver.py materialize 0..9`,
+`status` = `0..9 current, 0 inputs changed`), same 0.2 s seeded console probe:
+
+| image | `zephyr.bin` | sha256 (16) | uart0 B | cpuapp insns | `clear_timeout_message` lines |
+|---|---:|---|---:|---|---:|
+| **before** base `rbase`/`NONE` | 956,840 / 956,636 | `98f7fc230bf66546` / `f79709c1a507e629` | 4,262 | `0x7E2597` | **9** |
+| **before** stage 07 | 956,420 | `e92af2acb7c44be7` | 3,375 | `0x7C0CB7` | 0 |
+| **after** base `nbase` | 956,840 | `6553c55bb676b191` | **3,375** | `0x7C0D54` | **0** |
+| **after** stage 04 `r04` | 956,636 | `6a53d0a8a22afc03` | **3,375** | `0x7C0D54` | **0** |
+| **after** stage 07 `r07` | 956,420 | `37f097919dcc62ad` | **3,375** | `0x7C0CB7` | **0** |
+| **after** stage 09 `r09` | 956,436 | `abcd17db93a71213` | **3,375** | `0x7C0CB4` | **0** |
+| shipped `app_update.bin` | — | — | 3,635 (98 lines) | — | **0** |
+
+* the repair is **size-neutral**: 956,840 B before and after;
+* the base's console at 0.2 s **shrank to stage 07's**, and the residual
+  base→stage-07 instruction gap fell from **132,320** to **157**
+  (`0x7C0D54 − 0x7C0CB7`);
+* **stage 04 is now `cpuapp`-instruction-identical to the base** at 0.2 s
+  (`0x7C0D54` on both), which it was before as well;
+* every remaining difference from the shipped console (`nfc_gpo_init`,
+  the ST25DV UUID tail, `timeout_handler(): IPC send`,
+  `display_dispatch_thread`, and `trigger_screen_state_change`'s **empty
+  `%s`**) is present in the base *and* in stage 07 and is therefore a
+  pre-existing base defect this pass did not chase.  They are listed in §51.9.
+
+### 51.7 THE ACCEPTANCE BAR — re-measured in this pass
+
+| gate | required | **measured** | |
+|---|---|---|---|
+| `nm -u`, app core | 0 | **0** on `nbase`, `r04`, `r07`, `r09`, `st00`, `st09` | ✔ |
+| `nm -u`, net core | 0 | **0** (frozen image, not rebuilt) | ✔ |
+| duplicate globals | 0 | **0** (`nbase`, `r07`) | ✔ |
+| pin gates | 0 / 0 | `raw_literal_pins_inside_a_live_object` **0**, `bound_pins_escaping_their_owner` **0**, `unknown_inside_a_live_object` **0** on both; `bound_pins_ok` 627 (`nbase`) / 598 (`r07`); `abs_symbols_not_in_linker_scripts` 3, pre-existing | ✔ |
+| `check_thread_create_stack_args --trials 120` | 10/10 | **10 / 10 sites pass**, `EXIT=0` | ✔ |
+| `tools/verify_data.py` | 995/995 | **995 / 995 files, 56,279 / 56,279 B, 100.00 %** | ✔ |
+| refactor test suite | 240/240 | **240 tests, OK** | ✔ |
+| `check_app_flash_literals.py` | exit 0 on all ten stage trees + build | **exit 0 on all ten trees** and on `--build nbase` (376 occurrences / 105 files, `values_dereferenced_and_unreviewed` **0**, `values_unclassified_and_unreviewed` **0**) | ✔ |
+| net `zephyr.bin` FROZEN | 225,581 B | **225,581 B**, sha256 `e09b9481a3154e16…`, not rebuilt, not touched | ✔ |
+| app flash | *re-measure* | **956,840 B / 982,528 B = 97.39 %** (`nbase`); RAM **253,765 B / 56.32 %** — both **unchanged from §50**, the repair is size-neutral | measured |
+| `driver.py status` | 0..9 current | **0..9 all `current`, 0 inputs changed** after re-materialising; 99 stale as always | ✔ |
+
+`~/Projects/armemul` **not modified**: `models/BLE_VirtualCentral.cs` sha256
+`1f10e117632a1bb3…`, `NRF5340_SPIM.cs` **3** `TraceFile` occurrences,
+`NRF5340_TWIM.cs` **2** — both uncommitted hooks intact, `git status` unchanged
+from the pre-pass state.
+
+### 51.8 REPRODUCING
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+V="env PYTHONSAFEPATH=1 .venv/bin/python"
+
+# TASK 2 -- the shipped literal pool, re-derived
+$V /private/tmp/g1-i53/dis26100.py                     # r1 = 0x9fb32 at all FOUR sites
+$V /private/tmp/g1-i53/repair_imu_transposition.py     # dry run
+$V /private/tmp/g1-i53/repair_imu_transposition.py --apply
+$V tools/cfg_verify.py app FUN_00026100                # PASS before AND after -- see 51.1.1
+
+# TASK 1 -- the bisection (the instrument is section 48's, unmodified)
+$V /private/tmp/g1-i49/subset.py ALL                   # files_rewritten = 0  (round trip)
+bash /private/tmp/g1-i53/pt.sh none NONE all ALL       # the two controls
+bash /private/tmp/g1-i53/pt.sh H1 .../H1.txt H2 .../H2.txt
+bash /private/tmp/g1-i53/pt.sh H2a .../H2a.txt H2b .../H2b.txt
+bash /private/tmp/g1-i53/pt.sh H2a1 .../H2a1.txt H2a2 .../H2a2.txt
+bash /private/tmp/g1-i53/pt.sh s_pt .../s_pt.txt s_ipc .../s_ipc.txt
+#   -> pt_nfc_eeprom_link_init ALONE reproduces stage 07's console divergence
+
+# THE ORACLE THAT DECIDES THE DIRECTION -- the shipped firmware
+bash /private/tmp/g1-i53/shipprobe.sh 0.4     # 0 clear_timeout_message lines
+bash /private/tmp/g1-i53/shipdump.sh 0.125    # 50 x 0x00000000 at 0x20007dac
+
+# THE MECHANISM
+bash /private/tmp/g1-i53/dump2.sh none 0.125  # 50 x 0xFFFFFFFF
+bash /private/tmp/g1-i53/dump2.sh s_pt 0.125  # 50 x 0x00000000
+bash /private/tmp/g1-i53/wp.sh   none 0x2002d13c 0.13   # writer LRs
+
+# THE REPAIR
+$V /private/tmp/g1-i53/repair_notify_init.py --apply
+for n in 0 1 2 3 4 5 6 7 8 9; do $V recon/refactor/driver.py materialize $n; done
+
+# TASK 3 -- the ladder
+bash /private/tmp/g1-i53/stbuild.sh  00 01 02 03 04 05 06 08 09   # pre-repair sizes
+bash /private/tmp/g1-i53/stbuild2.sh 00 01 02 03 04 05 06 07 08 09 # post-repair
+bash /private/tmp/g1-i53/capall.sh st00 ... st09
+bash /private/tmp/g1-i53/mko.sh 790000 st00 ... st09
+bash /private/tmp/g1-i53/cmpcap.sh <a> <b>      # 16 files: 6 traces + 2 fbs x 2 stimuli
+bash /private/tmp/g1-i53/gate.sh   <probe> <ref>
+bash /private/tmp/g1-i53/fb.sh     <tags...>
+```
+
+### 51.9 WHAT I DID NOT CLOSE, AND WHY
+
+1. **The other console differences from the shipped firmware are NOT chased.**
+   They are present in the base *and* in every stage, so they are not the
+   ladder's business, but they are real reconstruction defects and this pass
+   names them for the first time as a list (0.4 s seeded console, shipped vs
+   ours):
+   * `nfc_gpo_init()` prints a completely different line
+     (`done, pin= 10` vs `panel_power_status 10 tmr_status 0 …`);
+   * `UUID = E0 02 24 01 23 45 67 89` (shipped) vs `… 00 00 00 00` (ours) — the
+     ST25DV UUID tail reads as zero in our build;
+   * `timeout_handler(): IPC send at NNNN ticks NN ms` is printed by the
+     shipped firmware and **not at all** by ours in the first 0.4 s;
+   * `display_dispatch_thread()` takes `master sync display suspend / thread
+     goto sleep` on the shipped image and `no running task, goto next trun` on
+     ours;
+   * **`trigger_screen_state_change(): : ignore:0.`** — the second `%s` is
+     **empty** in ours and reads `goto idle1` on the shipped image.  Its source
+     is `param_1` of `trigger_screen_state_change`, i.e. a **caller-supplied**
+     `%s` argument, which is the same class §49/§50 repaired.  Not repaired
+     here: finding the caller and its literal is a separate hunt.
+2. **`cfg_verify` disagrees with §51.4's repair** (`FAIL mismatches=40`) and I
+   did **not** obey it; §51.4 shows the disagreement is the harness's opaque
+   callee model, and the shipped-image dump decides against it.  I did **not**
+   fix `cfg_verify` — teaching it that a specific callee preserves `r0` is a
+   harness change this pass did not make, and it would need a per-callee
+   register-clobber model derived from the shipped bytes.
+3. **The `int`/`void` type-disagreement class was not swept.**  Exactly one
+   instance was found, by following a runtime symptom.  There is no reason to
+   think it is the only one, and the sweep — cross-TU comparison of every
+   `extern` declaration against its definition's return type over both trees —
+   was not run.
+4. **WHICH of the thirteen carries the navigation half-slot is NOT
+   identified.**  §51.5.3 proves the thirteen carry all of it and
+   `pt_nfc_eeprom_link_init` none of it, but the bisection inside the thirteen
+   was not run.  It costs one build plus one **navigation capture** per point
+   (~4 min), because the read-out is the trigger tick and not the console —
+   about 4 points for a clean single-symbol answer, more if it is a
+   combination.  This is now the single largest open item on stage 07.
+5. **`W` and `R` were not touched.**  `W = 100.513 ms`, `R = 1.160 ms`.
+6. **One seed, two stimuli.**  `G1_SEED=305419896`.
+7. **The net core was not built and not touched.**  Size, sha256 and `nm -u`
+   checked; `check_net_raw_literals` and `verify_net_stock_data_window` NOT RUN.
+7. **`battery_model_state_update` (`FUN_0000c358`)** — untouched, still open
+   from AGENTS.md.
+9. **Stage 99** left stale, as every prior pass.
+10. **Nothing was committed.**  §51.10 says exactly what is dirty.
+11. **§50.13 item 3 (the half-slot / `W/2` sub-structure) is not settled here**
+    either; it needs the `BLE_VirtualCentral.cs` connection-interval change
+    §46.6.3 asks for, and I did not modify `armemul`.
+
+### 51.6.1 …BUT THE NAVIGATION HALF-SLOT SURVIVES THE REPAIR.  §50.10's
+### "the 49.960 ms displacement is downstream of that" is FALSIFIED
+
+The 20 s seeded two-stimulus capture of the repaired ladder, gated with
+`W = 100.513 ms` and `R = 1.160 ms` **untouched**:
+
+```
+nbase -> r04   navigation  0 failures   ALL 16 FILES BYTE-IDENTICAL (6 traces + 2 framebuffers, both stimuli)
+nbase -> r04   dashboard   0 failures   idem
+r07   -> r09   navigation  0 failures   ALL 16 FILES BYTE-IDENTICAL
+r07   -> r09   dashboard   0 failures   idem
+r04   -> r07   navigation  2 FAILURES   spim_a  D = 50.410 ms = 0.502 slots
+                                        opt3001 D = 50.600 ms = 0.503 slots
+r04   -> r07   dashboard   0 failures   every stream |D| <= 0.58 ms
+```
+
+and the navigation trigger, read straight out of `twim1.p1.trace`
+(`TWIM1 … dev=0x6B dir=W n=3 data=080001`, the nPM1300 rail enable, second and
+last occurrence):
+
+| image | trigger tick | trigger time | vs §50 |
+|---|---:|---:|---|
+| `rbase` (§50, pre-repair) | — | 3,711.890 ms | — |
+| **`nbase` (post-repair)** | 3,711,430,000 | **3,711.430 ms** | **−0.460 ms** |
+| `rs07` (§50, pre-repair) | — | 3,761.850 ms | — |
+| **`r07` (post-repair)** | 3,761,850,000 | **3,761.850 ms** | **UNCHANGED TO THE TICK** |
+| `r04`, `r09` | — | 3,711.430 / 3,761.850 | = base / = stage 07 |
+
+> **The repair moved the base by −0.460 ms and did not move stage 07 at all.
+> The gap went from 49.960 ms to 50.420 ms — it did not close.  §50.10's
+> sentence *"The 49.960 ms navigation displacement is downstream of that, not
+> the other way round"* is therefore WRONG, and I am contradicting it on my own
+> measurement: the 126.561 ms branch change and the navigation half-slot are
+> INDEPENDENT.  Removing the first leaves the second exactly where it was.**
+
+**Stage 07 with all 132 symbols still FAILS the published navigation gate.**
+`W` and `R` were not retuned, not re-derived, and not discussed.
+
+What the repair *did* buy, and it is not nothing:
+
+* stage **04 = 05 = 06** is now `cmp`-identical to the base on **all 16 files**
+  of a 20 s two-stimulus capture — the same result §50.6 reported, reproduced
+  on a rebuilt ladder rather than inherited;
+* stage **09 is `cmp`-identical to stage 07** on all 16 files — so §48.9's
+  "stage 09 PASSES", which needed a bespoke subset tree to measure, is now a
+  trivial consequence of the images;
+* stage **08 is `cmp`-identical to stage 07 as an image** (§51.5);
+* all four acceptance framebuffers are byte-identical to the shipped goldens on
+  `nbase`, `r04`, `r07` **and** `r09`.
+
+### 51.5.1 …AND THE CAPTURE GATE — the whole pre-repair ladder collapses to
+### **ONE** comparison
+
+Twenty 20 s seeded captures (`G1_SEED=305419896`, both stimuli, frozen
+`g1-i30e-net`, `$rtinfo_pc` re-read per ELF), byte-compared over the six
+non-empty traces and both framebuffers on both stimuli — **16 files per
+pairing**:
+
+```
+st00 -> st01   16/16 BYTE-IDENTICAL          st04 -> st05   16/16 BYTE-IDENTICAL
+st01 -> st02   16/16 BYTE-IDENTICAL          st05 -> st06   16/16 BYTE-IDENTICAL
+st02 -> st03   16/16 BYTE-IDENTICAL          st06 -> st07    4/16  (the 4 are the framebuffers)
+st03 -> st04   16/16 BYTE-IDENTICAL          st07 -> st08   16/16 BYTE-IDENTICAL
+st00 -> st04   16/16 BYTE-IDENTICAL          st08 -> st09   16/16 BYTE-IDENTICAL
+framebuffers vs the shipped goldens:  4/4 on ALL TEN STAGES
+```
+
+> **Stages 01, 02, 03, 04, 05 and 06 are `cmp`-identical to the base, and
+> stages 08 and 09 are `cmp`-identical to stage 07, over a full 20 s
+> two-stimulus capture.  Nine of the ladder's ten steps are now decided by
+> `cmp` and not by a verdict.  §50.13 item 4 is closed.**  Note this holds even
+> though `st04`'s image is **204 bytes smaller** than `st00`'s — which is
+> §50.5's inert-pad result reproduced on real transform output rather than on a
+> synthetic pad.
+
+The one surviving comparison, `st04 -> st07`, reproduces §50.7 **exactly**:
+
+```
+navigation   spim_a/jbd_display        D = 49.960 ms = 0.497 slots   FAIL Q1
+             twim1/opt3001_ambient     D = 50.442 ms = 0.502 slots   FAIL Q1
+             npm1300 -0.030   st25dv x2 0.000   lsm6dso -0.030       PASS
+dashboard    every stream |D| <= 0.030 ms                            0 failures
+```
+
+— the same two streams, the same `D` to the microsecond, from a fresh build and
+a fresh capture.  §50.7 is **confirmed**, not merely inherited.
+
+#### 51.5.2 The determinism control, which this pass needed and ran
+
+Captures were run in two concurrent Renode streams to halve wall time, so the
+result depends on captures being independent of host load.  Three
+**byte-identical images** captured at different times in different streams
+(`st01`/`st02`/`st03`, all `7d75e2a263bf4bc9`) come back **16/16
+byte-identical** to each other, as do `st04`/`st05`/`st06` and `st07`/`st08`.
+Concurrency is therefore not a confound in any number in this section.
+
+*(One correction to my own working: I compared `st04` and `st06` against their
+neighbours while their captures were still running and briefly recorded a
+difference and a 3/4 framebuffer score.  Both were artefacts of reading an
+in-progress capture; the oracles built from them were deleted and the
+comparisons re-run to completion.  The numbers above are the completed ones.)*
+
+### 51.5.3 THE HALF-SLOT IS CARRIED BY THE OTHER THIRTEEN — a clean,
+### **disjoint** decomposition of stage 07
+
+Two more subset builds on the **repaired** stage-06 tree, each with a full
+seeded navigation capture, read out by the trigger tick alone:
+
+| subset | symbols | `zephyr.bin` | trigger tick | trigger time |
+|---|---:|---:|---:|---:|
+| base (`nbase`/`r04`) | 0 | 956,840 / 956,636 | 3,711,430,000 | **3,711.430 ms** |
+| **`pt_nfc_eeprom_link_init` alone** | 1 | 956,588 | 3,711,430,000 | **3,711.430 ms — the BASE's, to the tick** |
+| **the other 13** | 13 | 956,452 | 3,761,850,000 | **3,761.850 ms — STAGE 07's, to the tick** |
+| stage 07 (`r07`) | 132 | 956,420 | 3,761,850,000 | 3,761.850 ms |
+
+> **The two phenomena are carried by DISJOINT symbol sets.**
+> `pt_nfc_eeprom_link_init` carries the 126.561 ms console branch change and
+> **none** of the navigation displacement; the other thirteen carry the whole
+> 50.420 ms navigation displacement and **none** of the console change.  §48's
+> "the defect is a state the image enters, not a quantity any symbol
+> contributes" was measuring the sum of two independent effects.
+
+### 51.10 FOOTPRINT
+
+```
+ M recon/emulator/reports/our_boot_bringup.md              this section 51
+ M recon/refactor/README.md                                the iteration-51 R7 gate record
+ M recon/app/src/FUN_00026100.c        }  the update_imu_mode format/module transposition
+ M recon/verified/src/FUN_00026100.c   }  (51.1) -- CANONICAL PARITY TREES
+ M recon/app/src/FUN_00034944.c        }  the notification_system_init memset fill
+ M recon/verified/src/FUN_00034944.c   }  (51.4) -- CANONICAL PARITY TREES
+ M recon/named/notification_system_init.c
+ M recon/symbolized/app/notification_system_init.c
+ M recon/readable_sources/app/g1/notification_system_init.c
+ M recon/refactor/stage_0{0..9}/MANIFEST.json              ladder re-materialised
+?? Even+Realities_1.9.0.xapk                               pre-existing, untouched, not mine
+```
+
+**The canonical parity trees WERE edited**, deliberately and only for the two
+defect repairs, which is the class the owner's rule permits there.  Both were
+proved against the shipped image before the edit, both were applied by an
+occurrence-count-guarded script rather than by hand, and both leave
+`recon/app/src_sym` and `recon/verified/src_sym` untouched (neither contains
+either function).
+
+No transformer, no `driver.py`/`stagelib.py`/`link_evidence.py`, no linker
+script, no `tools/`, no oracle JSON, no golden framebuffer, no `recon/data`, no
+net-core file was written.  The stage-07 tree was mutated **nine** times by the
+subset instrument and restored each time; the final restore is proved by
+`git status` showing **no** modified file under
+`recon/refactor/stage_07_internal_linkage/tree` and by `driver.py status`
+reporting `0..9 current, 0 inputs changed`.
+
+Outside the repository, all new under `/private/tmp/g1-i53/`: `sb.sh`,
+`probe.sh`, `pt.sh`, `pt2.sh`, `bb.sh`, `stbuild.sh`, `stbuild2.sh`, `cap.sh`,
+`capall.sh`, `mko.sh`, `gate.sh`, `fb.sh`, `cmpcap.sh`, `wp.sh`, `dump.sh`,
+`dump2.sh`, `shipprobe.sh`, `shipdump.sh`, `dis26100.py`,
+`repair_imu_transposition.py`, `repair_notify_init.py`, the seven subset lists;
+plus `/private/tmp/g1-i53-*` (27 builds), `/private/tmp/g1_i53_*` (30 captures)
+and `<scratchpad>/i53/T790000/**` (28 oracles).
+
+### 51.11 THE ONE-PARAGRAPH ANSWER
+
+Stage 07's 126.561 ms divergence bisects, in four steps on §48's own subset
+instrument with §50.10's 0.2 s console probe as the read-out, to **one symbol —
+`pt_nfc_eeprom_link_init`** — and then the direction reverses: a seeded console
+probe of the **shipped `app_update.bin`** prints **zero** `clear_timeout_message`
+lines and **zero** expiry reports, exactly like stage 07 and unlike our base, so
+**stage 07 was right and the base was wrong.**  The chain is
+`notification_system_init`, whose reconstruction declares
+`extern int msg_content_decrement_timer(void)` at the call site against
+`void msg_content_decrement_timer(void)` at its definition in another
+translation unit, and uses that non-existent return value as the `memset` fill
+for the 8,720-byte message pool; the shipped image instead does
+`movs r0,#0` **before** the call and relies on the real callee — which never
+writes `r0`, in the shipped bytes and in both of our builds — to preserve it,
+so the shipped fill is **zero** and ours is an undefined leftover register
+(measured **0xFF across all fifty probed words** in the base, **0x00** with one
+unrelated symbol made `static`, and **0x00 in the shipped firmware**, which
+settles it).  **The class is a cross-TU `int`/`void` type disagreement that
+turns a caller's leftover register into program data**, invisible until
+something perturbs the caller's register allocation — and `cfg_verify` cannot
+see it in either direction: it **PASSes** the defect and **FAILs** the repair,
+because its opaque callee stub always clobbers `r0`.  The same harness limit
+explains §51.1's `update_imu_mode` transposition, repaired here in the canonical
+parity trees and proved from the shipped literal pool at all **four** call sites
+(`r1 = 0x9fb32` = `"update_imu_mode"` everywhere), which `cfg_verify` PASSes
+even with **every** log pointer in the file replaced by garbage, because the
+guard is a global rather than an argument.  Repairing
+`notification_system_init` makes the base's 0.2 s console identical to stage
+07's and cuts the base→stage-07 instruction gap from **132,320 to 157** — and
+then **stage 07 still FAILS the navigation gate**, at `D = 50.410` and
+`50.600 ms`, because the base's trigger moved by only −0.460 ms while stage
+07's did not move **at all**: §50.10's *"the 49.960 ms displacement is
+downstream of that"* is **falsified**, and two further subset builds show the
+decomposition is **disjoint** — `pt_nfc_eeprom_link_init` alone puts the trigger
+at the base's tick, the other thirteen alone put it at stage 07's.  Finally the
+ladder was rebuilt and re-captured end to end: **stages 01–06 are `cmp`-identical
+to the base and stages 08–09 `cmp`-identical to stage 07 over the full 20 s
+two-stimulus capture — 16 of 16 files each — so nine of the ladder's ten steps
+are now decided by `cmp` instead of by a verdict**, all ten stages match the
+four shipped golden framebuffers, and the single surviving comparison
+`04 -> 07` reproduces §50.7 to the microsecond.  `W = 100.513 ms` and
+`R = 1.160 ms` were not touched.

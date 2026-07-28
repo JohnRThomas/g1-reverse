@@ -15,7 +15,7 @@
  */
 /* Reconstructed FUN_00034944 @ 0x34944  (parity: 300/300 trials, PROVEN) */
 
-extern int msg_content_decrement_timer(void);
+extern void msg_content_decrement_timer(void);
 extern void memset_bytes(void*, int, int);
 extern void dump_whitelist_init(void);
 
@@ -24,7 +24,9 @@ void notification_system_init(void)
     *(volatile unsigned char *)((unsigned long)&g_message_table_slot_count) /*=0x2001a22b*/ = 10;
     *(volatile unsigned char *)((unsigned long)&g_message_pool_index) /*=0x2001a22a*/ = 0;
     *(volatile unsigned char *)((unsigned long)&g_message_pending_state) /*=0x2001a229*/ = 0;
-    int uVar1 = msg_content_decrement_timer();
-    memset_bytes(((unsigned long)g_message_pool) /*=0x20007dac*/, uVar1, 0x2210);
+    /* shipped 0x34946 `movs r0,#0' sets the memset fill BEFORE the call;
+     * FUN_0003441c/msg_content_decrement_timer is void and never writes r0. */
+    msg_content_decrement_timer();
+    memset_bytes(((unsigned long)g_message_pool) /*=0x20007dac*/, 0, 0x2210);
     dump_whitelist_init();
 }
