@@ -25554,3 +25554,474 @@ away") catches eleven of the thirteen while only one matters.  So the
 transformer is untouched and **stage 07 with all 132 symbols still FAILS**,
 with its FAIL reduced from an unlocalised set of thirteen to one named symbol,
 one named caller, and one named 30 ms boundary.
+
+## Iteration 53 — the owner's decision LANDED: `serialization_ipc_ept_register`
+## quarantined **by name** in stage 07, and the whole ladder re-gated from
+## scratch behind it.  Written incrementally as the work ran; every number
+## comes from a command run in this pass.
+
+HEAD at the start of this pass: **`0f9609a7`** ("P4 iter-52: ONE symbol carries
+it -- serialization_ipc_ept_register; stage07-minus-one PASSES at D=0.000"),
+working tree clean apart from the untracked `.xapk`.  (The session's own
+`gitStatus` snapshot claimed `t04_cohesive_tu.py` and `t09_call_cohesion.py`
+were modified; `git status` and `git diff HEAD` both say the tree was clean, so
+that snapshot was stale and nothing was inherited dirty.)
+
+**This pass does exactly one thing §52 refused to do, and it does it because
+the owner decided it, not because the evidence changed.**  §52's reasoning is
+not overturned anywhere below.
+
+### 53.0 WHAT THIS QUARANTINE IS, STATED BEFORE THE NUMBERS
+
+It is **one symbol's name**, refused in `t07_internal_linkage.py`, with §52's
+measurement recorded against it.  It is:
+
+* **NOT a defect fix.**  §52.4.1 disassembled both forms of the code and they
+  are the same program; §52.4.3 showed the firmware's own 185-line console is
+  identical text.  There is nothing wrong with either form and no repair was
+  attempted, because none exists to make.
+* **NOT a general predicate.**  §52.5 showed the two candidate rules are wrong:
+  §48.10's is over-broad by twelve symbols, and its obvious refinement catches
+  eleven of thirteen while one matters.  The only property separating this
+  symbol from the other twelve **is the gate's own answer**.
+* **Therefore: the gate's own answer, written back into the stage, for exactly
+  one symbol, deliberately, with the measurement attached.**  That is the honest
+  description and it is the one written into the transformer, the
+  `QUARANTINE.json` and the MANIFEST.  A future reader must not extract a rule
+  from it.
+
+### 53.1 TASK 1 — LANDED
+
+`recon/refactor/transforms/t07_internal_linkage.py` gains a module-level
+`MEASURED_EXCLUSIONS` table (name -> measured reason), matching the per-entry
+`{"symbol", "reason"}` shape stage 01 and stage 04 already use in their
+quarantines.  The refusal arm is placed **LAST** in `candidates()`'s chain, on
+purpose: a symbol reaches it only when every decidable rule above would have
+ACCEPTED it, so the counter is the exact price of the owner's decision and can
+never be confused with a rule doing its job.
+
+Measured against stage 06's tree, read-only:
+
+```
+candidates                                          132 -> 131
+refused.measured_exclusion_named_by_the_pipeline_owner    1
+measured_exclusions_that_bit                        ['serialization_ipc_ept_register']
+measured_exclusions_that_matched_nothing            []          <- staleness guard
+the symbol's unit                                   recon/symbolized/app/core/g1_core_06.c
+```
+
+The reason string records the mechanism, the numbers (`3,711.430` vs
+`3,761.850 ms` trigger; `D = 50.410 / 50.600 ms` alone; `D = 0.000 ms` on all
+six streams of both stimuli without it; `0x88 + 0xa8 -> 0x128`; `-30 us` at
+`t = 98.720 ms`; the 30 ms `CONNECT_IND Interval = 0x0018` boundary; #70 vs #69;
+`60.3 - 9.9 = 50.4`), the two controls that kill size and displacement, and in
+capitals that it is empirical, not a rule, and not a defect fix.  It also
+records, per §52.5, why no admissible predicate exists — so the next reader
+meets that argument before they meet the table.
+
+Three tests were added (`test_unit_composition.TestMeasuredExclusions`): the
+table stays at most one entry and every entry carries its measurement; the
+module docstring still refuses to be read as a predicate; and, against the real
+stage-06 tree, the named symbol is withheld, the refusal counter equals the
+table size, and `measured_exclusions_that_matched_nothing` is empty — which is
+the guard against the entry silently rotting if the symbol is renamed or moved.
+Suite: **243 tests, OK** (240 before).
+
+### 53.2 THE LADDER REGENERATED — every stage stale, every stage rebuilt
+
+`transforms_digest` moved, so `driver.py status` reported **0..9 all `stale`
+with `recon/refactor/transforms/ (TRANSFORMER CHANGED)`** — exactly what §48
+deferred and what this pass pays.  Each stage was **REGENERATED**
+(`driver.py materialize 0..9`, in order), never patched; all ten exit 0.
+
+```
+stage 07 report:  candidates 131   definitions_given_internal_linkage 131
+                  in_unit_extern_declarations_made_static 17
+                  module_header_declarations_withdrawn 0
+                  measured_exclusions ['serialization_ipc_ept_register']
+driver.py status after: 0..9 all `current`, 0 inputs changed  (99 stale, as always)
+driver.py check-addresses, all nine consecutive pairs: identical=True, 2567/2567
+```
+
+### 53.3 THE BUILDS — eleven clean `-p always` builds, and the regenerated
+### stage 07 is **byte-identical to §52's `x131`**
+
+Ten stage trees plus the in-tree base, every one `exit 0`, **0** `error:`,
+**0** `undefined reference`:
+
+| stage | slug | `zephyr.bin` | sha256 (16) | `text` | image relation |
+|---|---|---:|---|---:|---|
+| — | in-tree base `nbase` | 956,840 | `6553c55bb676b191` | 492,696 | = §51/§52's `nbase` **to the byte** |
+| 00 | snapshot | 956,840 | `6553c55bb676b191` | 492,696 | **byte-identical to the in-tree base** |
+| 01 | literal_inline | 956,700 | `01627fd1e404cce7` | 492,692 | −140 B vs 00; = §51's `01` |
+| 02 | block_dedupe | 956,700 | `01627fd1e404cce7` | 492,692 | **byte-identical to 01** |
+| 03 | module_structure | 956,700 | `01627fd1e404cce7` | 492,692 | **byte-identical to 01, 02** |
+| 04 | cohesive_tu | 956,636 | `6a53d0a8a22afc03` | 492,616 | −64 B vs 03; = §51's `r04` |
+| 05 | cohesive_composition | 956,636 | `6a53d0a8a22afc03` | 492,616 | **byte-identical to 04** |
+| 06 | unit_composition | 956,636 | `6a53d0a8a22afc03` | 492,616 | **byte-identical to 04, 05** |
+| 07 | internal_linkage | **956,436** | **`7e47d39987e11696`** | 492,424 | −200 B vs 06; **byte-identical to §52's `x131`** |
+| 08 | call_order | 956,436 | `7e47d39987e11696` | 492,424 | **byte-identical to 07** |
+| 09 | call_cohesion | 956,436 | **`2d45633bbd9de338`** | 492,432 | same SIZE as 08, **different bytes** — see 53.5 |
+
+> **The regenerated stage 07 tree builds to an image `cmp`-identical to the
+> 131-symbol subset image §52 gated at `D = 0.000 ms`** (`zephyr.bin`
+> byte-identical to `/private/tmp/g1-i54-x131`). The transformer route and the
+> instrument route converge on the same bytes, which is the strongest available
+> statement that the quarantine landed as measured rather than as intended.
+
+**THE COST, re-derived rather than quoted.** `arm-zephyr-eabi-size -A` on §52's
+132-symbol stage-07 ELF and on this pass's stage-07 ELF:
+
+```
+132 symbols static (section 52 st07r)   text = 492,416   zephyr.bin = 956,420
+131 symbols static (this pass, r07)     text = 492,424   zephyr.bin = 956,436
+                                        text  +8 B       zephyr.bin  +16 B
+```
+
+**`text` +8 B exactly**, as the work order expected — and note the `zephyr.bin`
+figure is **+16**, not +8: section alignment doubles the apparent price. The
+project's own habit of quoting `zephyr.bin` deltas as "the size" is why that
+distinction is written down here. **131 of 132 conversions retained**
+(`definitions_given_internal_linkage = 131`, `candidates = 131`).
+
+### 53.4 THE SIZE GATE — all ten stages, declared vs measured
+
+`driver.py size-gate N <stage N-1 build> <stage N build>`, written to each
+stage's own `SIZE_GATE.json`:
+
+| stage | declared | measured | pass | image identical | non-zero section deltas |
+|---|---|---|---|---|---|
+| 00 | byte-identical | byte-identical | ✔ | **yes** (vs in-tree base) | — |
+| 01 | size-changing | size-changing | ✔ | no | `text −4`, `rodata −124` |
+| 02 | byte-identical | byte-identical | ✔ | **yes** | — |
+| 03 | byte-identical | byte-identical | ✔ | **yes** | — |
+| 04 | size-changing | size-changing | ✔ | no | `text −76` |
+| 05 | size-neutral | byte-identical | ✔ | **yes** | — |
+| 06 | byte-identical | byte-identical | ✔ | **yes** | — |
+| 07 | size-changing | size-changing | ✔ | no | `text −192`, `rodata −8` |
+| 08 | size-changing | byte-identical | ✔ | **yes** | — |
+| 09 | size-changing | size-changing | ✔ | no | **`text +8`** |
+
+No stage under-declares. Stages 05 and 08 over-declare, which is the direction
+the contract allows (a stage may achieve a stricter class than it promises) and
+which §51 already recorded for 08.
+
+### 53.5 TASK 2 — THE LADDER RE-CAPTURED, TWENTY SEEDED CAPTURES, AND THE
+### RESULT IS **EIGHT** `cmp` STEPS, NOT NINE — with both gated steps PASSING
+
+Twenty 20 s captures: all ten stage images × both stimuli, `G1_SEED=305419896`,
+frozen `g1-i30e-net`, `$rtinfo_pc` **re-read from every ELF**, `mkfifo` stdin
+writer, run in two concurrent Renode streams.  Every capture reports
+`ORACLE_EMULATION_SEED: 305419896` and 12 files.  `$rtinfo_pc` per image:
+`0x00015c04` (stages 00–03), `0x00016c14` (04–08), `0x000170f8` (09).
+
+Byte-comparison over the six non-empty traces + 2 framebuffers × 2 stimuli
+(**16 files per pairing**):
+
+```
+r00 -> r01   16/16 BYTE-IDENTICAL        r05 -> r06   16/16 BYTE-IDENTICAL
+r01 -> r02   16/16 BYTE-IDENTICAL        r06 -> r07    6/16   <- GATED
+r02 -> r03   16/16 BYTE-IDENTICAL        r07 -> r08   16/16 BYTE-IDENTICAL
+r03 -> r04   16/16 BYTE-IDENTICAL        r08 -> r09   12/16   <- GATED, NEW
+r04 -> r05   16/16 BYTE-IDENTICAL
+determinism control (byte-identical images, captured in different streams at
+different times):  r01/r03 16/16,  r04/r06 16/16,  r07/r08 16/16,  r00/r04 16/16
+framebuffers vs the shipped goldens:  4/4 on ALL TEN STAGES
+```
+
+**THE NAVIGATION TRIGGER, read straight out of `twim1.p1.trace` on all ten
+images** (`TWIM1 … dev=0x6B dir=W n=3 data=080001`, the nPM1300 rail enable):
+
+```
+r00 r01 r02 r03 r04 r05 r06 r07 r08 r09  ->  seq=233 tick=3711430000  ON ALL TEN
+```
+
+> **Stage 07's 3,761,850,000 tick is gone from the ladder.  Every stage now
+> lands the trigger at the base's 3,711.430 ms, to the tick.**
+
+**THE TWO GATED STEPS** (`W = 100.513 ms`, `R = 1.160 ms`, **untouched**;
+`T = 790 000 ns` segmentation):
+
+```
+r06 -> r07   navigation   0 failures   D = 0.000 ms on ALL SIX streams, k = 0, S = 0.000, max|d| <= 0.006
+r06 -> r07   dashboard    0 failures   D = 0.000 ms on ALL SIX streams, k = 0, S = 0.000, max|d| <= 0.031
+r08 -> r09   navigation   0 failures   D = 0.000 ms on ALL SIX streams, k = 0, S = 0.000, max|d| =  0.000
+r08 -> r09   dashboard    0 failures   D = 0.000 ms on ALL SIX streams, k = 0, S = 0.000, max|d| =  0.000
+r00 -> r09   navigation   0 failures   D = 0.000 ms on ALL SIX streams (cumulative, whole ladder)
+r00 -> r09   dashboard    0 failures   D = 0.000 ms on ALL SIX streams
+```
+
+> **THE LADDER IS GREEN END TO END.**  Stage 07 reads `D = 0.000 ms` on every
+> gated stream of both stimuli — the §52 prediction for `x131`, reproduced here
+> on the transformer's own regenerated tree — and the cumulative `00 -> 09`
+> comparison is `D = 0.000 ms` as well.
+
+**I am reporting one deviation from the work order's target rather than tuning
+to it.**  The target was "nine steps `cmp`-identical, stage 07 at
+`D = 0.000 ms`".  Stage 07 is at `D = 0.000 ms`; the `cmp` count is **eight of
+ten**, not nine, because **`08 -> 09` stopped being a `cmp`**.  §53.6 explains
+exactly why, and it is not a regeneration error.
+
+### 53.6 THE ONE STEP THAT WAS `cmp`-IDENTICAL AND NO LONGER IS — root-caused
+### to the quarantine itself, in the MANIFESTs, not to the regeneration
+
+The work order named this as the signal to watch.  It fired, and the cause is
+**a documented refusal rule in stage 08 that the quarantine legitimately
+unblocks**.  From the MANIFEST diffs against HEAD `0f9609a7`:
+
+```
+stage 08 call_order:
+   units_reordered                              0  ->  1
+   member_blocks_moved                          0  ->  5
+   per_unit_blocks_moved                       {}  ->  {"recon/symbolized/app/core/g1_core_06.c": 5}
+   refused.member_block_declares_a_file_scope_static   47  ->  46
+
+stage 09 call_cohesion:
+   merged_translation_units (the grouping)     IDENTICAL, key for key
+   only g1_core_cc02.c's content moves         54,253 B -> 54,246 B
+   (its member is exactly that g1_core_06.c)
+```
+
+`serialization_ipc_ept_register` lives in `recon/symbolized/app/core/g1_core_06.c`.
+Leaving it with external linkage removes the file-scope `static` that made one
+of stage 08's member blocks unmovable, so **stage 08 now genuinely reorders one
+unit** where before it was a no-op on every unit.  Stage 09 then merges that
+different `g1_core_06.c`, which is the entire difference in its output.
+
+Two consequences worth recording separately:
+
+* **Stage 08 does real work now and its image is STILL byte-identical to stage
+  07's** (`956,436` / `7e47d39987e11696` on both, `cmp` exit 0).  Five member
+  blocks were moved inside one translation unit and the linked image did not
+  move by a byte.  Before this pass stage 08 was a no-op, so its byte-identity
+  was vacuous; **it is not vacuous any more**, and that is a strictly stronger
+  result than §51 recorded for the same stage.
+* **Stage 09's `text` delta over stage 08 is +8 B — exactly what it was in
+  §51** (`492,416 -> 492,424` then, `492,424 -> 492,432` now, both +8).  What
+  changed is only where the alignment padding falls: `zephyr.bin` was +16 B then
+  and is +0 B now, same image size as stage 08 with different content.  This is
+  the second time in this pass that the `zephyr.bin` delta and the `text` delta
+  disagree; quoting `zephyr.bin` as "the size" is not safe.
+
+What actually differs in the four `08 -> 09` capture files is **five events, each
+by 30 ns**:
+
+```
+nav  twim1.p1.trace   1 event   seq=247 tick 3,740,961,240 -> 3,740,961,210   dev=0x45 R
+nav  twim2.p1.trace   4 events  e.g. seq=965 3,740,701,720 -> 3,740,701,690   dev=0x6B R
+dash twim1.p2.trace / twim2.p2.trace  same shape
+line counts identical (373 / 1089), content identical apart from those ticks
+```
+
+30 ns is 0.00003 ms, four orders of magnitude below `R = 1.160 ms` and below the
+resolution of every gated device train — which is why all six streams read
+`D = 0.000` and `max|d| = 0.000`.
+
+### 53.7 THE ACCEPTANCE BAR — re-measured in this pass, every number from a
+### command run here
+
+| gate | required | **measured** | |
+|---|---|---|---|
+| stage builds | 10/10 link | **10/10 `exit 0`, 0 `error:`, 0 `undefined reference`** | ✔ |
+| in-tree base rebuild | — | **956,840 B**, sha `6553c55bb676b191` — §51/§52's `nbase` to the byte | ✔ |
+| stage 00 vs in-tree base | `cmp` | **byte-identical** | ✔ |
+| stage 07 vs §52's `x131` | — | **`zephyr.bin` byte-identical** (`7e47d39987e11696`) | ✔ |
+| size gate, all ten | declared ≥ measured | **10/10 pass**, no stage under-declares | ✔ |
+| `driver.py check-addresses`, 9 pairs | identical | **9/9 identical, 2567/2567 each** | ✔ |
+| 4 framebuffers vs shipped goldens | 4/4 per stage | **4/4 on ALL TEN stage images** (`cmp` exit 0) | ✔ |
+| ladder steps | — | **8 of 10 by `cmp`; the 2 gated steps PASS at `D = 0.000 ms`** | ✔ |
+| `nm -u`, app core | 0 | **0** on `nbase` and on all ten stage images | ✔ |
+| `nm -u`, net core | 0 | **0** (frozen image, not rebuilt) | ✔ |
+| duplicate globals | 0 | **0** on all eleven app images | ✔ |
+| pin gates | 0 / 0 | `raw_literal_pins_inside_a_live_object` **0**, `bound_pins_escaping_their_owner` **0**, `unknown_inside_a_live_object` **0**; `bound_pins_ok` 627 (`nbase`) / 598 (`r07`); `abs_symbols_not_in_linker_scripts` **3**, pre-existing | ✔ |
+| `check_thread_create_stack_args --trials 120` | 10/10 | **10 / 10 sites pass**, `EXIT=0` | ✔ |
+| `tools/verify_data.py` | 995/995 | **995 / 995 files, 56,279 / 56,279 B, 100.00 %** | ✔ |
+| refactor test suite | 240/240 | **243 tests, OK** (240 + the 3 added here) | ✔ |
+| `check_app_flash_literals.py` | exit 0, ten trees + build | **exit 0 on all ten stage trees** (`dereferenced_and_unreviewed` 0, `unclassified_and_unreviewed` 0 on every one) and on `--build nbase` (376 occurrences / 105 files, 223 reviewed, 0/0) | ✔ |
+| net `zephyr.bin` FROZEN | 225,581 B | **225,581 B**, sha256 `e09b9481a3154e16…`, not rebuilt, not touched | ✔ |
+| app flash | *re-measure* | **956,840 B / 982,528 B = 97.39 %**; RAM **253,765 B / 440 KB = 56.32 %** — unchanged from §51/§52, the quarantine is invisible at this resolution | measured |
+| `driver.py status` | 0..9 current | **0..9 all `current`, 0 inputs changed**; 99 stale as always | ✔ |
+
+`~/Projects/armemul` **not modified**: `models/BLE_VirtualCentral.cs` sha256
+`1f10e117632a1bb3…`, `NRF5340_SPIM.cs` **3** `TraceFile` occurrences,
+`NRF5340_TWIM.cs` **2** — both uncommitted hooks intact, and its `git status` is
+the same set §52 recorded.
+
+### 53.8 TASK 3 — THE RECORD, REWRITTEN FROM THIS PASS'S MEASUREMENTS
+
+`recon/refactor/README.md` gains **`★ R7 GATE RECORD — ITERATION 53, THE WHOLE
+LADDER AT ONE HEAD`** at the end, written to be the only place a reader needs:
+one row per stage giving what it does, declared → measured codegen class, **how
+it is proven (`cmp` on the image / `cmp` on the capture / the gate)**, and the
+quarantine it carries — with the counts re-read from each stage's own
+`QUARANTINE.json` rather than quoted.
+
+Stale rows above it were corrected in place rather than left to rot:
+
+* stage 07's `Stage ordering` row: **"BUILT, NOT PROVEN" / "Oracle REQUIRED,
+  not run" withdrawn**; `132 applied` → **131 of 131 candidates**; `.text −200 B`
+  → **`text −192 B`**; the named quarantine recorded.
+* stage 08's row: **"LANDED AS A MEASURED NO-OP … 0 units reordered"** is no
+  longer true — 1 unit reordered, 5 blocks moved, image still `cmp`-identical.
+* stage 09's row: **"Oracle REQUIRED, still NOT run" withdrawn** — run, PASSES.
+* stages 05 and 06 both carried **`956,276 B`**, stale by three generations of
+  the ladder; both are **956,636 B**.
+* the iteration-51/52 claim **"nine of ten steps are `cmp`-identical"** is
+  corrected to **eight**, with the reason.
+
+`AGENTS.md` — the project entrypoint — gained a **CURRENT PHASE (2026-07-28)**
+section at the top, because everything it said about the ladder and the parity
+state was either absent or a 2026-07-11 snapshot of a different workstream. It
+now names the authoritative record, the frozen criterion (`W`, `R`, and §52's
+`W` ≠ connection-interval correction **without** licensing a retune), the one
+named quarantine, the "`cfg_verify` is not evidence here" rule, the
+regenerate-never-patch rule, and the carried-forward open items. The old
+`CURRENT STATE` block is retitled and marked not maintained rather than deleted,
+and `REMAINING PLAN` items 5–6 are marked substantially done.
+
+### 53.9 WHAT I DID NOT CLOSE, AND WHY
+
+1. **The exclusion is exactly one symbol and buys exactly what §52 measured.**
+   I did not test whether any of the other twelve would now change anything —
+   §52 measured them null and nothing in this pass disturbs that.
+2. **§52's item 2 is still open**: WHY the app-side latency from `bt_receive_cb`
+   to the panel rail enable differed by 9.9 ms between the two images is
+   measured but not derived. With the symbol quarantined the divergence no
+   longer occurs, so the question is now academic for the ladder — but it is
+   still unexplained.
+3. **§52's item 3 is still open**: the unanswered BLE connection window at
+   ≈ 3.707 s (one window in five, on this seed, in both images) is measured, not
+   explained; its cause is in the net core / radio model.
+4. **`W` and `R` were NOT touched**, not re-derived, not re-discussed.
+   `W = 100.513 ms`, `R = 1.160 ms`.
+5. **One seed, two stimuli.** `G1_SEED=305419896`. Every number here is at that
+   seed. Nothing in this pass tests seed sensitivity.
+6. **The net core was not built and not touched.** Size, sha256 and `nm -u`
+   checked; `check_net_raw_literals` and `verify_net_stock_data_window` NOT RUN.
+7. **`cfg_verify` was not run and is cited nowhere**, per §51.1.1/§51.4.
+8. **§51.9 items 1 (five remaining console differences from the shipped
+   firmware, including the empty `%s` in `trigger_screen_state_change`), 2
+   (`cfg_verify` not taught about `r0`-preserving callees) and 3 (the cross-TU
+   `int`/`void` sweep) are all still open.** Item 3 remains the most
+   uncomfortable: `serialization_ipc_ept_register` itself declares
+   `extern uint64_t z_device_is_ready(uint32_t)`.
+9. **`battery_model_state_update` (`FUN_0000c358`)** — untouched, still open.
+10. **Stage 99** left stale, as every prior pass.
+11. **The out-of-tree subset instrument (`/private/tmp/g1-i49/subset.py`) was
+    NOT run in this pass.** It still works — `candidates()` kept its 3-tuple
+    signature deliberately so the R7 bisection instrument does not break — but
+    its `ALL` now means **131**, not 132. Any future bisection that wants the
+    132-symbol image must select the symbol explicitly.
+12. **Nothing was committed.** §53.10 says exactly what is dirty.
+
+### 53.10 FOOTPRINT
+
+```
+ M AGENTS.md                                              53.8
+ M recon/emulator/reports/our_boot_bringup.md              this section 53
+ M recon/refactor/README.md                                the iteration-53 R7 gate record
+ M recon/refactor/transforms/t07_internal_linkage.py       THE QUARANTINE (task 1)
+ M recon/refactor/test_unit_composition.py                 3 new tests
+ M recon/refactor/stage_0{0..9}/MANIFEST.json              ladder regenerated
+ M recon/refactor/stage_0{1..9}/SIZE_GATE.json             re-measured
+ M recon/refactor/stage_0{7,8}/QUARANTINE.json             07: the named entry; 08: 47 -> 46
+?? recon/refactor/stage_00_snapshot/SIZE_GATE.json         NEW -- stage 00 had never had one
+?? Even+Realities_1.9.0.xapk                               pre-existing, untouched, not mine
+```
+
+The stage **trees** are `.gitignore`d (`recon/refactor/.gitignore:9
+stage_*/tree/`), so they do not appear above; all ten were regenerated on disk.
+`recon/refactor/stage_04_cohesive_tu/QUARANTINE.json` and stage 09's are
+**unchanged**, which is the check that the quarantine did not perturb those
+stages' decisions.
+
+**NOT written:** no canonical parity tree (`recon/app/src`, `recon/verified/src`,
+`recon/net/src`, `*_sym`), no `recon/symbolized`, no `recon/symbols`, no
+`recon/data`, no linker script, no `tools/`, no `driver.py`, no `stagelib.py`,
+no `link_evidence.py`, no other transformer, no oracle JSON, no golden
+framebuffer, no net-core file.
+
+`~/Projects/armemul` **not modified at all**: `BLE_VirtualCentral.cs`
+`1f10e117632a1bb3…`, `NRF5340_SPIM.cs` 3 `TraceFile`, `NRF5340_TWIM.cs` 2,
+`git status` there unchanged from the pre-pass state.
+
+Outside the repository, all new under `/private/tmp/g1-i55/`: `stbuild.sh`,
+`bb.sh`, `cap.sh`, `capall.sh`, `cmpcap.sh`, `mko.sh`, `gate.sh`, `fb.sh`,
+`dupg.sh`, the build logs and the 10 `ours-*.resc`; plus `/private/tmp/g1-i55-*`
+(11 builds), `/private/tmp/g1_i55_*` (20 captures) and
+`<scratchpad>/i55/T790000/**` (20 oracles).
+
+### 53.11 REPRODUCING
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+V="env PYTHONSAFEPATH=1 .venv/bin/python"
+
+# TASK 1 -- the quarantine, and what it costs
+$V -m unittest discover -s recon/refactor -p 'test_*.py'      # 243 OK
+$V recon/refactor/driver.py status                            # 0..9 STALE (transformer changed)
+for n in 0 1 2 3 4 5 6 7 8 9; do $V recon/refactor/driver.py materialize $n; done
+$V recon/refactor/driver.py status                            # 0..9 current, 0 inputs changed
+for a in 0 1 2 3 4 5 6 7 8; do $V recon/refactor/driver.py check-addresses $a $((a+1)); done
+
+# TASK 2 -- eleven builds, ten size gates, twenty captures
+bash /private/tmp/g1-i55/bb.sh nbase
+bash /private/tmp/g1-i55/stbuild.sh 00 01 02 03 04 05 06 07 08 09
+$V recon/refactor/driver.py size-gate 0 /private/tmp/g1-i55-nbase /private/tmp/g1-i55-r00
+for n in 1 2 3 4 5 6 7 8 9; do \
+  $V recon/refactor/driver.py size-gate $n /private/tmp/g1-i55-r0$((n-1)) /private/tmp/g1-i55-r0$n; done
+bash /private/tmp/g1-i55/capall.sh r00 r01 r02 r03 r04     # stream A
+bash /private/tmp/g1-i55/capall.sh r09 r08 r07 r06 r05     # stream B, concurrent
+for p in "r00 r01" "r01 r02" "r02 r03" "r03 r04" "r04 r05" "r05 r06" \
+         "r06 r07" "r07 r08" "r08 r09"; do bash /private/tmp/g1-i55/cmpcap.sh $p; done
+bash /private/tmp/g1-i55/mko.sh 790000 r00 r01 r02 r03 r04 r05 r06 r07 r08 r09
+bash /private/tmp/g1-i55/fb.sh   r00 r01 r02 r03 r04 r05 r06 r07 r08 r09
+bash /private/tmp/g1-i55/gate.sh r07 r06        # D = 0.000 on all six, both stimuli
+bash /private/tmp/g1-i55/gate.sh r09 r08        # idem
+bash /private/tmp/g1-i55/gate.sh r09 r00        # cumulative, idem
+for t in r00 r01 r02 r03 r04 r05 r06 r07 r08 r09; do \
+  grep 'data=080001' /private/tmp/g1_i55_${t}_nav/twim1.p1.trace | tail -1; done   # 3711430000 x10
+
+# the cost, re-derived
+arm-zephyr-eabi-size -A /private/tmp/g1-i54-st07r/zephyr/zephyr.elf   # text 492,416  (132 static)
+arm-zephyr-eabi-size -A /private/tmp/g1-i55-r07/zephyr/zephyr.elf     # text 492,424  (131 static)
+cmp /private/tmp/g1-i55-r07/zephyr/zephyr.bin /private/tmp/g1-i54-x131/zephyr/zephyr.bin  # identical
+```
+
+### 53.12 THE ONE-PARAGRAPH ANSWER
+
+The owner's decision is **landed**: `serialization_ipc_ept_register` is refused
+**by name** in stage 07's `MEASURED_EXCLUSIONS`, with §52's measurement written
+against it and with the framing stated in capitals in three places (the
+transformer docstring, the constant's own docstring and `QUARANTINE.json`) —
+**empirical, not a rule, not a defect fix, and explicitly the gate's own answer
+written back into the stage for exactly one symbol**, because §52.5 proved no
+admissible predicate names it and not the twelve inert ones. The refusal arm sits
+**last** in the rule chain so its counter is the exact price of the decision;
+three new tests hold the table to one entry, demand a measurement per entry, and
+fail if a declared exclusion stops naming a real candidate. Cost, re-derived
+rather than quoted: **`text` +8 B exactly** (492,416 → 492,424) — though
+`zephyr.bin` moves **+16**, which is why quoting the binary as "the size" is not
+safe — with **131 of 132** conversions retained. `transforms_digest` moved, all
+ten stages went stale, and all ten were **regenerated** and rebuilt: eleven clean
+builds, 0 errors, 0 undefined, `check-addresses` identical on all nine pairs, and
+the regenerated stage 07 image is **`cmp`-identical to §52's `x131`**, so the
+transformer route and the bisection instrument land on the same bytes. Twenty
+seeded 20 s captures over both stimuli then re-gate the ladder end to end: **all
+ten stages match the four shipped golden framebuffers 4/4**, **all ten put the
+navigation trigger at 3,711,430,000 — the base's tick, stage 07's 3,761,850,000
+is gone from the ladder** — and the two comparisons that are not a plain `cmp`
+both read **`D = 0.000 ms`, `k = 0`, `S = 0.000`** on all six streams of both
+stimuli, as does the cumulative `00 → 09`. The one thing that did **not** match
+the work order's target is reported rather than tuned away: it is **eight `cmp`
+steps, not nine**, because `08 → 09` stopped being one — and the MANIFEST diffs
+root-cause that to the quarantine itself, not to the regeneration: leaving the
+symbol externally linked retires one of stage 08's
+`member_block_declares_a_file_scope_static` refusals (**47 → 46**), so **stage 08
+now genuinely reorders `core/g1_core_06.c`, moving five member blocks, where it
+had been a no-op on every unit** — and its image is *still* byte-identical to
+stage 07's, which turns a previously vacuous byte-identity into a real
+measurement. The residual `08 → 09` capture difference is **five events at 30 ns
+each**, four orders of magnitude below `R`. `W = 100.513 ms` and `R = 1.160 ms`
+were not touched, no `cfg_verify` verdict is cited anywhere, and nothing was
+committed.

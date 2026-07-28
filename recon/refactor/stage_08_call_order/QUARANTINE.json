@@ -4,7 +4,7 @@
  "sub_batch": "R",
  "units_refused": {
   "member_block_carries_a_preprocessor_directive": 112,
-  "member_block_declares_a_file_scope_static": 47
+  "member_block_declares_a_file_scope_static": 46
  },
  "note": "Every refusal is a unit whose members could move only by moving a preprocessor directive or a file-scope `static' with them, or whose call graph is cyclic.  A refusal leaves the unit exactly as stage 07 emitted it."
 }

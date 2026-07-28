@@ -1408,10 +1408,12 @@
   },
   "recon/symbolized/app/core/g1_core_06.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/core/g1_core_06.c",
-   "source_sha256": "f03f44fe5f3d552518c6ef1c2b6feb99f7e7ec16bc076711401abe29b717d882",
-   "output_sha256": "f03f44fe5f3d552518c6ef1c2b6feb99f7e7ec16bc076711401abe29b717d882",
-   "bytes": 18395,
-   "transformations": {}
+   "source_sha256": "1f15ef0e9bdc6f53185a58c4a349ec628c98e1e90f441212f98d6367a04aae75",
+   "output_sha256": "c858cc1eb426d951bc4a87e2a46b8ba4bf51583ea2cf0d85fb3a832c691ea1c8",
+   "bytes": 18388,
+   "transformations": {
+    "content_changed": true
+   }
   },
   "recon/symbolized/app/core/g1_core_07.c": {
    "source": "recon/refactor/stage_07_internal_linkage/tree/recon/symbolized/app/core/g1_core_07.c",
@@ -12317,7 +12319,7 @@
   "recon/refactor/sdk_declared_symbols.json": "3b7c3558364b4b3bdb35504aed2c996f9356ee7a10777c3b411be6b25b078d31",
   "recon/refactor/link_referenced_symbols.json": "cd60f0e6f7c65846f090ce0db02718c839c4176ab08a3ec171ed06b0933a2de8"
  },
- "transforms_digest": "46b70c24a2630ba24eb7dffb6a23555bfc3af6267a99f1a32bed9fb1b4dc3a26",
+ "transforms_digest": "e89f77f2d3115879a4aacc426abd4a5fa94349dd4ac75e8339f256f3a465fb4e",
  "declared_codegen_class": "size-changing",
  "oracle_required": true,
  "inherited_generated_outputs": [
@@ -12346,13 +12348,15 @@
  "sub_batch": "R",
  "call_order": {
   "merged_units_seen": 249,
-  "units_reordered": 0,
+  "units_reordered": 1,
   "units_already_in_call_order": 90,
-  "member_blocks_moved": 0,
+  "member_blocks_moved": 5,
   "refused": {
    "member_block_carries_a_preprocessor_directive": 112,
-   "member_block_declares_a_file_scope_static": 47
+   "member_block_declares_a_file_scope_static": 46
   },
-  "per_unit_blocks_moved": {}
+  "per_unit_blocks_moved": {
+   "recon/symbolized/app/core/g1_core_06.c": 5
+  }
  }
 }

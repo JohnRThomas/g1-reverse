@@ -64,6 +64,17 @@ that unit and withdraws it from the generated module header.  The compiler is
 the check that this was done completely (R4).
 
 --------------------------------------------------------------------------
+AND ONE NAMED EXCLUSION, WHICH IS NOT PART OF THE RULE
+--------------------------------------------------------------------------
+
+``MEASURED_EXCLUSIONS`` below holds **one symbol**, refused **by name**, on the
+strength of an end-to-end emulator measurement and on nothing else.  It is not
+a predicate, it does not generalise, and it must not be read as one: everything
+above this paragraph is decidable from the link, the sources and the build, and
+this is not.  See ``MEASURED_EXCLUSIONS``' own docstring for the mechanism, the
+numbers and the standing caveat.
+
+--------------------------------------------------------------------------
 CODEGEN CLASS: ``size-changing``, AND NOT NEGOTIABLE
 --------------------------------------------------------------------------
 
@@ -112,6 +123,72 @@ CONSUMES_PARTITION_EVIDENCE = True
 
 BATCHES = frozenset(("S", "OFF"))
 DEFAULT_BATCH = "S"
+
+#: SYMBOLS REFUSED BY NAME, EACH WITH THE MEASUREMENT THAT REFUSED IT.
+#:
+#: **This is not a rule and it does not generalise.**  Every other refusal in
+#: this stage is a predicate over evidence a transformer may legitimately hold
+#: -- the link's relocations, the linker scripts, the build's `--undefined='
+#: roots, the SDK headers, C11 7.1.3.  An entry here is none of those: it is one
+#: symbol's name, excluded because the R7 oracle measured this stage failing
+#: with it and passing without it, and for no other reason.  The pipeline owner
+#: decided that on 2026-07-28; the alternatives and why they were rejected are
+#: recorded in `recon/emulator/reports/our_boot_bringup.md' section 52.5/52.6.
+#:
+#: A future reader must NOT extract a predicate from this table.  In particular
+#: the two rules that were designed for it both fail:
+#:
+#:   * "refuse a candidate the evidence build's link still emits as an
+#:     out-of-line text symbol" (section 48.10) refuses FOURTEEN symbols; twelve
+#:     of them are measured null and the thirteenth carries a different,
+#:     already-repaired effect.  It costs ~200 B of `text' to buy an effect
+#:     that costs 8 B.
+#:   * "refuse a candidate that internal linkage lets the link inline away
+#:     entirely" catches ELEVEN of the thirteen; one of the eleven matters.
+#:
+#: So the honest statement of what this table is: **the gate's own answer,
+#: written back into the stage, for exactly one symbol, deliberately, with the
+#: measurement attached.**  Adding a second entry is a decision of the same
+#: kind and needs the same evidence -- a full seeded two-stimulus R7 capture
+#: naming the symbol as necessary and sufficient -- not an argument from
+#: similarity to this one.
+MEASURED_EXCLUSIONS = {
+    "serialization_ipc_ept_register":
+        "EMPIRICAL, NOT A RULE.  Refused by name on the R7 oracle's own "
+        "measurement (our_boot_bringup.md sections 52.1-52.4, 2026-07-28), not "
+        "on any property of the symbol a transformer can decide.  MEASUREMENT: "
+        "all thirteen candidates that section 51.5.3 implicated were probed ONE "
+        "AT A TIME (exhaustive, never a bisection, so a combination could not "
+        "hide); this symbol ALONE moves the seeded navigation trigger -- the "
+        "nPM1300 rail enable, TWIM1 dev=0x6B W data=080001 -- from 3,711.430 ms "
+        "to 3,761.850 ms, and the other twelve each leave it at 3,711.430 ms.  "
+        "On the published gate (W = 100.513 ms, R = 1.160 ms, untouched) the "
+        "symbol alone reproduces the whole of stage 07's failure to the "
+        "microsecond (spim_a/jbd_display D = 50.410 ms = 0.502 slots, "
+        "twim1/opt3001_ambient D = 50.600 ms = 0.503 slots, both FAIL Q1), "
+        "while stage 07 with only this symbol withheld -- 131 of 132 still "
+        "static -- reads D = 0.000 ms on all six streams of BOTH stimuli, k = 0, "
+        "S = 0.000, with 4/4 shipped golden framebuffers.  MECHANISM (measured "
+        "end to end, section 52.4): `static' lets GCC inline the body into its "
+        "single in-unit caller st25dv_read_chip_ids (0x88 + 0xa8 -> 0x128; both "
+        "forms disassembled and semantically identical instruction for "
+        "instruction, and the firmware's own 4.2 s console is 185 lines of "
+        "IDENTICAL text), which moves that function's own ST25DV I2C traffic by "
+        "-30 us at t = 98.720 ms -- the first departing event in the capture -- "
+        "drifting to a few hundred microseconds of ordinary scheduler jitter by "
+        "1.7 s, at which point the app core's acknowledgement of a GATT-sweep "
+        "write falls on the far side of a 30 ms BLE connection-event boundary "
+        "(CONNECT_IND Interval = 0x0018), so the navigation frame is delivered "
+        "at data event #70 instead of #69, which are 60.3 ms apart, less 9.9 ms "
+        "of panel-rail latency difference = the observed 50.4 ms.  CONTROLS: it "
+        "is NOT size (the symbol plus 16 B of inert .text lands the image at the "
+        "base's exact 956,636 B and the trigger does not move) and NOT code "
+        "displacement (16 B and 32 B pads on the base are byte-exactly inert "
+        "over all 318 traced bus events of the first 4.5 s, as are the other 131 "
+        "static-ifications).  NOTHING IS WRONG WITH EITHER FORM OF THE CODE: "
+        "this is not a defect fix, and no repair is available or needed.  COST: "
+        "8 bytes of .text, 131 of 132 conversions retained.",
+}
 
 SYMBOLS_HEADER = "recon/symbols/g1_app_symbols.h"
 
@@ -303,6 +380,7 @@ def candidates(source_root: str, relpaths: list[str], merged: list[str],
     pinned |= build_pins
 
     refused: collections.Counter = collections.Counter()
+    excluded: list[dict] = []
     out: list[tuple[str, str]] = []
     total_defs = 0
     for rel in merged:
@@ -332,8 +410,18 @@ def candidates(source_root: str, relpaths: list[str], merged: list[str],
                 refused["named_by_an_sdk_macro"] += 1
             elif name.startswith("_"):
                 refused["reserved_identifier_c11_7_1_3"] += 1
+            elif name in MEASURED_EXCLUSIONS:
+                # LAST in the chain on purpose: a symbol reaches this arm only
+                # when every decidable rule above would have ACCEPTED it, so the
+                # counter below is the exact price of the owner's decision and
+                # cannot be confused with a rule doing its job.
+                refused["measured_exclusion_named_by_the_pipeline_owner"] += 1
+                excluded.append({"symbol": name, "file": rel,
+                                 "kind": "named exclusion -- empirical, not a rule",
+                                 "reason": MEASURED_EXCLUSIONS[name]})
             else:
                 out.append((rel, name))
+    unseen = sorted(set(MEASURED_EXCLUSIONS) - {e["symbol"] for e in excluded})
     meta = {
         "link_evidence_present": ev["present"],
         "link_evidence_build": ev["build_dir"],
@@ -341,6 +429,17 @@ def candidates(source_root: str, relpaths: list[str], merged: list[str],
         "external_linkage_definitions_in_merged_units": total_defs,
         "linker_fragments_and_build_pins_discovered": pin_sources,
         "identifiers_pinned_by_the_build": len(pinned),
+        #: an entry that stops matching a definition is an entry that has gone
+        #: stale (renamed symbol, moved unit, or a rule above it now refusing
+        #: it first).  Reported so it cannot rot silently.
+        "measured_exclusions_declared": sorted(MEASURED_EXCLUSIONS),
+        "measured_exclusions_that_bit": sorted(e["symbol"] for e in excluded),
+        "measured_exclusions_that_matched_nothing": unseen,
+        #: the entries themselves, reason text and all.  Carried inside `meta'
+        #: rather than as a fourth return value so that every existing caller of
+        #: `candidates()' -- including the out-of-tree subset instrument the R7
+        #: bisections are run with -- keeps working unchanged.
+        "measured_exclusion_entries": excluded,
     }
     return out, dict(refused), meta
 
@@ -474,6 +573,22 @@ def run(stage, source_root: str, relpaths: list[str]) -> dict:
                 "is what it has today: refusing costs nothing but an "
                 "opportunity.  Applying wrongly costs a link error at best and "
                 "a silently rebound call at worst, so every rule fails closed.",
+        "measured_exclusions": {
+            "count": len(meta["measured_exclusion_entries"]),
+            "what_this_is": "Symbols refused BY NAME on an R7 oracle "
+                            "measurement, not by any predicate.  Each entry "
+                            "carries the measurement that refused it.  This is "
+                            "NOT a defect fix -- no repair is available or "
+                            "needed for these symbols -- and it is NOT a "
+                            "general rule: nothing here may be turned into "
+                            "one.  See the MEASURED_EXCLUSIONS docstring in "
+                            "transforms/t07_internal_linkage.py and "
+                            "recon/emulator/reports/our_boot_bringup.md "
+                            "sections 52.5/52.6 and 53.",
+            "entries": meta["measured_exclusion_entries"],
+            "declared_but_matched_nothing":
+                meta["measured_exclusions_that_matched_nothing"],
+        },
     }
     qp = os.path.join(stage.dir, "QUARANTINE.json")
     check_write(qp, stage.dir)
@@ -487,6 +602,7 @@ def run(stage, source_root: str, relpaths: list[str]) -> dict:
             "files_changed": changed,
             "merged_units_seen": len(merged),
             "candidates": len(cand),
+            "measured_exclusions": meta["measured_exclusions_that_bit"],
             **applied["totals"],
         },
         "manifest_extra": {

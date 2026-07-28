@@ -39,11 +39,11 @@
   "net_buf_pool_area": 520,
   "noinit": 60021,
   "pm_device_slots_area": 96,
-  "rodata": 456528,
+  "rodata": 456872,
   "rom_start": 340,
   "settings_handler_static_area": 120,
   "sw_isr_table": 552,
-  "text": 492416
+  "text": 492424
  },
  "stage_sections": {
   "ARM.exidx": 8,
@@ -69,16 +69,16 @@
   "net_buf_pool_area": 520,
   "noinit": 60021,
   "pm_device_slots_area": 96,
-  "rodata": 456528,
+  "rodata": 456872,
   "rom_start": 340,
   "settings_handler_static_area": 120,
   "sw_isr_table": 552,
-  "text": 492424
+  "text": 492432
  },
  "oracle_required": true,
  "why_oracle_required": "Linked size moved.  Three independent measurements in this project (+60 B, +16 B, -16 B) show a size change of this order re-phases the boot path and can break byte-equality of a peripheral bus stream in EITHER direction.  R7 acceptance cannot be inferred; it must be captured.",
- "base_elf": "/private/tmp/g1-lr-s08/zephyr/zephyr.elf",
- "stage_elf": "/private/tmp/g1-lr-s09/zephyr/zephyr.elf",
+ "base_elf": "/private/tmp/g1-i55-r08/zephyr/zephyr.elf",
+ "stage_elf": "/private/tmp/g1-i55-r09/zephyr/zephyr.elf",
  "stage": 9,
  "slug": "call_cohesion"
 }

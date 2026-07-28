@@ -157,6 +157,12 @@ recon/
   wiring/           app_objects.c (K_*_DEFINE), GAPS.md
   deferred/         functions that cannot be parity-proven (byte-exact source kept)
   blobs/{app,net}/  byte-exact .S blobs (LAST RESORT), from make_blobs.py
+  refactor/         *** THE STAGED REFACTOR LADDER *** driver.py + transforms/t00..t09,
+                    one stage_NN_*/ dir each (tree/ + MANIFEST/QUARANTINE/SIZE_GATE json).
+                    README.md ends with the AUTHORITATIVE R7 gate record.
+  emulator/         Renode boot-parity harness: scripts/ (capture + oracle build +
+                    slot_quantised_compare.py, the FROZEN criterion), reports/
+                    our_boot_bringup.md (the running log) and the golden framebuffers.
 tools/
   parity/emu.py         FROZEN harness (Unicorn diff). make_args fixed; arg_overrides added.
   parity/recon.py       compile+link candidate at real VA with stub callees
@@ -178,7 +184,58 @@ tools/
 
 ---
 
-## CURRENT STATE (2026-07-11 ~07:1x MSK)
+## CURRENT PHASE (2026-07-28) — EMULATOR BOOT-PARITY + THE STAGED REFACTOR LADDER
+
+**Read this before the older CURRENT STATE section below**, which is a snapshot
+of the *reconstruction* workstream as of 2026-07-11 and is not maintained.
+
+The project's active front is the **staged refactor ladder** in
+`recon/refactor/` (stages 00–09) and its **R7 behavioural gate**, run on Renode
+against the shipped firmware's own captured bus traces.
+
+* **Authoritative ladder record:** the `★ R7 GATE RECORD — ITERATION 53` section
+  at the **end of `recon/refactor/README.md`**. It states, for all ten stages in
+  one place, what the stage does, its codegen class, how it is proven and what
+  it quarantines. **Every R7 verdict above it in that file is superseded.**
+* **Working notes / full measurements:** `recon/emulator/reports/our_boot_bringup.md`,
+  newest section last (§53 as of 2026-07-28).
+* **Status as of iteration 53:** stages **00–09 all `current`**, all ten build
+  and link (`exit 0`, 0 undefined), **all ten match the four shipped golden
+  framebuffers 4/4**, and the ladder is green end to end — **eight of its ten
+  steps decided by `cmp`** (byte-identical images or byte-identical 20 s
+  captures) and **two by the gate, both at `D = 0.000 ms`** on all six streams
+  of both stimuli. The cumulative `stage 00 → stage 09` comparison is also
+  `D = 0.000 ms`. App flash 956,840 B / 97.39 %; net `zephyr.bin` **FROZEN at
+  225,581 B** and not rebuilt.
+* **The criterion is FROZEN: `W = 100.513 ms`, `R = 1.160 ms`**
+  (`recon/emulator/scripts/slot_quantised_compare.py`). Do not retune it. Note
+  `W` is **not** the BLE connection interval — that is 30 ms
+  (`CONNECT_IND Interval = 0x0018`); `W` ≈ 3.35 of them. That observation does
+  **not** license changing `W`, which was derived from shipped-vs-shipped.
+* **The pipeline carries exactly ONE named quarantine**, in stage 07:
+  `serialization_ipc_ept_register` (`transforms/t07_internal_linkage.py`,
+  `MEASURED_EXCLUSIONS`). It is **empirical, not a rule, and not a defect fix** —
+  an owner decision recorded with its measurement. Do not generalise it into a
+  predicate; the two candidate predicates are both measurably wrong (§52.5).
+* **`cfg_verify` is NOT evidence on this code.** §51 showed it is blind in both
+  directions here — it PASSes a real defect and FAILs its repair, because its
+  opaque callee stub always clobbers `r0`. Never cite a green `cfg_verify` as
+  proof in the ladder/parity workstream. (It remains useful as a *diagnostic*
+  for the reconstruction workstream below.)
+* **Owner rule, still binding:** never apply refactoring transforms to the
+  canonical address-keyed trees (`recon/app/src`, `recon/verified/src`,
+  `recon/net/src`, …). **Defect repairs** there are legitimate and have been
+  made (iterations 39–45, 49–51). A stale stage is **REGENERATED**
+  (`driver.py materialize N`), never hand-patched.
+* **Still open, carried forward:** `battery_model_state_update` (`FUN_0000c358`)
+  is an unrepaired float-path defect; five console lines still differ from the
+  shipped firmware in the base build (listed in §51.9 item 1); the cross-TU
+  `int`/`void` return-type sweep (§51.9 item 3) has never been run; stage 99 is
+  a diagnostic and is permanently stale.
+
+---
+
+## CURRENT STATE — reconstruction workstream (snapshot 2026-07-11, NOT maintained)
 
 - **App: 1735 reconstructions; Net: 698.** `worklist.remaining()`==0 both (every target has a `.c`).
 - **Symbolization + naming complete:** address→symbol maps both cores; app 589/589 globals named;
@@ -198,6 +255,13 @@ tools/
 ---
 
 ## REMAINING PLAN (in order)
+
+> **Items 5 and 6 are substantially DONE and have moved on.** The dual-core
+> project links (`nm -u` 0 on both cores), builds, boots on Renode and matches
+> the four shipped golden framebuffers; module cohesion is delivered by the
+> staged refactor ladder (stages 03–09), not by a Fable sweep. See the CURRENT
+> PHASE section at the top. Items 1–4 below belong to the reconstruction
+> workstream and are unaudited by this pass.
 
 1. **Finish CFG sweep** → authoritative false-proof list (`reverify_{app,net}_L*.json`, FAIL arrays).
 2. **Redo every CFG-FAIL** with Fable agents (`tools/reverify_redo_flow.wf.js` pattern; agents

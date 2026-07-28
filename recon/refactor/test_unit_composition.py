@@ -149,6 +149,62 @@ class TestBuildPins(unittest.TestCase):
         self.assertIn("wait_touch_key_release_or_timeout", names)
 
 
+class TestMeasuredExclusions(unittest.TestCase):
+    """Stage 07's ONE named exclusion (owner decision, 2026-07-28).
+
+    These tests guard the table's SHAPE and its effect, deliberately NOT its
+    membership as a rule: an entry here is the R7 gate's own answer written back
+    into the stage for one symbol, so the only thing worth protecting
+    mechanically is that it stays one symbol, stays documented as empirical, and
+    keeps biting the symbol it names.
+    """
+
+    def test_the_table_is_small_and_every_entry_carries_its_measurement(self):
+        self.assertLessEqual(len(t7.MEASURED_EXCLUSIONS), 1,
+                             "a second named exclusion needs its own R7 "
+                             "capture and its own owner decision")
+        for sym, why in t7.MEASURED_EXCLUSIONS.items():
+            self.assertRegex(sym, r"^[A-Za-z_]\w*$")
+            self.assertGreater(len(why), 400, sym)
+            low = why.lower()
+            self.assertIn("empirical", low, sym)
+            self.assertIn("not a rule", low, sym)
+            self.assertIn("not a defect fix", low, sym)
+
+    def test_the_docstring_refuses_to_be_read_as_a_predicate(self):
+        doc = " ".join(t7.__doc__.split())
+        self.assertIn("MEASURED_EXCLUSIONS", doc)
+        self.assertIn("It is not a predicate, it does not generalise", doc)
+
+    def test_the_named_symbol_is_withheld_from_the_real_candidate_set(self):
+        import json
+        here = os.path.dirname(os.path.abspath(__file__))
+        tree = os.path.join(here, "stage_06_unit_composition", "tree")
+        man = os.path.join(here, "stage_06_unit_composition", "MANIFEST.json")
+        if not (os.path.isdir(tree) and os.path.isfile(man)):
+            self.skipTest("stage 06 not materialised")
+        from transforms import t05_cohesive_composition as t5
+        with open(man, encoding="utf-8") as fh:
+            relpaths = sorted(json.load(fh)["files"])
+        text = {}
+        for rel in relpaths:
+            with open(os.path.join(tree, rel), "rb") as fh:
+                text[rel] = fh.read().decode("utf-8", errors="surrogateescape")
+        merged = [r for r in relpaths if t5.is_merged_unit(r, text[r])]
+        cand, refused, meta = t7.candidates(tree, relpaths, merged, text)
+        names = {n for _, n in cand}
+        for sym in t7.MEASURED_EXCLUSIONS:
+            self.assertNotIn(sym, names)
+        self.assertEqual(meta["measured_exclusions_that_matched_nothing"], [],
+                         "a declared exclusion no longer names a candidate: it "
+                         "has gone stale and must be re-measured or removed")
+        self.assertEqual(refused.get("measured_exclusion_named_by_the_pipeline_owner"),
+                         len(t7.MEASURED_EXCLUSIONS))
+        self.assertEqual(
+            {e["symbol"] for e in meta["measured_exclusion_entries"]},
+            set(t7.MEASURED_EXCLUSIONS))
+
+
 class TestCallOrder(unittest.TestCase):
     UNIT = ('/*\n * Cohesive translation unit\n */\n'
             '/* ---- a.c ---- */\n'

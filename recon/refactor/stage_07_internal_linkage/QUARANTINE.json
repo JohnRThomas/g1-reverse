@@ -6,6 +6,7 @@
   "referenced_by_a_relocation": 753,
   "named_by_a_linker_fragment_or_the_symbols_header": 224,
   "asm_named_or_macro_renamed": 4,
+  "measured_exclusion_named_by_the_pipeline_owner": 1,
   "declared_by_an_sdk_header": 3
  },
  "evidence": {
@@ -34,7 +35,35 @@
    "recon/symbols/g1_net_globals.ld",
    "recon/symbols/g1_net_readable_aliases.ld"
   ],
-  "identifiers_pinned_by_the_build": 10126
+  "identifiers_pinned_by_the_build": 10126,
+  "measured_exclusions_declared": [
+   "serialization_ipc_ept_register"
+  ],
+  "measured_exclusions_that_bit": [
+   "serialization_ipc_ept_register"
+  ],
+  "measured_exclusions_that_matched_nothing": [],
+  "measured_exclusion_entries": [
+   {
+    "symbol": "serialization_ipc_ept_register",
+    "file": "recon/symbolized/app/core/g1_core_06.c",
+    "kind": "named exclusion -- empirical, not a rule",
+    "reason": "EMPIRICAL, NOT A RULE.  Refused by name on the R7 oracle's own measurement (our_boot_bringup.md sections 52.1-52.4, 2026-07-28), not on any property of the symbol a transformer can decide.  MEASUREMENT: all thirteen candidates that section 51.5.3 implicated were probed ONE AT A TIME (exhaustive, never a bisection, so a combination could not hide); this symbol ALONE moves the seeded navigation trigger -- the nPM1300 rail enable, TWIM1 dev=0x6B W data=080001 -- from 3,711.430 ms to 3,761.850 ms, and the other twelve each leave it at 3,711.430 ms.  On the published gate (W = 100.513 ms, R = 1.160 ms, untouched) the symbol alone reproduces the whole of stage 07's failure to the microsecond (spim_a/jbd_display D = 50.410 ms = 0.502 slots, twim1/opt3001_ambient D = 50.600 ms = 0.503 slots, both FAIL Q1), while stage 07 with only this symbol withheld -- 131 of 132 still static -- reads D = 0.000 ms on all six streams of BOTH stimuli, k = 0, S = 0.000, with 4/4 shipped golden framebuffers.  MECHANISM (measured end to end, section 52.4): `static' lets GCC inline the body into its single in-unit caller st25dv_read_chip_ids (0x88 + 0xa8 -> 0x128; both forms disassembled and semantically identical instruction for instruction, and the firmware's own 4.2 s console is 185 lines of IDENTICAL text), which moves that function's own ST25DV I2C traffic by -30 us at t = 98.720 ms -- the first departing event in the capture -- drifting to a few hundred microseconds of ordinary scheduler jitter by 1.7 s, at which point the app core's acknowledgement of a GATT-sweep write falls on the far side of a 30 ms BLE connection-event boundary (CONNECT_IND Interval = 0x0018), so the navigation frame is delivered at data event #70 instead of #69, which are 60.3 ms apart, less 9.9 ms of panel-rail latency difference = the observed 50.4 ms.  CONTROLS: it is NOT size (the symbol plus 16 B of inert .text lands the image at the base's exact 956,636 B and the trigger does not move) and NOT code displacement (16 B and 32 B pads on the base are byte-exactly inert over all 318 traced bus events of the first 4.5 s, as are the other 131 static-ifications).  NOTHING IS WRONG WITH EITHER FORM OF THE CODE: this is not a defect fix, and no repair is available or needed.  COST: 8 bytes of .text, 131 of 132 conversions retained."
+   }
+  ]
  },
- "note": "A refusal here is a symbol left with external linkage, which is what it has today: refusing costs nothing but an opportunity.  Applying wrongly costs a link error at best and a silently rebound call at worst, so every rule fails closed."
+ "note": "A refusal here is a symbol left with external linkage, which is what it has today: refusing costs nothing but an opportunity.  Applying wrongly costs a link error at best and a silently rebound call at worst, so every rule fails closed.",
+ "measured_exclusions": {
+  "count": 1,
+  "what_this_is": "Symbols refused BY NAME on an R7 oracle measurement, not by any predicate.  Each entry carries the measurement that refused it.  This is NOT a defect fix -- no repair is available or needed for these symbols -- and it is NOT a general rule: nothing here may be turned into one.  See the MEASURED_EXCLUSIONS docstring in transforms/t07_internal_linkage.py and recon/emulator/reports/our_boot_bringup.md sections 52.5/52.6 and 53.",
+  "entries": [
+   {
+    "symbol": "serialization_ipc_ept_register",
+    "file": "recon/symbolized/app/core/g1_core_06.c",
+    "kind": "named exclusion -- empirical, not a rule",
+    "reason": "EMPIRICAL, NOT A RULE.  Refused by name on the R7 oracle's own measurement (our_boot_bringup.md sections 52.1-52.4, 2026-07-28), not on any property of the symbol a transformer can decide.  MEASUREMENT: all thirteen candidates that section 51.5.3 implicated were probed ONE AT A TIME (exhaustive, never a bisection, so a combination could not hide); this symbol ALONE moves the seeded navigation trigger -- the nPM1300 rail enable, TWIM1 dev=0x6B W data=080001 -- from 3,711.430 ms to 3,761.850 ms, and the other twelve each leave it at 3,711.430 ms.  On the published gate (W = 100.513 ms, R = 1.160 ms, untouched) the symbol alone reproduces the whole of stage 07's failure to the microsecond (spim_a/jbd_display D = 50.410 ms = 0.502 slots, twim1/opt3001_ambient D = 50.600 ms = 0.503 slots, both FAIL Q1), while stage 07 with only this symbol withheld -- 131 of 132 still static -- reads D = 0.000 ms on all six streams of BOTH stimuli, k = 0, S = 0.000, with 4/4 shipped golden framebuffers.  MECHANISM (measured end to end, section 52.4): `static' lets GCC inline the body into its single in-unit caller st25dv_read_chip_ids (0x88 + 0xa8 -> 0x128; both forms disassembled and semantically identical instruction for instruction, and the firmware's own 4.2 s console is 185 lines of IDENTICAL text), which moves that function's own ST25DV I2C traffic by -30 us at t = 98.720 ms -- the first departing event in the capture -- drifting to a few hundred microseconds of ordinary scheduler jitter by 1.7 s, at which point the app core's acknowledgement of a GATT-sweep write falls on the far side of a 30 ms BLE connection-event boundary (CONNECT_IND Interval = 0x0018), so the navigation frame is delivered at data event #70 instead of #69, which are 60.3 ms apart, less 9.9 ms of panel-rail latency difference = the observed 50.4 ms.  CONTROLS: it is NOT size (the symbol plus 16 B of inert .text lands the image at the base's exact 956,636 B and the trigger does not move) and NOT code displacement (16 B and 32 B pads on the base are byte-exactly inert over all 318 traced bus events of the first 4.5 s, as are the other 131 static-ifications).  NOTHING IS WRONG WITH EITHER FORM OF THE CODE: this is not a defect fix, and no repair is available or needed.  COST: 8 bytes of .text, 131 of 132 conversions retained."
+   }
+  ],
+  "declared_but_matched_nothing": []
+ }
 }

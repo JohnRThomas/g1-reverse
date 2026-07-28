@@ -1433,11 +1433,9 @@
   "recon/symbolized/app/core/g1_core_06.c": {
    "source": "recon/refactor/stage_06_unit_composition/tree/recon/symbolized/app/core/g1_core_06.c",
    "source_sha256": "1f15ef0e9bdc6f53185a58c4a349ec628c98e1e90f441212f98d6367a04aae75",
-   "output_sha256": "f03f44fe5f3d552518c6ef1c2b6feb99f7e7ec16bc076711401abe29b717d882",
-   "bytes": 18395,
-   "transformations": {
-    "content_changed": true
-   }
+   "output_sha256": "1f15ef0e9bdc6f53185a58c4a349ec628c98e1e90f441212f98d6367a04aae75",
+   "bytes": 18388,
+   "transformations": {}
   },
   "recon/symbolized/app/core/g1_core_07.c": {
    "source": "recon/refactor/stage_06_unit_composition/tree/recon/symbolized/app/core/g1_core_07.c",
@@ -12461,7 +12459,7 @@
   "recon/refactor/sdk_declared_symbols.json": "3b7c3558364b4b3bdb35504aed2c996f9356ee7a10777c3b411be6b25b078d31",
   "recon/refactor/link_referenced_symbols.json": "cd60f0e6f7c65846f090ce0db02718c839c4176ab08a3ec171ed06b0933a2de8"
  },
- "transforms_digest": "46b70c24a2630ba24eb7dffb6a23555bfc3af6267a99f1a32bed9fb1b4dc3a26",
+ "transforms_digest": "e89f77f2d3115879a4aacc426abd4a5fa94349dd4ac75e8339f256f3a465fb4e",
  "declared_codegen_class": "size-changing",
  "oracle_required": true,
  "inherited_generated_outputs": [
@@ -12499,7 +12497,7 @@
  "transform": "internal linkage for TU-private symbols, decided by link evidence (app core only)",
  "sub_batch": "S",
  "internal_linkage": {
-  "candidates": 132,
+  "candidates": 131,
   "candidate_symbols": [
    "accumulate_app_usage_time",
    "adc_channel_config",
@@ -12602,7 +12600,6 @@
    "rtc_timer_cc_reg_get",
    "rtc_timer_channel_alloc",
    "sc_indicate",
-   "serialization_ipc_ept_register",
    "serialization_read_or_copy",
    "set_ancs_notify_sync_fields",
    "set_g_misc_val_27c8",
@@ -12638,6 +12635,7 @@
    "referenced_by_a_relocation": 753,
    "named_by_a_linker_fragment_or_the_symbols_header": 224,
    "asm_named_or_macro_renamed": 4,
+   "measured_exclusion_named_by_the_pipeline_owner": 1,
    "declared_by_an_sdk_header": 3
   },
   "evidence": {
@@ -12666,11 +12664,26 @@
     "recon/symbols/g1_net_globals.ld",
     "recon/symbols/g1_net_readable_aliases.ld"
    ],
-   "identifiers_pinned_by_the_build": 10126
+   "identifiers_pinned_by_the_build": 10126,
+   "measured_exclusions_declared": [
+    "serialization_ipc_ept_register"
+   ],
+   "measured_exclusions_that_bit": [
+    "serialization_ipc_ept_register"
+   ],
+   "measured_exclusions_that_matched_nothing": [],
+   "measured_exclusion_entries": [
+    {
+     "symbol": "serialization_ipc_ept_register",
+     "file": "recon/symbolized/app/core/g1_core_06.c",
+     "kind": "named exclusion -- empirical, not a rule",
+     "reason": "EMPIRICAL, NOT A RULE.  Refused by name on the R7 oracle's own measurement (our_boot_bringup.md sections 52.1-52.4, 2026-07-28), not on any property of the symbol a transformer can decide.  MEASUREMENT: all thirteen candidates that section 51.5.3 implicated were probed ONE AT A TIME (exhaustive, never a bisection, so a combination could not hide); this symbol ALONE moves the seeded navigation trigger -- the nPM1300 rail enable, TWIM1 dev=0x6B W data=080001 -- from 3,711.430 ms to 3,761.850 ms, and the other twelve each leave it at 3,711.430 ms.  On the published gate (W = 100.513 ms, R = 1.160 ms, untouched) the symbol alone reproduces the whole of stage 07's failure to the microsecond (spim_a/jbd_display D = 50.410 ms = 0.502 slots, twim1/opt3001_ambient D = 50.600 ms = 0.503 slots, both FAIL Q1), while stage 07 with only this symbol withheld -- 131 of 132 still static -- reads D = 0.000 ms on all six streams of BOTH stimuli, k = 0, S = 0.000, with 4/4 shipped golden framebuffers.  MECHANISM (measured end to end, section 52.4): `static' lets GCC inline the body into its single in-unit caller st25dv_read_chip_ids (0x88 + 0xa8 -> 0x128; both forms disassembled and semantically identical instruction for instruction, and the firmware's own 4.2 s console is 185 lines of IDENTICAL text), which moves that function's own ST25DV I2C traffic by -30 us at t = 98.720 ms -- the first departing event in the capture -- drifting to a few hundred microseconds of ordinary scheduler jitter by 1.7 s, at which point the app core's acknowledgement of a GATT-sweep write falls on the far side of a 30 ms BLE connection-event boundary (CONNECT_IND Interval = 0x0018), so the navigation frame is delivered at data event #70 instead of #69, which are 60.3 ms apart, less 9.9 ms of panel-rail latency difference = the observed 50.4 ms.  CONTROLS: it is NOT size (the symbol plus 16 B of inert .text lands the image at the base's exact 956,636 B and the trigger does not move) and NOT code displacement (16 B and 32 B pads on the base are byte-exactly inert over all 318 traced bus events of the first 4.5 s, as are the other 131 static-ifications).  NOTHING IS WRONG WITH EITHER FORM OF THE CODE: this is not a defect fix, and no repair is available or needed.  COST: 8 bytes of .text, 131 of 132 conversions retained."
+    }
+   ]
   },
   "applied": {
-   "definitions_given_internal_linkage": 132,
-   "in_unit_extern_declarations_made_static": 18,
+   "definitions_given_internal_linkage": 131,
+   "in_unit_extern_declarations_made_static": 17,
    "module_header_declarations_withdrawn": 0
   },
   "definition_sites_not_found": []
