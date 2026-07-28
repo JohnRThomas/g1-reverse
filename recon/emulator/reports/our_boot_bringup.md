@@ -22208,3 +22208,754 @@ were regenerated only after the redesign's predicted diff — 0 removed, 18 adde
 5 `separated` flipped — was **verified against measurement on both stimuli**,
 with all 15 golden framebuffer artifacts byte-identical.
 
+
+---
+
+## Iteration 48 — stage 07 LOCALISED.  Written incrementally as the work ran;
+## every number comes from a command run in this pass.
+
+HEAD at the start of this pass: **`3e9c04c9`** ("P4 iter-47: ladder re-gated at
+HEAD"), working tree clean apart from the untracked `.xapk`.
+
+§47.10 item 1 left stage 07's defect **not localised** and named the instrument:
+a bisection over the applied candidate set, one build and one capture per step.
+That is what this section does.
+
+### 48.0 The instrument, and the two controls that make it admissible
+
+`/private/tmp/g1-i49/subset.py` re-runs **stage 07's own transformer code** —
+`t07_internal_linkage.candidates()` and `t07_internal_linkage.apply_static()` —
+over **stage 06's tree**, with the candidate list filtered to an arbitrary
+subset, and writes the result into stage 07's tree.  No transformer is edited,
+no rule is changed, and `t07` is imported rather than reimplemented, so a subset
+of size 132 must reproduce stage 07 exactly.  It does, twice over:
+
+```
+subset.py ALL    ->  132 selected, 72 files carry candidates, files_rewritten = 0
+                     (the reconstruction is BYTE-IDENTICAL to the shipped
+                      stage 07 tree on all 72 files)
+build   ALL      ->  956,076 B   sha b369a08c7162   == section 47's stage 07 image
+build   NONE     ->  956,292 B   sha 3345b40a4662   == section 47's stage 04 = 05 = 06 image
+```
+
+**The round trip closes in both directions.**  Every probe below is therefore a
+point on the same line the ladder's own stage 07 sits on.
+
+The reference for every measurement in this section is **stage 07's own input
+image**, `s04` (= 04 = 05 = 06, `3345b40a4662`), not the in-tree base.  §47.4.2
+measured base → s04 at `|r| <= 0.52 ms` with `k = 0` on every stream, so the two
+references differ by half a millisecond; pairing against the input isolates
+stage 07's own contribution instead of carrying stages 01–06's along with it.
+The `s04` and `s07` captures reused here are §47's, unmodified.
+
+Builds: one clean `-p always` build per probe, ~55 s.  Captures: `G1_SEED=305419896`,
+both stimuli, `$rtinfo_pc` re-read from **every** ELF by `nm`, frozen
+`g1-i30e-net` on the net core, through a `mkfifo` stdin writer.  Every `run.out`
+echoes `ORACLE_EMULATION_SEED: 305419896`.
+
+### 48.1 A free screen that turned out to be exact: only 27 of the 132 symbols
+### exist in the linked image at all
+
+`nm -S --defined-only` on the stage 06 and stage 07 ELFs, against the 132
+candidate names:
+
+| | |
+|---|---:|
+| candidates | **132** |
+| **not present in the stage 06 ELF at all** | **105** |
+| present, and the entry is already a local (`t`) belonging to an unrelated SDK definition of the same name | 13 |
+| present as a global (`T`) — i.e. the linkage genuinely changes | **14** |
+
+105 of the 132 symbols are dead-stripped before stage 07 runs: nothing outside
+their object references them (that is *why* they are candidates) and nothing
+inside it does either, so `--gc-sections` has already removed them.  A further
+13 names resolve in the ELF to an unrelated static of the same spelling from
+Zephyr or newlib (`twim_configure`, `att_handle_rsp`, `nrf_gpio_pin_set`,
+`cf_read`, `validate_args`, …), and our own definition is likewise dead.
+
+This is a screen, not a proof, so all three groups were built and captured.
+
+### 48.2 THE SPLIT, MEASURED — and it is exact
+
+| probe | symbols | `zephyr.bin` | sha256 (12) | `text` Δ | `rodata` Δ | nav+dash capture |
+|---|---:|---:|---|---:|---:|---|
+| `none` | 0 | 956,292 | `3345b40a4662` | 0 | 0 | *(= stage 06, the reference)* |
+| **`a105`** | **105** (ELF-absent) | 956,292 | `98151739fe23` | **0** | **0** | **byte-identical to `s04` — 8/8 traces + both framebuffers, BOTH stimuli** |
+| **`t13`** | **13** (name collides with an SDK static) | 956,292 | **`3345b40a4662`** | 0 | 0 | **the linked image is byte-identical to stage 06's; nothing to capture** |
+| **`p27`** | **27** (= 105 complement) | 956,076 | `d340b01f9bff` | −200 | −8 | **byte-identical to `s07` — 8/8 traces + both framebuffers, BOTH stimuli** |
+| **`T14`** | **14** (ELF-global) | 956,076 | `d340b01f9bff` | −200 | −8 | **byte-identical to `s07`, BOTH stimuli** |
+| `all` | 132 | 956,076 | `b369a08c7162` | −200 | −8 | *(= stage 07)* |
+
+*(`spim_b.p1/p2` are empty on every capture in this project and are excluded
+from the 8; the compared set is `spim_a.p1/p2`, `twim1.p1/p2`, `twim2.p1/p2`,
+`fb_p1_boot.ppm`, `fb_p2_render.ppm`.)*
+
+> **Stage 07's entire observable effect is carried by 14 of its 132 symbols.**
+> The other 118 are inert — 13 of them do not change one byte of the linked
+> image, and 105 change 136,886 bytes of it and produce a **byte-identical
+> capture on both stimuli**.
+
+The gate agrees with the `cmp`:
+
+```
+s04 -> a105   navigation  D = 0.000 ms on all six streams,  S = 0.000,  max|d| = 0.000
+s04 -> a105   dashboard   D = 0.000 ms on all six streams,  S = 0.000,  max|d| = 0.000
+s04 -> p27    navigation  spim_a -19.220  npm1300 +31.616  st25dv_nfc +30.949
+                          st25dv_sys +30.920  opt3001 -353.636      5 of 6 FAIL Q1
+s04 -> p27    dashboard   5 of 6 FAIL Q1 + 2 Q3      -- every figure identical to s04 -> s07
+```
+
+and the strict transaction counts split the same way:
+
+| | dash `twim2.p2` | dash `spim_a.p2` | nav `spim_a.p2` |
+|---|---:|---:|---:|
+| clean (`s04`, `a105`, `t13`) | **1,206** | **12,289** | **2,837** |
+| defect (`s07`, `p27`, `T14`) | **1,202** | **12,225** | **2,815** |
+
+### 48.3 WHY the 105 are inert — the mechanism, measured rather than argued
+
+`a105` is not a small perturbation.  It differs from the stage 06 image in
+**136,886 bytes**, drops 45 symbols and gains one.  It is nevertheless
+observationally identical, and `nm` says exactly why:
+
+```
+a105 vs stage 06 :  767 symbols moved, ALL of them by exactly -28 bytes,
+                    ALL of class R / A / r  (rodata and absolute pins)
+                    TEXT-CLASS SYMBOLS MOVED (T/t/W/w)              ***  0  ***
+                    sum of T/t symbol sizes    495,954 -> 495,954   (identical)
+                    differing bytes in the text region                  1,465
+                    differing bytes in the rodata region              135,421
+```
+
+The 45 dropped symbols are 43 `PROVIDE`-pinned absolutes that stopped being
+referenced plus one `CSWTCH` table; a 28-byte rodata hole closes, the rodata
+tail slides down by 28 B, section totals are unchanged because the padding
+absorbs it, and the 135,421 "differing" rodata bytes are that slide compared
+byte-for-byte.  **Not one code address moves, and the emulator sees nothing.**
+
+`A7`, `B7` and `T14` each move **~2,800 text-class symbols**.
+
+That is the first half of the class statement, and it is a strong one:
+*a stage-07 static-ification is observable only if it deletes an out-of-line
+body from the linked image.*
+
+### 48.4 Inside the 14, the defect does NOT localise to a symbol — it appears at
+### a THRESHOLD in `text` displacement
+
+The 14 were split 7 / 7 and probed, then recombined four ways.  Every probe is a
+build plus two seeded captures; the signature columns are raw transaction counts
+read straight out of the capture with `wc -l`, no oracle and no gate involved.
+
+| probe | symbols | `text` Δ | `rodata` Δ | `zephyr.bin` | dash `twim2.p2` | dash `spim_a.p2` | nav `spim_a.p2` |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| `none` / `t13` / `a105` | 0 / 13 / 105 | 0 | 0 | 956,292 | 1,206 | 12,289 | 2,837 |
+| `A7` (display/GUI half) | 7 | **−92** | 0 | 956,196 | **1,206** | **12,289** | **2,837** |
+| `B7` (BLE/serialisation half) | 7 | **−104** | −8 | 956,172 | **1,206** | **12,289** | **2,837** |
+| `A7b3` = A7 + 3 of B7 | 10 | **−112** | 0 | 956,180 | **1,202** | **12,225** | 2,837 |
+| `B7a4` = B7 + 4 of A7 | 11 | −144 | −8 | 956,140 | **1,202** | **12,225** | 2,837 |
+| `B7a3` = B7 + 3 of A7 | 10 | −160 | −8 | 956,124 | **1,202** | **12,225** | 2,837 |
+| `A7b4` = A7 + 4 of B7 | 11 | −180 | −8 | 956,092 | **1,202** | **12,225** | 2,837 |
+| **`T14` = A7 ∪ B7 = stage 07** | 14 | −200 | −8 | 956,076 | **1,202** | **12,225** | **2,815** |
+
+Three things fall out, and the second one is the answer to the question §47.10
+item 1 asked:
+
+1. **No single symbol is the culprit, and neither 7-symbol half is.**  Each half
+   alone leaves every strict count at its clean value.
+2. **Four different 10- and 11-symbol subsets, drawn from both halves in
+   different proportions, all produce the SAME defect values** — `twim2.p2`
+   1,202 and `spim_a.p2` 12,225, not 1,203 or 1,204, not a value that scales
+   with how many symbols were applied.  The defect is a **state the image enters**,
+   not a quantity any symbol contributes.
+3. **The predictor is `text` Δ, and it is not total image size.**  `B7` is the
+   *larger* total shrink (`zephyr.bin` −120 B) and is clean; `A7b3` is a smaller
+   total shrink (−112 B) and is defective.  Ordered by `text` Δ the table is
+   monotone: −92 and −104 clean, −112 and beyond defective.  Ordered by
+   `zephyr.bin` it is not.
+
+Per-symbol `text` cost, one clean build each (14 builds):
+
+```
+ble_packet_receive_dispatch  -28   pt_nfc_eeprom_link_init      -36
+utf8_decode_to_utf16_buffer  -28   serialization_read_or_copy   -20
+dev_ctrl_write2              -12   is_box_field_timer_expired   -12
+panel_write_xy_reg_cached    -12   projector_spi_write_chunked  -12
+vfprintf_field_scan_match    -12   get_demo_image_source         -8
+msg_content_check_timeout_state -8 serialization_ipc_ept_register -8
+svc_attr_memory_release        0   trigger_touch_key_hw_reset     0
+```
+
+`trigger_touch_key_hw_reset` alone produces a **byte-identical `zephyr.bin`**
+(`3345b40a4662`); `svc_attr_memory_release` alone costs 0 `text` bytes.  The
+individual costs sum to −196 against the measured −200 for all 14 together, so
+there is 4 B of interaction and no more.
+
+### 48.5 CORRECTING §47.7 — the "four lost IMU transactions" are **one missed
+### poll out of 299, and the clean image misses one too**
+
+§47.7 called `twim2 lsm6dso` p2_render `1206 → 1202` *"the hardest single piece
+of evidence against stage 07"*, on the reasoning that a transaction **count** on
+a free-running device cannot be charged to a slot.  That reasoning is right.
+The measurement it was applied to is not what §47 assumed it was.
+
+Decomposed on §47's own captures (no new capture, no new build):
+
+```
+dashboard twim2.p2, content compared with tick= and seq= stripped:
+    ONE edit operation.  The four missing transactions are ONE IMU POLL.
+    Every other transaction is byte-identical in content, in order.
+
+the device polls in bursts of 4:
+    s04   299 bursts   6,052.180 .. 19,978.571 ms
+    s07   298 bursts   6,051.660 .. 19,977.660 ms
+    cadence: 80.147 ms until ~10.86 s (the `don' gesture), 38.147 ms after
+```
+
+Listing every inter-burst gap longer than 45 ms — i.e. every poll the driver was
+late for — **after** the cadence change:
+
+| image | late polls | where |
+|---|---:|---|
+| in-tree base | **2** | 58.4 ms @ 11,015.6 ms ; 46.2 ms @ 17,792.9 ms |
+| `s04` (stage 07's input) | **2** | 55.7 ms @ 11,018.2 ms ; 46.2 ms @ 17,792.8 ms |
+| **`s07`** | **3** | 48.0 ms @ 10,897.9 ms ; 82.7 ms @ 11,022.2 ms ; **46.4 ms @ 15,424.0 ms** |
+
+**A 46 ms gap — one skipped 38.147 ms poll — is a phenomenon the CLEAN images
+already exhibit**, once each, at 17.79 s.  Stage 07 exhibits it twice, the extra
+one at 15.424 s, and that single extra event is the entire `1206 → 1202`.
+
+Two consequences, and I am stating the one against my own convenience first:
+
+* **It is still a real difference.**  One additional missed IMU deadline in 14 s
+  is a scheduling change, it is reproducible at this seed, and it is not
+  attributable to a BLE slot.  §47's conclusion that this is not lattice noise
+  stands.
+* **But it is not a systematic loss of sensor traffic, and it is not four
+  transactions' worth of evidence — it is one jitter event whose *class* is
+  present in the reference image.**  §47's framing ("stages 07 and 09 lose four
+  IMU transactions on a free-running device") reads as a persistent behavioural
+  regression; the measurement says one poll in 299 landed 8 ms late.  The
+  navigation stimulus, where `twim2.p2` is **1,200 on every image including
+  stage 07**, shows the same thing from the other side: the event does not
+  reproduce across stimuli.
+
+The dashboard `spim_a.p2` `12,289 → 12,225` decomposes the same way and is not a
+loss at all: content-compared, it is a **1,619-frame block deleted at index 955
+and 1,555 frames appended at the end** — the animation window slid, and the
+fixed 14 s phase-2 wall clipped 64 frames' worth off the difference.
+
+### 48.6 The defect does NOT track any symbol — it tracks `zephyr.bin` SIZE.
+### An inert `text` pad removes it completely.
+
+Two further subsets were built to test whether `text` Δ is the predictor.  It is
+not, and what replaced it is sharper.
+
+| probe | symbols | `text` Δ | `zephyr.bin` | dash `twim2.p2` | dash `spim_a.p2` | verdict |
+|---|---:|---:|---:|---:|---:|---|
+| `A8m` = A7 + `dev_ctrl_write2` | 8 | −108 | **956,180** | 1,202 | 12,225 | **DEFECT** |
+| `A7b3` | 10 | −112 | **956,180** | 1,202 | 12,225 | **DEFECT** |
+| `B7` | 7 | −104 | **956,172** | 1,206 | 12,289 | **clean** |
+| `B8p` = B7 + `get_demo_image_source` | 8 | −112 | **956,172** | 1,206 | 12,289 | **clean** |
+
+`A7b3` and `B8p` have the **same `text` Δ (−112) and opposite verdicts**; `B7`
+and `B8p` have **different `text` Δ and the same verdict**.  What they agree on
+instead is `zephyr.bin`:
+
+> **`B7` and `B8p` — different symbol sets, different `text` Δ, different
+> image sha256, the same 956,172-byte image — produce captures that are
+> BYTE-IDENTICAL in all 8 files on BOTH stimuli.**
+
+`A8m` and `A7b3` (both 956,180 B, different symbol sets) agree on every strict
+count and on the verdict but are not byte-identical (5/8 nav, 4/8 dash), so size
+is a very strong predictor and not a complete determinant.
+
+#### 48.6.1 The boot-path offset is a monotone function of image size
+
+First tick on the free-running `twim2` bus in phase 1 — a pure boot-path
+measurement, taken from the capture, on every image built in this pass:
+
+```
+zephyr.bin   956,496   956,292   956,196   956,180   956,172   956,140   956,124   956,092   956,076
+twim2.p1 t0   79.750    79.440    79.040    78.980    78.980    78.860    78.820    78.700    78.610  ms
+```
+
+**1.14 ms of boot-path offset across 420 bytes of image**, monotone, ~2.7 µs per
+byte.  This is the mechanism §46.10 measured as "the pad costs ~1 ms of
+boot-path time", now measured over nine points instead of two.
+
+#### 48.6.2 THE CONTROL — an inert `text` pad, and it removes the defect
+
+The pad is 112 or 200 bytes of unreferenced, unexecutable, `retain`-kept data
+placed in a `text` input section, entering through `app/CMakeLists.txt`'s
+documented `G1_AUDIT_EXTRA_SOURCES` hook — **no stage tree and no transformer is
+touched**:
+
+```c
+__attribute__((section(".text.g1_i49_text_pad"), used, retain, aligned(4)))
+const unsigned char g1_i49_text_pad[N] = { 0 };
+```
+
+Unlike §46.4's `.rodata` pad this one deliberately IS layout-active: it sits at
+`0x0004bb00`, inside `text`, and pushes everything after it back up.  That is
+the intervention — the symbols stay `static`, only the size is restored.
+
+| image | symbols static | pad | `zephyr.bin` | boot t0 | dash `twim2.p2` | slot gate vs `s04` |
+|---|---:|---:|---:|---:|---:|---|
+| `A7b3` | 10 | — | 956,180 | 78.980 | **1,202** | 5 of 6 FAIL Q1 (nav), 5+2 (dash) |
+| **`A7b3pad112`** | **10** | 112 | **956,292** | **79.440** | **1,206** | **0 failures — `D = 0.000 ms` on ALL SIX streams, BOTH stimuli** |
+| `T14` = stage 07 | 14 | — | 956,076 | 78.610 | **1,202** | 5 of 6 FAIL Q1 (nav), 5+2 (dash) |
+| **`T14pad200`** | **14** | 200 | 956,284 | 79.440 | **1,206** | **0 failures dashboard; 1 on navigation (`opt3001` \|r\| = 1.348 ms, 1.16× the bound)** |
+| `nonepad200` (control) | **0** | 200 | 956,484 | — | **1,206** | pad alone creates nothing |
+
+`A7b3pad112` is the cleanest result this project has produced: every stream
+`D = 0.000`, `S = 0.000`, `max|δ| ≤ 0.097 ms`, on both stimuli, with ten symbols
+given internal linkage.
+
+> **Stage 07's failure is not caused by internal linkage.  It is caused by the
+> image getting 216 bytes shorter.**  Put the 216 bytes back as data no
+> instruction reads, keep every `static`, and the failure goes away.
+
+#### 48.6.3 A prediction, recorded before the measurement that tests it
+
+If the verdict is a function of `zephyr.bin` size and not of which symbols moved,
+then sweeping an inert pad over the **stage 07 symbol set** must reproduce the
+clean/defect bands the subset probes traced out.  Specifically, and written here
+before the sweep was run:
+
+> `T14` + a pad landing the image at **956,172 B must be CLEAN**, and `T14` + a
+> pad landing it at **956,180 B must be DEFECTIVE** — the same 8-byte boundary
+> `B7`/`B8p` versus `A8m`/`A7b3` sits on, reached with a fixed symbol set and a
+> semantics-free variable.
+
+The result is in §48.7.
+
+### 48.7 THE PREDICTION HELD — the whole verdict is reproduced by adding DEAD
+### BYTES, with the symbol set held fixed at all 14
+
+`T14` (all 14 symbols `static`, 956,076 B, defective) plus an inert `text` pad,
+swept.  The pad is the only variable; every image carries the identical stage-07
+source.  Dashboard, seeded, one build and one capture per point:
+
+| pad | `zephyr.bin` | boot t0 (ms) | dash `twim2.p2` | dash `spim_a.p2` | | the SUBSET probe that sits at the same size |
+|---:|---:|---:|---:|---:|---|---|
+| 0 | 956,076 | 78.610 | **1,202** | **12,225** | DEFECT | `T14` itself |
+| 16 | 956,092 | **78.700** | **1,202** | **12,225** | DEFECT | `A7b4` — 956,092, boot **78.700**, DEFECT |
+| 48 | 956,124 | **78.820** | **1,202** | **12,225** | DEFECT | `B7a3` — 956,124, boot **78.820**, DEFECT |
+| 64 | 956,140 | **78.860** | **1,202** | **12,225** | DEFECT | `B7a4` — 956,140, boot **78.860**, DEFECT |
+| 80 | 956,156 | 78.950 | **1,202** | **12,225** | DEFECT | *(no subset lands here)* |
+| **96** | **956,172** | **78.980** | **1,206** | **12,289** | **CLEAN** | `B7` and `B8p` — 956,172, boot **78.980**, CLEAN |
+| 104 | 956,188 | 79.040 | 1,206 | 12,289 | CLEAN | — |
+| 120 | 956,204 | 79.100 | 1,206 | 12,289 | CLEAN | — |
+| 152 | 956,236 | 79.220 | 1,206 | 12,289 | CLEAN | — |
+| 184 | 956,268 | 79.350 | 1,206 | 12,289 | CLEAN | — |
+| 200 | 956,284 | 79.440 | 1,206 | 12,289 | CLEAN | — |
+
+**Three subset probes are reproduced exactly — same image size, same boot offset
+to the tick, same verdict — by an image whose only difference from stage 07 is
+dead data.**  The pad crosses the clean/defect boundary between 956,156 and
+956,172 B, i.e. within 16 bytes and 30 µs of boot offset.
+
+The pre-registered prediction's first half is **confirmed** (956,172 → CLEAN).
+Its second half is **NOT TESTED, and I am not claiming it**: 956,180 B is
+unreachable from `T14` by padding — the pad rounds up to a 16-byte boundary and
+`T14` sits at 956,076 ≡ 12 (mod 16), so every reachable size is ≡ 12 (mod 16)
+while 956,180 ≡ 4.  The 956,180 point rests on `A8m` and `A7b3` only — two
+different symbol sets, both DEFECT — which is corroboration, not the
+semantics-free proof the pad gives elsewhere.
+
+The map from size to verdict is **banded, not monotone**: 956,172 clean,
+956,180 defect, 956,188 clean.  That is exactly the shape the criterion redesign
+predicted for a knife-edge — the boot offset moves monotonically with size, and
+which BLE connection event the GATT trigger then lands in is a *modular*
+function of it.
+
+### 48.8 What stage 07 is, stated plainly
+
+**Stage 07 does not damage the firmware.  It shortens the image by 216 bytes,
+and this emulator's boot path costs ~2.7 µs per byte, which is enough to move
+the GATT trigger across a connection-event boundary.**  Every observable §47
+charged to stage 07 —
+
+* the `+31.250 ms` coherent move on `npm1300` / `st25dv_nfc` / `st25dv_system_port`
+  (§47.5 already proved it is exactly one BLE connection interval),
+* the `spim_a` `−19.650 ms`,
+* the dashboard `twim2 lsm6dso` `1,206 → 1,202`,
+* the dashboard `spim_a` `12,289 → 12,225`,
+
+— is present in an image built from the **same 14 `static` keywords** and absent
+in an image built from the same 14 plus 96 bytes of data no instruction reads.
+
+The two residues §47 named as *not* lattice-explicable are now explained:
+
+* **`spim_a`'s ratio 1.80 under interval halving** (§47.5.1's "surviving
+  evidence") is not evidence of a firmware displacement.  `spim_a` is not
+  slot-locked in the same way as the `twim1` cluster; its displacement is a
+  *band* effect of a boot offset that the interval change moves as well.  What
+  the 1.80 shows is that `spim_a` is not a clean lattice quantity — which is
+  true — not that stage 07 changed anything the pad cannot undo.
+* **The `twim2` transaction count** is §48.5's one late IMU poll, and it too
+  disappears when the 216 bytes are restored.
+
+*(A correction made mid-run: I first read `A7b3` as failing the framebuffer gate
+0/4.  It does not — the oracle directory for that image had not been built yet
+and `cmp` was comparing against nothing.  Built, it is **4/4**, like every other
+image in this pass.)*
+
+### 48.9 STAGE 09, JUDGED ON ITS OWN MERITS AT LAST — and it PASSES
+
+§47.10 item 2 left stage 09 ungateable: its measured effect is ≤ 0.06 ms on top
+of stage 07 on every stream, so "stage 09 is clean" and "stage 09's damage is
+masked by stage 07's" could not be separated, *"which requires stage 07 fixed,
+or a stage-09-on-top-of-stage-06 tree, which the ladder does not currently
+produce."*
+
+The subset instrument produces exactly that tree, at no cost to the pipeline:
+materialise stage 07 with **zero** symbols selected — which makes its tree
+byte-equal to stage 06's content — then run the real `driver.py materialize 8`
+and `materialize 9` on top.  Stage 09's transformer is unmodified and runs on
+its true input; only stage 07's contribution is removed from underneath it.
+
+```
+build   stage 09 over stage 06     exit 0   0 errors   0 undefined
+        zephyr.bin 956,428 B   sha 8efe3a90e595   text +16   rodata +120
+```
+
+Gated against `s04` (= stage 06's image), `G1_SEED=305419896`, both stimuli,
+both burst-gap thresholds:
+
+| stream | nav `D` | nav `r` | dash `D` | dash `r` |
+|---|---:|---:|---:|---:|
+| `spim_a` jbd_display | 0.095 | 0.095 | 0.000 | 0.000 |
+| `twim1` npm1300 | 0.394 | 0.394 | 0.278 | 0.278 |
+| `twim1` opt3001 | 0.000 | 0.000 | 0.000 | 0.000 |
+| `twim1` st25dv_nfc_eeprom | 0.370 | 0.370 | 0.391 | 0.391 |
+| `twim1` st25dv_system_port | 0.390 | 0.390 | 0.392 | 0.392 |
+| `twim2` lsm6dso | 0.150 | 0.150 | 0.090 | 0.090 |
+
+```
+Q1/Q3 FAILURES: 0    navigation  T = 0.790 ms and T = 5.000 ms
+Q1/Q3 FAILURES: 0    dashboard   T = 0.790 ms and T = 5.000 ms
+k = 0 on every stream.  Every strict transaction count at its clean value
+(dash twim2.p2 = 1,206, dash spim_a.p2 = 12,289, nav spim_a.p2 = 2,837).
+All four acceptance framebuffers byte-identical.
+```
+
+> **STAGE 09 PASSES on its own merits.**  Every stream inside **0.40 ms**, no
+> slot moved, no count changed, on both stimuli at both thresholds.  Its ladder
+> FAIL was **100 % inherited from stage 07** — which §47 suspected and could not
+> demonstrate.
+
+### 48.10 THE DECISION — (b), exclude, with the rule that decides it, and the
+### reason stated as a measurement
+
+The brief offered (a) repair the failing symbols or (b) exclude them with a
+measured reason.  **There is nothing to repair.**  No symbol is individually
+implicated; all 132 static-ifications are correct C decided by link evidence;
+the compiler and the linker agree (0 errors, 0 undefined, 0 duplicate globals);
+and the failure is reproduced, with the symbol set held fixed, by adding dead
+bytes.  So: **(b)**.
+
+**The class, named.** The 132 candidates fall into exactly two classes, and the
+line between them is drawn by the LINK, not by the source:
+
+| class | n | what it is | observable effect |
+|---|---:|---|---|
+| **the link no longer emits an out-of-line body for it** | **118** | either `--gc-sections` already removed it (105) or the ELF entry at that name belongs to an unrelated SDK static and ours is dead (13) | **NONE — `text` Δ 0 and a byte-identical capture on both stimuli** |
+| **the link still emits it as a global body, and `static` lets it be deleted** | **14** | `text` shrinks by 200 B, ~2,800 code addresses move | the whole of stage 07's gate failure — **and it is reproduced by 216 bytes of inert data** |
+
+**The reduced stage 07, re-gated.** 118 symbols applied, 14 refused:
+
+```
+zephyr.bin 956,292 B   sha 98151739fe23   text Δ 0   rodata Δ 0
+capture vs stage 06:   8/8 traces + both framebuffers BYTE-IDENTICAL,
+                       navigation AND dashboard
+slot-quantised gate:   0 failures, both stimuli, both thresholds (trivially --
+                       every delta is 0.000 because the captures are identical)
+nm -u 0   duplicate globals 0   pin gates 0/0   framebuffers 4/4
+```
+
+That is not a gate verdict.  It is a `cmp`.
+
+**The rule that produces it, and it is decidable from evidence the stage already
+consumes.** `t07` refuses a candidate when the link evidence names a referrer.
+The missing refusal is the mirror image and comes from the same build:
+
+> refuse a candidate that the evidence build's `app/libapp.a` link **still emits
+> as an out-of-line text symbol**, because giving it internal linkage will let
+> `--gc-sections` delete it and move `text`.
+
+`link_evidence.generate()` already opens that build; recording
+`app_text_symbols` alongside the existing `app_objects` would make this a
+one-line predicate.  It is **not derived from the gate's answer** — it is a
+property of the link, measurable before any capture — and it fails closed, like
+every other rule in the stage.
+
+**What I did NOT do, and why.** I did not land it.  Changing anything under
+`recon/refactor/transforms/` moves `stagelib.transforms_digest()` and marks all
+ten stages stale (that watchdog is `ladder_link_repair.md` §5, and it works);
+landing the rule therefore costs a full ladder re-materialisation, ten rebuilds
+and a fresh capture set — none of which this pass could then also validate.  The
+reduced stage is **already measured** by the subset instrument, on the real
+transformer code, so landing it would add a MANIFEST and no evidence.  The
+decision to narrow a transformer's rule belongs with the pipeline owner, for the
+same reason §47.5.1 held the decision to widen the criterion separate from the
+measurement that motivated it.
+
+**And the honest statement about the 14.** They are **not shown to be wrong**.
+They are shown to be *unmeasurable by this instrument*: the criterion cannot
+distinguish stage 07 from 216 bytes of padding, and the pad control says so with
+a semantics-free variable — which is precisely the class of evidence
+`criterion_bound_redesign.md` §1.4 admits.  Excluding them costs a real 200-byte
+`.text` improvement for a reason that is a property of the emulator's boot path.
+Both readings are on the record; I recommend the reduced stage because it is the
+only option that yields a **positive** proof rather than an explained failure.
+
+**I did NOT retune the rule.**  `W = 100.513 ms` and `R = 1.160 ms` are
+unchanged in `slot_quantised_compare.py` and were unchanged in every gate run in
+this section.  Stage 07 as it stands, all 132 symbols, still **FAILS** — that
+verdict is not withdrawn, it is root-caused.
+
+### 48.11 CORRECTING §48.6.1 OF THIS SECTION — "monotone in image size" is too
+### strong, and here is the full table
+
+§48.6.1 above says the boot offset is a monotone function of `zephyr.bin` size.
+Over the nine points it was written from, it is.  Over all **thirty-two**
+captures this pass and §47 together produced, **two images sit off the line**,
+and both are images whose code differs by more than padding:
+
+```
+zephyr.bin  boot t0    dash twim2.p2   image
+   956,076   78.610          1,202     T14 = p27 = stage 07
+   956,092   78.700          1,202     A7b4, T14pad16, stage 09
+   956,124   78.820          1,202     B7a3, T14pad48
+   956,140   78.860          1,202     B7a4, T14pad64
+   956,156   78.950          1,202     T14pad80
+   956,172   78.980          1,206     B7, B8p, T14pad96
+   956,180   78.980          1,202     A8m, A7b3          <-- the defect island
+   956,188   79.040          1,206     T14pad104
+   956,196   79.040          1,206     A7
+   956,204   79.100          1,206     T14pad120
+   956,236   79.220          1,206     T14pad152
+   956,268   79.350          1,206     T14pad184
+   956,284   79.440          1,206     T14pad200
+   956,292   79.440          1,206     s04 = a105 = t13 = s118 = A7b3pad112
+   956,356   79.690          1,206     stage 01
+   956,420   79.930          1,206     nonepad136
+   956,428   79.560          1,206     stage 09 over stage 06        <-- OFF THE LINE
+   956,484   80.180          1,206     nonepad200
+   956,496   79.750          1,206     the in-tree base              <-- OFF THE LINE
+```
+
+Within the pad family and along the ladder the relation is monotone at
+**~2.9 µs per byte**.  It is **not a universal function of size**: the in-tree
+base boots 0.18 ms *earlier* than a 76-byte-smaller padded image, and the
+stage-09-over-stage-06 image boots 0.37 ms earlier than a smaller one.  So the
+claim that survives is the narrower one, and it is the one the argument needs:
+
+> **holding the source fixed and varying only inert padding, the boot offset —
+> and with it the whole gate verdict — moves monotonically with image size.**
+
+Why the boot path is sensitive to bytes no instruction reads is **not derived**
+in this pass, and it is now the single sharpest open question in the emulator
+model (§48.13 item 1).
+
+One further limit, stated because it bounds §48.7: `T14` cannot be padded to
+exactly 956,292 B.  The pad rounds to a 16-byte boundary and `T14` sits at
+956,076 ≡ 12 (mod 16) with `rodata` 8 B short, so the closest reachable point is
+956,284 — which is why `T14pad200` retains one marginal navigation residue
+(`opt3001` `|r| = 1.348 ms`, 1.16× the bound) while `A7b3pad112`, which *does*
+land exactly on 956,292, reads **0.000 ms on every stream**.
+
+### 48.12 THE ACCEPTANCE BAR — re-measured in this pass, on the RESTORED ladder
+
+The stage 07, 08 and 09 trees were mutated 30+ times by the subset instrument
+and then restored.  Restoration is proved, not asserted:
+
+```
+fingerprint = sha256 over (relpath, sha256(bytes)) of every REAL file in tree/
+   stage 07  5c627af10842d9d2   stage 08  5c627af10842d9d2   stage 09  69d1ad5c0b016bd4
+   MANIFEST / PARITY_MAP / QUARANTINE / SIZE_GATE  all four, all three stages: IDENTICAL
+   (stage 07 and stage 08 share a tree fingerprint -- ladder_link_repair.md section 4
+    records that they are the byte-identical tree, so this is an independent check)
+
+driver.py status   0..9 ALL `current`, 0 inputs changed, 07 partition = agrees
+                   99 stale on 863 -- the retired probe, as every prior pass has left it
+
+clean `-p always` rebuilds from the restored trees:
+   base       956,496   2c510a78366b     == section 47
+   stage 07   956,076   b369a08c7162     == section 47
+   stage 09   956,092   bfa3bfae1d94     == section 47
+```
+
+| gate | required | **measured this pass** | |
+|---|---|---|---|
+| navigation `p1_boot` framebuffer | `1d617c65…` | `cmp` exit 0 on **all 17** images captured this pass | ✔ |
+| navigation `p2_render` framebuffer | `b26c73b3…` | `cmp` exit 0 on all 17 | ✔ |
+| dashboard `p1_boot` framebuffer | all-zero | `cmp` exit 0 on all 17 | ✔ |
+| dashboard `p2_render` framebuffer | `19b1f24a…` | `cmp` exit 0 on all 17 | ✔ |
+| `nm -u`, app core | 0 | **0** on base, s07, s09, s118, A7b3pad112, T14pad200, s09alone | ✔ |
+| `nm -u`, net core | 0 | **0** | ✔ |
+| duplicate globals | 0 | **0** on all seven app images and on the net image | ✔ |
+| pin gates | 0 / 0 | `raw_literal_pins_inside_a_live_object` **0**, `bound_pins_escaping_their_owner` **0**, on all seven | ✔ |
+| `check_thread_create_stack_args --trials 120` | 10/10 | **10 / 10**, exit 0 | ✔ |
+| `tools/verify_data.py` | 995/995 | **995 / 995 files, 56,279 / 56,279 B, 100.00 %** | ✔ |
+| net `zephyr.bin` FROZEN | 225,581 B | **225,581 B**, sha256 `e09b9481a3154e16…`, not rebuilt, not touched | ✔ |
+| app flash | *re-measure* | **956,496 B / 982,528 B = 97.35 %** (base), RAM **253,765 B / 56.32 %** | measured |
+| refactor test suite | — | **215 / 215 OK** | ✔ |
+
+`bound_pins_ok` is **627** on base / `A7b3pad112` / `T14pad200` / `s09alone` and
+**598** on s07 / s09 / **s118** — which locates §47.8's unexplained 627→598 drop
+precisely: it is the **105-symbol inert group**, not the 14, that takes 29
+symbols out of the global symbol table.  `abs_symbols_not_in_linker_scripts` is
+**3** everywhere, unchanged and pre-existing.
+
+### 48.13 WHAT I DID NOT CLOSE, AND WHY
+
+1. **WHY the boot path costs ~2.9 µs per byte of image is not derived.**  The
+   pad is unreferenced, unexecutable and `retain`-kept; no instruction reads it;
+   and it moves the boot offset by 0.37 ms per 96 bytes.  §46.10 recorded the
+   same effect for a `.rodata` pad without a mechanism and this pass has
+   quantified it over 19 sizes without one either.  **This is now the single
+   largest open question in the emulator model**, and it is upstream of every
+   phase verdict the project has ever taken: if the mechanism is an artefact of
+   the Renode platform (a flash model, an image-load cost, a boot-time scan
+   whose extent tracks `_flash_used`) then the whole phase criterion is
+   measuring the emulator, not the firmware.  Not chased in this pass.
+2. **The 956,180-byte defect island is corroborated, not proved.**  Two subsets
+   land there and both are defective; the pad cannot reach that size from `T14`
+   (§48.7), so it has no semantics-free control.
+3. **The reduced 118-symbol stage 07 is NOT landed in the transformer** (§48.10),
+   and the `app_text_symbols` evidence field it needs is designed, not written.
+4. **Only one seed.**  Every verdict here is at `G1_SEED=305419896`, as in §47.
+   The redesign's seed floor (50.110 ms) still means stage 07's residues are
+   below what a seed change produces on the shipped firmware against itself; the
+   pad control is what carries this section, not their magnitude.
+5. **The rule was NOT widened** to admit the one-connection-interval quantum
+   §47.5 measured, and `W` / `R` were not touched.  Stage 07 (132 symbols) still
+   FAILS the published gate.
+6. **The 14 excluded symbols are not proven harmless to `cmp` strength.**
+   `A7b3pad112` reads `D = 0.000` on every stream with `max|δ| ≤ 0.097 ms` — a
+   statistical null, not a byte-identical capture.  Only the 118-symbol set
+   reaches `cmp` strength.
+7. **`spim_a`'s 1.80 ratio under interval halving** (§47.5.1) is explained away
+   as a band effect in §48.8 but was **not re-measured at the halved interval in
+   this pass** — that would need the `armemul` change again, and I made none.
+   `~/Projects/armemul` was **not touched**: `BLE_VirtualCentral.cs` is still
+   `1f10e117632a1bb3…` and both uncommitted `TraceFile` hooks are intact
+   (`NRF5340_SPIM.cs` 3 occurrences, `NRF5340_TWIM.cs` 2).
+8. **`SweepDwell 4 → 8`** — §44.5's falsification test for the 3⅓-connection-
+   events mechanism.  **Still not run**, seventh pass running.
+9. **The `spim_a` navigation `P1 content` failure** (one animation-frame train
+   present in shipped and not in ours on every image) is untouched.
+10. **The −37.3 ms navigation / −29.0 ms dashboard structural offsets** against
+    shipped are untouched.  §48.6.1's per-byte figure is a new handle on them
+    and was not used.
+11. **The net core was not built and not touched.**  `check_net_raw_literals`
+    and `verify_net_stock_data_window` were **NOT RUN**.  What was checked:
+    size 225,581 B, sha256 `e09b9481a3154e16…`, `nm -u` 0, duplicate globals 0.
+12. **`cfg_verify` was not run** and is cited nowhere.  Per the standing rule a
+    green `cfg_verify` is not evidence.
+13. **`battery_model_state_update` (`FUN_0000c358`)** — the open float defect
+    `AGENTS.md` §1b names.  Untouched.
+14. **Stage 99** left stale, as every prior pass has.
+15. **Nothing was committed.**  §48.14 says exactly what is dirty.
+
+### 48.14 FOOTPRINT
+
+```
+ M recon/emulator/reports/our_boot_bringup.md     this section 48
+ M recon/refactor/README.md                       R7 gate record updated
+?? Even+Realities_1.9.0.xapk                      pre-existing, untouched, not mine
+```
+
+**No stage tree, no transformer, no `driver.py`/`stagelib.py`/`link_evidence.py`,
+no MANIFEST, no `recon/app/src`, no `recon/symbolized`, no `recon/symbols`, no
+`tools/`, no emulator script, no oracle JSON, no golden framebuffer, no linker
+script and no net-core file was written.**  Stages 07/08/09 were mutated in
+place by the subset instrument and restored byte-exactly (§48.12); `git status`
+shows them clean because their `tree/` directories are gitignored and their
+MANIFEST / PARITY_MAP / QUARANTINE / SIZE_GATE files hash identically to the
+pre-pass state.
+
+`~/Projects/armemul` was **not modified at all** in this pass.
+
+Outside the repository:
+
+```
+/private/tmp/g1-i49/{subset.py,build.sh,buildpad.sh,cap.sh,probe.sh,mko.sh,gate.sh,
+                     cmpcap.sh,pairs.sh,fb.sh,fp.sh,sz.sh,boot.sh,boot2.sh,
+                     textpad.c.in,pad_*.c,set*.txt,one_*.txt,*.log,ours-*.resc}
+/private/tmp/g1-i49-*            33 builds
+/private/tmp/g1_i49_*            34 seeded captures
+<scratchpad>/i49/T{790000,5000000}/**   oracles
+```
+
+### 48.15 REPRODUCING
+
+```sh
+cd /Users/freedomcoder/Projects/G1disasm2
+V="env PYTHONSAFEPATH=1 .venv/bin/python"
+
+# the instrument, and its two controls (must reproduce section 47's images exactly)
+$V /private/tmp/g1-i49/subset.py ALL     # files_rewritten = 0 against the shipped tree
+bash /private/tmp/g1-i49/build.sh all  ALL     # 956,076  b369a08c7162
+bash /private/tmp/g1-i49/build.sh none NONE    # 956,292  3345b40a4662
+
+# the split
+bash /private/tmp/g1-i49/probe.sh a105 /private/tmp/g1-i49/set_absent105.txt
+bash /private/tmp/g1-i49/probe.sh p27  /private/tmp/g1-i49/set_present27.txt
+bash /private/tmp/g1-i49/probe.sh t13  /private/tmp/g1-i49/sett13.txt
+bash /private/tmp/g1-i49/probe.sh T14  /private/tmp/g1-i49/setT14.txt
+bash /private/tmp/g1-i49/probe.sh s118 /private/tmp/g1-i49/set118.txt   # the reduced stage
+
+# THE CONTROL: the same symbols, plus dead bytes
+bash /private/tmp/g1-i49/buildpad.sh T14pad96 /private/tmp/g1-i49/setT14.txt 96
+bash /private/tmp/g1-i49/cap.sh    T14pad96 both
+bash /private/tmp/g1-i49/buildpad.sh nonepad200 NONE 200        # pad alone: creates nothing
+
+# stage 09 on its own merits
+$V /private/tmp/g1-i49/subset.py NONE
+for n in 8 9; do $V recon/refactor/driver.py materialize $n; done
+./recon/refactor/stage_09_call_cohesion/tree/recon/application/build_cohesive.sh \
+    app /private/tmp/g1-i49-s09alone
+bash /private/tmp/g1-i49/cap.sh s09alone both
+bash /private/tmp/g1-i49/gate.sh s09alone s04
+
+# RESTORE (mandatory) and prove it
+$V /private/tmp/g1-i49/subset.py ALL
+for n in 8 9; do $V recon/refactor/driver.py materialize $n; done
+for d in 07_internal_linkage 08_call_order 09_call_cohesion; do
+    bash /private/tmp/g1-i49/fp.sh recon/refactor/stage_$d; done
+$V recon/refactor/driver.py status                      # 0..9 current, 07 partition agrees
+$V -m unittest discover -s recon/refactor -p 'test_*.py'   # 215/215
+```
+
+### 48.16 THE ONE-PARAGRAPH ANSWER
+
+Stage 07's failure is **localised, and it is not a symbol**.  Of its 132
+static-ifications, **118 are observationally null** — 13 do not change one byte
+of the linked image and 105 change 136,886 bytes of it while moving **zero code
+addresses**, and their capture is **byte-identical to stage 06's in all six
+non-empty traces and both framebuffers on both stimuli**.  The remaining **14** are the
+only candidates the link still emits as out-of-line bodies; they carry the
+entire failure, and no one of them and neither seven-symbol half of them
+reproduces it.  What reproduces it is **`zephyr.bin` getting smaller**: two
+different symbol sets at 956,172 B give **byte-identical captures**, the
+boot-path offset moves monotonically with padding at **~2.9 µs per byte**, and
+sweeping an **inert, unreferenced, unexecutable `text` pad** over the stage-07
+symbol set reproduces three subset probes exactly — same size, same boot offset
+to the tick, same verdict — and then, at 96 bytes, **makes stage 07 clean**.
+`A7b3pad112` — ten symbols `static` plus 112 dead bytes — reads **`D = 0.000 ms`
+on all six streams on both stimuli**.  §47's "four lost IMU transactions", its
+hardest evidence, decomposes into **one late poll out of 299**, of a kind the
+clean images already exhibit once each.  §47's `+31.250 ms` was already proved
+to be one BLE connection interval.  **Nothing here retunes the rule**: `W` and
+`R` are untouched and stage 07 with all 132 symbols still FAILS — but the FAIL
+is now root-caused to 216 bytes rather than to any refactor semantics.  The
+decision is **(b)**: exclude the 14 by a rule decidable from the link evidence
+the stage already reads ("refuse a candidate the link still emits as an
+out-of-line body"), giving a **118-symbol stage 07 whose gate result is a `cmp`,
+not a verdict**.  And **stage 09, gated for the first time on its own merits**
+against stage 06 — a tree the ladder does not produce and the subset instrument
+does — comes back **0 failures, every stream inside 0.40 ms, no slot moved, no
+count changed, both stimuli, both thresholds: STAGE 09 PASSES.**

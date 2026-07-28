@@ -1519,3 +1519,120 @@ from stage 04.** They did not move across five images spanning 956,076 –
 * "No oracle was run. Renode was not touched" in the ladder-repair record —
   true when written, superseded by this record.
 
+
+---
+
+## R7 GATE RECORD — STAGE 07 LOCALISED, STAGE 09 GATED ALONE, run 2026-07-28
+
+**This record amends the slot-quantised record above it; it does not replace
+it.** Nothing in the rule changed: `W = 100.513 ms`, `R = 1.160 ms`, `Sigma`,
+the seed floor and the DIRECT pairing are all as published, and stage 07 with
+all 132 symbols still **FAILS**. What changed is that the failure is now
+root-caused, and stage 09 has been measured on its own for the first time. Full
+working: `recon/emulator/reports/our_boot_bringup.md` **§48**.
+
+### The instrument
+
+A subset materialiser re-runs **stage 07's own** `t07_internal_linkage.candidates()`
+and `apply_static()` over stage 06's tree with the candidate list filtered, so
+the full set must reproduce stage 07 exactly. It does, both ways:
+
+```
+subset ALL  -> stage 07's tree reproduced with 0 files rewritten
+              build 956,076 B  b369a08c7162   == the shipped stage 07 image
+subset NONE -> build 956,292 B  3345b40a4662  == the stage 04 = 05 = 06 image
+```
+
+Reference for every pairing below is **`s04`**, stage 07's own input image, not
+the in-tree base (base -> s04 is `|r| <= 0.52 ms`, `k = 0`, §47.4.2), so the
+numbers isolate stage 07's own contribution. 33 builds, 34 seeded captures,
+`G1_SEED=305419896`, both stimuli, `$rtinfo_pc` re-read from every ELF, frozen
+`g1-i30e-net`.
+
+### THE FINDING — the 132 candidates are two classes, and the line is the LINK
+
+| class | n | `text` Δ | capture vs stage 06 |
+|---|---:|---:|---|
+| the link no longer emits an out-of-line body (105 already `--gc-sections`-removed, 13 whose ELF entry is an unrelated SDK static) | **118** | **0** | **BYTE-IDENTICAL — all six non-empty traces and both framebuffers (8/8 compared files), navigation AND dashboard** |
+| the link still emits a global body, so `static` lets it be deleted | **14** | **−200** | the whole of stage 07's failure |
+
+The 105 change **136,886 bytes** of the image and move **zero** text-class
+symbols (767 rodata/absolute symbols slide by −28 B); the emulator sees nothing.
+The 14 move ~2,800 text-class symbols.
+
+### AND THE 14 ARE NOT THE CAUSE EITHER — an inert `text` pad removes the failure
+
+No single symbol and neither 7-symbol half reproduces the failure; four
+different 10/11-symbol subsets do, with *identical* defect values. The predictor
+is `zephyr.bin` size:
+
+* `B7` and `B8p` — different symbol sets, different `text` Δ, different sha, both
+  **956,172 B** — produce **byte-identical captures** on both stimuli.
+* Boot-path offset moves monotonically with inert padding at **~2.9 µs / byte**
+  (78.610 ms at 956,076 B to 79.440 ms at 956,292 B).
+* Sweeping an unreferenced, unexecutable, `retain`-kept `text` pad over the
+  **fixed stage-07 symbol set** reproduces three subset probes exactly (same
+  size, same boot offset to the tick, same verdict) and, at 96 bytes, turns
+  stage 07 **clean**.
+* **`A7b3pad112`** — 10 symbols `static` + 112 dead bytes, 956,292 B — gates
+  `D = 0.000 ms` on **all six streams, both stimuli, both thresholds**.
+* Control: the pad on the clean image (`nonepad200`) creates nothing.
+
+§47's `twim2 lsm6dso` `1206 -> 1202`, recorded above as the hardest evidence
+against stage 07, decomposes into **one late IMU poll out of 299** — and the
+in-tree base and `s04` each exhibit one late poll of the same kind at 17.79 s.
+It is corrected in §48.5, not withdrawn: stage 07 has two, the references have
+one.
+
+### THE VERDICTS
+
+| stage | size gate | slot-quantised Q1/Q3 | **R7** |
+|---|---|---|---|
+| 01 = 02 = 03 | PASS | 0 failures | **PASS** *(unchanged)* |
+| 04 = 05 = 06 | PASS | 0 failures | **PASS**, `RADIO_TX` +2 residue named *(unchanged)* |
+| **07 = 08, all 132 symbols** | PASS | 5 of 6 FAIL Q1 nav, 5+2 dash, both thresholds | **FAIL — root-caused to 216 bytes of image size, NOT to internal linkage** |
+| **07 REDUCED, 118 symbols** | `text` Δ 0 | **captures BYTE-IDENTICAL to stage 06** | **PASS by `cmp`, not by a gate** |
+| **09, gated ALONE over stage 06** | `text` +16, `rodata` +120 | **0 failures**, every stream inside **0.40 ms**, `k = 0`, both stimuli, both thresholds | **PASS** |
+| 09, in the ladder on top of 07 | PASS | 5 of 6 FAIL Q1 | **FAIL — 100 % INHERITED, now demonstrated** |
+
+The stage-09-alone tree (`materialize 7` with zero symbols, then the real
+`materialize 8` and `9`) is the tree §47.10 item 2 said the ladder does not
+produce. **Stage 09's own transform is clean.**
+
+### The rule that would land the reduced stage 07 — designed, NOT landed
+
+> refuse a candidate that the evidence build's `app/libapp.a` link **still emits
+> as an out-of-line text symbol**.
+
+Decidable from the build `link_evidence.generate()` already opens (one new
+`app_text_symbols` field beside the existing `app_objects`), not derived from
+the gate's answer, fails closed, and reproduces the measured 118 / 14 split
+exactly. **Not implemented**: touching `transforms/` moves `transforms_digest`
+and restales all ten stages, and the reduced stage is already measured on the
+real transformer code.
+
+### Acceptance, on the RESTORED ladder
+
+```
+stage 07/08/09 trees mutated 30+ times and restored: tree fingerprints and all
+   four JSON artifacts per stage BYTE-IDENTICAL to the pre-pass state
+driver.py status      0..9 all `current`, 0 inputs changed, 07 partition = agrees
+clean rebuilds        base 956,496 2c510a78366b | s07 956,076 b369a08c7162
+                      s09 956,092 bfa3bfae1d94   -- all == the record above
+4 framebuffers        cmp exit 0 on all 17 images captured this pass
+nm -u 0 (app x7, net) | duplicate globals 0 | pin gates 0/0 | thread args 10/10
+tools/verify_data.py  995 / 995 files, 56,279 / 56,279 B, 100.00 %
+net zephyr.bin        225,581 B FROZEN, e09b9481a3154e16..., not rebuilt
+app flash (base)      956,496 B / 982,528 B = 97.35 %   RAM 253,765 B / 56.32 %
+refactor test suite   215 / 215
+```
+
+### Corrections to rows above this one
+
+* "`twim2 lsm6dso` p2_render **1206 -> 1202** transactions" — still true, and it
+  is **one late IMU poll**, a class the reference images exhibit too (§48.5).
+* "**FAIL — inherited. Stage 09 adds nothing measurable of its own and cannot be
+  gated until 07 is fixed**" — **it can, and it was: stage 09 PASSES on its own.**
+* `check_ram_pin_collisions` "**598** on 07 / 09" is caused by the **105-symbol
+  inert group**, not by the 14 — `s118` also reads 598 while `A7b3pad112` and
+  `T14pad200`, which include all 14, read 627.
