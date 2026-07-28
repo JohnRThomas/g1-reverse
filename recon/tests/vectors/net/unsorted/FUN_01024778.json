@@ -1,0 +1,76 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    2
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    16930524
+   ],
+   "events_head": [
+    "('C', 0, 109, 300, 'S', 'F', 'T', None)",
+    "('W', 553655254, 1, 255)"
+   ],
+   "expect": {
+    "events": "ed60496bdc058bbaa966ee131e25f7dda6dc5d9f3e52155cd70521f5126e39f5",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943568,
+     536948040,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 18
+  }
+ ],
+ "core": "net",
+ "coverage": {
+  "covered": 18,
+  "ratio": 0.8571,
+  "total": 21,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 50,
+ "globals": [
+  "0x21001bd0"
+ ],
+ "module": "unsorted",
+ "nptr": 2,
+ "oracle": {
+  "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
+  "source": "shipped image"
+ },
+ "ret_kind": "void",
+ "search": {
+  "candidates": 147,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 1
+ },
+ "size": 50,
+ "symbol": "FUN_01024778",
+ "va": "0x01024778"
+}

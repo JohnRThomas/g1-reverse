@@ -1,0 +1,86 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    0,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    16928900,
+    16929604,
+    16926328
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('W', 553654008, 4, 4294967295)",
+    "('W', 553654012, 4, 4294967295)",
+    "('C', 2, 0, 560, 4294967295, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "ef54f61ee033ae8e3373be992eb746ce77e291df0ef1a028eb49e4e156e46a7a",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943568,
+     536948040,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 39
+  }
+ ],
+ "core": "net",
+ "coverage": {
+  "covered": 39,
+  "ratio": 0.1258,
+  "total": 310,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 934,
+ "globals": [
+  "0x210016f0"
+ ],
+ "module": "unsorted",
+ "nptr": 2,
+ "oracle": {
+  "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
+  "source": "shipped image"
+ },
+ "ret_kind": "void",
+ "search": {
+  "candidates": 167,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 1,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 1
+ },
+ "size": 944,
+ "symbol": "FUN_01022a84",
+ "va": "0x01022a84"
+}

@@ -1,0 +1,67 @@
+{
+ "cases": [
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [
+    "('W', 192, 1, 1)"
+   ],
+   "expect": {
+    "events": "a6bcd9708fdd1e9b6bec821792a19c23c2906351a202ed7906ed6deb7efcf62f",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943568,
+     536948040,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 19
+  }
+ ],
+ "core": "net",
+ "coverage": {
+  "covered": 19,
+  "ratio": 0.322,
+  "total": 59,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 140,
+ "globals": [
+  "0x21000c48"
+ ],
+ "module": "controller",
+ "nptr": 2,
+ "oracle": {
+  "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
+  "source": "shipped image"
+ },
+ "ret_kind": "void",
+ "search": {
+  "candidates": 145,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 1
+ },
+ "size": 140,
+ "symbol": "controller_packet_completion_update",
+ "va": "0x0100aba4"
+}

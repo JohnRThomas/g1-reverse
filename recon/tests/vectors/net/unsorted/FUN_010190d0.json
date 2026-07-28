@@ -1,0 +1,70 @@
+{
+ "cases": [
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [
+    "('W', 553652224, 1, 0)",
+    "('W', 553652298, 2, 0)",
+    "('W', 553652300, 1, 0)"
+   ],
+   "expect": {
+    "events": "f391b77c889248956e98a4ca033767d8d15cf3d9c0a95de826fe93e50c3507fd",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943568,
+     536948040,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 14
+  }
+ ],
+ "core": "net",
+ "coverage": {
+  "covered": 14,
+  "ratio": 0.6364,
+  "total": 22,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 62,
+ "globals": [
+  "0x21000f90",
+  "0x2100104a"
+ ],
+ "module": "unsorted",
+ "nptr": 2,
+ "oracle": {
+  "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
+  "source": "shipped image"
+ },
+ "ret_kind": "void",
+ "search": {
+  "candidates": 157,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 1
+ },
+ "size": 62,
+ "symbol": "FUN_010190d0",
+ "va": "0x010190d0"
+}

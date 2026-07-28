@@ -1,0 +1,226 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    0,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16908108,
+    16813312
+   ],
+   "events_head": [
+    "('W', 1090577664, 4, 0)",
+    "('W', 1090577664, 4, 0)",
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 1090576512, 4, 0)",
+    "('C', 1, 61, 130, 'S', 'F', 'T', None)",
+    "('W', 1090577664, 4, 2)",
+    "('W', 1090577684, 4, 553653476)"
+   ],
+   "expect": {
+    "events": "71e300a3425cc0a7cf3a1fa96063dc21d37ff737d5b3470097a88a78a01e385c",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943568,
+     536948040,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 21
+  },
+  {
+   "call_arities": [
+    0
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    16908108
+   ],
+   "events_head": [
+    "('W', 1090577664, 4, 0)",
+    "('W', 1090577664, 4, 0)",
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 1090576512, 4, 0)"
+   ],
+   "expect": {
+    "events": "83f16050910af71c045c158d60c81ff8a2831a9162c92b624b198ac5c0ede259",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     536948040,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "cfgsel-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 14
+  },
+  {
+   "call_arities": [
+    0
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    16908108
+   ],
+   "events_head": [
+    "('W', 1090577664, 4, 0)",
+    "('W', 1090577664, 4, 0)",
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 1090576512, 4, 0)",
+    "('W', 1090577664, 4, 2)",
+    "('W', 1090577684, 4, 553653476)"
+   ],
+   "expect": {
+    "events": "aa3625a168486bca44a651a5d458b6a2b7c9a9422d7a04141023549c0599da60",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1,
+     536943120,
+     2147483648,
+     315044147
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "cfgsel-1",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 1,
+    "xpsr": 0
+   },
+   "new_instructions": 15
+  },
+  {
+   "call_arities": [
+    0
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    16908108
+   ],
+   "events_head": [
+    "('W', 1090577664, 4, 0)",
+    "('W', 1090577664, 4, 0)",
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 1090576512, 4, 0)",
+    "('W', 1090577664, 4, 3)",
+    "('W', 1090577684, 4, 553653476)",
+    "('W', 1090576512, 4, 2147483651)"
+   ],
+   "expect": {
+    "events": "698ce5850dfde917812295cf3b3348ce2f375238918b25a9e3ad1ae6acbba06d",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2,
+     536942680,
+     3677430904,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "cfgsel-2",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 2,
+    "xpsr": 0
+   },
+   "new_instructions": 19
+  }
+ ],
+ "core": "net",
+ "coverage": {
+  "covered": 28,
+  "ratio": 1.0,
+  "total": 28,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 76,
+ "globals": [
+  "0x4100e000",
+  "0x210014e4"
+ ],
+ "module": "unsorted",
+ "nptr": 2,
+ "oracle": {
+  "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
+  "source": "shipped image"
+ },
+ "ret_kind": "void",
+ "search": {
+  "candidates": 159,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 4
+ },
+ "size": 76,
+ "symbol": "FUN_01020088",
+ "va": "0x01020088"
+}

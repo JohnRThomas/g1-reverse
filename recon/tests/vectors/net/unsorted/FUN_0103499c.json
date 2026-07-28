@@ -1,0 +1,128 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    3,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    17020462,
+    16991824,
+    16991824,
+    16991824,
+    16991824,
+    16991824,
+    16991824,
+    16991824,
+    16991824,
+    16968492
+   ],
+   "events_head": [
+    "('C', 0, 553649848, 0, 96, 'S', 'F', 'T', None)",
+    "('C', 1, 0, 'S', 'F', 'T', None)",
+    "('C', 2, 1, 'S', 'F', 'T', None)",
+    "('C', 3, 2, 'S', 'F', 'T', None)",
+    "('C', 4, 3, 'S', 'F', 'T', None)",
+    "('C', 5, 4, 'S', 'F', 'T', None)",
+    "('C', 6, 5, 'S', 'F', 'T', None)",
+    "('C', 7, 6, 'S', 'F', 'T', None)",
+    "('C', 8, 7, 'S', 'F', 'T', None)",
+    "('W', 1090560380, 4, 0)",
+    "('R', 1090560380, 4, 0)",
+    "('C', 9, 10, 'S', 'F', 'T', None)",
+    "('W', 1090560772, 4, 2147483648)",
+    "('W', 553649952, 1, 1)",
+    "('W', 553649948, 4, 1)"
+   ],
+   "expect": {
+    "events": "ff3c302e176f9565385b4035deaf2ce9c7e9835701eb9915b0d21a93ce960be9",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     195887104
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943568,
+     536948040,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 32
+  }
+ ],
+ "core": "net",
+ "coverage": {
+  "covered": 32,
+  "ratio": 0.8421,
+  "total": 38,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 104,
+ "globals": [
+  "0x210006a8",
+  "0x4100a000"
+ ],
+ "module": "unsorted",
+ "nptr": 2,
+ "oracle": {
+  "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
+  "source": "shipped image"
+ },
+ "ret_kind": "i32",
+ "search": {
+  "candidates": 157,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 1
+ },
+ "size": 104,
+ "symbol": "FUN_0103499c",
+ "va": "0x0103499c"
+}
