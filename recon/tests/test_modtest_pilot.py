@@ -62,7 +62,14 @@ def replay(record, tree, source_override=None, stop_on_first=True):
                 text_override=source_override)
         except RuntimeError:
             return len(record["cases"]), len(record["cases"])
-        if key != case["expect"] or meta["target_identity"] is not None:
+        # The stack-record comparison is a SECOND, structural criterion (rule 7,
+        # core.STACK_ARG_WINDOW) and is not folded into `expect`.  Without this
+        # line the negative controls do not exercise it at all, and the field
+        # constants of every record-building function would be unguarded here
+        # even though `cli.py run` checks them.
+        stack = mtcore.stack_args_mismatch(case.get("stack_args"),
+                                           meta["state"].get("stack_raw"))
+        if key != case["expect"] or meta["target_identity"] is not None or stack:
             failures += 1
             if stop_on_first:
                 return failures, len(record["cases"])

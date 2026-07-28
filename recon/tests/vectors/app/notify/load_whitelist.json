@@ -1,0 +1,2688 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "2b9e4c742bb970cf2cce23bb8b698e3526db8a04a94fb30362ea29c939651ba2",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1276959699,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 315044147, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "5c89d35f1bfd6041c0973e86c71b41b4aada40bcc6c9b35cfb533090e10ee8da",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4067469868,
+     1797429778,
+     2147483648,
+     315044147
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 1,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 7, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "d306ec7afbeb0fe0afb7eaecdeee6fc2efa70ad541f0c38e51b5a97de161f9c9",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4290042576,
+     598759513,
+     3677430904,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-2",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 2,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 3619521758, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "8596193192bd94691d60717477db7cb94408efbb40d7377c9dc2c126a4e1fe12",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2618385373,
+     255,
+     8,
+     3619521758
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-3",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 3,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 6, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "900d958b54a48300f292437430c970893e2d478da9c5b411d5ced66276c97ef4",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     16,
+     2147483647,
+     3842370354,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-4",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 4,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 2147483647, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "8c2af08ef8100a0f0153d01354f6847d1f7fc09233bfe8fffc0e76cdb1ca2a7c",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     3322790363,
+     5,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-6",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 6,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 2363272863, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "b3485ceb79c8e8f980d3984704cd8943486bb257f678c69f8ce8f81aed172e8f",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2300957721,
+     1604804925,
+     1,
+     2363272863
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-7",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 7,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 4, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e779ba1e0d26f2d0288dca6c917c15ce234288e5705b6620fab52ed847b3ccab",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2156366374,
+     708972563,
+     558645175,
+     4
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-8",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 8,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "325c711863e3c39d3a5595c6b517c1733bf449473d3eff391eaa4847e2d6490d",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     182454980,
+     995058044,
+     8,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-10",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 10,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 1426281073, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "51900f76a09573d876a005b043075da3ae1038964ab6531db1c38fee5876d6f4",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     2147483648,
+     256,
+     1426281073
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-11",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 11,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 1103693227, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "a16244985b95ceb12d146a5abefb9ba05fb2d19fd165576e5bf62f8cbce9e3e8",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     8,
+     3217736208,
+     5,
+     1103693227
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-12",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 12,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 617681966, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "cf14514d49cca106c0c012f4f817080114572211a1da544d7089d50db7cdd6bf",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1156718256,
+     1944344031,
+     6,
+     617681966
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-13",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 13,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 470668832, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "5a7a81c8bd0e2b60ffcfc6e27d17c670150526c346058bcb654c1c5956fa0636",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1996365079,
+     12,
+     3,
+     470668832
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-14",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 14,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 16, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "6417d92d18b327cdc6042756263cdfceaae44adc5cdbba5cca05829dec3d03fa",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2024561310,
+     2147483648,
+     3454407978,
+     16
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-16",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 16,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 4252165479, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "96b95a32ce8fdba1d20509c8e295963a255f086fe90b5fd4ae5c65e5be2165f3",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     3254638692,
+     1168623309,
+     4252165479
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-17",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 17,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 255, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "b7e27f79811511591e0523440b08964fcd66e3d6ad8b4a073562ecbc3505e419",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     6,
+     1536401714,
+     4178753371,
+     255
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-19",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 19,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 2451975022, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "09e487a37d9b43012e860fe03b0cf7eafcedcc824817cd0499dab1f7a4792355",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     7,
+     3001296298,
+     4294967295,
+     2451975022
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-22",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 22,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 1515885587, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e15e589c79d2824fb0b4fbed2d6fb694a8e13eed17b348468a11e1af585b6bea",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1591295399,
+     241044672,
+     2034212132,
+     1515885587
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-23",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 23,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 604019693, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "88c0ff1b5106a20985e76e59d5944d209c0964c80e11f967797191c270c6592b",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3751937804,
+     12,
+     2149248134,
+     604019693
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-25",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 25,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 2678623347, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "02ea4cc7c5380411b435bd5f03c49bf982032db4be579affe6c64ea860fb34cb",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2992330384,
+     12,
+     3037640278,
+     2678623347
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-26",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 26,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 4125446660, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "9586fc2c72c4798531893c576fdb4b83630dd34359ca82272836308bddd5f170",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     187818536,
+     681194263,
+     3639365232,
+     4125446660
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-27",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 27,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 2592385448, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "d09a590f8445de8e65af957ae7a956140bd67fad77a7a69b1d1c9c09893ad575",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3711083943,
+     4285183211,
+     1,
+     2592385448
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-28",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 28,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 8, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "d31bf0c9483c3ad30d520f75a4f657551229059e359300fdfd319a97e008f554",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     739928864,
+     256,
+     3886541357,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-29",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 29,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 53351545, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "42b1d8d0c90cc49f28ec41001d2e6bf00e35c1568c985d896fb22daafd94fbbb",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4294967295,
+     2461003590,
+     7,
+     53351545
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-31",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 31,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 1170652979, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "4d01de7766e508edddfb22b66b91c6610b2a32723ad0305deeb3cf1ca71d16d3",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1839753098,
+     2706821390,
+     3442053927,
+     1170652979
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-32",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 32,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 5, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "60ece4bf392eda5057e7956bda1362c324b6ff4d1a0ceda33534dfec4aa179b3",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1076094348,
+     7,
+     7,
+     5
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-33",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 33,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 1299241558, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "38be4b2056a494d7fe09c8e581254e06cc85adcc49e2b2d0f153544786bfa479",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1,
+     2057795936,
+     2725586938,
+     1299241558
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-37",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 37,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 2, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "076c6e54e1df31aa9707506b982a07d761e6acd5a63e500f5e6a14a738bca819",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     255,
+     1,
+     2
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-38",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 38,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 1997155928, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ab54188b07632b6caf58749b995a47d33affbbb828bc2c942cf104adf9052b34",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     1587124134,
+     3774328631,
+     1997155928
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-39",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 39,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 1835695343, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "64bf505c15f5b79439dfc9a7ab20bf97b00352411bd98193f6b8d14c9c979274",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     3928041777,
+     1786326658,
+     1835695343
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-40",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 40,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 3983748582, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "250d3501d8d807950d8dc6559891eb039768a90abc272c8bcc1f9c46e6a28410",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     538639782,
+     4,
+     12,
+     3983748582
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-42",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 42,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 899981045, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e0366407e4d20aede94e7d5c37342b77d07c0aa1e9e28dd22fc8624329f5029f",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1,
+     2,
+     4239591256,
+     899981045
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-43",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 43,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 2486441645, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "dbda05ada11be83d04cbe008f12a9cf19e114136223c97ce2162c17fed7b3814",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     12,
+     2147483648,
+     2737014790,
+     2486441645
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-45",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 45,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 2288169737, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "3746bdfd7dc13eb1796933baff480c77853a8b65bb9d66845629f2fc9eda273f",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2311625221,
+     2147483648,
+     2205369221,
+     2288169737
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-46",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 46,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 536949968, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "50e902104ebd58aef593bdecd44f658523ffc9b499499bc208053d2fa96421c6",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941384,
+     536952304,
+     536950448,
+     536949968
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr4-0",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "scratch_seed": 700,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 536940332, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "2170dc7bc77cb165b3da2c9ccbd46d13f083301cff6207bc1fc486d20daac881",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943312,
+     536948372,
+     536948184,
+     536940332
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr4-1",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "scratch_seed": 701,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 536951256, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ec28e8a9ef28b7a5a3b539464c70b19b09d7eeab88b30de8abfba458868d05d7",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536947328,
+     536938188,
+     536947944,
+     536951256
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr4-2",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "scratch_seed": 702,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 536949848, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "7097c5116ac4b8e6a76a7ee07003f7b488802409783b930551d5e99dcf6d8887",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945664,
+     536946288,
+     536937260,
+     536949848
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr4-3",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "scratch_seed": 703,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 880227538, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ca9b5e2a9f83d962ff1419738161252e33ed60fcbacdc2520eb29a45ad67ad70",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941384,
+     536952304,
+     1547220657,
+     880227538
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr2-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 700,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 2718928684, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1d9cdd8c359de640179b7a88962d1483187f2d2933dd1c89ba01fd625148272b",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943312,
+     536948372,
+     12,
+     2718928684
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr2-1",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 701,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 2236840408, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1ca333c40df7934737ce2c5ffe90ae45e97cf48640bef42c6293977cc0ccdc43",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536947328,
+     536938188,
+     16,
+     2236840408
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr2-2",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 702,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    515492
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] flash_settings_read error,ret is %d \\n'), ('RO', b'load_whitelist'), 48, 1927129959, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "2b9e4c742bb970cf2cce23bb8b698e3526db8a04a94fb30362ea29c939651ba2",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536900948,
+      "00000000"
+     ]
+    ],
+    "args": [
+     1276959699,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-0-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 554330043, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] error,appCounts is %d \\n'), ('RO', b'load_whitelist'), 54, 144, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "7ab9bb7360c2a993e6f228be9c330c632644a1787ebbabe2a51855237db92506",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2345269775,
+     3092785552,
+     1935641720,
+     554330043
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 400,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    515492
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 1937427917, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[%s-%d] error,appCounts is %d \\n'), ('RO', b'load_whitelist'), 54, 126, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "9e7872c665cc3afd00c71a2043b3134b2cc9dc4546ff3c5153372a1ae64fe494",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536900948,
+      "00000000"
+     ],
+     [
+      536977964,
+      "00000000"
+     ]
+    ],
+    "args": [
+     8,
+     1164329427,
+     7,
+     1937427917
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "combo-0-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 600,
+    "xpsr": 0
+   },
+   "new_instructions": 30,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    3
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    551940
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 5602, 'S', 'F', 'T', None)",
+    "('C', 1, 1249280, ('SP', 0), 5602, 6, 'S', 'F', 'T', None)",
+    "('C', 2, 536977964, ('SP', 0), 5602, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1bd87d5a824956bfd264e49eb74a1f0a71f5f91f7faf96cbed87632f1f541442",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536900948,
+      "ffffffff"
+     ],
+     [
+      536977964,
+      "ffffffff"
+     ]
+    ],
+    "args": [
+     12,
+     2147483648,
+     4066246587,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "combo-2-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 608,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 51,
+  "ratio": 1.0,
+  "total": 51,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 126,
+ "globals": [
+  "0x20007554",
+  "0x2001a22c"
+ ],
+ "module": "notify",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "i32",
+ "search": {
+  "candidates": 169,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 45,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 126,
+ "symbol": "load_whitelist",
+ "va": "0x00034b34"
+}

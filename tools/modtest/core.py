@@ -53,7 +53,7 @@ if _TOOLS not in sys.path:
 REPO = os.path.dirname(_TOOLS)
 
 from capstone import Cs, CS_ARCH_ARM, CS_MODE_THUMB, CS_MODE_MCLASS  # noqa: E402
-from unicorn import UC_HOOK_CODE, UC_HOOK_MEM_WRITE  # noqa: E402
+from unicorn import UC_HOOK_CODE, UC_HOOK_MEM_READ, UC_HOOK_MEM_WRITE  # noqa: E402
 
 import extract as app_extract          # noqa: E402
 import net_extract                     # noqa: E402
@@ -249,14 +249,13 @@ def true_extent(core, va, ghidra_size, max_scan=0x2000):
     return end
 
 
-#: Bytes of a stack record captured at a call boundary.  **DEFAULT 0 --
-#: DISABLED.**  Enable with MODTEST_STACK_ARG_WINDOW=48.
+#: Bytes of a stack record examined at a call boundary.  **DEFAULT 48 --
+#: ENABLED.**  Disable with MODTEST_STACK_ARG_WINDOW=0.
 #:
-#: This is a measured retreat, recorded rather than hidden.  The capture closes
-#: a large real blind spot -- `ipc_send_len_prefixed_packet` went from a 13 %
-#: mutation kill rate at 100 % coverage to 100 % -- but making it SOUND needs
-#: an object-extent model, and four successive corrections were not enough:
+#: HISTORY, because this setting has been turned on and off before and the
+#: reasons matter more than the value.
 #:
+#: Corrections 1-4 (previous pass) made the capture work at all:
 #:   1. a fixed window includes the frame's saved registers, whose position
 #:      relative to a local differs between compilations
 #:      (`ipc_read_u16_field`: 42/43 fixtures failed on BOTH trees);
@@ -265,19 +264,58 @@ def true_extent(core, va, ghidra_size, max_scan=0x2000):
 #:   3. a record may hold a pointer to another stack local, whose raw value is
 #:      frame layout -- those aligned words are blanked;
 #:   4. a capture must only be committed when the call actually happens, or a
-#:      run that faults before the call compares a record nobody received;
-#:   5. AND STILL: the shipped code may reserve a slot with `push {r1}` while
-#:      the reconstruction uses `str r1,[sp,#n]`.  Rule 2 classifies the first
-#:      as bookkeeping and the second as content, so `st25dv_read_area_size`
-#:      captured nothing on the golden side and four bytes on the candidate's
-#:      -- 41/41 fixtures failed, identically on both trees, with byte-identical
-#:      event traces.
+#:      run that faults before the call compares a record nobody received.
 #:
-#: A suite that emits a FALSE FAIL is worse than one with a known blind spot,
-#: because it invites a "fix" to correct code.  So this is off by default, the
-#: blind spot is restated in the architecture document, and the machinery stays
-#: in the tree for whoever builds the extent model.
-STACK_ARG_WINDOW = int(os.environ.get("MODTEST_STACK_ARG_WINDOW", "0"))
+#: Correction 5 defeated it and the whole capture was disabled: the shipped
+#: code may reserve a slot with `push {r1}` while the reconstruction uses
+#: `str r1,[sp,#n]`, so `st25dv_read_area_size` captured nothing on the golden
+#: side and four bytes on the candidate's -- 41/41 fixtures failed on both
+#: trees.
+#:
+#: THAT DIAGNOSIS WAS INCOMPLETE, and the correction it implies is different.
+#: Measured (`stackprobe`, all 47 `ipc` symbols, window 48, comparing ONLY the
+#: capture and nothing else): **44 of 47 agree on every fixture, 8 of them with
+#: a non-empty record.**  The three that disagree are not a `push`-versus-`str`
+#: spelling problem at all:
+#:
+#:   * `st25dv_read_area_size` -- `push {r0,r1,r2,lr}` then `add r1,sp,#4`.
+#:     The pushed words are not a record; they are a 12-byte SCRATCH
+#:     ALLOCATION, and the buffer at sp+4 is an OUT parameter that the callee
+#:     fills.  Its content at the call is garbage on both sides.
+#:   * `st25dv_mailbox_poll_message` -- identical shape, `push {r0..r6,lr}`
+#:     then `add r0,sp,#8`.
+#:   * `st25dv_reg_modify_low5` -- reads the out-buffer back
+#:     (`ldrb [sp,#7]`), keeps its top three bits (`bic r3,#0x1f`) and stores
+#:     it again.  The compared byte is 0x30 golden / 0x50 candidate: the low
+#:     five bits, which the function COMPUTES, agree exactly; the top three,
+#:     which it INHERITED from uninitialised frame memory, do not.
+#:
+#: All three are the same defect class, and it is not the store spelling: the
+#: capture was comparing bytes whose value the function never produced.  Two
+#: rules follow, and both are checkable rather than heuristic:
+#:
+#:   6. **A byte READ from the stack before the run ever wrote it is
+#:      inherited, not produced.**  Its value is the previous frame's
+#:      contents, which differ between compilations by construction.  Any
+#:      offset that is read-before-written is dropped
+#:      (`inherited` in `_new_uc`).
+#:   7. **The GOLDEN defines the extent.**  The shipped image is the oracle
+#:      here, so the offsets IT wrote are what the record is; the candidate is
+#:      read raw over the same window and compared only at those offsets
+#:      (`stack_args_mismatch`).  An offset the shipped code never wrote is
+#:      not part of the observable contract in this model, so a candidate that
+#:      spills a register there is not a failure.
+#:
+#: Rule 7 is a deliberate ASYMMETRY and it is a weakening: a candidate that
+#: writes an EXTRA field the shipped code does not write is invisible.  A
+#: candidate that FAILS to write a field the shipped code writes is still
+#: caught, because the golden offset is compared and the candidate's byte is
+#: whatever its frame happened to hold.
+#:
+#: With 6 and 7 in place the measured disagreement count over all 139 piloted
+#: symbols is ZERO, and `ipc_send_len_prefixed_packet` recovers from a 13 %
+#: mutation kill rate to 100 %.  The numbers are in the architecture document.
+STACK_ARG_WINDOW = int(os.environ.get("MODTEST_STACK_ARG_WINDOW", "48"))
 
 
 class _CoverageRunner(emu.Runner):
@@ -315,9 +353,15 @@ class _CoverageRunner(emu.Runner):
         # it, so `track_coverage=False` drops the whole-body hook and leaves
         # only the per-call-site hooks, which fire a handful of times per run.
         self.track_coverage = kwargs.pop("track_coverage", True)
+        # CONTENT capture (which offsets this run produced) is only meaningful
+        # on the GOLDEN side -- rule 7, the golden defines the extent.  The
+        # candidate only needs the RAW window, which costs no write hook and no
+        # read hook at all.
+        self.stack_content = kwargs.pop("stack_content", True)
         super().__init__(*args, **kwargs)
         self.covered = set()
         self.stack_arg_trace = []
+        self.stack_raw_trace = []
         self.call_sites = set()
         for insn in _MD.disasm(self.body[:self.size], self.va):
             if insn.mnemonic.split(".")[0] in ("bl", "blx"):
@@ -329,9 +373,27 @@ class _CoverageRunner(emu.Runner):
         stack_low = emu.STACK_TOP - 0x9000
         stack_high = emu.STACK_TOP + 0x100
         written = set()
+        #: RULE 6.  A stack byte the run READ before it ever wrote is
+        #: INHERITED -- its value is the previous frame's, which differs
+        #: between the shipped code and any recompilation by construction.
+        #: `st25dv_reg_modify_low5` reads the out-buffer back, keeps its top
+        #: three bits with `bic r3,#0x1f` and stores it again: the five bits
+        #: it COMPUTES agree exactly and the three it INHERITED do not.
+        #: Comparing an inherited byte is comparing frame layout.
+        inherited = set()
 
         pushed = set()
         classified = {}
+
+        def _read(_uc, _access, address, size, _value, _ud):
+            if not (stack_low <= address < stack_high):
+                return True
+            for offset in range(size):
+                if (address + offset) not in written:
+                    inherited.add(address + offset)
+            return True
+        if self.stack_content and STACK_ARG_WINDOW:
+            uc.hook_add(UC_HOOK_MEM_READ, _read)
 
         def _write(_uc, _access, address, size, _value, _ud):
             if not (stack_low <= address < stack_high):
@@ -369,7 +431,8 @@ class _CoverageRunner(emu.Runner):
                     written.add(address + offset)
                     pushed.discard(address + offset)
             return True
-        uc.hook_add(UC_HOOK_MEM_WRITE, _write)
+        if self.stack_content and STACK_ARG_WINDOW:
+            uc.hook_add(UC_HOOK_MEM_WRITE, _write)
 
         def _coverage(_uc, address, _size, _ud):
             self.covered.add(address)
@@ -392,12 +455,22 @@ class _CoverageRunner(emu.Runner):
             ordinal = self._call_seq
             self._call_seq += 1
             record = []
+            raw = []
             for index in range(4):
                 value = int(_uc.reg_read(emu.REG[index])) & 0xffffffff
                 if not (stack_low <= value < stack_high):
                     continue
-                present = {offset for offset in range(STACK_ARG_WINDOW)
-                           if value + offset in written}
+                span = min(STACK_ARG_WINDOW, stack_high - value)
+                if span > 0:
+                    raw.append((index,
+                                bytes(_uc.mem_read(value, span)).hex()))
+                if not self.stack_content:
+                    continue
+                # RULE 6: an offset the run read before writing is inherited
+                # frame content, not something this function produced.
+                present = {offset for offset in range(span)
+                           if value + offset in written
+                           and value + offset not in inherited}
                 # A record may hold a POINTER TO ANOTHER STACK LOCAL
                 # (`local_20.p = &local_24`).  Its raw value is the frame
                 # layout, which differs between the shipped code and any
@@ -406,7 +479,7 @@ class _CoverageRunner(emu.Runner):
                 # `ipc_send_len_prefixed_packet` fail 41/41 on BOTH trees.
                 # Blank the word and keep every other field exact.
                 pointer_words = set()
-                for offset in range(0, STACK_ARG_WINDOW - 3):
+                for offset in range(0, max(span - 3, 0)):
                     if (value + offset) & 3:
                         continue
                     if not all((offset + k) in present for k in range(4)):
@@ -426,6 +499,8 @@ class _CoverageRunner(emu.Runner):
                     record.append((index, tuple(content)))
             if record:
                 self.stack_arg_trace.append((ordinal, tuple(record)))
+            if raw:
+                self.stack_raw_trace.append((ordinal, tuple(raw)))
         if STACK_ARG_WINDOW:
             for site in sorted(self.call_sites):
                 uc.hook_add(UC_HOOK_CODE, _hook, begin=site, end=site)
@@ -433,6 +508,7 @@ class _CoverageRunner(emu.Runner):
 
     def run(self, *args, **kwargs):
         self.stack_arg_trace = []
+        self.stack_raw_trace = []
         self._call_seq = 0
         state = super().run(*args, **kwargs)
         # A capture is taken AT the `bl`, before it executes.  A run that
@@ -443,9 +519,59 @@ class _CoverageRunner(emu.Runner):
         # actually happened, which `ncalls` counts.  (Measured: without this,
         # `i2c_read_reg16_be` failed 2 of 3 fixtures on both trees.)
         calls = int(state.get("ncalls", 0))
-        state["stack_args"] = [record for ordinal, record
-                               in self.stack_arg_trace if ordinal < calls]
+        state["stack_args"] = [[ordinal, [[index, list(content)]
+                                          for index, content in record]]
+                               for ordinal, record in self.stack_arg_trace
+                               if ordinal < calls]
+        state["stack_raw"] = {ordinal: dict(record)
+                              for ordinal, record in self.stack_raw_trace
+                              if ordinal < calls}
         return state
+
+
+def stack_args_mismatch(golden, candidate_raw):
+    """RULE 7: the GOLDEN defines the extent of a stack record.
+
+    `golden` is what the SHIPPED bytes produced -- a list of
+    `[call_ordinal, [[arg_index, [[offset, byte|"P"], ...]], ...]]`.
+    `candidate_raw` is `{call_ordinal: {arg_index: hex-window}}`, read raw.
+
+    Only the offsets the shipped code WROTE (and did not inherit, rule 6) are
+    compared.  Returns None on agreement, else a small diagnostic dict.
+
+    Why asymmetric, restated where it is implemented: the shipped image is the
+    oracle, so what it wrote is what the record IS.  A candidate that spills a
+    register into a slot the shipped code never wrote is not a behaviour
+    difference -- and treating it as one is precisely what produced 41/41 false
+    failures on `st25dv_read_area_size` and disabled this whole mechanism last
+    pass.  The cost is stated in `STACK_ARG_WINDOW`: an EXTRA write is
+    invisible.  A MISSING one is not.
+    """
+    for entry in golden or ():
+        ordinal, record = entry[0], entry[1]
+        window = (candidate_raw or {}).get(ordinal)
+        if window is None:
+            window = (candidate_raw or {}).get(str(ordinal))
+        for pair in record:
+            index, content = pair[0], pair[1]
+            blob = None if window is None else window.get(index,
+                                                          window.get(str(index)))
+            if blob is None:
+                return {"call_ordinal": ordinal, "arg": index,
+                        "reason": "candidate passed no stack pointer here"}
+            data = bytes.fromhex(blob)
+            for item in content:
+                offset, expected = item[0], item[1]
+                if expected == "P":
+                    continue            # frame-layout word, blanked on both
+                if offset >= len(data):
+                    return {"call_ordinal": ordinal, "arg": index,
+                            "offset": offset, "reason": "window short"}
+                if data[offset] != expected:
+                    return {"call_ordinal": ordinal, "arg": index,
+                            "offset": offset, "expected": expected,
+                            "got": data[offset]}
+    return None
 
 
 # --------------------------------------------------------------------------
@@ -639,13 +765,12 @@ def observable_key(state, ret_kind):
     else:
         digest = hashlib.sha256(
             repr(normalise_events(events)).encode()).hexdigest()
-    # Stack-record content observed at call boundaries (see _CoverageRunner).
-    # Folded into the same field so an older vector without it still compares
-    # equal to itself, and any vector regenerated after this change carries it.
-    stack_args = state.get("stack_args")
-    if stack_args:
-        digest = hashlib.sha256(
-            (digest + "|" + repr(stack_args)).encode()).hexdigest()
+    # Stack-record content is NOT folded into this digest.  It used to be, and
+    # that is why it could only ever be an all-or-nothing equality: the golden
+    # and the candidate produce different REPRESENTATIONS of it now (the golden
+    # records which offsets it wrote, the candidate is read raw), and rule 7
+    # compares them asymmetrically in `stack_args_mismatch`.  Folding a
+    # one-sided hash in here would compare a record the candidate never had.
     if "error" in state:
         return {"kind": "fault", "error": state["error"],
                 "ncalls": state["ncalls"], "events": digest}
@@ -699,13 +824,175 @@ def callee_abi(core):
                "call_return_kind_by_target": ctx["call_return_kind_by_target"]}
     except Exception:                                   # noqa: BLE001
         abi = {}
+    if DERIVED_ARITY and abi.get("call_arity_by_target"):
+        table = dict(abi["call_arity_by_target"])
+        for target in list(table):
+            derived = live_in_arity(core, target)
+            if derived is not None and derived < table[target]:
+                table[target] = derived
+        abi["call_arity_by_target"] = table
     _ABI[core] = abi
     return abi
 
 
+#: Derive callee arity from the CALLEE'S OWN BYTES rather than from Ghidra, and
+#: use it whenever it is NARROWER.  ON by default: swept over all 2,383 app
+#: callees that have a Ghidra arity, **310 of them (13 %) are over-wide**, so
+#: leaving it off means 13 % of call sites compare dead argument registers and
+#: can fail a correct candidate.  Disable with MODTEST_DERIVED_ARITY=0.
+DERIVED_ARITY = os.environ.get("MODTEST_DERIVED_ARITY", "1") == "1"
+
+_ARITY_CACHE = {}
+_DEST_REG = re.compile(r'^\s*(r[0-3])\s*,')
+
+
+def live_in_arity(core, va, cap=4):
+    """How many of r0-r3 the callee READS BEFORE WRITING.  None if unknown.
+
+    WHY THIS EXISTS.  §11 defect 2 fixed the harness comparing four argument
+    registers at every call site whatever the callee's arity, by taking the
+    arity from `cfg_verify.core_ctx`.  That source is Ghidra's decompiled
+    signature, and it can be too WIDE -- which reintroduces the same false
+    failure it was meant to remove.
+
+    Measured on §18.3 item 4.  `st25dv_mailbox_send_message` fails exactly one
+    fixture, at call ordinal 0, on argument registers.  The callee is
+    `st25dv_write_reg_pair` at 0x24f08, whose entire body is:
+
+        push {r3,r4,r5,lr} / mov r4,r0 / ldr r5,[pc,#0x2c] / movs r3,#4
+        mov r2,r0 / movs r1,#0 / ldr r0,[r5] / bl 0x256dc / ...
+
+    It reads **r0 and nothing else** -- r1, r2 and r3 are all overwritten
+    before any use.  Its true arity is 1.  Ghidra says 4, so the harness
+    compares three DEAD registers whose values are whatever the caller happened
+    to leave there, and reports a divergence in them as a defect.
+
+    The derivation is a live-in analysis over the CFG-reachable set in address
+    order: a register is live-in if it is read before this walk sees it
+    written.  It is conservative in the safe direction -- anything it cannot
+    classify leaves the register live-in, so the arity can only ever come out
+    too WIDE, never too narrow, and a too-wide arity is the status quo.
+    """
+    key = (core, va & ~1)
+    if key in _ARITY_CACHE:
+        return _ARITY_CACHE[key]
+    ctx = core_ctx(core)
+    base = va & ~1
+    size = ctx["sizes"].get(va) or ctx["sizes"].get(base)
+    if not size:
+        _ARITY_CACHE[key] = None
+        return None
+    size = min(size, 0x1000)
+    try:
+        reachable, _unresolved = cfg_instructions(core, base, size)
+        blob = ctx["rawread"](base, size)
+    except Exception:                                   # noqa: BLE001
+        _ARITY_CACHE[key] = None
+        return None
+    live_in = set()
+    written = set()
+    for address in sorted(reachable):
+        offset = address - base
+        if not (0 <= offset < size):
+            continue
+        insn = next(_MD.disasm(blob[offset:offset + 4], address), None)
+        if insn is None:
+            continue
+        head = insn.mnemonic.split(".")[0]
+        if head in ("bl", "blx"):
+            # The callee's own call passes r0-r3; anything not yet written is
+            # being forwarded and is therefore live-in.
+            for index in range(cap):
+                if index not in written:
+                    live_in.add(index)
+            break
+        try:
+            reads, writes = insn.regs_access()
+        except Exception:                               # noqa: BLE001
+            _ARITY_CACHE[key] = None
+            return None
+        names_read = {insn.reg_name(r) for r in reads}
+        names_written = {insn.reg_name(w) for w in writes}
+        # `push {r3, r4, r5, lr}` READS r3, and Thumb code uses exactly that
+        # to reserve four bytes of stack -- the pushed value is dead.  Counting
+        # it as a use is what made `st25dv_write_reg_pair` derive arity 4
+        # instead of 1 on the first attempt, i.e. it reproduced the very
+        # over-wide arity this function exists to narrow.  A stack save is only
+        # a real use if the value is reloaded, and the walk stops at the first
+        # `bl` before any reload could matter.
+        if head in ("push", "vpush") or (head in ("stmdb", "stmfd") and
+                                         "sp!" in insn.op_str):
+            names_read = set()
+        for index in range(cap):
+            name = "r%d" % index
+            if name in names_read and index not in written:
+                live_in.add(index)
+        for index in range(cap):
+            name = "r%d" % index
+            if name in names_written and index not in live_in:
+                written.add(index)
+    arity = (max(live_in) + 1) if live_in else 0
+    _ARITY_CACHE[key] = arity
+    return arity
+
+
+_PC_RELATIVE = re.compile(r'\[pc,\s*#(?:0x)?([0-9a-fA-F]+)\]')
+
+
+def literal_pad(core, va, size, minimum=64, cap=0x800):
+    """How many bytes past `size` this function's LITERAL POOL reaches.
+
+    THE DEFECT THIS FIXES, and it is the worst kind -- it made the harness
+    accuse a CORRECT reconstruction.
+
+    The golden body was read as `func_bytes_padded(va, size, pad=64)`.  Reads
+    outside the mapped body land on `emu`'s unmapped-access hook, which maps a
+    page of ZEROS and continues, so a literal beyond `va + size + 64` is
+    silently read as 0.
+
+    `__ieee754_expf` is 344 bytes at 0x76290, so the padded body ends at
+    0x76428 -- and its pool holds exactly two more words:
+
+        0x76428  0x3717f7d1  = 9.0580006e-06   ln2LO
+        0x7642c  0x0d800000  = 2**-100         subnormal rescale
+
+    Losing `ln2LO` drops the low half of the argument reduction
+    `x - k*ln2HI - k*ln2LO`, so the golden's answer is wrong by `k * 9.058e-6`
+    relative.  Measured against `math.exp`, over the three fixtures named in
+    §18.3 item 2:
+
+        x = 9.8066502  k=14   golden err +1.27e-4   candidate err 2.0e-8
+        x = 1.5707964  k= 2   golden err +1.82e-5   candidate err 3.0e-8
+        x =-3.0        k=-4   golden err -3.62e-5   candidate err 3.0e-8
+
+    `k * 9.058e-6` is 1.268e-4, 1.81e-5 and -3.62e-5.  The reconstruction is
+    accurate to one float32 ULP and the ORACLE was wrong.
+
+    So the pad is derived instead of assumed: every PC-relative load in the
+    function names its literal, and the body is mapped far enough to cover the
+    furthest one.  Padding only extends the MAPPED region -- `emu`'s executable
+    extent is `[va, va+size)` and is unchanged -- so the extra bytes are simply
+    the real image bytes at their real addresses, which is what a PC-relative
+    load is entitled to see.
+    """
+    ctx = core_ctx(core)
+    base = va & ~1
+    end = base + size + minimum
+    limit = base + size + cap
+    for insn in _MD.disasm(ctx["rawread"](base, size), base):
+        match = _PC_RELATIVE.search(insn.op_str)
+        if not match:
+            continue
+        # `ldrd`/`vldr` of a double is 8 bytes; take the wider one always.
+        literal = ((insn.address + 4) & ~3) + int(match.group(1), 16) + 8
+        if base <= literal <= limit:
+            end = max(end, literal)
+    return end - (base + size)
+
+
 def run_original(core, va, size, fixture, ret_kind="i32", max_insns=200000):
     ctx = core_ctx(core)
-    body = ctx["read"](va, size, pad=64)
+    body = ctx["read"](va, size, pad=literal_pad(core, va, size))
     runner = _CoverageRunner(va & ~1, size, body, ctx["code_base"])
     kwargs = fixture.run_kwargs()
     state = runner.run(max_insns=max_insns, **callee_abi(core), **kwargs)
@@ -1240,7 +1527,7 @@ def run_candidate(core, symbol, tree, va, fixture, golden, ret_kind="i32",
         text_override=text_override)
     runner = _CoverageRunner(linked_va, size, body + tail,
                              core_ctx(core)["code_base"], own_readonly_tail=True,
-                             track_coverage=False)
+                             track_coverage=False, stack_content=False)
     # THE CANDIDATE'S OWN .rodata MUST WIN over the shipped image at the same
     # addresses.  The candidate is linked at the ORIGINAL VA, so its .rodata
     # lands a few hundred bytes into the shipped flash image's own address
@@ -1305,6 +1592,68 @@ def run_candidate(core, symbol, tree, va, fixture, golden, ret_kind="i32",
 # --------------------------------------------------------------------------
 # vector files
 # --------------------------------------------------------------------------
+
+#: Source files whose content DEFINES what a frozen expectation means.
+#: `index.py` is deliberately excluded: it maps symbols to files and does not
+#: participate in producing or comparing an expectation.
+_SEMANTIC_SOURCES = ("core.py", "generate.py", "cli.py", "mutate.py")
+
+_HARNESS_REV = None
+
+
+def harness_rev():
+    """Fingerprint of the harness code that DEFINES a golden expectation.
+
+    WHY THIS EXISTS, and it is not hypothetical.  This harness was changed four
+    times during a single session while a concurrent pass was sweeping the net
+    core with it -- including flipping `STACK_ARG_WINDOW` from 0 to 48, which
+    changes what `observable_key` contains and therefore what a stored vector
+    MEANS.  **168 of that pass's vectors were invalidated mid-sweep.**  It
+    recovered by pinning the harness to a `git show HEAD` snapshot and
+    regenerating, and deleted 81 more whose harness version it could not
+    establish rather than publish numbers it could not stand behind.
+
+    A prose warning in an architecture document does not reach a process that
+    is already running.  A stamp does: `gen` records this fingerprint in every
+    vector file and `run` refuses a vector whose fingerprint differs, so the
+    whole class becomes a hard error at the point of use instead of a silent
+    comparison against a different definition of "expected".
+
+    It is a content hash rather than a git rev on purpose -- the working tree
+    is dirty by design here (the owner's rule is to leave it so), and a git rev
+    would say "HEAD" for four materially different harnesses in one session.
+    """
+    global _HARNESS_REV
+    if _HARNESS_REV is None:
+        digest = hashlib.sha256()
+        here = os.path.dirname(os.path.abspath(__file__))
+        for name in _SEMANTIC_SOURCES:
+            path = os.path.join(here, name)
+            digest.update(name.encode())
+            if os.path.exists(path):
+                with open(path, "rb") as handle:
+                    digest.update(handle.read())
+        _HARNESS_REV = digest.hexdigest()[:16]
+    return _HARNESS_REV
+
+
+def vector_staleness(record):
+    """None if this vector may be replayed, else why not.
+
+    An UNSTAMPED vector is allowed with no complaint from here: every vector
+    written before the stamp existed is unstamped, and refusing them all would
+    turn a safety feature into a wall.  `cli.cmd_run` reports the count so the
+    gap is visible.  A vector stamped with a DIFFERENT fingerprint is refused.
+    """
+    stamped = (record.get("harness") or {}).get("rev")
+    if stamped is None:
+        return None
+    if stamped == harness_rev():
+        return None
+    return ("vector was generated by harness %s, this is %s -- regenerate it "
+            "(`cli.py gen`); the expectation it stores may not mean what this "
+            "harness compares against" % (stamped, harness_rev()))
+
 
 def vector_path(core, module, symbol):
     return os.path.join(VECTOR_DIR, core, module, symbol + ".json")

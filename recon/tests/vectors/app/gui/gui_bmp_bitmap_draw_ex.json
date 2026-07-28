@@ -1,0 +1,2533 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    284812,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4, 1276959699, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_bmp_bitmap_draw_ex'), ('SP', 0), 3694469211, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c9c178b1a6bcfe9487522850eb05319af63d375dd0bdffb4767a993ae28be002",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1276959699,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    284812
+   ],
+   "events_head": [
+    "('C', 0, 4, 4067469868, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0090baa1c2057fee05fc0c0e9e709c84a9ce89af7ce5c3b606c260d28e3c1a7f",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4067469868,
+     1797429778,
+     2147483648,
+     315044147
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 1,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    284812,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4, 4290042576, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_bmp_bitmap_draw_ex'), ('SP', 0), 471345317, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "96e2c48a398a2f5e442b763904d08f633415e2510e5060399a521d09a1b73767",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4290042576,
+     598759513,
+     3677430904,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-2",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 2,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    284812
+   ],
+   "events_head": [
+    "('C', 0, 4, 2618385373, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "abec745ba7c8330aef4c2e24aff75e0771bf8b469427c5a9783cbd958bdb783f",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2618385373,
+     255,
+     8,
+     3619521758
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-3",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 3,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    284812,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4, 16, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_bmp_bitmap_draw_ex'), ('SP', 0), 2655161023, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "a9edd43e86d2fa29abc4206636f5f60119df22e9724d2d8a939e3c7522f6d6b3",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     16,
+     2147483647,
+     3842370354,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-4",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 4,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    284812
+   ],
+   "events_head": [
+    "('C', 0, 4, 4, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ba123ad4247cd6f4e52375441c3084927fed60fed6288bd95e29a7b609c6d154",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     3188701995,
+     8,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-5",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 5,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    284812
+   ],
+   "events_head": [
+    "('C', 0, 4, 2300957721, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "83e53cd7394005c688734e852c35802203b2d22effd7ca3f9bcc48bc7d8d258b",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2300957721,
+     1604804925,
+     1,
+     2363272863
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-7",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 7,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    284812
+   ],
+   "events_head": [
+    "('C', 0, 4, 2156366374, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e6c2d0c7bcd322dd703636b08c71529d556895bb5833b827d72f848241658656",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2156366374,
+     708972563,
+     558645175,
+     4
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-8",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 8,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    284812,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4, 1346232374, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_bmp_bitmap_draw_ex'), ('SP', 0), 3178863954, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "62b0122b6b06b110d326a4e9a7534f91d86b0466697a16fa2953b7ca23d45134",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1346232374,
+     1556998536,
+     499087790,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-9",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 9,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    284812,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4, 182454980, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_bmp_bitmap_draw_ex'), ('SP', 0), 3586673693, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1dd53bd5c1e5446d731c4d974d7848e2c084d7bcd7eb4e143fa3985ba45f1efe",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     182454980,
+     995058044,
+     8,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-10",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 10,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    284812,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4, 3, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_bmp_bitmap_draw_ex'), ('SP', 0), 801746852, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "b23248c7fa5172919212a290ace0c56c8c3d9cfe02348b0079d6cb495395d48c",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     2147483648,
+     256,
+     1426281073
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-11",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 11,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    284812,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4, 8, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_bmp_bitmap_draw_ex'), ('SP', 0), 1542880163, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "abaede0cf220e2a1490b09cfd2c83220f411515d410f0532ed7c81bc61d3366d",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     8,
+     3217736208,
+     5,
+     1103693227
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-12",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 12,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    284812,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4, 1156718256, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_bmp_bitmap_draw_ex'), ('SP', 0), 287561451, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "90d3bad52d9703317533e5b9a8241d60f7f6bfa20a0c5c48c67249fddbce0c5a",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1156718256,
+     1944344031,
+     6,
+     617681966
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-13",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 13,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    284812
+   ],
+   "events_head": [
+    "('C', 0, 4, 1996365079, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "d1cc0d50a982c4b1be9430081452775ebb464c2b99dec46208514b57098b4441",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1996365079,
+     12,
+     3,
+     470668832
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-14",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 14,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    284812
+   ],
+   "events_head": [
+    "('C', 0, 4, 7, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "f3a73256a066aeb2b4875717137046b3b6ca865a354f2237e3679b859409a78f",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     7,
+     256,
+     5,
+     4
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-15",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 15,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    284812,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4, 2024561310, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_bmp_bitmap_draw_ex'), ('SP', 0), 886755549, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1e9547498017c7feb934e89ab4ac02ce601eb11926862020252fdfe9c7127498",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2024561310,
+     2147483648,
+     3454407978,
+     16
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-16",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 16,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    284812
+   ],
+   "events_head": [
+    "('C', 0, 4, 3, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c37cbb7876cff3036c8a0ae716dcd60b6d35be7ad17ee9f24b82b5c3810f9ab1",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     3254638692,
+     1168623309,
+     4252165479
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-17",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 17,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    284812
+   ],
+   "events_head": [
+    "('C', 0, 4, 3912442165, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "67d9bd8b1d9ce125297ea5537bb5cd24097646fcdc2eb215b00eddf113b24d1e",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3912442165,
+     0,
+     697236451,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-18",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 18,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    284812,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4, 6, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_bmp_bitmap_draw_ex'), ('SP', 0), 4075769455, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "f7ad820df464cd9188d69d83d37d0bc7dd31fe1f69c0ce52991d952b90e022e9",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     6,
+     1536401714,
+     4178753371,
+     255
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-19",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 19,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    284812,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4, 843060076, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_bmp_bitmap_draw_ex'), ('SP', 0), 2217669457, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "7909d1eb85c0b1bf02f4bc703b0fcdb3e9170f9d156c6e7f72e7c1ebb8245ecc",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     843060076,
+     1,
+     2870852768,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-21",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 21,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    284812
+   ],
+   "events_head": [
+    "('C', 0, 4, 1591295399, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "a0c95ef0eb95c2a5a1e104e80c3746f154930d4630bb1573417c2686dba7a27a",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1591295399,
+     241044672,
+     2034212132,
+     1515885587
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-23",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 23,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    284812,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4, 3751937804, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_bmp_bitmap_draw_ex'), ('SP', 0), 3712121755, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "9c8ae3076e9eb4ff4843218ef41d63ed44191ae578e1598c71f280978d6885d9",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3751937804,
+     12,
+     2149248134,
+     604019693
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-25",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 25,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    284812
+   ],
+   "events_head": [
+    "('C', 0, 4, 2992330384, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "837b9fd3eb556f943c712b9f0116815e01d8788831fb003e3a6e260dfe1b67ab",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2992330384,
+     12,
+     3037640278,
+     2678623347
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-26",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 26,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    284812,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4, 187818536, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_bmp_bitmap_draw_ex'), ('SP', 0), 1775869161, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "b184e163600f39587c2a0d3391d3688203dd301d111ef64f0aad6e7ce2b5f6da",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     187818536,
+     681194263,
+     3639365232,
+     4125446660
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-27",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 27,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    284812,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4, 3711083943, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_bmp_bitmap_draw_ex'), ('SP', 0), 1542213390, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "2649021f637abbafeeb706c9faf8bdfeb1ab6d60f490af013af8ba526e62395e",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3711083943,
+     4285183211,
+     1,
+     2592385448
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-28",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 28,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    284812
+   ],
+   "events_head": [
+    "('C', 0, 4, 739928864, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e4eec3daf9ac56ff6a8d8438e123cd0733fe90fb31a3bddd65a608be6355cc03",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     739928864,
+     256,
+     3886541357,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-29",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 29,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    284812,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4, 256, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_bmp_bitmap_draw_ex'), ('SP', 0), 2417460406, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "107de2082c759673376913613d710d8b336d69613b26e4e2cc839387394cc4e6",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     256,
+     8,
+     1,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-30",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 30,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    284812,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4, 4294967295, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_bmp_bitmap_draw_ex'), ('SP', 0), 1988174091, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c0d72658f5580c51ec54fe288926db5799f006fc72ebd78db0d06e4e4b324a19",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4294967295,
+     2461003590,
+     7,
+     53351545
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-31",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 31,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    284812,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4, 1839753098, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_bmp_bitmap_draw_ex'), ('SP', 0), 615009301, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ef3cd949bb87a16cfd399e196dc9ba2f2bd755b4f5a7258366cc256090e9254e",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1839753098,
+     2706821390,
+     3442053927,
+     1170652979
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-32",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 32,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    284812
+   ],
+   "events_head": [
+    "('C', 0, 4, 1076094348, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "2f686e49cc4c3fcf863319eb64822393ccfabeb59d89df35c999bf1d4d93f935",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1076094348,
+     7,
+     7,
+     5
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-33",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 33,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    284812,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4, 12, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_bmp_bitmap_draw_ex'), ('SP', 0), 2360084761, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "99c4bc1181a019004204bd5ad0bd8cf7f6f5bcac6e4535dd648bd61d46c4c2b2",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     12,
+     3990671540,
+     922796015,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-34",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 34,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    284812,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4, 2726887024, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_bmp_bitmap_draw_ex'), ('SP', 0), 4019880274, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "7c712b5ab65d51653ad77dd2960673ae1aa9080835584abfa3a3c36c895bb6b8",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2726887024,
+     3578977268,
+     4001652011,
+     1
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-35",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 35,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    284812,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4, 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_bmp_bitmap_draw_ex'), ('SP', 0), 823752600, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1d84ecf96082b0e37082a006fbebfba6558f3818bca056417864a3b71c567faf",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     12,
+     2147483647,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-36",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 36,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    284812
+   ],
+   "events_head": [
+    "('C', 0, 4, 1, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "929bfd8ed7a2c1e44b6e5e082ea48dba1e5ac979adf8015d4c9894029a804bd8",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1,
+     2057795936,
+     2725586938,
+     1299241558
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-37",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 37,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    284812
+   ],
+   "events_head": [
+    "('C', 0, 4, 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "44ba004537fb3d1eb7b8ec976c5ec7361485c1acf5b1ccf2a31fcfcbe6cf8198",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     255,
+     1,
+     2
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-38",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 38,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    284812,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4, 3, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_bmp_bitmap_draw_ex'), ('SP', 0), 2944518647, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "7d1f11fed02e3baa6ab2538fd6c4f234983bd2590ff2912af352dfb20a81d428",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     1587124134,
+     3774328631,
+     1997155928
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-39",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 39,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    284812,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4, 3886568119, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_bmp_bitmap_draw_ex'), ('SP', 0), 2096484019, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "079fddb25f38ebfd2097cd61a77c8932492dfa014863b0ec6b7a861bc7a98b00",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3886568119,
+     256,
+     3059135833,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-41",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 41,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    284812,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4, 538639782, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_bmp_bitmap_draw_ex'), ('SP', 0), 509112996, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "8db0d6ce7b6fd1a6359a450b76c9507c77f87c45511e4a2c8fa8e6b10c9ac572",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     538639782,
+     4,
+     12,
+     3983748582
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-42",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 42,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    284812,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4, 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_bmp_bitmap_draw_ex'), ('SP', 0), 217414738, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "118689bcd144cd9e9888953a1a68c4f543571d597e21927f9378783301babae2",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     3098095624,
+     1643521744,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-44",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 44,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    284812
+   ],
+   "events_head": [
+    "('C', 0, 4, 12, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "359546ebbc538ec9fc259d571414a22de276df3085f6d11d50694d085aad355c",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     12,
+     2147483648,
+     2737014790,
+     2486441645
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-45",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 45,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    284812
+   ],
+   "events_head": [
+    "('C', 0, 4, 2311625221, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ad2414811d5cba73037f556e53f80d2f20be49c750f607943603119aa67a8207",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2311625221,
+     2147483648,
+     2205369221,
+     2288169737
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-46",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 46,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    3
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    284812,
+    551940
+   ],
+   "events_head": [
+    "('C', 0, 4, 2345269775, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, 554330043, 3389796224, 155888624, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "2000466b0cc1d6e1f3de33912458a6c00d3eda84ac6a6902ff2ea9070c025002",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2345269775,
+     3092785552,
+     1935641720,
+     554330043
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 400,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    3,
+    0,
+    4,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    284812,
+    551940,
+    274856,
+    513338,
+    274856
+   ],
+   "events_head": [
+    "('C', 0, 4, 3358579451, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, 6, 282564994, 4095327302, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('C', 3, 3776550554, 6, 3442535913, 4180234326, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "dfa1dfbc2382559087c00ea689a7c09137687284da4a32363bed68e5bb4b37a2",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3358579451,
+     2876352768,
+     168044460,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      1
+     ],
+     [
+      1,
+      0,
+      1
+     ],
+     [
+      2,
+      0,
+      1
+     ],
+     [
+      3,
+      0,
+      1
+     ],
+     [
+      4,
+      0,
+      1
+     ],
+     [
+      5,
+      0,
+      1
+     ],
+     [
+      6,
+      0,
+      1
+     ],
+     [
+      7,
+      0,
+      1
+     ],
+     [
+      8,
+      0,
+      1
+     ],
+     [
+      9,
+      0,
+      1
+     ],
+     [
+      10,
+      0,
+      1
+     ],
+     [
+      0,
+      1,
+      1
+     ],
+     [
+      1,
+      1,
+      1
+     ],
+     [
+      2,
+      1,
+      1
+     ],
+     [
+      3,
+      1,
+      1
+     ],
+     [
+      4,
+      1,
+      1
+     ],
+     [
+      5,
+      1,
+      1
+     ],
+     [
+      6,
+      1,
+      1
+     ],
+     [
+      7,
+      1,
+      1
+     ],
+     [
+      8,
+      1,
+      1
+     ],
+     [
+      9,
+      1,
+      1
+     ],
+     [
+      10,
+      1,
+      1
+     ]
+    ],
+    "scratch_seed": 401,
+    "xpsr": 0
+   },
+   "new_instructions": 51,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    3,
+    0,
+    4,
+    4,
+    0,
+    0,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    284812,
+    551940,
+    274856,
+    291276,
+    513338,
+    274856,
+    92072,
+    92072,
+    291424
+   ],
+   "events_head": [
+    "('C', 0, 4, 2301873280, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, 888612868, 459146665, 3991678908, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('C', 3, 3831808598, 0, 2147483647, 5, 'S', 'F', 'T', None)",
+    "('C', 4, 3831808598, 888612868, 284705205, 146454092, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)",
+    "('C', 6, 'S', 'F', 'T', None)",
+    "('C', 7, 'S', 'F', 'T', None)",
+    "('C', 8, 0, 0, 2147483647, 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "6529541adb35eae9f54049beb61b0dcaa4d09574a04ec404b96aba5464e403b2",
+    "kind": "return",
+    "ncalls": 9,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2301873280,
+     2147483647,
+     5,
+     888612868
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-2",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      2
+     ],
+     [
+      1,
+      0,
+      2
+     ],
+     [
+      2,
+      0,
+      2
+     ],
+     [
+      3,
+      0,
+      2
+     ],
+     [
+      4,
+      0,
+      2
+     ],
+     [
+      5,
+      0,
+      2
+     ],
+     [
+      6,
+      0,
+      2
+     ],
+     [
+      7,
+      0,
+      2
+     ],
+     [
+      8,
+      0,
+      2
+     ],
+     [
+      9,
+      0,
+      2
+     ],
+     [
+      10,
+      0,
+      2
+     ],
+     [
+      0,
+      1,
+      2
+     ],
+     [
+      1,
+      1,
+      2
+     ],
+     [
+      2,
+      1,
+      2
+     ],
+     [
+      3,
+      1,
+      2
+     ],
+     [
+      4,
+      1,
+      2
+     ],
+     [
+      5,
+      1,
+      2
+     ],
+     [
+      6,
+      1,
+      2
+     ],
+     [
+      7,
+      1,
+      2
+     ],
+     [
+      8,
+      1,
+      2
+     ],
+     [
+      9,
+      1,
+      2
+     ],
+     [
+      10,
+      1,
+      2
+     ]
+    ],
+    "scratch_seed": 402,
+    "xpsr": 0
+   },
+   "new_instructions": 79,
+   "stack_args": []
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 93,
+  "ratio": 0.8611,
+  "total": 108,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 266,
+ "globals": [
+  "0x2000230c",
+  "0x20007554",
+  "0x2000a034"
+ ],
+ "module": "gui",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "i32",
+ "search": {
+  "candidates": 189,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 1,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 44,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 266,
+ "symbol": "gui_bmp_bitmap_draw_ex",
+ "va": "0x000435d4"
+}

@@ -157,13 +157,23 @@ def default_trees(core="app"):
         refactor pipeline sees it.
     B = stage 09, the head of the refactor ladder -- modular, merged TUs.
     """
+    # The net half of every stage tree is FLAT: stage 03 created module
+    # directories for app only, so `modules_only=True` indexes ZERO net units
+    # and every net symbol silently reports ABSENT -- a sweep would then report
+    # "no disagreements" having replayed nothing, which is this project's
+    # recurring vacuous-gate shape.  Measured by the net-core pass, 2026-07-28:
+    # net stage 09 has 1,155 top-level .c files and 0 module directories.
+    # Patch supplied in recon/analysis/net_test_coverage.md §1.2 and applied
+    # here by the owner of tools/modtest/**.
+    refactored_modules_only = (core != "net")
     return {
         "canonical": build(
             os.path.join(REPO, "recon/refactor/stage_00_snapshot/tree"),
             core=core, name="canonical(stage00)", modules_only=False),
         "refactored": build(
             os.path.join(REPO, "recon/refactor/stage_09_call_cohesion/tree"),
-            core=core, name="refactored(stage09)", modules_only=True),
+            core=core, name="refactored(stage09)",
+            modules_only=refactored_modules_only),
     }
 
 

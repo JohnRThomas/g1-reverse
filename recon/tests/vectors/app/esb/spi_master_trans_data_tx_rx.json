@@ -1,0 +1,5111 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    422660,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 536943580, ('SP', 0), 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): sipm(bus=%d)-sync fail: status: %d -- %d\\n'), ('RO', b'spi_master_trans_data_tx_rx'), 90, 2556510175, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "8e5daa5ec584083a79b31156ad9e80b9b0d216897cc60be78b8c6bdb9511408a",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943568,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 33,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         12
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         4
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         0
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ],
+        [
+         12,
+         166
+        ],
+        [
+         13,
+         190
+        ],
+        [
+         14,
+         2
+        ],
+        [
+         15,
+         201
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    422660
+   ],
+   "events_head": [
+    "('C', 0, 536947256, ('SP', 0), 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "cc4dea53d0ed5830491685866db66bf648e17c650a118996d663933c81b05e0a",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536947244,
+     1797429778,
+     2147483648,
+     315044147
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-1",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 1,
+    "xpsr": 0
+   },
+   "new_instructions": 24,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         18
+        ],
+        [
+         1,
+         154
+        ],
+        [
+         2,
+         34
+        ],
+        [
+         3,
+         107
+        ],
+        [
+         4,
+         0
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         128
+        ],
+        [
+         8,
+         51
+        ],
+        [
+         9,
+         49
+        ],
+        [
+         10,
+         199
+        ],
+        [
+         11,
+         18
+        ],
+        [
+         12,
+         9
+        ],
+        [
+         13,
+         93
+        ],
+        [
+         14,
+         228
+        ],
+        [
+         15,
+         22
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    422660,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 536943324, ('SP', 0), 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): sipm(bus=%d)-sync fail: status: %d -- %d\\n'), ('RO', b'spi_master_trans_data_tx_rx'), 213, 2556510175, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ae667298256affe243b271e4760674f11d3422787cffa67ff85b4697bf5c02b8",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943312,
+     598759513,
+     3677430904,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-2",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 2,
+    "xpsr": 0
+   },
+   "new_instructions": 33,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         89
+        ],
+        [
+         1,
+         88
+        ],
+        [
+         2,
+         176
+        ],
+        [
+         3,
+         35
+        ],
+        [
+         4,
+         120
+        ],
+        [
+         5,
+         36
+        ],
+        [
+         6,
+         49
+        ],
+        [
+         7,
+         219
+        ],
+        [
+         8,
+         7
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ],
+        [
+         12,
+         147
+        ],
+        [
+         13,
+         56
+        ],
+        [
+         14,
+         114
+        ],
+        [
+         15,
+         59
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    422660
+   ],
+   "events_head": [
+    "('C', 0, 536945640, ('SP', 0), 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "f4d79c5ad3f20532e552179cff09232172695d7b93800c6483117c4898c1c0c3",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945628,
+     255,
+     8,
+     3619521758
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-3",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 3,
+    "xpsr": 0
+   },
+   "new_instructions": 24,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         8
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         222
+        ],
+        [
+         9,
+         132
+        ],
+        [
+         10,
+         189
+        ],
+        [
+         11,
+         215
+        ],
+        [
+         12,
+         168
+        ],
+        [
+         13,
+         229
+        ],
+        [
+         14,
+         18
+        ],
+        [
+         15,
+         182
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    422660,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 536945876, ('SP', 0), 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): sipm(bus=%d)-sync fail: status: %d -- %d\\n'), ('RO', b'spi_master_trans_data_tx_rx'), 5, 2556510175, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "69202744baeadcdfb5a893e08b21b415c8c2f66bdd427e1fe50743b88e489323",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945864,
+     2147483647,
+     3842370354,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-4",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 4,
+    "xpsr": 0
+   },
+   "new_instructions": 33,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         127
+        ],
+        [
+         4,
+         50
+        ],
+        [
+         5,
+         235
+        ],
+        [
+         6,
+         5
+        ],
+        [
+         7,
+         229
+        ],
+        [
+         8,
+         6
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ],
+        [
+         12,
+         46
+        ],
+        [
+         13,
+         188
+        ],
+        [
+         14,
+         49
+        ],
+        [
+         15,
+         252
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    422660
+   ],
+   "events_head": [
+    "('C', 0, 536939600, ('SP', 0), 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "08f65f6b9ad5e49ca8952320faa7f78d3ec72178d03fa49311b3ccc05c4e2550",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939588,
+     3188701995,
+     8,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-5",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 5,
+    "xpsr": 0
+   },
+   "new_instructions": 24,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         43
+        ],
+        [
+         1,
+         187
+        ],
+        [
+         2,
+         15
+        ],
+        [
+         3,
+         190
+        ],
+        [
+         4,
+         8
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         7
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ],
+        [
+         12,
+         151
+        ],
+        [
+         13,
+         111
+        ],
+        [
+         14,
+         189
+        ],
+        [
+         15,
+         169
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    422660
+   ],
+   "events_head": [
+    "('C', 0, 536950912, ('SP', 0), 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "930910e91931e2cdbb5d81c670d0513f4e4f242e8d5c1cec06cceb0eb9c2afed",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536950900,
+     3322790363,
+     5,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-6",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 6,
+    "xpsr": 0
+   },
+   "new_instructions": 24,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         219
+        ],
+        [
+         1,
+         193
+        ],
+        [
+         2,
+         13
+        ],
+        [
+         3,
+         198
+        ],
+        [
+         4,
+         5
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         255
+        ],
+        [
+         9,
+         255
+        ],
+        [
+         10,
+         255
+        ],
+        [
+         11,
+         127
+        ],
+        [
+         12,
+         151
+        ],
+        [
+         13,
+         199
+        ],
+        [
+         14,
+         174
+        ],
+        [
+         15,
+         195
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    422660
+   ],
+   "events_head": [
+    "('C', 0, 536941604, ('SP', 0), 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "710d240a963b2ad2be8cdf6079e6aadbd23eef27d462c7c4ba8260e12525459c",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941592,
+     1604804925,
+     1,
+     2363272863
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-7",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 7,
+    "xpsr": 0
+   },
+   "new_instructions": 24,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         61
+        ],
+        [
+         1,
+         97
+        ],
+        [
+         2,
+         167
+        ],
+        [
+         3,
+         95
+        ],
+        [
+         4,
+         1
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         159
+        ],
+        [
+         9,
+         174
+        ],
+        [
+         10,
+         220
+        ],
+        [
+         11,
+         140
+        ],
+        [
+         12,
+         195
+        ],
+        [
+         13,
+         58
+        ],
+        [
+         14,
+         169
+        ],
+        [
+         15,
+         149
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    422660
+   ],
+   "events_head": [
+    "('C', 0, 536939056, ('SP', 0), 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e432aa4515b12257bc31b6fdae5cf86e8a36742e1c9e7973949117e19efe0663",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939044,
+     708972563,
+     558645175,
+     4
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-8",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 8,
+    "xpsr": 0
+   },
+   "new_instructions": 24,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         19
+        ],
+        [
+         1,
+         16
+        ],
+        [
+         2,
+         66
+        ],
+        [
+         3,
+         42
+        ],
+        [
+         4,
+         183
+        ],
+        [
+         5,
+         63
+        ],
+        [
+         6,
+         76
+        ],
+        [
+         7,
+         33
+        ],
+        [
+         8,
+         4
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ],
+        [
+         12,
+         83
+        ],
+        [
+         13,
+         22
+        ],
+        [
+         14,
+         30
+        ],
+        [
+         15,
+         218
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    422660,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 536944704, ('SP', 0), 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): sipm(bus=%d)-sync fail: status: %d -- %d\\n'), ('RO', b'spi_master_trans_data_tx_rx'), 227, 2556510175, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "d265d6c9277b7374f02be2aa9f82df4937fa63d416679d82482ca84a9dd71ad8",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944692,
+     1556998536,
+     499087790,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-9",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 9,
+    "xpsr": 0
+   },
+   "new_instructions": 33,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         136
+        ],
+        [
+         1,
+         233
+        ],
+        [
+         2,
+         205
+        ],
+        [
+         3,
+         92
+        ],
+        [
+         4,
+         174
+        ],
+        [
+         5,
+         121
+        ],
+        [
+         6,
+         191
+        ],
+        [
+         7,
+         29
+        ],
+        [
+         8,
+         255
+        ],
+        [
+         9,
+         255
+        ],
+        [
+         10,
+         255
+        ],
+        [
+         11,
+         127
+        ],
+        [
+         12,
+         120
+        ],
+        [
+         13,
+         87
+        ],
+        [
+         14,
+         0
+        ],
+        [
+         15,
+         75
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    422660,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 536939216, ('SP', 0), 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): sipm(bus=%d)-sync fail: status: %d -- %d\\n'), ('RO', b'spi_master_trans_data_tx_rx'), 202, 2556510175, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "71e75b8bbb7c2c5ffdc9bbb01b0fb7f926b64880cbf237cadb84208415e9158b",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939204,
+     995058044,
+     8,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-10",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 10,
+    "xpsr": 0
+   },
+   "new_instructions": 33,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         124
+        ],
+        [
+         1,
+         97
+        ],
+        [
+         2,
+         79
+        ],
+        [
+         3,
+         59
+        ],
+        [
+         4,
+         8
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         1
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ],
+        [
+         12,
+         101
+        ],
+        [
+         13,
+         235
+        ],
+        [
+         14,
+         41
+        ],
+        [
+         15,
+         187
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    422660,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 536937052, ('SP', 0), 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): sipm(bus=%d)-sync fail: status: %d -- %d\\n'), ('RO', b'spi_master_trans_data_tx_rx'), 219, 2556510175, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "539d9ae1a8d5498e894eeb025efa04b51d74b503bc774e3fdf84130066ab30d8",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536937040,
+     2147483648,
+     256,
+     1426281073
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-11",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 11,
+    "xpsr": 0
+   },
+   "new_instructions": 33,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         128
+        ],
+        [
+         4,
+         0
+        ],
+        [
+         5,
+         1
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         113
+        ],
+        [
+         9,
+         82
+        ],
+        [
+         10,
+         3
+        ],
+        [
+         11,
+         85
+        ],
+        [
+         12,
+         123
+        ],
+        [
+         13,
+         48
+        ],
+        [
+         14,
+         242
+        ],
+        [
+         15,
+         115
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    422660,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 536944532, ('SP', 0), 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): sipm(bus=%d)-sync fail: status: %d -- %d\\n'), ('RO', b'spi_master_trans_data_tx_rx'), 198, 2556510175, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "7f6fb1e1608a855949c6d50da7f66bec4c3e0039be7dea6e0e2b601aef5ad6d7",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944520,
+     3217736208,
+     5,
+     1103693227
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-12",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 12,
+    "xpsr": 0
+   },
+   "new_instructions": 33,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         16
+        ],
+        [
+         1,
+         194
+        ],
+        [
+         2,
+         202
+        ],
+        [
+         3,
+         191
+        ],
+        [
+         4,
+         5
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         171
+        ],
+        [
+         9,
+         5
+        ],
+        [
+         10,
+         201
+        ],
+        [
+         11,
+         65
+        ],
+        [
+         12,
+         162
+        ],
+        [
+         13,
+         130
+        ],
+        [
+         14,
+         145
+        ],
+        [
+         15,
+         98
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    422660,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 536944316, ('SP', 0), 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): sipm(bus=%d)-sync fail: status: %d -- %d\\n'), ('RO', b'spi_master_trans_data_tx_rx'), 214, 2556510175, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "898cb8e3725b6a29b46df2ed7777b5cba8ac39c1f58c3b412d7966ed22e822ac",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944304,
+     1944344031,
+     6,
+     617681966
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-13",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 13,
+    "xpsr": 0
+   },
+   "new_instructions": 33,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         223
+        ],
+        [
+         1,
+         85
+        ],
+        [
+         2,
+         228
+        ],
+        [
+         3,
+         115
+        ],
+        [
+         4,
+         6
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         46
+        ],
+        [
+         9,
+         20
+        ],
+        [
+         10,
+         209
+        ],
+        [
+         11,
+         36
+        ],
+        [
+         12,
+         230
+        ],
+        [
+         13,
+         42
+        ],
+        [
+         14,
+         63
+        ],
+        [
+         15,
+         140
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    422660
+   ],
+   "events_head": [
+    "('C', 0, 536943904, ('SP', 0), 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e2451fa2d29e68345de9883d622f184544f9a7e2be7ad863e15d7f49d9513ab0",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943892,
+     12,
+     3,
+     470668832
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-14",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 14,
+    "xpsr": 0
+   },
+   "new_instructions": 24,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         12
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         3
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         32
+        ],
+        [
+         9,
+         214
+        ],
+        [
+         10,
+         13
+        ],
+        [
+         11,
+         28
+        ],
+        [
+         12,
+         138
+        ],
+        [
+         13,
+         254
+        ],
+        [
+         14,
+         123
+        ],
+        [
+         15,
+         229
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    422660
+   ],
+   "events_head": [
+    "('C', 0, 536952416, ('SP', 0), 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "9045790d7cf4421fe976809c3655872e2f0d04c2585896e4d529b371dc5164eb",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952404,
+     256,
+     5,
+     4
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-15",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 15,
+    "xpsr": 0
+   },
+   "new_instructions": 24,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         1
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         5
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         4
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ],
+        [
+         12,
+         106
+        ],
+        [
+         13,
+         221
+        ],
+        [
+         14,
+         120
+        ],
+        [
+         15,
+         199
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    422660,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 536943272, ('SP', 0), 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): sipm(bus=%d)-sync fail: status: %d -- %d\\n'), ('RO', b'spi_master_trans_data_tx_rx'), 237, 2556510175, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "18fc374e576b22daba7bd808788575a26b700aaf9e31e5e0e152c4cbbf8d8da1",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943260,
+     2147483648,
+     3454407978,
+     16
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-16",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 16,
+    "xpsr": 0
+   },
+   "new_instructions": 33,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         128
+        ],
+        [
+         4,
+         42
+        ],
+        [
+         5,
+         21
+        ],
+        [
+         6,
+         230
+        ],
+        [
+         7,
+         205
+        ],
+        [
+         8,
+         16
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ],
+        [
+         12,
+         168
+        ],
+        [
+         13,
+         91
+        ],
+        [
+         14,
+         41
+        ],
+        [
+         15,
+         98
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    422660
+   ],
+   "events_head": [
+    "('C', 0, 536944028, ('SP', 0), 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "88a67733ee76769aea25f1d43bb40cdb3df08218087f8e8705736414c8430655",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944016,
+     3254638692,
+     1168623309,
+     4252165479
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-17",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 17,
+    "xpsr": 0
+   },
+   "new_instructions": 24,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         100
+        ],
+        [
+         1,
+         216
+        ],
+        [
+         2,
+         253
+        ],
+        [
+         3,
+         193
+        ],
+        [
+         4,
+         205
+        ],
+        [
+         5,
+         198
+        ],
+        [
+         6,
+         167
+        ],
+        [
+         7,
+         69
+        ],
+        [
+         8,
+         103
+        ],
+        [
+         9,
+         229
+        ],
+        [
+         10,
+         114
+        ],
+        [
+         11,
+         253
+        ],
+        [
+         12,
+         2
+        ],
+        [
+         13,
+         94
+        ],
+        [
+         14,
+         44
+        ],
+        [
+         15,
+         253
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    422660
+   ],
+   "events_head": [
+    "('C', 0, 536944960, ('SP', 0), 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "acef2df2ba708e9d2336e9ab1c43f19b8afbb41877c3a864f6693d7fdb58f511",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944948,
+     0,
+     697236451,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-18",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 18,
+    "xpsr": 0
+   },
+   "new_instructions": 24,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         227
+        ],
+        [
+         5,
+         251
+        ],
+        [
+         6,
+         142
+        ],
+        [
+         7,
+         41
+        ],
+        [
+         8,
+         1
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ],
+        [
+         12,
+         179
+        ],
+        [
+         13,
+         26
+        ],
+        [
+         14,
+         190
+        ],
+        [
+         15,
+         121
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    422660,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 536939296, ('SP', 0), 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): sipm(bus=%d)-sync fail: status: %d -- %d\\n'), ('RO', b'spi_master_trans_data_tx_rx'), 0, 2556510175, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "fcfbd92bf1e9e96666af37066779611b38e4ad39037d194f69670e64669a2ca5",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939284,
+     1536401714,
+     4178753371,
+     255
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-19",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 19,
+    "xpsr": 0
+   },
+   "new_instructions": 33,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         50
+        ],
+        [
+         1,
+         161
+        ],
+        [
+         2,
+         147
+        ],
+        [
+         3,
+         91
+        ],
+        [
+         4,
+         91
+        ],
+        [
+         5,
+         183
+        ],
+        [
+         6,
+         18
+        ],
+        [
+         7,
+         249
+        ],
+        [
+         8,
+         255
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ],
+        [
+         12,
+         78
+        ],
+        [
+         13,
+         173
+        ],
+        [
+         14,
+         183
+        ],
+        [
+         15,
+         126
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    422660
+   ],
+   "events_head": [
+    "('C', 0, 536952752, ('SP', 0), 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "66efca226f720b56d5b7b3e22a098585e2597433567c9b166aca4442e8e74a54",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952740,
+     2306919366,
+     2,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-20",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 20,
+    "xpsr": 0
+   },
+   "new_instructions": 24,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         198
+        ],
+        [
+         1,
+         203
+        ],
+        [
+         2,
+         128
+        ],
+        [
+         3,
+         137
+        ],
+        [
+         4,
+         2
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         7
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ],
+        [
+         12,
+         115
+        ],
+        [
+         13,
+         225
+        ],
+        [
+         14,
+         234
+        ],
+        [
+         15,
+         212
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    422660,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 536941432, ('SP', 0), 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): sipm(bus=%d)-sync fail: status: %d -- %d\\n'), ('RO', b'spi_master_trans_data_tx_rx'), 253, 2556510175, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "7aee8f04bdfab42f06bd938da22b5059d8efbf5ff46b554250c4a92f7e39d9d5",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941420,
+     1,
+     2870852768,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-21",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 21,
+    "xpsr": 0
+   },
+   "new_instructions": 33,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         160
+        ],
+        [
+         5,
+         188
+        ],
+        [
+         6,
+         29
+        ],
+        [
+         7,
+         171
+        ],
+        [
+         8,
+         0
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ],
+        [
+         12,
+         210
+        ],
+        [
+         13,
+         248
+        ],
+        [
+         14,
+         44
+        ],
+        [
+         15,
+         101
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    422660
+   ],
+   "events_head": [
+    "('C', 0, 536937408, ('SP', 0), 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "4bcf7da4065369a92c4181e2a1d883651ff58c3a2e152d36a803b32a7236e0ce",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536937396,
+     3001296298,
+     4294967295,
+     2451975022
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-22",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 22,
+    "xpsr": 0
+   },
+   "new_instructions": 24,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         170
+        ],
+        [
+         1,
+         37
+        ],
+        [
+         2,
+         228
+        ],
+        [
+         3,
+         178
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ],
+        [
+         8,
+         110
+        ],
+        [
+         9,
+         43
+        ],
+        [
+         10,
+         38
+        ],
+        [
+         11,
+         146
+        ],
+        [
+         12,
+         139
+        ],
+        [
+         13,
+         231
+        ],
+        [
+         14,
+         101
+        ],
+        [
+         15,
+         242
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    422660
+   ],
+   "events_head": [
+    "('C', 0, 536952240, ('SP', 0), 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "dd474fe80b4632a3240ed5508ce59343958c23b8b4e53f03533d13f683db9582",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952228,
+     241044672,
+     2034212132,
+     1515885587
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-23",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 23,
+    "xpsr": 0
+   },
+   "new_instructions": 24,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         192
+        ],
+        [
+         1,
+         12
+        ],
+        [
+         2,
+         94
+        ],
+        [
+         3,
+         14
+        ],
+        [
+         4,
+         36
+        ],
+        [
+         5,
+         157
+        ],
+        [
+         6,
+         63
+        ],
+        [
+         7,
+         121
+        ],
+        [
+         8,
+         19
+        ],
+        [
+         9,
+         148
+        ],
+        [
+         10,
+         90
+        ],
+        [
+         11,
+         90
+        ],
+        [
+         12,
+         106
+        ],
+        [
+         13,
+         211
+        ],
+        [
+         14,
+         145
+        ],
+        [
+         15,
+         7
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    422660
+   ],
+   "events_head": [
+    "('C', 0, 536949920, ('SP', 0), 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "3e239a7bb2f85e6b04e7f819d6e5a585c792b6cbf48d6163e906e5c9f524a6b7",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536949908,
+     6,
+     2967241396,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-24",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 24,
+    "xpsr": 0
+   },
+   "new_instructions": 24,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         6
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         180
+        ],
+        [
+         5,
+         130
+        ],
+        [
+         6,
+         220
+        ],
+        [
+         7,
+         176
+        ],
+        [
+         8,
+         7
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ],
+        [
+         12,
+         162
+        ],
+        [
+         13,
+         108
+        ],
+        [
+         14,
+         212
+        ],
+        [
+         15,
+         247
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    422660,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 536938264, ('SP', 0), 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): sipm(bus=%d)-sync fail: status: %d -- %d\\n'), ('RO', b'spi_master_trans_data_tx_rx'), 98, 2556510175, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "69283cbe808e9c6f23d8de3b04f0389183789d776983197925f4955bb3cbc6d4",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536938252,
+     12,
+     2149248134,
+     604019693
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-25",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 25,
+    "xpsr": 0
+   },
+   "new_instructions": 33,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         12
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         134
+        ],
+        [
+         5,
+         236
+        ],
+        [
+         6,
+         26
+        ],
+        [
+         7,
+         128
+        ],
+        [
+         8,
+         237
+        ],
+        [
+         9,
+         155
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         36
+        ],
+        [
+         12,
+         130
+        ],
+        [
+         13,
+         21
+        ],
+        [
+         14,
+         225
+        ],
+        [
+         15,
+         35
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    422660
+   ],
+   "events_head": [
+    "('C', 0, 536942236, ('SP', 0), 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1d27c41f19c3eeed8c3be731f194c9ba53e03cbec80785aa57f06b3f1d46bee2",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536942224,
+     12,
+     3037640278,
+     2678623347
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-26",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 26,
+    "xpsr": 0
+   },
+   "new_instructions": 24,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         12
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         86
+        ],
+        [
+         5,
+         182
+        ],
+        [
+         6,
+         14
+        ],
+        [
+         7,
+         181
+        ],
+        [
+         8,
+         115
+        ],
+        [
+         9,
+         140
+        ],
+        [
+         10,
+         168
+        ],
+        [
+         11,
+         159
+        ],
+        [
+         12,
+         103
+        ],
+        [
+         13,
+         60
+        ],
+        [
+         14,
+         78
+        ],
+        [
+         15,
+         34
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    422660,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 536945204, ('SP', 0), 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): sipm(bus=%d)-sync fail: status: %d -- %d\\n'), ('RO', b'spi_master_trans_data_tx_rx'), 0, 2556510175, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "44bb6690222b77090a2d9222692f1a70de2bfa55bce0cd0d62da412a8dfd89be",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945192,
+     681194263,
+     3639365232,
+     4125446660
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-27",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 27,
+    "xpsr": 0
+   },
+   "new_instructions": 33,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         23
+        ],
+        [
+         1,
+         51
+        ],
+        [
+         2,
+         154
+        ],
+        [
+         3,
+         40
+        ],
+        [
+         4,
+         112
+        ],
+        [
+         5,
+         78
+        ],
+        [
+         6,
+         236
+        ],
+        [
+         7,
+         216
+        ],
+        [
+         8,
+         4
+        ],
+        [
+         9,
+         82
+        ],
+        [
+         10,
+         229
+        ],
+        [
+         11,
+         245
+        ],
+        [
+         12,
+         6
+        ],
+        [
+         13,
+         157
+        ],
+        [
+         14,
+         168
+        ],
+        [
+         15,
+         11
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    422660,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 536946096, ('SP', 0), 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): sipm(bus=%d)-sync fail: status: %d -- %d\\n'), ('RO', b'spi_master_trans_data_tx_rx'), 184, 2556510175, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "febd3d8d39dce2859e2722c82629a24572040de567f858d9a0d1722c92e968d6",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946084,
+     4285183211,
+     1,
+     2592385448
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-28",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 28,
+    "xpsr": 0
+   },
+   "new_instructions": 33,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         235
+        ],
+        [
+         1,
+         180
+        ],
+        [
+         2,
+         106
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         1
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         168
+        ],
+        [
+         9,
+         169
+        ],
+        [
+         10,
+         132
+        ],
+        [
+         11,
+         154
+        ],
+        [
+         12,
+         180
+        ],
+        [
+         13,
+         60
+        ],
+        [
+         14,
+         210
+        ],
+        [
+         15,
+         141
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    422660
+   ],
+   "events_head": [
+    "('C', 0, 536947500, ('SP', 0), 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "5b76bbd108bd964994dbba437eeb010d5256653149d2fee02206a3b915a63413",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536947488,
+     256,
+     3886541357,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-29",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 29,
+    "xpsr": 0
+   },
+   "new_instructions": 24,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         1
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         45
+        ],
+        [
+         5,
+         234
+        ],
+        [
+         6,
+         167
+        ],
+        [
+         7,
+         231
+        ],
+        [
+         8,
+         8
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ],
+        [
+         12,
+         183
+        ],
+        [
+         13,
+         42
+        ],
+        [
+         14,
+         14
+        ],
+        [
+         15,
+         243
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    422660,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 536952808, ('SP', 0), 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): sipm(bus=%d)-sync fail: status: %d -- %d\\n'), ('RO', b'spi_master_trans_data_tx_rx'), 61, 2556510175, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0fc84524a66e7c16d7d0cea3ca796dd2b705aafdc8f02bd85b2fe27e1d2b1178",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952796,
+     8,
+     1,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-30",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 30,
+    "xpsr": 0
+   },
+   "new_instructions": 33,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         8
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         1
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         7
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ],
+        [
+         12,
+         69
+        ],
+        [
+         13,
+         184
+        ],
+        [
+         14,
+         218
+        ],
+        [
+         15,
+         81
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    422660,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 536952312, ('SP', 0), 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): sipm(bus=%d)-sync fail: status: %d -- %d\\n'), ('RO', b'spi_master_trans_data_tx_rx'), 0, 2556510175, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "82af2a5975caf2bb7d81878348627b02abeaa89343462863d0ee37f1f724c950",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952300,
+     2461003590,
+     7,
+     53351545
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-31",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 31,
+    "xpsr": 0
+   },
+   "new_instructions": 33,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         70
+        ],
+        [
+         1,
+         239
+        ],
+        [
+         2,
+         175
+        ],
+        [
+         3,
+         146
+        ],
+        [
+         4,
+         7
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         121
+        ],
+        [
+         9,
+         20
+        ],
+        [
+         10,
+         46
+        ],
+        [
+         11,
+         3
+        ],
+        [
+         12,
+         114
+        ],
+        [
+         13,
+         233
+        ],
+        [
+         14,
+         27
+        ],
+        [
+         15,
+         189
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    422660,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 536946580, ('SP', 0), 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): sipm(bus=%d)-sync fail: status: %d -- %d\\n'), ('RO', b'spi_master_trans_data_tx_rx'), 52, 2556510175, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "4aba1cefc4b2f7ae9fae6fc8c75d77fef6feb485d840b8cb970a7f27fda063c1",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946568,
+     2706821390,
+     3442053927,
+     1170652979
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-32",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 32,
+    "xpsr": 0
+   },
+   "new_instructions": 33,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         14
+        ],
+        [
+         1,
+         209
+        ],
+        [
+         2,
+         86
+        ],
+        [
+         3,
+         161
+        ],
+        [
+         4,
+         39
+        ],
+        [
+         5,
+         147
+        ],
+        [
+         6,
+         41
+        ],
+        [
+         7,
+         205
+        ],
+        [
+         8,
+         51
+        ],
+        [
+         9,
+         191
+        ],
+        [
+         10,
+         198
+        ],
+        [
+         11,
+         69
+        ],
+        [
+         12,
+         231
+        ],
+        [
+         13,
+         203
+        ],
+        [
+         14,
+         157
+        ],
+        [
+         15,
+         159
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    422660
+   ],
+   "events_head": [
+    "('C', 0, 536946072, ('SP', 0), 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "11157c9c6f7a6204a7affc51cb30f391a80da61fe886badb45a9eacc9fa64980",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946060,
+     7,
+     7,
+     5
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-33",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 33,
+    "xpsr": 0
+   },
+   "new_instructions": 24,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         7
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         7
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         5
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ],
+        [
+         12,
+         126
+        ],
+        [
+         13,
+         164
+        ],
+        [
+         14,
+         129
+        ],
+        [
+         15,
+         142
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    422660,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 536950132, ('SP', 0), 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): sipm(bus=%d)-sync fail: status: %d -- %d\\n'), ('RO', b'spi_master_trans_data_tx_rx'), 44, 2556510175, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "3cac4886ad69b348a38c0075c4805ad689fc3fe0f41eeb15dbe82220b5ce99ef",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536950120,
+     3990671540,
+     922796015,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-34",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 34,
+    "xpsr": 0
+   },
+   "new_instructions": 33,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         180
+        ],
+        [
+         1,
+         208
+        ],
+        [
+         2,
+         220
+        ],
+        [
+         3,
+         237
+        ],
+        [
+         4,
+         239
+        ],
+        [
+         5,
+         191
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         55
+        ],
+        [
+         8,
+         255
+        ],
+        [
+         9,
+         255
+        ],
+        [
+         10,
+         255
+        ],
+        [
+         11,
+         127
+        ],
+        [
+         12,
+         114
+        ],
+        [
+         13,
+         181
+        ],
+        [
+         14,
+         31
+        ],
+        [
+         15,
+         95
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    422660,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 536952444, ('SP', 0), 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): sipm(bus=%d)-sync fail: status: %d -- %d\\n'), ('RO', b'spi_master_trans_data_tx_rx'), 61, 2556510175, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "efea83e4502e6ed219890f0dcf9151ee059b89b740dd24cf2b5789fc865ec9d8",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952432,
+     3578977268,
+     4001652011,
+     1
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-35",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 35,
+    "xpsr": 0
+   },
+   "new_instructions": 33,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         244
+        ],
+        [
+         1,
+         219
+        ],
+        [
+         2,
+         82
+        ],
+        [
+         3,
+         213
+        ],
+        [
+         4,
+         43
+        ],
+        [
+         5,
+         93
+        ],
+        [
+         6,
+         132
+        ],
+        [
+         7,
+         238
+        ],
+        [
+         8,
+         1
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ],
+        [
+         12,
+         115
+        ],
+        [
+         13,
+         28
+        ],
+        [
+         14,
+         245
+        ],
+        [
+         15,
+         182
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    422660,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 536944236, ('SP', 0), 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): sipm(bus=%d)-sync fail: status: %d -- %d\\n'), ('RO', b'spi_master_trans_data_tx_rx'), 67, 2556510175, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "64f2afc91a5fda2d9b859342f486af352ec3d07b5c9f6b714a42156707ccadd8",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944224,
+     12,
+     2147483647,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-36",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 36,
+    "xpsr": 0
+   },
+   "new_instructions": 33,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         12
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         127
+        ],
+        [
+         8,
+         8
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ],
+        [
+         12,
+         167
+        ],
+        [
+         13,
+         159
+        ],
+        [
+         14,
+         255
+        ],
+        [
+         15,
+         182
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    422660
+   ],
+   "events_head": [
+    "('C', 0, 536951740, ('SP', 0), 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "f766f003a0bc878972e646643c6b4d725a9798c7c219633d8183cc84f9886d6c",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536951728,
+     2057795936,
+     2725586938,
+     1299241558
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-37",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 37,
+    "xpsr": 0
+   },
+   "new_instructions": 24,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         96
+        ],
+        [
+         1,
+         121
+        ],
+        [
+         2,
+         167
+        ],
+        [
+         3,
+         122
+        ],
+        [
+         4,
+         250
+        ],
+        [
+         5,
+         39
+        ],
+        [
+         6,
+         117
+        ],
+        [
+         7,
+         162
+        ],
+        [
+         8,
+         86
+        ],
+        [
+         9,
+         218
+        ],
+        [
+         10,
+         112
+        ],
+        [
+         11,
+         77
+        ],
+        [
+         12,
+         42
+        ],
+        [
+         13,
+         189
+        ],
+        [
+         14,
+         82
+        ],
+        [
+         15,
+         115
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    422660
+   ],
+   "events_head": [
+    "('C', 0, 536939772, ('SP', 0), 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "9a748d1a0514c02bae3bcd87d0bfdf6c7506a1d1c6e821c7cb591c9ca5195a44",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939760,
+     255,
+     1,
+     2
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-38",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 38,
+    "xpsr": 0
+   },
+   "new_instructions": 24,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         1
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         2
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ],
+        [
+         12,
+         188
+        ],
+        [
+         13,
+         79
+        ],
+        [
+         14,
+         122
+        ],
+        [
+         15,
+         98
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    422660,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 536941436, ('SP', 0), 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): sipm(bus=%d)-sync fail: status: %d -- %d\\n'), ('RO', b'spi_master_trans_data_tx_rx'), 0, 2556510175, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "65f04c37567daa0ecf025404b304d63fbe1ae7728d105b27101e75d8fca00e78",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941424,
+     1587124134,
+     3774328631,
+     1997155928
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-39",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 39,
+    "xpsr": 0
+   },
+   "new_instructions": 33,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         166
+        ],
+        [
+         1,
+         151
+        ],
+        [
+         2,
+         153
+        ],
+        [
+         3,
+         94
+        ],
+        [
+         4,
+         55
+        ],
+        [
+         5,
+         175
+        ],
+        [
+         6,
+         247
+        ],
+        [
+         7,
+         224
+        ],
+        [
+         8,
+         88
+        ],
+        [
+         9,
+         46
+        ],
+        [
+         10,
+         10
+        ],
+        [
+         11,
+         119
+        ],
+        [
+         12,
+         94
+        ],
+        [
+         13,
+         81
+        ],
+        [
+         14,
+         131
+        ],
+        [
+         15,
+         66
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    422660
+   ],
+   "events_head": [
+    "('C', 0, 536943612, ('SP', 0), 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "48b68c354efeec321232b83f4a4bd85c1da34f20602ae7833d0e23d56f9a23af",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943600,
+     3928041777,
+     1786326658,
+     1835695343
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-40",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 40,
+    "xpsr": 0
+   },
+   "new_instructions": 24,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         49
+        ],
+        [
+         1,
+         41
+        ],
+        [
+         2,
+         33
+        ],
+        [
+         3,
+         234
+        ],
+        [
+         4,
+         130
+        ],
+        [
+         5,
+         46
+        ],
+        [
+         6,
+         121
+        ],
+        [
+         7,
+         106
+        ],
+        [
+         8,
+         239
+        ],
+        [
+         9,
+         124
+        ],
+        [
+         10,
+         106
+        ],
+        [
+         11,
+         109
+        ],
+        [
+         12,
+         99
+        ],
+        [
+         13,
+         95
+        ],
+        [
+         14,
+         219
+        ],
+        [
+         15,
+         163
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): wait init_done.\\n'), ('RO', b'spi_master_trans_data_tx_rx'), 1547220657, 1113440726, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "009ee75793b2a72609e4d401057e8718aecdc865fb15dee91c115cf5025f1532",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     8,
+     0,
+     1547220657,
+     880227538
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr0-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 700,
+    "xpsr": 0
+   },
+   "new_instructions": 22,
+   "stack_args": []
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 43,
+  "ratio": 0.86,
+  "total": 50,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 114,
+ "globals": [
+  "0x2000230c",
+  "0x20007554"
+ ],
+ "module": "esb",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [
+  0
+ ],
+ "ret_kind": "i32",
+ "search": {
+  "candidates": 197,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 42,
+  "pointer_arg_mask": [
+   0
+  ],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 114,
+ "symbol": "spi_master_trans_data_tx_rx",
+ "va": "0x000262ac"
+}

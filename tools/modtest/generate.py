@@ -27,6 +27,7 @@ from __future__ import annotations
 
 import os
 import re
+import struct
 import sys
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
@@ -86,6 +87,158 @@ def literal_globals(core, va, size, limit=24):
         if len(found) >= limit:
             break
     return found
+
+
+#: registers that may hold an argument on entry, in AAPCS order
+_ARG_REGS = ("r0", "r1", "r2", "r3")
+_MOVE = ("mov", "movs", "mov.w")
+_ADDSUB = ("add", "add.w", "adds", "sub", "sub.w", "subs", "addw", "subw")
+_DEREF = ("ldr", "ldrb", "ldrh", "ldrsb", "ldrsh", "ldrd", "ldm", "ldmia",
+          "ldmdb", "str", "strb", "strh", "strd", "stm", "stmia", "stmdb",
+          "ldrex", "ldrexb", "ldrexh", "strex", "strexb", "strexh", "vldr",
+          "vstr", "vldm", "vstm", "tbb", "tbh")
+_BASE = re.compile(r'\[\s*(r\d+|sb|sl|fp|ip|sp|pc)\b')
+_DEST = re.compile(r'^\s*(r\d+|sb|sl|fp|ip)\s*,')
+_SRC2 = re.compile(r'^\s*(r\d+|sb|sl|fp|ip)\s*,\s*(r\d+|sb|sl|fp|ip)\s*(?:,\s*#|$)')
+
+
+def pointer_arg_mask(core, va, size):
+    """Which of r0-r3 the SHIPPED code actually DEREFERENCES.
+
+    THE DEFECT THIS FIXES, measured in the pilot (§18.5): every fixture was
+    built by `emu.make_args(seed, nptr=2)`, so exactly the first two argument
+    registers pointed into scratch and r2/r3 held seeded integers.  A function
+    whose THIRD or FOURTH parameter is a pointer therefore received a small
+    integer or a random word there, the shipped code faulted dereferencing it,
+    and the reconstruction faulted at a different point or not at all.  The
+    result is a FAIL that says nothing about the reconstruction --
+    `imu_mahony_ahrs_update` failed 44 of 44 fixtures this way, on a function
+    AGENTS.md records as repaired and passing.
+
+    A fixed prefix count is wrong in both directions, which is the part worth
+    stating: it also makes r0 a pointer for a function whose first parameter is
+    a `uint8_t` command code, which is how a pointer-shaped value gets fed to a
+    switch selector.  So the count is not the thing to derive -- the MASK is.
+
+    Derivation is from the shipped instructions only, and it is deliberately
+    conservative: track which registers still hold a value derived from an
+    argument register (through register moves and immediate adds/subs), and
+    mark argument `i` a pointer when a load or store uses such a register as
+    its base.  A register written by anything else loses its origin, and every
+    argument register loses its origin at a `bl` (the callee clobbers r0-r3).
+
+    Walked in address order over the CFG-REACHABLE set rather than by linear
+    disassembly, so a literal pool cannot be decoded as instructions -- the
+    data-inflation problem of AGENTS.md finding #2 in miniature.
+    """
+    ctx = mtcore.core_ctx(core)
+    base = va & ~1
+    reachable, _unresolved = cfg_instructions(core, va, size)
+    blob = ctx["rawread"](base, size + 8)
+    origin = {name: index for index, name in enumerate(_ARG_REGS)}
+    mask = set()
+    for address in sorted(reachable):
+        offset = address - base
+        if not (0 <= offset < size):
+            continue
+        insn = next(mtcore._MD.disasm(blob[offset:offset + 4], address), None)
+        if insn is None:
+            continue
+        head = insn.mnemonic.split(".")[0]
+        operands = insn.op_str
+        if head in ("bl", "blx"):
+            for name in _ARG_REGS:
+                origin.pop(name, None)
+            continue
+        if insn.mnemonic in _DEREF or head in _DEREF:
+            found = _BASE.search(operands)
+            if found and found.group(1) in origin:
+                mask.add(origin[found.group(1)])
+            # `str rX, [rY]` also WRITES rY's pointee, not rX -- the
+            # destination register of a store is a source.  Nothing to clear.
+            if head.startswith(("ldr", "vldr", "ldm", "vldm")):
+                dest = _DEST.match(operands)
+                if dest:
+                    origin.pop(dest.group(1), None)
+            continue
+        if insn.mnemonic in _MOVE or head in _MOVE:
+            pair = _SRC2.match(operands)
+            dest = _DEST.match(operands)
+            if pair and pair.group(2) in origin:
+                origin[pair.group(1)] = origin[pair.group(2)]
+            elif dest:
+                origin.pop(dest.group(1), None)
+            continue
+        if insn.mnemonic in _ADDSUB or head in _ADDSUB:
+            pair = _SRC2.match(operands)
+            dest = _DEST.match(operands)
+            if pair and "#" in operands and pair.group(2) in origin:
+                origin[pair.group(1)] = origin[pair.group(2)]
+            elif dest:
+                origin.pop(dest.group(1), None)
+            continue
+        dest = _DEST.match(operands)
+        if dest and head not in ("cmp", "cmn", "tst", "teq", "push", "b",
+                                 "it", "ite", "itt"):
+            origin.pop(dest.group(1), None)
+    return mask
+
+
+def _masked_args(seed, mask):
+    """`emu.make_args` with an arbitrary POINTER MASK rather than a prefix."""
+    scalars = emu.make_args(seed, 0)
+    pointers = emu.make_args(seed, 4)
+    return [pointers[i] if i in mask else scalars[i] for i in range(4)]
+
+
+#: A self-referential pointee region: every word in it is an address INSIDE it.
+#:
+#: WHY.  `make_args` points an argument at scratch and `emu` seeds scratch with
+#: random bytes, so a POINTER FIELD read out of a pointee is a random 32-bit
+#: word and dereferencing it faults.  Firmware written against a driver model
+#: chases two or three of those before it does anything:
+#:
+#:     ((vfn)(*(int *)(*(int *)(*param_1 + 8) + 8)))(*param_1, &local_28, ...)
+#:
+#: `i2c_read_reg16_be` is exactly that shape.  Measured: it faulted on the
+#: SECOND load in every one of 113 candidate fixtures, kept 3, reached 74 % of
+#: its instructions and NEVER REACHED ITS OWN CALL -- so the 20-byte descriptor
+#: record it builds in stack locals was never passed to anybody and every
+#: perturbation of every field survived (19 % kill rate).  That is not a
+#: pointee-capture blind spot; the capture was working and there was nothing to
+#: capture.
+#:
+#: A chain region makes every dereference land back inside the region, so the
+#: chase terminates in an ordinary oracled call instead of a fault.  Written
+#: through the fixture's `abs` dimension, so `tools/parity/emu.py` is not
+#: touched -- it is FROZEN (AGENTS.md) and the net core shares it.
+CHAIN_BASE = emu.SCRATCH + 0x1000
+CHAIN_LEN = 512
+
+
+def _chain_bytes(stride, residue):
+    """Chain image; words at index % 4 == `residue` carry the THUMB BIT.
+
+    A word in this region is used two ways and the two are incompatible: as a
+    LOAD BASE it must be 4-aligned (Unicorn rejects the unaligned `ldr`), and
+    as a FUNCTION POINTER it must be odd or the `blx` switches to ARM state and
+    dies with "Invalid instruction".  No single value is both.
+
+    So which words are odd is swept instead of guessed: 3 strides x 4 residues.
+    A function's own hop sequence lands on whichever combination fits it, and
+    the coverage-greedy selector keeps only the ones that reach new code.
+    Measured on `i2c_read_reg16_be`: 11 of the 12 combinations still fault, and
+    `stride 0x04 / residue 2` returns cleanly with `ncalls = 1` and a captured
+    20-byte descriptor record -- the first time any fixture has reached that
+    function's call at all.
+    """
+    out = bytearray()
+    for index in range(CHAIN_LEN // 4):
+        word = CHAIN_BASE + ((index * 4 + stride) % CHAIN_LEN)
+        if index % 4 == residue:
+            word |= 1
+        out += struct.pack("<I", word)
+    return bytes(out)
 
 
 def _cfg_selector_overrides(core, va, size, cap=48):
@@ -173,19 +326,64 @@ def _reads_ipsr(core, va, size):
     return False
 
 
-def candidate_fixtures(core, va, size, nptr=2, seeds=48, float_words=None):
-    """Enumerate candidate fixtures, cheapest dimension first."""
+def candidate_fixtures(core, va, size, nptr=None, seeds=48, float_words=None):
+    """Enumerate candidate fixtures, cheapest dimension first.
+
+    `nptr=None` (the default now) DERIVES the pointer mask from the shipped
+    instructions; an explicit integer reproduces the old fixed-prefix
+    behaviour, which is kept only so the two can be compared.
+    """
     out = []
+    mask = (pointer_arg_mask(core, va, size) if nptr is None
+            else set(range(max(0, min(4, int(nptr))))))
+    nptr_meta = len(mask) if nptr is None else int(nptr)
     for t in range(seeds):
-        out.append(Fixture.make("seed-%d" % t, emu.make_args(t, nptr),
-                                nptr=nptr, scratch_seed=t,
+        out.append(Fixture.make("seed-%d" % t, _masked_args(t, mask),
+                                nptr=nptr_meta, scratch_seed=t,
                                 float_scratch=(t % 4 == 3)))
+    # THE DERIVED MASK IS ADDED TO THE OLD CONFIGURATION, NEVER SUBSTITUTED
+    # FOR IT.  Measured, on `battery_soc_curve_model_init`: the derivation
+    # returns {1,2,3} (r0 is only ever PASSED to a callee, as the source
+    # argument of an inlined `memcpy`, and this function never dereferences
+    # it), and replacing the old prefix-2 configuration took the symbol from
+    # FAIL(28/47) to FAIL(0/49).  Both verdicts are legitimate -- the trees
+    # agree in both -- but a fixture set that loses inputs is a worse fixture
+    # set, and the greedy selector discards anything that adds neither
+    # coverage nor a new outcome, so extra bands cost only generation time.
+    for label, extra in (("ptr4", {0, 1, 2, 3}), ("ptr2", {0, 1}),
+                         ("ptr0", set())):
+        if extra == mask:
+            continue
+        for t in range(4):
+            out.append(Fixture.make("%s-%d" % (label, t),
+                                    _masked_args(700 + t, extra),
+                                    nptr=len(extra), scratch_seed=700 + t))
+    # POINTER-CHAIN fixtures (see CHAIN_BASE).  Every pointer argument aims
+    # into a region whose every word is another address inside it, so a
+    # driver-model dereference chain resolves instead of faulting.  Both with
+    # the default oracle and with all callees returning 0, because the shape
+    # this unlocks is `if (ops->xfer(...) == 0)`.
+    if mask:
+        t = 0
+        for stride in (0x40, 0x04, 0x100):
+            for residue in range(4):
+                chain = [(CHAIN_BASE, _chain_bytes(stride, residue))]
+                args = _masked_args(800 + t, mask)
+                for slot in mask:
+                    args[slot] = CHAIN_BASE + 4 * (slot % 4)
+                out.append(Fixture.make("chain-%d" % t, args, nptr=len(mask),
+                                        scratch_seed=800 + t, abs_mem=chain))
+                out.append(Fixture.make(
+                    "chain0-%d" % t, list(args), nptr=len(mask),
+                    scratch_seed=830 + t, abs_mem=chain,
+                    oracle=[(k, r, 0) for k in range(12) for r in (0, 1)]))
+                t += 1
     for index, override in enumerate(_cfg_selector_overrides(core, va, size)):
-        args = emu.make_args(index, nptr)
+        args = _masked_args(index, mask)
         for slot, value in override.items():
             if isinstance(slot, int) and 0 <= slot < 4:
                 args[slot] = value & 0xffffffff
-        out.append(Fixture.make("cfgsel-%d" % index, args, nptr=nptr,
+        out.append(Fixture.make("cfgsel-%d" % index, args, nptr=nptr_meta,
                                 scratch_seed=index))
     # Sweep the WHOLE float pool through s0, not a sample of it.  This is the
     # float analogue of the CFG selector sweep: a hard-float leaf's control
@@ -195,15 +393,15 @@ def candidate_fixtures(core, va, size, nptr=2, seeds=48, float_words=None):
     pool = emu.FLOAT_POOL if float_words is None else emu.FLOAT_POOL[:float_words]
     for index, word in enumerate(pool):
         out.append(Fixture.make(
-            "fp-%d" % index, emu.make_args(index, nptr), nptr=nptr,
+            "fp-%d" % index, _masked_args(index, mask), nptr=nptr_meta,
             scratch_seed=index, float_scratch=True,
             fp={0: word, 1: emu.FLOAT_POOL[(index * 13) % len(emu.FLOAT_POOL)]}))
     globals_ = literal_globals(core, va, size)
     for gi, address in enumerate(globals_):
         for vi, value in enumerate(GLOBAL_LADDER):
             out.append(Fixture.make(
-                "glob-%d-%d" % (gi, vi), emu.make_args(gi * 4 + vi, nptr),
-                nptr=nptr, scratch_seed=gi * 8 + vi,
+                "glob-%d-%d" % (gi, vi), _masked_args(gi * 4 + vi, mask),
+                nptr=nptr_meta, scratch_seed=gi * 8 + vi,
                 abs_mem=[(address, int(value).to_bytes(4, "little"))]))
     # All globals at once, both extremes: catches a predicate that needs two
     # globals set together (a level AND an enable flag), which the one-at-a-time
@@ -211,7 +409,7 @@ def candidate_fixtures(core, va, size, nptr=2, seeds=48, float_words=None):
     for vi, value in enumerate((0, 1, 2, 0xffffffff)):
         if globals_:
             out.append(Fixture.make(
-                "globall-%d" % vi, emu.make_args(100 + vi, nptr), nptr=nptr,
+                "globall-%d" % vi, _masked_args(100 + vi, mask), nptr=nptr_meta,
                 scratch_seed=200 + vi,
                 abs_mem=[(a, int(value).to_bytes(4, "little"))
                          for a in globals_]))
@@ -230,7 +428,7 @@ def candidate_fixtures(core, va, size, nptr=2, seeds=48, float_words=None):
         span = min(max(calls, 1), 48)
         for vi, value in enumerate((0, 1, 2, 0xffffffff, 0xfffffff5, 0x7fffffff)):
             out.append(Fixture.make(
-                "orc-all-%d" % vi, emu.make_args(400 + vi, nptr), nptr=nptr,
+                "orc-all-%d" % vi, _masked_args(400 + vi, mask), nptr=nptr_meta,
                 scratch_seed=400 + vi,
                 oracle=[(k, 0, value) for k in range(span)] +
                        [(k, 1, value) for k in range(span)]))
@@ -239,8 +437,8 @@ def candidate_fixtures(core, va, size, nptr=2, seeds=48, float_words=None):
         for k in range(min(span, 12)):
             for vi, value in enumerate((0, 1)):
                 out.append(Fixture.make(
-                    "orc-%d-%d" % (k, vi), emu.make_args(500 + k * 2 + vi, nptr),
-                    nptr=nptr, scratch_seed=500 + k * 2 + vi,
+                    "orc-%d-%d" % (k, vi), _masked_args(500 + k * 2 + vi, mask),
+                    nptr=nptr_meta, scratch_seed=500 + k * 2 + vi,
                     oracle=[(k, 0, value), (k, 1, value)]))
     # GLOBAL x CALLEE-RESULT combinations.  Neither sweep alone reaches a
     # predicate that needs both -- `fuel_gauge_update` compares a 64-bit uptime
@@ -254,7 +452,7 @@ def candidate_fixtures(core, va, size, nptr=2, seeds=48, float_words=None):
             for oi, ovalue in enumerate((0, 1, 0xffffffff, 0x000186a0)):
                 out.append(Fixture.make(
                     "combo-%d-%d" % (gi, oi),
-                    emu.make_args(600 + gi * 4 + oi, nptr), nptr=nptr,
+                    _masked_args(600 + gi * 4 + oi, mask), nptr=nptr_meta,
                     scratch_seed=600 + gi * 4 + oi,
                     abs_mem=[(a, int(gvalue).to_bytes(4, "little"))
                              for a in globals_],
@@ -262,8 +460,8 @@ def candidate_fixtures(core, va, size, nptr=2, seeds=48, float_words=None):
                             for k in range(span) for r in (0, 1)]))
     if _reads_ipsr(core, va, size):
         for vi, mode in enumerate((0, 16)):
-            out.append(Fixture.make("ipsr-%d" % vi, emu.make_args(300 + vi, nptr),
-                                    nptr=nptr, scratch_seed=300 + vi, xpsr=mode))
+            out.append(Fixture.make("ipsr-%d" % vi, _masked_args(300 + vi, mask),
+                                    nptr=nptr_meta, scratch_seed=300 + vi, xpsr=mode))
     return out, globals_
 
 
@@ -288,7 +486,7 @@ def candidate_fixtures(core, va, size, nptr=2, seeds=48, float_words=None):
 OUTCOME_CAP = 40
 
 
-def select(core, va, size, ret_kind="i32", nptr=2, budget=400, max_insns=200000,
+def select(core, va, size, ret_kind="i32", nptr=None, budget=400, max_insns=200000,
            outcome_cap=OUTCOME_CAP):
     """Greedy coverage-maximising subset of the candidate fixtures.
 
@@ -299,6 +497,8 @@ def select(core, va, size, ret_kind="i32", nptr=2, budget=400, max_insns=200000,
     behaviour and is compared like any other outcome.
     """
     denominator, unresolved = cfg_instructions(core, va, size)
+    mask = (pointer_arg_mask(core, va, size) if nptr is None
+            else set(range(max(0, min(4, int(nptr))))))
     fixtures, globals_ = candidate_fixtures(core, va, size, nptr=nptr)
     covered = set()
     kept = []
@@ -332,7 +532,13 @@ def select(core, va, size, ret_kind="i32", nptr=2, budget=400, max_insns=200000,
             capped += 1
             continue
         new = hit - covered
-        key = repr(observable_key(state, ret_kind))
+        # The stack RECORD is part of the outcome.  Without this a fixture that
+        # builds a different record but reaches no new instruction and returns
+        # the same value is discarded, and the record's field constants are
+        # then constrained by whichever single fixture happened to survive
+        # coverage-greedy selection.  That is the same "coverage is necessary
+        # and not sufficient" trap OUTCOME_CAP exists for, one level in.
+        key = repr((observable_key(state, ret_kind), state.get("stack_args")))
         fresh_outcome = key not in outcomes and outcome_kept < outcome_cap
         if new or fresh_outcome or not kept:
             covered |= hit
@@ -346,6 +552,8 @@ def select(core, va, size, ret_kind="i32", nptr=2, budget=400, max_insns=200000,
     denominator = denominator | covered
     stats = {"candidates": len(fixtures), "kept": len(kept),
              "harness_errors": errors,
+             "pointer_arg_mask": sorted(mask),
+             "pointer_arg_mask_derived": nptr is None,
              "dropped_extent_dispute": dropped,
              "dropped_instruction_cap": capped,
              "extent_dispute_targets": ["0x%08x" % t for t in sorted(disputed)]}

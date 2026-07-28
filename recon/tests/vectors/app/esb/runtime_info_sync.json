@@ -1,0 +1,3895 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    2,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    154488,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)",
+    "('C', 1, ('RO', b'%s(): --role:%d --mode:%d, esb_channel %d --ret:%d esb_master_addr %02X esb_slave_addr %02X\\n'), ('RO', b'runtime_info_sync'), 214, 205, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "50621597b0bb6250b519c45268aa37a02284e50ecde1a79e5273bc798ef7e46f",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943568,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 41,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         214
+        ],
+        [
+         3,
+         205
+        ],
+        [
+         4,
+         166
+        ],
+        [
+         5,
+         228
+        ],
+        [
+         6,
+         57
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    154488
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)"
+   ],
+   "expect": {
+    "events": "fa58768e1a987ddef2ceabb5128ab1fa200e95ed20777f2e9d57659a43783a59",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536947244,
+     1797429778,
+     2147483648,
+     315044147
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-1",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 1,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         242
+        ],
+        [
+         3,
+         55
+        ],
+        [
+         4,
+         175
+        ],
+        [
+         5,
+         84
+        ],
+        [
+         6,
+         242
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    154488,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)",
+    "('C', 1, ('RO', b'%s(): --role:%d --mode:%d, esb_channel %d --ret:%d esb_master_addr %02X esb_slave_addr %02X\\n'), ('RO', b'runtime_info_sync'), 124, 189, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1675b14385589deac754e6cff76a6553da55ca4e7acf59666a0bb4c1c1ac9a33",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943312,
+     598759513,
+     3677430904,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-2",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 2,
+    "xpsr": 0
+   },
+   "new_instructions": 41,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         124
+        ],
+        [
+         3,
+         189
+        ],
+        [
+         4,
+         207
+        ],
+        [
+         5,
+         107
+        ],
+        [
+         6,
+         224
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    154488
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)"
+   ],
+   "expect": {
+    "events": "fa58768e1a987ddef2ceabb5128ab1fa200e95ed20777f2e9d57659a43783a59",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945628,
+     255,
+     8,
+     3619521758
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-3",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 3,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         205
+        ],
+        [
+         3,
+         204
+        ],
+        [
+         4,
+         204
+        ],
+        [
+         5,
+         189
+        ],
+        [
+         6,
+         219
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    154488,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)",
+    "('C', 1, ('RO', b'%s(): --role:%d --mode:%d, esb_channel %d --ret:%d esb_master_addr %02X esb_slave_addr %02X\\n'), ('RO', b'runtime_info_sync'), 27, 20, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "130939b444779930aa650b79e5cfb151bb7dce0ac4da07c4320e5ff4b07836ad",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945864,
+     2147483647,
+     3842370354,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-4",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 4,
+    "xpsr": 0
+   },
+   "new_instructions": 41,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         27
+        ],
+        [
+         3,
+         20
+        ],
+        [
+         4,
+         180
+        ],
+        [
+         5,
+         232
+        ],
+        [
+         6,
+         250
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    154488
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)"
+   ],
+   "expect": {
+    "events": "fa58768e1a987ddef2ceabb5128ab1fa200e95ed20777f2e9d57659a43783a59",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939588,
+     3188701995,
+     8,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-5",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 5,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         141
+        ],
+        [
+         3,
+         225
+        ],
+        [
+         4,
+         192
+        ],
+        [
+         5,
+         122
+        ],
+        [
+         6,
+         199
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    154488
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)"
+   ],
+   "expect": {
+    "events": "fa58768e1a987ddef2ceabb5128ab1fa200e95ed20777f2e9d57659a43783a59",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536950900,
+     3322790363,
+     5,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-6",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 6,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         242
+        ],
+        [
+         3,
+         21
+        ],
+        [
+         4,
+         209
+        ],
+        [
+         5,
+         138
+        ],
+        [
+         6,
+         29
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    154488
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)"
+   ],
+   "expect": {
+    "events": "fa58768e1a987ddef2ceabb5128ab1fa200e95ed20777f2e9d57659a43783a59",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941592,
+     1604804925,
+     1,
+     2363272863
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-7",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 7,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         0
+        ],
+        [
+         5,
+         63
+        ],
+        [
+         6,
+         219
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    154488
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)"
+   ],
+   "expect": {
+    "events": "fa58768e1a987ddef2ceabb5128ab1fa200e95ed20777f2e9d57659a43783a59",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939044,
+     708972563,
+     558645175,
+     4
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-8",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 8,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         16
+        ],
+        [
+         3,
+         2
+        ],
+        [
+         4,
+         198
+        ],
+        [
+         5,
+         172
+        ],
+        [
+         6,
+         187
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    154488,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)",
+    "('C', 1, ('RO', b'%s(): --role:%d --mode:%d, esb_channel %d --ret:%d esb_master_addr %02X esb_slave_addr %02X\\n'), ('RO', b'runtime_info_sync'), 196, 180, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "78a185a7be10058b1de323e15989d1a51f242092d5b331c02ae77eeabd613c3d",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944692,
+     1556998536,
+     499087790,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-9",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 9,
+    "xpsr": 0
+   },
+   "new_instructions": 41,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         196
+        ],
+        [
+         3,
+         180
+        ],
+        [
+         4,
+         230
+        ],
+        [
+         5,
+         40
+        ],
+        [
+         6,
+         36
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    154488,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)",
+    "('C', 1, ('RO', b'%s(): --role:%d --mode:%d, esb_channel %d --ret:%d esb_master_addr %02X esb_slave_addr %02X\\n'), ('RO', b'runtime_info_sync'), 183, 246, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0f415c854a042e5694d3a267786f26a1c4389ed9a4fbd858f69c3ab1d18b9e06",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939204,
+     995058044,
+     8,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-10",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 10,
+    "xpsr": 0
+   },
+   "new_instructions": 41,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         183
+        ],
+        [
+         3,
+         246
+        ],
+        [
+         4,
+         14
+        ],
+        [
+         5,
+         146
+        ],
+        [
+         6,
+         199
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    154488,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)",
+    "('C', 1, ('RO', b'%s(): --role:%d --mode:%d, esb_channel %d --ret:%d esb_master_addr %02X esb_slave_addr %02X\\n'), ('RO', b'runtime_info_sync'), 205, 204, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "db24f872b20460dab2b57ecac9fb91b37e20b0a16e9607a241c241ca47a7dfc8",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536937040,
+     2147483648,
+     256,
+     1426281073
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-11",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 11,
+    "xpsr": 0
+   },
+   "new_instructions": 41,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         205
+        ],
+        [
+         3,
+         204
+        ],
+        [
+         4,
+         76
+        ],
+        [
+         5,
+         63
+        ],
+        [
+         6,
+         245
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    154488,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)",
+    "('C', 1, ('RO', b'%s(): --role:%d --mode:%d, esb_channel %d --ret:%d esb_master_addr %02X esb_slave_addr %02X\\n'), ('RO', b'runtime_info_sync'), 113, 102, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "efa1004b753b5049d1a930b37dcb4148e9874ad7c8a9fc05431f288c7ee8ed9b",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944520,
+     3217736208,
+     5,
+     1103693227
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-12",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 12,
+    "xpsr": 0
+   },
+   "new_instructions": 41,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         113
+        ],
+        [
+         3,
+         102
+        ],
+        [
+         4,
+         40
+        ],
+        [
+         5,
+         151
+        ],
+        [
+         6,
+         79
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    154488,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)",
+    "('C', 1, ('RO', b'%s(): --role:%d --mode:%d, esb_channel %d --ret:%d esb_master_addr %02X esb_slave_addr %02X\\n'), ('RO', b'runtime_info_sync'), 153, 82, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "f2069b4d2c85fe29ae1a660a6891f87ef60f833dc42c41525039151cd184f33c",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944304,
+     1944344031,
+     6,
+     617681966
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-13",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 13,
+    "xpsr": 0
+   },
+   "new_instructions": 41,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         153
+        ],
+        [
+         3,
+         82
+        ],
+        [
+         4,
+         247
+        ],
+        [
+         5,
+         105
+        ],
+        [
+         6,
+         236
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    154488
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)"
+   ],
+   "expect": {
+    "events": "fa58768e1a987ddef2ceabb5128ab1fa200e95ed20777f2e9d57659a43783a59",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943892,
+     12,
+     3,
+     470668832
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-14",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 14,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         18
+        ],
+        [
+         3,
+         101
+        ],
+        [
+         4,
+         159
+        ],
+        [
+         5,
+         53
+        ],
+        [
+         6,
+         143
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    154488
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)"
+   ],
+   "expect": {
+    "events": "fa58768e1a987ddef2ceabb5128ab1fa200e95ed20777f2e9d57659a43783a59",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952404,
+     256,
+     5,
+     4
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-15",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 15,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         0
+        ],
+        [
+         5,
+         191
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    154488,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)",
+    "('C', 1, ('RO', b'%s(): --role:%d --mode:%d, esb_channel %d --ret:%d esb_master_addr %02X esb_slave_addr %02X\\n'), ('RO', b'runtime_info_sync'), 165, 241, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "11a0e87e2f90b641418ff634efd070a53b7f1ee5d09453e65ff56f76ab827c5a",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943260,
+     2147483648,
+     3454407978,
+     16
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-16",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 16,
+    "xpsr": 0
+   },
+   "new_instructions": 41,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         165
+        ],
+        [
+         3,
+         241
+        ],
+        [
+         4,
+         7
+        ],
+        [
+         5,
+         22
+        ],
+        [
+         6,
+         187
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    154488
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)"
+   ],
+   "expect": {
+    "events": "fa58768e1a987ddef2ceabb5128ab1fa200e95ed20777f2e9d57659a43783a59",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944016,
+     3254638692,
+     1168623309,
+     4252165479
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-17",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 17,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         250
+        ],
+        [
+         3,
+         251
+        ],
+        [
+         4,
+         89
+        ],
+        [
+         5,
+         86
+        ],
+        [
+         6,
+         25
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    154488
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)"
+   ],
+   "expect": {
+    "events": "fa58768e1a987ddef2ceabb5128ab1fa200e95ed20777f2e9d57659a43783a59",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944948,
+     0,
+     697236451,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-18",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 18,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         94
+        ],
+        [
+         3,
+         8
+        ],
+        [
+         4,
+         141
+        ],
+        [
+         5,
+         20
+        ],
+        [
+         6,
+         206
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    154488,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)",
+    "('C', 1, ('RO', b'%s(): --role:%d --mode:%d, esb_channel %d --ret:%d esb_master_addr %02X esb_slave_addr %02X\\n'), ('RO', b'runtime_info_sync'), 205, 204, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "db24f872b20460dab2b57ecac9fb91b37e20b0a16e9607a241c241ca47a7dfc8",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939284,
+     1536401714,
+     4178753371,
+     255
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-19",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 19,
+    "xpsr": 0
+   },
+   "new_instructions": 41,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         205
+        ],
+        [
+         3,
+         204
+        ],
+        [
+         4,
+         76
+        ],
+        [
+         5,
+         191
+        ],
+        [
+         6,
+         164
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    154488
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)"
+   ],
+   "expect": {
+    "events": "fa58768e1a987ddef2ceabb5128ab1fa200e95ed20777f2e9d57659a43783a59",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952740,
+     2306919366,
+     2,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-20",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 20,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         37
+        ],
+        [
+         3,
+         41
+        ],
+        [
+         4,
+         162
+        ],
+        [
+         5,
+         207
+        ],
+        [
+         6,
+         117
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    154488,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)",
+    "('C', 1, ('RO', b'%s(): --role:%d --mode:%d, esb_channel %d --ret:%d esb_master_addr %02X esb_slave_addr %02X\\n'), ('RO', b'runtime_info_sync'), 246, 100, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "6a6b424d4c48256c8bef2f353324d57a32b7a59b29b3bdbed277efc6860fab27",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941420,
+     1,
+     2870852768,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-21",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 21,
+    "xpsr": 0
+   },
+   "new_instructions": 41,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         246
+        ],
+        [
+         3,
+         100
+        ],
+        [
+         4,
+         60
+        ],
+        [
+         5,
+         157
+        ],
+        [
+         6,
+         116
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    154488
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)"
+   ],
+   "expect": {
+    "events": "fa58768e1a987ddef2ceabb5128ab1fa200e95ed20777f2e9d57659a43783a59",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536937396,
+     3001296298,
+     4294967295,
+     2451975022
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-22",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 22,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         99
+        ],
+        [
+         3,
+         100
+        ],
+        [
+         4,
+         190
+        ],
+        [
+         5,
+         23
+        ],
+        [
+         6,
+         130
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    154488
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)"
+   ],
+   "expect": {
+    "events": "fa58768e1a987ddef2ceabb5128ab1fa200e95ed20777f2e9d57659a43783a59",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952228,
+     241044672,
+     2034212132,
+     1515885587
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-23",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 23,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         128
+        ],
+        [
+         5,
+         191
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    154488
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)"
+   ],
+   "expect": {
+    "events": "fa58768e1a987ddef2ceabb5128ab1fa200e95ed20777f2e9d57659a43783a59",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536949908,
+     6,
+     2967241396,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-24",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 24,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         199
+        ],
+        [
+         3,
+         237
+        ],
+        [
+         4,
+         65
+        ],
+        [
+         5,
+         19
+        ],
+        [
+         6,
+         25
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    154488,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)",
+    "('C', 1, ('RO', b'%s(): --role:%d --mode:%d, esb_channel %d --ret:%d esb_master_addr %02X esb_slave_addr %02X\\n'), ('RO', b'runtime_info_sync'), 197, 213, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "423c347d64d97c18a95fb320fa019db5058375c2717ef1407ae4751e958e2b05",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536938252,
+     12,
+     2149248134,
+     604019693
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-25",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 25,
+    "xpsr": 0
+   },
+   "new_instructions": 41,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         197
+        ],
+        [
+         3,
+         213
+        ],
+        [
+         4,
+         80
+        ],
+        [
+         5,
+         133
+        ],
+        [
+         6,
+         223
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    154488
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)"
+   ],
+   "expect": {
+    "events": "fa58768e1a987ddef2ceabb5128ab1fa200e95ed20777f2e9d57659a43783a59",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536942224,
+     12,
+     3037640278,
+     2678623347
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-26",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 26,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         199
+        ],
+        [
+         3,
+         33
+        ],
+        [
+         4,
+         211
+        ],
+        [
+         5,
+         58
+        ],
+        [
+         6,
+         230
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    154488,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)",
+    "('C', 1, ('RO', b'%s(): --role:%d --mode:%d, esb_channel %d --ret:%d esb_master_addr %02X esb_slave_addr %02X\\n'), ('RO', b'runtime_info_sync'), 0, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "10c99db9b56a0e61c80f8e96863b54ed37252e8c691ecfe794d213486de97df3",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945192,
+     681194263,
+     3639365232,
+     4125446660
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-27",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 27,
+    "xpsr": 0
+   },
+   "new_instructions": 41,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         128
+        ],
+        [
+         5,
+         63
+        ],
+        [
+         6,
+         111
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    154488,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)",
+    "('C', 1, ('RO', b'%s(): --role:%d --mode:%d, esb_channel %d --ret:%d esb_master_addr %02X esb_slave_addr %02X\\n'), ('RO', b'runtime_info_sync'), 19, 237, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "2dc5427bbe087f57c1eea2a9bda0c4ae1ecb103c334d383245bc807d89d1566b",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946084,
+     4285183211,
+     1,
+     2592385448
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-28",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 28,
+    "xpsr": 0
+   },
+   "new_instructions": 41,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         19
+        ],
+        [
+         3,
+         237
+        ],
+        [
+         4,
+         252
+        ],
+        [
+         5,
+         56
+        ],
+        [
+         6,
+         56
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    154488
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)"
+   ],
+   "expect": {
+    "events": "fa58768e1a987ddef2ceabb5128ab1fa200e95ed20777f2e9d57659a43783a59",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536947488,
+     256,
+     3886541357,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-29",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 29,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         67
+        ],
+        [
+         3,
+         168
+        ],
+        [
+         4,
+         129
+        ],
+        [
+         5,
+         137
+        ],
+        [
+         6,
+         107
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    154488,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)",
+    "('C', 1, ('RO', b'%s(): --role:%d --mode:%d, esb_channel %d --ret:%d esb_master_addr %02X esb_slave_addr %02X\\n'), ('RO', b'runtime_info_sync'), 41, 50, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "8efbd50db8c08ff80f91545051c107f041623f650955bf344933b6fc0ec8cfef",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952796,
+     8,
+     1,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-30",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 30,
+    "xpsr": 0
+   },
+   "new_instructions": 41,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         41
+        ],
+        [
+         3,
+         50
+        ],
+        [
+         4,
+         112
+        ],
+        [
+         5,
+         100
+        ],
+        [
+         6,
+         178
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    154488,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)",
+    "('C', 1, ('RO', b'%s(): --role:%d --mode:%d, esb_channel %d --ret:%d esb_master_addr %02X esb_slave_addr %02X\\n'), ('RO', b'runtime_info_sync'), 154, 153, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "3694071d51ed393362a051e393b6f577e319cbdf27fa09dce516c1b0aab68bcc",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952300,
+     2461003590,
+     7,
+     53351545
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-31",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 31,
+    "xpsr": 0
+   },
+   "new_instructions": 41,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         154
+        ],
+        [
+         3,
+         153
+        ],
+        [
+         4,
+         25
+        ],
+        [
+         5,
+         63
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    154488,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)",
+    "('C', 1, ('RO', b'%s(): --role:%d --mode:%d, esb_channel %d --ret:%d esb_master_addr %02X esb_slave_addr %02X\\n'), ('RO', b'runtime_info_sync'), 62, 31, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ee775ec2e58d3d8e4e9774e79af953971ac752ffaa5c04b9e41c09ceb7021808",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946568,
+     2706821390,
+     3442053927,
+     1170652979
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-32",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 32,
+    "xpsr": 0
+   },
+   "new_instructions": 41,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         62
+        ],
+        [
+         3,
+         31
+        ],
+        [
+         4,
+         9
+        ],
+        [
+         5,
+         149
+        ],
+        [
+         6,
+         97
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    154488
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)"
+   ],
+   "expect": {
+    "events": "fa58768e1a987ddef2ceabb5128ab1fa200e95ed20777f2e9d57659a43783a59",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946060,
+     7,
+     7,
+     5
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-33",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 33,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         178
+        ],
+        [
+         3,
+         158
+        ],
+        [
+         4,
+         192
+        ],
+        [
+         5,
+         180
+        ],
+        [
+         6,
+         108
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    154488,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)",
+    "('C', 1, ('RO', b'%s(): --role:%d --mode:%d, esb_channel %d --ret:%d esb_master_addr %02X esb_slave_addr %02X\\n'), ('RO', b'runtime_info_sync'), 105, 244, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "fc78280087da10ab12d450ac9247079e43dd5d6e729d9a663b61c2afc8a7f0d3",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536950120,
+     3990671540,
+     922796015,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-34",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 34,
+    "xpsr": 0
+   },
+   "new_instructions": 41,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         105
+        ],
+        [
+         3,
+         244
+        ],
+        [
+         4,
+         116
+        ],
+        [
+         5,
+         210
+        ],
+        [
+         6,
+         162
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    154488,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)",
+    "('C', 1, ('RO', b'%s(): --role:%d --mode:%d, esb_channel %d --ret:%d esb_master_addr %02X esb_slave_addr %02X\\n'), ('RO', b'runtime_info_sync'), 0, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "10c99db9b56a0e61c80f8e96863b54ed37252e8c691ecfe794d213486de97df3",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952432,
+     3578977268,
+     4001652011,
+     1
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-35",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 35,
+    "xpsr": 0
+   },
+   "new_instructions": 41,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         122
+        ],
+        [
+         5,
+         68
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    154488,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)",
+    "('C', 1, ('RO', b'%s(): --role:%d --mode:%d, esb_channel %d --ret:%d esb_master_addr %02X esb_slave_addr %02X\\n'), ('RO', b'runtime_info_sync'), 62, 142, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "702571935984b573573e79b20313c2af1cd432bd86f51032510658bac507a5fe",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944224,
+     12,
+     2147483647,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-36",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 36,
+    "xpsr": 0
+   },
+   "new_instructions": 41,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         62
+        ],
+        [
+         3,
+         142
+        ],
+        [
+         4,
+         232
+        ],
+        [
+         5,
+         227
+        ],
+        [
+         6,
+         74
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    154488
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)"
+   ],
+   "expect": {
+    "events": "fa58768e1a987ddef2ceabb5128ab1fa200e95ed20777f2e9d57659a43783a59",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536951728,
+     2057795936,
+     2725586938,
+     1299241558
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-37",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 37,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         158
+        ],
+        [
+         3,
+         47
+        ],
+        [
+         4,
+         96
+        ],
+        [
+         5,
+         50
+        ],
+        [
+         6,
+         152
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    154488
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)"
+   ],
+   "expect": {
+    "events": "fa58768e1a987ddef2ceabb5128ab1fa200e95ed20777f2e9d57659a43783a59",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939760,
+     255,
+     1,
+     2
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-38",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 38,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         108
+        ],
+        [
+         3,
+         29
+        ],
+        [
+         4,
+         201
+        ],
+        [
+         5,
+         89
+        ],
+        [
+         6,
+         75
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    154488,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)",
+    "('C', 1, ('RO', b'%s(): --role:%d --mode:%d, esb_channel %d --ret:%d esb_master_addr %02X esb_slave_addr %02X\\n'), ('RO', b'runtime_info_sync'), 0, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "10c99db9b56a0e61c80f8e96863b54ed37252e8c691ecfe794d213486de97df3",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941424,
+     1587124134,
+     3774328631,
+     1997155928
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-39",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 39,
+    "xpsr": 0
+   },
+   "new_instructions": 41,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         128
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         8
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    154488
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)"
+   ],
+   "expect": {
+    "events": "fa58768e1a987ddef2ceabb5128ab1fa200e95ed20777f2e9d57659a43783a59",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943600,
+     3928041777,
+     1786326658,
+     1835695343
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-40",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 40,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         35
+        ],
+        [
+         3,
+         82
+        ],
+        [
+         4,
+         123
+        ],
+        [
+         5,
+         68
+        ],
+        [
+         6,
+         210
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    154488,
+    515492
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 8, 'S', 'F', 'T', None)",
+    "('W', 536883168, 1, 0)",
+    "('C', 1, ('RO', b'%s(): --role:%d --mode:%d, esb_channel %d --ret:%d esb_master_addr %02X esb_slave_addr %02X\\n'), ('RO', b'runtime_info_sync'), 138, 170, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "2bd22ccb58cad68fcf84b1ba3ef7eefd632a811daa223a1499a6bd74d7fbf266",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536900948,
+      "00000000"
+     ]
+    ],
+    "args": [
+     536939044,
+     708972563,
+     558645175,
+     4
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-2-0",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 16,
+    "xpsr": 0
+   },
+   "new_instructions": 42,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         138
+        ],
+        [
+         3,
+         170
+        ],
+        [
+         4,
+         100
+        ],
+        [
+         5,
+         101
+        ],
+        [
+         6,
+         62
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 43,
+  "ratio": 1.0,
+  "total": 43,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 112,
+ "globals": [
+  "0x20002fe0",
+  "0x2000230c",
+  "0x20007554"
+ ],
+ "module": "esb",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [
+  0
+ ],
+ "ret_kind": "i32",
+ "search": {
+  "candidates": 201,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 42,
+  "pointer_arg_mask": [
+   0
+  ],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 112,
+ "symbol": "runtime_info_sync",
+ "va": "0x00016268"
+}

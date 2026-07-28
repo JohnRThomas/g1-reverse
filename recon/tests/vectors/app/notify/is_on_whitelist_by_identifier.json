@@ -1,0 +1,6560 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 1276959699, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "97e4c05042fd3d3d3ecb11dc56e4166a5234c19052d29557aac0ec6bc92b592c",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1276959699,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4067469868, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 315044147, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1e09241f15b4f8a4c6df639a7f8fe5e550864c7b16b5c60f001317e3246e52b3",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4067469868,
+     1797429778,
+     2147483648,
+     315044147
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 1,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4290042576, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 7, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e527a1973d51b74f9fe0be9419cae101c5bcb39e30779fc15f800402aeced2b0",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4290042576,
+     598759513,
+     3677430904,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-2",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 2,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 2618385373, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 3619521758, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "335f86063efe56ba6f28a684d4ee20d9fe790fc6126e8f222cd110096c6551ea",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2618385373,
+     255,
+     8,
+     3619521758
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-3",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 3,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 16, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 6, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "46357b195f6f5abf3778f661518af2c9eafd70b5beed476dfc1743584927cd42",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     16,
+     2147483647,
+     3842370354,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-4",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 4,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 7, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "dfb821855c0d6ffec698361490a6623a50068ad069d90519855994ea28d25884",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     3188701995,
+     8,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-5",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 5,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 2147483647, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "35b3e7e8429dae2dc02d0b1ec193fc7ede8021839b0d536c213c72defba8bf62",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     3322790363,
+     5,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-6",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 6,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 2300957721, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 2363272863, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "3a8496d88bb4486f39a2e1d8b8c048727812ff691ca0d84f304807b81eedbcaf",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2300957721,
+     1604804925,
+     1,
+     2363272863
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-7",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 7,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 2156366374, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 4, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "abefd657869289b8df130350f4f400a59e45df4b184aceb6fbe9674699fc6938",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2156366374,
+     708972563,
+     558645175,
+     4
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-8",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 8,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 1346232374, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 2147483647, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "630375f9d732f33ddea0d7397fd8b73fed51bad5c7a3f50fa3996c3f51efc4b4",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1346232374,
+     1556998536,
+     499087790,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-9",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 9,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 182454980, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "b7d224bd09358778610a7acfb6e1033a5099ddf8b61fff563a7c505231fb11cb",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     182454980,
+     995058044,
+     8,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-10",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 10,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 3, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 1426281073, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "06bdedfae8093dc7082279874c8c12781d023f709b98bc338dc21eb2a481a28f",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     2147483648,
+     256,
+     1426281073
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-11",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 11,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 8, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 1103693227, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "da3583ce3558cdf56126c94b4de69e0e28f8cb854cc19bbe976d3e002173e72d",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     8,
+     3217736208,
+     5,
+     1103693227
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-12",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 12,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 1156718256, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 617681966, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "a4a8d19566917f2bdb7940dc7c7699b9623518688169a36ac0f3669378604c1e",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1156718256,
+     1944344031,
+     6,
+     617681966
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-13",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 13,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 1996365079, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 470668832, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "45bb86f0ee14384db02dd1f370215fb32ed80f2e70252eafe9dfcb7afe0d1322",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1996365079,
+     12,
+     3,
+     470668832
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-14",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 14,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 7, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 4, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "441f18358695399dd58906081a5f9d803101e2198bbf65207fc8c198cefd1daf",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     7,
+     256,
+     5,
+     4
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-15",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 15,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 2024561310, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 16, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "87e23fc9c8653ca1de3d4620c2697ae6ee080821bf470fa5153aa5e73682be16",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2024561310,
+     2147483648,
+     3454407978,
+     16
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-16",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 16,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 3, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 4252165479, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "7b0d9f8fe7f2b4084ab27446596c52866443b3b1fe04d849ea0edb8e13252b3c",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     3254638692,
+     1168623309,
+     4252165479
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-17",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 17,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 3912442165, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "6dd520047d2c751d448a3c01bddeef834ea29706a513df56c188271106741986",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3912442165,
+     0,
+     697236451,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-18",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 18,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 6, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 255, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "32f14e0ef77943990d9db71e523c58b0f980b27f40b359489aa8a06d204f1e99",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     6,
+     1536401714,
+     4178753371,
+     255
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-19",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 19,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 843060076, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "349ad366e9be9ece025b0f3faa67810687c42f25764fee90666c59bd6f483afd",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     843060076,
+     1,
+     2870852768,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-21",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 21,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 7, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 2451975022, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "da06a075db149ab631af0aa3b42ae8ab0172d63058567e22bb1a30afaaa2377b",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     7,
+     3001296298,
+     4294967295,
+     2451975022
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-22",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 22,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 1591295399, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 1515885587, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "2c555c585d48b2e397141fe15392d30dc7a0fd5d61af6c22121bc1c777e25239",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1591295399,
+     241044672,
+     2034212132,
+     1515885587
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-23",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 23,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 3751937804, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 604019693, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "5221a3be0a1db2e12636f851d959cbdf98bf8badec1a13d3dab3c41c07dca405",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3751937804,
+     12,
+     2149248134,
+     604019693
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-25",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 25,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 2992330384, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 2678623347, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "036166507ac3b088b4e8585b392ba765b83f400f87174770231ce2f0e969d8db",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2992330384,
+     12,
+     3037640278,
+     2678623347
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-26",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 26,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 187818536, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 4125446660, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "07d914dc1245176fd2ae4d5d7fea85ca44b4e05e58830b50f7eb0ec7f13b5f54",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     187818536,
+     681194263,
+     3639365232,
+     4125446660
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-27",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 27,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 3711083943, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 2592385448, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "5de273bd57b461c14ccc8537cc5356152c944ac4a61bd094e4e2b700837168be",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3711083943,
+     4285183211,
+     1,
+     2592385448
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-28",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 28,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 739928864, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 8, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "219a9fba01439e2679f987c98607103aa8e8facd997c0b9b271b817dfbff01f4",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     739928864,
+     256,
+     3886541357,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-29",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 29,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 7, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "73719d5c09fa8d9f62724b364006e4c2e47e8642dc72c3259c017a722d309c57",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     256,
+     8,
+     1,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-30",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 30,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 4294967295, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 53351545, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "63e697959c7455bf1f4e6170b0875a2757ad7e116c6fd7bbf91fbc6a24ead7da",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4294967295,
+     2461003590,
+     7,
+     53351545
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-31",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 31,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 1839753098, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 1170652979, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "9e362e8ddf06e717e1b255cf8eaf874e1bd923924edfabf963eae01b15b6f37c",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1839753098,
+     2706821390,
+     3442053927,
+     1170652979
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-32",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 32,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 1076094348, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "fe4ca0ff8b707d4c7c8aa54ea52e3404c0c4ea2883fb00dc8cebdb4f8b8783e4",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1076094348,
+     7,
+     7,
+     5
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-33",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 33,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 12, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 2147483647, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e3ee3c445dd9591947ac73893febd2e8cb7a0c613618d8335f46d68354b4a607",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     12,
+     3990671540,
+     922796015,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-34",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 34,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 2726887024, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "44ea2b76a90049e76fc1edd4e6208f2d498ea7b11990b786f270c3d674d1e826",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2726887024,
+     3578977268,
+     4001652011,
+     1
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-35",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 35,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'[%s-%d] pkg_name is NULL !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 70, 8, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "259fba71e4dbb72a28a11953aa1acf764295bec122260729729ad58b40524f6f",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     12,
+     2147483647,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-36",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 36,
+    "xpsr": 0
+   },
+   "new_instructions": 12,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 1, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 1299241558, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "6eda99e138079cf56d1e55f9a7bbc3555bb75c9d338af808df6234dee495991d",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1,
+     2057795936,
+     2725586938,
+     1299241558
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-37",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 37,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'[%s-%d] pkg_name is NULL !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 70, 2, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "dda785dcf697fbbaeebfdcdf428611d6a58c6fbad37bdaa9fa84e0f06d14ee2d",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     255,
+     1,
+     2
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-38",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 38,
+    "xpsr": 0
+   },
+   "new_instructions": 12,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 3, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 1997155928, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "52212a653da14114ef0d0802f786c60c51cfcf1ab05b2867e564eabbef4e74c4",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     1587124134,
+     3774328631,
+     1997155928
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-39",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 39,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'[%s-%d] pkg_name is NULL !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 70, 1835695343, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1488a7bb81491d34265ca3f79448709e1cd0dc95e1879290a9d0b4253883e292",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     3928041777,
+     1786326658,
+     1835695343
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-40",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 40,
+    "xpsr": 0
+   },
+   "new_instructions": 12,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 3886568119, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "a0465361f9b832f443c0aba0fc19074a7720b4c05f573828db474905f1f2027c",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3886568119,
+     256,
+     3059135833,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-41",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 41,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 538639782, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 3983748582, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "d0407cef5ef096a6bac7279fc19a5c4e39a31aff880d5f07dd637a8a9badbe96",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     538639782,
+     4,
+     12,
+     3983748582
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-42",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 42,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 1, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'[%s-%d] pkg_name length is too long !\\n'), ('RO', b'is_on_whitelist_by_identifier'), 74, 899981045, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "335f6b4af79e31bdb2ed4eeb3677721a5d8453efebf735afd1e754e209473f04",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1,
+     2,
+     4239591256,
+     899981045
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-43",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 43,
+    "xpsr": 0
+   },
+   "new_instructions": 16,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584,
+    553014,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 2345269775, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'pkg_name is %s \\n'), 2345269775, 1935641720, 554330043, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'com.apple.mobilephone'), 2345269775, 21, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'whitelist type call is disable ! \\n'), 0, 21, 126, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "b3387ebeb9655de2f7d4f8be8fd896d5b6f8776a024a2beeb6878bac468719cd",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     1
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2345269775,
+     3092785552,
+     1935641720,
+     554330043
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      12,
+      0,
+      0
+     ],
+     [
+      13,
+      0,
+      0
+     ],
+     [
+      14,
+      0,
+      0
+     ],
+     [
+      15,
+      0,
+      0
+     ],
+     [
+      16,
+      0,
+      0
+     ],
+     [
+      17,
+      0,
+      0
+     ],
+     [
+      18,
+      0,
+      0
+     ],
+     [
+      19,
+      0,
+      0
+     ],
+     [
+      20,
+      0,
+      0
+     ],
+     [
+      21,
+      0,
+      0
+     ],
+     [
+      22,
+      0,
+      0
+     ],
+     [
+      23,
+      0,
+      0
+     ],
+     [
+      24,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ],
+     [
+      12,
+      1,
+      0
+     ],
+     [
+      13,
+      1,
+      0
+     ],
+     [
+      14,
+      1,
+      0
+     ],
+     [
+      15,
+      1,
+      0
+     ],
+     [
+      16,
+      1,
+      0
+     ],
+     [
+      17,
+      1,
+      0
+     ],
+     [
+      18,
+      1,
+      0
+     ],
+     [
+      19,
+      1,
+      0
+     ],
+     [
+      20,
+      1,
+      0
+     ],
+     [
+      21,
+      1,
+      0
+     ],
+     [
+      22,
+      1,
+      0
+     ],
+     [
+      23,
+      1,
+      0
+     ],
+     [
+      24,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 400,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    61202,
+    105584,
+    553014,
+    553014,
+    553014,
+    553014,
+    553014,
+    553014,
+    553014,
+    553014,
+    553014,
+    105584,
+    553150
+   ],
+   "events_head": [
+    "('C', 0, 3358579451, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'pkg_name is %s \\n'), 3358579451, 168044460, 6, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'com.apple.mobilephone'), 3358579451, 21, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'com.apple.mobilephone_missed'), 3358579451, 28, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'com.android.phone_incall'), 3358579451, 24, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'com.android.phone_missed'), 3358579451, 24, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'com.apple.MobileSMS'), 3358579451, 19, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'com.android.even_sms'), 3358579451, 20, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'com.apple.mobilecal'), 3358579451, 19, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'com.android.even_calendar'), 3358579451, 25, 'S', 'F', 'T', None)",
+    "('C', 10, ('RO', b'com.apple.mobilemail'), 3358579451, 20, 'S', 'F', 'T', None)",
+    "('C', 11, ('RO', b'appcounts is %d \\n'), 199, 20, 6, 'S', 'F', 'T', None)",
+    "('C', 12, ('RO', b'com.apple.mobilecal'), 3358579451, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0a3e38f0114e8d774c5ee2531cc6e8684a1f8493078be250dc4386ebc6cc93e6",
+    "kind": "return",
+    "ncalls": 13,
+    "ret": [
+     3
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3358579451,
+     2876352768,
+     168044460,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      1
+     ],
+     [
+      1,
+      0,
+      1
+     ],
+     [
+      2,
+      0,
+      1
+     ],
+     [
+      3,
+      0,
+      1
+     ],
+     [
+      4,
+      0,
+      1
+     ],
+     [
+      5,
+      0,
+      1
+     ],
+     [
+      6,
+      0,
+      1
+     ],
+     [
+      7,
+      0,
+      1
+     ],
+     [
+      8,
+      0,
+      1
+     ],
+     [
+      9,
+      0,
+      1
+     ],
+     [
+      10,
+      0,
+      1
+     ],
+     [
+      11,
+      0,
+      1
+     ],
+     [
+      12,
+      0,
+      1
+     ],
+     [
+      13,
+      0,
+      1
+     ],
+     [
+      14,
+      0,
+      1
+     ],
+     [
+      15,
+      0,
+      1
+     ],
+     [
+      16,
+      0,
+      1
+     ],
+     [
+      17,
+      0,
+      1
+     ],
+     [
+      18,
+      0,
+      1
+     ],
+     [
+      19,
+      0,
+      1
+     ],
+     [
+      20,
+      0,
+      1
+     ],
+     [
+      21,
+      0,
+      1
+     ],
+     [
+      22,
+      0,
+      1
+     ],
+     [
+      23,
+      0,
+      1
+     ],
+     [
+      24,
+      0,
+      1
+     ],
+     [
+      0,
+      1,
+      1
+     ],
+     [
+      1,
+      1,
+      1
+     ],
+     [
+      2,
+      1,
+      1
+     ],
+     [
+      3,
+      1,
+      1
+     ],
+     [
+      4,
+      1,
+      1
+     ],
+     [
+      5,
+      1,
+      1
+     ],
+     [
+      6,
+      1,
+      1
+     ],
+     [
+      7,
+      1,
+      1
+     ],
+     [
+      8,
+      1,
+      1
+     ],
+     [
+      9,
+      1,
+      1
+     ],
+     [
+      10,
+      1,
+      1
+     ],
+     [
+      11,
+      1,
+      1
+     ],
+     [
+      12,
+      1,
+      1
+     ],
+     [
+      13,
+      1,
+      1
+     ],
+     [
+      14,
+      1,
+      1
+     ],
+     [
+      15,
+      1,
+      1
+     ],
+     [
+      16,
+      1,
+      1
+     ],
+     [
+      17,
+      1,
+      1
+     ],
+     [
+      18,
+      1,
+      1
+     ],
+     [
+      19,
+      1,
+      1
+     ],
+     [
+      20,
+      1,
+      1
+     ],
+     [
+      21,
+      1,
+      1
+     ],
+     [
+      22,
+      1,
+      1
+     ],
+     [
+      23,
+      1,
+      1
+     ],
+     [
+      24,
+      1,
+      1
+     ]
+    ],
+    "scratch_seed": 401,
+    "xpsr": 0
+   },
+   "new_instructions": 74,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    61202,
+    105584,
+    553014,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 3667252315, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'pkg_name is %s \\n'), 3667252315, 2, 2147483648, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'com.apple.mobilephone'), 3667252315, 21, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'whitelist type call is enable ! \\n'), 0, 21, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e3052b8e896284ce6331bc4f023ac11a196de26dfbbf89d663e1d4a533d615d4",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     2
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536977964,
+      "01000000"
+     ]
+    ],
+    "args": [
+     3667252315,
+     812981861,
+     2,
+     2147483648
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "combo-1-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ],
+     [
+      12,
+      0,
+      0
+     ],
+     [
+      12,
+      1,
+      0
+     ],
+     [
+      13,
+      0,
+      0
+     ],
+     [
+      13,
+      1,
+      0
+     ],
+     [
+      14,
+      0,
+      0
+     ],
+     [
+      14,
+      1,
+      0
+     ],
+     [
+      15,
+      0,
+      0
+     ],
+     [
+      15,
+      1,
+      0
+     ],
+     [
+      16,
+      0,
+      0
+     ],
+     [
+      16,
+      1,
+      0
+     ],
+     [
+      17,
+      0,
+      0
+     ],
+     [
+      17,
+      1,
+      0
+     ],
+     [
+      18,
+      0,
+      0
+     ],
+     [
+      18,
+      1,
+      0
+     ],
+     [
+      19,
+      0,
+      0
+     ],
+     [
+      19,
+      1,
+      0
+     ],
+     [
+      20,
+      0,
+      0
+     ],
+     [
+      20,
+      1,
+      0
+     ],
+     [
+      21,
+      0,
+      0
+     ],
+     [
+      21,
+      1,
+      0
+     ],
+     [
+      22,
+      0,
+      0
+     ],
+     [
+      22,
+      1,
+      0
+     ],
+     [
+      23,
+      0,
+      0
+     ],
+     [
+      23,
+      1,
+      0
+     ],
+     [
+      24,
+      0,
+      0
+     ],
+     [
+      24,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 604,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    4,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    4,
+    1,
+    3,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61202,
+    105584,
+    553014,
+    553014,
+    553014,
+    553014,
+    553014,
+    553014,
+    553014,
+    553014,
+    553014,
+    105584,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    105584,
+    61202,
+    553014,
+    553150
+   ],
+   "events_head": [
+    "('C', 0, 544061150, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'pkg_name is %s \\n'), 544061150, 255, 993234778, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'com.apple.mobilephone'), 544061150, 21, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'com.apple.mobilephone_missed'), 544061150, 28, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'com.android.phone_incall'), 544061150, 24, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'com.android.phone_missed'), 544061150, 24, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'com.apple.MobileSMS'), 544061150, 19, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'com.android.even_sms'), 544061150, 20, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'com.apple.mobilecal'), 544061150, 19, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'com.android.even_calendar'), 544061150, 25, 'S', 'F', 'T', None)",
+    "('C', 10, ('RO', b'com.apple.mobilemail'), 544061150, 20, 'S', 'F', 'T', None)",
+    "('C', 11, ('RO', b'appcounts is %d \\n'), 255, 20, 993234778, 'S', 'F', 'T', None)",
+    "('C', 12, ('RO', b'g_appWhiteListInfo.listAppInfo[%d].id is %s \\n'), 0, 536977966, 2842202207, 'S', 'F', 'T', None)",
+    "('C', 13, 536977966, 'S', 'F', 'T', None)",
+    "('C', 14, 536977966, 544061150, 1, 'S', 'F', 'T', None)",
+    "('C', 15, ('RO', b'g_appWhiteListInfo.listAppInfo[%d].id is %s \\n'), 1, 536978022, 2842202207, 'S', 'F', 'T', None)",
+    "('C', 16, 536978022, 'S', 'F', 'T', None)",
+    "('C', 17, 536978022, 544061150, 1, 'S', 'F', 'T', None)",
+    "('C', 18, ('RO', b'g_appWhiteListInfo.listAppInfo[%d].id is %s \\n'), 2, 536978078, 2842202207, 'S', 'F', 'T', None)",
+    "('C', 19, 536978078, 'S', 'F', 'T', None)",
+    "('C', 20, 536978078, 544061150, 1, 'S', 'F', 'T', None)",
+    "('C', 21, ('RO', b'g_appWhiteListInfo.listAppInfo[%d].id is %s \\n'), 3, 536978134, 2842202207, 'S', 'F', 'T', None)",
+    "('C', 22, 536978134, 'S', 'F', 'T', None)",
+    "('C', 23, 536978134, 544061150, 1, 'S', 'F', 'T', None)",
+    "('C', 24, ('RO', b'g_appWhiteListInfo.listAppInfo[%d].id is %s \\n'), 4, 536978190, 2842202207, 'S', 'F', 'T', None)",
+    "('C', 25, 536978190, 'S', 'F', 'T', None)",
+    "('C', 26, 536978190, 544061150, 3117163270, 'S', 'F', 'T', None)",
+    "('C', 27, ('RO', b'g_appWhiteListInfo.listAppInfo[%d].id is %s \\n'), 5, 536978246, 2842202207, 'S', 'F', 'T', None)",
+    "('C', 28, 536978246, 'S', 'F', 'T', None)",
+    "('C', 29, 536978246, 544061150, 966332592, 'S', 'F', 'T', None)",
+    "('C', 30, ('RO', b'g_appWhiteListInfo.listAppInfo[%d].id is %s \\n'), 6, 536978302, 2842202207, 'S', 'F', 'T', None)",
+    "('C', 31, 536978302, 'S', 'F', 'T', None)",
+    "('C', 32, 536978302, 544061150, 1345306351, 'S', 'F', 'T', None)",
+    "('C', 33, ('RO', b'g_appWhiteListInfo.listAppInfo[%d].id is %s \\n'), 7, 536978358, 2842202207, 'S', 'F', 'T', None)",
+    "('C', 34, 536978358, 'S', 'F', 'T', None)",
+    "('C', 35, 536978358, 544061150, 4264858395, 'S', 'F', 'T', None)",
+    "('C', 36, ('RO', b'g_appWhiteListInfo.listAppInfo[%d].id is %s \\n'), 8, 536978414, 2842202207, 'S', 'F', 'T', None)",
+    "('C', 37, 536978414, 'S', 'F', 'T', None)",
+    "('C', 38, 536978414, 544061150, 188994012, 'S', 'F', 'T', None)",
+    "('C', 39, ('RO', b'g_appWhiteListInfo.listAppInfo[%d].id is %s \\n'), 9, 536978470, 2842202207, 'S', 'F', 'T', None)",
+    "('C', 40, 536978470, 'S', 'F', 'T', None)",
+    "('C', 41, 536978470, 544061150, 536150042, 'S', 'F', 'T', None)",
+    "('C', 42, ('RO', b'g_appWhiteListInfo.listAppInfo[%d].id is %s \\n'), 10, 536978526, 2842202207, 'S', 'F', 'T', None)",
+    "('C', 43, 536978526, 'S', 'F', 'T', None)",
+    "('C', 44, 536978526, 544061150, 2834733948, 'S', 'F', 'T', None)",
+    "('C', 45, ('RO', b'g_appWhiteListInfo.listAppInfo[%d].id is %s \\n'), 11, 536978582, 2842202207, 'S', 'F', 'T', None)",
+    "('C', 46, 536978582, 'S', 'F', 'T', None)",
+    "('C', 47, 536978582, 544061150, 4189013442, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "f5ac98b48888e75f333794b471bba1e56a9094dab00a1cce4906531d1d486333",
+    "kind": "return",
+    "ncalls": 778,
+    "ret": [
+     3
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536977964,
+      "ffffffff"
+     ]
+    ],
+    "args": [
+     544061150,
+     2,
+     255,
+     993234778
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "combo-2-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      1
+     ],
+     [
+      0,
+      1,
+      1
+     ],
+     [
+      1,
+      0,
+      1
+     ],
+     [
+      1,
+      1,
+      1
+     ],
+     [
+      2,
+      0,
+      1
+     ],
+     [
+      2,
+      1,
+      1
+     ],
+     [
+      3,
+      0,
+      1
+     ],
+     [
+      3,
+      1,
+      1
+     ],
+     [
+      4,
+      0,
+      1
+     ],
+     [
+      4,
+      1,
+      1
+     ],
+     [
+      5,
+      0,
+      1
+     ],
+     [
+      5,
+      1,
+      1
+     ],
+     [
+      6,
+      0,
+      1
+     ],
+     [
+      6,
+      1,
+      1
+     ],
+     [
+      7,
+      0,
+      1
+     ],
+     [
+      7,
+      1,
+      1
+     ],
+     [
+      8,
+      0,
+      1
+     ],
+     [
+      8,
+      1,
+      1
+     ],
+     [
+      9,
+      0,
+      1
+     ],
+     [
+      9,
+      1,
+      1
+     ],
+     [
+      10,
+      0,
+      1
+     ],
+     [
+      10,
+      1,
+      1
+     ],
+     [
+      11,
+      0,
+      1
+     ],
+     [
+      11,
+      1,
+      1
+     ],
+     [
+      12,
+      0,
+      1
+     ],
+     [
+      12,
+      1,
+      1
+     ],
+     [
+      13,
+      0,
+      1
+     ],
+     [
+      13,
+      1,
+      1
+     ],
+     [
+      14,
+      0,
+      1
+     ],
+     [
+      14,
+      1,
+      1
+     ],
+     [
+      15,
+      0,
+      1
+     ],
+     [
+      15,
+      1,
+      1
+     ],
+     [
+      16,
+      0,
+      1
+     ],
+     [
+      16,
+      1,
+      1
+     ],
+     [
+      17,
+      0,
+      1
+     ],
+     [
+      17,
+      1,
+      1
+     ],
+     [
+      18,
+      0,
+      1
+     ],
+     [
+      18,
+      1,
+      1
+     ],
+     [
+      19,
+      0,
+      1
+     ],
+     [
+      19,
+      1,
+      1
+     ],
+     [
+      20,
+      0,
+      1
+     ],
+     [
+      20,
+      1,
+      1
+     ],
+     [
+      21,
+      0,
+      1
+     ],
+     [
+      21,
+      1,
+      1
+     ],
+     [
+      22,
+      0,
+      1
+     ],
+     [
+      22,
+      1,
+      1
+     ],
+     [
+      23,
+      0,
+      1
+     ],
+     [
+      23,
+      1,
+      1
+     ],
+     [
+      24,
+      0,
+      1
+     ],
+     [
+      24,
+      1,
+      1
+     ]
+    ],
+    "scratch_seed": 609,
+    "xpsr": 0
+   },
+   "new_instructions": 102,
+   "stack_args": []
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 127,
+  "ratio": 0.7987,
+  "total": 159,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 386,
+ "globals": [
+  "0x2001a22c"
+ ],
+ "module": "notify",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "i32",
+ "search": {
+  "candidates": 177,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 46,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 386,
+ "symbol": "is_on_whitelist_by_identifier",
+ "va": "0x00034bd4"
+}

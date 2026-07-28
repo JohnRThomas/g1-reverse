@@ -1,0 +1,2590 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): update_burial_point_to_flash!!!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 3694469211, 'S', 'F', 'T', None)",
+    "('C', 2, 1265664, ('SP', 0), 192, 3694469211, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): burial_point read error!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 3694469211, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c3b65abd67cf45512b4fe19c3304fe6c6c3dbdf28a4a8b2ffc565ca0fbe053b1",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1276959699,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    552056,
+    140724
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, 1265664, ('SP', 0), 192, 2294313132, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c9f820ed7ff37182979e1d37ed4072ff7d1ddf0ff25eed8008cea8bf34e7f456",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4067469868,
+     1797429778,
+     2147483648,
+     315044147
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 1,
+    "xpsr": 0
+   },
+   "new_instructions": 22,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): update_burial_point_to_flash!!!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 471345317, 'S', 'F', 'T', None)",
+    "('C', 2, 1265664, ('SP', 0), 192, 471345317, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): burial_point read error!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 471345317, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0165a8efc00a74d7713207c3f8f70fca846e97d486719ae5297c5c50412db5ab",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4290042576,
+     598759513,
+     3677430904,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-2",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 2,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    552056,
+    140724
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, 1265664, ('SP', 0), 192, 2632963646, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "b35d5a82a075f2d16999987acbdfa7bef50e16e4addccad49bee0b3a95386746",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2618385373,
+     255,
+     8,
+     3619521758
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-3",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 3,
+    "xpsr": 0
+   },
+   "new_instructions": 22,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): update_burial_point_to_flash!!!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 2655161023, 'S', 'F', 'T', None)",
+    "('C', 2, 1265664, ('SP', 0), 192, 2655161023, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): burial_point read error!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 2655161023, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "44a54a15b428e0719043a0a7c620afc7e286679639875dd749e2bf5b921d0eea",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     16,
+     2147483647,
+     3842370354,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-4",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 4,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    552056,
+    140724
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, 1265664, ('SP', 0), 192, 2260426196, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "94c2bb89beb80f280c659163cd7751d6d92d6792c9ad649e9a5b031027430739",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     3188701995,
+     8,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-5",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 5,
+    "xpsr": 0
+   },
+   "new_instructions": 22,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    552056,
+    140724
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, 1265664, ('SP', 0), 192, 3330982510, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "443a7a9d7447f6b24ddd980ad6296306386f4263e196efeb7ff95a38ac99f5d2",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     3322790363,
+     5,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-6",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 6,
+    "xpsr": 0
+   },
+   "new_instructions": 22,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    552056,
+    140724
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, 1265664, ('SP', 0), 192, 3832852911, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c53b6d1ac180f39a16c4c20179ead31a2c528c37af2bc9c95128805f95b6a162",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2300957721,
+     1604804925,
+     1,
+     2363272863
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-7",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 7,
+    "xpsr": 0
+   },
+   "new_instructions": 22,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    552056,
+    140724
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, 1265664, ('SP', 0), 192, 3811825194, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "5b4f503c4344250403c4ecfcaf5426614067015395a0c2d305880dec7b73a276",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2156366374,
+     708972563,
+     558645175,
+     4
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-8",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 8,
+    "xpsr": 0
+   },
+   "new_instructions": 22,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): update_burial_point_to_flash!!!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 3178863954, 'S', 'F', 'T', None)",
+    "('C', 2, 1265664, ('SP', 0), 192, 3178863954, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): burial_point read error!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 3178863954, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "9a8ec471a96e972c6baca3e9e6c83792312c702adf9e1ae826b062643979f186",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1346232374,
+     1556998536,
+     499087790,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-9",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 9,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): update_burial_point_to_flash!!!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 3586673693, 'S', 'F', 'T', None)",
+    "('C', 2, 1265664, ('SP', 0), 192, 3586673693, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): burial_point read error!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 3586673693, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "171d00377d19035aa2ed776974939860de22df7277de2c416cd5b449d7ba799e",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     182454980,
+     995058044,
+     8,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-10",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 10,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): update_burial_point_to_flash!!!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 801746852, 'S', 'F', 'T', None)",
+    "('C', 2, 1265664, ('SP', 0), 192, 801746852, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): burial_point read error!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 801746852, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "31bc652ba2fa7c1b21f73079897e20f455a18801b17e5ac334dc8bb2b426a8b8",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     2147483648,
+     256,
+     1426281073
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-11",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 11,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): update_burial_point_to_flash!!!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 1542880163, 'S', 'F', 'T', None)",
+    "('C', 2, 1265664, ('SP', 0), 192, 1542880163, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): burial_point read error!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 1542880163, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "98995e5a67d397cab3c3e4ee3af986ef5dc82f335005e50804a8e04f9a03a21b",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     8,
+     3217736208,
+     5,
+     1103693227
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-12",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 12,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): update_burial_point_to_flash!!!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 287561451, 'S', 'F', 'T', None)",
+    "('C', 2, 1265664, ('SP', 0), 192, 287561451, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): burial_point read error!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 287561451, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "9f251071d27e64e6307786ce912aaf087959a55e480dfab76a403b1307f9ab96",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1156718256,
+     1944344031,
+     6,
+     617681966
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-13",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 13,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    552056,
+    140724
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, 1265664, ('SP', 0), 192, 4017796843, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "015efb24259ece21f65d52cca73a2be35effc10523787d8b93c2ef4c50c9f198",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1996365079,
+     12,
+     3,
+     470668832
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-14",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 14,
+    "xpsr": 0
+   },
+   "new_instructions": 22,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    552056,
+    140724
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, 1265664, ('SP', 0), 192, 2398269940, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "a2d207769b45757128ac89686464807de1560f9d4de0176888afb9bd55a46d54",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     7,
+     256,
+     5,
+     4
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-15",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 15,
+    "xpsr": 0
+   },
+   "new_instructions": 22,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): update_burial_point_to_flash!!!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 886755549, 'S', 'F', 'T', None)",
+    "('C', 2, 1265664, ('SP', 0), 192, 886755549, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): burial_point read error!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 886755549, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "56b7bc30e1cdb391274a2d5a474fc2c1d81da9938941c2f55745a13734a4423b",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2024561310,
+     2147483648,
+     3454407978,
+     16
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-16",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 16,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    552056,
+    140724
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, 1265664, ('SP', 0), 192, 3388620645, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "38bf5c4ff23df1d60040686e31044966b5d43943b0a44c75eb39780405699f2d",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     3254638692,
+     1168623309,
+     4252165479
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-17",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 17,
+    "xpsr": 0
+   },
+   "new_instructions": 22,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    552056,
+    140724
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, 1265664, ('SP', 0), 192, 4161594000, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "783e14c2a904740ab2261b11146a630dc72b8e3f48de86faec3ce8036db3aeef",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3912442165,
+     0,
+     697236451,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-18",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 18,
+    "xpsr": 0
+   },
+   "new_instructions": 22,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): update_burial_point_to_flash!!!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 4075769455, 'S', 'F', 'T', None)",
+    "('C', 2, 1265664, ('SP', 0), 192, 4075769455, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): burial_point read error!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 4075769455, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "f5b43884d0f078b517f721e94a079031498b8948e2f256f34092148a38aad88a",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     6,
+     1536401714,
+     4178753371,
+     255
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-19",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 19,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    552056,
+    140724
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, 1265664, ('SP', 0), 192, 4172457040, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "d06316adbca522d8a097f3b27e6a8d95895fda44cb06ac2d088f6137dc5eded9",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     2306919366,
+     2,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-20",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 20,
+    "xpsr": 0
+   },
+   "new_instructions": 22,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): update_burial_point_to_flash!!!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 2217669457, 'S', 'F', 'T', None)",
+    "('C', 2, 1265664, ('SP', 0), 192, 2217669457, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): burial_point read error!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 2217669457, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e9c1e7a7a358a1b24b8e59eadd6dd5c88e26726f858152a1781a91cb8b2fbb42",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     843060076,
+     1,
+     2870852768,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-21",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 21,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    552056,
+    140724
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, 1265664, ('SP', 0), 192, 4228010407, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e50337a4a628648bce3d6b115b205264cf49edc0b9351c6c572a261a7980b403",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     7,
+     3001296298,
+     4294967295,
+     2451975022
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-22",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 22,
+    "xpsr": 0
+   },
+   "new_instructions": 22,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    552056,
+    140724
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, 1265664, ('SP', 0), 192, 3486264141, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "4981b67cc821424f0400a66f660d198b2c6dca17b6eb3addf4a910ebed0c1055",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1591295399,
+     241044672,
+     2034212132,
+     1515885587
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-23",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 23,
+    "xpsr": 0
+   },
+   "new_instructions": 22,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    552056,
+    140724
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, 1265664, ('SP', 0), 192, 2723725913, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1ea2214e1c84e9f747cbfd58aaad1464a040e177d57a0708ba324c1987da6895",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     6,
+     2967241396,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-24",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 24,
+    "xpsr": 0
+   },
+   "new_instructions": 22,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): update_burial_point_to_flash!!!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 3712121755, 'S', 'F', 'T', None)",
+    "('C', 2, 1265664, ('SP', 0), 192, 3712121755, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): burial_point read error!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 3712121755, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "8d719b6df75325e6785751be5a4d67acc204b19d31e06043256d70ea7360d535",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3751937804,
+     12,
+     2149248134,
+     604019693
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-25",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 25,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    552056,
+    140724
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, 1265664, ('SP', 0), 192, 2921214926, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "954eb6ee92543335d65dcf127143f6569eb5b803de1f7bccf25dfcb50bdbfd1b",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2992330384,
+     12,
+     3037640278,
+     2678623347
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-26",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 26,
+    "xpsr": 0
+   },
+   "new_instructions": 22,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): update_burial_point_to_flash!!!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 1775869161, 'S', 'F', 'T', None)",
+    "('C', 2, 1265664, ('SP', 0), 192, 1775869161, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): burial_point read error!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 1775869161, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "3370a5b62e7f12233f79c1a591af57696eb7bdedd4790d57f536dfeb52fc3f55",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     187818536,
+     681194263,
+     3639365232,
+     4125446660
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-27",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 27,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): update_burial_point_to_flash!!!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 1542213390, 'S', 'F', 'T', None)",
+    "('C', 2, 1265664, ('SP', 0), 192, 1542213390, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): burial_point read error!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 1542213390, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "783e31f1528eb632a30d16b6438337743e8fa16918d84dc1d07c99fbbd5e8448",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3711083943,
+     4285183211,
+     1,
+     2592385448
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-28",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 28,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    552056,
+    140724
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, 1265664, ('SP', 0), 192, 3639490840, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "b4c1e4cff9ae87091b4a6823f2c6b4af37f09122145b94e0be6beed0525664e3",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     739928864,
+     256,
+     3886541357,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-29",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 29,
+    "xpsr": 0
+   },
+   "new_instructions": 22,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): update_burial_point_to_flash!!!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 2417460406, 'S', 'F', 'T', None)",
+    "('C', 2, 1265664, ('SP', 0), 192, 2417460406, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): burial_point read error!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 2417460406, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0288c7ababfe590f03f2b572da8e0da03f8f574f00dc66ebb6f9b80dd1a1d552",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     256,
+     8,
+     1,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-30",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 30,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): update_burial_point_to_flash!!!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 1988174091, 'S', 'F', 'T', None)",
+    "('C', 2, 1265664, ('SP', 0), 192, 1988174091, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): burial_point read error!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 1988174091, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "6b10b0d3d13365066a68db32d473790b30a3b2b51ba29f615f55bd108e938c4f",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4294967295,
+     2461003590,
+     7,
+     53351545
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-31",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 31,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): update_burial_point_to_flash!!!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 615009301, 'S', 'F', 'T', None)",
+    "('C', 2, 1265664, ('SP', 0), 192, 615009301, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): burial_point read error!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 615009301, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "25f2ffdf9ee99dc300f92e04638c8803b97b49dbe82debbbd1daf003877eb84e",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1839753098,
+     2706821390,
+     3442053927,
+     1170652979
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-32",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 32,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    552056,
+    140724
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, 1265664, ('SP', 0), 192, 3163679330, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "d23f0eda968bab09956426673a93106a59b15e3fe0fe2eaf5a970b126b78baa2",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1076094348,
+     7,
+     7,
+     5
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-33",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 33,
+    "xpsr": 0
+   },
+   "new_instructions": 22,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): update_burial_point_to_flash!!!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 2360084761, 'S', 'F', 'T', None)",
+    "('C', 2, 1265664, ('SP', 0), 192, 2360084761, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): burial_point read error!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 2360084761, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "942754c27ec00bbd50437a717dca078b762f8f6478a443dea53df147bb9e7383",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     12,
+     3990671540,
+     922796015,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-34",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 34,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): update_burial_point_to_flash!!!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 4019880274, 'S', 'F', 'T', None)",
+    "('C', 2, 1265664, ('SP', 0), 192, 4019880274, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): burial_point read error!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 4019880274, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "189f6216274eb29a7313a3cb2edc9fb0c0d313f0969e5fe1f63e989d1984face",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2726887024,
+     3578977268,
+     4001652011,
+     1
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-35",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 35,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): update_burial_point_to_flash!!!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 823752600, 'S', 'F', 'T', None)",
+    "('C', 2, 1265664, ('SP', 0), 192, 823752600, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): burial_point read error!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 823752600, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "63cc5aa521e75f6606bc967fe97604e6a52612572f2264e51c3e96f971cbfe51",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     12,
+     2147483647,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-36",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 36,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    552056,
+    140724
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, 1265664, ('SP', 0), 192, 3133331594, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "66d4f2f5f0fe3f38e3dcbb08fa9feaa801915d597898c618d502388149450c40",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1,
+     2057795936,
+     2725586938,
+     1299241558
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-37",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 37,
+    "xpsr": 0
+   },
+   "new_instructions": 22,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    552056,
+    140724
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, 1265664, ('SP', 0), 192, 3661291586, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "edc711132c055d7c633c0b0124203dce9e87ad51266c8516d0c75799784b64b4",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     255,
+     1,
+     2
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-38",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 38,
+    "xpsr": 0
+   },
+   "new_instructions": 22,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584,
+    140724,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): update_burial_point_to_flash!!!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 2944518647, 'S', 'F', 'T', None)",
+    "('C', 2, 1265664, ('SP', 0), 192, 2944518647, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): burial_point read error!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 2944518647, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c4143e91cf48c5cff488bab75a98daea813e74778eb264cfd43b68b243027114",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     1587124134,
+     3774328631,
+     1997155928
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-39",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 39,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    552056,
+    140724
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, 1265664, ('SP', 0), 192, 2618002814, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "7cbac05659006fddbef1749109b6fff07abff6ad035a4a4f226d23f8f65c8f09",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     3928041777,
+     1786326658,
+     1835695343
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-40",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 40,
+    "xpsr": 0
+   },
+   "new_instructions": 22,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    3
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    552056,
+    105584,
+    140724,
+    551908
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): update_burial_point_to_flash!!!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 4140973137, 'S', 'F', 'T', None)",
+    "('C', 2, 1265664, ('SP', 0), 192, 4140973137, 'S', 'F', 'T', None)",
+    "('C', 3, ('SP', 0), 2345274069, 192, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "657be80c315b23cfae5f0b0fbabd00fcbaf9f5dc2e189008759974edc5de29a3",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2345269775,
+     3092785552,
+     1935641720,
+     554330043
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 400,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    552056,
+    140724,
+    551908,
+    140888
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, 1265664, ('SP', 0), 192, 3041964471, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 4549, 192, 'S', 'F', 'T', None)",
+    "('C', 3, 1265664, 4549, 192, 3041964471, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e9d01b61e7c6b15b32a282cf73ab89d73675bc6facdefe7c1b8c4fe05db0e879",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     255,
+     952824504,
+     1118673106,
+     4294967295
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-1-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 502,
+    "xpsr": 0
+   },
+   "new_instructions": 36,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584,
+    140724,
+    551908,
+    140888,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 192, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): update_burial_point_to_flash!!!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 2879308585, 'S', 'F', 'T', None)",
+    "('C', 2, 1265664, ('SP', 0), 192, 2879308585, 'S', 'F', 'T', None)",
+    "('C', 3, ('SP', 0), 4297, 192, 'S', 'F', 'T', None)",
+    "('C', 4, 1265664, 4297, 192, 2879308585, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'%s(): burial_point flash_settings_write_and_verify error!\\n'), ('RO', b'update_burial_point_to_flash'), 192, 2879308585, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "083a52b3be523ab9f48b29866c684b457edbf53b3bdf34a55b8093fc48ccd2fd",
+    "kind": "return",
+    "ncalls": 6,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     93393707,
+     31352568,
+     2147483648
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-2-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 504,
+    "xpsr": 0
+   },
+   "new_instructions": 49,
+   "stack_args": []
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 56,
+  "ratio": 0.9333,
+  "total": 60,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 140,
+ "globals": [
+  "0x2000230c",
+  "0x20007554"
+ ],
+ "module": "analytics",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "i32",
+ "search": {
+  "candidates": 175,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 44,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 140,
+ "symbol": "update_burial_point_to_flash",
+ "va": "0x00023014"
+}

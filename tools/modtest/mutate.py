@@ -136,13 +136,40 @@ def member_span(text, symbol):
     banners = [(m.start(), m.end()) for m in _BANNER.finditer(text)]
     if not banners:
         return None
+    blocks = []
     for index, (start, end) in enumerate(banners):
         stop = banners[index + 1][0] if index + 1 < len(banners) else len(text)
-        window = text[end:stop]
-        name = _re.search(r'public-name:\s*([A-Za-z_$][\w$]*)', window)
-        if (name and name.group(1) == symbol) or _re.search(
-                r'\b' + _re.escape(symbol) + r'\s*\(', window):
+        blocks.append((start, end, stop))
+    # PASS 1 -- the banner's own `public-name:` is the identity, and it is the
+    # ONLY authoritative one.
+    #
+    # There used to be no pass 2 / pass 1 split, and the consequence was
+    # measured: `st25dv_write_control_and_ack` is the FIRST member of
+    # `ipc/g1_ipc_cc01.c` and its body contains `st25dv_reg_modify_low5(val,
+    # b);`.  The loose fallback `\bSYMBOL\s*\(` matched that CALL SITE, so
+    # every mutant for `st25dv_reg_modify_low5` was confined to a SIBLING's
+    # block -- 0 of 12 killed at 100 % instruction coverage, which is exactly
+    # the vacuous-grading failure `member_span` was written to prevent,
+    # reintroduced one level along.  45 of the 1,167 members of merged app TUs
+    # were mis-attributed this way.
+    for start, end, stop in blocks:
+        name = _re.search(r'public-name:\s*([A-Za-z_$][\w$]*)', text[end:stop])
+        if name and name.group(1) == symbol:
             return (start, stop)
+    # PASS 2 -- only for a banner that carries no `public-name:` line at all,
+    # where the raw `FUN_xxxxxxxx` name is the identity.  A call site is still
+    # possible here, so require the match to look like a DEFINITION: the name,
+    # a parameter list, and then `{` rather than `;`.
+    for start, end, stop in blocks:
+        window = text[end:stop]
+        if _re.search(r'public-name:\s*[A-Za-z_$][\w$]*', window):
+            continue
+        for match in _re.finditer(r'\b' + _re.escape(symbol) + r'\s*\(', window):
+            close = window.find(")", match.end() - 1)
+            if close < 0:
+                continue
+            if window[close + 1:close + 200].lstrip()[:1] == "{":
+                return (start, stop)
     return None
 
 

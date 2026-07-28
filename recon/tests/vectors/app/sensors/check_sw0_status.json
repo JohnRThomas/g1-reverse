@@ -27,8 +27,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536943568,
-     536948040,
+     1276959699,
+     12,
      4,
      0
     ],
@@ -36,12 +36,13 @@
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 0,
     "xpsr": 0
    },
-   "new_instructions": 7
+   "new_instructions": 7,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -85,8 +86,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536951308,
-     536947088,
+     2345269775,
+     3092785552,
      1935641720,
      554330043
     ],
@@ -94,7 +95,7 @@
     "fp": {},
     "id": "orc-all-0",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [
      [
       0,
@@ -150,7 +151,8 @@
     "scratch_seed": 400,
     "xpsr": 0
    },
-   "new_instructions": 30
+   "new_instructions": 30,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -179,8 +181,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536943048,
-     536949788,
+     16,
+     3537908766,
      2874002338,
      3321765362
     ],
@@ -188,7 +190,7 @@
     "fp": {},
     "id": "orc-0-0",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [
      [
       0,
@@ -204,7 +206,8 @@
     "scratch_seed": 500,
     "xpsr": 0
    },
-   "new_instructions": 14
+   "new_instructions": 14,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -246,8 +249,8 @@
      ]
     ],
     "args": [
-     536937496,
-     536936912,
+     8,
+     1164329427,
      7,
      1937427917
     ],
@@ -255,7 +258,7 @@
     "fp": {},
     "id": "combo-0-0",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [
      [
       0,
@@ -311,7 +314,8 @@
     "scratch_seed": 600,
     "xpsr": 0
    },
-   "new_instructions": 14
+   "new_instructions": 14,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -353,8 +357,8 @@
      ]
     ],
     "args": [
-     536941656,
-     536944228,
+     3667252315,
+     812981861,
      2,
      2147483648
     ],
@@ -362,7 +366,7 @@
     "fp": {},
     "id": "combo-1-0",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [
      [
       0,
@@ -418,7 +422,8 @@
     "scratch_seed": 604,
     "xpsr": 0
    },
-   "new_instructions": 14
+   "new_instructions": 14,
+   "stack_args": []
   }
  ],
  "core": "app",
@@ -435,19 +440,22 @@
   "0x20007554"
  ],
  "module": "sensors",
- "nptr": 2,
+ "nptr": -1,
  "oracle": {
   "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
   "source": "shipped image"
  },
+ "pointer_arg_mask": [],
  "ret_kind": "void",
  "search": {
-  "candidates": 169,
+  "candidates": 177,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
   "extent_dispute_targets": [],
   "harness_errors": 0,
-  "kept": 5
+  "kept": 5,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
  },
  "size": 88,
  "symbol": "check_sw0_status",

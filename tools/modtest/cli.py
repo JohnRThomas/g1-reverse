@@ -91,7 +91,8 @@ def cmd_gen(args, trees):
         ret_kind = _ret_kind(core, va)
         try:
             kept, covered, denominator, unresolved, globals_, stats = mtgen.select(
-                core, va, size, ret_kind=ret_kind, nptr=args.nptr,
+                core, va, size, ret_kind=ret_kind,
+                nptr=(None if args.nptr < 0 else args.nptr),
                 budget=args.budget)
         except Exception as exc:                        # noqa: BLE001
             print("ERROR %-40s %s" % (symbol, exc))
@@ -103,8 +104,15 @@ def cmd_gen(args, trees):
             "va": "0x%08x" % va, "size": size,
             "ghidra_size": ghidra_size, "ret_kind": ret_kind,
             "nptr": args.nptr,
+            "pointer_arg_mask": stats.get("pointer_arg_mask"),
             "oracle": {"source": "shipped image",
                        "image_sha256": mtcore.image_digest(core)},
+            # The fingerprint of the harness code that DEFINES this
+            # expectation.  `run` refuses a vector whose fingerprint differs.
+            # See core.harness_rev for the incident that made this necessary.
+            "harness": {"rev": mtcore.harness_rev(),
+                        "stack_arg_window": mtcore.STACK_ARG_WINDOW,
+                        "derived_arity": mtcore.DERIVED_ARITY},
             "coverage": {"covered": len(covered), "total": len(denominator),
                          "unresolved_indirect": unresolved,
                          "ratio": round(len(covered) / max(len(denominator), 1), 4)},
@@ -127,6 +135,10 @@ def cmd_gen(args, trees):
                 "call_arities": state.get("call_arities_used_full", []),
                 "call_float_arities": state.get("call_float_arities_used_full", []),
                 "call_return_kinds": state.get("call_return_kinds_used_full", []),
+                # RULE 7 (core.STACK_ARG_WINDOW): the offsets the SHIPPED bytes
+                # wrote into each stack record they passed by pointer, which is
+                # what defines the record's extent for the candidate.
+                "stack_args": state.get("stack_args") or [],
                 "new_instructions": len(hit),
             })
         path = mtcore.save_vectors(record)
@@ -146,6 +158,25 @@ def _replay(core, symbol, tree, record, extra_cflags=None, source_override=None)
     ret_kind = record["ret_kind"]
     failures = []
     covered = set()
+    stale = mtcore.vector_staleness(record)
+    if stale is not None:
+        # A vector frozen by a DIFFERENT harness does not mean what this
+        # harness would compare it against.  Measured cost of not having this:
+        # the net-core pass had 168 vectors invalidated mid-sweep by changes
+        # made here, recovered by pinning the harness to a git snapshot, and
+        # DELETED 81 more whose harness version it could not establish.  Refuse
+        # loudly instead of comparing two different definitions of "expected".
+        return False, {"stage": "stale-vector", "error": stale,
+                       "failures": [], "n_failures": 0, "cases": 0,
+                       "candidate_insns": 0}
+    if not record["cases"]:
+        # A vector set with no surviving fixture proves nothing.  Returning
+        # ok=True here prints OK(0/0), which is a PASS on a symbol that was
+        # never executed.  Measured on net: 6 of the first 260 vectors, all
+        # because search.dropped_instruction_cap == candidates.
+        # (recon/analysis/net_test_coverage.md §6.1.)
+        return False, {"stage": "vacuous", "failures": [], "n_failures": 0,
+                       "cases": 0, "candidate_insns": 0}
     for case in record["cases"]:
         fixture = Fixture(case["fixture"])
         golden = {"orig_size": record["size"],
@@ -160,6 +191,11 @@ def _replay(core, symbol, tree, record, extra_cflags=None, source_override=None)
         except RuntimeError as exc:
             return False, {"stage": "compile", "error": str(exc)[:400]}
         covered |= hit
+        stack = mtcore.stack_args_mismatch(case.get("stack_args"),
+                                           meta["state"].get("stack_raw"))
+        if stack is not None and key == case["expect"]:
+            failures.append({"fixture": fixture["id"], "stack_record": stack})
+            continue
         if key != case["expect"]:
             golden_events = case.get("events_head", [])
             got_events = [repr(e) for e in mtcore.normalise_events(
@@ -210,6 +246,10 @@ def cmd_run(args, trees):
             row[label] = {"ok": ok, **detail}
             if detail.get("stage") == "compile":
                 line.append("%s=CCFAIL" % label)
+            elif detail.get("stage") == "vacuous":
+                line.append("%s=VACUOUS(0 fixtures)" % label)
+            elif detail.get("stage") == "stale-vector":
+                line.append("%s=STALE-VECTOR" % label)
             else:
                 line.append("%s=%s(%d/%d)" % (
                     label, "OK" if ok else "FAIL",
@@ -221,6 +261,11 @@ def cmd_run(args, trees):
             if isinstance(entry, dict) and not entry.get("ok"):
                 if entry.get("stage") == "compile":
                     print("      %s compile: %s" % (label, entry["error"][:300]))
+                elif entry.get("stage") == "stale-vector":
+                    print("      %s %s" % (label, entry["error"]))
+                elif entry.get("stage") == "vacuous":
+                    print("      %s every candidate fixture was dropped; this "
+                          "symbol is UNTESTED, not passing" % label)
                 for failure in entry.get("failures", [])[:3]:
                     print("      %s %s" % (label, json.dumps(failure)[:400]))
         rows.append(row)
@@ -259,7 +304,11 @@ def cmd_grade(args, trees):
             # leaving a mutated source in the repository.
             ok, detail = _replay(args.core, symbol, tree, record,
                                  source_override=mutant)
-            if detail.get("stage") == "compile":
+            # A mutant that cannot be compiled is not a mutant.  Neither is one
+            # whose vector set is empty or stale -- counting those as KILLED
+            # (which `ok=False` would do) flatters the rate with a result that
+            # measured nothing.
+            if detail.get("stage") in ("compile", "vacuous", "stale-vector"):
                 invalid += 1
             elif ok:
                 survived += 1
@@ -267,11 +316,19 @@ def cmd_grade(args, trees):
             else:
                 killed += 1
         total = killed + survived
+        # A KILL RATE IS ONLY DEFINED WHEN THE BASELINE PASSES.  If the
+        # unmutated source already fails the vectors, every mutant "fails" too
+        # and the rate reads 100 % while measuring nothing -- `__ieee754_expf`
+        # scored exactly that in the pilot's own numbers.  This project has
+        # shipped four vacuous passes; that is the fifth shape, and it is
+        # reported as `n/a` rather than as a triumph.
+        rate = (("%.0f%%" % (100 * killed / total)) if total else "n/a")
+        if not baseline_ok:
+            rate = "n/a(baseline FAIL)"
         print("GRADE %-38s baseline=%s mutants=%d killed=%d survived=%d "
               "invalid=%d  kill_rate=%s"
               % (symbol, "OK" if baseline_ok else "FAIL", len(mutants),
-                 killed, survived, invalid,
-                 ("%.0f%%" % (100 * killed / total)) if total else "n/a"))
+                 killed, survived, invalid, rate))
         if survivors:
             print("      survivors: %s" % ", ".join(survivors[:8]))
         results.append({"symbol": symbol, "baseline_ok": baseline_ok,
@@ -290,7 +347,10 @@ def main(argv=None):
     parser.add_argument("symbols", nargs="*")
     parser.add_argument("--module", help="expand to every symbol of a module")
     parser.add_argument("--tree", default="refactored")
-    parser.add_argument("--nptr", type=int, default=2)
+    #: -1 = DERIVE the pointer-argument mask from the shipped instructions
+    #: (generate.pointer_arg_mask).  A non-negative value reproduces the old
+    #: fixed-prefix behaviour and exists only so the two can be compared.
+    parser.add_argument("--nptr", type=int, default=-1)
     parser.add_argument("--budget", type=int, default=400)
     parser.add_argument("--mutants", type=int, default=24)
     parser.add_argument("--limit", type=int, default=0)

@@ -1,0 +1,2209 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 12, 4, 0, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 1276959699, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "d1a7d46302efcff16350021f1445218396761e8197a213cf9864c266a6738e4a",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1276959699,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 1797429778, 2147483648, 315044147, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 4067469868, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "699e7fe2269503acd76219c01a241d3534c4e3bcc4008dbb5d9010e3660100a7",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4067469868,
+     1797429778,
+     2147483648,
+     315044147
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 1,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 598759513, 3677430904, 7, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 4290042576, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "a6db2bdee3116ad122747fc312a1b1103f63ba99cad514a54a4e6722a33f3493",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4290042576,
+     598759513,
+     3677430904,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-2",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 2,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 255, 8, 3619521758, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 2618385373, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "34834978a6f8aac952d799445ab37b691c42e381e8a3dd5664458c72d202104f",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2618385373,
+     255,
+     8,
+     3619521758
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-3",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 3,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 2147483647, 3842370354, 6, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 16, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "dfb469e0f33902eb019cf7567ee7848dedb643efc8cb80543d281f29bd005048",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     16,
+     2147483647,
+     3842370354,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-4",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 4,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 3188701995, 8, 7, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 4, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e7d947a3c2f9d60789ba0ec407133dae99343091aa8b116bd1d9d0c1af8e0873",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     3188701995,
+     8,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-5",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 5,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 3322790363, 5, 2147483647, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 4, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "008dc001eee367d3ae6883825fd53a802ca70abbeaedfde5d073d9b8a97c6bb6",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     3322790363,
+     5,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-6",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 6,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 1604804925, 1, 2363272863, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 2300957721, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "caaec8780570d099fc4355b46095515d3d1ee1994b26acbc46325a84b265f56d",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2300957721,
+     1604804925,
+     1,
+     2363272863
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-7",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 7,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 708972563, 558645175, 4, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 2156366374, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "f46b8fb23cf5a7a71f47eb5ee79ef50864e2848b9fb8e0c7f5f0adb51e98aa4a",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2156366374,
+     708972563,
+     558645175,
+     4
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-8",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 8,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 1556998536, 499087790, 2147483647, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 1346232374, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "fc399a443613ce7174016f53e6bdab7f042ff494f8e672cde23b22b2246e2bbf",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1346232374,
+     1556998536,
+     499087790,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-9",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 9,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 995058044, 8, 1, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 182454980, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "641093a4236e1bef79ce79cb88d4db94c76ceaeb9e4e04d697750faf4ae58a66",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     182454980,
+     995058044,
+     8,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-10",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 10,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 2147483648, 256, 1426281073, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 3, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "aeee5b7aba7826041729deb5684d2c3ca86623fd4e8ba7dce8165b6b4694097c",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     2147483648,
+     256,
+     1426281073
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-11",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 11,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 3217736208, 5, 1103693227, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 8, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "53d7186d71483102af6bdeb9bd0a4b479d9ed4095a43c43bec6243482a24408e",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     8,
+     3217736208,
+     5,
+     1103693227
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-12",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 12,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 1944344031, 6, 617681966, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 1156718256, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e4bbe30d9d985d4ffc93590fba4836cdbeda490409cee1d9d22d9078ed051ab2",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1156718256,
+     1944344031,
+     6,
+     617681966
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-13",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 13,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 12, 3, 470668832, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 1996365079, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "206682ce4965b3b4fe3dec65f2c088d08aed4b151525b64f67bf88c6f110dae2",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1996365079,
+     12,
+     3,
+     470668832
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-14",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 14,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 256, 5, 4, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 7, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "60103f63b74390fc3c6f79320bddebbfc7ac9fe46302d004e34fedc66cf4e150",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     7,
+     256,
+     5,
+     4
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-15",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 15,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 2147483648, 3454407978, 16, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 2024561310, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "9e5409d8ed69591e7e965e2ea678cfc8aa38e2d4afb52004c464f9199de91c0a",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2024561310,
+     2147483648,
+     3454407978,
+     16
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-16",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 16,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 3254638692, 1168623309, 4252165479, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 3, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "9c553f2dbb5b19347e58061f8062436335162830a4aaddca1fdf78ff97f798b5",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     3254638692,
+     1168623309,
+     4252165479
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-17",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 17,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 0, 697236451, 1, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 3912442165, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "be412217e75e4cfd1ab69333893a286e657dc9249d7c575f775e473ed4283327",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3912442165,
+     0,
+     697236451,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-18",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 18,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 1536401714, 4178753371, 255, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 6, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "14df542439cab0d324352fdbf403f01eb9ae18307f2e59431332faa73c46034a",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     6,
+     1536401714,
+     4178753371,
+     255
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-19",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 19,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 2306919366, 2, 7, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 4, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "96f2e3238fc4729db066f894a7374d9d807b8868f47f884f4e53a2ba3cd9ef6f",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     2306919366,
+     2,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-20",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 20,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 1, 2870852768, 0, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 843060076, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "cd856bf94866d2abfead6117222f74ccde9de31f098b804a0ef383a9c151bd91",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     843060076,
+     1,
+     2870852768,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-21",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 21,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 3001296298, 4294967295, 2451975022, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 7, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "d5ab1c1003edcafda9d6c916f467b32539e012788b5bc2df92e0f42a805d4f15",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     7,
+     3001296298,
+     4294967295,
+     2451975022
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-22",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 22,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 241044672, 2034212132, 1515885587, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 1591295399, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "cbec40d08b1e897f35da82c2ff34769c03320b02ddfd4521da55a51f9b7ffac8",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1591295399,
+     241044672,
+     2034212132,
+     1515885587
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-23",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 23,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 6, 2967241396, 7, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 4, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c77db8c7e00cdaf3b3dcd8409235a01e1939a924e31e1ebb429a003c305a23b8",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     6,
+     2967241396,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-24",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 24,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 12, 2149248134, 604019693, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 3751937804, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "7503a5bb87f4c4a6daaf0fc03389a1e31e9aec747b720ad29ea7f65e3dfda117",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3751937804,
+     12,
+     2149248134,
+     604019693
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-25",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 25,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 12, 3037640278, 2678623347, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 2992330384, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "080136d572c11bbe6dec3da3395fbf066af6ce3db459a048cff908394840a8d9",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2992330384,
+     12,
+     3037640278,
+     2678623347
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-26",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 26,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 681194263, 3639365232, 4125446660, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 187818536, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "6a647c57f8a4dab4c18599afb27aa1f2d18dc9057c9626f23f36617d1b81ee9a",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     187818536,
+     681194263,
+     3639365232,
+     4125446660
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-27",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 27,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 4285183211, 1, 2592385448, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 3711083943, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c875cc3929bdb4b11222caee5826595cb23886fbf5c71d21f04503ee6090caa8",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3711083943,
+     4285183211,
+     1,
+     2592385448
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-28",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 28,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 256, 3886541357, 8, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 739928864, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c3470d230a2058da690943d3c4565b4b094cb578d4de1836b111b748da024de4",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     739928864,
+     256,
+     3886541357,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-29",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 29,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 8, 1, 7, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 256, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "d5b65634859879434f9055df09597a70c89ee17ecd74a4602375de22096e2a48",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     256,
+     8,
+     1,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-30",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 30,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 2461003590, 7, 53351545, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 4294967295, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1a1b428f6137fc04354c06632f1575d3dc4a960a98ec3bcc69a0ba2f9dc31ba0",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4294967295,
+     2461003590,
+     7,
+     53351545
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-31",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 31,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 2706821390, 3442053927, 1170652979, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 1839753098, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "67ae2020a45ba7133cfef716e2f9de9f5f1e4817047706f793b892a988f611d2",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1839753098,
+     2706821390,
+     3442053927,
+     1170652979
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-32",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 32,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 7, 7, 5, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 1076094348, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "20bb63b24672ed8b5d8453330b1431bd720dfae7d368dec218dbba065dbba66e",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1076094348,
+     7,
+     7,
+     5
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-33",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 33,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 3990671540, 922796015, 2147483647, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 12, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0988d02684a77848d9c134eccb3facb5fd83cd6a3c4b56842768ec01e0d71b7a",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     12,
+     3990671540,
+     922796015,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-34",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 34,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 3578977268, 4001652011, 1, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 2726887024, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "3d8b9b63c86e5af0380873d55551795477f0adee2e382e8ca5c09770124ba280",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2726887024,
+     3578977268,
+     4001652011,
+     1
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-35",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 35,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 12, 2147483647, 8, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 0, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "891275071d798900cc48d88b9545522344a008b687501b9f5c017ec31fa0a055",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     12,
+     2147483647,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-36",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 36,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 2057795936, 2725586938, 1299241558, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 1, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "827d5ccdbf17510099914c191dc209b9a2947e914dbd319fb4cf955eebaaae13",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1,
+     2057795936,
+     2725586938,
+     1299241558
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-37",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 37,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 255, 1, 2, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 0, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0ea4962ed1c16ff97860df4bb320e6f72ce72c28629621d7f48819adb4ed5418",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     255,
+     1,
+     2
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-38",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 38,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 1587124134, 3774328631, 1997155928, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 3, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1e93599f8185a1dc58c18662a5b926f4ba1be8a4997aabd9eb4a275ce0139d4b",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     1587124134,
+     3774328631,
+     1997155928
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-39",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 39,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    508046,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 3928041777, 1786326658, 1835695343, 'S', 'F', 'T', None)",
+    "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
+    "('C', 2, 0, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "97fd955e1ead493e4f871076f31249e76b49fcad5e223adac273d490642a7d79",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     3928041777,
+     1786326658,
+     1835695343
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-40",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 40,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 11,
+  "ratio": 1.0,
+  "total": 11,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 32,
+ "globals": [
+  "0x20006ab4"
+ ],
+ "module": "notify",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "void",
+ "search": {
+  "candidates": 155,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 41,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 32,
+ "symbol": "discovery_error_found_cb_ancs",
+ "va": "0x000188b0"
+}

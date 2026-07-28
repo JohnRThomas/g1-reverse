@@ -14,10 +14,10 @@
     153580
    ],
    "events_head": [
-    "('C', 0, 536943568, 32, 536948040, 'S', 'F', 'T', None)"
+    "('C', 0, 1276959699, 32, 12, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "8e8b3d725a505fe62a3a2d4e9dacba43d7a626157b773066d9ad308570c4e23a",
+    "events": "fdd2c6a2e989ce4279b4dc21cd94535d136c1029bc12a23ecfdc199b7eab6567",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -28,8 +28,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536943568,
-     536948040,
+     1276959699,
+     12,
      4,
      0
     ],
@@ -37,12 +37,13 @@
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 0,
     "xpsr": 0
    },
-   "new_instructions": 5
+   "new_instructions": 5,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -58,10 +59,10 @@
     153580
    ],
    "events_head": [
-    "('C', 0, 536947244, 32, 536943120, 'S', 'F', 'T', None)"
+    "('C', 0, 4067469868, 32, 1797429778, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "4dd53d8a792a61e906aee9136d7b25788268c6443ab6fd312da405f9064dd061",
+    "events": "725cc9258c3cf10e8e2018fa592657ca54660a8433a4365214329bb7677d816d",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -72,8 +73,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536947244,
-     536943120,
+     4067469868,
+     1797429778,
      2147483648,
      315044147
     ],
@@ -81,12 +82,13 @@
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 1,
     "xpsr": 0
    },
-   "new_instructions": 5
+   "new_instructions": 5,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -102,10 +104,10 @@
     153580
    ],
    "events_head": [
-    "('C', 0, 536943312, 32, 536942680, 'S', 'F', 'T', None)"
+    "('C', 0, 4290042576, 32, 598759513, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "f74463f2cc7bfc37e88fb37c6c5d213b003ed903f8f381a6de7f57d7d3dead3f",
+    "events": "23f67af70efe028d162cb00d027ad65f46df39ebb4beb145f6d40f088bf1dbdd",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -116,8 +118,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536943312,
-     536942680,
+     4290042576,
+     598759513,
      3677430904,
      7
     ],
@@ -125,12 +127,13 @@
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 2,
     "xpsr": 0
    },
-   "new_instructions": 5
+   "new_instructions": 5,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -146,10 +149,10 @@
     153580
    ],
    "events_head": [
-    "('C', 0, 536945628, 32, 536940936, 'S', 'F', 'T', None)"
+    "('C', 0, 2618385373, 32, 255, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9f395a43cecdd7ace6a70b698cd2028229cd13235f5d0b77eac6fc964db75013",
+    "events": "4bf710c263c5f30cba3abf4683aecf80b6bd14cf22dff457852245e6f998359a",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -160,8 +163,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536945628,
-     536940936,
+     2618385373,
+     255,
      8,
      3619521758
     ],
@@ -169,12 +172,13 @@
     "fp": {},
     "id": "seed-3",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 3,
     "xpsr": 0
    },
-   "new_instructions": 5
+   "new_instructions": 5,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -190,10 +194,10 @@
     153580
    ],
    "events_head": [
-    "('C', 0, 536945864, 32, 536944284, 'S', 'F', 'T', None)"
+    "('C', 0, 16, 32, 2147483647, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "578f675e368fd940b303116927d36de90707a8fe4c4adf5e1a0283646e4cac22",
+    "events": "9c6878a63580a4bec755fe7aa624f02147744fffa24c64331dbb0fd34d42bd3f",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -204,8 +208,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536945864,
-     536944284,
+     16,
+     2147483647,
      3842370354,
      6
     ],
@@ -213,12 +217,13 @@
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 4,
     "xpsr": 0
    },
-   "new_instructions": 5
+   "new_instructions": 5,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -234,10 +239,10 @@
     153580
    ],
    "events_head": [
-    "('C', 0, 536939588, 32, 536951592, 'S', 'F', 'T', None)"
+    "('C', 0, 4, 32, 3188701995, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "13ed1d78d0b7a6efebfb4592fa734c6c7d3d91e22d7fd0c351fd5bef9c92f6a1",
+    "events": "922b2433aac5ca7c4785298b71d1e332448954d7f49bce8526170f2cf04c9443",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -248,8 +253,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536939588,
-     536951592,
+     4,
+     3188701995,
      8,
      7
     ],
@@ -257,12 +262,13 @@
     "fp": {},
     "id": "seed-5",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 5,
     "xpsr": 0
    },
-   "new_instructions": 5
+   "new_instructions": 5,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -278,10 +284,10 @@
     153580
    ],
    "events_head": [
-    "('C', 0, 536950900, 32, 536936920, 'S', 'F', 'T', None)"
+    "('C', 0, 4, 32, 3322790363, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b25954bed36e0a94dbe231f7087b69b394e3b24b67eab1dba4440af79d63e53d",
+    "events": "4f2575cc40679cde15030364ba97ee5e7aaa34993d630439d89b83777980f42a",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -292,8 +298,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536950900,
-     536936920,
+     4,
+     3322790363,
      5,
      2147483647
     ],
@@ -301,12 +307,13 @@
     "fp": {},
     "id": "seed-6",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 6,
     "xpsr": 0
    },
-   "new_instructions": 5
+   "new_instructions": 5,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -322,10 +329,10 @@
     153580
    ],
    "events_head": [
-    "('C', 0, 536941592, 32, 536944956, 'S', 'F', 'T', None)"
+    "('C', 0, 2300957721, 32, 1604804925, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "3e6a28aede932882fbdccf671f8fe9296ea17efc5153375a71b832427b5d3d7e",
+    "events": "cdb6fd192972a50babe26cd7f13f48f81a1cf611a4dd4fcefa061f6a4b859aad",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -336,8 +343,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536941592,
-     536944956,
+     2300957721,
+     1604804925,
      1,
      2363272863
     ],
@@ -345,12 +352,13 @@
     "fp": {},
     "id": "seed-7",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 7,
     "xpsr": 0
    },
-   "new_instructions": 5
+   "new_instructions": 5,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -366,10 +374,10 @@
     153580
    ],
    "events_head": [
-    "('C', 0, 536939044, 32, 536940560, 'S', 'F', 'T', None)"
+    "('C', 0, 2156366374, 32, 708972563, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "e99204047cb364608930ab6c93cac581bfd8408230864cef5630daaadd568af9",
+    "events": "d72ad86cd2e17290706bc1458992b11a2f92878b6796f51f56ab90459492f0c7",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -380,8 +388,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536939044,
-     536940560,
+     2156366374,
+     708972563,
      558645175,
      4
     ],
@@ -389,12 +397,13 @@
     "fp": {},
     "id": "seed-8",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 8,
     "xpsr": 0
    },
-   "new_instructions": 5
+   "new_instructions": 5,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -410,10 +419,10 @@
     153580
    ],
    "events_head": [
-    "('C', 0, 536944692, 32, 536947080, 'S', 'F', 'T', None)"
+    "('C', 0, 1346232374, 32, 1556998536, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "1855c3e97ba782e063ef306ee5c7431d5d7942f0d8f98b479927b0c974f5d481",
+    "events": "d487826244ad78dd2fb65585a160d8f9502be1fd56530a3d04c0674eb14eba6b",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -424,8 +433,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536944692,
-     536947080,
+     1346232374,
+     1556998536,
      499087790,
      2147483647
     ],
@@ -433,12 +442,13 @@
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 9,
     "xpsr": 0
    },
-   "new_instructions": 5
+   "new_instructions": 5,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -454,10 +464,10 @@
     153580
    ],
    "events_head": [
-    "('C', 0, 536939204, 32, 536945020, 'S', 'F', 'T', None)"
+    "('C', 0, 182454980, 32, 995058044, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "f5839bd1cdd5c48d3e887a286f105fe5a538a7db99208a1ad79a72b134769b79",
+    "events": "500368ad2796ea3a6a8b5c47e43ce000700837213df1ea566fdd3390b4cb5674",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -468,8 +478,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536939204,
-     536945020,
+     182454980,
+     995058044,
      8,
      1
     ],
@@ -477,12 +487,13 @@
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 10,
     "xpsr": 0
    },
-   "new_instructions": 5
+   "new_instructions": 5,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -498,10 +509,10 @@
     153580
    ],
    "events_head": [
-    "('C', 0, 536937040, 32, 536948284, 'S', 'F', 'T', None)"
+    "('C', 0, 3, 32, 2147483648, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "d595c868f551ee9af0e46b4c597567efe660abda58a417c1040581d85bfd29f3",
+    "events": "1c1d64c8037fdadf04e534c78d568371ea5f25d158085071309fcd807673084b",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -512,8 +523,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536937040,
-     536948284,
+     3,
+     2147483648,
      256,
      1426281073
     ],
@@ -521,12 +532,13 @@
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 11,
     "xpsr": 0
    },
-   "new_instructions": 5
+   "new_instructions": 5,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -542,10 +554,10 @@
     153580
    ],
    "events_head": [
-    "('C', 0, 536944520, 32, 536936976, 'S', 'F', 'T', None)"
+    "('C', 0, 8, 32, 3217736208, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "27934dc1ec90ed09c0d9b9be5894360ef965bb36af178f70e4304410cb2b30c3",
+    "events": "e40643ba5ac79c4c1c473edd693111e0ddcc13d9df7cac64a06084420c316727",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -556,8 +568,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536944520,
-     536936976,
+     8,
+     3217736208,
      5,
      1103693227
     ],
@@ -565,12 +577,13 @@
     "fp": {},
     "id": "seed-12",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 12,
     "xpsr": 0
    },
-   "new_instructions": 5
+   "new_instructions": 5,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -586,10 +599,10 @@
     153580
    ],
    "events_head": [
-    "('C', 0, 536944304, 32, 536942044, 'S', 'F', 'T', None)"
+    "('C', 0, 1156718256, 32, 1944344031, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9cb7d7b9727e13324c4b6e2cdff3e78f15152399c802e2eb4e5252fbf6c70df3",
+    "events": "c79678b0d3c26544d630bd5504804abcf55d788a2e1c5f4911ab5d8508a9fdd6",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -600,8 +613,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536944304,
-     536942044,
+     1156718256,
+     1944344031,
      6,
      617681966
     ],
@@ -609,12 +622,13 @@
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 13,
     "xpsr": 0
    },
-   "new_instructions": 5
+   "new_instructions": 5,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -630,10 +644,10 @@
     153580
    ],
    "events_head": [
-    "('C', 0, 536943892, 32, 536949848, 'S', 'F', 'T', None)"
+    "('C', 0, 1996365079, 32, 12, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "cc54e9c5ba768da657d4c876d6b4ea5fecb50c5110d8aa6b22d90332b894a693",
+    "events": "9dc56d6ab39693b5ef31d0b626372a1cb7c746c5c935b9acab612e93341d665e",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -644,8 +658,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536943892,
-     536949848,
+     1996365079,
+     12,
      3,
      470668832
     ],
@@ -653,12 +667,13 @@
     "fp": {},
     "id": "seed-14",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 14,
     "xpsr": 0
    },
-   "new_instructions": 5
+   "new_instructions": 5,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -674,10 +689,10 @@
     153580
    ],
    "events_head": [
-    "('C', 0, 536952404, 32, 536941132, 'S', 'F', 'T', None)"
+    "('C', 0, 7, 32, 256, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c4c94c9fb2fac8c094716ac0f7415175b6b0171af4a96455cc692a37ed0cfcd7",
+    "events": "957fa9239024a663d941522ff928a30163eee591711a429c84b11867e2b37353",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -688,8 +703,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536952404,
-     536941132,
+     7,
+     256,
      5,
      4
     ],
@@ -697,12 +712,13 @@
     "fp": {},
     "id": "seed-15",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 15,
     "xpsr": 0
    },
-   "new_instructions": 5
+   "new_instructions": 5,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -718,10 +734,10 @@
     153580
    ],
    "events_head": [
-    "('C', 0, 536943260, 32, 536942972, 'S', 'F', 'T', None)"
+    "('C', 0, 2024561310, 32, 2147483648, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "6e3a201dc46a7d68e796d58bcc490c8ab084de82d79b2debbad400f412c819df",
+    "events": "c334e35b8ecd6bc9b2af5d9b6fa3736910883ed14f5d886ab2c7183ed9784d0c",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -732,8 +748,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536943260,
-     536942972,
+     2024561310,
+     2147483648,
      3454407978,
      16
     ],
@@ -741,12 +757,13 @@
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 16,
     "xpsr": 0
    },
-   "new_instructions": 5
+   "new_instructions": 5,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -762,10 +779,10 @@
     153580
    ],
    "events_head": [
-    "('C', 0, 536944016, 32, 536942692, 'S', 'F', 'T', None)"
+    "('C', 0, 3, 32, 3254638692, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "0c6daba8fd06ce8056e6352e4b5e0953c619a5ebc0e209f3f9dae61792a7e19c",
+    "events": "b663f804bc64104ef8adbb1e663bceba9c782c7a1036ce253588e9703c1be1c8",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -776,8 +793,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536944016,
-     536942692,
+     3,
+     3254638692,
      1168623309,
      4252165479
     ],
@@ -785,1024 +802,13 @@
     "fp": {},
     "id": "seed-17",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 17,
     "xpsr": 0
    },
-   "new_instructions": 5
-  },
-  {
-   "call_arities": [
-    3
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    153580
-   ],
-   "events_head": [
-    "('C', 0, 536944948, 32, 536937440, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "547ab12eb9d94749091557250ecbd0b80a5340b01337ae47444e02a67f6a010a",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     2556510175
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536944948,
-     536937440,
-     697236451,
-     1
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-18",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 18,
-    "xpsr": 0
-   },
-   "new_instructions": 5
-  },
-  {
-   "call_arities": [
-    3
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    153580
-   ],
-   "events_head": [
-    "('C', 0, 536939284, 32, 536944944, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "80c02cca0fbc31e9aef635d871d91a10c40d4f1352421e5a68b0e242e1acced2",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     2556510175
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536939284,
-     536944944,
-     4178753371,
-     255
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-19",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 19,
-    "xpsr": 0
-   },
-   "new_instructions": 5
-  },
-  {
-   "call_arities": [
-    3
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    153580
-   ],
-   "events_head": [
-    "('C', 0, 536952740, 32, 536939460, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "3e98a098be2fa7dce9fd3d042250d7635545e4fabad3ef6298281b3fed01deee",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     2556510175
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536952740,
-     536939460,
-     2,
-     7
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-20",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 20,
-    "xpsr": 0
-   },
-   "new_instructions": 5
-  },
-  {
-   "call_arities": [
-    3
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    153580
-   ],
-   "events_head": [
-    "('C', 0, 536941420, 32, 536936640, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "eb661b3e6b26479fb7804599b3042801d679ac973d22133f579e2434cc176f15",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     2556510175
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536941420,
-     536936640,
-     2870852768,
-     0
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-21",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 21,
-    "xpsr": 0
-   },
-   "new_instructions": 5
-  },
-  {
-   "call_arities": [
-    3
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    153580
-   ],
-   "events_head": [
-    "('C', 0, 536937396, 32, 536946088, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "fae131200ca3646d41450a4cd597c41084b4738498f132362c91eb83460c7b3f",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     2556510175
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536937396,
-     536946088,
-     4294967295,
-     2451975022
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-22",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 22,
-    "xpsr": 0
-   },
-   "new_instructions": 5
-  },
-  {
-   "call_arities": [
-    3
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    153580
-   ],
-   "events_head": [
-    "('C', 0, 536952228, 32, 536939712, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "9411069e7c56444a03f4d173e3c046b212fd937906fa5b90fb79fdb8c2983c9c",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     2556510175
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536952228,
-     536939712,
-     2034212132,
-     1515885587
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-23",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 23,
-    "xpsr": 0
-   },
-   "new_instructions": 5
-  },
-  {
-   "call_arities": [
-    3
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    153580
-   ],
-   "events_head": [
-    "('C', 0, 536949908, 32, 536944852, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "0a7e6e0ffeafc6a9c9457de73d8341dcbeedf21fe8ad26bcc86ccb493f2a17bf",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     2556510175
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536949908,
-     536944852,
-     2967241396,
-     7
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-24",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 24,
-    "xpsr": 0
-   },
-   "new_instructions": 5
-  },
-  {
-   "call_arities": [
-    3
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    153580
-   ],
-   "events_head": [
-    "('C', 0, 536938252, 32, 536941512, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "b9f974070b8a818cef581035d5463c8fc5ec5d47ec738118d4e6261edce57df3",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     2556510175
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536938252,
-     536941512,
-     2149248134,
-     604019693
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-25",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 25,
-    "xpsr": 0
-   },
-   "new_instructions": 5
-  },
-  {
-   "call_arities": [
-    3
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    153580
-   ],
-   "events_head": [
-    "('C', 0, 536942224, 32, 536937032, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "b3975eb0394e98ebff99c63362bff39e7e50ab5bdaf88ae13b4e1bbd66fa349e",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     2556510175
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536942224,
-     536937032,
-     3037640278,
-     2678623347
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-26",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 26,
-    "xpsr": 0
-   },
-   "new_instructions": 5
-  },
-  {
-   "call_arities": [
-    3
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    153580
-   ],
-   "events_head": [
-    "('C', 0, 536945192, 32, 536949524, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "80065d203e61f6ca67233977b794e1e7d3b4e8e83a33715f15c88a74cb9b177c",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     2556510175
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536945192,
-     536949524,
-     3639365232,
-     4125446660
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-27",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 27,
-    "xpsr": 0
-   },
-   "new_instructions": 5
-  },
-  {
-   "call_arities": [
-    3
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    153580
-   ],
-   "events_head": [
-    "('C', 0, 536946084, 32, 536949992, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "8f57bbe677a161e0d39b02e1e5de883df65bf1ca0919f740f19e6a082096ef38",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     2556510175
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536946084,
-     536949992,
-     1,
-     2592385448
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-28",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 28,
-    "xpsr": 0
-   },
-   "new_instructions": 5
-  },
-  {
-   "call_arities": [
-    3
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    153580
-   ],
-   "events_head": [
-    "('C', 0, 536947488, 32, 536937084, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "6c6cde0f6add31111715b46799e419a1fddacca7afbc525357e3588091b3bcf1",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     2556510175
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536947488,
-     536937084,
-     3886541357,
-     8
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-29",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 29,
-    "xpsr": 0
-   },
-   "new_instructions": 5
-  },
-  {
-   "call_arities": [
-    3
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    153580
-   ],
-   "events_head": [
-    "('C', 0, 536952796, 32, 536941720, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "b34e4ebdd351521e59326d2068e5cef4fa921b14917b663427fe816a5e59ed8c",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     2556510175
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536952796,
-     536941720,
-     1,
-     7
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-30",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 30,
-    "xpsr": 0
-   },
-   "new_instructions": 5
-  },
-  {
-   "call_arities": [
-    3
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    153580
-   ],
-   "events_head": [
-    "('C', 0, 536952300, 32, 536948548, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "f7a075c96278dd95c9d350fdf691bcf550f24075e77b8a87465cd86f51e8a42e",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     2556510175
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536952300,
-     536948548,
-     7,
-     53351545
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-31",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 31,
-    "xpsr": 0
-   },
-   "new_instructions": 5
-  },
-  {
-   "call_arities": [
-    3
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    153580
-   ],
-   "events_head": [
-    "('C', 0, 536946568, 32, 536940812, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "912ae7a38efc2a914804afd7323d8b9ffa5237ff85637a22f3f0b9107afe1f1c",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     2556510175
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536946568,
-     536940812,
-     3442053927,
-     1170652979
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-32",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 32,
-    "xpsr": 0
-   },
-   "new_instructions": 5
-  },
-  {
-   "call_arities": [
-    3
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    153580
-   ],
-   "events_head": [
-    "('C', 0, 536946060, 32, 536942020, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "e7bdc79fa3c5a9fc4f446d4ae84084372fc0eab9398d43af86d121657d22a244",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     2556510175
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536946060,
-     536942020,
-     7,
-     5
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-33",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 33,
-    "xpsr": 0
-   },
-   "new_instructions": 5
-  },
-  {
-   "call_arities": [
-    3
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    153580
-   ],
-   "events_head": [
-    "('C', 0, 536950120, 32, 536940724, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "b4c8781c3db903bc0655811f2bb963c098acb18389b8987b1046f52589bc0cfd",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     2556510175
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536950120,
-     536940724,
-     922796015,
-     2147483647
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-34",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 34,
-    "xpsr": 0
-   },
-   "new_instructions": 5
-  },
-  {
-   "call_arities": [
-    3
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    153580
-   ],
-   "events_head": [
-    "('C', 0, 536952432, 32, 536943604, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "381b20b19beacc0573049895d9bf60c4380b988980b438ae089eef7360aaa292",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     2556510175
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536952432,
-     536943604,
-     4001652011,
-     1
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-35",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 35,
-    "xpsr": 0
-   },
-   "new_instructions": 5
-  },
-  {
-   "call_arities": [
-    3
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    153580
-   ],
-   "events_head": [
-    "('C', 0, 536944224, 32, 536949832, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "b20be7ad88e1c68c9565472fcfba486527e9b329eb47cd790b3a04f9a90791d0",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     2556510175
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536944224,
-     536949832,
-     2147483647,
-     8
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-36",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 36,
-    "xpsr": 0
-   },
-   "new_instructions": 5
-  },
-  {
-   "call_arities": [
-    3
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    153580
-   ],
-   "events_head": [
-    "('C', 0, 536951728, 32, 536951136, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "b72bac4e5297bf63d7abc210280df50468d21b0606fd1cb0ac8a574a971f49d5",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     2556510175
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536951728,
-     536951136,
-     2725586938,
-     1299241558
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-37",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 37,
-    "xpsr": 0
-   },
-   "new_instructions": 5
-  },
-  {
-   "call_arities": [
-    3
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    153580
-   ],
-   "events_head": [
-    "('C', 0, 536939760, 32, 536941672, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "8e34053ce001274c158a9b12c3077aa26d0f4a313f648fd82c3670633d0844b9",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     2556510175
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536939760,
-     536941672,
-     1,
-     2
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-38",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 38,
-    "xpsr": 0
-   },
-   "new_instructions": 5
-  },
-  {
-   "call_arities": [
-    3
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    153580
-   ],
-   "events_head": [
-    "('C', 0, 536941424, 32, 536942500, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "0b9131ecf83005d4cb22d25fe4ac310538710a2f92171e1a81b2291e4f5fe239",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     2556510175
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536941424,
-     536942500,
-     3774328631,
-     1997155928
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-39",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 39,
-    "xpsr": 0
-   },
-   "new_instructions": 5
-  },
-  {
-   "call_arities": [
-    3
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    153580
-   ],
-   "events_head": [
-    "('C', 0, 536943600, 32, 536946992, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "64edd165fae314cb79cf883aa3ac9e1231af16e54a4802d97cafd957f40e25de",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     2556510175
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536943600,
-     536946992,
-     1786326658,
-     1835695343
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-40",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 40,
-    "xpsr": 0
-   },
-   "new_instructions": 5
+   "new_instructions": 5,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -1822,21 +828,1057 @@
    "fixture": {
     "abs": [],
     "args": [
-     536943568,
+     3912442165,
      0,
+     697236451,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-18",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 18,
+    "xpsr": 0
+   },
+   "new_instructions": 4,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    153580
+   ],
+   "events_head": [
+    "('C', 0, 6, 32, 1536401714, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "6ff15e9a5b12ea0a0b56314d85a51b1c0988d92a05da551f2b0087a9daaef6b7",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     6,
+     1536401714,
+     4178753371,
+     255
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-19",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 19,
+    "xpsr": 0
+   },
+   "new_instructions": 5,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    153580
+   ],
+   "events_head": [
+    "('C', 0, 4, 32, 2306919366, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0e9e7ff3a8731cd251bff636e663d164fbe3138c2f20ea69686b90845442758d",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
      4,
+     2306919366,
+     2,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-20",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 20,
+    "xpsr": 0
+   },
+   "new_instructions": 5,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    153580
+   ],
+   "events_head": [
+    "('C', 0, 843060076, 32, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "28ef45236ca7fc504e321a04843053de3089d9203a86247dd2a8222c13a805d8",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     843060076,
+     1,
+     2870852768,
      0
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "cfgsel-0",
+    "id": "seed-21",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
-    "scratch_seed": 0,
+    "scratch_seed": 21,
     "xpsr": 0
    },
-   "new_instructions": 4
+   "new_instructions": 5,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    153580
+   ],
+   "events_head": [
+    "('C', 0, 7, 32, 3001296298, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "60f4b32ba8fef45d9ae3cd57df85f72ee3acde75b1f896049e28e3151641d717",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     7,
+     3001296298,
+     4294967295,
+     2451975022
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-22",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 22,
+    "xpsr": 0
+   },
+   "new_instructions": 5,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    153580
+   ],
+   "events_head": [
+    "('C', 0, 1591295399, 32, 241044672, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e61e9c1e42d7e83d56b5bbe179620d2b9717cb61dc9067e027d8dfcc4e5585a3",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1591295399,
+     241044672,
+     2034212132,
+     1515885587
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-23",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 23,
+    "xpsr": 0
+   },
+   "new_instructions": 5,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    153580
+   ],
+   "events_head": [
+    "('C', 0, 4, 32, 6, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "5ceecdc888376397fbf266aebe0a451a1204443ab80b65084b600b04687c892a",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     6,
+     2967241396,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-24",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 24,
+    "xpsr": 0
+   },
+   "new_instructions": 5,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    153580
+   ],
+   "events_head": [
+    "('C', 0, 3751937804, 32, 12, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "37b2d345a11baab10b63b959d639fc1bb33bf27175b7a86dd4e01558e4b28c6c",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3751937804,
+     12,
+     2149248134,
+     604019693
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-25",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 25,
+    "xpsr": 0
+   },
+   "new_instructions": 5,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    153580
+   ],
+   "events_head": [
+    "('C', 0, 2992330384, 32, 12, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ec6865aeede312d115c50e82b5fbd31003fc7ce4483925e7cf4c749433830c80",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2992330384,
+     12,
+     3037640278,
+     2678623347
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-26",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 26,
+    "xpsr": 0
+   },
+   "new_instructions": 5,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    153580
+   ],
+   "events_head": [
+    "('C', 0, 187818536, 32, 681194263, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "9e254c416b046c4747557beb3d1799f648b6d776245cf5be882f8c9434db978c",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     187818536,
+     681194263,
+     3639365232,
+     4125446660
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-27",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 27,
+    "xpsr": 0
+   },
+   "new_instructions": 5,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    153580
+   ],
+   "events_head": [
+    "('C', 0, 3711083943, 32, 4285183211, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "8ece4851ce4cc9727d8d9a164959e45a533710fe76a8b67ba4f9855acbe0f852",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3711083943,
+     4285183211,
+     1,
+     2592385448
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-28",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 28,
+    "xpsr": 0
+   },
+   "new_instructions": 5,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    153580
+   ],
+   "events_head": [
+    "('C', 0, 739928864, 32, 256, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e66d2e88330e89ea48a80f9784d0e0b36a46fa3425e755196e0d7ab4efbf3a18",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     739928864,
+     256,
+     3886541357,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-29",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 29,
+    "xpsr": 0
+   },
+   "new_instructions": 5,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    153580
+   ],
+   "events_head": [
+    "('C', 0, 256, 32, 8, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "00db8857e7a72029bc34b88cdbce2a7a570ed29aef53b93857a8cacaf4f3f73e",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     256,
+     8,
+     1,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-30",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 30,
+    "xpsr": 0
+   },
+   "new_instructions": 5,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    153580
+   ],
+   "events_head": [
+    "('C', 0, 4294967295, 32, 2461003590, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "a09ab3934d60bc33378bfa2f3ad91bd8668388978e865fab112b7cd4878da8c8",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4294967295,
+     2461003590,
+     7,
+     53351545
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-31",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 31,
+    "xpsr": 0
+   },
+   "new_instructions": 5,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    153580
+   ],
+   "events_head": [
+    "('C', 0, 1839753098, 32, 2706821390, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "2d42a12b9abe729abe28faf5714ab9e0d5e5601583ce16bf274eceaa628b3855",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1839753098,
+     2706821390,
+     3442053927,
+     1170652979
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-32",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 32,
+    "xpsr": 0
+   },
+   "new_instructions": 5,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    153580
+   ],
+   "events_head": [
+    "('C', 0, 1076094348, 32, 7, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ff0447c1d8f1b18ebca2f683b8b06188a7ca6744542c9a0d3fd2b0d899dbb545",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1076094348,
+     7,
+     7,
+     5
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-33",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 33,
+    "xpsr": 0
+   },
+   "new_instructions": 5,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    153580
+   ],
+   "events_head": [
+    "('C', 0, 12, 32, 3990671540, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "fa0526011900f694a2a58d57d6eaf8108ce26a6fdd6e8b24443cf8f3297a47b9",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     12,
+     3990671540,
+     922796015,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-34",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 34,
+    "xpsr": 0
+   },
+   "new_instructions": 5,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    153580
+   ],
+   "events_head": [
+    "('C', 0, 2726887024, 32, 3578977268, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "240b8418e42138c6911db7482f5959e94fbe5faf60077381494de521bb087d48",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2726887024,
+     3578977268,
+     4001652011,
+     1
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-35",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 35,
+    "xpsr": 0
+   },
+   "new_instructions": 5,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    153580
+   ],
+   "events_head": [
+    "('C', 0, 0, 32, 12, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "a9c1c42936a342e2ffa84a434559abd29a020abd290e67bd93970c276f6bfcf8",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     12,
+     2147483647,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-36",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 36,
+    "xpsr": 0
+   },
+   "new_instructions": 5,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    153580
+   ],
+   "events_head": [
+    "('C', 0, 1, 32, 2057795936, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "3c761e2ce3dba5a429a8f7f0d7ffa22239651b0b7beeaaab75b85cb5a43fc5de",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1,
+     2057795936,
+     2725586938,
+     1299241558
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-37",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 37,
+    "xpsr": 0
+   },
+   "new_instructions": 5,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    153580
+   ],
+   "events_head": [
+    "('C', 0, 0, 32, 255, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "342170915b42f1859dc4959589817157fd01cb0d5973deb6fe36c3534c201b23",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     255,
+     1,
+     2
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-38",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 38,
+    "xpsr": 0
+   },
+   "new_instructions": 5,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    153580
+   ],
+   "events_head": [
+    "('C', 0, 3, 32, 1587124134, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "cc91bfb32ce63b74a6855b32a2aa01d831eb4f163e0c6fbb0d66b6c284fb65e9",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     1587124134,
+     3774328631,
+     1997155928
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-39",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 39,
+    "xpsr": 0
+   },
+   "new_instructions": 5,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    153580
+   ],
+   "events_head": [
+    "('C', 0, 0, 32, 3928041777, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "611212cebd135dda34fef8646a92419f8691758e3b551adeb08a5384a999ae0b",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     3928041777,
+     1786326658,
+     1835695343
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-40",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 40,
+    "xpsr": 0
+   },
+   "new_instructions": 5,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    153580
+   ],
+   "events_head": [
+    "('C', 0, 3886568119, 32, 256, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "584a98729e0389ebefe6c89a19c334b41920815661f57aae34281e59c7ce5d72",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     2556510175
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3886568119,
+     256,
+     3059135833,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-41",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 41,
+    "xpsr": 0
+   },
+   "new_instructions": 5,
+   "stack_args": []
   }
  ],
  "core": "app",
@@ -1849,19 +1891,22 @@
  "ghidra_size": 18,
  "globals": [],
  "module": "ipc",
- "nptr": 2,
+ "nptr": -1,
  "oracle": {
   "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
   "source": "shipped image"
  },
+ "pointer_arg_mask": [],
  "ret_kind": "i32",
  "search": {
-  "candidates": 115,
+  "candidates": 123,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
   "extent_dispute_targets": [],
   "harness_errors": 0,
-  "kept": 42
+  "kept": 42,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
  },
  "size": 18,
  "symbol": "nfc_ipc_send_op20",
