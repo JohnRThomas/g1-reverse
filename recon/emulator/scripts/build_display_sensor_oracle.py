@@ -544,11 +544,19 @@ POINTER_REGS = {"saadc": {"ResultPtr"}}
 # The block below is TRAIN-ANCHORED and ADDITIVE.  Nothing above changes.
 #
 #   burst   a maximal run of consecutive transactions on one (bus, device)
-#           separated by no more than BURST_GAP_NS.  The gap distribution is
-#           strongly bimodal (measured, shipped navigation capture: intra-burst
-#           gaps <= 1e6 ns, inter-burst gaps >= 1e7 ns) and the separation is
-#           ASSERTED per capture in `gap_separation`, so a future capture that
-#           violates it is reported rather than silently mis-segmented.
+#           separated by no more than BURST_GAP_NS.  The separation is ASSERTED
+#           per capture in `gap_separation`, so a capture the threshold
+#           mis-segments is reported rather than silently mis-segmented.
+#
+#           CORRECTION (criterion_bound_redesign.md section 6.1): the claim that
+#           "the gap distribution is strongly bimodal" was NOT true at the
+#           shipped 5 ms threshold, and the assertion that was supposed to catch
+#           that could not fail -- `max_intra <= BURST_GAP_NS < min_inter` is
+#           true BY CONSTRUCTION because split_bursts DEFINES max_intra as the
+#           largest gap <= the threshold and min_inter as the smallest gap above
+#           it.  It was `True` on 42 of 42 published blocks.  It is now a
+#           falsifiable K-fold void test (SEPARATION_RATIO below), and it
+#           correctly reports `false` at 5 ms on five of six devices.
 #   train   the bursts sharing one key, in time order.  The key is the burst's
 #           REGISTER PROGRAMME: every write payload verbatim, every read reduced
 #           to (selected register, payload length).  A read payload is the
@@ -560,8 +568,33 @@ POINTER_REGS = {"saadc": {"ResultPtr"}}
 # `starts_ns` is published for every train so a comparer can measure the phase
 # offset directly.  The strict wall-anchored fields stay exactly as they were.
 # ===========================================================================
-BURST_GAP_NS = 5_000_000          # 5 ms; sits inside the measured bimodal void
+#: 5 ms is the published default and is KEPT so every committed oracle stays
+#: reproducible.  It is overridable from the environment because the threshold
+#: has had to be swept in four separate passes and every one of them did it with
+#: a private copy of this file -- which is how a sweep's numbers stop being
+#: reproducible from the repository.  Sweeping is now a property of this script.
+BURST_GAP_NS = int(os.environ.get("G1_BURST_GAP_NS", 5_000_000))
 OBSERVATION_WALL_NS = 20_000_000_000
+
+#: A burst-gap threshold is only meaningful if the gap distribution has a VOID
+#: around it.  `max_intra <= BURST_GAP_NS < min_inter` is true BY CONSTRUCTION
+#: and therefore never fired; this is the falsifiable replacement.
+#:
+#: K = 4 is calibrated, not chosen (staged_refactor_stage09.md section 6.1): at
+#: the shipped 5 ms threshold it fires on 5 of the 6 devices (measured void
+#: ratios 1.05 - 2.41) and at 0.790 ms it fires on 1 (npm1300, 1.50) -- the same
+#: train the phase criterion independently shows is mis-assigned.  A check that
+#: fires on the threshold known to mis-segment and clears the one known to
+#: segment well is doing its job.
+#:
+#: CONSEQUENCE, stated so it is not a surprise: this turns `separated` FALSE on
+#: most devices in every oracle regenerated from here on.  That is the check
+#: finally reporting what was always true of the data.  No consumer in the
+#: repository branches on the field (grepped: it is published, never read), so
+#: nothing changes behaviour; the phase criterion's own segmentation is
+#: unaffected, and the redesign measured the ladder's verdict at both 0.790 ms
+#: and 5.000 ms and found it IDENTICAL either way.
+SEPARATION_RATIO = 4.0
 
 
 def i2c_program_line(t, last_reg):
@@ -630,8 +663,16 @@ def _train_block(ticks, lines, label):
             "burst_gap_ns": BURST_GAP_NS,
             "max_intra_burst_gap_ns": max_intra,
             "min_inter_burst_gap_ns": min_inter,
+            "separation_ratio": (None if not max_intra or not min_inter
+                                 else min_inter / max_intra),
+            "separation_ratio_required": SEPARATION_RATIO,
             "separated": (max_intra is None or min_inter is None
-                          or (max_intra <= BURST_GAP_NS < min_inter)),
+                          or min_inter >= SEPARATION_RATIO * max_intra),
+            # the tautology this replaced, kept so the old value stays
+            # measurable rather than disappearing from the record
+            "separated_by_construction_LEGACY": (
+                max_intra is None or min_inter is None
+                or (max_intra <= BURST_GAP_NS < min_inter)),
         },
         "trains": out,
     }

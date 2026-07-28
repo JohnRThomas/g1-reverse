@@ -124,22 +124,55 @@ def compare_block(ship, ours, bound_ns, wall_ns=WALL_NS):
     # a train appears that exists on neither side as a firmware programme.  That
     # is an artifact of the segmentation, not a content difference, so it gets
     # its own category rather than being counted as P1.
-    merges = set()
-    for k in only_ours:
-        head = to[k]["key_head"]
+    #
+    # The SPLIT direction is the same artifact seen from the other side: under a
+    # TIGHTER gap the two halves of one shipped burst drift more than the
+    # threshold apart in our run and segment as two.  The shipped train then has
+    # the long key and ours has its prefix.  Iteration 46 section 46.9.1 measured
+    # this on `twim1 npm1300` and it was charged as `P1 content` because this
+    # tool had a category for the merge direction only.  It now has both.  Like
+    # the merge test this is a prefix heuristic on `key_head` (96 chars), and
+    # like the merge direction it is still REPORTED AS A FAILURE -- naming it
+    # does not make it pass.
+    def _prefixed_by_another(entry, key):
+        head = entry["key_head"]
         for a in list(ts.values()) + list(to.values()):
             ha = a["key_head"]
-            if a["key_sha256"] != k and len(ha) < len(head) and head.startswith(ha + "|"):
-                merges.add(k)
-                break
+            if a["key_sha256"] != key and len(ha) < len(head) and head.startswith(ha + "|"):
+                return True
+        return False
+
+    def _prefixes_another(entry, key):
+        head = entry["key_head"]
+        for a in list(ts.values()) + list(to.values()):
+            ha = a["key_head"]
+            if a["key_sha256"] != key and len(ha) > len(head) and ha.startswith(head + "|"):
+                return True
+        return False
+
+    merges = {k for k in only_ours if _prefixed_by_another(to[k], k)}
+    splits = {k for k in only_ship if _prefixed_by_another(ts[k], k)}
+    # the two HALVES a split produces on our side: each is a strict prefix of the
+    # shipped train it came out of.  Same artifact, same category, still a FAIL.
+    halves = {k for k in only_ours if _prefixes_another(to[k], k)}
     for k in only_ship:
-        res["fails"].append("P1 content: shipped train absent from ours "
-                            "(n=%d) %s" % (ts[k]["count"], ts[k]["key_head"][:60]))
+        cat = ("P0 segmentation: a shipped train is absent from ours and its key "
+               "BEGINS with another train's key -- one burst split in two under "
+               "burst_gap_ns"
+               if k in splits else "P1 content: shipped train absent from ours")
+        res["fails"].append("%s (n=%d) %s"
+                            % (cat, ts[k]["count"], ts[k]["key_head"][:60]))
     for k in only_ours:
-        cat = ("P0 segmentation: a train appears only in ours and its key BEGINS "
-               "with another train's key -- two bursts on this shared bus merged "
-               "under burst_gap_ns"
-               if k in merges else "P1 content: train present only in ours")
+        if k in merges:
+            cat = ("P0 segmentation: a train appears only in ours and its key "
+                   "BEGINS with another train's key -- two bursts on this shared "
+                   "bus merged under burst_gap_ns")
+        elif k in halves:
+            cat = ("P0 segmentation: a train appears only in ours and another "
+                   "train's key BEGINS with it -- one burst split in two under "
+                   "burst_gap_ns")
+        else:
+            cat = "P1 content: train present only in ours"
         res["fails"].append("%s (n=%d) %s" % (cat, to[k]["count"], to[k]["key_head"][:60]))
 
     pairs = []           # (t_ship, t_ours) for the order gate
