@@ -720,3 +720,38 @@ PROJECTOR_DISPLAY_UPDATE_COMMAND = 0x97      /* -> JBD_CMD_SYNC.  "display
                                                 buffer into the pixel latch
                                                 [DS 7.3.6].                    */
 ```
+
+---
+
+## Correction (coordinator, 2026-07-29): the `human: true` flag is NOT verification
+
+This report described `FUN_0007d696` as catalogued `net_pkt_write_be16` with
+`human: true` in the committed durable map, and the commit message repeated that
+as if the name had survived human review. **That is a misreading of the flag.**
+
+`tools/build_function_names.py`:
+
+```python
+def is_human(name):
+    return bool(name and not re.match(r"^(?:FUN_|sub_)0*[0-9a-fA-F]+$", name))
+```
+
+`human` means only **"this name is not a raw `FUN_xxxx` / `sub_xxxx` address
+stub."** It records the *shape* of the string, not its provenance and not any
+review. No human confirmed `net_pkt_write_be16`.
+
+**Why this matters more than the single rename.** The bad name is not an
+exception that slipped past a check — there is no check. Every non-`FUN_` name in
+`function_names_app.json` carries the same zero verification weight, including
+the ~25 other display names in this report's mapping table. The datasheet pass is
+the **first external authority** ever applied to any of them, and the first name
+it checked was wrong.
+
+Consequences for how this report should be read:
+- The confidence column reflects *this pass's* evidence, and is independent of
+  whatever the prior name was. Do not treat an existing name's agreement with a
+  proposal as corroboration — it is not a second source.
+- Consumers of `human: true` elsewhere in the toolchain
+  (`tools/apply_names.py:190`, `tools/build_app_address_taken_roots.py:259,265`)
+  are selecting on name shape. That may still be the right predicate for their
+  purpose, but it must not be read as a trust signal.
