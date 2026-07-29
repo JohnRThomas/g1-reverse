@@ -86,10 +86,64 @@ RTS/CTS both map to P3.31 → hardware flow control effectively unused.
 Pins are **assigned at runtime**, not via static pinctrl. `spi_master_init`
 (@0x26418) reads SCK/MOSI/MISO/CS pin numbers from the projector-controller
 struct (byte fields at +0x18…+0x1d) and hands them to `nrfx_spim_init`. Two
-projectors (L/R): control mode 3 → SPIM4 (high-speed), mode 4 → SPIM2. Because
-the pins are board-provisioned at boot they are not fixed constants in the
-image; leave them as overlay TODOs to fill from a live board or the projector
-control board’s config blob.
+projectors (L/R): control mode 3 → SPIM4 (high-speed), mode 4 → SPIM2.
+
+**RECOVERED 2026-07-29 — the earlier “leave them as overlay TODOs, fill from a
+live board” conclusion is WITHDRAWN.** The premise was right (the pins are not
+constants in the image) but the conclusion was wrong: the firmware *programs*
+them into the SoC pin-routing registers during bring-up, so they can simply be
+read back after an emulator boot. No live board is needed.
+
+| Signal | SPIM2 @0x5000A000 | Evidence |
+|--------|-------------------|----------|
+| SCK    | **P0.08** | `PSEL.SCK`  (+0x508) = `0x00000008` |
+| MOSI   | **P0.09** | `PSEL.MOSI` (+0x50C) = `0x00000009` |
+| MISO   | **P0.10** | `PSEL.MISO` (+0x510) = `0x0000000A` |
+| CSN    | *(see below)* | `PSEL.CSN` (+0x514) = `0xFFFFFFFF` — DISCONNECTED |
+
+SPIM4 @0x5000C000: all `PSEL` = `0xFFFFFFFF` — fully disconnected. **Only one
+lens is driven** in the traced configuration.
+
+**CSN caveat — do not present all four pins as equally confirmed.** The firmware
+declares `ss=11`, but `PSEL.CSN` stays disconnected because `nrfx_spim` drives
+`ss_pin` in **software** (a GPIO toggled around each transfer) rather than
+through the SPIM hardware CSN route. So SCK/MOSI/MISO are *register-confirmed*;
+**P0.11 as chip-select is firmware-declared only.**
+
+Corroborated independently by the firmware's own boot log — the format string is
+present verbatim in the shipped image (`%s(): *SPIM(%d)speed=%dM, sck=%d,
+mosi=%d, miso=%d, ss=%d`), and prints
+`spi_master_init(): *SPIM(4)speed=32M, sck=8, mosi=9, miso=10, ss=11`.
+To see it, raise `g_log_level` @ `0x2000230c` above 2 — note a pre-`start` write
+is clobbered by cstart, so set it from a hook at `main()` entry @ `0x16eb8`.
+
+Verified here before adoption: the byte run `08 09 0a 0b` does **not** occur
+anywhere in `app_update.bin`, confirming the pins are genuinely runtime-assigned
+and cannot be recovered statically.
+
+Source: cross-session report from the ARMemul nRF5340 emulator fork (2026-07-29),
+two independent confirmations in agreement. Reproduction:
+`scripts/g1-dump-pins.sh` and `docs/g1-pin-map-dump.md` in that tree.
+
+> **General technique, worth reusing:** anything the firmware configures at
+> runtime rather than via devicetree can be read out of the peripheral registers
+> after an emulator boot. This applies to every other “board-provisioned”
+> unknown in this document.
+
+Same method also re-confirmed (all matching `board-map.md`): TWIM1 SCL P0.04 /
+SDA P0.05 · TWIM2 SCL P1.03 / SDA P1.02 · PDM CLK P1.13 / DIN P1.14 · QSPI
+SCK P0.17, CSN P0.18, IO0–IO3 P0.13–P0.16. Console UART TXD P0.20 / RXD P0.22
+comes from the PSEL *write* log only — that UART model discards PSEL writes, so
+it cannot be read back.
+
+**Live-hardware cross-check is NOT possible with the firmware on the device.**
+The left leg connects (NUS + SMP advertised), but the live `0x2f` endpoint reads
+**QSPI flash offsets** bounded `[0, 0x02000000)` — its `offset` is a flash
+offset, not a CPU address — so the `0x5000_0000` peripheral window and RAM are
+unreachable. Probed and confirmed: `0x5000A508`, `0x5000C508` and `0x20000000`
+all return status=1 (out of bounds), while a `0x134000` baseline read returns
+correct QSPI data. Reaching registers would need a memread variant with wider
+bounds, i.e. a flash — no-revert on this firmware.
 
 ## GPIO control lines (from `button_init`/`FUN_00017a40`, `panel_pwr_gpio_deassert`, `read_sw0_pin`)
 
