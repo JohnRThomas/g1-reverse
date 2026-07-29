@@ -89,26 +89,68 @@ struct (byte fields at +0x18…+0x1d) and hands them to `nrfx_spim_init`. Two
 projectors (L/R): control mode 3 → SPIM4 (high-speed), mode 4 → SPIM2.
 
 **RECOVERED 2026-07-29 — the earlier “leave them as overlay TODOs, fill from a
-live board” conclusion is WITHDRAWN.** The premise was right (the pins are not
-constants in the image) but the conclusion was wrong: the firmware *programs*
-them into the SoC pin-routing registers during bring-up, so they can simply be
-read back after an emulator boot. No live board is needed.
+live board” conclusion is WITHDRAWN.** No live board is needed.
 
 | Signal | SPIM2 @0x5000A000 | Evidence |
 |--------|-------------------|----------|
 | SCK    | **P0.08** | `PSEL.SCK`  (+0x508) = `0x00000008` |
 | MOSI   | **P0.09** | `PSEL.MOSI` (+0x50C) = `0x00000009` |
 | MISO   | **P0.10** | `PSEL.MISO` (+0x510) = `0x0000000A` |
-| CSN    | *(see below)* | `PSEL.CSN` (+0x514) = `0xFFFFFFFF` — DISCONNECTED |
+| CS     | **P0.11** | GPIO, not SPIM — see below |
 
 SPIM4 @0x5000C000: all `PSEL` = `0xFFFFFFFF` — fully disconnected. **Only one
 lens is driven** in the traced configuration.
 
-**CSN caveat — do not present all four pins as equally confirmed.** The firmware
-declares `ss=11`, but `PSEL.CSN` stays disconnected because `nrfx_spim` drives
-`ss_pin` in **software** (a GPIO toggled around each transfer) rather than
-through the SPIM hardware CSN route. So SCK/MOSI/MISO are *register-confirmed*;
-**P0.11 as chip-select is firmware-declared only.**
+**`*SPIM(4)` in the boot log is the BUS/MODE SELECTOR, not the instance.** The
+firmware's next log line says `spim(bus=4)`. Mode 4 → `{0x5000A000, idx 1}`
+@`0x883b0` = **SPIM2**; mode 3 → `{0x5000C000, idx 0}` = SPIM4. Do not read
+`SPIM(4)` as “SPIM4”.
+
+**All four pins are equally confirmed — an earlier revision of this section
+wrongly demoted P0.11 to “firmware-declared only”.** `PSEL.CSN` is indeed
+`0xFFFFFFFF`, but that is because `nrfx_spim` drives `ss_pin` as a **plain GPIO**
+rather than through the SPIM CSN route — and that GPIO path is itself
+register-confirmed: captured `nrfx_spim_init` config `{sck=8, mosi=9, miso=10,
+ss=11}`, then `OUTSET ← 0x800` (`0x852f6`), `PIN_CNF[11] ← 0x00000303`
+(`0x66eae`), then `OUTCLR`/`OUTSET` of bit 11 around **every** JBD transfer.
+
+#### Provenance settled: FIXED IMMEDIATES, not identity-selected
+
+The pins are **not** strap-dependent. A RAM watchpoint on the projector-controller
+struct (`0x20053c60`, obtained by hooking `r0` at `spi_master_init` `0x26418`)
+caught both writers, in `main` (`0x16eb8`), four instructions before
+`bl button_init`:
+
+```
+pc=0x000171a0  str.w  r3,[r4,#0xb28]   val=0x0a090804   ; literal @VA 0x17258
+                                                        ; mode 4, SCK 8, MOSI 9, MISO 10
+pc=0x000171a8  strh.w r3,[r4,#0xb2c]   val=0x200b       ; movw imm: SS 11, speed x32
+```
+
+**No other write in 30 s of boot, at any width.** The DEVICE_ID straps
+(P0.25–P0.28) are first read **12,788 instructions later** — an identity read
+cannot influence a value already written, so strap-selection is *structurally
+excluded*, not merely unobserved.
+
+**Why two independent static scans missed this.** The pins are written by one
+32-bit `str.w` of a literal plus one `strh.w` of a `movw` — never `strb`, never
+`movs #8..11`. The in-image run is `04 08 09 0a` (**mode byte first**);
+`08 09 0a 0b` does not exist because SS comes from the separate `movw`.
+Measured: **`04 08 09 0a` occurs exactly once, at VA `0x17258`; `08 09 0a 0b`
+occurs zero times.** A prior revision of this section cited the second negative as
+proof the pins “cannot be recovered statically” — that conclusion was **wrong**;
+the search pattern was wrong, not the image.
+
+Both prior scans also drowned in false positives from `0x000775d0`, which is
+`ldr.w pc, [r1, r3, lsl #2]` — a **jump table** whose 32-bit entries disassemble
+as plausible `strb`/`movs` instructions. Beware byte-pattern scans over `.text`
+near it.
+
+**Limit of this proof:** it shows the pins are constants *in this image*. A
+hardware variant would need a different build with a different literal at
+`0x17258`; nothing here observes other builds. But for an adopting project the
+pins are safe for the strongest available reason — **the firmware ignores board
+identity when choosing them.**
 
 Corroborated independently by the firmware's own boot log — the format string is
 present verbatim in the shipped image (`%s(): *SPIM(%d)speed=%dM, sck=%d,
@@ -116,10 +158,6 @@ mosi=%d, miso=%d, ss=%d`), and prints
 `spi_master_init(): *SPIM(4)speed=32M, sck=8, mosi=9, miso=10, ss=11`.
 To see it, raise `g_log_level` @ `0x2000230c` above 2 — note a pre-`start` write
 is clobbered by cstart, so set it from a hook at `main()` entry @ `0x16eb8`.
-
-Verified here before adoption: the byte run `08 09 0a 0b` does **not** occur
-anywhere in `app_update.bin`, confirming the pins are genuinely runtime-assigned
-and cannot be recovered statically.
 
 Source: cross-session report from the ARMemul nRF5340 emulator fork (2026-07-29),
 two independent confirmations in agreement. Reproduction:
