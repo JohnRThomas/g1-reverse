@@ -119,11 +119,26 @@ how the arguments vary).
 - Sweep + open items: `recon/analysis/float_arg_harness_fix.md`. Fixed defects: `finitef`
   (`FUN_000869f2`, was `return 1`), `battery_soc_from_curve` (`FUN_0000e340`, float compare
   where the image does a sign-bit test). `FUN_0000e53c` `battery_soc_curve_model_init`
-  **CLOSED in P4 iteration 40** (FAIL 13/43 -> PASS 43/43: a 16-byte-short catalogued
-  extent, the temperature break-point selection, and the range test / slope sign / two
-  table indices of the output interpolation — see `recon/emulator/reports/our_boot_bringup.md`
-  §40.10). **STILL OPEN (real, previously invisible):** `FUN_0000c358`
-  `battery_model_state_update`.
+  — repairs landed in P4 iteration 40 (a 16-byte-short catalogued extent, the temperature
+  break-point selection, and the range test / slope sign / two table indices of the output
+  interpolation — `recon/emulator/reports/our_boot_bringup.md` §40.10). ⚠ **NOT "CLOSED".
+  Downgraded 2026-07-29 to `NOT ESTABLISHED`.** Its closure was decided by `cfg_verify`,
+  which this same file says is not evidence on this code. The independent `modtest` harness
+  cannot decide it either: its single primary divergence is a stack-frame relative offset at
+  one call, and the fault that follows comes from reading back an out-parameter `emu` never
+  models — both are documented harness limitations, not observations about the code
+  (`recon/analysis/test_architecture.md` §28.5). **No evidence of a defect and no proof of
+  correctness. It needs a real oracle, not another green harness run.**
+  **STILL OPEN, and in the SAME undecided regime — all 46 of its golden runs fault:**
+  `FUN_0000c358` `battery_model_state_update` (§28.5.1). ⚠ **Measured 2026-07-29: exactly
+  SIX app symbols read back a stack buffer they passed to an emulated (opaque) callee, which
+  `emu` never fills — and THREE of the six are the only open "real defects" this project's
+  harnesses have named** (`battery_model_state_update`, `battery_soc_curve_model_init`,
+  `md5_process_block`; the other three are exposed and pass). For six symbols the
+  proportionate fix is hand-written reviewed out-parameter fixtures
+  (`emu.oracle_memory_writes` / `stack_objects`, which `modtest` does not populate). Until
+  then **none of the three is evidence of a reconstruction defect.**
+  `recon/analysis/test_architecture.md` §28.5.2.
 
 ### 2. Ghidra data-inflation — many "huge" functions are small code + a trailing DATA table
 Ghidra folds a trailing rodata table into the function symbol. CFG-reachable analysis (BFS from
@@ -170,7 +185,15 @@ tools/
   net_recon_kit.py      net mirror (base 0x01008000, net_extract bytes)
   extract.py            app image byte/literal reads (base 0xC200)
   net_extract.py        net image reads (off = va - 0x01008000)
-  cfg_verify.py         *** AUTHORITATIVE CFG-directed side-effect verifier ***
+  cfg_verify.py         *** CFG-directed side-effect verifier -- NOT evidence on the ladder ***
+  modtest/              golden-vector regression suite oracled by the SHIPPED image
+                        (gen | run | grade | index).  Vectors: recon/tests/vectors/<core>/.
+                        Design + all measured results: recon/analysis/test_architecture.md
+                        (app, newest section last -- §28 as of 2026-07-29) and
+                        recon/analysis/net_test_coverage.md (net).
+                        Vectors carry a HARNESS FINGERPRINT and `run` refuses a stale one;
+                        `MODTEST_ORACLE_PRESERVE` / `MODTEST_DERIVED_ARITY` are stamped too.
+                        App coverage as of 2026-07-29: 923 symbols across 15 modules.
   reverify.py           corpus sweep (sweeplist/batch modes) -> uses cfg_verify
   build_symbol_map.py   address->symbol map (both cores)
   symbolize.py          write symbolized sources + headers (comment/string-aware substitution!)
@@ -244,6 +267,19 @@ against the shipped firmware's own captured bus traces.
 - **Partial link succeeds** (full_link.py); undefined = pinned globals + library + Ghidra pseudo-ops
   (SCARRY4/EPILOGUE/__impl) + the unproven residue. Zero surprise application gaps.
 - **Harness false-proof fix + CFG verifier landed and committed.**
+- ⚠ **NEW FALSE PROOF, 2026-07-29 — `i2c_read_reg16_be` (`FUN_000847d8`, `recon/symbolized/app/
+  i2c_read_reg16_be.c`).** Its own header claims `parity: 300/300 trials, PROVEN`; it **FAILs
+  5 of 7 golden fixtures on BOTH trees at 100 % coverage** under `tools/modtest`. The shipped
+  code builds a two-element `i2c_msg`-shaped descriptor on the stack and passes its address;
+  the reconstruction spells that descriptor as **six independent stack locals** and relies on
+  the compiler laying them out contiguously in declaration order. C guarantees no such thing
+  and GCC does not do it — offset 4 of the candidate's descriptor holds `param_1` spilled
+  (`0x20011008`) where the image has the constant `1`. **Verified under the firmware's own
+  `arm-zephyr-eabi-gcc 12.2`**, so it is not an artefact of the harness compiling with a newer
+  compiler. NOT repaired; the repair is a real `struct i2c_msg msgs[2]` and needs its own
+  proof. `recon/analysis/test_architecture.md` §22.1, §28.6. **A `parity: N/N PROVEN` banner
+  in a reconstruction header is not evidence that survives contact with a fixture that
+  actually reaches the call.**
 - **IN PROGRESS — CFG sweep is PARTIAL:** `cfg_sweep_fails.json` (repo root) holds **40 confirmed
   false proofs so far (24 app + 16 net)** but only ~44% of suspects were checked before the shards
   ended (~409/919 app, ~266/540 net). **Next session step 1: re-run the CFG sweep to completion**

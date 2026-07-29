@@ -1858,6 +1858,67 @@ harness fingerprint at the end of this pass:    c9132a14658714d0
  `run` accepts them -- regenerating stamps them and the guard takes effect.)
 ```
 
+**2026-07-29 — ENTRIES ADDED BY THE r0-CLOBBER PASS (§28). Both are
+semantics-changing and both affect BOTH CORES. Recorded at the moment they
+landed, per the rule this section exists to enforce.**
+
+```
+change                                          invalidates vectors generated before it
+--------------------------------------------------------------------------------------
+ORACLE_PRESERVE on (core.callee_gpr_defs):      ALL reaching a callee that provably
+  r0/r1 that the REAL callee provably never     never writes r0 or r1.  Swept: 411 of
+  writes are now CARRIED ACROSS the oracled     2,404 app callees (17.1 %) and 376 of
+  call instead of being overwritten with        1,249 net callees (30.1 %).  On the 330
+  sha256(ordinal).  §28.1.                      app symbols with a vector, 156 (47 %)
+                                                have at least one such call site.
+vector_staleness now also refuses a vector      none (it only tightens a check that was
+  whose recorded derived_arity / oracle_        never made); but it makes the two ENV
+  preserve differs from the current run.        switches enforceable from now on.
+--------------------------------------------------------------------------------------
+callee_gpr_defs: an incomplete CFG walk (ran      ALL generated at 936cee0b67396ca5 by a
+  off the end of the catalogued extent, or fell   run with ORACLE_PRESERVE on.  §28.2.1.
+  through into the next function) now returns
+  None instead of "writes nothing".  Corrects
+  an UNSOUND preservation.  §28.2.1.
+--------------------------------------------------------------------------------------
+harness fingerprint after all three:            e556ab5692bf509d
+(936cee0b67396ca5 and 26100c716510a0fc existed briefly during this pass; no
+ vector reported in §28 was produced by either -- everything was regenerated at
+ e556ab5692bf509d.)
+```
+
+> **Net-core agent, read this — and read the second paragraph first.**
+>
+> ⚠ **`936cee0b67396ca5` — the fingerprint `net_test_coverage.md` §9.2 says
+> this pass pinned to at `.modtest_pin/` — CONTAINS AN UNSOUND
+> `callee_gpr_defs`, and it is fixed at `e556ab5692bf509d`.** At that pinned
+> rev the analysis returned "this callee writes neither r0 nor r1" for any
+> callee whose CFG walk **ran off the end of its catalogued extent** instead
+> of reaching a return, and the net Ghidra catalog under-reports sizes *far
+> more than app's* — §6.5 of your own document. The corpus effect on app was
+> small (1 r0 callee, 5 r1 callees) but it is a **wrong preservation**, not a
+> missing one, so on net it can make a golden trace that the silicon would not
+> produce. Details and the worked instance in §28.2.1. **Do not publish
+> numbers from `.modtest_pin/` at `936cee0b67396ca5` without re-checking
+> against `e556ab5692bf509d`.**
+>
+> `MODTEST_ORACLE_PRESERVE=0` restores the pre-2026-07-29 oracle exactly, and
+> `harness_rev()` at that setting is unchanged, so the fingerprint alone will
+> NOT tell you which of the two semantics a vector holds — that is why
+> `harness.oracle_preserve` is now stamped and checked separately. Net has the
+> larger exposure of the two cores (30 % of callees leave r0 or r1 alone,
+> against app's 17 %), so regenerating is very likely worth more to you than
+> to app.
+>
+> **Your §9.1 patch to `cli.cmd_run` (count and report UNSTAMPED vectors) is
+> accepted in substance and DELIBERATELY NOT APPLIED IN THIS PASS.**
+> `harness_rev()` hashes whole files, so a two-line addition that changes no
+> semantics whatever would still change the fingerprint and make `run` refuse
+> the ~960 app vectors this pass had just generated. That is a real defect in
+> the fingerprint — it cannot express "semantics-neutral" — and paying for it
+> mid-sweep buys nothing. **It should be the FIRST edit of the next pass, made
+> before any `gen` runs**, and the note above it should say so.
+
 ### 26.2 The mechanism, landed
 
 `core.harness_rev()` fingerprints the harness sources that define what an
@@ -2132,3 +2193,1031 @@ New in this pass: `i2c_read_reg16_be` is a **false proof** (§22.1),
    `audio` (137), `unsorted` (167) — 634 symbols, roughly 40 % of the app core.
 5. **Root-cause `battery_model_state_update`** — still the only defect
    AGENTS.md and this harness agree is real and open.
+
+---
+
+# 28. ★ 2026-07-29 — THE r0-CLOBBER CLASS: MEASURED, FIXED, AND THREE VERDICTS OVERTURNED
+
+This section is written by the pass that took §27.7 item 1 ("fix the oracle's
+r0/r1 clobber and then MEASURE how many of the remaining failures it
+explains — every number in §27.2 is contaminated by it to an unmeasured
+degree"). It answers that.
+
+**Headline, so nobody has to read to the end:** the class is real, it is
+**fixed**, and it accounts for **3 of 46** app FAILs — much less than feared.
+The much larger result is what looking for it uncovered. Three claims are
+overturned, and **two of them are corrections of corrections**:
+
+* §22.5's verdict that `battery_soc_curve_model_init` is a REAL defect is
+  **withdrawn** — it is undecidable here (§28.5);
+* `md5_process_block` is **withdrawn** as a failure for the same reason
+  (§28.5.2);
+* a load-bearing claim I wrote in §28.1 about the candidate being unaffected by
+  this change is **falsified by my own test** and corrected in place (§28.1.0);
+* and my first `callee_gpr_defs` was **unsound**, caught by a cross-check
+  against a source that knows nothing about it (§28.2.1).
+
+Exactly **six** app symbols read back a stack buffer handed to an opaque
+callee, and **three of those six are the entire list of open "real defects"
+this project's harnesses have ever named** (§28.5.2). That is the finding worth
+carrying forward.
+
+Every number below is from a command run in this pass at harness fingerprint
+`e556ab5692bf509d`. The ledger entries are in §26.1 and were written the
+moment the code landed, not at the end.
+
+## 28.1 The fix, and why it did not need `emu`
+
+`emu`'s order-keyed call oracle writes **r0 and r1 only** — `uc.reg_write(
+UC_ARM_REG_R0, o0)` / `R1, o1` in `emu.Runner.run`. r2, r3 and r12 are never
+touched. That is worth stating because §22.3 specified a fix in terms of
+"preserve every caller-saved register the callee's ABI does not define,
+r2/r3 always"; r2/r3 already survive, so the whole class reduces to two
+registers and no r2/r3 work was needed.
+
+The fix is in `tools/modtest/core.py` and touches **nothing** in
+`tools/parity/emu.py`, which is frozen and shared with the net core:
+
+* `core.callee_gpr_defs(core, va)` — which of r0/r1 the callee at `va` **can
+  write**, derived from *its own shipped bytes* by a CFG walk. A nested `bl`
+  merges the writes of what IT calls (bounded recursion, depth 3, with a cycle
+  guard); a tail branch out of the function is treated as a call; **anything
+  unclassifiable — an unresolved computed branch, a `blx` through a register,
+  a callee with no catalogued size, a cycle, recursion past the depth, a walk
+  that runs off the end of the catalogued extent or falls through into the
+  next catalogued function — returns `None` and the register is clobbered
+  exactly as before.** The analysis can therefore only ever over-report
+  writes, so enabling it can remove false failures and cannot manufacture
+  them. (The last two of those exits were **missing on the first attempt and
+  the omission was unsound** — §28.2.1.)
+* `_CoverageRunner` snapshots those registers at the `bl` and restores them at
+  `emu.ORACLE_TRAMPOLINE` — the mapped `bx lr` every oracled call returns
+  through, executed exactly once per call and by nothing else. The restore is
+  bound to the call's own return address (checked against `LR`), so a `bl`
+  into the function's own body — which `emu` never oracles, and which a linear
+  call-site scan can also invent — cannot leak a stale restore into a later
+  call.
+* `ORACLE_PRESERVE` (env `MODTEST_ORACLE_PRESERVE`, default **on**) switches it.
+
+**It is not a live-range analysis of the caller, and does not need to be.** If
+the callee writes the register, the oracle clobbers it as before; if it does
+not, preserving it is what the silicon does.
+
+### 28.1.0 ⚠ A LOAD-BEARING CLAIM I MADE AND THEN FALSIFIED
+
+I first wrote here that "the candidate is unaffected either way: code compiled
+against an `extern` declaration never reads a caller-saved register across a
+call, so this changes the GOLDEN's trace and never the candidate's." **That is
+wrong, and the test that says so took two minutes.** Running four symbols'
+candidates with `ORACLE_PRESERVE` forced on and off:
+
+```
+candidate observable UNCHANGED by preservation   18 fixtures
+candidate observable CHANGED                      6 fixtures
+   ipc_send_len_prefixed_packet  seed-0 .. seed-5
+```
+
+The cause is the harness's own stub. `core._UNDEF_STUB` is
+
+```c
+__attribute__((noinline,used,section(".oracle_stubs"))) unsigned NAME(void){return N;}
+```
+
+— a **definition in the candidate's own translation unit**, not an `extern`
+declaration. So GCC applies `-fipa-ra` to the candidate exactly as it did to
+the firmware: the stub visibly writes r0 (it returns a value) and visibly does
+**not** write r1, so the compiler may keep a candidate value live in **r1**
+across a call. The candidate is subject to the same mechanism as the shipped
+code.
+
+**This does not make the change unsound; it makes it more clearly right.**
+Under the OLD oracle r1 was destroyed at every call whatever the callee did, so
+a candidate relying on r1 was corrupted at *every* call site — a false-failure
+source on the candidate side that nobody had noticed. Under the new oracle r1
+survives exactly when the real callee leaves it alone. The residual mismatch is
+narrow and pre-existing: the real callee writes r1 (so the oracle clobbers)
+while the stub does not (so GCC kept a value there). That case is a strict
+SUBSET of the old behaviour, so the change can only shrink it.
+
+`ipc_send_len_prefixed_packet` regenerated and re-run under the new oracle:
+`canonical=OK(42/42) refactored=OK(42/42) cov=100%`. The corpus-wide check that
+nothing turned from OK to FAIL is §28.8.
+
+Applying preservation asymmetrically (a candidate's generated stub with no
+`oracle_target_map` entry preserves nothing) is therefore also NOT
+self-evidently harmless, and is retained only because it is the conservative
+direction — it leaves the candidate with today's behaviour.
+
+### 28.1.1 A hole in the staleness guard, found by trying to run the control
+
+The A/B below needs one arm with `MODTEST_ORACLE_PRESERVE=0`. `harness_rev()`
+fingerprints **source**, and the two semantics switches that matter
+(`DERIVED_ARITY`, `ORACLE_PRESERVE`) are **environment variables** — so the
+control arm and the treatment arm wrote vector files that were
+indistinguishable at the same fingerprint. `core.vector_staleness` now compares
+the recorded `derived_arity` / `oracle_preserve` against the current run and
+refuses on a mismatch. This closes a hole that existed for `DERIVED_ARITY`
+from the moment §26.2 landed and that nobody would have noticed until two
+results disagreed for no visible reason.
+
+## 28.2 Scope of the class, swept over both cores
+
+`callee_gpr_defs` over every callee with a Ghidra arity (the same universe
+that produced the 310-of-2,383 over-wide arity number in §22.7):
+
+```
+                     app             net
+callees              2404            1249
+  unclassifiable      220  ( 9.2%)    113  ( 9.0%)
+  writes r0 AND r1   1773  (73.8%)    760  (60.8%)
+  leaves r0 alone     127  ( 5.3%)    147  (11.8%)
+  leaves r1 alone     370  (15.4%)    342  (27.4%)
+  leaves BOTH alone    86  ( 3.6%)    113  ( 9.0%)
+```
+
+**The analysis is cross-checked against an independent source and agrees
+completely.** Ghidra's return kind for a callee is derived from its decompiled
+signature and has nothing to do with this walk. A callee that returns anything
+in r0 must write r0:
+
+```
+app callees this analysis says NEVER write r0     127
+  Ghidra return kind void / f32 / f64 (agrees)    127
+  Ghidra says the result is in r0 (contradiction)   0
+
+app callees this analysis says NEVER write r1     370
+  Ghidra: i32 227, void 125, f32 14, f64 4
+  Ghidra says i64, i.e. r0:r1 (contradiction)       0
+```
+
+### 28.2.1 THAT CROSS-CHECK CAUGHT MY OWN UNSOUNDNESS, and it was live for an hour
+
+The first version of the table above said 128 never write r0, and the
+cross-check found **exactly one** contradiction: `0x0000d588`, which Ghidra
+calls `i64`. It is catalogued as **four bytes**:
+
+```
+0000d588  eor  r3, r3, #0x80000000
+```
+
+That is a double-negation fragment with **no return instruction at all**. The
+walk simply ran out of bytes and my code returned `frozenset()` — "writes
+nothing" — about a function it had not finished reading. Every guarantee in
+§28.1 about conservatism was true of the branches I wrote and false of the
+branch I forgot: falling off the end of the catalogued extent, and falling
+through into the next catalogued function, both now `return None`.
+
+**The fan-out for §28.7 was already running against the unsound version and was
+killed and restarted rather than allowed to finish.** The corrected numbers are
+above; the corpus-level effect turned out to be one r0 callee and five r1
+callees, and **none of them is called from any of the 330 symbols of §27.2**,
+so the A/B of §28.3 is unchanged — but that was established by re-running it,
+not by arguing it.
+
+Worth stating for whoever writes the next such analysis: the bug was not in the
+hard part. It was in assuming a `for` loop over a disassembler ends the way the
+CFG ends.
+
+Exposure on the 330 app symbols that had a vector at §27.2:
+
+```
+symbols with a vector                          330
+  with >= 1 call site                          242
+  with >= 1 r0-preservable call site            83
+  with >= 1 r1-preservable call site           149
+  with >= 1 of either                          156   (47 % of the corpus)
+call sites, total                             3168
+  r0-preservable                                165
+  r1-preservable                               1554
+  target not statically resolvable               86
+```
+
+**Net has roughly twice app's per-callee exposure** (31 % vs 17 % of callees
+leave at least one of the two alone). That is a fact about the net corpus, not
+about this pass, and the net agent should read §26.1 before reusing a vector.
+
+## 28.3 THE MEASUREMENT — the A/B, and it is small
+
+Two arms, same harness, same 46 symbols (every app FAIL in §27.2), vectors
+**regenerated in each arm** so the golden is internally consistent:
+
+* **arm B (control)** `MODTEST_ORACLE_PRESERVE=0` — the pre-2026-07-29 oracle;
+* **arm A (treatment)** `MODTEST_ORACLE_PRESERVE=1` — this pass's oracle.
+
+Arm B reproduced **46 FAILs of 46**, i.e. it re-derived §27.2's verdicts
+exactly, which is the check that no *other* edit in this pass moved anything.
+
+```
+                        arm B (clobber)   arm A (preserve)
+FAIL -> OK                                     3
+   ext_flash_read       FAIL(26/36)   ->   OK(43/43)
+   ext_flash_write      FAIL(26/36)   ->   OK(43/43)
+   gui_bitmap_draw      FAIL(44/45)   ->   OK(45/45)
+OK -> FAIL                                     0
+still FAIL, fewer failing fixtures             2
+   imu_mahony_ahrs_update FAIL(1/44)  ->  FAIL(25/43)   cov 86 % -> 100 %
+   md5_process_block      FAIL(0/42)  ->  FAIL(0/41)
+still FAIL, MORE failing fixtures              1
+   key_event_thread       FAIL(8/16)  ->  FAIL(6/22)    <-- see the confound
+verdict unchanged                             40
+```
+
+**So the answer to §27.7 item 1 is: 3 of 46 app FAILs — 6.5 % — were the
+r0-clobber class outright, plus one large partial. Not the dominant
+contaminant it was feared to be, and now zero rather than unmeasured. The
+error bar the previous pass asked for is therefore: every FAIL count in §27.2
+was inflated by at most three symbols, and no OK was ever a false pass caused
+by it.**
+
+**THE CONFOUND, stated rather than buried.** Each arm regenerates its own
+vectors, and the fixture SEARCH depends on the golden's behaviour, so the two
+arms do not always compare the same fixtures. Measured: **5 of 46 symbols have
+a different case count between the arms** (`ext_flash_read` and
+`ext_flash_write` 36→43, `key_event_thread` 16→22,
+`imu_mahony_ahrs_update` 44→43, `md5_process_block` 42→41). For those five the
+`n/m` numbers are not like-for-like and only the OK/FAIL verdict is.
+`key_event_thread` is the one that moves the wrong way — 8 of 16 failing
+becomes 16 of 22 — and it is 17 %-coverage thread-body code whose fixture set
+changed underneath the comparison, not a regression this change caused; it is
+FAIL in both arms. **The verdict column is confound-free: 3 flips, 0
+regressions, 43 unchanged.** Running both arms over one frozen fixture set is
+not possible here, because the whole point is that the golden behaves
+differently.
+
+The two full flips have a visible cause. `ext_flash_read` calls `0x7c080` and
+`0x7c082` **three times between them, and neither writes r0 or r1**; the
+golden was faulting on a pointer the hardware keeps. `gui_bitmap_draw` calls
+`0x431a8` and `0x167a8`, which write **r0 only**, so r1 was the register the
+old oracle destroyed.
+
+Coverage moves too, and that had not been anticipated: a golden that faults
+early stops executing. `imu_mahony_ahrs_update` went from 86 % to **100 %**
+CFG-instruction coverage on the shipped bytes for the same symbol. Every
+coverage figure in §27.2 for a symbol whose golden faulted is a *lower* bound
+for the same reason.
+
+### 28.3.1 Negative controls — the fix is shown not to have bought blindness
+
+A change that makes failures disappear has to be shown not to have made the
+suite blind. `scratchpad/app_core/negctl_r0.py`:
+
+```
+symbol                  tree         mutation                verdict
+imu_mahony_ahrs_update  canonical    VNMLS read as VMLS      killed  (10/25 pass)
+imu_mahony_ahrs_update  refactored   VNMLS read as VMLS      killed  (10/25 pass)
+ext_flash_read          canonical    drop first bare call    killed
+ext_flash_read          refactored   drop first bare call    killed
+ext_flash_write         canonical    drop first bare call    killed
+ext_flash_write         refactored   drop first bare call    killed
+gui_bitmap_draw         canonical    drop first bare call    killed
+gui_bitmap_draw         refactored   drop first bare call    killed
+```
+
+The first two matter most: the injected mutation is the **actual shipped
+defect** of AGENTS.md finding 1b — reading the five `VNMLS.F32` at
+0x26684/0x26688/0x2669c/0x266a8/0x266ac as `VMLS.F32`, which negates the whole
+accelerometer error vector. The symbol the fix rescued still detects its own
+historical defect. It is run against a **25-fixture sub-vector** on which the
+baseline passes, because a kill against a failing baseline is not a control
+(§20.1) — the full 43-fixture baseline is FAIL(25/43) for the reason in §28.4.
+
+**Two of these eight "survived" on the first attempt and it was my control that
+was broken, not the harness.** `drop_first_call` used a whole-file regex; a
+stage-09 TU holds up to 39 functions, so on the refactored tree it deleted a
+statement from whichever function came first in the file. That is §21.1
+exactly, reproduced by the person who had just read §21.1, and it is the
+**ninth** defeat of text anchoring recorded in this document. Rewritten to use
+`mutate.member_span`, all eight kill.
+
+## 28.4 `imu_mahony_ahrs_update` — the residual is 100 % COMPUTED NaN, and the obvious fix is UNSOUND
+
+After the fix it is FAIL(25/43) rather than FAIL(1/44). All **18** residual
+failures were classified individually, and every one of them is a divergence
+in the **representation of a NaN**:
+
+```
+13 fixtures   a stored word         golden 0xFFC00000   candidate 0x7FC00000
+ 4 fixtures   the same, at the same address, other seeds
+ 1 fixture    call ordinal 1 arg    golden 0xFFFFFFFF   candidate 0x7FF7FFFF
+```
+
+Both sides are quiet NaNs; they differ in sign and, once, in payload. This is
+the class AGENTS.md finding 1b already declares out of scope — "equivalent
+float code does not preserve NaN sign/payload while writes compare
+bit-exactly" — but the exclusion is applied to **seeded inputs** only, and
+these NaNs are **computed**: a fixture supplies magnitudes that overflow to
+infinity inside the body, and `inf - inf` produces a NaN whose sign depends on
+operand order, i.e. on instruction selection.
+
+**The obvious fix — canonicalise any quiet-NaN bit pattern in the event trace
+to one token — is not sound and is not being made.** The trace is untyped: a
+word is just 32 bits. Canonicalising the NaN range conflates
+`0xFFFFFFFF` with a NaN, and `0xFFFFFFFF` is `-1`, which this firmware stores
+constantly. One of the eighteen fixtures above literally has `0xFFFFFFFF` on
+the golden side. A rule that cannot distinguish "the float unit produced a
+NaN" from "the code stored −1" is a blind spot in exactly the place errors
+hide. Recorded as a named, measured class instead:
+
+> **COMPUTED-NaN REPRESENTATION.** A fixture whose float inputs overflow inside
+> the body can make both sides produce NaNs that differ in sign or payload.
+> Measured cost: 18 of 43 fixtures on `imu_mahony_ahrs_update`, 0 on any other
+> symbol examined in this pass. The sound fix is at the INPUT end — do not
+> generate fixtures whose float arguments overflow the body — not at the
+> comparison end.
+
+`imu_mahony_ahrs_update` is **not a reconstruction defect**; §22.3's verdict
+stands and is now supported by a passing 25-fixture baseline instead of by an
+argument.
+
+## 28.5 ⚠ §22.5 IS WRONG — `battery_soc_curve_model_init` is UNDECIDABLE here, not defective
+
+§22.5 concluded "the harness is right and the record is wrong" and asked for
+AGENTS.md's **CLOSED** to be downgraded to a defect. **That conclusion does not
+survive being looked at.** It carried its own caveat — the oracle-clobber
+limitation "has not been ruled out for it" — and ruling it out is now
+possible: with preservation on it is still FAIL(0/49) at 93 % coverage on both
+trees, so the r0 class is not the cause. What *is* the cause is something
+§22.5 did not consider.
+
+The full normalised trace (`scratchpad/app_core/trace_diff.py`, which exists
+because `events_head` stops at 48 and this symbol diverges at 74) shows that
+in **every** fixture there is exactly **one** primary divergence, at call
+ordinal 6:
+
+```
+   74  G ('C', 6, ('SP', 0), ('SP', 24), ('SP', 4), 'S', 'F', 'T', None)
+       C ('C', 6, ('SP', 0), ('SP', 12), ('SP', 4), 'S', 'F', 'T', None)
+```
+
+First and third arguments identical; the middle stack object sits 12 bytes
+elsewhere in the candidate's frame. Everything §22.5 quoted as independent
+evidence — "four wholly different stored words", "4 ULP apart" — is
+**downstream of that one difference**, and the mechanism is visible in the
+shipped instructions immediately after the call:
+
+```
+0000e6d4  bl    #0xea18          <-- call ordinal 6, three stack out-params
+0000e6d8  ldr   r1, [sp, #0xc]   <-- reads back what the callee WROTE there
+0000e6ea  ldr   r3, [r2], #4     <-- reads back the out-param ARRAY at sp+0x1c
+0000e6f2  add.w r3, r5, r3, lsl #2
+0000e6f6  ldr   r3, [r3]         <-- faults: r3 is uninitialised stack
+```
+
+`emu` models the callee as opaque and writes **nothing** into an
+out-parameter. So both sides read uninitialised stack; because their frames
+differ, they read *different* uninitialised words; one becomes an invalid
+pointer and one does not. 22 of the 49 goldens end in `Invalid memory read` at
+`fault_off = 442`, which is `0xe6f6` — that instruction. The other 27 return,
+and their candidates fault instead. It is the same single cause in both
+directions.
+
+Two harness limitations combine here and both are already documented:
+
+* `normalise_events`' own docstring: *"a candidate whose frame lays out the
+  same locals at different RELATIVE offsets while otherwise behaving
+  identically will still fail (a false failure, not a false pass)"*;
+* an **unmodelled callee out-parameter** read back by the caller — `emu` has
+  `oracle_memory_writes` / `stack_objects` for reviewed cases and `modtest`
+  populates neither.
+
+**Verdict, replacing §22.5's:** this harness **cannot decide**
+`battery_soc_curve_model_init`. It does not show a defect and it does not show
+correctness. AGENTS.md's "CLOSED" is still not *established* — it rested on
+`cfg_verify`, which AGENTS.md itself says is not evidence on this code — but
+§22.5's claim that the harness overturns it is withdrawn. AGENTS.md is edited
+to say exactly that, and nothing stronger.
+
+This is the fifth time in this document a divergence reproducing identically
+on both trees turned out to be the harness. It is also the first time the
+*correction* was itself corrected. **Both facts argue for the same rule: read
+the whole trace, find the FIRST divergence, and check whether everything after
+it is a consequence before counting it as evidence.**
+
+### 28.5.1 `battery_model_state_update` is in the same regime
+
+The other "real and open" defect: **all 46** of its goldens fault. That is the
+same signature and it has not been root-caused here. Its status should be read
+as "not established by this harness" until someone runs the §28.5 trace
+analysis on it. §28.5.2 measures it directly and puts it in the class.
+
+### 28.5.2 ★ THE UNMODELLED-OUT-PARAMETER CLASS — 2 % of symbols, and it contains EVERY headline open defect
+
+Having found the mechanism twice by hand, it is worth detecting rather than
+guessing. `scratchpad/app_core/outparam_scope.py` runs the **golden only** and
+flags the exact signature: at every oracled call remember the stack pointers in
+r0-r3; afterwards, flag any read of a stack byte within 512 of one of them that
+**this run never wrote**. That is "the caller read back what the callee was
+supposed to fill", and it is a property of the shipped bytes — no candidate is
+involved, so it cannot be confounded by the reconstruction.
+
+Over every app symbol that had a vector (376 at the time, one fixture each):
+
+```
+symbols probed                                                  376
+  read back a stack buffer they passed to an oracled call         6   (2 %)
+
+  md5_process_block            lib        64 bytes      FAIL(0/41)
+  battery_soc_from_curve       sensors    16 bytes      OK
+  battery_model_state_update   sensors     8 bytes      FAIL(0/46)
+  battery_soc_curve_model_init sensors     8 bytes      FAIL(0/49)
+  gui_clock_draw               gui         4 bytes      OK
+  batt_soc_curve_estimate      sensors     4 bytes      OK
+```
+
+**Six symbols. Three of them fail, and those three are the entire list of open
+"real defects" this harness has ever named on the app core.** The other three
+are exposed and pass, which is what makes the class a *limitation* rather than
+a verdict: reading back four bytes of uninitialised frame does not always reach
+an observable.
+
+`md5_process_block` is the clearest case in the corpus and deserves its two
+lines. Its body is:
+
+```c
+bytes_to_u32le_array(auStack_128, param_2, 0x40);   /* ORACLED: writes nothing */
+piVar1 = (int *)auStack_128;
+iVar9 = *piVar1;                                    /* reads 64 bytes of garbage */
+```
+
+The oracle fills none of `auStack_128`, so **the entire 64-byte MD5 message
+block is uninitialised frame memory on both sides**, and the two frames are not
+the same frame. Its trace diverges on exactly the four state words and nothing
+else:
+
+```
+   1  G ('W', 536943568, 4, 2580117947)      C ('W', 536943568, 4,  858310752)
+   2  G ('W', 536943572, 4, 1251016022)      C ('W', 536943572, 4, 1941127790)
+   3  G ('W', 536943576, 4, 1763886999)      C ('W', 536943576, 4,  578222144)
+   4  G ('W', 536943580, 4, 2553975612)      C ('W', 536943580, 4, 3392002027)
+```
+
+A compression function fed two different inputs produced two different outputs.
+That is not evidence about the reconstruction. **`md5_process_block` is
+withdrawn as a failure and reported as UNDECIDABLE**, exactly like §28.5.
+
+**The fix is known and is not built here.** `emu` already has
+`oracle_memory_writes` and `stack_objects` for reviewed out-parameters;
+`modtest` populates neither, and generating them automatically means deciding
+what an opaque callee writes — which is the callee's reconstruction, not the
+caller's. For six symbols, **hand-written reviewed out-parameter fixtures are
+the proportionate answer**, and they would settle
+`battery_model_state_update`, which is the oldest open item in AGENTS.md.
+
+Caveat on the number: **one fixture per symbol**, so 6 is a LOWER bound — a
+path not taken by that fixture can hide another. It is not a lower bound by
+much: the signature is structural, not input-dependent.
+
+## 28.6 ★ ALL 43 SURVIVING app FAILs, TRIAGED BY THE SHAPE OF THEIR FIRST DIVERGENCE
+
+Two of the three "real defects" turning out to be undecidable makes the whole
+FAIL list worth re-reading rather than re-quoting. `classify_fails.py` labels
+each surviving failure with the known limitation classes its first divergence
+is **consistent with**. It is triage, not a verdict — but it says where to
+start, and it says which failures are consistent with NO known limitation.
+
+```
+module      symbol                                 pass    golden  consistent with
+analytics   load_sys_setting                       41/43   return  value
+analytics   update_burial_point_day_index          1/41    return  value
+common      debug_print                            41/42   mixed   call-target
+esb         find_message_pool_entry_by_id          0/1     return  beyond-48-events
+esb         local_esbs_ipc_service_recv            25/52   mixed   value
+esb         nrf_rtc_set_alarm_channel              1/41    return  value
+esb         rtc_channel_cc_read                    3/9     mixed   length/value
+esb         spi_master_init                        2/42    mixed   value
+esb         sync_buffer_available_space            2/40    mixed   call-target
+esb         sync_message_signal_to_slave           41/43   mixed   frame-offset+value
+gui         expand_bytes_via_lut32                 14/25   mixed   beyond-48-events/value
+gui         fb_blit_rows_halved                    3/4     mixed   length
+gui         gui_bmp_bitmap_draw_ex                 41/44   mixed   value
+gui         gui_draw_timer_hms                     1/8     mixed   value
+lib         md5_process_block                      0/41    return  OUT-PARAM
+notify      ancs_gatt_dm_assign_handles            42/43   mixed   frame-offset
+notify      ancs_subscribe_data_source             43/44   return  stack-record
+notify      ble_ancs_data_req_thread               0/42    fault   call-target
+notify      bt_setup_identities                    0/9     return  frame-offset/value
+notify      discovery_completed_cb_ancs            41/43   return  value
+notify      get_notification_counts_cmd_process    20/41   fault   value
+notify      is_on_whitelist_by_identifier          44/46   return  value
+notify      local_store_write                      0/42    return  stack-record
+sensors     battery_model_state_update             0/46    fault   OUT-PARAM
+sensors     battery_soc_curve_model_init           0/49    mixed   OUT-PARAM
+sensors     build_status_notify_packet             9/12    mixed   value
+sensors     button_init                            0/43    return  value
+sensors     click_event_dispatch_loop              43/46   mixed   value
+sensors     fuel_gauge_update                      42/43   return  value
+sensors     i2c_read_reg16_be                      5/7     mixed   stack-record/value
+sensors     imu_mahony_ahrs_update                 25/43   return  computed-NaN
+sensors     key_event_thread                       6/22    fault   value
+sensors     load_usr_setting                       41/43   return  value
+sensors     opt3001_chip_init                      14/15   mixed   stack-record
+sensors     opt3007_chip_deinit                    41/42   mixed   value
+sensors     ui_set_imu_pitch_task                  44/45   return  value
+storage     bt_dev_settings_commit                 42/44   return  value
+storage     bt_dev_show_info                       0/41    return  stack-record
+storage     bt_id_addr_check_and_enable            1/2     return  stack-record
+storage     ccc_set_direct                         0/1     return  stack-record
+storage     commit_default_config_record           1/3     return  frame-offset+value
+storage     ext_flash_api_init                     22/43   mixed   value
+ui          DashBoard_Reflash                      36/43   mixed   frame-offset/value
+```
+
+```
+value only ................. 20   <-- consistent with NO known limitation
+stack-record ...............  6   record CONTENT differs (§16.1 rule 7)
+frame-offset (any) .........  5   §28.5 -- documented FALSE-failure mode
+call-target ................  3   the candidate calls a different dependency
+OUT-PARAM ..................  3   §28.5.2 -- UNDECIDABLE
+length / beyond-48 .........  4   trace length, or diverges past events_head
+computed-NaN ...............  1   §28.4
+stack-record + value .......  1
+```
+
+**Twenty of forty-three are consistent with no limitation this document knows
+about, and those are the honest reconstruction-defect candidates.** The other
+23 need a harness answer or a hand-written fixture before they mean anything
+about the code. That is the shape §27.2 could not show, and it is a very
+different reading from "46 failures".
+
+Two cautions about the table, both from getting it wrong first:
+
+* **The classifier's own first version was wrong.** It tested for NaN bit
+  patterns before testing for `('SP', n)` deltas, and labelled
+  `ancs_gatt_dm_assign_handles` — whose divergence is `SP-100` vs `SP-104` —
+  as `computed-NaN`, because a raw integer in the trace happened to match the
+  NaN exponent mask. Structural markers must be tested before numeric ones.
+  Fixed, and the NaN test now also requires every OTHER number in the tuple to
+  agree.
+* It reads only the **first five** recorded failures per symbol, which is what
+  `cli._replay` keeps. A symbol whose fixtures fail for two different reasons
+  can be under-labelled.
+
+### 28.6.1 ★ FOUR of the six `stack-record` failures are a POINTER TO A STRING LITERAL
+
+The triage puts six failures in `stack-record` — the record CONTENT criterion of
+§16.1 rule 7, which is the criterion that took `ipc_send_len_prefixed_packet`
+from a 13 % kill rate to 100 %. Five of the six mismatch on **the same byte**:
+`arg 2, offset 4`. That is too regular to be six independent defects, and it
+is not:
+
+```
+symbol                       ord arg off  golden word   candidate word
+bt_dev_show_info               2   2   4   0x000f31a9    0x000549d0     41/41 fixtures
+ccc_set_direct                 0   2   4   0x000f471e    0x00059f10      1/1
+bt_id_addr_check_and_enable    0   2   4   0x000f322e    0x00054a2c      1/2
+opt3001_chip_init              1   2   4   0x000f6521    0x00062a24      1/15
+```
+
+Every golden word is an address in the shipped image's string pool, and
+decoding it settles it:
+
+```
+0x000f31a9 -> b'tead of expected 0x%04x\x00evt '
+0x000f471e -> b' for conn %p\x00Error signing d'
+0x000f322e -> b'0x%04x timeout with err %d\n\x00'
+0x000f6521 -> b't I2C_MASTER status\r\n\x00Disabl'
+```
+
+They are **`printf` format strings** (into the middle of one, because the
+linker shares string tails). The candidate's words are the same strings in its
+own `.rodata`, linked immediately after its code. The record is a log/format
+descriptor, and the harness is comparing **where the string lives**, which is
+codegen, not behaviour — the identical reason §16.1 already blanks a record
+word that points into the STACK.
+
+> **NEW NAMED CLASS — READ-ONLY POINTER INSIDE A STACK RECORD.** `_CoverageRunner`
+> blanks a record word that points into the stack window and compares every
+> other word byte-exactly. A word pointing at a string literal or a `const`
+> table is the same kind of number and is NOT blanked. Measured cost: **4 of
+> the 43 surviving app FAILs**, one of them (`bt_dev_show_info`) failing
+> 41 of 41 fixtures at 100 % coverage.
+
+**The sound fix, specified and NOT built.** Do *not* simply blank it — that
+would let a candidate pass the wrong string. `emu.ReadOnlyPointees` already
+exists to compare a read-only pointee **by content**, and the record format
+already has a per-offset marker (`"P"`). At `gen`, a record word that lands in
+a read-only extent should be stored as a content marker — the sha256 of the
+pointee up to its NUL, say — and `stack_args_mismatch` should recompute the
+same from the candidate's word. That compares *which string*, which is the
+behaviour, and ignores *where it is*, which is not. It is a vector-semantics
+change and must not be made mid-sweep; it is item 1 of §28.9.
+
+The other two `stack-record` failures are **not** this class and stay open:
+`local_store_write` (golden word `0x00000000`, candidate `0x675f7261` = the
+ASCII `"ar_g"`, at arg 0 offset 0) and `ancs_subscribe_data_source` (golden
+`0x72ddab67`, candidate `0xc5fe1df2`, neither an address).
+
+### 28.6.2 ★ A HARNESS DEFECT THAT MANUFACTURES TREE DISAGREEMENTS — `_expose_target` and the `#include`
+
+Tree agreement is the headline metric of this whole design, so a defect that
+invents disagreements matters more than its symbol count. **This one accounts
+for four of the seven disagreements the 634-symbol fan-out found** (§28.8), in
+two different disguises:
+
+```
+get_demo_image_source     display    OK / CCFAIL  "static declaration ... follows non-static"
+refresh_box_field_timer   display    OK / CCFAIL  (same, on a sibling)
+set_misc_286c_value       unsorted   OK / CCFAIL  "symbol ... not found after link"
+uarte_nrfx_init           core       FAIL/ CCFAIL "symbol ... not found after link"
+```
+
+The two symptoms are one bug. If `_expose_target` de-staticises the definition
+but not a later forward declaration, the compile fails outright; if it
+de-staticises **nothing**, the definition stays `static`, GCC drops it as
+unused, and the symbol is missing after the link — which is exactly the failure
+the function was written to prevent. Measured:
+
+```
+set_misc_286c_value    de-staticised=0   static forms left=1
+uarte_nrfx_init        de-staticised=0   static forms left=1
+get_demo_image_source  de-staticised=1   static forms left=1
+```
+
+The `display` case is the clearest to read and is worked through below:
+
+```
+get_demo_image_source    canonical=OK  refactored=CCFAIL
+   error: static declaration of 'get_demo_image_source' follows non-static declaration
+refresh_box_field_timer  canonical=OK  refactored=CCFAIL
+   error: static declaration of 'is_box_field_timer_expired' follows non-static declaration
+```
+
+`core._expose_target` drops `static` from the target's definition (stage 07
+gives TU-private symbols internal linkage, and GCC then does not emit an unused
+`static`, which would make the symbol untestable in one tree only). Its
+docstring already says it must also de-staticise a **forward declaration** left
+behind, "measured on `trigger_touch_key_hw_reset`". It does not always manage
+it. Reproduced directly:
+
+```
+_expose_target(unit.text, 'get_demo_image_source') -> de-staticised 1 occurrence
+   |  static void get_demo_image_source(unsigned int);      <-- still static
+```
+
+The cause is the walk-back that finds the start of the declaration:
+
+```python
+start = max(text.rfind(";", 0, index) + 1,
+            text.rfind("}", 0, index) + 1,
+            (comment_end + 2) if comment_end >= 0 else 0)
+...
+if before.strip() or not after_kw[:1].isspace():
+    continue                     # `static` must open the declaration
+```
+
+In `g1_display_cc03.c` the forward declaration is preceded by
+`#include "g1_display.h"`. A preprocessor directive ends with a **newline**,
+not with `;`, `}` or `*/`, so the walk-back steps over it, `before` is
+`'\n#include "g1_display.h"\n'`, `before.strip()` is truthy, and the
+declaration is skipped. Stage 09 is not at fault; the merged TU is legal C
+until the harness edits it.
+
+The other two are the same shape with different directives — `set_misc_286c_value`
+is preceded by four `#include` lines, `uarte_nrfx_init` by three `#define`
+lines:
+
+```
+'...\n#include <stddef.h>\nstatic void set_misc_286c_value(uint32_t param_1) {'
+'...\n#define VC(a) (*(volatile char *)(a))\n\nstatic int uarte_nrfx_init(int param_1){'
+```
+
+**Fix (three lines, DEFERRED to the next pass):** accept `before` when it
+consists only of whitespace and complete preprocessor-directive lines. It is
+not applied here for the reason in §28.9: `harness_rev()` hashes whole files,
+so any edit to `core.py` mid-sweep invalidates every vector this pass has
+generated.
+
+**How this pass reports around it instead of hiding it:** the defect has an
+exact and greppable signature, so every disagreement carrying
+`static declaration of '…' follows non-static declaration` is counted
+separately in §28.8 and excluded from the agreement figure, rather than being
+either silently dropped or reported as a stage-09 finding.
+
+### 28.6.3 ★ THE UNIT BOUNDARY LEAKS IN A MERGED TU — `-fipa-vrp` deletes a call the shipped code makes
+
+The `ble` fan-out produced one tree disagreement that is a **behaviour**
+disagreement, not a compile failure — the most serious kind this design can
+report:
+
+```
+read_appearance    canonical=OK(41/41)   refactored=FAIL(0/41)
+                   golden ncalls=2, candidate ncalls=1, and the candidate's
+                   event hash is IDENTICAL for every fixture
+```
+
+An event hash that does not vary with the input is the tell. The two source
+bodies are **character-for-character identical**; only the enclosing TU differs
+(canonical: `read_appearance.c`, one member; refactored:
+`g1_ble_cc02.c`, eight members, one of which is the callee
+`ble_appearance_value`). Compiling both and disassembling:
+
+```
+== canonical (38 B)                       == refactored (32 B)
+push {r4,r5,lr}                            push {r0,r1,r2,r3,r4,lr}
+...                                        mov  r1, r3
+bl   #0x82a40    <- ble_appearance_value   movw r3, #0x341      <-- CONSTANT, no call
+strh.w r0,[sp,#8]                          strh.w r3,[sp,#8]
+...                                        ...
+bl   #0x82a44    <- bt_gatt_attr_read      bl   #0x82b40
+```
+
+The shipped image makes both calls. `ble_appearance_value` is
+`{ return 0x341; }`, and in the merged TU GCC can SEE that — so it substitutes
+the return value and deletes the call. `__attribute__((noinline))` is applied
+to that definition (verified: 7 of 7 members marked) and does not stop it,
+because this is not inlining.
+
+**Bisected against the flag set, and it is exactly one flag:**
+
+```
+(current UNIT_BOUNDARY_CFLAGS)                          size=32 calls=1
+-fno-ipa-vrp                                            size=32 calls=2   <--
+-fno-ipa-modref / -fno-ipa-bit-cp / -fno-ipa-cp-clone   size=32 calls=1
+-fno-inline-functions-called-once / -fno-ipa-profile    size=32 calls=1
+-fno-toplevel-reorder                                   size=32 calls=1
+```
+
+**Interprocedural value-range propagation**, which is not in
+`UNIT_BOUNDARY_CFLAGS` and is not disabled by `-fno-ipa-cp`.
+
+> **NEW NAMED CLASS — UNIT-BOUNDARY LEAK VIA IPA-VRP.** When a merged TU
+> defines a callee whose return value GCC can pin, the candidate does not make
+> the call the shipped code makes. It can only happen in a MERGED tree, so it
+> shows up as a **tree disagreement** — the metric this whole design exists to
+> report. Fix: add `-fno-ipa-vrp` to `core.UNIT_BOUNDARY_CFLAGS`. One line,
+> empirically verified above, DEFERRED for the fingerprint reason in §28.9.
+
+Stage 09's `cc` units are call-cohesion units — they group callers WITH their
+callees by construction, so this class is aimed squarely at the part of the
+ladder the harness is meant to check. §27.2's "329 of 330 agree" was measured
+with this leak present and should be read accordingly.
+
+## 28.7 `i2c_read_reg16_be` — the false proof stands, and is now in AGENTS.md
+
+Re-measured under this pass's harness: **FAIL(5/7) on both trees at 100 %
+coverage**, unchanged by r0 preservation. §22.1's diagnosis is unaffected: the
+source header claims `parity: 300/300 trials, PROVEN`, and the body spells a
+two-element `i2c_msg`-shaped descriptor as **six independent stack locals**
+relying on the compiler to lay them out contiguously in declaration order:
+
+```c
+unsigned char *local_28; unsigned int local_24; unsigned char local_20;
+unsigned short *local_1c; unsigned int local_18; unsigned char local_14;
+... iVar1 = (...)(*param_1, &local_28, 2, (short)param_1[1]);
+```
+
+C guarantees no such layout and GCC does not produce it — offset 4 of the
+candidate's descriptor holds `param_1` spilled (`0x20011008`) where the
+shipped code has the constant `1`. Verified under the firmware's own
+`arm-zephyr-eabi-gcc 12.2`, so it is not an artefact of the harness compiling
+with `arm-none-eabi-gcc 15.1.0`. **It is a reconstruction defect and it is now
+recorded in AGENTS.md.** It has NOT been repaired here — the repair is a
+`struct i2c_msg msgs[2]`, it touches a canonical address-keyed tree, and it
+needs its own re-proof.
+
+## 28.8 ★ THE FAN-OUT — `display`, `core`, `ble`, `audio`, `unsorted`
+
+§27.7 item 4. All 634 symbols of the five remaining app modules, generated and
+replayed against both trees at `e556ab5692bf509d`.
+
+```
+requested                                    634
+  gen SKIPped (no catalogued size)            40
+  lost to a batch crash, then recovered       23
+  lost outright (`main`, crashes the harness)  1
+  measured                                   593
+```
+
+```
+module      syms   OK  FAIL  CCFAIL  VACUOUS  DISAGREE  (of which harness)   cov%
+audio        135  100    20      15        0         1                  1   57.7%
+ble           96   75    19       2        0         1                  1   48.4%
+core         139  109    20       8        2         1                  1   60.5%
+display       86   69     7       9        1         2                  2   56.2%
+unsorted     137  112    20       4        1         2                  1   70.2%
+            ----  ---   ---     ---      ---       ---                ---
+TOTAL        593  465    86      38        4         7                  6
+```
+
+**The `(of which harness)` column is a MANUAL attribution, not a machine
+label.** `final_table.py`'s automatic signature match finds only 3 of the 6,
+because two of them fail with `symbol … not found after link` rather than a
+recognisable compiler message and one is a behaviour failure with no message at
+all. Each of the six is attributed on per-symbol evidence reproduced in
+§28.6.2 (four, by running `_expose_target` and counting what it de-staticised),
+§27.4 (one, the `uint32_t` typedef) and §28.6.3 (one, bisected to a single
+compiler flag). Anyone re-deriving the column from the script alone will get 3;
+that is the script being crude, and it is said here rather than left to be
+discovered.
+
+### 28.8.1 Tree agreement — 586 of 593, and SIX of the seven disagreements are the harness
+
+```
+symbol                              module     canonical / refactored   cause
+get_demo_image_source               display    OK   / CCFAIL   _expose_target  (§28.6.2)
+refresh_box_field_timer             display    OK   / CCFAIL   _expose_target  (§28.6.2)
+set_misc_286c_value                 unsorted   OK   / CCFAIL   _expose_target  (§28.6.2)
+uarte_nrfx_init                     core       FAIL / CCFAIL   _expose_target  (§28.6.2)
+get_audio_msgq_used_count           audio      OK   / CCFAIL   uint32_t typedef (§27.4)
+read_appearance                     ble        OK   / FAIL     -fipa-vrp leak  (§28.6.3)
+foreach_attr_entry_invoke_callback  unsorted   FAIL / OK       NOT investigated
+```
+
+**Nothing here is evidence against the refactor ladder.** Four are one
+deferred three-line harness fix, one is the `uint32_t` typedef collision §27.4
+already raised with the owner (this is its **eighth** instance), and one is the
+`-fipa-vrp` unit-boundary leak. The seventh, `foreach_attr_entry_invoke_callback`,
+disagrees in the **opposite** direction — the canonical tree fails and the
+refactored one passes — and was not chased.
+
+Corrected for the six known-harness cases the fan-out's tree agreement is
+**592 of 593**.
+
+### 28.8.2 Against the §8.2 acceptance gate — say it plainly
+
+```
+module      coverage >= 70 %   kill >= 70 %          verdict
+display        56.2 %  NO      see 28.8.3            FAILS the gate
+core           60.5 %  NO                            FAILS the gate
+ble            48.4 %  NO                            FAILS the gate  (worst)
+audio          57.7 %  NO                            FAILS the gate
+unsorted       70.2 %  YES                           coverage only
+```
+
+**Not one of the five modules passes §8.2 on coverage, and only `unsorted`
+clears the bar at all.** That is the same shape §27.6 reported for the first
+ten modules and it is not improving: the aggregate over all fifteen app modules
+measured by this harness is now in the high 50s. `ble` at **48.4 %** joins
+`ui` (10.1 %) and `esb` (46.2 %) at the bottom, and its 19 FAILs should be read
+as 19 failures of a body less than half of which any fixture enters.
+
+`display` also carries **9 CCFAIL and 1 VACUOUS out of 86** — the highest
+untestable fraction of any module measured so far (12 %). Six of the nine are a
+Zephyr `Z_HZ_ticks` header problem that hits BOTH trees, i.e. an environment
+gap in `ZEPHYR_CFLAGS`, not a defect in either tree.
+
+### 28.8.3 Mutation kill rate — a SAMPLE, and it is labelled as one
+
+Grading 634 symbols at 24 mutants was not reachable in this pass's compute
+budget alongside two full A/B arms. A **20-symbol random sample per module**
+(`random.Random(20260729).sample`, so it is reproducible and was fixed before
+any result was seen) was graded at 12 mutants:
+
+```
+module      sample  baseline OK  graded  killed  aggregate     median  zero-kill
+display         19           15      15      68   68/118  58%     92%        0
+core            18           18      17      79   79/140  56%     67%        3
+ble             19           15      15      96   96/133  72%     83%        0
+audio           20           18      16      97   97/151  64%     73%        0
+unsorted        16           14      14      56   56/93   60%     78%        0
+                                                 -------
+TOTAL                                            396/635 = 62 %
+```
+
+(`sample` is under 20 where a drawn symbol had no vector; `graded` excludes
+symbols whose baseline FAILs, where a kill rate is undefined — §20.1.)
+
+**Against the §8.2 kill bar of 70 %: `ble` passes on aggregate (72 %), nobody
+else does; on the per-symbol median all five pass.** The aggregate/median gap
+is the same shape §27.2 described — a minority of long functions carries most
+of the surviving mutants — and `core` is the module where it bites, with 3 of
+17 graded symbols killing nothing at all.
+
+**62 % aggregate on this sample sits inside the 60-70 % band both cores have
+measured with three different corpora** (app §27.1 71 %, net §26.5 69 %). §27.6
+called that a property of the mutation generator and fixture search rather than
+of the code, and a third independent sample not moving it is the strongest
+evidence for that reading so far.
+
+### 28.8.4 A harness robustness defect the fan-out exposed
+
+`cli.cmd_run` has **no per-symbol guard**. An unhandled exception inside
+`compile_candidate` kills the whole batch and takes every remaining symbol in
+it with it. Measured: `fanrun_core_0` died after 13 of 24 symbols on
+
+```
+File "tools/modtest/core.py", line 1775, in _compile_candidate
+    base = text_section["sh_addr"]
+TypeError: 'NoneType' object is not subscriptable
+```
+
+— `elf.get_section_by_name(".text")` returned `None`. **23 symbols were
+silently lost**, and only reappeared because the requested list was reconciled
+against the produced rows rather than trusted. Re-running them one process per
+symbol recovered 23 of 24; the 24th is `main`, which is the symbol that
+actually triggers it and is the only symbol in the whole 634 with **no result
+at all**.
+
+Two fixes, both deferred with the rest (§28.9): wrap the per-symbol body of
+`cmd_run` in a `try`/`except` that records `stage="error"`, and raise a
+`RuntimeError` when the linked object has no `.text` so it becomes an ordinary
+CCFAIL instead of a crash.
+
+### 28.8.5 ★ REGRESSION CHECK — 110 of 110, zero regressions
+
+The A/B of §28.3 only covers symbols that were already failing. The direction
+that matters for a change like this is the other one: did any **passing**
+symbol start failing? Every §27.2 symbol that was `OK` **and** has at least one
+r0/r1-preservable call site — the only ones whose golden the change can alter —
+was regenerated and re-run:
+
+```
+previously-OK and EXPOSED symbols re-run   110
+  still OK                                 110
+  now FAIL / CCFAIL / VACUOUS                0
+```
+
+This is also the answer to the worry §28.1.0 raised: the candidate *is* subject
+to `-fipa-ra` through its own stubs, and preservation still broke nothing.
+
+## 28.9 WHAT THIS PASS DID NOT DO, AND WHY
+
+Enumerated rather than implied. Several of these are cheap and were skipped for
+one specific reason — **`core.harness_rev()` hashes whole files**, so any edit
+to `core.py` / `cli.py` / `generate.py` / `mutate.py` mid-sweep makes `run`
+refuse every vector generated before it. Three known-good fixes are therefore
+queued for the *start* of the next pass rather than the end of this one.
+
+**Deferred harness fixes — apply these FIRST, before any `gen`:**
+
+0. **`-fno-ipa-vrp` in `UNIT_BOUNDARY_CFLAGS`** (§28.6.3) — one line, bisected
+   and verified. It manufactures TREE DISAGREEMENTS, which is the design's
+   headline metric, so it goes first.
+1. **Read-only pointer inside a stack record** (§28.6.1) — 4 of 43 surviving
+   app FAILs. Store a content marker (sha of the pointee to its NUL) instead of
+   the raw address, so *which string* is compared and *where it lives* is not.
+   Do NOT just blank the word.
+2. **`_expose_target` walks over a `#include`** (§28.6.2) — manufactures tree
+   disagreements, which is the design's headline metric. Accept a `before`
+   consisting only of whitespace and complete preprocessor lines.
+3. **`cli.cmd_run` should count UNSTAMPED vectors** — the net pass's §9.1 patch,
+   accepted in substance. `vector_staleness`' docstring already claims
+   `cmd_run` reports the gap and it does not.
+
+**Not done, with reasons:**
+
+* **The computed-NaN class is measured but NOT fixed** (§28.4). The obvious fix
+  — canonicalise quiet-NaN bit patterns in the trace — conflates `0xFFFFFFFF`
+  with a NaN, and `0xFFFFFFFF` is `-1`. The sound fix is at the input end and
+  is a fixture-generator change.
+* **The unmodelled out-parameter class is measured but NOT fixed** (§28.5.2).
+  Six symbols; the proportionate answer is hand-written reviewed
+  `oracle_memory_writes` fixtures, which is per-callee reconstruction work.
+* **`battery_model_state_update` is NOT root-caused.** It is placed in the
+  out-parameter class by measurement, which is strictly more than was known,
+  but the reviewed fixture that would decide it is not written.
+* **`i2c_read_reg16_be` is NOT repaired** (§28.7). The repair is a real
+  `struct i2c_msg msgs[2]` in a canonical address-keyed tree and needs its own
+  proof; recording it was the task.
+* **The net core's EMPIRICAL half of the r0 measurement was not run.** Net
+  vectors, net sources and `net_test_coverage.md` are the other agent's under
+  the concurrency rule, and this pass did not touch them. What IS provided is
+  the static scope on net (§28.2) and a ledger warning (§26.1) — including
+  that its pinned `936cee0b67396ca5` carries the unsoundness of §28.2.1.
+* **The 174 app symbols of §27.2 that are NOT exposed to the change were not
+  regenerated.** They have no r0/r1-preservable call site, so the new oracle
+  cannot alter their golden — but their vector files are now stamped with an
+  older fingerprint and `run` will refuse them. The corpus is internally
+  consistent only for what this pass regenerated. That is a bookkeeping debt,
+  not a measurement gap.
+* **Kill rate for the five fan-out modules is a SAMPLE, not a census** — see
+  §28.8. Grading 634 symbols at 24 mutants was not reachable in this pass's
+  compute budget alongside two full A/B arms.
+* **`cfg_verify` was not run and is not cited anywhere in this section**, per
+  the standing rule.
+
+## 28.10 WHERE THE APP CORE STANDS, AND THE NEXT FIVE THINGS (replaces §27.7)
+
+**924 app symbols now have a golden vector across 15 modules** — 330 from
+§27.2 plus 593 measured here plus `ipc_send_len_prefixed_packet` regenerated
+during §28.1.0. Of the 634 the fan-out targeted, 40 have no catalogued size and
+1 (`main`) crashes the harness.
+
+The honest one-paragraph summary of this pass: **the r0-clobber class was real,
+is fixed, and was small (3 of 46).** Hunting it turned up four larger things —
+an unsound version of my own analysis (§28.2.1), a false claim of my own
+(§28.1.0), and three previously unnamed false-failure classes that between them
+account for **at least 11 of the 43 surviving app FAILs and 6 of the 7 fan-out
+tree disagreements**. Two verdicts inherited as "real defects"
+(`battery_soc_curve_model_init`, `md5_process_block`) are withdrawn as
+undecidable. The number of app symbols this harness can point at and say
+"this is probably the reconstruction's fault" is now **20**, not 46+86.
+
+1. **Apply the four deferred harness fixes, in one commit, before any `gen`**
+   (§28.9 items 0-3, plus the two robustness fixes of §28.8.4). They are all
+   small, all bisected or reproduced, and every one of them currently
+   contaminates a headline number. Then regenerate the corpus once.
+2. **Write reviewed out-parameter fixtures for the six symbols of §28.5.2.**
+   That is the whole class, it is six symbols, and it would settle
+   `battery_model_state_update` — the oldest open item in AGENTS.md — one way
+   or the other.
+3. **Work the 20 `value`-only FAILs of §28.6**, which is the first list this
+   project has had of failures consistent with no known harness limitation.
+4. **Raise coverage.** Unchanged from §27.7 item 3 and now more urgent: the
+   fan-out's five modules average **58 %**, `ble` is at 48 %, and every green
+   result is worth exactly that fraction. The kill rate will not move past
+   ~65 % until the fixture search enters the long functions.
+5. **Ask the owner the §27.4 question** — it is now **eight** stage-09 TUs that
+   pair a body-local `typedef unsigned int uint32_t;` with a refactor-injected
+   generated header (`get_audio_msgq_used_count` joins the seven). One build
+   command settles whether the ladder record or the harness is wrong.

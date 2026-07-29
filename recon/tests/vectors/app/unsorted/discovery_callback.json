@@ -1,0 +1,219 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    0,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    521222,
+    521228
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 536912212, 4294967282, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "97ab173d76b83ebbf8dcd1bfbd81fe0483fcb8ee1dbd2e71de540a651742ca6b",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1276959699,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 23,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         2
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         153
+        ],
+        [
+         5,
+         18
+        ],
+        [
+         6,
+         15
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     1,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         2
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         153
+        ],
+        [
+         5,
+         18
+        ],
+        [
+         6,
+         15
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "kind": "fault",
+    "ncalls": 0
+   },
+   "fixture": {
+    "abs": [
+     [
+      536912212,
+      "00000000"
+     ],
+     [
+      536912220,
+      "00000000"
+     ]
+    ],
+    "args": [
+     0,
+     3848067850,
+     1144309748,
+     4274511711
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "globall-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 200,
+    "xpsr": 0
+   },
+   "new_instructions": 9,
+   "stack_args": []
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 24,
+  "ratio": 0.0988,
+  "total": 243,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 640,
+ "globals": [
+  "0x2000a154",
+  "0x2000a15c"
+ ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "e556ab5692bf509d",
+  "stack_arg_window": 48
+ },
+ "module": "unsorted",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "i32",
+ "search": {
+  "candidates": 183,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 2,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 640,
+ "symbol": "discovery_callback",
+ "va": "0x0004ea78"
+}

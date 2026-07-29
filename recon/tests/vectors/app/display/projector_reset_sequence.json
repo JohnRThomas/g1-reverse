@@ -1,0 +1,103 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    513906,
+    513916,
+    513906,
+    513916,
+    513906
+   ],
+   "events_head": [
+    "('C', 0, 1, 'S', 'F', 'T', None)",
+    "('C', 1, 102, 'S', 'F', 'T', None)",
+    "('C', 2, 1, 'S', 'F', 'T', None)",
+    "('C', 3, 153, 'S', 'F', 'T', None)",
+    "('C', 4, 10, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "37ce67cfcd4a719f17a14c568cbfb868434307543a68f7a9d0f5a08cedc51dee",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1276959699,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 12,
+   "stack_args": []
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 12,
+  "ratio": 1.0,
+  "total": 12,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 36,
+ "globals": [],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "e556ab5692bf509d",
+  "stack_arg_window": 48
+ },
+ "module": "display",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "void",
+ "search": {
+  "candidates": 135,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 1,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 36,
+ "symbol": "projector_reset_sequence",
+ "va": "0x0007d74e"
+}

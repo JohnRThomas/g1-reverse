@@ -1,0 +1,6782 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 3694469211, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 3694469211, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1e4ea9a5d4954c5e333f3e86b80cb4e8173ca0ddb73fca9c6c8e4b48af8fc61d",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1276959699,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    0,
+    4,
+    1
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    92072,
+    159604,
+    301248
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('C', 3, 1163768358, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 4, 10000, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "eefe2486032c27d8cdc009bdb86b3ffa116fb593b11980ce7fa33cee394a5e3a",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4067469868,
+     1797429778,
+     2147483648,
+     315044147
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 1,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     3,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 471345317, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 471345317, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c8e3fc2c38023b3131a6763f3b6945303f08932cda2f9cdd6b38d3f024ca2fc4",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4290042576,
+     598759513,
+     3677430904,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-2",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 2,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 2655161023, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 2655161023, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c78c9a522d6268a2b1e4b33911158ff818ba3862008d57092446bb410b6a7e03",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     16,
+     2147483647,
+     3842370354,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-4",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 4,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 3178863954, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 3178863954, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "478f433b642c678fb9ffee505dc6a7aaed5d697202dc7768dc5a9cd25b4459eb",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1346232374,
+     1556998536,
+     499087790,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-9",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 9,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 3586673693, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 3586673693, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "9d0c186b6c2406373764078ef9091b695b54d1f2e4a4bc0103e36043c5c6e88d",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     182454980,
+     995058044,
+     8,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-10",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 10,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 801746852, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 801746852, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "5653d8a25c0fc0cdc57ec8fbe2401fd643ce32e64c41b176fda5dee8949dd4f9",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     2147483648,
+     256,
+     1426281073
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-11",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 11,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 1542880163, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 1542880163, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "00cdddab1eb48d26c7e540a60ffeebb6cc218c877ef683ae84d6d58f3039bfa2",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     8,
+     3217736208,
+     5,
+     1103693227
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-12",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 12,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 287561451, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 287561451, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "57078aeff35cc0a08cccc18fc765abda28e927b64c53f6e35c7e0e292e45209c",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1156718256,
+     1944344031,
+     6,
+     617681966
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-13",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 13,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 886755549, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 886755549, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "81aaf0dbb19d14bd50897abd3ec63b6b3c08a0a975556e61ad7eac0aa30dd7ef",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2024561310,
+     2147483648,
+     3454407978,
+     16
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-16",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 16,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 4075769455, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 4075769455, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0250c4472a7f0408e498c96545f05eb8d1db4cc957309336ca373efa7006568b",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     6,
+     1536401714,
+     4178753371,
+     255
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-19",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 19,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 2217669457, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 2217669457, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ca476cf907747bf473bb5bd9cc762231661e5dc302fd3a9ff3e02e3d8be793a6",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     843060076,
+     1,
+     2870852768,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-21",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 21,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 3712121755, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 3712121755, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "a349bd1b46bac207daba06e33e460c059d993480500efc974487e42d348e2f97",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3751937804,
+     12,
+     2149248134,
+     604019693
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-25",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 25,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 1775869161, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 1775869161, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "8bd6be2afb2821bb03d337c478fce6eadc1e9d2dbd9919b1420a172290431dac",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     187818536,
+     681194263,
+     3639365232,
+     4125446660
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-27",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 27,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 1542213390, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 1542213390, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "d84a503a7317cbba096540e6893811c2d96d452712d1db01490dc272779631e0",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3711083943,
+     4285183211,
+     1,
+     2592385448
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-28",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 28,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 2417460406, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 2417460406, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "5ff5b2b148f13a1363a0aedb52ad6ba1b45c54a3776543e3ca79ef6b94e6adcf",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     256,
+     8,
+     1,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-30",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 30,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 1988174091, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 1988174091, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "a0d704afd89c3eec8b62149a6ef8030bf66985dadc436826f306b262b4586180",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4294967295,
+     2461003590,
+     7,
+     53351545
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-31",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 31,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 615009301, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 615009301, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e320a2d78b21368a016c92c6fbfeeb0b69d8cc5c2fb9ec31cce3a3ee7e5eac26",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1839753098,
+     2706821390,
+     3442053927,
+     1170652979
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-32",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 32,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 2360084761, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 2360084761, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "cc27da63b8ce97424e67cbea947c61f218925f0512059ef8bbcc0c1605d342f3",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     12,
+     3990671540,
+     922796015,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-34",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 34,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 4019880274, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 4019880274, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "d50429610d240bd5833268df403d4731c72a27546d50e8cb5be96c0975223892",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2726887024,
+     3578977268,
+     4001652011,
+     1
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-35",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 35,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 823752600, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 823752600, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "63d60819f8a6fce757a5d05140deaff5396313c7d2a764f05d2881b374d8db6d",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     12,
+     2147483647,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-36",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 36,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 2944518647, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 2944518647, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ab6e50bbefc84cbadfc32c739a6da1715e9f1b215195d7e57d067b9b1491b69d",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     1587124134,
+     3774328631,
+     1997155928
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-39",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 39,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 2096484019, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 2096484019, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c2227b216aee2656458b1c6769a59ca59e97a1f29ac427367418894d31690123",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3886568119,
+     256,
+     3059135833,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-41",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 41,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 509112996, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 509112996, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "31f0783afe4fdd04ecaa46b4829fa4bb30615648dec76dad6f355b4f0166c72b",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     538639782,
+     4,
+     12,
+     3983748582
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-42",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 42,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 217414738, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 217414738, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "6bee25e9062ab803e0ff05e7373ac7785886a089d7ea058510d40a0dd7c06aa5",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     3098095624,
+     1643521744,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-44",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 44,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 1113440726, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 1113440726, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "806b5b177b8488fd6fb78ec92a17dbcfdf357683c040f2868840b824ceb9122b",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941384,
+     536952304,
+     536950448,
+     536949968
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr4-0",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "scratch_seed": 700,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 1471926857, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 1471926857, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "7c7081c72df428c8b197ae0155a39645e548d267a589b7d1791023e9f14acdd1",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536947328,
+     536938188,
+     536947944,
+     536951256
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr4-2",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "scratch_seed": 702,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 152137493, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 152137493, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "71ab96cf780cd36b3e8d9f2343e73aadd91dc5b916d4e131c5af728373248c81",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945664,
+     536946288,
+     536937260,
+     536949848
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr4-3",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "scratch_seed": 703,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 2987881189, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 2987881189, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "951c661095610277bcdaa887515164e980fee70b5531d41435f3a2a9431d8a84",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4294967295,
+     4142138223,
+     2147483647,
+     2671219995
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 1065353216,
+     "1": 3204448256
+    },
+    "id": "fp-49",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 49,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 3904235970, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 3904235970, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1b1a81af942676a0d6c38418658d466a7f56304cc3f4c0de57c155088b96044d",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     271826021,
+     7,
+     3,
+     3948225427
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 3212836864,
+     "1": 0
+    },
+    "id": "fp-50",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 50,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 735384069, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 735384069, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "f3c8630776bd613db1e5cef164bdd8d2fb9eb705ee35ba0333ba7aa5f589e780",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3856939601,
+     1894272194,
+     2147483647,
+     2092907358
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 3204448256,
+     "1": 3239897098
+    },
+    "id": "fp-52",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 52,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 3921118200, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 3921118200, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "38d419a1c089231326cf26cc9b9c2731d3cec1a5ddcc59ace2540e2b964c8a9d",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1740848604,
+     2393220392,
+     2147483647,
+     2556506514
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 2147483648,
+     "1": 3204448256
+    },
+    "id": "fp-54",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 54,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 1028059815, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 1028059815, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e6cf2b6c543441153e9a42bba1c17d2f27f364c3087a3dabfd8223c403a42cd4",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     8,
+     3577755483,
+     3578670822,
+     8
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 1065353216,
+     "1": 0
+    },
+    "id": "fp-55",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 55,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 480847480, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 480847480, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "2a9818c89391afd3c247f9a46c1dfae97724106ef975d4b871e898cb5fe2cab5",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     5,
+     3291529428,
+     206381930,
+     1
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 3212836864,
+     "1": 3184315597
+    },
+    "id": "fp-56",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 56,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 2444602602, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 2444602602, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "90670b0a012f1931b46e52e6c6e7b7e388f73e1307911f61a267240c870aeb11",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3720324128,
+     2846093838,
+     1677850251,
+     7
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 1056964608,
+     "1": 3239897098
+    },
+    "id": "fp-57",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 57,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 2059510718, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 2059510718, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "481638b006cb94b7546e64549b141fac93be62a0930b9243e7d52b3fc440c9cb",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     8,
+     2,
+     4,
+     2495041172
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 3204448256,
+     "1": 1266679808
+    },
+    "id": "fp-58",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 58,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 913139319, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 913139319, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "4d3cdff18578fb4beaa3e7a609d20d4273fb3a1782da6a715491f15e39a5304e",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2684056074,
+     2147483647,
+     1966003740,
+     0
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 2147483648,
+     "1": 0
+    },
+    "id": "fp-60",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 60,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 3330584012, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 3330584012, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "688b83e5352d3c8b71a5802afbe41484cf14adf665713f17c452e40fe03b4c6d",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     256,
+     3605787990,
+     1,
+     0
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 1065353216,
+     "1": 3184315597
+    },
+    "id": "fp-61",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 61,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 2313802153, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 2313802153, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "59f1767c0e94a28bda96ae72e5d394a4ecddd8c04e35c14b0f1b101d6c7a5f6a",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     222493114,
+     4294967295,
+     1271289561,
+     5
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 3212836864,
+     "1": 3239897098
+    },
+    "id": "fp-62",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 62,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 1154554417, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 1154554417, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1d060fc6c50e7e6d0926ebc824fb94eb1280c2cc0dd829814696185312ce30d8",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     2018887984,
+     2463392783,
+     0
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 3204448256,
+     "1": 3204448256
+    },
+    "id": "fp-64",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 64,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584,
+    92072,
+    159604,
+    301248,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 2417077168, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 2417077168, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "528422799a9203d22bfb41677a52f5116731df172b76c5f6bd2f03886e02797c",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536879884,
+      "00200120"
+     ]
+    ],
+    "args": [
+     3,
+     2147483648,
+     256,
+     1426281073
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-1-7",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 15,
+    "xpsr": 0
+   },
+   "new_instructions": 47,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4,
+    0,
+    4,
+    1,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    515492,
+    92072,
+    159604,
+    301248,
+    515492
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): start up audio record failed\\r\\n\\n'), ('RO', b'startAudioStreamRecord'), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 86613917, 6, ('SP', -5), 2, 'S', 'F', 'T', None)",
+    "('C', 5, 10000, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'%s(): because startup auido record failed,exit quicknote ....\\n'), ('RO', b'startAudioStreamRecord'), ('SP', -5), 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "8b85978465148244be46c19c3186d37c38648508f282877061471dbd28b395d2",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536900948,
+      "00000000"
+     ]
+    ],
+    "args": [
+     2156366374,
+     708972563,
+     558645175,
+     4
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-2-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 16,
+    "xpsr": 0
+   },
+   "new_instructions": 49,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     4,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     5,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     6,
+     [
+      [
+       2,
+       [
+        [
+         0,
+         1
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    1
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    469120
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, 536902116, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "99d96ed44ca07ab1ea5bc0666cce82413242be0ac03024cc53a32df0a03f2e9e",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2345269775,
+     3092785552,
+     1935641720,
+     554330043
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 400,
+    "xpsr": 0
+   },
+   "new_instructions": 21,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         1
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 54,
+  "ratio": 1.0,
+  "total": 54,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 138,
+ "globals": [
+  "0x20003890",
+  "0x2000230c",
+  "0x20007554",
+  "0x200079e4"
+ ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "e556ab5692bf509d",
+  "stack_arg_window": 48
+ },
+ "module": "audio",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "i32",
+ "search": {
+  "candidates": 195,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 43,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 138,
+ "symbol": "startAudioStreamRecord",
+ "va": "0x0002f764"
+}

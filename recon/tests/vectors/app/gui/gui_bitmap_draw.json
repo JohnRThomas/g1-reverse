@@ -1339,11 +1339,11 @@
    ],
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
-    "('C', 1, 3089341300, 0, 536941382, 3677333764, 'S', 'F', 'T', None)"
+    "('C', 1, 3089341300, 0, 536941382, 536952304, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "9563f0da45933115079c9b5da76bdfed71ff5b4adda2652a447da7cd298c66a4",
+    "events": "434bfffec7ec4d3b9b84ea45d9f09a071c7378de460131be367c21f03bed0a76",
     "kind": "fault",
     "ncalls": 2
    },
@@ -2047,6 +2047,12 @@
   "0x20007554",
   "0x2000a034"
  ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "e556ab5692bf509d",
+  "stack_arg_window": 48
+ },
  "module": "gui",
  "nptr": -1,
  "oracle": {

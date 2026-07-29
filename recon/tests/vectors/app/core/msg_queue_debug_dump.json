@@ -1,0 +1,3744 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 198370587, 2843262031, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 1240008249, 2175720152, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 952297116, 432442279, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 3880378126, 2354545540, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 249635511, 924744934, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 478850000, 4036743761, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 578906598, 1268277521, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 645914610, 1209783525, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 2232758955, 1534241210, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 457672539, 2083073144, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "bb98f238539e5edcae0bb39b0e72e987351a52d1c35a6f45b5315f25162c6346",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1276959699,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 1403334934, 1476413012, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 3400551966, 202243526, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 1599996355, 1015671937, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 1026876048, 41458680, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 1339796724, 2152850779, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 3188369342, 2923262908, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 1917786610, 1879959549, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 1425831246, 3171088549, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 2576202770, 3593985684, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 1513415868, 4192544966, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "02c06c10ffb066ccb124a2258c14ff2825db8ed820bec1fe4b6277a66f1c272c",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4067469868,
+     1797429778,
+     2147483648,
+     315044147
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 1,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 111423412, 739231098, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 1999694700, 3445298746, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 954085399, 164902252, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 3026830993, 2946936905, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 549840630, 2744974467, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 2570086138, 3502035881, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 1718995123, 3474690556, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 1400005673, 531861291, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 257924242, 1566506805, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 3363763962, 3421959845, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "17b8f15032da7a77964b1086e15a5838fc06baad9be393db9699b3e0f3be1ff5",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4290042576,
+     598759513,
+     3677430904,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-2",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 2,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 2043071017, 268896353, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 561916667, 1264555367, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 1558514735, 4003375551, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 547654436, 3968276841, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 2741228266, 1341326697, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 3623966112, 366740570, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 212798431, 4265212206, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 1070852515, 2326941743, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 175222886, 2136286382, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 1166249731, 2610997372, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e097f0ae43fd23ed655cfff6e1527577d265d38b52143cfc8453a2d2a7d3b8e5",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2618385373,
+     255,
+     8,
+     3619521758
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-3",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 3,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 1642769175, 1953282369, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 1486844843, 1164391935, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 4044610779, 809854585, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 4082858541, 84323321, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 1153450299, 2326753049, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 2239686767, 3761136946, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 2036919498, 3056472662, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 2309509310, 1256628219, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 2954017430, 2234224529, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 3974495708, 2270463708, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "d9e48f1653851606375e8bd37eacfde45e9836111af789e2150b920e2c4e94dc",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     16,
+     2147483647,
+     3842370354,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-4",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 4,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 45655070, 2449836777, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 4005392044, 3105562652, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 3622490287, 554346105, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 2918772859, 799819376, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 1834773018, 2257866700, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 4058475964, 2752975936, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 2531294596, 1131318168, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 3935159508, 1812153829, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 1957969037, 209977341, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 2140059411, 3616928035, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ecc6b5cf300a93fbcc66fb4c6b2de49b1b23d1a250b563e54cbe5e7fbdbffda1",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     3188701995,
+     8,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-5",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 5,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 4284711615, 1802528396, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 3454216944, 3664098130, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 105418204, 2154103765, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 933848511, 79182658, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 3026029374, 2537223229, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 3482683097, 336743062, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 3707984844, 3919812341, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 106426039, 4208319189, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 2297520856, 875129472, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 2676218614, 1200455772, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "86e86324c9c3bcde3f7e430e2b0fe2e566b4240e6a59d7639e46833cace94a29",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     3322790363,
+     5,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-6",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 6,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 3075011215, 3517331117, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 2203812451, 679400320, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 452468571, 980700942, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 1591269239, 1201689568, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 2477990475, 1315976218, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 2029675537, 3143881068, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 3534928045, 2062107702, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 1535249729, 1389394282, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 3441714427, 3817807101, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 3405421897, 1964596308, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "8bcc244ed81db897aa85d1eda9ccdca8565faddb0999439c460e4f08cdac5b8b",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2300957721,
+     1604804925,
+     1,
+     2363272863
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-7",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 7,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 2959282548, 2028828097, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 3267931027, 4270950490, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 1198301034, 159285273, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 3398953238, 1616763644, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 2831998240, 664940336, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 1824712597, 984817979, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 3801549289, 3422650212, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 1034035968, 3755258636, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 632216967, 1814634514, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 2926247070, 3111096080, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "51e6fd83681caa6ee2d114d3722b19ef299ca0ef3526d7e2941df52854b8f9a3",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2156366374,
+     708972563,
+     558645175,
+     4
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-8",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 8,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 1373487000, 3729259098, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 2940131499, 1752111076, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 1991731480, 2199101275, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 998972952, 2391795808, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 3664565322, 3228834431, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 2499255504, 1925152200, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 1949412767, 3619195086, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 3743250562, 1684523325, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 1122131890, 3865981557, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 1720656499, 752651355, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "197f5ef18efc465dc627148647a6d6749eb71c0c5f9bbe59aea377a2161790c7",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1346232374,
+     1556998536,
+     499087790,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-9",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 9,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 3428289344, 1691110657, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 2837785751, 1879628342, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 4145706959, 645409917, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 832445947, 1171225990, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 421397906, 88912787, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 504619794, 2803316112, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 103495623, 2481911413, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 1942011279, 1944539571, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 300910721, 933766380, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 3109243328, 2825388012, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ce5cbd2fbffa755bef1aa96f08a10481a459516d2baa5ee76397e933015ebdf5",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     182454980,
+     995058044,
+     8,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-10",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 10,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 3022612110, 3991420436, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 1321453687, 3617648177, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 2910757564, 1613401030, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 1179641149, 3626618878, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 2083564235, 860078241, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 2796498150, 775147702, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 240343660, 4233400223, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 2550466188, 1237265287, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 3919021210, 2569517345, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 914133924, 176097720, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e8e1bf84b7ee26e7742b103b2c12ca71ab08fc9ad68716dca814b75bfb5dfc29",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     2147483648,
+     256,
+     1426281073
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-11",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 11,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 2123428009, 4023548165, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 1604584333, 1693433888, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 4110415986, 3493681264, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 4227356943, 3145669797, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 1434349794, 39201175, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 3106454282, 2546993558, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 2042208209, 4112705436, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 1218015627, 2599615554, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 748750156, 3838924565, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 2996597945, 3051909248, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e18096428808f4fecb78f353dee4321a42aac4046223887bc689ea76717bbd8a",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     8,
+     3217736208,
+     5,
+     1103693227
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-12",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 12,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 2376358144, 1240375848, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 1002418012, 2967557424, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 161419621, 3083083273, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 145394727, 3090095523, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 1980625102, 3222639612, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 368799241, 4172531079, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 2008847710, 414108706, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 4059828548, 69108346, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 1944997404, 356515821, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 459347675, 1105999727, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0c58ae897262d89e42359b10afbb49a4e3923467f521a30dce117e4b92aaa77b",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1156718256,
+     1944344031,
+     6,
+     617681966
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-13",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 13,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 786944873, 588031834, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 2189612788, 3333974354, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 718326707, 3395203300, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 3996037359, 311485634, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 1066418759, 2564343965, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 2186399575, 3916979904, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 367141327, 3895326779, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 2269718568, 3159114964, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 2027927474, 2952036666, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 2751072395, 3519549712, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "b769137dc7e174071643f9d5529699c80873f8bc0b0938039a37f5302cafb18b",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1996365079,
+     12,
+     3,
+     470668832
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-14",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 14,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 182642145, 3104188308, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 1799854808, 1188201485, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 1682194954, 3713417888, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 33714317, 4126586714, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 2699390413, 1585379705, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 1746976284, 3433808838, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 3235326922, 831824409, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 93690786, 2488150174, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 2878811414, 1300319120, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 1160485040, 3041585397, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "de00635c04f8f4e3f9da068db581ac7749b8116224668204e6c03b7df0e3bd8d",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     7,
+     256,
+     5,
+     4
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-15",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 15,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 21678573, 1002734265, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 2007239501, 2736440500, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 1835546187, 190699795, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 565389033, 4036854650, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 1004914468, 3696122358, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 1336145652, 2841489136, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 3184835964, 1701919005, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 3989973783, 2688511372, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 3648134210, 3546119476, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 3795247853, 2341596235, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "5ecf5a565aae2d88350ebc19e5dbb151a1420ce3ee29295dee19e2db74eb0ab7",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2024561310,
+     2147483648,
+     3454407978,
+     16
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-16",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 16,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 1766992421, 1708422245, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 537479388, 627318429, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 1858324821, 1464582035, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 1885948644, 3180433164, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 3630367209, 30242223, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 1260039994, 569198397, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 3222603217, 2693109168, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 404479333, 911003252, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 1225153537, 780288638, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 217395126, 1131774532, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "fde5656db8b8da66d34af530c50c7e45eba2d6bbe2760a64d375c8456b088134",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     3254638692,
+     1168623309,
+     4252165479
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-17",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 17,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 434773440, 3250655399, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 1082243028, 512159204, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 981609031, 2046819605, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 3406163239, 3169611954, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 929722352, 4087461498, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 1221118283, 3114471657, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 695480576, 4032773048, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 695003870, 2614788721, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 287806981, 2415119462, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 2063859854, 3666850580, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "65c60c3910d2cb6d83df380cb3e0b3e6d7a3c7d9659380ed061fb0abe01a62dd",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3912442165,
+     0,
+     697236451,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-18",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 18,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 2637334873, 3006946436, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 711148183, 51092884, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 175303133, 3192572966, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 2446102919, 2593268809, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 2284008378, 3157803307, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 830913631, 4006014929, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 406781346, 3885949165, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 3649221320, 1489227557, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 407818528, 3690012198, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 3793275355, 1147681537, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ca7859210219a47769d13d6a5b2b88bc1e13cdc197919214d118af51f4e1967a",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     6,
+     1536401714,
+     4178753371,
+     255
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-19",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 19,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 392903050, 1107692174, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 2361780815, 4147077986, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 2327755264, 3470564747, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 1961527660, 1348053241, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 3241569690, 1564961069, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 957184902, 742362824, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 2159250420, 624853474, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 3679320247, 3054075293, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 1426933031, 379471796, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 111486554, 2158289683, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "4813a1393e7eb703e6272cf5c2270458c98e66ed53524b52f1cf7a80762bf0b6",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     2306919366,
+     2,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-20",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 20,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 63747486, 109419970, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 136961714, 686246645, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 4108650195, 2865080521, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 770221952, 1732296630, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 1934834636, 2868604157, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 2372568837, 22014719, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 2307371420, 3285412109, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 2166825232, 2245799711, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 3976723304, 3589084769, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 2382633501, 2812727996, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "32bcb4a4c62557e4b6bcc8f4a2996a5fb62f56f7c5c2fda62184019189367e61",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     843060076,
+     1,
+     2870852768,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-21",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 21,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 3511840543, 176446390, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 1083409165, 492841688, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 2230127943, 3979876755, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 2876358260, 3052108368, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 1451614834, 3474108522, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 1851940614, 81538491, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 2532285414, 225892014, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 1694952132, 2373211162, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 3610885685, 4120471308, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 1934387088, 2397836599, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "a92306390e14ddcd6f9b114b19a2ebe7ddd9fd4ce3da3206ee77347d68cc9a03",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     7,
+     3001296298,
+     4294967295,
+     2451975022
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-22",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 22,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 385438631, 2454998110, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 3699184181, 258568340, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 1637356522, 2770334323, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 132682869, 2067218744, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 2172581279, 1604183621, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 580130497, 1705745544, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 1218213057, 1756138827, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 2882284549, 2039009877, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 4203433946, 82115680, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 342289364, 1265146548, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "722a3547e4dc257330f22409d7f6412223906189b1494fd0d032d9b07979f187",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1591295399,
+     241044672,
+     2034212132,
+     1515885587
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-23",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 23,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 1484108386, 1794929114, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 3478877971, 1158631686, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 1835752888, 1147147066, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 3492086034, 1177982643, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 527423402, 3253331552, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 2333726424, 2956453993, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 1484283601, 1126609813, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 1927322493, 1404699036, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 1520451278, 1835256443, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 762922800, 3299312838, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0f771f3ef13512724b830eb23479d5bc4b67a8b870b8359a2579bd808e5a4133",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     6,
+     2967241396,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-24",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 24,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 848381075, 4203695707, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 497330518, 214481732, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 2946323915, 1810344517, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 2191025921, 3896314247, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 1764540414, 1814714855, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 2444210630, 1097968635, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 4172704921, 1479469228, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 550579009, 782632401, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 1554453228, 997128753, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 3837369383, 2849933221, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c41ea051783a4ecb371013cfe4f93b735b6a2fb28866a923f4f291832397a218",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3751937804,
+     12,
+     2149248134,
+     604019693
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-25",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 25,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 1104959231, 2262862418, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 233479614, 825114241, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 1754415459, 3851843104, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 1590988958, 810365223, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 416896549, 3984335753, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 2268403004, 3388049853, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 4018640809, 1263786437, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 2701667823, 3478988997, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 704648892, 3685481325, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 1038217168, 2269434918, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "d6c29c7ca73f8dec6e05b811b1bfb30d622d7895a3bf4742be615d86eede8721",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2992330384,
+     12,
+     3037640278,
+     2678623347
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-26",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 26,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 3576050654, 1865822247, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 4143615709, 2436816156, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 2923267131, 1987568273, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 87599798, 2998573034, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 1627324233, 1856755280, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 841471351, 4137545445, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 2734845784, 273534532, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 2991778226, 1967288073, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 4099843951, 1879557157, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 15425548, 3993037228, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "fd871c099aa0b8d78d0001e878f960241724aa9a5d05e888d870358b60b61dcf",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     187818536,
+     681194263,
+     3639365232,
+     4125446660
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-27",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 27,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 3103339157, 893734177, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 477907625, 4133928160, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 616017789, 3290784602, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 223619571, 3090895641, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 2446149387, 1167674119, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 1481525430, 4205823476, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 3251718324, 2773793953, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 1471301266, 1549835101, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 2673179659, 2955676233, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 2733247914, 1720430998, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1d2f09fb716d9813af91add1f29bddc576ce0dafc893a1c7d4af6d33714ba65e",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3711083943,
+     4285183211,
+     1,
+     2592385448
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-28",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 28,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 2199019990, 287847348, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 1118806927, 2463645610, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 1908235609, 2776658892, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 108240737, 3505205525, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 182341159, 1597688345, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 1384156064, 2905969321, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 814915046, 1536174451, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 1276019181, 3586115954, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 700653337, 1705963475, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 491468819, 3724711204, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "cd3969ffec28e7d53d415f510fdf1096c07c345a2089e1a87d0534a3429b4d14",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     739928864,
+     256,
+     3886541357,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-29",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 29,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 1407614337, 580413040, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 1501447001, 1513506192, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 4121841343, 1476260998, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 1582423428, 3370416368, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 2797458352, 2993040063, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 1927227269, 2090048600, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 4246412150, 3268925237, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 1563723058, 4273035129, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 1607053822, 3932102451, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 2819521569, 3361202387, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0e1fc98bb64749b2fa67b4251a8c5a8fec6bcaf621db5025e909816c507cdf85",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     256,
+     8,
+     1,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-30",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 30,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 2333368467, 3266028111, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 4123732199, 564517287, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 1642771802, 2484098430, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 1286254968, 583680122, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 4206977426, 452278289, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 1153705071, 2929841612, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 212824531, 2381214674, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 1919578979, 4041936000, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 1750014371, 4108488696, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 1982500460, 4147007929, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1218fbab033a6e0e94aaf927fade8e71b0a7834331c74f4a32d75ed357937a1a",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4294967295,
+     2461003590,
+     7,
+     53351545
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-31",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 31,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 1431196800, 3350571148, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 700682568, 2119612839, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 3119793645, 2662202204, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 3845100230, 3493944804, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 890564252, 315966407, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 905334523, 2310653899, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 2437373512, 812621853, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 3057837343, 2157492694, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 4197188560, 2786014027, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 981716392, 4078478313, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ddb388157ef97e8a137bf3ef1ec7551c5b2338dc5479bf3e7fe7b074fc1756fd",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1839753098,
+     2706821390,
+     3442053927,
+     1170652979
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-32",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 32,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 4234651001, 254111930, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 549561980, 417375046, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 345400683, 2324232644, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 195622370, 855922872, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 3978954144, 27871948, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 3691352107, 2204088457, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 495263429, 563200018, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 4208673079, 3910057904, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 2418643454, 2812067158, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 2714922658, 4101229607, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "d30684b12a1ed1d81d6bce8698b2450ea9f939379b28c2da0b3753d9f68fe183",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1076094348,
+     7,
+     7,
+     5
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-33",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 33,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 3787277383, 2269229463, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 1224295976, 1084172381, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 387302436, 3715477896, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 3810214553, 3504880214, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 3705319076, 2234299201, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 2271886618, 4170983232, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 3819897933, 8232382, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 1189103299, 667108613, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 3022266766, 4225184802, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 3250437164, 708233729, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "37d42b4a4ac6c94aff52259225c81feea9d2fc787acc7f27bdf513642fd911f9",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     12,
+     3990671540,
+     922796015,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-34",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 34,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 3445400042, 1469790148, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 468523721, 1034968248, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 1988596472, 1568593288, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 1876131998, 1726466473, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 2391457977, 1558871130, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 3678103803, 2223392896, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 2918884201, 305613272, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 3409751821, 3440823289, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 614791520, 564875224, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 3716584549, 1290041695, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "8c9bf62dcf20590c5a3cad6e537128cdbb83327b4d05965b486c312e86a805ab",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2726887024,
+     3578977268,
+     4001652011,
+     1
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-35",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 35,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 1408015766, 2154238809, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 1347148367, 148556973, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 215462238, 2675337298, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 1978126562, 1676951868, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 139008726, 4291272800, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 2922963652, 1598570997, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 3736282854, 364384358, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 3111733387, 2811398906, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 2534169752, 1599649911, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 1986192366, 1834369169, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ecb126fa75e058d48dd007e0130e382428fcc92771135ea5daba1a027f3fa7af",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     12,
+     2147483647,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-36",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 36,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 3962744464, 3997821813, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 184013024, 232760824, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 2696701417, 2290910516, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 4058684389, 2585338641, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 3155450740, 2094541288, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 1598923516, 3632912131, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 4288124202, 1395389589, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 326410103, 2847967810, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 1292376354, 3401642353, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 1012424277, 2428888214, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "eeaf0f7284852d57cced0e1a6789688a3fb1c7557311588677b009c8c622fbeb",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1,
+     2057795936,
+     2725586938,
+     1299241558
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-37",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 37,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 1585591749, 3894030219, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 3070628073, 506003050, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 1424409283, 1152611858, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 1557142017, 900754714, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 397748004, 2028424985, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 1843028644, 1158271228, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 2722501406, 2993615858, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 2186960867, 4048611212, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 3898467529, 998159636, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 2771244803, 3207473786, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "93b869de93a63f2980b0d499936610d68380f0f2efedf97b22a9337b530d4372",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     255,
+     1,
+     2
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-38",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 38,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 3381836599, 1030753249, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 1965931481, 2323790265, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 1426854171, 3734537328, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 2048410997, 2721048404, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 3553180434, 3723171269, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 4036586421, 1784247564, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 965942334, 3313946792, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 460537283, 2206809398, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 3517506800, 1089765489, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 1942177861, 530702173, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "4bf3a1cbc467ef9d6b2d4749617cbcd8dd8f9b84e96b04997cf8e70a0fbf2883",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     1587124134,
+     3774328631,
+     1997155928
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-39",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 39,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 1282004140, 2654274928, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 3615461598, 3801155686, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 1553606360, 3299465701, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 726147993, 2587152418, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 2478276485, 1213967197, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 4217065214, 3914242447, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 1660544646, 1450186368, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 2097885018, 151920638, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 2700731992, 808190238, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 274488357, 4225668128, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "2c4f82a95f17d9a7126b053a940c6b6f59e79d86d5f85e3d0ef86b7ef1185950",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     3928041777,
+     1786326658,
+     1835695343
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-40",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 40,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    515492,
+    515492,
+    515492,
+    515492,
+    515492,
+    515492,
+    515492,
+    515492,
+    515492
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 0, 2959282548, 2028828097, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 1, 3267931027, 4270950490, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 2, 1198301034, 159285273, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 3, 3398953238, 1616763644, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 4, 2831998240, 664940336, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 5, 1824712597, 984817979, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 6, 3801549289, 3422650212, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 7, 1034035968, 3755258636, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 8, 632216967, 1814634514, 'S', 'F', 'T', None)",
+    "('C', 9, ('RO', b'normal g_arrMsgContent[%d].uidTail is %d %d recvTime %d\\n'), 9, 2926247070, 3111096080, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "51e6fd83681caa6ee2d114d3722b19ef299ca0ef3526d7e2941df52854b8f9a3",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536900948,
+      "00000000"
+     ]
+    ],
+    "args": [
+     16,
+     2147483647,
+     3842370354,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-1-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 8,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 22,
+  "ratio": 1.0,
+  "total": 22,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 52,
+ "globals": [
+  "0x20007dac",
+  "0x20007554"
+ ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "e556ab5692bf509d",
+  "stack_arg_window": 48
+ },
+ "module": "core",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "void",
+ "search": {
+  "candidates": 163,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 42,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 52,
+ "symbol": "msg_queue_debug_dump",
+ "va": "0x00033b0c"
+}

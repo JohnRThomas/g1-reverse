@@ -1,0 +1,43 @@
+{
+ "cases": [],
+ "core": "app",
+ "coverage": {
+  "covered": 0,
+  "ratio": 0.0,
+  "total": 75,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 194,
+ "globals": [
+  "0x2000a0d0",
+  "0x2000a0d8",
+  "0x200039f8"
+ ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "e556ab5692bf509d",
+  "stack_arg_window": 48
+ },
+ "module": "core",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "void",
+ "search": {
+  "candidates": 189,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 189,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 0,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 194,
+ "symbol": "log_process_thread",
+ "va": "0x0004d6ec"
+}

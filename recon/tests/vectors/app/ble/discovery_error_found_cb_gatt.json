@@ -1,0 +1,2008 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 12, 4, 0, 'S', 'F', 'T', None)",
+    "('C', 1, 1276959699, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0704e787be9ee2698253d99281f80b9e7d5f5635a50c99a4b26ac06ac2aaf5bc",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1276959699,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 1797429778, 2147483648, 315044147, 'S', 'F', 'T', None)",
+    "('C', 1, 4067469868, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c2d81d05d46b2f235794dc616fdcc19a6a1796bc0e027b225f832df9c4f4bd38",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4067469868,
+     1797429778,
+     2147483648,
+     315044147
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 1,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 598759513, 3677430904, 7, 'S', 'F', 'T', None)",
+    "('C', 1, 4290042576, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "3df427a7be330157c47df96e2ee729664639458caa8f975f29e32a46b9fa2228",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4290042576,
+     598759513,
+     3677430904,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-2",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 2,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 255, 8, 3619521758, 'S', 'F', 'T', None)",
+    "('C', 1, 2618385373, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "cd47aa1518ddd35da821a5e8b730d9afe2b5e57af63556ffa2813bb4166a32a1",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2618385373,
+     255,
+     8,
+     3619521758
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-3",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 3,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 2147483647, 3842370354, 6, 'S', 'F', 'T', None)",
+    "('C', 1, 16, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "7f9aaf89a0f8cc8d5455757800a21b10f6c190c9cd6070796aab39fa4524af1c",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     16,
+     2147483647,
+     3842370354,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-4",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 4,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 3188701995, 8, 7, 'S', 'F', 'T', None)",
+    "('C', 1, 4, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ebf82be7d39c6802a3a52a271076ec74a7a18d603fccc37f58917bc3dfa12513",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     3188701995,
+     8,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-5",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 5,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 3322790363, 5, 2147483647, 'S', 'F', 'T', None)",
+    "('C', 1, 4, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "430337843bc27b0fbfef451008ebb12a626f2b128bc070de97fd54ae40fef261",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     3322790363,
+     5,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-6",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 6,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 1604804925, 1, 2363272863, 'S', 'F', 'T', None)",
+    "('C', 1, 2300957721, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "d29ddb1725844cc65f68a3872bb07432bb26096d56e8bc23ad60fcb7dd5c2e6b",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2300957721,
+     1604804925,
+     1,
+     2363272863
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-7",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 7,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 708972563, 558645175, 4, 'S', 'F', 'T', None)",
+    "('C', 1, 2156366374, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "50960d8f67b57840afb96cb98dacc296404769a029bd43d724e1ec7f6b9cb28d",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2156366374,
+     708972563,
+     558645175,
+     4
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-8",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 8,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 1556998536, 499087790, 2147483647, 'S', 'F', 'T', None)",
+    "('C', 1, 1346232374, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "afe7ce31698ff3c20cf9df14ce596e1513d054e5077e39873757d1f5ce01564f",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1346232374,
+     1556998536,
+     499087790,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-9",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 9,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 995058044, 8, 1, 'S', 'F', 'T', None)",
+    "('C', 1, 182454980, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "3131a3b1448df6ee450125449a88b10eae311471fc20b613ab1b8e59596dc805",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     182454980,
+     995058044,
+     8,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-10",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 10,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 2147483648, 256, 1426281073, 'S', 'F', 'T', None)",
+    "('C', 1, 3, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "971bd47beb65bc36627734104bab78b696dd39189d2006e58d66a410dbf910c7",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     2147483648,
+     256,
+     1426281073
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-11",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 11,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 3217736208, 5, 1103693227, 'S', 'F', 'T', None)",
+    "('C', 1, 8, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "29617904bbf0bbe46bc374fecd89b409ad845c5cb5f6cc93d41a1d1381e84a9a",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     8,
+     3217736208,
+     5,
+     1103693227
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-12",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 12,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 1944344031, 6, 617681966, 'S', 'F', 'T', None)",
+    "('C', 1, 1156718256, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "3658fa3b3381f78c0d2807863fad3e06441f3d718dbcd51a49805755b1f92b94",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1156718256,
+     1944344031,
+     6,
+     617681966
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-13",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 13,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 12, 3, 470668832, 'S', 'F', 'T', None)",
+    "('C', 1, 1996365079, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ac51ed094e1a23fe0bde2acaa38fd3690291571a5fa10defea44b3b098310bd2",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1996365079,
+     12,
+     3,
+     470668832
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-14",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 14,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 256, 5, 4, 'S', 'F', 'T', None)",
+    "('C', 1, 7, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "54add51c1005d896937eee17029c3c17ef0b976a643ba999078573c940ebcf76",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     7,
+     256,
+     5,
+     4
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-15",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 15,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 2147483648, 3454407978, 16, 'S', 'F', 'T', None)",
+    "('C', 1, 2024561310, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "9e0b2ecfd661ea56038a87abd6f92613effbada3261fb11f081c76c4a231692e",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2024561310,
+     2147483648,
+     3454407978,
+     16
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-16",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 16,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 3254638692, 1168623309, 4252165479, 'S', 'F', 'T', None)",
+    "('C', 1, 3, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "2699397a3986723caf7850c52053daa5f4df78e799fab16cc4b6a606369eb8c8",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     3254638692,
+     1168623309,
+     4252165479
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-17",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 17,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 0, 697236451, 1, 'S', 'F', 'T', None)",
+    "('C', 1, 3912442165, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "7c69b80b4de08d0a9fd15a3d46cd2b7a1132dafca2093902a51c40c98ba0cdfa",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3912442165,
+     0,
+     697236451,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-18",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 18,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 1536401714, 4178753371, 255, 'S', 'F', 'T', None)",
+    "('C', 1, 6, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "85fa613225d518b0c9383f02ab01e2e68b0f88968f5651b2d4b07fcd66289395",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     6,
+     1536401714,
+     4178753371,
+     255
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-19",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 19,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 2306919366, 2, 7, 'S', 'F', 'T', None)",
+    "('C', 1, 4, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "afc9b473cd82ea5cff5782a69da348ea073112ab5c62e7545b524923730d0ed4",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     2306919366,
+     2,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-20",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 20,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 1, 2870852768, 0, 'S', 'F', 'T', None)",
+    "('C', 1, 843060076, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "56c42294be3d081da733470412b25a3bae6bd392111ad893ca1ff50adf11148c",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     843060076,
+     1,
+     2870852768,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-21",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 21,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 3001296298, 4294967295, 2451975022, 'S', 'F', 'T', None)",
+    "('C', 1, 7, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "fd5677fe5c79b4331fd5d7279118665a8358a193e8d89db4dccad326e8ab99b4",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     7,
+     3001296298,
+     4294967295,
+     2451975022
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-22",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 22,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 241044672, 2034212132, 1515885587, 'S', 'F', 'T', None)",
+    "('C', 1, 1591295399, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "74eb1374c6d9bcb17acbe5ada70ef5dc521e73807f2dbb60de9a205be4d23262",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1591295399,
+     241044672,
+     2034212132,
+     1515885587
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-23",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 23,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 6, 2967241396, 7, 'S', 'F', 'T', None)",
+    "('C', 1, 4, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1eb0cda600c7fa6acb94471b6d15d2ae6b5d7a185800cd455738ca647393e626",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     6,
+     2967241396,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-24",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 24,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 12, 2149248134, 604019693, 'S', 'F', 'T', None)",
+    "('C', 1, 3751937804, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e8ad931706f2c91c55a8c8dbeeaf9d2a18f7a1bd773c80bb7271991b4f43d04d",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3751937804,
+     12,
+     2149248134,
+     604019693
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-25",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 25,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 12, 3037640278, 2678623347, 'S', 'F', 'T', None)",
+    "('C', 1, 2992330384, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "441a0fbe6e2d8561e5264e27ebba12578580b8c17d18b34d58ae1206ff332e51",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2992330384,
+     12,
+     3037640278,
+     2678623347
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-26",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 26,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 681194263, 3639365232, 4125446660, 'S', 'F', 'T', None)",
+    "('C', 1, 187818536, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "48f2b43c82d59ef4aed136828395fef8ffe7fa468d5606ffdb1c2d759fc6eebe",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     187818536,
+     681194263,
+     3639365232,
+     4125446660
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-27",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 27,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 4285183211, 1, 2592385448, 'S', 'F', 'T', None)",
+    "('C', 1, 3711083943, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "8a7682426cdbfc15f41c2e42d0b37db531b34dd79265a44038e99dcd1868aac7",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3711083943,
+     4285183211,
+     1,
+     2592385448
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-28",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 28,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 256, 3886541357, 8, 'S', 'F', 'T', None)",
+    "('C', 1, 739928864, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1e92e7e0c1ee1d605ded6cf449c670041b744c30a1dfa4e38929d8723b773acc",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     739928864,
+     256,
+     3886541357,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-29",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 29,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 8, 1, 7, 'S', 'F', 'T', None)",
+    "('C', 1, 256, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "a4d4f1d912baf3b05bde0bb2a95b0a9b45dc9b6156dc962bcae7c31cc9682cce",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     256,
+     8,
+     1,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-30",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 30,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 2461003590, 7, 53351545, 'S', 'F', 'T', None)",
+    "('C', 1, 4294967295, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "946e7bdcbbc08bed1c512e72705c4293989a32a686584c437e33a70e25926e3f",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4294967295,
+     2461003590,
+     7,
+     53351545
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-31",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 31,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 2706821390, 3442053927, 1170652979, 'S', 'F', 'T', None)",
+    "('C', 1, 1839753098, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "efc270812adbafbfa125764366a1eb5948bd6f2f2083a22efc5e3c0de229b86d",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1839753098,
+     2706821390,
+     3442053927,
+     1170652979
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-32",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 32,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 7, 7, 5, 'S', 'F', 'T', None)",
+    "('C', 1, 1076094348, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e20b659dc115aed0f9634c17668ae11e7b7faf1b3fa58fdcddda33674b5b2e03",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1076094348,
+     7,
+     7,
+     5
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-33",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 33,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 3990671540, 922796015, 2147483647, 'S', 'F', 'T', None)",
+    "('C', 1, 12, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "66cd8d9342d466025c990f6722a310f636cb965b9f6e69b472dc32834019eeaa",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     12,
+     3990671540,
+     922796015,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-34",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 34,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 3578977268, 4001652011, 1, 'S', 'F', 'T', None)",
+    "('C', 1, 2726887024, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "f3a3a63420d7e6bf493b6fb8879cff767530fac21382f1d0198ab885303fcf32",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2726887024,
+     3578977268,
+     4001652011,
+     1
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-35",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 35,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 12, 2147483647, 8, 'S', 'F', 'T', None)",
+    "('C', 1, 0, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c471d150e4bf1148a5c80c104b3b87c1cde306e038ec403d45bb88370dae390b",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     12,
+     2147483647,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-36",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 36,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 2057795936, 2725586938, 1299241558, 'S', 'F', 'T', None)",
+    "('C', 1, 1, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "00d55f79427dd6075871dc0784b99345f93e41d959adcb8daf141459b9439bfc",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1,
+     2057795936,
+     2725586938,
+     1299241558
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-37",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 37,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 255, 1, 2, 'S', 'F', 'T', None)",
+    "('C', 1, 0, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "26cb1e39d872f77b570d80af32c8c5841804e26c6d976e86d47ded9264d18c72",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     255,
+     1,
+     2
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-38",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 38,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 1587124134, 3774328631, 1997155928, 'S', 'F', 'T', None)",
+    "('C', 1, 3, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "d746866d3fa9cad6f66abed198ba8a8983af1b9b398df635336864e5c879415e",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     1587124134,
+     3774328631,
+     1997155928
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-39",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 39,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    100328
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'The discovery procedure for GATT Service failed, err %d\\n'), 3928041777, 1786326658, 1835695343, 'S', 'F', 'T', None)",
+    "('C', 1, 0, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c826b6c9b21a61f3f32e6cf1b487e6164aef98a366d77d9cddf1657a86a8dc75",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     3928041777,
+     1786326658,
+     1835695343
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-40",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 40,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 8,
+  "ratio": 1.0,
+  "total": 8,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 22,
+ "globals": [],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "e556ab5692bf509d",
+  "stack_arg_window": 48
+ },
+ "module": "ble",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "void",
+ "search": {
+  "candidates": 129,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 41,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 22,
+ "symbol": "discovery_error_found_cb_gatt",
+ "va": "0x00018894"
+}

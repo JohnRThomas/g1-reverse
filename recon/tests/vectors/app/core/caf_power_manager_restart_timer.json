@@ -1,0 +1,198 @@
+{
+ "cases": [
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [],
+   "expect": {
+    "events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1276959699,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 5,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    1
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    408488,
+    472332
+   ],
+   "events_head": [
+    "('C', 0, 0, 'S', 'F', 'T', None)",
+    "('W', 536916752, 4, 0)",
+    "('C', 1, 536897264, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "a39f4afdb8d05b15af56c18d37e285326da55f0eff7979ae2c722a870a68d14a",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536991075,
+      "00000000"
+     ]
+    ],
+    "args": [
+     1276959699,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-0-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 14,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    408488
+   ],
+   "events_head": [
+    "('C', 0, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ec986018d7f3653d9ab5458f2e95217d939144df2b21c2f7985c84dc6c99a165",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536991075,
+      "00000000"
+     ],
+     [
+      536916752,
+      "00000000"
+     ],
+     [
+      536897264,
+      "00000000"
+     ]
+    ],
+    "args": [
+     8,
+     1164329427,
+     7,
+     1937427917
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "combo-0-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 600,
+    "xpsr": 0
+   },
+   "new_instructions": 8,
+   "stack_args": []
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 15,
+  "ratio": 1.0,
+  "total": 15,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 38,
+ "globals": [
+  "0x2001d563",
+  "0x2000b310",
+  "0x200066f0"
+ ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "e556ab5692bf509d",
+  "stack_arg_window": 48
+ },
+ "module": "core",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "void",
+ "search": {
+  "candidates": 169,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 3,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 38,
+ "symbol": "caf_power_manager_restart_timer",
+ "va": "0x00063be0"
+}

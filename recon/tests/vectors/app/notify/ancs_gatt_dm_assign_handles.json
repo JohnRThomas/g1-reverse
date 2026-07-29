@@ -19,11 +19,11 @@
    ],
    "events_head": [
     "('C', 0, 1276959699, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 4, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536948040, 4, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "f79cdc8b0c3350624bb989133c1727b672b1fda1a1e54cd312010ecc718dbab1",
+    "events": "f12ccb909fd273a67992cc3661f8c57305d235e34376851e6be444e8a2096894",
     "kind": "fault",
     "ncalls": 2
    },
@@ -66,11 +66,11 @@
    ],
    "events_head": [
     "('C', 0, 4067469868, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 2147483648, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536943120, 2147483648, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "f2b8968418d0b785486b0f42ab7cdf4e2a7d8a3ba6ebf98ef8e011319158ba7a",
+    "events": "bfe61d2ddb2efd63ae0a0d8af324ed8380c180b0edfab477dabfed636fd4417d",
     "kind": "fault",
     "ncalls": 2
    },
@@ -113,11 +113,11 @@
    ],
    "events_head": [
     "('C', 0, 4290042576, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 3677430904, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536942680, 3677430904, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "40fe55e5a53584623ca88ad19b70e921eed3bc67d066a4768621cc6ee796288d",
+    "events": "d99224e171951338e377ad842c876dd2181d08fc0f879c0fd697bd9e14602db9",
     "kind": "fault",
     "ncalls": 2
    },
@@ -160,11 +160,11 @@
    ],
    "events_head": [
     "('C', 0, 2618385373, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 8, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536940936, 8, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "ad7c9b4b30e2a7499b052427ba0dc21e00befb06c8f15ef43cd7b327882d89d2",
+    "events": "7ffea831f95d1a6159a533d30615b25db8248f77b0c8dac8f0e6edeb0b34d549",
     "kind": "fault",
     "ncalls": 2
    },
@@ -207,11 +207,11 @@
    ],
    "events_head": [
     "('C', 0, 16, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 3842370354, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536944284, 3842370354, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "07d8178bcaec60359e3144e516f618c12738e327664232414f47e81d4374e955",
+    "events": "87ef4981cbad7da90aad02124ee7d7c041e5448a298017828f5bfb123720a9df",
     "kind": "fault",
     "ncalls": 2
    },
@@ -254,11 +254,11 @@
    ],
    "events_head": [
     "('C', 0, 4, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 8, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536951592, 8, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "3994c9a07bb5aacff84189ad6365c5314a04d20fe9a187605adcbe3d0a5959d0",
+    "events": "e8de4a84ac9e1c6e53d1a32191140f13be598c94dd25c13a12695deb1ac2670e",
     "kind": "fault",
     "ncalls": 2
    },
@@ -301,11 +301,11 @@
    ],
    "events_head": [
     "('C', 0, 4, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 5, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536936920, 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "bec807c242d8bc6573ebc312492fd0f38866bec968375ae2ce12ebd507e8cef4",
+    "events": "70dbdef46be624c7aab872543e90a2cc4561a517e0400caae85c9d3a49ea602f",
     "kind": "fault",
     "ncalls": 2
    },
@@ -348,11 +348,11 @@
    ],
    "events_head": [
     "('C', 0, 2300957721, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 1, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536944956, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "10e4ed671cc258c9f4d7dc753856f6f18df8ce8828e31b32c121d9be3d2eb496",
+    "events": "3391bd66a39fc9ea4171bf1fafd541feadec155c603b075bfe15a951016a7b43",
     "kind": "fault",
     "ncalls": 2
    },
@@ -395,11 +395,11 @@
    ],
    "events_head": [
     "('C', 0, 2156366374, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 558645175, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536940560, 558645175, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "966382d7e9853b117e1c3053f02a2e7a22dbf3553b707408a496a4eb205e0e2b",
+    "events": "8177dc10b09f81df263e4c85409b2aabe35c85eec284a05164b3cf8699c6ade6",
     "kind": "fault",
     "ncalls": 2
    },
@@ -442,11 +442,11 @@
    ],
    "events_head": [
     "('C', 0, 1346232374, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 499087790, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536947080, 499087790, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "c75a8cf64babe67b6784265605a7e52509e9687313f75e59e3af3317e77e6fb3",
+    "events": "524c16b6b21d58d1b3371b7418f4d3a25fffde0fc6e8fbbfbbe534d863ca2f98",
     "kind": "fault",
     "ncalls": 2
    },
@@ -489,11 +489,11 @@
    ],
    "events_head": [
     "('C', 0, 182454980, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 8, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536945020, 8, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "2c93a4a1ca17d7beaa034f41915c10592c5aee1c91c6e4211acbd0fe2afb97e9",
+    "events": "27ee0eb1567fd228043f42798e68b94447a1581621d0d98fc2f67198134266c4",
     "kind": "fault",
     "ncalls": 2
    },
@@ -536,11 +536,11 @@
    ],
    "events_head": [
     "('C', 0, 3, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 256, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536948284, 256, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "118823cc722ea4b0e8e0bc1807b6b40aa23b0322f32a7f96725b726bd986e56f",
+    "events": "e045965acf90691eccfc89c36f63cbbbae2a1c522623198cca8e4bab66970217",
     "kind": "fault",
     "ncalls": 2
    },
@@ -583,11 +583,11 @@
    ],
    "events_head": [
     "('C', 0, 8, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 5, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536936976, 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "992b9ca82cf5b3c1be7e2f8882c127217a373c2cc05180a8c43be41e016d6e0f",
+    "events": "52e98a66211ef5bcb53fd725efd87af2a8c148405221fd790bc2d6edf67e8e99",
     "kind": "fault",
     "ncalls": 2
    },
@@ -630,11 +630,11 @@
    ],
    "events_head": [
     "('C', 0, 1156718256, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 6, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536942044, 6, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "bee9c7f6128e12ea75316f3f8a22bd4f5a3346420ab77ac03b4a211518a08204",
+    "events": "e5d377dd575b8d996ad25fa8c9858f327a803f83aa47510b150d93e549607da1",
     "kind": "fault",
     "ncalls": 2
    },
@@ -677,11 +677,11 @@
    ],
    "events_head": [
     "('C', 0, 1996365079, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 3, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536949848, 3, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "c6209ef94adb5aeba2c8aca5e494b77eade6cecc64d1db5d52d07191ed841b83",
+    "events": "2152e2fcbe8ec3bee11cd0febdd9a996b932bda5dee7f2ffb2aa0225097094c0",
     "kind": "fault",
     "ncalls": 2
    },
@@ -724,11 +724,11 @@
    ],
    "events_head": [
     "('C', 0, 7, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 5, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536941132, 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "c16c908b4acb2205740e1d65e7df5f85de721a4927147ef35892906182eed591",
+    "events": "e5bd26abc251b436c66eed00e63a828e6009570b710a5c7fbe87c966bfd53498",
     "kind": "fault",
     "ncalls": 2
    },
@@ -771,11 +771,11 @@
    ],
    "events_head": [
     "('C', 0, 2024561310, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 3454407978, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536942972, 3454407978, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "468e74d7a5bd30518491e86853724b1cb3cbbf87cd56ee820ad8b3721bd49998",
+    "events": "7f2775a7939d2b6c49e7597a96cce54a391f0e179b6f21425d020ad6fb5f65c6",
     "kind": "fault",
     "ncalls": 2
    },
@@ -818,11 +818,11 @@
    ],
    "events_head": [
     "('C', 0, 3, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 1168623309, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536942692, 1168623309, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "1f4c9ad0c734961c123b313ade03f74acb798e8cf1c7e6f0414b30dea0c7e8cf",
+    "events": "49dcf9b925fa03e8d7a14a27d669b73e22c34924cc5e87f794d581a7d76c52cc",
     "kind": "fault",
     "ncalls": 2
    },
@@ -865,11 +865,11 @@
    ],
    "events_head": [
     "('C', 0, 3912442165, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 697236451, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536937440, 697236451, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "0a386d60f00f0a8c14c8d5397aaa76a86efb7d3432a10cabb4ca7bc57dcb4b6a",
+    "events": "23648ef25cb47bd28c090de345381def0d95752b858a80af15ce6f082e98faf0",
     "kind": "fault",
     "ncalls": 2
    },
@@ -912,11 +912,11 @@
    ],
    "events_head": [
     "('C', 0, 6, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 4178753371, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536944944, 4178753371, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "efba2a33c722ab508f36c294d94eb87dbef37bff93b7d1a89bbaf20b64e27e56",
+    "events": "32d7f55aedbe485f8b87a4d326c77a7e6900fb27d521ddbc6e51e4976d63e789",
     "kind": "fault",
     "ncalls": 2
    },
@@ -959,11 +959,11 @@
    ],
    "events_head": [
     "('C', 0, 4, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 2, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536939460, 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "b08c7ae912ca1d30456e59c448e1870654385a73b1db7810e0de2f561ec01c9a",
+    "events": "30ed73387098414f6b5e00358854fbfdee16bc9287a3414bee48856f6f6c2662",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1006,11 +1006,11 @@
    ],
    "events_head": [
     "('C', 0, 843060076, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 2870852768, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536936640, 2870852768, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "b093c7dcbb3891a4f950fcbab732f6c39f6825ef685031fbc2c6902be5b30a01",
+    "events": "4f9a05940398c0ff7578472495b7b10546ecbd16a575768cb5720eb9303569ee",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1053,11 +1053,11 @@
    ],
    "events_head": [
     "('C', 0, 7, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 4294967295, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536946088, 4294967295, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "4817d7827a28e940d42365a5febeec675ffb04699f9abe2ee5baf565d2ce4ce4",
+    "events": "11c923a5d8e5ca4d13f605957f231d6d87f9d54b14470d7c6b7f1a7dac7eed9d",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1100,11 +1100,11 @@
    ],
    "events_head": [
     "('C', 0, 1591295399, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 2034212132, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536939712, 2034212132, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "96d3c4050b1f238a7b0d896f1c5d461379977fce839d043f72b64f915d0b2aa2",
+    "events": "3b77d06113c8326d8c7347c330b509c44469534bf944cd8e71ba4397d1aec98a",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1147,11 +1147,11 @@
    ],
    "events_head": [
     "('C', 0, 4, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 2967241396, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536944852, 2967241396, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "532c69e7c6398893fff864188bf98d1ef4fc2b77b65c677e9724300e0358e53c",
+    "events": "863cdbe4e277ce257169a5dd93394a4e0cc202786587a57ba7eccc0deee1bf79",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1194,11 +1194,11 @@
    ],
    "events_head": [
     "('C', 0, 3751937804, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 2149248134, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536941512, 2149248134, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "08e1bf9060e418b74fcac8282910dddba98b39930372915af1ba799a7b0a0103",
+    "events": "2417e19134b856bdd5f1c10d7c31973ae5e947bc317ca5f571b3fd510acf6dfb",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1241,11 +1241,11 @@
    ],
    "events_head": [
     "('C', 0, 2992330384, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 3037640278, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536937032, 3037640278, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "dfc5fc93fe452695920e3d37a6126fb50b34509a86252f705f0e59f791e53dc1",
+    "events": "833437e21c8d8f410904ca985bf37c345eeb924a414e6f0f21fc2d386bff5160",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1288,11 +1288,11 @@
    ],
    "events_head": [
     "('C', 0, 187818536, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 3639365232, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536949524, 3639365232, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "e93a4b1dba1bf55cb1cc50857206d461b1aa29791efd7bf0ac8f4dcc6598aa29",
+    "events": "5bad50248952f5456addc936b79f3fb4025fe3cc4272665ddb9342d0e1cd7e07",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1335,11 +1335,11 @@
    ],
    "events_head": [
     "('C', 0, 3711083943, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 1, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536949992, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "ce78543a9c5bc0b1c7d9c4bdae5838067801f59d776c0e1c882b0d82befbe9df",
+    "events": "7e294c3691aab7905e158eb4e8e13d833d5ecd4b29da18f492a93f666e1ca331",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1382,11 +1382,11 @@
    ],
    "events_head": [
     "('C', 0, 739928864, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 3886541357, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536937084, 3886541357, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "d3c9d71c362bb1f082082153f660fd73c468c23e258d5e3b542cd1192d055b50",
+    "events": "ac7e45323f55ed315b169d20b21dcdde6bb52b2294145783f353dfbf4c4ebaf7",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1429,11 +1429,11 @@
    ],
    "events_head": [
     "('C', 0, 256, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 1, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536941720, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "35717532c72febc78ad4dc82e229c74454b6772e8b6427e82b8ea01b80880ff0",
+    "events": "4922da04606bb278c7cc6e2967d9152bb16d6265ad3a748e8d4eabd443de4d3b",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1476,11 +1476,11 @@
    ],
    "events_head": [
     "('C', 0, 4294967295, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 7, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536948548, 7, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "e627aef1ef03499bd8b31e692f7b33569508353db9abd98f996b101ba92b04dc",
+    "events": "31b5c4b62e30923d20f17638290c56c4eef6634e71009a6e0d0c46e043b1dd4d",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1523,11 +1523,11 @@
    ],
    "events_head": [
     "('C', 0, 1839753098, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 3442053927, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536940812, 3442053927, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "1ee626c6e87ef790cbad0c4a35dfbd6b0b536d837c648f89fa1ca3f3cf49c775",
+    "events": "b80e05cf37d0042c1f2638014eec2c6f61912d968161b5815c10b32163664bb2",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1570,11 +1570,11 @@
    ],
    "events_head": [
     "('C', 0, 1076094348, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 7, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536942020, 7, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "3456be76d3f835a492e6b49cb8073b487480c97d19b7b93c0960eb6640b1c532",
+    "events": "ac4228d1a2977182b257998217cf89fac637c58409134d90a7456c417b094e30",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1617,11 +1617,11 @@
    ],
    "events_head": [
     "('C', 0, 12, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 922796015, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536940724, 922796015, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "a2833bd5b211d37f9570564907fba35aff0e1b527813e82960546965995d4d33",
+    "events": "dc76eb31d732b27ac1f6560e54048a535b887df4d76ba1b6289a27c2fed12735",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1664,11 +1664,11 @@
    ],
    "events_head": [
     "('C', 0, 2726887024, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 4001652011, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536943604, 4001652011, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "07f8ac9eb4da2753380e689964a78d104c37d09e39d04885c6bad42cf9b7ff9a",
+    "events": "a2176e52b901af176cd4389991e6a66076b226bb30ecc1150e5e21ebb72de8b3",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1711,11 +1711,11 @@
    ],
    "events_head": [
     "('C', 0, 0, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 2147483647, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536949832, 2147483647, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "8afe701042664b0a865909b33b0e9c3f9b8dacac3e6d2c61dc87444598671e9a",
+    "events": "42e197a86286188ebd80feeece333252bc1918a13cb2fbc591871d1ad58d957a",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1758,11 +1758,11 @@
    ],
    "events_head": [
     "('C', 0, 1, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 2725586938, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536951136, 2725586938, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "eff8edf94e9c2cb6da0a205c918cfadb4fa5d4cb74adac16469d5d9ae2e576ed",
+    "events": "90a95a158aeca9acf6ac4bfaa3ab22866d529b2fe08730d3ca7914698d75a2f3",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1805,11 +1805,11 @@
    ],
    "events_head": [
     "('C', 0, 0, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 1, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536941672, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "7e12e4df9bac8d731b8928ba2038e1d5d50910fbd5e28af5ee844de4fef2c253",
+    "events": "be16ce34196ed587949694fef5d43314df3c869ae329fa530f1556e140c744fd",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1852,11 +1852,11 @@
    ],
    "events_head": [
     "('C', 0, 3, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 3774328631, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536942500, 3774328631, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "3b0302c67ffff8087da45f55aa2f7fb253ae617c99bf75ddfa322b0780c16568",
+    "events": "9826c90f7490e12b7cb99153df6cf112d6a257247494b67535a85f573c4c3b8a",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1899,11 +1899,11 @@
    ],
    "events_head": [
     "('C', 0, 0, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 1786326658, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 536946992, 1786326658, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "8ea506a72dea998665f8fa9895bf8c1dca9b28bbcb9cf096bfe04ddfd064724c",
+    "events": "b9b3405ac68bc856b6720df224cd22226fcd1d6556dea2ba53f346237fc4e4c5",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1954,7 +1954,7 @@
    ],
    "events_head": [
     "('C', 0, 3426167942, 'S', 'F', 'T', None)",
-    "('C', 1, 0, 0, 2224734438, 'S', 'F', 'T', None)",
+    "('C', 1, 0, 536940548, 2224734438, 'S', 'F', 'T', None)",
     "('C', 2, 0, ('SP', 0), 'S', 'F', 'T', None)",
     "('W', 536940548, 4, 0)",
     "('W', 536940552, 4, 0)",
@@ -1964,7 +1964,7 @@
     "('C', 3, 3426167942, ('SP', -100), 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "77da21949b54d11af47cb8cdb3d30b49645f58ad39787f3751386b2c1ea037dd",
+    "events": "0b1efba3482bdabfaabb6e81457f3ed3eeeb4b4a48e4fb44f60246c666472317",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -2316,11 +2316,11 @@
    ],
    "events_head": [
     "('C', 0, 3358579451, 'S', 'F', 'T', None)",
-    "('C', 1, 1, 1, 168044460, 'S', 'F', 'T', None)",
+    "('C', 1, 1, 536946944, 168044460, 'S', 'F', 'T', None)",
     "('C', 2, 0, ('SP', 0), 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "aa5ddf239b54084d8e645ca6de4099704cb8910d1b8de24c0991893a9e6d0f7a",
+    "events": "a6ec746d535f7357356918fec52d6e0798f5658737e750ca99788706fc8c194b",
     "kind": "return",
     "ncalls": 3,
     "ret": [
@@ -2567,6 +2567,12 @@
  },
  "ghidra_size": 454,
  "globals": [],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "e556ab5692bf509d",
+  "stack_arg_window": 48
+ },
  "module": "notify",
  "nptr": -1,
  "oracle": {

@@ -1,0 +1,5524 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 4, 3694469211, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "07dec42d3aee1fd654f2afd577745dd1ae78825c637ceca3b30b3e1d527f95e6",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1276959699,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 1163772138, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "033d3fae64ead938f3242d2c00f61305c44c54754750cc755c84e0ffc5d93486",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4067469868,
+     1797429778,
+     2147483648,
+     315044147
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 1,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 3677430904, 471345317, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "49784e611c39943b3726496beabe793f376973e97b68d795740bb6119fa4c3bd",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4290042576,
+     598759513,
+     3677430904,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-2",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 2,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 3842370354, 2655161023, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "7aac49962ecf55d110897be839663e60e5e8ac8ad0b3425fcfa28f5a43ba9813",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     16,
+     2147483647,
+     3842370354,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-4",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 4,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 499087790, 3178863954, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "0cf70350066c9e23f7c619e9021d141c5a06fb70b4be20642723c64b02077f5b",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1346232374,
+     1556998536,
+     499087790,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-9",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 9,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 8, 3586673693, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "1abe61bd0d5158cd6c965953ee3008a240fb824d29c167fe1750d71bb3cf19cd",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     182454980,
+     995058044,
+     8,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-10",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 10,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 256, 801746852, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "62f4422340517d2afd4bcd8d6b3567d7f5c4ef5fc09f39315dcfc23a2df0e35e",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     2147483648,
+     256,
+     1426281073
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-11",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 11,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 5, 1542880163, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "cf9741005b39ccd28f14c2c2d25722279c5f8c1347de788072c1d84fe0f44c1e",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     8,
+     3217736208,
+     5,
+     1103693227
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-12",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 12,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 6, 287561451, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "7d4c3deb9f9025d3231625c01b2f0be37921209e43fbc1da680fa5a6e09af7db",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1156718256,
+     1944344031,
+     6,
+     617681966
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-13",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 13,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 3454407978, 886755549, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "78b5835a4f61093a620cc79ddbc620cf12e368cce96f1a20789d95d7278348c7",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2024561310,
+     2147483648,
+     3454407978,
+     16
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-16",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 16,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 4178753371, 4075769455, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "16945c7dcbf3a5ddbe04922d1a3d691f5314cfe69d28a91b623ed40b8fccf2da",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     6,
+     1536401714,
+     4178753371,
+     255
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-19",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 19,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    241528
+   ],
+   "events_head": [
+    "('C', 0, 4, 2306919366, 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)"
+   ],
+   "expect": {
+    "events": "e4cc6aa4f8ccdcb0dd4b5661d0a59f5449baad1e9097aae9e2abc614000e9196",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     2306919366,
+     2,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-20",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 20,
+    "xpsr": 0
+   },
+   "new_instructions": 23,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 2870852768, 2217669457, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "1f40a0ed545bcbee1f328c829dedf86c5f1168f8ee2c11d1d64e298390f29962",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     843060076,
+     1,
+     2870852768,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-21",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 21,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 2149248134, 3712121755, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "e78b7ff22d82c1145b39d9c30c8eb1fbdfb4f9ab1102ac3dbd173bfa43a84506",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3751937804,
+     12,
+     2149248134,
+     604019693
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-25",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 25,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 3639365232, 1775869161, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "b043edf7e1dd2611981fa67fd3d437ca5bcee054026dc124d768488aeede9641",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     187818536,
+     681194263,
+     3639365232,
+     4125446660
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-27",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 27,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 1, 1542213390, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "2a6274b29e648ff763e7b8ec503e09ca0ea9728819408cb0e9ea59a93eec20f0",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3711083943,
+     4285183211,
+     1,
+     2592385448
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-28",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 28,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 1, 2417460406, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "925aa5e53f79a2cd624f87a530a266efca7169a4cdf1c1f551d4ac2302a19a01",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     256,
+     8,
+     1,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-30",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 30,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 7, 1988174091, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "6c69a5509fadb82e5b79cae22a18e895a6cebc2b9ebba551cdba3125ca35f13f",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4294967295,
+     2461003590,
+     7,
+     53351545
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-31",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 31,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 3442053927, 615009301, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "d4c62cbb1bd9bdc21d4c3ff58d85a5350060931450d4d718a4e51bc674639cc9",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1839753098,
+     2706821390,
+     3442053927,
+     1170652979
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-32",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 32,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 922796015, 2360084761, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "3fd2db83cbb24f31192e8d18eccacfa73dc6e167ec68d9d885bde22edddd017c",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     12,
+     3990671540,
+     922796015,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-34",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 34,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 4001652011, 4019880274, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "a85f9671240662fb2097fdde27f69966e50357e7905d0fd3d08fc3dc6afc66a0",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2726887024,
+     3578977268,
+     4001652011,
+     1
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-35",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 35,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 2147483647, 823752600, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "cb5695233c5c3485213472075be9297831c0b55e745c465abd1108d403576e47",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     12,
+     2147483647,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-36",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 36,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 3774328631, 2944518647, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "7d58a4058db028f95fe8a00d546c4eb3d912868f449b3822b99d4d3d0acf7c34",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     1587124134,
+     3774328631,
+     1997155928
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-39",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 39,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 3059135833, 2096484019, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "65774eabd8f8d9c0e60f548d98ad8489f05e66b5dfb80598efec80d681856993",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3886568119,
+     256,
+     3059135833,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-41",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 41,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 12, 509112996, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "cfc76fa13fbe151715244c3e3566ea706474c286c96818b7b79aa4fc37b69e12",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     538639782,
+     4,
+     12,
+     3983748582
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-42",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 42,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 1643521744, 217414738, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "bab9cc23d2080622e85ea13cc7145c9d6635339b0207448a11d3b1b5985c8cc3",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     3098095624,
+     1643521744,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-44",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 44,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536950448, 1113440726, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "a0eead957ca873723d054f6c8064618207ed8d6ffc8489a39f7865b47dc1b9ce",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941384,
+     536952304,
+     536950448,
+     536949968
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr4-0",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "scratch_seed": 700,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536947944, 1471926857, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "4af065fad928ccffd40b479e9b8e6bb38832edc6ccd6a7d5a1593d3d71ab4f4c",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536947328,
+     536938188,
+     536947944,
+     536951256
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr4-2",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "scratch_seed": 702,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536937260, 152137493, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "e7ca9303ab808c0ffdf59cd845ee89bcd6d43fed53bb40d83a9e708ada1c6430",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945664,
+     536946288,
+     536937260,
+     536949848
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr4-3",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "scratch_seed": 703,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 1547220657, 1113440726, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "91ef037f7ea4c3f8be141858fa46a34c1e1563bec8e8b9bed70554bf5c9cbde0",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941384,
+     536952304,
+     1547220657,
+     880227538
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr2-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 700,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 16, 1471926857, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "fde61f4054e6c0fa4ab9987150d8a1aefe466db8923c67269b618d6ab8b958c2",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536947328,
+     536938188,
+     16,
+     2236840408
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr2-2",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 702,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 1443398446, 152137493, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "5410405b4232cd050e55e47a5616fa5909785fe1e72b143ff34c62fdd3753f26",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945664,
+     536946288,
+     1443398446,
+     3598169178
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr2-3",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 703,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 1, 3694469211, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "19bd000af475933c33aaf174a56082f009a5d0d27922a4f35206a3a415dc2cd5",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1276959699,
+     12,
+     1,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "cfgsel-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    241528
+   ],
+   "events_head": [
+    "('C', 0, 4067469868, 1797429778, 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)"
+   ],
+   "expect": {
+    "events": "40c41e32ecc5d00eb01c0c6969b0c5989e5a783f05630bd9fd5fb5cbc5b6aa75",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4067469868,
+     1797429778,
+     2,
+     315044147
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "cfgsel-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 1,
+    "xpsr": 0
+   },
+   "new_instructions": 23,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 3, 471345317, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "36fd5688ed0865d37f5c66291af1d04edb231e1e0a99b0ec45746ea4aa90677b",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4290042576,
+     598759513,
+     3,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "cfgsel-2",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 2,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 2147483647, 2987881189, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "87d64fcfe6457d716030600e3ac4d808f2b91e8571e0f8eec68aa9534edb5500",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4294967295,
+     4142138223,
+     2147483647,
+     2671219995
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 1065353216,
+     "1": 3204448256
+    },
+    "id": "fp-49",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 49,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 3, 3904235970, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "c16cad8a077674d646aa2e00a63caf0f4454b6676d961fe53d8f152c402f6455",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     271826021,
+     7,
+     3,
+     3948225427
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 3212836864,
+     "1": 0
+    },
+    "id": "fp-50",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 50,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 2147483647, 735384069, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "284cf6c16fd2157d18fe2d38ee4a978a09deeb3f3fa7842785390e4ef0149101",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3856939601,
+     1894272194,
+     2147483647,
+     2092907358
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 3204448256,
+     "1": 3239897098
+    },
+    "id": "fp-52",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 52,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 2147483647, 3921118200, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "2157103aa316978deafe21e26eb9dbada90233ed49ef664d530259cceed0a247",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1740848604,
+     2393220392,
+     2147483647,
+     2556506514
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 2147483648,
+     "1": 3204448256
+    },
+    "id": "fp-54",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 54,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 3578670822, 1028059815, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "317239933bf3229fdee8adce6cd8f203a5b4148cab4c1e118c584bf8b6293968",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     8,
+     3577755483,
+     3578670822,
+     8
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 1065353216,
+     "1": 0
+    },
+    "id": "fp-55",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 55,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 206381930, 480847480, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "28668b0ac82a6f12f5123b3407fedc9c3d42b19a552d28554e00b825c838ae39",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     5,
+     3291529428,
+     206381930,
+     1
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 3212836864,
+     "1": 3184315597
+    },
+    "id": "fp-56",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 56,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 1677850251, 2444602602, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "5617bf292c68f78b0dd5d065b2d4347f98cd45e0fba268b3f0af434b1e9587d5",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3720324128,
+     2846093838,
+     1677850251,
+     7
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 1056964608,
+     "1": 3239897098
+    },
+    "id": "fp-57",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 57,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 1163772138, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "033d3fae64ead938f3242d2c00f61305c44c54754750cc755c84e0ffc5d93486",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [
+     [
+      536880448,
+      "ffffffff"
+     ]
+    ],
+    "args": [
+     4,
+     3322790363,
+     5,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-0-6",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 6,
+    "xpsr": 0
+   },
+   "new_instructions": 30,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0,
+    0,
+    3,
+    0,
+    0,
+    1
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072,
+    92072,
+    241528,
+    92072,
+    92072,
+    469120
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 1935641720, 4140973137, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 3780, 4, 4294967295)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('W', 3768, 4, 4294967295)",
+    "('C', 5, 2345269775, 3092785552, 1, 'S', 'F', 'T', None)",
+    "('C', 6, 'S', 'F', 'T', None)",
+    "('W', 4172, 4, 38)",
+    "('C', 7, 'S', 'F', 'T', None)",
+    "('C', 8, 128, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1090209257b624bb14a9a1fb8a1fdc2ede95965e638d854c786ccd1ab8d8541b",
+    "kind": "return",
+    "ncalls": 9,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2345269775,
+     3092785552,
+     1935641720,
+     554330043
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      12,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ],
+     [
+      12,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 400,
+    "xpsr": 0
+   },
+   "new_instructions": 49,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 64,
+  "ratio": 0.8649,
+  "total": 74,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 202,
+ "globals": [
+  "0x20002540",
+  "0x2000253c",
+  "0x2000230c",
+  "0x20007554"
+ ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "e556ab5692bf509d",
+  "stack_arg_window": 48
+ },
+ "module": "display",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "i32",
+ "search": {
+  "candidates": 202,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 44,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 202,
+ "symbol": "ui_raster_height_task",
+ "va": "0x000430c0"
+}

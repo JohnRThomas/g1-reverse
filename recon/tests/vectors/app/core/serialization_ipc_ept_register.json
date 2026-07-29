@@ -1,0 +1,3224 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 12, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "f057d8672d42f91621224284d1368f1ef7ecba582bd600e4b467c1a34cf22407",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1276959699,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 1797429778, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "bdfe4a5d759cee3ff0361e64d367ad8ed18fc1845454f441dd497de3cd59121d",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4067469868,
+     1797429778,
+     2147483648,
+     315044147
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 1,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 598759513, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "4cf403825b6976e7f7f1abc07a5a968aec751f845c1574d7fdece2333d840145",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4290042576,
+     598759513,
+     3677430904,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-2",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 2,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 255, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "32747fed03a7cf7faf7e95c8f18cb8feff03b720ec48a7906d55669f9d1d5a34",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2618385373,
+     255,
+     8,
+     3619521758
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-3",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 3,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 2147483647, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c9a380ff0bd83761423e521bb98480f2ce76426f2657ff4a2dca893392103ff2",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     16,
+     2147483647,
+     3842370354,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-4",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 4,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 3188701995, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "a14d4e31733a3ce1819cfaef3352e92916aee7d248397b90f613451fb2c19c7a",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     3188701995,
+     8,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-5",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 5,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 3322790363, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "3ceca57efb6e6d2a36789153b0f36c22aa9cd4966b7a8bc7e516a7e79e3cf8fd",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     3322790363,
+     5,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-6",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 6,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 1604804925, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "53db04c82c3dd7ff5c8a63c551e96acda250a7a8dc70158eb225fd98d9143019",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2300957721,
+     1604804925,
+     1,
+     2363272863
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-7",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 7,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 708972563, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "9d0df4445398abb87eaa380a96f888862cfb78b1368dec8800fd4c5005e4da3e",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2156366374,
+     708972563,
+     558645175,
+     4
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-8",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 8,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 1556998536, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "b8af19b84e3280abe8d0e27f32cb073a07351253adb307a467f7498d6e6c0287",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1346232374,
+     1556998536,
+     499087790,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-9",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 9,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 995058044, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e6a57da39268f88cc0b283415b246977de15496085b006ce1ae1f713f8d953d8",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     182454980,
+     995058044,
+     8,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-10",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 10,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 2147483648, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ed0c258d23b34a092616f5d1b420498317839e3d57a3c730785498d98999a645",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     2147483648,
+     256,
+     1426281073
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-11",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 11,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 3217736208, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0f851a913f472a8e5747f5bf316e6f34cbad6beedf06ca3adf3394779441667a",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     8,
+     3217736208,
+     5,
+     1103693227
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-12",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 12,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 1944344031, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "5bf812baaebba53fc0e1372521d88977dcc80bd0a2047585e67dcab9d576bc41",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1156718256,
+     1944344031,
+     6,
+     617681966
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-13",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 13,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 256, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "9b7d6e521a65858f5c3accafaee8ed190e2bbfbd6d2a88d265b78bca25bd75e6",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     7,
+     256,
+     5,
+     4
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-15",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 15,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 3254638692, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "d80eff8bedfa7ff3200c64a4eaab9e79b9f96928d1f4a8d47754d9d4bb443990",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     3254638692,
+     1168623309,
+     4252165479
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-17",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 17,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 0, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "30279642820dab348c686e866107f01171e8ce3c6907d0547b2e82febff1525e",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3912442165,
+     0,
+     697236451,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-18",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 18,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 1536401714, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "145b36c6e5164e40a04cd71571d60a67b98138009f91b9082f0b9ab49e940fb2",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     6,
+     1536401714,
+     4178753371,
+     255
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-19",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 19,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 2306919366, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "aca03335745eb4b8fea1d4d5bfd83200a6f525f87c2d9dc595e4be7ac9147a7a",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     2306919366,
+     2,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-20",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 20,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 1, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "14b87747a31799cbe611dafd5347c39bc1f2eb0eb1c9fd25eb72be101e7ac34f",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     843060076,
+     1,
+     2870852768,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-21",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 21,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 3001296298, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "36c4ab517e7a7bf92483972ed51a248b2880146dc7de17851f3ff82cb618c6f3",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     7,
+     3001296298,
+     4294967295,
+     2451975022
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-22",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 22,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 241044672, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "8f4aae0589d55782542eaf8ac7090bfb79690945b057d990f1e4d328dd96d85c",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1591295399,
+     241044672,
+     2034212132,
+     1515885587
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-23",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 23,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 6, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "45410fb11928fc911ec78381948c3a5369dbddb74c0361294afeecfe131f59ff",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     6,
+     2967241396,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-24",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 24,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 681194263, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ebc008c684964c6e16a5b35a487fc8f6a91be4e13bcc6e0fdfe79f1e0bea0d7e",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     187818536,
+     681194263,
+     3639365232,
+     4125446660
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-27",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 27,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 4285183211, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "4d0445de63a10ecf098d8ab9d6887b5767d375f662bea1bab82d86b5a61b8ab3",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3711083943,
+     4285183211,
+     1,
+     2592385448
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-28",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 28,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 8, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "60d26d9942b637d3a11e0caabdda5977770c99d1482c72fd44ef1b127f4d0a98",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     256,
+     8,
+     1,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-30",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 30,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 2461003590, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c932fc413ce6876036c16ad3bf5a08611d7dba99c17e5bb4b66b51b5316d77aa",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4294967295,
+     2461003590,
+     7,
+     53351545
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-31",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 31,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 2706821390, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0bc37aa2c8e614f091599c4dcf34f5272c1baea30d288802d0208cdfce8ddd58",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1839753098,
+     2706821390,
+     3442053927,
+     1170652979
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-32",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 32,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 7, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "d665ffe1ea18aa03e5e77285b86e0b6c6c0727f14632109fc28217031b438f44",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1076094348,
+     7,
+     7,
+     5
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-33",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 33,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 3990671540, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "b8937fa96cd907666c6ab4b7c4c575ad1f9a16724f7d6e02c408c6e7c8e98a89",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     12,
+     3990671540,
+     922796015,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-34",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 34,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 3578977268, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "03b287121c7c6f5cf7a696ba838a8bf4afe027a74945d35fedff47d1f4eca429",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2726887024,
+     3578977268,
+     4001652011,
+     1
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-35",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 35,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 2057795936, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0824704a4a5a403dd842717dbdb918e3424ef48745232f8d72351a020fbdc516",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1,
+     2057795936,
+     2725586938,
+     1299241558
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-37",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 37,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 1587124134, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "6b330a8de49345320d4fb71588c3fe2fedc7d6aae5e6f448bd038b96e86a934a",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     1587124134,
+     3774328631,
+     1997155928
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-39",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 39,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 3928041777, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ee7d506f1d1a09c9904c53a809b55c1fe428ed21c5c29a9062011b44ebdbd82d",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     3928041777,
+     1786326658,
+     1835695343
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-40",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 40,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 4, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "7f7ce22336351638acc240b0ee9f266b02dc3359a509628c62f6019a93a8b729",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     538639782,
+     4,
+     12,
+     3983748582
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-42",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 42,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 2, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "2ea17a4104b7e59ecbb1018c55fe4c37e35359b1c832fc31a14e8196978c39c5",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1,
+     2,
+     4239591256,
+     899981045
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-43",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 43,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 3098095624, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ef38aa420820c8d4a80650e3f70029dfc11b5d14c0d4975293d47733e610597a",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     3098095624,
+     1643521744,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-44",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 44,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 1010879855, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "dd369970e1be91912e96aaf861f23ffa5a45a9efed665568b1a3545639cafe26",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2147483647,
+     1010879855,
+     16,
+     6
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-47",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 47,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 536952304, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0e6aebc8fc8faab243ce26e8c76da4e11c276c21ba39cf38b87c87430dfc0f5e",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941384,
+     536952304,
+     536950448,
+     536949968
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr4-0",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "scratch_seed": 700,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 536948372, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "8226243ea482a75e9afde8582357edaed3c64c5cdcafc79cc8e768b83e4aa6ab",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943312,
+     536948372,
+     536948184,
+     536940332
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr4-1",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "scratch_seed": 701,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'eeprom_st25dv_init ready\\r\\n'), 536938188, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'update_eeprom_interface\\r\\n'), 2963773301, 4096, 536902216, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "a0dd852f5cc82802bce91b62db8d2f945f927388760c6222771b7c01c015520d",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     536902216
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536947328,
+     536938188,
+     536947944,
+     536951256
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr4-2",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "scratch_seed": 702,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'parent bus device not ready\\r\\n'), 3092785552, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "f33b569f01ff44c406cb11266752b4db0bd0da352886a912cadbe0c544568b1e",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2345269775,
+     3092785552,
+     1935641720,
+     554330043
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 400,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    550082,
+    549772,
+    515492,
+    549772,
+    515492
+   ],
+   "events_head": [
+    "('W', 536880080, 2, 83)",
+    "('W', 536880084, 2, 83)",
+    "('W', 536880088, 4, 4096)",
+    "('W', 536902220, 4, 536880076)",
+    "('W', 536902224, 4, 559672)",
+    "('W', 536902232, 4, 536902240)",
+    "('C', 0, 536902240, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'parent bus device not ready\\r\\n'), 1164329427, 4096, 536902216, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'\\nError: Device \"%s\" is not ready; check the driver initialization logs for errors.\\n'), 0, 4096, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "9b0117a40c34a99d2e2b97696ebe79adfc552dcf072198772ffe54d24a5060e6",
+    "kind": "return",
+    "ncalls": 5,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536902216,
+      "00000000"
+     ],
+     [
+      536880076,
+      "00000000"
+     ],
+     [
+      536902240,
+      "00000000"
+     ]
+    ],
+    "args": [
+     8,
+     1164329427,
+     7,
+     1937427917
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "combo-0-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 600,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 35,
+  "ratio": 1.0,
+  "total": 35,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 84,
+ "globals": [
+  "0x20007a48",
+  "0x200023cc",
+  "0x20007a60"
+ ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "e556ab5692bf509d",
+  "stack_arg_window": 48
+ },
+ "module": "core",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "i32",
+ "search": {
+  "candidates": 179,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 43,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 84,
+ "symbol": "serialization_ipc_ept_register",
+ "va": "0x000259d4"
+}

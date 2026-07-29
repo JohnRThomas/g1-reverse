@@ -1,0 +1,99 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    2,
+    1,
+    1
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    550196,
+    466604,
+    466604
+   ],
+   "events_head": [
+    "('C', 0, 536902116, 0, 'S', 'F', 'T', None)",
+    "('C', 1, 536886840, 'S', 'F', 'T', None)",
+    "('C', 2, 536887056, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "27291dd652bff22b8feee97b185b000be2281d3274fdc129cb468c11f1a04ddf",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1276959699,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": []
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 32,
+  "ratio": 1.0,
+  "total": 32,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 90,
+ "globals": [
+  "0x200079e4",
+  "0x20021968",
+  "0x20003e38",
+  "0x20022168",
+  "0x20003f10"
+ ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "e556ab5692bf509d",
+  "stack_arg_window": 48
+ },
+ "module": "display",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "void",
+ "search": {
+  "candidates": 189,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 1,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 90,
+ "symbol": "spawn_flash_ops_and_brightness_threads",
+ "va": "0x00023a54"
+}

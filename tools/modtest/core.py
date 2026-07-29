@@ -358,10 +358,19 @@ class _CoverageRunner(emu.Runner):
         # candidate only needs the RAW window, which costs no write hook and no
         # read hook at all.
         self.stack_content = kwargs.pop("stack_content", True)
+        # Which core's image to interrogate for `callee_gpr_defs` (§22.3).
+        # None disables oracle register preservation entirely.
+        self.preserve_core = kwargs.pop("preserve_core", None)
+        if not ORACLE_PRESERVE:
+            self.preserve_core = None
         super().__init__(*args, **kwargs)
         self.covered = set()
         self.stack_arg_trace = []
         self.stack_raw_trace = []
+        self._pending_preserve = None
+        self._preserve_cache = {}
+        self._otm = None
+        self.preserved_calls = []
         self.call_sites = set()
         for insn in _MD.disasm(self.body[:self.size], self.va):
             if insn.mnemonic.split(".")[0] in ("bl", "blx"):
@@ -454,6 +463,21 @@ class _CoverageRunner(emu.Runner):
                 return
             ordinal = self._call_seq
             self._call_seq += 1
+            # THE r0-CLOBBER CLASS (§22.3).  Snapshot, BEFORE the call, every
+            # one of r0/r1 the real callee provably never writes; `_restore`
+            # puts them back after `emu`'s oracle has overwritten them.  The
+            # snapshot is bound to THIS call's return address so a `bl` into
+            # the function's own body -- which `emu` never oracles, and which a
+            # linear call-site scan can also invent -- cannot leak a stale
+            # restore into some later call.
+            self._pending_preserve = None
+            if self.preserve_core is not None:
+                keep = self._preserve_for(_uc, insn)
+                if keep:
+                    self._pending_preserve = (
+                        ((address + insn.size) | 1) & 0xffffffff,
+                        {index: int(_uc.reg_read(emu.REG[index])) & 0xffffffff
+                         for index in keep})
             record = []
             raw = []
             for index in range(4):
@@ -501,15 +525,80 @@ class _CoverageRunner(emu.Runner):
                 self.stack_arg_trace.append((ordinal, tuple(record)))
             if raw:
                 self.stack_raw_trace.append((ordinal, tuple(raw)))
-        if STACK_ARG_WINDOW:
+        if STACK_ARG_WINDOW or self.preserve_core is not None:
             for site in sorted(self.call_sites):
                 uc.hook_add(UC_HOOK_CODE, _hook, begin=site, end=site)
+
+        def _restore(_uc, _address, _size, _ud):
+            # `emu` returns from every oracled call by redirecting PC to
+            # ORACLE_TRAMPOLINE, a mapped `bx lr`, AFTER it has written r0/r1.
+            # That address is executed exactly once per oracled call and by
+            # nothing else, so it is the one place a post-call fixup can live
+            # without touching `emu`, which is frozen and shared with the net
+            # core.  LR still holds this call's return address, which is what
+            # binds the fixup to the call that took the snapshot.
+            pending = self._pending_preserve
+            if not pending:
+                return
+            self._pending_preserve = None
+            expected_lr, values = pending
+            if (int(_uc.reg_read(emu.UC_ARM_REG_LR)) & 0xffffffff) != expected_lr:
+                return
+            for index, value in values.items():
+                _uc.reg_write(emu.REG[index], value)
+            self.preserved_calls.append((expected_lr, tuple(sorted(values))))
+        if self.preserve_core is not None:
+            uc.hook_add(UC_HOOK_CODE, _restore,
+                        begin=emu.ORACLE_TRAMPOLINE,
+                        end=emu.ORACLE_TRAMPOLINE)
         return uc
+
+    _REG_INDEX = {**{"r%d" % i: i for i in range(13)},
+                  "ip": 12, "sb": 9, "sl": 10, "fp": 11}
+
+    def _preserve_for(self, uc, insn):
+        """Regs of r0/r1 to carry across THIS call, or None.
+
+        The target is resolved the same way `emu` resolves it -- the branch
+        immediate, or the register for a `blx rN` -- and then mapped through
+        `oracle_target_map`, so a candidate's generated stub is interrogated as
+        the ORIGINAL callee it stands for.  A target with no map entry (the
+        compiler did not expose it) simply preserves nothing on the candidate
+        side; that asymmetry is harmless because a candidate compiled against
+        an `extern` never reads a caller-saved register across a call, so
+        preservation can change the GOLDEN's trace and never the candidate's.
+        """
+        head = insn.mnemonic.split(".")[0]
+        target = None
+        if "#" in insn.op_str:
+            try:
+                target = int(insn.op_str.split("#")[-1], 0)
+            except ValueError:
+                target = None
+        elif head == "blx":
+            index = self._REG_INDEX.get(insn.op_str.strip())
+            if index is not None:
+                target = int(uc.reg_read(emu.REG[index]))
+        if target is None:
+            return None
+        target &= ~1
+        target = (self._otm or {}).get(target, target)
+        if target in self._preserve_cache:
+            return self._preserve_cache[target]
+        written = callee_gpr_defs(self.preserve_core, target)
+        keep = None
+        if written is not None:
+            keep = tuple(r for r in _ORACLE_CLOBBERED if r not in written) or None
+        self._preserve_cache[target] = keep
+        return keep
 
     def run(self, *args, **kwargs):
         self.stack_arg_trace = []
         self.stack_raw_trace = []
         self._call_seq = 0
+        self._pending_preserve = None
+        self.preserved_calls = []
+        self._otm = kwargs.get("oracle_target_map")
         state = super().run(*args, **kwargs)
         # A capture is taken AT the `bl`, before it executes.  A run that
         # builds a record and then FAULTS at the call has passed that record to
@@ -936,6 +1025,195 @@ def live_in_arity(core, va, cap=4):
     return arity
 
 
+# --------------------------------------------------------------------------
+# THE r0-CLOBBER FALSE-FAILURE CLASS (§22.3) -- derived from the callee's bytes
+# --------------------------------------------------------------------------
+
+#: `emu.Runner.run`'s order-keyed call oracle writes **r0 and r1 only**
+#: (`uc.reg_write(UC_ARM_REG_R0, o0)` / `R1, o1`); r2, r3 and r12 are left
+#: untouched.  So r0 and r1 are the ONLY registers whose unconditional clobber
+#: can manufacture a false failure, and this module never needs to reason about
+#: the rest of the caller-saved bank.
+_ORACLE_CLOBBERED = (0, 1)
+
+#: Preserve, across an oracled call, every one of r0/r1 that the REAL CALLEE
+#: provably never writes.  ON by default.  Disable with
+#: MODTEST_ORACLE_PRESERVE=0 (which restores the pre-2026-07-29 semantics).
+ORACLE_PRESERVE = os.environ.get("MODTEST_ORACLE_PRESERVE", "1") == "1"
+
+_CALLEE_DEF_CACHE = {}
+
+
+def callee_gpr_defs(core, va, depth=3):
+    """Which of r0/r1 the callee at `va` CAN WRITE, from its OWN SHIPPED BYTES.
+
+    Returns a frozenset subset of `{0, 1}`, or **None** when it cannot be
+    established -- in which case the caller must assume both, which is exactly
+    today's behaviour.
+
+    WHY THIS EXISTS.  §22.3.  The shipped firmware was built at `-Os` with
+    `-fipa-ra` on, so a caller may keep a value live in r0-r3 ACROSS a call
+    when the compiler could see that the callee does not clobber it:
+
+        00026636  vldr s7,  [r0, #0x18]     <-- r0 = state
+        0002666c  bl   #0x265e8             <-- fast_inverse_sqrt: float in/out
+        000266b4  vldr s13, [r0, #8]        <-- r0 STILL the state pointer
+
+    `emu`'s oracle writes `sha256(ordinal)` into r0:r1 at EVERY call whatever
+    the callee is, so the shipped body faults on the second `vldr` and the
+    frozen golden records a fault the real hardware never takes.  The
+    candidate, compiled against an `extern`, reloads the pointer from a
+    callee-saved register and does not fault: a guaranteed FAIL for a CORRECT
+    reconstruction.  `imu_mahony_ahrs_update` is the identified instance.
+
+    The evidence that fixes it is the same evidence that found 310 of 2,383
+    Ghidra callee arities over-wide (§22.7): the callee's own instructions.
+    `fast_inverse_sqrt` is a leaf that takes and returns a float and never
+    names r0, so preserving r0 across the call reproduces the hardware.
+
+    DIRECTION OF CONSERVATISM.  Anything unclassifiable -- an unresolved
+    computed branch, a `blx` through a register, a callee with no catalogued
+    size, a call cycle, recursion past `depth` -- returns None and the register
+    is clobbered as before.  The analysis can therefore only ever say "this
+    register IS written" too often, never too rarely, so turning it on can only
+    remove false failures, never manufacture them.
+
+    It is NOT a live-range analysis of the caller.  It does not need to be: if
+    the callee writes the register the oracle clobbers it exactly as before,
+    and if the callee does not, preserving it is what the silicon does.
+    """
+    key = (core, va & ~1)
+    if key in _CALLEE_DEF_CACHE:
+        return _CALLEE_DEF_CACHE[key]
+    # Cycle guard: while this callee is in flight it answers "unknown", so a
+    # recursive or mutually recursive call graph degrades to the status quo
+    # instead of looping or inventing an answer.
+    _CALLEE_DEF_CACHE[key] = None
+    result = _callee_gpr_defs(core, va, depth)
+    _CALLEE_DEF_CACHE[key] = result
+    return result
+
+
+def _callee_gpr_defs(core, va, depth):
+    ctx = core_ctx(core)
+    base = va & ~1
+    size = ctx["sizes"].get(va) or ctx["sizes"].get(base)
+    if not size or size > 0x2000:
+        return None
+    try:
+        blob = ctx["rawread"](base, size + 64)
+    except Exception:                                   # noqa: BLE001
+        return None
+    defs = set()
+    seen = set()
+    work = [0]
+
+    def _sub(target):
+        """Merge a nested callee's writes; None propagates as 'unknown'."""
+        if depth <= 0:
+            return False
+        inner = callee_gpr_defs(core, target, depth - 1)
+        if inner is None:
+            return False
+        defs.update(inner)
+        return True
+
+    while work:
+        off = work.pop()
+        if off in seen or off < 0 or off >= size:
+            continue
+        for insn in _MD.disasm(blob[off:size], base + off):
+            offset = insn.address - base
+            if offset > 0 and (base + offset) in ctx["entries"]:
+                # FALLS THROUGH INTO THE NEXT CATALOGUED FUNCTION.  Whatever
+                # that one writes, this path writes; it is not analysed here.
+                return None
+            if offset in seen:
+                break                                   # path already covered
+            seen.add(offset)
+            head = insn.mnemonic.split(".")[0]
+            target = None
+            if "#" in insn.op_str:
+                try:
+                    target = int(insn.op_str.split("#")[-1], 0)
+                except ValueError:
+                    target = None
+            if head in ("bl", "blx"):
+                # A nested call: whatever IT writes, this callee writes.
+                if target is None or not _sub(target):
+                    return None
+                if defs.issuperset(_ORACLE_CLOBBERED):
+                    return frozenset(defs)
+                continue
+            if head in _TERMINAL or (head == "pop" and "pc" in insn.op_str):
+                break                                   # return
+            if head in _UNCOND or insn.mnemonic in _UNCOND:
+                if target is None:
+                    return None
+                if base <= target < base + size:
+                    work.append(target - base)
+                elif not _sub(target):
+                    return None                         # tail call, unknown
+                break
+            if head in _COND:
+                if target is None:
+                    return None
+                if base <= target < base + size:
+                    work.append(target - base)
+                elif not _sub(target):
+                    return None                         # conditional tail call
+                continue                                # and fall through
+            if insn.mnemonic in ("tbb", "tbh") or (
+                    insn.mnemonic in ("mov", "add") and
+                    insn.op_str.startswith("pc")):
+                return None                             # computed branch
+            try:
+                _reads, writes = insn.regs_access()
+            except Exception:                           # noqa: BLE001
+                return None
+            names = {insn.reg_name(w) for w in writes}
+            for index in _ORACLE_CLOBBERED:
+                if ("r%d" % index) in names:
+                    defs.add(index)
+            if defs.issuperset(_ORACLE_CLOBBERED):
+                return frozenset(defs)
+        else:
+            # THE WALK RAN OUT OF BYTES WITHOUT REACHING A TERMINAL.  The path
+            # continues into whatever is linked next and this analysis has NOT
+            # seen it.  Returning `frozenset()` here would assert "writes
+            # nothing" about a function it did not finish reading.
+            #
+            # MEASURED, and it is why this branch exists: `0x0000d588` is
+            # catalogued as FOUR BYTES holding `eor r3, r3, #0x80000000` -- a
+            # double-negation fragment with no return instruction at all.  The
+            # first version of this function answered "writes neither r0 nor
+            # r1" for it, and a cross-check against Ghidra's return kinds
+            # caught it as the ONE contradiction in 128 (Ghidra calls it
+            # `i64`, i.e. a result in r0:r1).  128 -> 127, and the remaining
+            # 127 all agree with Ghidra.
+            return None
+    return frozenset(defs)
+
+
+def oracle_preserve_map(core, targets):
+    """{callee_va: frozenset(regs to PRESERVE)} for the targets worth it.
+
+    Only entries that actually preserve something are returned, so an empty
+    map means the run is bit-for-bit what it was before this feature existed.
+    """
+    out = {}
+    if not ORACLE_PRESERVE:
+        return out
+    for target in targets:
+        written = callee_gpr_defs(core, target)
+        if written is None:
+            continue
+        keep = frozenset(r for r in _ORACLE_CLOBBERED if r not in written)
+        if keep:
+            out[target & ~1] = keep
+    return out
+
+
 _PC_RELATIVE = re.compile(r'\[pc,\s*#(?:0x)?([0-9a-fA-F]+)\]')
 
 
@@ -993,7 +1271,8 @@ def literal_pad(core, va, size, minimum=64, cap=0x800):
 def run_original(core, va, size, fixture, ret_kind="i32", max_insns=200000):
     ctx = core_ctx(core)
     body = ctx["read"](va, size, pad=literal_pad(core, va, size))
-    runner = _CoverageRunner(va & ~1, size, body, ctx["code_base"])
+    runner = _CoverageRunner(va & ~1, size, body, ctx["code_base"],
+                             preserve_core=core)
     kwargs = fixture.run_kwargs()
     state = runner.run(max_insns=max_insns, **callee_abi(core), **kwargs)
     return state, runner.covered
@@ -1527,7 +1806,8 @@ def run_candidate(core, symbol, tree, va, fixture, golden, ret_kind="i32",
         text_override=text_override)
     runner = _CoverageRunner(linked_va, size, body + tail,
                              core_ctx(core)["code_base"], own_readonly_tail=True,
-                             track_coverage=False, stack_content=False)
+                             track_coverage=False, stack_content=False,
+                             preserve_core=core)
     # THE CANDIDATE'S OWN .rodata MUST WIN over the shipped image at the same
     # addresses.  The candidate is linked at the ORIGINAL VA, so its .rodata
     # lands a few hundred bytes into the shipped flash image's own address
@@ -1645,14 +1925,28 @@ def vector_staleness(record):
     turn a safety feature into a wall.  `cli.cmd_run` reports the count so the
     gap is visible.  A vector stamped with a DIFFERENT fingerprint is refused.
     """
-    stamped = (record.get("harness") or {}).get("rev")
+    harness = record.get("harness") or {}
+    stamped = harness.get("rev")
     if stamped is None:
         return None
-    if stamped == harness_rev():
-        return None
-    return ("vector was generated by harness %s, this is %s -- regenerate it "
-            "(`cli.py gen`); the expectation it stores may not mean what this "
-            "harness compares against" % (stamped, harness_rev()))
+    if stamped != harness_rev():
+        return ("vector was generated by harness %s, this is %s -- regenerate "
+                "it (`cli.py gen`); the expectation it stores may not mean "
+                "what this harness compares against"
+                % (stamped, harness_rev()))
+    # THE ENV-VAR HOLE.  `harness_rev` fingerprints SOURCE, and the two
+    # semantics switches that matter are environment variables, so two runs of
+    # byte-identical harness code can freeze two different definitions of
+    # "expected" under one fingerprint.  Both are recorded at `gen`; compare
+    # them.  (Found while A/B-measuring the r0-clobber class -- the control arm
+    # and the treatment arm produced indistinguishable vector files.)
+    for field, current in (("derived_arity", DERIVED_ARITY),
+                           ("oracle_preserve", ORACLE_PRESERVE)):
+        if field in harness and bool(harness[field]) != bool(current):
+            return ("vector was generated with %s=%s, this run has %s -- "
+                    "regenerate it (`cli.py gen`)"
+                    % (field, harness[field], current))
+    return None
 
 
 def vector_path(core, module, symbol):

@@ -1,0 +1,133 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    2
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    293080
+   ],
+   "events_head": [
+    "('C', 0, 691488, ('SP', 0), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "af2969cd917ae8ba1c684389ce8f7e3226d2d4b47237475964f0e71824db5d39",
+    "kind": "fault",
+    "ncalls": 1
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1276959699,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 18,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         0
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         0
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 18,
+  "ratio": 0.2571,
+  "total": 70,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 190,
+ "globals": [],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "e556ab5692bf509d",
+  "stack_arg_window": 48
+ },
+ "module": "display",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "f32",
+ "search": {
+  "candidates": 141,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 5,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 1,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 190,
+ "symbol": "render_device_info_float_screen",
+ "va": "0x000361d8"
+}

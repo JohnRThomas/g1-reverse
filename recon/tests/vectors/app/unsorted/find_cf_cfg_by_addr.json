@@ -1,0 +1,132 @@
+{
+ "cases": [
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [],
+   "expect": {
+    "events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1276959699,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 15,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    534194
+   ],
+   "events_head": [
+    "('C', 0, 3848067850, 536915669, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "7a7a613a9c294bf21f1e5b14441b216b12db2cc581c88c96a687fbc83d7be682",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     536915668
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536915669,
+      "00000000"
+     ],
+     [
+      536915668,
+      "00000000"
+     ]
+    ],
+    "args": [
+     0,
+     3848067850,
+     1144309748,
+     4274511711
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "globall-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 200,
+    "xpsr": 0
+   },
+   "new_instructions": 15,
+   "stack_args": []
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 21,
+  "ratio": 1.0,
+  "total": 21,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 48,
+ "globals": [
+  "0x2000aed5",
+  "0x2000aed4"
+ ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "e556ab5692bf509d",
+  "stack_arg_window": 48
+ },
+ "module": "unsorted",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "i32",
+ "search": {
+  "candidates": 161,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 2,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 48,
+ "symbol": "find_cf_cfg_by_addr",
+ "va": "0x00059b5c"
+}

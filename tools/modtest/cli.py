@@ -112,7 +112,12 @@ def cmd_gen(args, trees):
             # See core.harness_rev for the incident that made this necessary.
             "harness": {"rev": mtcore.harness_rev(),
                         "stack_arg_window": mtcore.STACK_ARG_WINDOW,
-                        "derived_arity": mtcore.DERIVED_ARITY},
+                        "derived_arity": mtcore.DERIVED_ARITY,
+                        # §22.3: whether r0/r1 the callee provably never writes
+                        # were carried across an oracled call.  An ENV switch,
+                        # so it is invisible to `harness_rev` and is checked
+                        # separately by `core.vector_staleness`.
+                        "oracle_preserve": mtcore.ORACLE_PRESERVE},
             "coverage": {"covered": len(covered), "total": len(denominator),
                          "unresolved_indirect": unresolved,
                          "ratio": round(len(covered) / max(len(denominator), 1), 4)},

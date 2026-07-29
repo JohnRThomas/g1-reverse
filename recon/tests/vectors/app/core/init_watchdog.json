@@ -1,0 +1,2667 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 4, 3694469211, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 3694469211, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "cd1bba259af28fbe1ece39fba602bf8a0029664b95679051a272a7b249003bfa",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1276959699,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    3
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    549772,
+    552056
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 0), 0, 16, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "2404bff666f143a94351277fc8915df952bab56ba675aabd1d4bd549723cea24",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4067469868,
+     1797429778,
+     2147483648,
+     315044147
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 1,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 3677430904, 471345317, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 471345317, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "2b11e7ecf2daa6b74bf1599044651d5b0e4f99afef1694f1cde2190b4b503343",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4290042576,
+     598759513,
+     3677430904,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-2",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 2,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 3842370354, 2655161023, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 2655161023, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "2a0363bf064b27256558c3f07928c45b26ec3fe8eba3248e3e9e7966365c28b2",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     16,
+     2147483647,
+     3842370354,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-4",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 4,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 499087790, 3178863954, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 3178863954, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "d95f2581b217a063ef7c4ee8bef3534eab360fb23cf803d527e6d7af4a22a326",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1346232374,
+     1556998536,
+     499087790,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-9",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 9,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 8, 3586673693, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 3586673693, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "ad45c9dce9f56fab109dd2c0f6f7e7b6964509f0cd8c1f5cb1de25a012808009",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     182454980,
+     995058044,
+     8,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-10",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 10,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 256, 801746852, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 801746852, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "b67580556b4e05ef7cf848d299b1fedcfe531239d0bc522a4a2172e00efd4652",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     2147483648,
+     256,
+     1426281073
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-11",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 11,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 5, 1542880163, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 1542880163, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "111726d7a1fa1efe057f69abbeee4140d229f341549ace872326a126bcd3633b",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     8,
+     3217736208,
+     5,
+     1103693227
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-12",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 12,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 6, 287561451, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 287561451, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "c1ebb1e39b34610b5fb8542c225f59ada4d6bc3fef52dd6ab343cec1f00bcee0",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1156718256,
+     1944344031,
+     6,
+     617681966
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-13",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 13,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 3454407978, 886755549, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 886755549, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "49ff3da2281eb1305f486bb20a513dd9128652e0860012482261936722fc5457",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2024561310,
+     2147483648,
+     3454407978,
+     16
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-16",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 16,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 4178753371, 4075769455, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 4075769455, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "2bda9529dc651e736434fde547c1e35630f84113ee286a0487d25381870589dc",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     6,
+     1536401714,
+     4178753371,
+     255
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-19",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 19,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 2870852768, 2217669457, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 2217669457, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "e5b1dfdd944f9c456897f56cd080759762843c8b481a02c248c1ae667ee819cc",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     843060076,
+     1,
+     2870852768,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-21",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 21,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 2149248134, 3712121755, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 3712121755, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "9a608e751439c6acbbe70022da24a1253de4366d07ff6be44ac53e1029d82683",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3751937804,
+     12,
+     2149248134,
+     604019693
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-25",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 25,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 3639365232, 1775869161, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 1775869161, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "3f9f18cfd4ec548df502af6457fa5597c1822e2c6e85ce23596300e4c94aef50",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     187818536,
+     681194263,
+     3639365232,
+     4125446660
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-27",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 27,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 1, 1542213390, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 1542213390, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "ec4d8208c87f37bd1a6072be86307a7ef482621cc68798d3492cb5f9efa1a5db",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3711083943,
+     4285183211,
+     1,
+     2592385448
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-28",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 28,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 1, 2417460406, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 2417460406, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "ead04b473692239ba46990fb4139bf92296f386ae0bed4ac1c948f3821d1641a",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     256,
+     8,
+     1,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-30",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 30,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 7, 1988174091, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 1988174091, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "93f9474fc24488fd000b1050b4d33465bd0e90be0fef335ccf2c2a68aa1e281b",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4294967295,
+     2461003590,
+     7,
+     53351545
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-31",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 31,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 3442053927, 615009301, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 615009301, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "a93a539512ad721a34c844cf0a29c782bad98cf16458e66c7fc619d4b89a2ef1",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1839753098,
+     2706821390,
+     3442053927,
+     1170652979
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-32",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 32,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 922796015, 2360084761, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 2360084761, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "0db7b611b3be4bdc55b4ae768765fdff650d8307b53eabe00c3e920b8881468b",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     12,
+     3990671540,
+     922796015,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-34",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 34,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 4001652011, 4019880274, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 4019880274, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "00261b47ca5ed0f78c29806796b74b31ebf8a41b5d85e2dcb27499ea0893368c",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2726887024,
+     3578977268,
+     4001652011,
+     1
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-35",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 35,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 2147483647, 823752600, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 823752600, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "6e454e0fd0ba0974b901597c2dde36508761a55eba3038d01315d4a157bfe963",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     12,
+     2147483647,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-36",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 36,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 3774328631, 2944518647, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 2944518647, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "9a8e6a59f50051fcc429a1f55d0960b6276e70876a6f58fb3764544e8563ad8d",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     1587124134,
+     3774328631,
+     1997155928
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-39",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 39,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 3059135833, 2096484019, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 2096484019, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "4f268f76a57e3e96342330010dbc7b48b3a60ca19b58d4064bd31f9d34b3b3a0",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3886568119,
+     256,
+     3059135833,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-41",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 41,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 12, 509112996, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 509112996, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "ff9503447ff5a50a3be64c61fad07bf53fab2c804cada2b1ca3c91802b06e322",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     538639782,
+     4,
+     12,
+     3983748582
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-42",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 42,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 1643521744, 217414738, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 217414738, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "3ed92a818d03367148438833085b8412e0a59a271b4d9ca7c5f422cbef115006",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     3098095624,
+     1643521744,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-44",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 44,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 536950448, 1113440726, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 1113440726, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "2b331dbe8c99da7a2a138eff4473774d8507591411a6a6f2d8b0ff8b69a21e9b",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941384,
+     536952304,
+     536950448,
+     536949968
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr4-0",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "scratch_seed": 700,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 536947944, 1471926857, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 1471926857, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "daeb199854e400ff363c12a3a6291fb92f935e5416e398c69d964f50102d30e2",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536947328,
+     536938188,
+     536947944,
+     536951256
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr4-2",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "scratch_seed": 702,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 536937260, 152137493, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 152137493, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "e7787854b652b0c456fe69747a3224b4ae1c53cb3fba619389f756235e51551e",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945664,
+     536946288,
+     536937260,
+     536949848
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr4-3",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "scratch_seed": 703,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 1547220657, 1113440726, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 1113440726, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "9d7584fa2152474c881e96881c338e9c50aaedac2b9621992e6d3a336eda7f9c",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941384,
+     536952304,
+     1547220657,
+     880227538
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr2-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 700,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 16, 1471926857, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 1471926857, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "ccd32d6e74aca847ee0ecd8d60c8eb8a305c2c63689ae808ea9937f82aedf4b3",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536947328,
+     536938188,
+     16,
+     2236840408
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr2-2",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 702,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 1443398446, 152137493, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 152137493, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "f6bf47855ffb04147eb79aec10bdf82b4ac83d1a9a6540888d8649f892ebb293",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945664,
+     536946288,
+     1443398446,
+     3598169178
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr2-3",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "scratch_seed": 703,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 2147483647, 2987881189, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 2987881189, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "84e7b9844e124780944ce5da88d37a9de4efadf969b53a3a376332a53ca940b9",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4294967295,
+     4142138223,
+     2147483647,
+     2671219995
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 1065353216,
+     "1": 3204448256
+    },
+    "id": "fp-49",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 49,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 3, 3904235970, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 3904235970, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "ffac123fc9bd8b3cc851c3ba524c0f765313853510c8e3c26ce7518f2a03aac0",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     271826021,
+     7,
+     3,
+     3948225427
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 3212836864,
+     "1": 0
+    },
+    "id": "fp-50",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 50,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 2147483647, 735384069, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 735384069, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "ab54a2cd3fc14a768a2af7da6fd3b555a1e21bee935f1a7ac807ffedf3a53617",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3856939601,
+     1894272194,
+     2147483647,
+     2092907358
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 3204448256,
+     "1": 3239897098
+    },
+    "id": "fp-52",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 52,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 2147483647, 3921118200, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 3921118200, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "531390744e9415970f1c1de06304c523b9f80945b349fb6d4234d1da6db0e2cb",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1740848604,
+     2393220392,
+     2147483647,
+     2556506514
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 2147483648,
+     "1": 3204448256
+    },
+    "id": "fp-54",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 54,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 3578670822, 1028059815, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 1028059815, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "95c520e2c26ecc755353a01a6e96121b4ad40d9c815c53aafb49ba2389c17b84",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     8,
+     3577755483,
+     3578670822,
+     8
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 1065353216,
+     "1": 0
+    },
+    "id": "fp-55",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 55,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 206381930, 480847480, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 480847480, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "bffa4f949b05c82c91412dedb682022b964d29968a3400bc44f29722be3f99bc",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     5,
+     3291529428,
+     206381930,
+     1
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 3212836864,
+     "1": 3184315597
+    },
+    "id": "fp-56",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 56,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 1677850251, 2444602602, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 2444602602, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "b1bb7405347f89756bc4f02eccb6ea0fbf9a5a9f86914ebda1be254977a7bba3",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3720324128,
+     2846093838,
+     1677850251,
+     7
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 1056964608,
+     "1": 3239897098
+    },
+    "id": "fp-57",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 57,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 4, 2059510718, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 2059510718, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "a49a5adcbf98f7abafa386a3800d169c69c611cd08973f333574e0f16a00fddd",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     8,
+     2,
+     4,
+     2495041172
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 3204448256,
+     "1": 1266679808
+    },
+    "id": "fp-58",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 58,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 1966003740, 913139319, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 913139319, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "ffbd8670bee16f6d04a5ef8e9869f7cbee68666aa8ae0c7cfc420e2aecaaabc2",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2684056074,
+     2147483647,
+     1966003740,
+     0
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 2147483648,
+     "1": 0
+    },
+    "id": "fp-60",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 60,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 1, 3330584012, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'%s(): Callback in RESET_SOC disabled for this platform\\n'), ('RO', b'init_watchdog'), 16, 3330584012, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "becfcfde2afc45c936c3be9932b0e07dd5c47192f090fdbb99542a3a413d114a",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     256,
+     3605787990,
+     1,
+     0
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 1065353216,
+     "1": 3184315597
+    },
+    "id": "fp-61",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 61,
+    "xpsr": 0
+   },
+   "new_instructions": 38,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): Watchdog sample application\\n'), ('RO', b'init_watchdog'), 1935641720, 4140973137, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): %s: device not ready.\\n'), ('RO', b'init_watchdog'), 0, 4140973137, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "080bdd2c38d25d6478e1cd519fbaf5efced938166373ef5e9ed3b674d6073894",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2345269775,
+     3092785552,
+     1935641720,
+     554330043
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      12,
+      0,
+      0
+     ],
+     [
+      13,
+      0,
+      0
+     ],
+     [
+      14,
+      0,
+      0
+     ],
+     [
+      15,
+      0,
+      0
+     ],
+     [
+      16,
+      0,
+      0
+     ],
+     [
+      17,
+      0,
+      0
+     ],
+     [
+      18,
+      0,
+      0
+     ],
+     [
+      19,
+      0,
+      0
+     ],
+     [
+      20,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ],
+     [
+      12,
+      1,
+      0
+     ],
+     [
+      13,
+      1,
+      0
+     ],
+     [
+      14,
+      1,
+      0
+     ],
+     [
+      15,
+      1,
+      0
+     ],
+     [
+      16,
+      1,
+      0
+     ],
+     [
+      17,
+      1,
+      0
+     ],
+     [
+      18,
+      1,
+      0
+     ],
+     [
+      19,
+      1,
+      0
+     ],
+     [
+      20,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 400,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": []
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 51,
+  "ratio": 0.329,
+  "total": 155,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 364,
+ "globals": [
+  "0x2000230c",
+  "0x20007554",
+  "0x20007b50"
+ ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "e556ab5692bf509d",
+  "stack_arg_window": 48
+ },
+ "module": "core",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "i32",
+ "search": {
+  "candidates": 191,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 42,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 364,
+ "symbol": "init_watchdog",
+ "va": "0x0002ace0"
+}

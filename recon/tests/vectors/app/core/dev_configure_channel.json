@@ -1,0 +1,1212 @@
+{
+ "cases": [
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "kind": "fault",
+    "ncalls": 0
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943568,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 4,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    549772,
+    540876,
+    541626
+   ],
+   "events_head": [
+    "('R', 1082766865, 4, 0)",
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 536937040, 0, 'S', 'F', 'T', None)",
+    "('R', 1082766873, 4, 0)",
+    "('C', 2, 536937040, 1082766877, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "8f4f9f251d12af236886098b6e7663d8947518606a9f1606bad672e4efa479c0",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     1163768358
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536937040,
+     2147483648,
+     256,
+     1426281073
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-11",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 11,
+    "xpsr": 0
+   },
+   "new_instructions": 21,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    549772,
+    540876,
+    541626
+   ],
+   "events_head": [
+    "('R', 1075474339, 4, 0)",
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 536942764, 0, 'S', 'F', 'T', None)",
+    "('R', 1075474347, 4, 0)",
+    "('C', 2, 536942764, 1075474351, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "21bf868124ec1e0719c208e0c85027a657813a58a5ce6f418751b27ca3222dbf",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     1163768358
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536942764,
+     1010879855,
+     16,
+     6
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-47",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 47,
+    "xpsr": 0
+   },
+   "new_instructions": 21,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    549772,
+    540876,
+    541626
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 8, 0, 'S', 'F', 'T', None)",
+    "('C', 2, 8, 40, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1e627748947025d76c7de31e4bd32f41bf90aa0c4a63f384cc969e5308e98897",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     1163768358
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     8,
+     0,
+     1547220657,
+     880227538
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr0-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 700,
+    "xpsr": 0
+   },
+   "new_instructions": 21,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    549772,
+    540876,
+    541626
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, 0, 40, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "6cd55a33c13db910bb62feec94f0891b2b8840b80a462830c2f28d2994d83c38",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     1163768358
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     6,
+     12,
+     2718928684
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr0-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 701,
+    "xpsr": 0
+   },
+   "new_instructions": 21,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    549772,
+    540876
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 536940544, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "557cf03445ae9569412929f97a468a910b8c3bcdf36f7e678f44f64d9d46a8d6",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967162
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "4110012044100120481001204c1001205110012054100120581001205c1001206110012064100120681001206c1001207110012074100120781001207c1001208110012084100120881001208c1001209110012094100120981001209c100120a1100120a4100120a8100120ac100120b1100120b4100120b8100120bc100120c1100120c4100120c8100120cc100120d1100120d4100120d8100120dc100120e1100120e4100120e8100120ec100120f1100120f4100120f8100120fc1001200111012004110120081101200c1101201111012014110120181101201c1101202111012024110120281101202c1101203111012034110120381101203c1101204111012044110120481101204c1101205111012054110120581101205c1101206111012064110120681101206c1101207111012074110120781101207c1101208111012084110120881101208c1101209111012094110120981101209c110120a1110120a4110120a8110120ac110120b1110120b4110120b8110120bc110120c1110120c4110120c8110120cc110120d1110120d4110120d8110120dc110120e1110120e4110120e8110120ec110120f1110120f4110120f8110120fc1101200110012004100120081001200c1001201110012014100120181001201c1001202110012024100120281001202c1001203110012034100120381001203c100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     558208872,
+     2224734438,
+     3003667676
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-0",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 800,
+    "xpsr": 0
+   },
+   "new_instructions": 22,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    549772
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "224e60b24cfba8ccbb749ad0735912f56546fc3b88ccc22503219362cc1fd656",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967277
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "4110012044100120481001204c1001205110012054100120581001205c1001206110012064100120681001206c1001207110012074100120781001207c1001208110012084100120881001208c1001209110012094100120981001209c100120a1100120a4100120a8100120ac100120b1100120b4100120b8100120bc100120c1100120c4100120c8100120cc100120d1100120d4100120d8100120dc100120e1100120e4100120e8100120ec100120f1100120f4100120f8100120fc1001200111012004110120081101200c1101201111012014110120181101201c1101202111012024110120281101202c1101203111012034110120381101203c1101204111012044110120481101204c1101205111012054110120581101205c1101206111012064110120681101206c1101207111012074110120781101207c1101208111012084110120881101208c1101209111012094110120981101209c110120a1110120a4110120a8110120ac110120b1110120b4110120b8110120bc110120c1110120c4110120c8110120cc110120d1110120d4110120d8110120dc110120e1110120e4110120e8110120ec110120f1110120f4110120f8110120fc1101200110012004100120081001200c1001201110012014100120181001201c1001202110012024100120281001202c1001203110012034100120381001203c100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     558208872,
+     2224734438,
+     3003667676
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-0",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 830,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    549772,
+    540876,
+    541626
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 536943312, 0, 'S', 'F', 'T', None)",
+    "('C', 2, 536943312, 40, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "b45f59f0fa709f86c1046f4d7f136548db8264fe7d1cfc6177bf2770de5eea73",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     1163768358
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943312,
+     598759513,
+     3677430904,
+     7
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 1065353216,
+     "1": 3239897098
+    },
+    "id": "fp-2",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 2,
+    "xpsr": 0
+   },
+   "new_instructions": 21,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    549772,
+    540876,
+    541626
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 536939588, 0, 'S', 'F', 'T', None)",
+    "('C', 2, 536939588, 40, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1e3ee0900345be94bb0109c1555b444ae4a5b02a4cd5073e2a0e9f32cc3d2fda",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     1163768358
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939588,
+     3188701995,
+     8,
+     7
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 3204448256,
+     "1": 0
+    },
+    "id": "fp-5",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 5,
+    "xpsr": 0
+   },
+   "new_instructions": 21,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    549772,
+    540876,
+    541626
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 536944948, 0, 'S', 'F', 'T', None)",
+    "('C', 2, 536944948, 40, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "f7c1cc9c731a40cb8fb2aef712b99586dcaf0289b92ff9f0b0a744710c4aeabf",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     1163768358
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944948,
+     0,
+     697236451,
+     1
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 3175926989,
+     "1": 1266679808
+    },
+    "id": "fp-18",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 18,
+    "xpsr": 0
+   },
+   "new_instructions": 21,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    549772,
+    540876,
+    541626
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 536946084, 0, 'S', 'F', 'T', None)",
+    "('C', 2, 536946084, 40, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "194520a3a5c86a6348f667d88f994b280d61599de5921e97b093b9de8f9b2f97",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     1163768358
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946084,
+     4285183211,
+     1,
+     2592385448
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 3226013659,
+     "1": 1266679808
+    },
+    "id": "fp-28",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 28,
+    "xpsr": 0
+   },
+   "new_instructions": 21,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    549772,
+    540876
+   ],
+   "events_head": [
+    "('R', 1078530039, 4, 0)",
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 536946568, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "6beb39de663c54e254002f831a62a26973cf0bce6d964801a22fd4b45ad82cc4",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946568,
+     2706821390,
+     3442053927,
+     1170652979
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 1127481344,
+     "1": 3239897098
+    },
+    "id": "fp-32",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 32,
+    "xpsr": 0
+   },
+   "new_instructions": 13,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    549772,
+    540876,
+    541626
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 536951728, 0, 'S', 'F', 'T', None)",
+    "('C', 2, 536951728, 41, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "49530b9690cb873e23a3d85ddedf095d8d7bd9d4ed7137b0d85a74cccd41a5a1",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     1163768358
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536951728,
+     2057795936,
+     2725586938,
+     1299241558
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 1148846080,
+     "1": 3239897098
+    },
+    "id": "fp-37",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 37,
+    "xpsr": 0
+   },
+   "new_instructions": 21,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    549772,
+    540876,
+    541626
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 536939760, 0, 'S', 'F', 'T', None)",
+    "('C', 2, 536939760, 40, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "cbe7321f8f2149b89873c18ee7f6cba5b16d607ad468693ca04977411911805d",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     1163768358
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939760,
+     255,
+     1,
+     2
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 1149239296,
+     "1": 1266679808
+    },
+    "id": "fp-38",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 38,
+    "xpsr": 0
+   },
+   "new_instructions": 21,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    549772,
+    540876
+   ],
+   "events_head": [
+    "('R', 1078530039, 4, 0)",
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 536943128, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "0376b483b9483be8c2c77d8a27093be7db480f07c9ce3853690f04500f251e48",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943128,
+     2147483648,
+     2737014790,
+     2486441645
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 2139095039,
+     "1": 0
+    },
+    "id": "fp-45",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 45,
+    "xpsr": 0
+   },
+   "new_instructions": 13,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    549772,
+    540876,
+    541626
+   ],
+   "events_head": [
+    "('R', 1077936156, 4, 0)",
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 536941052, 0, 'S', 'F', 'T', None)",
+    "('R', 1077936164, 4, 0)",
+    "('C', 2, 536941052, 1077936168, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ed6fccfcfd8967065ef49e1863c55cd0f54430779045bad39001d4b834c212c9",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     1163768358
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941052,
+     16,
+     3371576678,
+     3924997939
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 0,
+     "1": 1266679808
+    },
+    "id": "fp-53",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 53,
+    "xpsr": 0
+   },
+   "new_instructions": 21,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    549772,
+    540876,
+    541626
+   ],
+   "events_head": [
+    "('R', 1092413478, 4, 0)",
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 536945696, 0, 'S', 'F', 'T', None)",
+    "('R', 1092413486, 4, 0)",
+    "('C', 2, 536945696, 1092413490, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c1b3e782299e8d521fa951e8d1c88274cecc6d3d3bdd9f9227ecc7fe2775a572",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     1163768358
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945696,
+     2846093838,
+     1677850251,
+     7
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 1056964608,
+     "1": 3239897098
+    },
+    "id": "fp-57",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 57,
+    "xpsr": 0
+   },
+   "new_instructions": 21,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    549772,
+    540876,
+    541626
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 536946820, 0, 'S', 'F', 'T', None)",
+    "('C', 2, 536946820, 40, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "8449d580b92556296a08e5b8efe50272040e2dd8e48af1eb70cc2bb83feaf5ec",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     1163768358
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946820,
+     1058211466,
+     12,
+     1322717931
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 0,
+     "1": 3204448256
+    },
+    "id": "fp-59",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 59,
+    "xpsr": 0
+   },
+   "new_instructions": 21,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    549772,
+    540876,
+    541626
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 536949256, 0, 'S', 'F', 'T', None)",
+    "('C', 2, 536949256, 40, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "67f746364b66ab8f00ec68bad0023cecdf65dbaa1bdfccb690bf21400658c418",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     1163768358
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536949256,
+     2147483647,
+     1966003740,
+     0
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 2147483648,
+     "1": 0
+    },
+    "id": "fp-60",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 60,
+    "xpsr": 0
+   },
+   "new_instructions": 21,
+   "stack_args": []
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 29,
+  "ratio": 0.5273,
+  "total": 55,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 144,
+ "globals": [],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "e556ab5692bf509d",
+  "stack_arg_window": 48
+ },
+ "module": "core",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [
+  0
+ ],
+ "ret_kind": "i32",
+ "search": {
+  "candidates": 167,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 19,
+  "pointer_arg_mask": [
+   0
+  ],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 144,
+ "symbol": "dev_configure_channel",
+ "va": "0x00084418"
+}

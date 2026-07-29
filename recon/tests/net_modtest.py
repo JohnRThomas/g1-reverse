@@ -61,14 +61,22 @@ REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 _SNAPSHOT = os.environ.get("G1_MODTEST_DIR")
 MODTEST_DIR = _SNAPSHOT if (_SNAPSHOT and os.path.isdir(_SNAPSHOT)) \
     else os.path.join(REPO, "tools", "modtest")
-if MODTEST_DIR.endswith(os.path.join("tools", "modtest")):
-    # Loud, because a silent version mismatch is exactly what produced 168
-    # unusable vectors in the pass that wrote recon/analysis/net_test_coverage.md.
-    sys.stderr.write(
-        "net_modtest: using the LIVE tools/modtest, which a concurrent agent "
-        "may be editing.  The vectors in recon/tests/vectors/net were generated "
-        "with the pinned snapshot described in net_test_coverage.md §6.4; set "
-        "G1_MODTEST_DIR to reproduce those numbers.\n")
+#: 2026-07-29, pass 2: STILL NEEDED, for a different reason than the one above.
+#: `core.harness_rev()` now fingerprints core/generate/cli/mutate into every
+#: vector at `gen` and `cli._replay` refuses a mismatched one (`STALE-VECTOR`),
+#: which does close the changed-stamp hole.  It does NOT close two others:
+#:   * an UNSTAMPED vector is permitted silently (`vector_staleness` returns
+#:     None when `rev` is absent) -- and all 233 net vectors inherited from
+#:     pass 1 were unstamped;
+#:   * `harness_rev()` is computed LAZILY from the files on disk, so a long
+#:     `gen` run stamps whatever content it happened to hash first while its
+#:     BEHAVIOUR is whatever it imported at start-up.
+#: `tools/modtest/core.py` was edited at 05:38, 05:44 and 06:01 on 2026-07-29,
+#: inside this pass's sweeps.  Pass 2 therefore pinned to `<repo>/.modtest_pin/`
+#: (a COPY of tools/modtest plus symlinks to tools/*) and generated AND
+#: replayed everything under it: harness_rev 936cee0b67396ca5.  See
+#: net_test_coverage.md §9.  Delete the pin once tools/modtest settles, and
+#: regenerate -- the vectors will then read STALE-VECTOR, which is correct.
 for _p in (os.path.join(REPO, "tools"), MODTEST_DIR):
     if _p not in sys.path:
         sys.path.insert(0, _p)
@@ -175,7 +183,15 @@ def main(argv=None):
     parser.add_argument("symbols", nargs="*")
     parser.add_argument("--module")
     parser.add_argument("--tree", default="refactored")
-    parser.add_argument("--nptr", type=int, default=2)
+    #: -1 = DERIVE the pointer-argument mask from the shipped instructions
+    #: (generate.pointer_arg_mask, landed in tools/modtest after the previous
+    #: net pass).  The old default of 2 is what net_test_coverage.md §6.2
+    #: measured as wrong in BOTH directions -- it made
+    #: `ocrypto_constant_time_is_zero`'s length parameter a pointer and its
+    #: countdown loop then hit the 200,000-instruction cap on 100 % of
+    #: candidates.  Derived is now the default; pass --nptr 2 to reproduce the
+    #: old behaviour for comparison.
+    parser.add_argument("--nptr", type=int, default=-1)
     parser.add_argument("--budget", type=int, default=400)
     parser.add_argument("--mutants", type=int, default=16)
     parser.add_argument("--limit", type=int, default=0)

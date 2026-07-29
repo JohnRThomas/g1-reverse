@@ -1,0 +1,381 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    515492
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, 536885444, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'message queue send failed %s\\r\\n'), ('RO', b'display_powerEvent'), 0, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "3cdeed1d3baef5b6c54d22f47c66268237a2715b83be20695f58dd7dfefb3520",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1276959699,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         8
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    515492
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, 536885444, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'message queue send failed %s\\r\\n'), ('RO', b'display_powerEvent'), 0, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "3cdeed1d3baef5b6c54d22f47c66268237a2715b83be20695f58dd7dfefb3520",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1,
+     2057795936,
+     2725586938,
+     1299241558
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-37",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 37,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         7
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    467152,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, 536885444, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): send display power event command , low_power_en = %d\\n'), ('RO', b'display_powerEvent'), 2345269775, 4140973137, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c6119acba9e1e5a06e177295df54cb133cb0a33737f6a16f86ba7e403ccdfed0",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2345269775,
+     3092785552,
+     1935641720,
+     554330043
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 400,
+    "xpsr": 0
+   },
+   "new_instructions": 33,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         8
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    552056,
+    467152
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, 536885444, ('SP', 0), 0, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "9d8621f6f8a3dd39989cdfa1b57c727978d8152782a60a912ac847d85e29e9fe",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     255,
+     952824504,
+     1118673106,
+     4294967295
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-1-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 502,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         8
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 38,
+  "ratio": 0.95,
+  "total": 40,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 94,
+ "globals": [
+  "0x200038c4",
+  "0x2000230c",
+  "0x20007554"
+ ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "e556ab5692bf509d",
+  "stack_arg_window": 48
+ },
+ "module": "display",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "i32",
+ "search": {
+  "candidates": 180,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 4,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 94,
+ "symbol": "display_powerEvent",
+ "va": "0x00049a28"
+}

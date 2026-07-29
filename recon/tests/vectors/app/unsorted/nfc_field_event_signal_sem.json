@@ -1,0 +1,150 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    96344,
+    96344
+   ],
+   "events_head": [
+    "('C', 0, 559568, 2097152, 'S', 'F', 'T', None)",
+    "('C', 1, 559568, 96468992, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "67ee3708d4289abd75948f14e673740bb7eb1b46e7ffb3ac0cab12f85cb18d44",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1276959699,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 11,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    0,
+    1,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    96344,
+    92072,
+    469120,
+    96344
+   ],
+   "events_head": [
+    "('C', 0, 559568, 2097152, 'S', 'F', 'T', None)",
+    "('W', 536898048, 4, 1)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 1927130135, 'S', 'F', 'T', None)",
+    "('C', 3, 559568, 96468992, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0e6d27679e06031b6d0e8cc3c67c15aa75236d512883ae9d4c09834cf397b891",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4067469868,
+     1797429778,
+     512,
+     315044147
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "cfgsel-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 1,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 20,
+  "ratio": 1.0,
+  "total": 20,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 56,
+ "globals": [
+  "0x20007bcc",
+  "0x20006a00"
+ ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "e556ab5692bf509d",
+  "stack_arg_window": 48
+ },
+ "module": "unsorted",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "void",
+ "search": {
+  "candidates": 168,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 2,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 56,
+ "symbol": "nfc_field_event_signal_sem",
+ "va": "0x0001793c"
+}

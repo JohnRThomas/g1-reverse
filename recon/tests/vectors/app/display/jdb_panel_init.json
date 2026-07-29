@@ -1,0 +1,2557 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    3,
+    1,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644,
+    105584
+   ],
+   "events_head": [
+    "('W', 536944452, 4, 536943476)",
+    "('C', 0, 536943568, 12, 4, 'S', 'F', 'T', None)",
+    "('C', 1, 7, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 4, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)",
+    "('C', 3, ('RO', b'%s(): JBD PANEL init failure!\\n'), ('RO', b'jdb_panel_init'), 4, 3694469211, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "5e34db03e276299d9a39de57d58161bd87c1075178e330fe21700a92493c6280",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943568,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644
+   ],
+   "events_head": [
+    "('W', 536948128, 4, 536947152)",
+    "('C', 0, 536947244, 1797429778, 2147483648, 'S', 'F', 'T', None)",
+    "('C', 1, 159, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 2147483648, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)"
+   ],
+   "expect": {
+    "events": "fec025624e9510f0f4dec7c0028c412a9a9920e679631f762c1deca81648b91f",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536947244,
+     1797429778,
+     2147483648,
+     315044147
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-1",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 1,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644,
+    105584
+   ],
+   "events_head": [
+    "('W', 536944196, 4, 536943220)",
+    "('C', 0, 536943312, 598759513, 3677430904, 'S', 'F', 'T', None)",
+    "('C', 1, 12, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 3677430904, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)",
+    "('C', 3, ('RO', b'%s(): JBD PANEL init failure!\\n'), ('RO', b'jdb_panel_init'), 3677430904, 471345317, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "4f325a24c10fa0dd81ee089b73b10382c12885e7b2457c7322d5ca0eef07b8c5",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943312,
+     598759513,
+     3677430904,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-2",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 2,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644
+   ],
+   "events_head": [
+    "('W', 536946512, 4, 536945536)",
+    "('C', 0, 536945628, 255, 8, 'S', 'F', 'T', None)",
+    "('C', 1, 36, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 8, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)"
+   ],
+   "expect": {
+    "events": "db2e2581bafe3b9ad8ebd84525631e774c934b015ad7ebe065eabd05d58fa6b2",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945628,
+     255,
+     8,
+     3619521758
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-3",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 3,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644,
+    105584
+   ],
+   "events_head": [
+    "('W', 536946748, 4, 536945772)",
+    "('C', 0, 536945864, 2147483647, 3842370354, 'S', 'F', 'T', None)",
+    "('C', 1, 191, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 3842370354, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)",
+    "('C', 3, ('RO', b'%s(): JBD PANEL init failure!\\n'), ('RO', b'jdb_panel_init'), 3842370354, 2655161023, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "b96f0e1fd79fa2e0506676197972c407caffeb08d4951d0eaf9c45cb0cca12c6",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945864,
+     2147483647,
+     3842370354,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-4",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 4,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644
+   ],
+   "events_head": [
+    "('W', 536940472, 4, 536939496)",
+    "('C', 0, 536939588, 3188701995, 8, 'S', 'F', 'T', None)",
+    "('C', 1, 203, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 8, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)"
+   ],
+   "expect": {
+    "events": "5a4c4af57c3b568526decbf8a69ed0b410eb0806a786496a771219f0829bb472",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939588,
+     3188701995,
+     8,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-5",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 5,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644
+   ],
+   "events_head": [
+    "('W', 536951784, 4, 536950808)",
+    "('C', 0, 536950900, 3322790363, 5, 'S', 'F', 'T', None)",
+    "('C', 1, 121, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 5, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)"
+   ],
+   "expect": {
+    "events": "a896972bcd58dc3f19244d4aca9c4d13bb91782dece5f96b1b93829d64bbeacf",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536950900,
+     3322790363,
+     5,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-6",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 6,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644
+   ],
+   "events_head": [
+    "('W', 536942476, 4, 536941500)",
+    "('C', 0, 536941592, 1604804925, 1, 'S', 'F', 'T', None)",
+    "('C', 1, 15, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 1, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)"
+   ],
+   "expect": {
+    "events": "36ef9fc5e9c8d28869a94075d2b3f038f4b04e95b5dadff4ff759e4e1fc1d23e",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941592,
+     1604804925,
+     1,
+     2363272863
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-7",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 7,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644
+   ],
+   "events_head": [
+    "('W', 536939928, 4, 536938952)",
+    "('C', 0, 536939044, 708972563, 558645175, 'S', 'F', 'T', None)",
+    "('C', 1, 54, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 558645175, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)"
+   ],
+   "expect": {
+    "events": "7933eb4dd684f5e7ba3d20c8adbf4667db991ea866499727480b4a47da36db95",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939044,
+     708972563,
+     558645175,
+     4
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-8",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 8,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644,
+    105584
+   ],
+   "events_head": [
+    "('W', 536945576, 4, 536944600)",
+    "('C', 0, 536944692, 1556998536, 499087790, 'S', 'F', 'T', None)",
+    "('C', 1, 14, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 499087790, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)",
+    "('C', 3, ('RO', b'%s(): JBD PANEL init failure!\\n'), ('RO', b'jdb_panel_init'), 499087790, 3178863954, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "da515afde1f0d4fcce9158c7ec0ca2a26fcaa8ca9520a3697f6fb5a28d17c86a",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944692,
+     1556998536,
+     499087790,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-9",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 9,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644,
+    105584
+   ],
+   "events_head": [
+    "('W', 536940088, 4, 536939112)",
+    "('C', 0, 536939204, 995058044, 8, 'S', 'F', 'T', None)",
+    "('C', 1, 208, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 8, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)",
+    "('C', 3, ('RO', b'%s(): JBD PANEL init failure!\\n'), ('RO', b'jdb_panel_init'), 8, 3586673693, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "6e5948e56642b87e0ec7698d19ce41a44ae28de1be6101383581c89c07f5ab62",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939204,
+     995058044,
+     8,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-10",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 10,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644,
+    105584
+   ],
+   "events_head": [
+    "('W', 536937924, 4, 536936948)",
+    "('C', 0, 536937040, 2147483648, 256, 'S', 'F', 'T', None)",
+    "('C', 1, 250, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 256, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)",
+    "('C', 3, ('RO', b'%s(): JBD PANEL init failure!\\n'), ('RO', b'jdb_panel_init'), 256, 801746852, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "a6cf990e6f39d0607b35d5eecfedde3751459ae7021f3fcc1275f4e8f65c00e8",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536937040,
+     2147483648,
+     256,
+     1426281073
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-11",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 11,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644,
+    105584
+   ],
+   "events_head": [
+    "('W', 536945404, 4, 536944428)",
+    "('C', 0, 536944520, 3217736208, 5, 'S', 'F', 'T', None)",
+    "('C', 1, 184, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 5, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)",
+    "('C', 3, ('RO', b'%s(): JBD PANEL init failure!\\n'), ('RO', b'jdb_panel_init'), 5, 1542880163, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "a7a79936e0676d4beac36212567b9c0ca2d111b7fd029d3f8ec1198ff2f2cf0a",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944520,
+     3217736208,
+     5,
+     1103693227
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-12",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 12,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644,
+    105584
+   ],
+   "events_head": [
+    "('W', 536945188, 4, 536944212)",
+    "('C', 0, 536944304, 1944344031, 6, 'S', 'F', 'T', None)",
+    "('C', 1, 56, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 6, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)",
+    "('C', 3, ('RO', b'%s(): JBD PANEL init failure!\\n'), ('RO', b'jdb_panel_init'), 6, 287561451, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "2e58893471bb73b1b4b725c4a93e554fc1b5f4258300c0612be40553d493fc04",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944304,
+     1944344031,
+     6,
+     617681966
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-13",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 13,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644
+   ],
+   "events_head": [
+    "('W', 536944776, 4, 536943800)",
+    "('C', 0, 536943892, 12, 3, 'S', 'F', 'T', None)",
+    "('C', 1, 18, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 3, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)"
+   ],
+   "expect": {
+    "events": "745bd7122c10fb01de3d7f057596ad43a3a490742cd09923ce34963c3c1d24a0",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943892,
+     12,
+     3,
+     470668832
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-14",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 14,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644
+   ],
+   "events_head": [
+    "('W', 536953288, 4, 536952312)",
+    "('C', 0, 536952404, 256, 5, 'S', 'F', 'T', None)",
+    "('C', 1, 204, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 5, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)"
+   ],
+   "expect": {
+    "events": "84b12493389642900df9430bdfbf7b421b4b73d17ca0ad2fc7b83b2d68ac1d7d",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952404,
+     256,
+     5,
+     4
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-15",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 15,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644,
+    105584
+   ],
+   "events_head": [
+    "('W', 536944144, 4, 536943168)",
+    "('C', 0, 536943260, 2147483648, 3454407978, 'S', 'F', 'T', None)",
+    "('C', 1, 124, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 3454407978, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)",
+    "('C', 3, ('RO', b'%s(): JBD PANEL init failure!\\n'), ('RO', b'jdb_panel_init'), 3454407978, 886755549, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "bb43c1af430098d80145f9a07ef4821dbbe6874ce224fa0a2c4781f97f62677f",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943260,
+     2147483648,
+     3454407978,
+     16
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-16",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 16,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644
+   ],
+   "events_head": [
+    "('W', 536944900, 4, 536943924)",
+    "('C', 0, 536944016, 3254638692, 1168623309, 'S', 'F', 'T', None)",
+    "('C', 1, 249, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 1168623309, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)"
+   ],
+   "expect": {
+    "events": "9e2ad405034ff80ff6c8bf253a2f2c7c942268ed13436ff0f7e4391800c313cf",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944016,
+     3254638692,
+     1168623309,
+     4252165479
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-17",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 17,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644
+   ],
+   "events_head": [
+    "('W', 536945832, 4, 536944856)",
+    "('C', 0, 536944948, 0, 697236451, 'S', 'F', 'T', None)",
+    "('C', 1, 48, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 697236451, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)"
+   ],
+   "expect": {
+    "events": "ed78257df41f471d6ebeffa59291d4c8a8350b532b3dc799b8c4847ff302f1d1",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944948,
+     0,
+     697236451,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-18",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 18,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644,
+    105584
+   ],
+   "events_head": [
+    "('W', 536940168, 4, 536939192)",
+    "('C', 0, 536939284, 1536401714, 4178753371, 'S', 'F', 'T', None)",
+    "('C', 1, 0, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 4178753371, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)",
+    "('C', 3, ('RO', b'%s(): JBD PANEL init failure!\\n'), ('RO', b'jdb_panel_init'), 4178753371, 4075769455, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "bb7939fdcb22a1279954dc6ffc439f0da5f6422f1e211485ba507fc2af410668",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939284,
+     1536401714,
+     4178753371,
+     255
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-19",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 19,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644
+   ],
+   "events_head": [
+    "('W', 536953624, 4, 536952648)",
+    "('C', 0, 536952740, 2306919366, 2, 'S', 'F', 'T', None)",
+    "('C', 1, 187, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 2, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)"
+   ],
+   "expect": {
+    "events": "0bd1c6757437d53a25fcdb6856514e7650f891e6cc2384828155508708f2a4a3",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952740,
+     2306919366,
+     2,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-20",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 20,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644,
+    105584
+   ],
+   "events_head": [
+    "('W', 536942304, 4, 536941328)",
+    "('C', 0, 536941420, 1, 2870852768, 'S', 'F', 'T', None)",
+    "('C', 1, 179, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 2870852768, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)",
+    "('C', 3, ('RO', b'%s(): JBD PANEL init failure!\\n'), ('RO', b'jdb_panel_init'), 2870852768, 2217669457, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e1de57984177fb14cbfdad1e3068d154b06c455e89ce2b42835233ad015f5086",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941420,
+     1,
+     2870852768,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-21",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 21,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644
+   ],
+   "events_head": [
+    "('W', 536938280, 4, 536937304)",
+    "('C', 0, 536937396, 3001296298, 4294967295, 'S', 'F', 'T', None)",
+    "('C', 1, 211, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 4294967295, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)"
+   ],
+   "expect": {
+    "events": "ff78c27ca2eb6e8fd93b1119bd22842458653beced1c312367cac9a5499a72ff",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536937396,
+     3001296298,
+     4294967295,
+     2451975022
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-22",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 22,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644
+   ],
+   "events_head": [
+    "('W', 536953112, 4, 536952136)",
+    "('C', 0, 536952228, 241044672, 2034212132, 'S', 'F', 'T', None)",
+    "('C', 1, 232, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 2034212132, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)"
+   ],
+   "expect": {
+    "events": "96c22b46b3fb631d96268b10d7244488eb8a2a05e4764911cb99a891b74b52b5",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952228,
+     241044672,
+     2034212132,
+     1515885587
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-23",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 23,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644
+   ],
+   "events_head": [
+    "('W', 536950792, 4, 536949816)",
+    "('C', 0, 536949908, 6, 2967241396, 'S', 'F', 'T', None)",
+    "('C', 1, 67, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 2967241396, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)"
+   ],
+   "expect": {
+    "events": "9a1c8836073a3e91ad541d97a3c56abaaf76c7820725ec18679b16a694affeef",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536949908,
+     6,
+     2967241396,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-24",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 24,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644,
+    105584
+   ],
+   "events_head": [
+    "('W', 536939136, 4, 536938160)",
+    "('C', 0, 536938252, 12, 2149248134, 'S', 'F', 'T', None)",
+    "('C', 1, 106, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 2149248134, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)",
+    "('C', 3, ('RO', b'%s(): JBD PANEL init failure!\\n'), ('RO', b'jdb_panel_init'), 2149248134, 3712121755, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "355d288c344c6ebc60142fa0915732d54444708d9fc22116c24ede3c2690f070",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536938252,
+     12,
+     2149248134,
+     604019693
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-25",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 25,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644
+   ],
+   "events_head": [
+    "('W', 536943108, 4, 536942132)",
+    "('C', 0, 536942224, 12, 3037640278, 'S', 'F', 'T', None)",
+    "('C', 1, 206, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 3037640278, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)"
+   ],
+   "expect": {
+    "events": "debe83b19d40dbe34de9c04cf6164dad6009214dc598445154cc80f67bae3899",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536942224,
+     12,
+     3037640278,
+     2678623347
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-26",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 26,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644,
+    105584
+   ],
+   "events_head": [
+    "('W', 536946076, 4, 536945100)",
+    "('C', 0, 536945192, 681194263, 3639365232, 'S', 'F', 'T', None)",
+    "('C', 1, 43, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 3639365232, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)",
+    "('C', 3, ('RO', b'%s(): JBD PANEL init failure!\\n'), ('RO', b'jdb_panel_init'), 3639365232, 1775869161, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "77dbf6bd9a9f08d5cd61858b7ccaac308c846fd53e48a59ec34d519608ad4eca",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945192,
+     681194263,
+     3639365232,
+     4125446660
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-27",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 27,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644,
+    105584
+   ],
+   "events_head": [
+    "('W', 536946968, 4, 536945992)",
+    "('C', 0, 536946084, 4285183211, 1, 'S', 'F', 'T', None)",
+    "('C', 1, 195, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 1, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)",
+    "('C', 3, ('RO', b'%s(): JBD PANEL init failure!\\n'), ('RO', b'jdb_panel_init'), 1, 1542213390, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "5574bfeb54a4f986cae92dcf094e8d4490bd7e205c8b3c2267a375cc933d8ddf",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946084,
+     4285183211,
+     1,
+     2592385448
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-28",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 28,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644
+   ],
+   "events_head": [
+    "('W', 536948372, 4, 536947396)",
+    "('C', 0, 536947488, 256, 3886541357, 'S', 'F', 'T', None)",
+    "('C', 1, 140, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 3886541357, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)"
+   ],
+   "expect": {
+    "events": "83aba63f4ab194f9a6f05f6e881cba808c9afda4d7d0f085b0bb63c0d6feea84",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536947488,
+     256,
+     3886541357,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-29",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 29,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644,
+    105584
+   ],
+   "events_head": [
+    "('W', 536953680, 4, 536952704)",
+    "('C', 0, 536952796, 8, 1, 'S', 'F', 'T', None)",
+    "('C', 1, 200, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 1, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)",
+    "('C', 3, ('RO', b'%s(): JBD PANEL init failure!\\n'), ('RO', b'jdb_panel_init'), 1, 2417460406, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "183deaed9d5ee56d7c7550d6ba1be6ea3ca0b003de12ff36043a3f138c71fdef",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952796,
+     8,
+     1,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-30",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 30,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644,
+    105584
+   ],
+   "events_head": [
+    "('W', 536953184, 4, 536952208)",
+    "('C', 0, 536952300, 2461003590, 7, 'S', 'F', 'T', None)",
+    "('C', 1, 0, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 7, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)",
+    "('C', 3, ('RO', b'%s(): JBD PANEL init failure!\\n'), ('RO', b'jdb_panel_init'), 7, 1988174091, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0e44670143f320bd4ef17444bd17a93408b11685c403ca256596338e9e9de7be",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952300,
+     2461003590,
+     7,
+     53351545
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-31",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 31,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644,
+    105584
+   ],
+   "events_head": [
+    "('W', 536947452, 4, 536946476)",
+    "('C', 0, 536946568, 2706821390, 3442053927, 'S', 'F', 'T', None)",
+    "('C', 1, 63, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 3442053927, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)",
+    "('C', 3, ('RO', b'%s(): JBD PANEL init failure!\\n'), ('RO', b'jdb_panel_init'), 3442053927, 615009301, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "dc339bff3453e126a9b7fc5da3a02901f4d22b45c5e0881121b5f95744de6743",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946568,
+     2706821390,
+     3442053927,
+     1170652979
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-32",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 32,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644
+   ],
+   "events_head": [
+    "('W', 536946944, 4, 536945968)",
+    "('C', 0, 536946060, 7, 7, 'S', 'F', 'T', None)",
+    "('C', 1, 165, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 7, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)"
+   ],
+   "expect": {
+    "events": "5bb2f0c620a232ba64da749e50e7bee2945bbb99545b998969302bfd5f7cb922",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946060,
+     7,
+     7,
+     5
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-33",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 33,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644,
+    105584
+   ],
+   "events_head": [
+    "('W', 536951004, 4, 536950028)",
+    "('C', 0, 536950120, 3990671540, 922796015, 'S', 'F', 'T', None)",
+    "('C', 1, 105, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 922796015, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)",
+    "('C', 3, ('RO', b'%s(): JBD PANEL init failure!\\n'), ('RO', b'jdb_panel_init'), 922796015, 2360084761, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "d9ea30857091294fe744fe604aa126890bdf6c972fb24a9ee627b93edd49108e",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536950120,
+     3990671540,
+     922796015,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-34",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 34,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644,
+    105584
+   ],
+   "events_head": [
+    "('W', 536953316, 4, 536952340)",
+    "('C', 0, 536952432, 3578977268, 4001652011, 'S', 'F', 'T', None)",
+    "('C', 1, 242, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 4001652011, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)",
+    "('C', 3, ('RO', b'%s(): JBD PANEL init failure!\\n'), ('RO', b'jdb_panel_init'), 4001652011, 4019880274, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "cd4d000387c69c91d496b1e9eae076c3c0179e855759a67e3813bc3ddfd84cd1",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952432,
+     3578977268,
+     4001652011,
+     1
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-35",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 35,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644,
+    105584
+   ],
+   "events_head": [
+    "('W', 536945108, 4, 536944132)",
+    "('C', 0, 536944224, 12, 2147483647, 'S', 'F', 'T', None)",
+    "('C', 1, 0, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 2147483647, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)",
+    "('C', 3, ('RO', b'%s(): JBD PANEL init failure!\\n'), ('RO', b'jdb_panel_init'), 2147483647, 823752600, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "4b9ea33c115b78a5af8083d58b6e9e08b4d72804ab119225e01bdf944f37083d",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944224,
+     12,
+     2147483647,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-36",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 36,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644
+   ],
+   "events_head": [
+    "('W', 536952612, 4, 536951636)",
+    "('C', 0, 536951728, 2057795936, 2725586938, 'S', 'F', 'T', None)",
+    "('C', 1, 206, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 2725586938, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)"
+   ],
+   "expect": {
+    "events": "3f981e38f8d077d8ccd4b4c4d3d2434836a4ec94fdc55646b411c7a75a6bd5f8",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536951728,
+     2057795936,
+     2725586938,
+     1299241558
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-37",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 37,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644
+   ],
+   "events_head": [
+    "('W', 536940644, 4, 536939668)",
+    "('C', 0, 536939760, 255, 1, 'S', 'F', 'T', None)",
+    "('C', 1, 8, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 1, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)"
+   ],
+   "expect": {
+    "events": "1d32a73890e649dca262cf201b3493565e02399832f7bce0ecff633c5054b2f1",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939760,
+     255,
+     1,
+     2
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-38",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 38,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644,
+    105584
+   ],
+   "events_head": [
+    "('W', 536942308, 4, 536941332)",
+    "('C', 0, 536941424, 1587124134, 3774328631, 'S', 'F', 'T', None)",
+    "('C', 1, 0, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 3774328631, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)",
+    "('C', 3, ('RO', b'%s(): JBD PANEL init failure!\\n'), ('RO', b'jdb_panel_init'), 3774328631, 2944518647, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e6cb6c34503bc992f906e8ebb4c446ff6d95b088c04ec7aafa8ae42b8a9adc13",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941424,
+     1587124134,
+     3774328631,
+     1997155928
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-39",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 39,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644
+   ],
+   "events_head": [
+    "('W', 536944484, 4, 536943508)",
+    "('C', 0, 536943600, 3928041777, 1786326658, 'S', 'F', 'T', None)",
+    "('C', 1, 239, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 1786326658, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)"
+   ],
+   "expect": {
+    "events": "9bb123ae29f3e19c450b72ee3ca9724e4f2ef21b695a6113c5a9bd5b8d943ce1",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943600,
+     3928041777,
+     1786326658,
+     1835695343
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-40",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 40,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    1,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    292152,
+    290364,
+    292644,
+    515492
+   ],
+   "events_head": [
+    "('W', 536939928, 4, 536938952)",
+    "('C', 0, 536939044, 708972563, 558645175, 'S', 'F', 'T', None)",
+    "('C', 1, 136, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 4293927952, 558645175, 'S', 'F', 'T', None)",
+    "('W', 536911988, 4, 1163768358)",
+    "('C', 3, ('RO', b'%s(): JBD PANEL init failure!\\n'), ('RO', b'jdb_panel_init'), 558645175, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "72eba9a7c07dec3c6947cb52d3338bfd722eeca8fd16040af7cb2a8bef8eeefd",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536900948,
+      "00000000"
+     ]
+    ],
+    "args": [
+     536939044,
+     708972563,
+     558645175,
+     4
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-2-0",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 16,
+    "xpsr": 0
+   },
+   "new_instructions": 26,
+   "stack_args": []
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 27,
+  "ratio": 0.871,
+  "total": 31,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 84,
+ "globals": [
+  "0x2000a074",
+  "0x2000230c",
+  "0x20007554"
+ ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "e556ab5692bf509d",
+  "stack_arg_window": 48
+ },
+ "module": "display",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [
+  0
+ ],
+ "ret_kind": "i32",
+ "search": {
+  "candidates": 205,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 42,
+  "pointer_arg_mask": [
+   0
+  ],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 84,
+ "symbol": "jdb_panel_init",
+ "va": "0x00046fc0"
+}

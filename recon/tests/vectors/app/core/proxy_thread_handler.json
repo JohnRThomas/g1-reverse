@@ -1,0 +1,3166 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 3694469211, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "595146f061c6695ae601eadf6e7e04e78db886fe355141508fbf9a1fb649ed03",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1276959699,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    552056
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "66bd6e6c05187bbe9f3f4aa3056e4ce4e7a91d619244f64a870284510800b958",
+    "kind": "fault",
+    "ncalls": 1
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4067469868,
+     1797429778,
+     2147483648,
+     315044147
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 1,
+    "xpsr": 0
+   },
+   "new_instructions": 13,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 471345317, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "de270800809ada8821eb26a35deb9b73961522225f9b808a197022ed72e5b6a6",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4290042576,
+     598759513,
+     3677430904,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-2",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 2,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 3586673693, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "09bfce6b44a119d883a162ce751c753ccf7781ac0f5ad35c6a6c9be0599ee936",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     182454980,
+     995058044,
+     8,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-10",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 10,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 287561451, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "75a5a3dc9e61c18379b348979451a685f15a6b34d42dd432d2913226750c31f8",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1156718256,
+     1944344031,
+     6,
+     617681966
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-13",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 13,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 886755549, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "493ea7902bb044fc407c05cdbd49450c5403445dbcb5c0adf9a3e67fe2cba4fc",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2024561310,
+     2147483648,
+     3454407978,
+     16
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-16",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 16,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 2217669457, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "0c2984291828de712b6d912e2a436ad9de54877eed401051108ba0fc98870d9b",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     843060076,
+     1,
+     2870852768,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-21",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 21,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 3712121755, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "a25e02efbdf1d1bd4820542a24ed726230ac5b09634f271e9e658208d7409023",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3751937804,
+     12,
+     2149248134,
+     604019693
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-25",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 25,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 1775869161, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "c93336e6137af8eff682f8a431824468b202c3742a391993ed6bb10623597ad8",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     187818536,
+     681194263,
+     3639365232,
+     4125446660
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-27",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 27,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 1542213390, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "b55947588d56801773c94706aaee5784c22043d5d45ea584a021180935f65c24",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3711083943,
+     4285183211,
+     1,
+     2592385448
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-28",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 28,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 615009301, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "c7f0f4e8331b1ed336f5a0992daeb94aadd1a35b97c88b5a411ec762965c4774",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1839753098,
+     2706821390,
+     3442053927,
+     1170652979
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-32",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 32,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 4019880274, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "1c336b36266d1d5a53506af4cc9c5295f5fb205a9050213995b9d490a79d3e68",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2726887024,
+     3578977268,
+     4001652011,
+     1
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-35",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 35,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 2096484019, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "93c27de77a059beaa0b9dfcb7ce14f75aac7641053838edd8f6519006fdff7bd",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3886568119,
+     256,
+     3059135833,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-41",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 41,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 509112996, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "78fe7b6c5e7d1ecddb1c4cc41921533ea292a2d6ef8552d29bc062bd83eaa3b6",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     538639782,
+     4,
+     12,
+     3983748582
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-42",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 42,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 3904235970, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "8f3196cecd9e27f9688edaa922a4255a0fa617b95e2c147654c45cfa2ccb4232",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     271826021,
+     7,
+     3,
+     3948225427
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 3212836864,
+     "1": 0
+    },
+    "id": "fp-50",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 50,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 735384069, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "d5b5ebacc5e7ce5ce0a455fba546a5193c513cca0653e02cca2e6fd6be4ba436",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3856939601,
+     1894272194,
+     2147483647,
+     2092907358
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 3204448256,
+     "1": 3239897098
+    },
+    "id": "fp-52",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 52,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 3921118200, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "f033795c96a842fe8b117b0131b0582001a0c19f6aadcee93b33de3e16ad87f1",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1740848604,
+     2393220392,
+     2147483647,
+     2556506514
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 2147483648,
+     "1": 3204448256
+    },
+    "id": "fp-54",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 54,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 2444602602, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "cfbfced8c36a4419a26b991487d739a79fa412b71ffdeb879b28f3970e9d01bd",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3720324128,
+     2846093838,
+     1677850251,
+     7
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 1056964608,
+     "1": 3239897098
+    },
+    "id": "fp-57",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 57,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 913139319, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "d2ba1ecae8f0606ec4ae8f26aed16709411550478c6f9280e0f90df28f906eb3",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2684056074,
+     2147483647,
+     1966003740,
+     0
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 2147483648,
+     "1": 0
+    },
+    "id": "fp-60",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 60,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 2313802153, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "2ac30abc90e7b351f3f0031f16aa4e9092be7dd89efe967e5ef67692d6afcd39",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     222493114,
+     4294967295,
+     1271289561,
+     5
+    ],
+    "float_scratch": true,
+    "fp": {
+     "0": 3212836864,
+     "1": 3239897098
+    },
+    "id": "fp-62",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 62,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 2205054065, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "c727659fa9d5a034c1a8f0f30f2dc54a92333ca0c3c23bbf574f616221b3a60b",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [
+     [
+      536879884,
+      "03000000"
+     ]
+    ],
+    "args": [
+     2618385373,
+     255,
+     8,
+     3619521758
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-0-3",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 3,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 1060514798, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "3f19a535f7c66fb582e5c68b868931d43a254740707b4d3dbbabd991d4be2a8d",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [
+     [
+      536879884,
+      "00200120"
+     ]
+    ],
+    "args": [
+     2300957721,
+     1604804925,
+     1,
+     2363272863
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-0-7",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 7,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 3, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "aa57f88bf56b35969a1277a5b883904859d40c5673a2e5490ce02a87096136e8",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [
+     [
+      536900948,
+      "03000000"
+     ]
+    ],
+    "args": [
+     2300957721,
+     1604804925,
+     1,
+     2363272863
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-1-3",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 11,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 255, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "6420c18eb3d57502947c9b2ee51e7c46b9be84495d050f3c700cfe6d9429fdb8",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [
+     [
+      536900948,
+      "ff000000"
+     ]
+    ],
+    "args": [
+     2156366374,
+     708972563,
+     558645175,
+     4
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-1-4",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 12,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 2417460406, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "d5f1a6db72b7b92f1d18075caea5401b7fcdd3b9bd90e7373f5f3058b32863c0",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [
+     [
+      536990770,
+      "ffffffff"
+     ]
+    ],
+    "args": [
+     3912442165,
+     0,
+     697236451,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-3-6",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 30,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 2360084761, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "e99a153ab0e4223a09db0209daf3fde1df65465e686540235a37b76dcfb1b70b",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [
+     [
+      536936196,
+      "02000000"
+     ]
+    ],
+    "args": [
+     3912442165,
+     0,
+     697236451,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-4-2",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 34,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 2944518647, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "86e51f6d67f0340d97a7e9aef6d8d6cda008657796ee94c4b9d71ce1ac162296",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [
+     [
+      536936196,
+      "00200120"
+     ]
+    ],
+    "args": [
+     1591295399,
+     241044672,
+     2034212132,
+     1515885587
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-4-7",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 39,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 2987881189, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "d265f18aac3f39254dc79a7022a73eb928ec142389d16b4a5443c0af0ad3eebc",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [
+     [
+      536990538,
+      "01000000"
+     ]
+    ],
+    "args": [
+     3751937804,
+     12,
+     2149248134,
+     604019693
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-6-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 49,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 480847480, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "7137eeecde81fb6110a3957f004f2a58ccaa8504d7443c41f856c211dad23003",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [
+     [
+      536990539,
+      "00000000"
+     ]
+    ],
+    "args": [
+     3711083943,
+     4285183211,
+     1,
+     2592385448
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-7-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 56,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 4140973137, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "2b7d757555c79bff36d39a8bc597b13c85a7d7ba0c394ec5411b15eec9bbade3",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2345269775,
+     3092785552,
+     1935641720,
+     554330043
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      12,
+      0,
+      0
+     ],
+     [
+      13,
+      0,
+      0
+     ],
+     [
+      14,
+      0,
+      0
+     ],
+     [
+      15,
+      0,
+      0
+     ],
+     [
+      16,
+      0,
+      0
+     ],
+     [
+      17,
+      0,
+      0
+     ],
+     [
+      18,
+      0,
+      0
+     ],
+     [
+      19,
+      0,
+      0
+     ],
+     [
+      20,
+      0,
+      0
+     ],
+     [
+      21,
+      0,
+      0
+     ],
+     [
+      22,
+      0,
+      0
+     ],
+     [
+      23,
+      0,
+      0
+     ],
+     [
+      24,
+      0,
+      0
+     ],
+     [
+      25,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ],
+     [
+      12,
+      1,
+      0
+     ],
+     [
+      13,
+      1,
+      0
+     ],
+     [
+      14,
+      1,
+      0
+     ],
+     [
+      15,
+      1,
+      0
+     ],
+     [
+      16,
+      1,
+      0
+     ],
+     [
+      17,
+      1,
+      0
+     ],
+     [
+      18,
+      1,
+      0
+     ],
+     [
+      19,
+      1,
+      0
+     ],
+     [
+      20,
+      1,
+      0
+     ],
+     [
+      21,
+      1,
+      0
+     ],
+     [
+      22,
+      1,
+      0
+     ],
+     [
+      23,
+      1,
+      0
+     ],
+     [
+      24,
+      1,
+      0
+     ],
+     [
+      25,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 400,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 2235425154, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "7ec390e34c0082d59e5ec3baea1db4f8c5e5cbb3090c1ba59baf384a969270f6",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3358579451,
+     2876352768,
+     168044460,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      1
+     ],
+     [
+      1,
+      0,
+      1
+     ],
+     [
+      2,
+      0,
+      1
+     ],
+     [
+      3,
+      0,
+      1
+     ],
+     [
+      4,
+      0,
+      1
+     ],
+     [
+      5,
+      0,
+      1
+     ],
+     [
+      6,
+      0,
+      1
+     ],
+     [
+      7,
+      0,
+      1
+     ],
+     [
+      8,
+      0,
+      1
+     ],
+     [
+      9,
+      0,
+      1
+     ],
+     [
+      10,
+      0,
+      1
+     ],
+     [
+      11,
+      0,
+      1
+     ],
+     [
+      12,
+      0,
+      1
+     ],
+     [
+      13,
+      0,
+      1
+     ],
+     [
+      14,
+      0,
+      1
+     ],
+     [
+      15,
+      0,
+      1
+     ],
+     [
+      16,
+      0,
+      1
+     ],
+     [
+      17,
+      0,
+      1
+     ],
+     [
+      18,
+      0,
+      1
+     ],
+     [
+      19,
+      0,
+      1
+     ],
+     [
+      20,
+      0,
+      1
+     ],
+     [
+      21,
+      0,
+      1
+     ],
+     [
+      22,
+      0,
+      1
+     ],
+     [
+      23,
+      0,
+      1
+     ],
+     [
+      24,
+      0,
+      1
+     ],
+     [
+      25,
+      0,
+      1
+     ],
+     [
+      0,
+      1,
+      1
+     ],
+     [
+      1,
+      1,
+      1
+     ],
+     [
+      2,
+      1,
+      1
+     ],
+     [
+      3,
+      1,
+      1
+     ],
+     [
+      4,
+      1,
+      1
+     ],
+     [
+      5,
+      1,
+      1
+     ],
+     [
+      6,
+      1,
+      1
+     ],
+     [
+      7,
+      1,
+      1
+     ],
+     [
+      8,
+      1,
+      1
+     ],
+     [
+      9,
+      1,
+      1
+     ],
+     [
+      10,
+      1,
+      1
+     ],
+     [
+      11,
+      1,
+      1
+     ],
+     [
+      12,
+      1,
+      1
+     ],
+     [
+      13,
+      1,
+      1
+     ],
+     [
+      14,
+      1,
+      1
+     ],
+     [
+      15,
+      1,
+      1
+     ],
+     [
+      16,
+      1,
+      1
+     ],
+     [
+      17,
+      1,
+      1
+     ],
+     [
+      18,
+      1,
+      1
+     ],
+     [
+      19,
+      1,
+      1
+     ],
+     [
+      20,
+      1,
+      1
+     ],
+     [
+      21,
+      1,
+      1
+     ],
+     [
+      22,
+      1,
+      1
+     ],
+     [
+      23,
+      1,
+      1
+     ],
+     [
+      24,
+      1,
+      1
+     ],
+     [
+      25,
+      1,
+      1
+     ]
+    ],
+    "scratch_seed": 401,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 1593104201, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "e4878d124f1851e34f5d05cdc53768118f57a134ba002f651949bdab60262915",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2301873280,
+     2147483647,
+     5,
+     888612868
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-2",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      2
+     ],
+     [
+      1,
+      0,
+      2
+     ],
+     [
+      2,
+      0,
+      2
+     ],
+     [
+      3,
+      0,
+      2
+     ],
+     [
+      4,
+      0,
+      2
+     ],
+     [
+      5,
+      0,
+      2
+     ],
+     [
+      6,
+      0,
+      2
+     ],
+     [
+      7,
+      0,
+      2
+     ],
+     [
+      8,
+      0,
+      2
+     ],
+     [
+      9,
+      0,
+      2
+     ],
+     [
+      10,
+      0,
+      2
+     ],
+     [
+      11,
+      0,
+      2
+     ],
+     [
+      12,
+      0,
+      2
+     ],
+     [
+      13,
+      0,
+      2
+     ],
+     [
+      14,
+      0,
+      2
+     ],
+     [
+      15,
+      0,
+      2
+     ],
+     [
+      16,
+      0,
+      2
+     ],
+     [
+      17,
+      0,
+      2
+     ],
+     [
+      18,
+      0,
+      2
+     ],
+     [
+      19,
+      0,
+      2
+     ],
+     [
+      20,
+      0,
+      2
+     ],
+     [
+      21,
+      0,
+      2
+     ],
+     [
+      22,
+      0,
+      2
+     ],
+     [
+      23,
+      0,
+      2
+     ],
+     [
+      24,
+      0,
+      2
+     ],
+     [
+      25,
+      0,
+      2
+     ],
+     [
+      0,
+      1,
+      2
+     ],
+     [
+      1,
+      1,
+      2
+     ],
+     [
+      2,
+      1,
+      2
+     ],
+     [
+      3,
+      1,
+      2
+     ],
+     [
+      4,
+      1,
+      2
+     ],
+     [
+      5,
+      1,
+      2
+     ],
+     [
+      6,
+      1,
+      2
+     ],
+     [
+      7,
+      1,
+      2
+     ],
+     [
+      8,
+      1,
+      2
+     ],
+     [
+      9,
+      1,
+      2
+     ],
+     [
+      10,
+      1,
+      2
+     ],
+     [
+      11,
+      1,
+      2
+     ],
+     [
+      12,
+      1,
+      2
+     ],
+     [
+      13,
+      1,
+      2
+     ],
+     [
+      14,
+      1,
+      2
+     ],
+     [
+      15,
+      1,
+      2
+     ],
+     [
+      16,
+      1,
+      2
+     ],
+     [
+      17,
+      1,
+      2
+     ],
+     [
+      18,
+      1,
+      2
+     ],
+     [
+      19,
+      1,
+      2
+     ],
+     [
+      20,
+      1,
+      2
+     ],
+     [
+      21,
+      1,
+      2
+     ],
+     [
+      22,
+      1,
+      2
+     ],
+     [
+      23,
+      1,
+      2
+     ],
+     [
+      24,
+      1,
+      2
+     ],
+     [
+      25,
+      1,
+      2
+     ]
+    ],
+    "scratch_seed": 402,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 2238308712, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "bd7fcd63879002b9457c4bae51c643caa72658b0287c59063d420533833eccfc",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     684158906,
+     917497122,
+     62306477,
+     4
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-4",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      4294967285
+     ],
+     [
+      1,
+      0,
+      4294967285
+     ],
+     [
+      2,
+      0,
+      4294967285
+     ],
+     [
+      3,
+      0,
+      4294967285
+     ],
+     [
+      4,
+      0,
+      4294967285
+     ],
+     [
+      5,
+      0,
+      4294967285
+     ],
+     [
+      6,
+      0,
+      4294967285
+     ],
+     [
+      7,
+      0,
+      4294967285
+     ],
+     [
+      8,
+      0,
+      4294967285
+     ],
+     [
+      9,
+      0,
+      4294967285
+     ],
+     [
+      10,
+      0,
+      4294967285
+     ],
+     [
+      11,
+      0,
+      4294967285
+     ],
+     [
+      12,
+      0,
+      4294967285
+     ],
+     [
+      13,
+      0,
+      4294967285
+     ],
+     [
+      14,
+      0,
+      4294967285
+     ],
+     [
+      15,
+      0,
+      4294967285
+     ],
+     [
+      16,
+      0,
+      4294967285
+     ],
+     [
+      17,
+      0,
+      4294967285
+     ],
+     [
+      18,
+      0,
+      4294967285
+     ],
+     [
+      19,
+      0,
+      4294967285
+     ],
+     [
+      20,
+      0,
+      4294967285
+     ],
+     [
+      21,
+      0,
+      4294967285
+     ],
+     [
+      22,
+      0,
+      4294967285
+     ],
+     [
+      23,
+      0,
+      4294967285
+     ],
+     [
+      24,
+      0,
+      4294967285
+     ],
+     [
+      25,
+      0,
+      4294967285
+     ],
+     [
+      0,
+      1,
+      4294967285
+     ],
+     [
+      1,
+      1,
+      4294967285
+     ],
+     [
+      2,
+      1,
+      4294967285
+     ],
+     [
+      3,
+      1,
+      4294967285
+     ],
+     [
+      4,
+      1,
+      4294967285
+     ],
+     [
+      5,
+      1,
+      4294967285
+     ],
+     [
+      6,
+      1,
+      4294967285
+     ],
+     [
+      7,
+      1,
+      4294967285
+     ],
+     [
+      8,
+      1,
+      4294967285
+     ],
+     [
+      9,
+      1,
+      4294967285
+     ],
+     [
+      10,
+      1,
+      4294967285
+     ],
+     [
+      11,
+      1,
+      4294967285
+     ],
+     [
+      12,
+      1,
+      4294967285
+     ],
+     [
+      13,
+      1,
+      4294967285
+     ],
+     [
+      14,
+      1,
+      4294967285
+     ],
+     [
+      15,
+      1,
+      4294967285
+     ],
+     [
+      16,
+      1,
+      4294967285
+     ],
+     [
+      17,
+      1,
+      4294967285
+     ],
+     [
+      18,
+      1,
+      4294967285
+     ],
+     [
+      19,
+      1,
+      4294967285
+     ],
+     [
+      20,
+      1,
+      4294967285
+     ],
+     [
+      21,
+      1,
+      4294967285
+     ],
+     [
+      22,
+      1,
+      4294967285
+     ],
+     [
+      23,
+      1,
+      4294967285
+     ],
+     [
+      24,
+      1,
+      4294967285
+     ],
+     [
+      25,
+      1,
+      4294967285
+     ]
+    ],
+    "scratch_seed": 404,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 3899291380, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "b6ef42c79133f0142d8342a32e085f167ba88244eba3e07349c144a44135664d",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2228322781,
+     4083588271,
+     2892155724,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-0-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      1
+     ],
+     [
+      0,
+      1,
+      1
+     ]
+    ],
+    "scratch_seed": 501,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 2287482542, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "e06ba5b1dcc319b08f2419c0a2236c1f0d96bce38480fe5c2accc800f11f6271",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3251732198,
+     125927478,
+     256,
+     3937702508
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-2-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      2,
+      0,
+      1
+     ],
+     [
+      2,
+      1,
+      1
+     ]
+    ],
+    "scratch_seed": 505,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 3496096611, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "546cad598391495905092d8fd342822836e230c465ac86c43dd8598d0039a826",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2304217289,
+     5,
+     1,
+     614573091
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-3-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 506,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 530783449, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "af9438cbcd6834f03ed04fcc7f0583d8f93a531c02f1bd1e4924e507087ea73b",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     447244497,
+     2736027985,
+     2141959162,
+     257798706
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-3-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      3,
+      0,
+      1
+     ],
+     [
+      3,
+      1,
+      1
+     ]
+    ],
+    "scratch_seed": 507,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 2637410693, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "35b90e482b4605ee0389010ddbce8d36d9f9b527391f8b87bdfdd5f84f3dbdb4",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1707046042,
+     2147483647,
+     16,
+     1029937604
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-4-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      4,
+      0,
+      1
+     ],
+     [
+      4,
+      1,
+      1
+     ]
+    ],
+    "scratch_seed": 509,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 136281433, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "4da5528fe05c6cf9c3f0449461cbef1e99dc7353eba561a998a2bb421a318299",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3109212633,
+     3114580090,
+     1436213896,
+     4222469910
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-6-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      6,
+      0,
+      1
+     ],
+     [
+      6,
+      1,
+      1
+     ]
+    ],
+    "scratch_seed": 513,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 210578684, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "420aa1eed2a5ef05e4d30382de32b39e9796652aa3f951b18a48b302c740ebc5",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2974244326,
+     8,
+     196267312,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-8-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 516,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    552056,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 24, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): running proxy thread... \\n'), ('RO', b'proxy_thread_handler'), 24, 2337113938, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "6a106ddfc49accd12bdd143d7eb95b667240c5cbf775b7abb83acf384433bc4a",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2147483648,
+     2147483648,
+     1,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-9-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 518,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 20,
+  "ratio": 0.3333,
+  "total": 60,
+  "unresolved_indirect": 1
+ },
+ "ghidra_size": 2736,
+ "globals": [
+  "0x2000230c",
+  "0x20007554",
+  "0x2000392c",
+  "0x2001d432",
+  "0x2000ff04",
+  "0x2001d431",
+  "0x2001d34a",
+  "0x2001d34b"
+ ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "e556ab5692bf509d",
+  "stack_arg_window": 48
+ },
+ "module": "core",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "i32",
+ "search": {
+  "candidates": 231,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 112,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 41,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 3022,
+ "symbol": "proxy_thread_handler",
+ "va": "0x00047c48"
+}

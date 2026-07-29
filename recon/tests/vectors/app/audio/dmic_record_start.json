@@ -1,0 +1,1543 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    0
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 2556514360, 1, 4)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "9e62bd57340bbd403e5a6413387b061c856a7e48e0be0d721649e96ed7569176",
+    "kind": "fault",
+    "ncalls": 1
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1276959699,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 5,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    4,
+    0,
+    0,
+    0,
+    0,
+    1
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    92072,
+    105584,
+    194184,
+    194404,
+    92072,
+    92072,
+    469120
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 4185, 1, 4)",
+    "('C', 1, ('RO', b'%s(): received open dmic command\\n'), ('RO', b'dmic_record_start'), 1935641720, 4140973137, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 536902520, 4, 1)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('W', 4172, 4, 29)",
+    "('C', 5, 'S', 'F', 'T', None)",
+    "('C', 6, 104, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "7e111aa9ab66e3d63a349901ae5f1467a57d9126a0b052c5faa55cf420844d63",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2345269775,
+     3092785552,
+     1935641720,
+     554330043
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 400,
+    "xpsr": 0
+   },
+   "new_instructions": 31,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    4,
+    0,
+    0,
+    0,
+    0,
+    1
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    92072,
+    105584,
+    194184,
+    194404,
+    92072,
+    92072,
+    469120
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 4186, 1, 4)",
+    "('C', 1, ('RO', b'%s(): received open dmic command\\n'), ('RO', b'dmic_record_start'), 168044460, 2235425154, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 536902520, 4, 1)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('W', 4173, 4, 29)",
+    "('C', 5, 'S', 'F', 'T', None)",
+    "('C', 6, 105, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0b4fc5a403f3771e583a5f587d5d98648bd639371a443b9125a982330f4eefe0",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3358579451,
+     2876352768,
+     168044460,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      1
+     ],
+     [
+      1,
+      0,
+      1
+     ],
+     [
+      2,
+      0,
+      1
+     ],
+     [
+      3,
+      0,
+      1
+     ],
+     [
+      4,
+      0,
+      1
+     ],
+     [
+      5,
+      0,
+      1
+     ],
+     [
+      6,
+      0,
+      1
+     ],
+     [
+      0,
+      1,
+      1
+     ],
+     [
+      1,
+      1,
+      1
+     ],
+     [
+      2,
+      1,
+      1
+     ],
+     [
+      3,
+      1,
+      1
+     ],
+     [
+      4,
+      1,
+      1
+     ],
+     [
+      5,
+      1,
+      1
+     ],
+     [
+      6,
+      1,
+      1
+     ]
+    ],
+    "scratch_seed": 401,
+    "xpsr": 0
+   },
+   "new_instructions": 31,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    4,
+    0,
+    0,
+    0,
+    0,
+    1
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    92072,
+    105584,
+    194184,
+    194404,
+    92072,
+    92072,
+    469120
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 4187, 1, 4)",
+    "('C', 1, ('RO', b'%s(): received open dmic command\\n'), ('RO', b'dmic_record_start'), 5, 1593104201, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 536902520, 4, 1)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('W', 4174, 4, 29)",
+    "('C', 5, 'S', 'F', 'T', None)",
+    "('C', 6, 106, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "4c1b55379592f08cec50bed090dc44df25d59252354de415bbb0e9e6022e53fc",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2301873280,
+     2147483647,
+     5,
+     888612868
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-2",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      2
+     ],
+     [
+      1,
+      0,
+      2
+     ],
+     [
+      2,
+      0,
+      2
+     ],
+     [
+      3,
+      0,
+      2
+     ],
+     [
+      4,
+      0,
+      2
+     ],
+     [
+      5,
+      0,
+      2
+     ],
+     [
+      6,
+      0,
+      2
+     ],
+     [
+      0,
+      1,
+      2
+     ],
+     [
+      1,
+      1,
+      2
+     ],
+     [
+      2,
+      1,
+      2
+     ],
+     [
+      3,
+      1,
+      2
+     ],
+     [
+      4,
+      1,
+      2
+     ],
+     [
+      5,
+      1,
+      2
+     ],
+     [
+      6,
+      1,
+      2
+     ]
+    ],
+    "scratch_seed": 402,
+    "xpsr": 0
+   },
+   "new_instructions": 31,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    92072,
+    194184,
+    194404,
+    92072,
+    92072,
+    469120
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 4184, 1, 4)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536902520, 4, 1)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 4171, 4, 29)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 103, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "58210f467fb405ce0c372579060afde9992ae2ecd5313493b44e3e90e29e27de",
+    "kind": "return",
+    "ncalls": 6,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     5,
+     5,
+     2896198881,
+     256
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-3",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      4294967295
+     ],
+     [
+      1,
+      0,
+      4294967295
+     ],
+     [
+      2,
+      0,
+      4294967295
+     ],
+     [
+      3,
+      0,
+      4294967295
+     ],
+     [
+      4,
+      0,
+      4294967295
+     ],
+     [
+      5,
+      0,
+      4294967295
+     ],
+     [
+      6,
+      0,
+      4294967295
+     ],
+     [
+      0,
+      1,
+      4294967295
+     ],
+     [
+      1,
+      1,
+      4294967295
+     ],
+     [
+      2,
+      1,
+      4294967295
+     ],
+     [
+      3,
+      1,
+      4294967295
+     ],
+     [
+      4,
+      1,
+      4294967295
+     ],
+     [
+      5,
+      1,
+      4294967295
+     ],
+     [
+      6,
+      1,
+      4294967295
+     ]
+    ],
+    "scratch_seed": 403,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    4,
+    0,
+    0,
+    0,
+    0,
+    1
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    92072,
+    105584,
+    194184,
+    194404,
+    92072,
+    92072,
+    469120
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 4174, 1, 4)",
+    "('C', 1, ('RO', b'%s(): received open dmic command\\n'), ('RO', b'dmic_record_start'), 62306477, 2238308712, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 536902520, 4, 1)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('W', 4161, 4, 29)",
+    "('C', 5, 'S', 'F', 'T', None)",
+    "('C', 6, 93, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "aa4ddb3e68421f8b8fde8cf2eadc67d684742e5a2d3da2a8256dae00de35d8cf",
+    "kind": "return",
+    "ncalls": 7,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     684158906,
+     917497122,
+     62306477,
+     4
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-4",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      4294967285
+     ],
+     [
+      1,
+      0,
+      4294967285
+     ],
+     [
+      2,
+      0,
+      4294967285
+     ],
+     [
+      3,
+      0,
+      4294967285
+     ],
+     [
+      4,
+      0,
+      4294967285
+     ],
+     [
+      5,
+      0,
+      4294967285
+     ],
+     [
+      6,
+      0,
+      4294967285
+     ],
+     [
+      0,
+      1,
+      4294967285
+     ],
+     [
+      1,
+      1,
+      4294967285
+     ],
+     [
+      2,
+      1,
+      4294967285
+     ],
+     [
+      3,
+      1,
+      4294967285
+     ],
+     [
+      4,
+      1,
+      4294967285
+     ],
+     [
+      5,
+      1,
+      4294967285
+     ],
+     [
+      6,
+      1,
+      4294967285
+     ]
+    ],
+    "scratch_seed": 404,
+    "xpsr": 0
+   },
+   "new_instructions": 31,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 2147487832, 1, 4)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "2adc10783b49d607a13c98eafec7993aef87a27dbcb0947c8173463cbe3b3e45",
+    "kind": "fault",
+    "ncalls": 1
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     122934576,
+     1925238373,
+     4000909504,
+     4235762602
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-5",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      2147483647
+     ],
+     [
+      1,
+      0,
+      2147483647
+     ],
+     [
+      2,
+      0,
+      2147483647
+     ],
+     [
+      3,
+      0,
+      2147483647
+     ],
+     [
+      4,
+      0,
+      2147483647
+     ],
+     [
+      5,
+      0,
+      2147483647
+     ],
+     [
+      6,
+      0,
+      2147483647
+     ],
+     [
+      0,
+      1,
+      2147483647
+     ],
+     [
+      1,
+      1,
+      2147483647
+     ],
+     [
+      2,
+      1,
+      2147483647
+     ],
+     [
+      3,
+      1,
+      2147483647
+     ],
+     [
+      4,
+      1,
+      2147483647
+     ],
+     [
+      5,
+      1,
+      2147483647
+     ],
+     [
+      6,
+      1,
+      2147483647
+     ]
+    ],
+    "scratch_seed": 405,
+    "xpsr": 0
+   },
+   "new_instructions": 5,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    92072,
+    194184,
+    194404,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 4185, 1, 4)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536902520, 4, 1)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86618089, 4, 29)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "9480f68d394882a3693dcfafb765eb7fbdc9112ba5f0ae1c0a6e958fe41396bc",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     16,
+     3537908766,
+     2874002338,
+     3321765362
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-0-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 500,
+    "xpsr": 0
+   },
+   "new_instructions": 21,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    92072,
+    105584,
+    194184,
+    194404,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 4186, 1, 4)",
+    "('C', 1, ('RO', b'%s(): received open dmic command\\n'), ('RO', b'dmic_record_start'), 2892155724, 3899291380, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 536902520, 4, 1)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('W', 609316679, 4, 29)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "c4dba2e13eeba32bd143a24fa17750fff47c28cfe215d42c1afef81da584db0c",
+    "kind": "fault",
+    "ncalls": 5
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2228322781,
+     4083588271,
+     2892155724,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-0-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      1
+     ],
+     [
+      0,
+      1,
+      1
+     ]
+    ],
+    "scratch_seed": 501,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    92072,
+    194184,
+    194404,
+    92072,
+    92072,
+    469120
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 4185, 1, 4)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536902520, 4, 1)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 4172, 4, 29)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 104, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "bb8bb85a439e56895d84b7d5fc053407e2ab9aa45750e5288537f4760f621b7b",
+    "kind": "return",
+    "ncalls": 6,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536879884,
+      "00000000"
+     ],
+     [
+      536900948,
+      "00000000"
+     ],
+     [
+      536902520,
+      "00000000"
+     ]
+    ],
+    "args": [
+     8,
+     1164329427,
+     7,
+     1937427917
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "combo-0-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 600,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    92072,
+    194184,
+    194404,
+    92072,
+    92072,
+    469120
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 4186, 1, 4)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536902520, 4, 1)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 4173, 4, 29)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 105, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0e45c712b21d174d7b9053367b6dd577398fc31dc727662f7a75878c1579bf12",
+    "kind": "return",
+    "ncalls": 6,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536879884,
+      "00000000"
+     ],
+     [
+      536900948,
+      "00000000"
+     ],
+     [
+      536902520,
+      "00000000"
+     ]
+    ],
+    "args": [
+     3957655662,
+     2147483648,
+     2601240733,
+     4242206025
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "combo-0-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      1
+     ],
+     [
+      0,
+      1,
+      1
+     ],
+     [
+      1,
+      0,
+      1
+     ],
+     [
+      1,
+      1,
+      1
+     ],
+     [
+      2,
+      0,
+      1
+     ],
+     [
+      2,
+      1,
+      1
+     ],
+     [
+      3,
+      0,
+      1
+     ],
+     [
+      3,
+      1,
+      1
+     ],
+     [
+      4,
+      0,
+      1
+     ],
+     [
+      4,
+      1,
+      1
+     ],
+     [
+      5,
+      0,
+      1
+     ],
+     [
+      5,
+      1,
+      1
+     ],
+     [
+      6,
+      0,
+      1
+     ],
+     [
+      6,
+      1,
+      1
+     ]
+    ],
+    "scratch_seed": 601,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    92072,
+    194184,
+    194404,
+    92072,
+    92072,
+    469120
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 104185, 1, 4)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536902520, 4, 1)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 104172, 4, 29)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 100104, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ced52d21f33067075a4f75d76e895e695c14921f05c968e000eaaaea8e6ba1a8",
+    "kind": "return",
+    "ncalls": 6,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536879884,
+      "00000000"
+     ],
+     [
+      536900948,
+      "00000000"
+     ],
+     [
+      536902520,
+      "00000000"
+     ]
+    ],
+    "args": [
+     6,
+     1592279039,
+     2201720285,
+     2147483648
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "combo-0-3",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      100000
+     ],
+     [
+      0,
+      1,
+      100000
+     ],
+     [
+      1,
+      0,
+      100000
+     ],
+     [
+      1,
+      1,
+      100000
+     ],
+     [
+      2,
+      0,
+      100000
+     ],
+     [
+      2,
+      1,
+      100000
+     ],
+     [
+      3,
+      0,
+      100000
+     ],
+     [
+      3,
+      1,
+      100000
+     ],
+     [
+      4,
+      0,
+      100000
+     ],
+     [
+      4,
+      1,
+      100000
+     ],
+     [
+      5,
+      0,
+      100000
+     ],
+     [
+      5,
+      1,
+      100000
+     ],
+     [
+      6,
+      0,
+      100000
+     ],
+     [
+      6,
+      1,
+      100000
+     ]
+    ],
+    "scratch_seed": 603,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 31,
+  "ratio": 0.9394,
+  "total": 33,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 94,
+ "globals": [
+  "0x2000230c",
+  "0x20007554",
+  "0x20007b78"
+ ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "e556ab5692bf509d",
+  "stack_arg_window": 48
+ },
+ "module": "audio",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "void",
+ "search": {
+  "candidates": 181,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 12,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 94,
+ "symbol": "dmic_record_start",
+ "va": "0x0003b78c"
+}

@@ -1,0 +1,1553 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    0
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    513260
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "224e60b24cfba8ccbb749ad0735912f56546fc3b88ccc22503219362cc1fd656",
+    "kind": "fault",
+    "ncalls": 1
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1276959699,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 10,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    513260,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): c->init_done = 0,init failed, can't write data!\\n\"), ('RO', b'_reflash_fb_data_to_lcd_ex'), 1935641720, 4140973137, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "90d2ae3b3349b8c717fab5ecc800b6b8591ca9b4260d18fd4708a70cb380678a",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2345269775,
+     3092785552,
+     1935641720,
+     554330043
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 400,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    513260,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): c->init_done = 0,init failed, can't write data!\\n\"), ('RO', b'_reflash_fb_data_to_lcd_ex'), 168044460, 2235425154, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ee869760998448efe0a8833d0c3e920a38fc10165e58c5a0e43b425458f850d7",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3358579451,
+     2876352768,
+     168044460,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      1
+     ],
+     [
+      1,
+      0,
+      1
+     ],
+     [
+      2,
+      0,
+      1
+     ],
+     [
+      3,
+      0,
+      1
+     ],
+     [
+      4,
+      0,
+      1
+     ],
+     [
+      5,
+      0,
+      1
+     ],
+     [
+      6,
+      0,
+      1
+     ],
+     [
+      7,
+      0,
+      1
+     ],
+     [
+      8,
+      0,
+      1
+     ],
+     [
+      9,
+      0,
+      1
+     ],
+     [
+      0,
+      1,
+      1
+     ],
+     [
+      1,
+      1,
+      1
+     ],
+     [
+      2,
+      1,
+      1
+     ],
+     [
+      3,
+      1,
+      1
+     ],
+     [
+      4,
+      1,
+      1
+     ],
+     [
+      5,
+      1,
+      1
+     ],
+     [
+      6,
+      1,
+      1
+     ],
+     [
+      7,
+      1,
+      1
+     ],
+     [
+      8,
+      1,
+      1
+     ],
+     [
+      9,
+      1,
+      1
+     ]
+    ],
+    "scratch_seed": 401,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    513260,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): c->init_done = 0,init failed, can't write data!\\n\"), ('RO', b'_reflash_fb_data_to_lcd_ex'), 5, 1593104201, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0d78fcad086971a6092f5d1ea03dea93f8c9863c8dda610b5149c238e845022d",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2301873280,
+     2147483647,
+     5,
+     888612868
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-2",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      2
+     ],
+     [
+      1,
+      0,
+      2
+     ],
+     [
+      2,
+      0,
+      2
+     ],
+     [
+      3,
+      0,
+      2
+     ],
+     [
+      4,
+      0,
+      2
+     ],
+     [
+      5,
+      0,
+      2
+     ],
+     [
+      6,
+      0,
+      2
+     ],
+     [
+      7,
+      0,
+      2
+     ],
+     [
+      8,
+      0,
+      2
+     ],
+     [
+      9,
+      0,
+      2
+     ],
+     [
+      0,
+      1,
+      2
+     ],
+     [
+      1,
+      1,
+      2
+     ],
+     [
+      2,
+      1,
+      2
+     ],
+     [
+      3,
+      1,
+      2
+     ],
+     [
+      4,
+      1,
+      2
+     ],
+     [
+      5,
+      1,
+      2
+     ],
+     [
+      6,
+      1,
+      2
+     ],
+     [
+      7,
+      1,
+      2
+     ],
+     [
+      8,
+      1,
+      2
+     ],
+     [
+      9,
+      1,
+      2
+     ]
+    ],
+    "scratch_seed": 402,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    513260
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "224e60b24cfba8ccbb749ad0735912f56546fc3b88ccc22503219362cc1fd656",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     5,
+     5,
+     2896198881,
+     256
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-3",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      4294967295
+     ],
+     [
+      1,
+      0,
+      4294967295
+     ],
+     [
+      2,
+      0,
+      4294967295
+     ],
+     [
+      3,
+      0,
+      4294967295
+     ],
+     [
+      4,
+      0,
+      4294967295
+     ],
+     [
+      5,
+      0,
+      4294967295
+     ],
+     [
+      6,
+      0,
+      4294967295
+     ],
+     [
+      7,
+      0,
+      4294967295
+     ],
+     [
+      8,
+      0,
+      4294967295
+     ],
+     [
+      9,
+      0,
+      4294967295
+     ],
+     [
+      0,
+      1,
+      4294967295
+     ],
+     [
+      1,
+      1,
+      4294967295
+     ],
+     [
+      2,
+      1,
+      4294967295
+     ],
+     [
+      3,
+      1,
+      4294967295
+     ],
+     [
+      4,
+      1,
+      4294967295
+     ],
+     [
+      5,
+      1,
+      4294967295
+     ],
+     [
+      6,
+      1,
+      4294967295
+     ],
+     [
+      7,
+      1,
+      4294967295
+     ],
+     [
+      8,
+      1,
+      4294967295
+     ],
+     [
+      9,
+      1,
+      4294967295
+     ]
+    ],
+    "scratch_seed": 403,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    513260,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): c->init_done = 0,init failed, can't write data!\\n\"), ('RO', b'_reflash_fb_data_to_lcd_ex'), 62306477, 2238308712, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "abc9aa53f65243215b2be67dbefcf8135cb6b86d616aa3eb6cba1a74b6e32160",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     684158906,
+     917497122,
+     62306477,
+     4
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-all-4",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      4294967285
+     ],
+     [
+      1,
+      0,
+      4294967285
+     ],
+     [
+      2,
+      0,
+      4294967285
+     ],
+     [
+      3,
+      0,
+      4294967285
+     ],
+     [
+      4,
+      0,
+      4294967285
+     ],
+     [
+      5,
+      0,
+      4294967285
+     ],
+     [
+      6,
+      0,
+      4294967285
+     ],
+     [
+      7,
+      0,
+      4294967285
+     ],
+     [
+      8,
+      0,
+      4294967285
+     ],
+     [
+      9,
+      0,
+      4294967285
+     ],
+     [
+      0,
+      1,
+      4294967285
+     ],
+     [
+      1,
+      1,
+      4294967285
+     ],
+     [
+      2,
+      1,
+      4294967285
+     ],
+     [
+      3,
+      1,
+      4294967285
+     ],
+     [
+      4,
+      1,
+      4294967285
+     ],
+     [
+      5,
+      1,
+      4294967285
+     ],
+     [
+      6,
+      1,
+      4294967285
+     ],
+     [
+      7,
+      1,
+      4294967285
+     ],
+     [
+      8,
+      1,
+      4294967285
+     ],
+     [
+      9,
+      1,
+      4294967285
+     ]
+    ],
+    "scratch_seed": 404,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    513260,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): c->init_done = 0,init failed, can't write data!\\n\"), ('RO', b'_reflash_fb_data_to_lcd_ex'), 2892155724, 3899291380, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0a097c9852299948af35b56ff2b9b63e9397b2a1bc489de2af97f772f95f1b2e",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2228322781,
+     4083588271,
+     2892155724,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "orc-0-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      1
+     ],
+     [
+      0,
+      1,
+      1
+     ]
+    ],
+    "scratch_seed": 501,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    513260,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): c->init_done = 0,init failed, can't write data!\\n\"), ('RO', b'_reflash_fb_data_to_lcd_ex'), 2, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "f38001bcfe475bf856445bf7394140c3359c4bc215c348216335829e194f0360",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536879884,
+      "01000000"
+     ],
+     [
+      536900948,
+      "01000000"
+     ],
+     [
+      536911968,
+      "01000000"
+     ]
+    ],
+    "args": [
+     3667252315,
+     812981861,
+     2,
+     2147483648
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "combo-1-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ]
+    ],
+    "scratch_seed": 604,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    513260,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): c->init_done = 0,init failed, can't write data!\\n\"), ('RO', b'_reflash_fb_data_to_lcd_ex'), 3514336102, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ee299df82632df185266b6194dbb49535a0b402bfbd0a10f16e0850349eccc81",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536879884,
+      "01000000"
+     ],
+     [
+      536900948,
+      "01000000"
+     ],
+     [
+      536911968,
+      "01000000"
+     ]
+    ],
+    "args": [
+     4294967295,
+     5,
+     3514336102,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "combo-1-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      1
+     ],
+     [
+      0,
+      1,
+      1
+     ],
+     [
+      1,
+      0,
+      1
+     ],
+     [
+      1,
+      1,
+      1
+     ],
+     [
+      2,
+      0,
+      1
+     ],
+     [
+      2,
+      1,
+      1
+     ],
+     [
+      3,
+      0,
+      1
+     ],
+     [
+      3,
+      1,
+      1
+     ],
+     [
+      4,
+      0,
+      1
+     ],
+     [
+      4,
+      1,
+      1
+     ],
+     [
+      5,
+      0,
+      1
+     ],
+     [
+      5,
+      1,
+      1
+     ],
+     [
+      6,
+      0,
+      1
+     ],
+     [
+      6,
+      1,
+      1
+     ],
+     [
+      7,
+      0,
+      1
+     ],
+     [
+      7,
+      1,
+      1
+     ],
+     [
+      8,
+      0,
+      1
+     ],
+     [
+      8,
+      1,
+      1
+     ],
+     [
+      9,
+      0,
+      1
+     ],
+     [
+      9,
+      1,
+      1
+     ]
+    ],
+    "scratch_seed": 605,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    513260,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): c->init_done = 0,init failed, can't write data!\\n\"), ('RO', b'_reflash_fb_data_to_lcd_ex'), 256, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "3ebfbc3192d4c59f1812bf3764ebee259eee9f5d34678777a70537588cb82cb6",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536879884,
+      "01000000"
+     ],
+     [
+      536900948,
+      "01000000"
+     ],
+     [
+      536911968,
+      "01000000"
+     ]
+    ],
+    "args": [
+     650272731,
+     256,
+     256,
+     1362090472
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "combo-1-2",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      4294967295
+     ],
+     [
+      0,
+      1,
+      4294967295
+     ],
+     [
+      1,
+      0,
+      4294967295
+     ],
+     [
+      1,
+      1,
+      4294967295
+     ],
+     [
+      2,
+      0,
+      4294967295
+     ],
+     [
+      2,
+      1,
+      4294967295
+     ],
+     [
+      3,
+      0,
+      4294967295
+     ],
+     [
+      3,
+      1,
+      4294967295
+     ],
+     [
+      4,
+      0,
+      4294967295
+     ],
+     [
+      4,
+      1,
+      4294967295
+     ],
+     [
+      5,
+      0,
+      4294967295
+     ],
+     [
+      5,
+      1,
+      4294967295
+     ],
+     [
+      6,
+      0,
+      4294967295
+     ],
+     [
+      6,
+      1,
+      4294967295
+     ],
+     [
+      7,
+      0,
+      4294967295
+     ],
+     [
+      7,
+      1,
+      4294967295
+     ],
+     [
+      8,
+      0,
+      4294967295
+     ],
+     [
+      8,
+      1,
+      4294967295
+     ],
+     [
+      9,
+      0,
+      4294967295
+     ],
+     [
+      9,
+      1,
+      4294967295
+     ]
+    ],
+    "scratch_seed": 606,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    513260,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b\"%s(): c->init_done = 0,init failed, can't write data!\\n\"), ('RO', b'_reflash_fb_data_to_lcd_ex'), 269192271, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "aa980dbeb551e52cfe876f4961fad3d4dace3d5e5e1379e54f4c5e4b3627aace",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536879884,
+      "01000000"
+     ],
+     [
+      536900948,
+      "01000000"
+     ],
+     [
+      536911968,
+      "01000000"
+     ]
+    ],
+    "args": [
+     2283684285,
+     1952819114,
+     269192271,
+     1277542989
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "combo-1-3",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [
+     [
+      0,
+      0,
+      100000
+     ],
+     [
+      0,
+      1,
+      100000
+     ],
+     [
+      1,
+      0,
+      100000
+     ],
+     [
+      1,
+      1,
+      100000
+     ],
+     [
+      2,
+      0,
+      100000
+     ],
+     [
+      2,
+      1,
+      100000
+     ],
+     [
+      3,
+      0,
+      100000
+     ],
+     [
+      3,
+      1,
+      100000
+     ],
+     [
+      4,
+      0,
+      100000
+     ],
+     [
+      4,
+      1,
+      100000
+     ],
+     [
+      5,
+      0,
+      100000
+     ],
+     [
+      5,
+      1,
+      100000
+     ],
+     [
+      6,
+      0,
+      100000
+     ],
+     [
+      6,
+      1,
+      100000
+     ],
+     [
+      7,
+      0,
+      100000
+     ],
+     [
+      7,
+      1,
+      100000
+     ],
+     [
+      8,
+      0,
+      100000
+     ],
+     [
+      8,
+      1,
+      100000
+     ],
+     [
+      9,
+      0,
+      100000
+     ],
+     [
+      9,
+      1,
+      100000
+     ]
+    ],
+    "scratch_seed": 607,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  }
+ ],
+ "core": "app",
+ "coverage": {
+  "covered": 25,
+  "ratio": 0.1969,
+  "total": 127,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 340,
+ "globals": [
+  "0x2000230c",
+  "0x20007554",
+  "0x2000a060"
+ ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "e556ab5692bf509d",
+  "stack_arg_window": 48
+ },
+ "module": "display",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "i32",
+ "search": {
+  "candidates": 187,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 11,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 340,
+ "symbol": "reflash_fb_data_to_lcd_ex",
+ "va": "0x000473c8"
+}
