@@ -14,10 +14,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 4, 3694469211, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536948308, 3694469211, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ad72a69b4ed09f577134e82aa3e32bb0ade9e0cd05ede59e69b7f351c4e0c6b7",
+    "events": "723eedb7d58c77fe0a1d6021601eeeb1dfa8123b552213824c620c3bf6ef307c",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -28,21 +28,22 @@
    "fixture": {
     "abs": [],
     "args": [
-     1276959699,
-     12,
-     4,
+     536943568,
+     536948040,
+     536948308,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
-   "new_instructions": 25,
+   "new_instructions": 27,
    "stack_args": []
   },
   {
@@ -63,17 +64,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4067469868,
-     1797429778,
-     2147483648,
+     536947244,
+     536943120,
+     536940476,
      315044147
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -94,10 +96,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 3677430904, 471345317, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536945784, 471345317, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "aaacd3c5cd1a87f4da58846c56c0f3447f3ba9013a7d0cb05a39702acea23131",
+    "events": "aaeaf5009316793ee8194f9d775f00c4835e5a39cf84eeabd4ede39a254a0131",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -108,56 +110,22 @@
    "fixture": {
     "abs": [],
     "args": [
-     4290042576,
-     598759513,
-     3677430904,
+     536943312,
+     536942680,
+     536945784,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
-   "new_instructions": 25,
-   "stack_args": []
-  },
-  {
-   "call_arities": [],
-   "call_float_arities": [],
-   "call_return_kinds": [],
-   "call_targets": [],
-   "events_head": [],
-   "expect": {
-    "events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-    "kind": "return",
-    "ncalls": 0,
-    "ret": [
-     4294967295
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     2618385373,
-     255,
-     8,
-     3619521758
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-3",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 3,
-    "xpsr": 0
-   },
-   "new_instructions": 21,
+   "new_instructions": 27,
    "stack_args": []
   },
   {
@@ -174,10 +142,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 3842370354, 2655161023, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536947504, 2655161023, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "31061e5de545ec692b050a16bac72b740b18726e9b535411a64a003b9cf86a00",
+    "events": "f3185b1f2e4067d367257872d9f4677ffeb1f00249df8450a35e4272357d56ec",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -188,56 +156,22 @@
    "fixture": {
     "abs": [],
     "args": [
-     16,
-     2147483647,
-     3842370354,
+     536945864,
+     536944284,
+     536947504,
      6
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 4,
     "xpsr": 0
    },
-   "new_instructions": 25,
-   "stack_args": []
-  },
-  {
-   "call_arities": [],
-   "call_float_arities": [],
-   "call_return_kinds": [],
-   "call_targets": [],
-   "events_head": [],
-   "expect": {
-    "events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-    "kind": "return",
-    "ncalls": 0,
-    "ret": [
-     4294967295
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     4,
-     3188701995,
-     8,
-     7
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-5",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 5,
-    "xpsr": 0
-   },
-   "new_instructions": 24,
+   "new_instructions": 27,
    "stack_args": []
   },
   {
@@ -254,10 +188,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 499087790, 3178863954, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536951212, 3178863954, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "5186a06c6bc4f5b851663e64690401cde9e67a6605175ae6f5f95c9d00b32ed9",
+    "events": "2bb8a6bed462854f74f999babb5c2f461a74938d64f83010972bcef2f50107ac",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -268,21 +202,22 @@
    "fixture": {
     "abs": [],
     "args": [
-     1346232374,
-     1556998536,
-     499087790,
+     536944692,
+     536947080,
+     536951212,
      2147483647
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 9,
     "xpsr": 0
    },
-   "new_instructions": 25,
+   "new_instructions": 30,
    "stack_args": []
   },
   {
@@ -299,10 +234,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 8, 3586673693, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536946200, 3586673693, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "1cc179d416b84eaa748a6b6b1dffbb713f6caa19b8da6ed0fc106d65da6447ab",
+    "events": "b1fe1efbb6046366d5d686468e5fee8fdaed6cb29220f635102dafae8854a344",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -313,21 +248,22 @@
    "fixture": {
     "abs": [],
     "args": [
-     182454980,
-     995058044,
-     8,
+     536939204,
+     536945020,
+     536946200,
      1
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 10,
     "xpsr": 0
    },
-   "new_instructions": 25,
+   "new_instructions": 27,
    "stack_args": []
   },
   {
@@ -344,10 +280,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 256, 801746852, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536938076, 801746852, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "567b6ad965b5c257c8d81aa3e1c496fb3fc608c0b37d3fe8386405673dcd8dd0",
+    "events": "f608b8ab86e8ce9d2a501970392b5a2a30de5eb9a84f36053305f7b15133bd82",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -358,17 +294,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3,
-     2147483648,
-     256,
+     536937040,
+     536948284,
+     536938076,
      1426281073
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 11,
     "xpsr": 0
    },
@@ -389,10 +326,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 5, 1542880163, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536941268, 1542880163, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "8796d194407cdd32dabb6bfeadcedfcb531453b727a2ddd23cafc41ff4320d18",
+    "events": "3f987967ce4ced97e0db0d074f7a897052c0e1e9d370e009335a1bd4affca079",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -403,17 +340,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     8,
-     3217736208,
-     5,
+     536944520,
+     536936976,
+     536941268,
      1103693227
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-12",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 12,
     "xpsr": 0
    },
@@ -434,10 +372,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 6, 287561451, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536939060, 287561451, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "71fbad4bb410f7e25727919715c57d359653ea280a613b00a2af9afaee141850",
+    "events": "deb90148e29e14db0929acea9af0fa394e8b20deb20f765c07bec6e8a1748eb8",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -448,17 +386,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1156718256,
-     1944344031,
-     6,
+     536944304,
+     536942044,
+     536939060,
      617681966
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 13,
     "xpsr": 0
    },
@@ -479,10 +418,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 3454407978, 886755549, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536941864, 886755549, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "77c2fc37cdf7dbd1285a65a177ba170325a546a3e84cc5e652795531a681c369",
+    "events": "3377ca54240b40e904a7c363818d18344f4515bf58cd003debe61381e4b927d2",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -493,17 +432,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2024561310,
-     2147483648,
-     3454407978,
+     536943260,
+     536942972,
+     536941864,
      16
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
@@ -524,10 +464,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 4178753371, 4075769455, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536950616, 4075769455, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b6355520a8714f8c622e275a9d860191d2f04298bdc7b780e7ce4e1a00bf8014",
+    "events": "499e05d0c1c9305572386fa107458905cc77e39f18542178c67ab4bc38f0544d",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -538,21 +478,22 @@
    "fixture": {
     "abs": [],
     "args": [
-     6,
-     1536401714,
-     4178753371,
+     536939284,
+     536944944,
+     536950616,
      255
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 19,
     "xpsr": 0
    },
-   "new_instructions": 25,
+   "new_instructions": 27,
    "stack_args": []
   },
   {
@@ -569,10 +510,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 2870852768, 2217669457, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536951968, 2217669457, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "1f24a11cef01daab51e23deeef5b1dfbbf05d019ad5ce814189f39f531c6d708",
+    "events": "c01e671e2dff81f1b424afc9a979b7fa3fb2d8116c2c606336c5f7b91e9c6d4d",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -583,21 +524,22 @@
    "fixture": {
     "abs": [],
     "args": [
-     843060076,
-     1,
-     2870852768,
+     536941420,
+     536936640,
+     536951968,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-21",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 21,
     "xpsr": 0
    },
-   "new_instructions": 25,
+   "new_instructions": 27,
    "stack_args": []
   },
   {
@@ -614,10 +556,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 2149248134, 3712121755, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536947844, 3712121755, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "774669ab746de63c9e242c478a9871b7ef7862ad5c6184bc9ecdcb78360f1fdd",
+    "events": "8de42085461f7214979f077ad365926de1e88653fd2869814d2160735743a95b",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -628,21 +570,22 @@
    "fixture": {
     "abs": [],
     "args": [
-     3751937804,
-     12,
-     2149248134,
+     536938252,
+     536941512,
+     536947844,
      604019693
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 25,
     "xpsr": 0
    },
-   "new_instructions": 25,
+   "new_instructions": 30,
    "stack_args": []
   },
   {
@@ -659,10 +602,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 3639365232, 1775869161, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536940144, 1775869161, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "0bca4a1fc593922469837946c4a66fe70c96a740600950b10836f27ff2e6dbd4",
+    "events": "483520941288323462b0a46564e321656cd20a4eb6aba7de5e707f2b9c683272",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -673,17 +616,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     187818536,
-     681194263,
-     3639365232,
+     536945192,
+     536949524,
+     536940144,
      4125446660
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 27,
     "xpsr": 0
    },
@@ -704,10 +648,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 1, 1542213390, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536946096, 1542213390, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "2695fc8fc09407a774abfbf22d770bbda7bf3173f2a3f00f4f9db6b84f0ced77",
+    "events": "8d20203a844ddff9ecb5cda91ef1d0f305cd1be5abb3b54dc6881a4419723a84",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -718,17 +662,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3711083943,
-     4285183211,
-     1,
+     536946084,
+     536949992,
+     536946096,
      2592385448
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-28",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 28,
     "xpsr": 0
    },
@@ -749,10 +694,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 1, 2417460406, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536945744, 2417460406, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c8dd8a9e1c10e5e6fa59850b623e0c9ba8f3e46014e43687b3a2309cbec94458",
+    "events": "3f2bf2b664c6f221d8b8f862cac322995b7ce6da8ae8ec78bf3576bfe9accb4a",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -763,17 +708,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     256,
-     8,
-     1,
+     536952796,
+     536941720,
+     536945744,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-30",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 30,
     "xpsr": 0
    },
@@ -794,10 +740,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 7, 1988174091, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536938932, 1988174091, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "e315111ae4f03b96806ec18ce9ef4ab0aaf5ac840b3fb6c6dea6940b64171717",
+    "events": "8c00620cf0d6a94f3c5be16a576fb204ea979d11b6daefaf3a3e895be93d6a0a",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -808,21 +754,22 @@
    "fixture": {
     "abs": [],
     "args": [
-     4294967295,
-     2461003590,
-     7,
+     536952300,
+     536948548,
+     536938932,
      53351545
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
-   "new_instructions": 30,
+   "new_instructions": 25,
    "stack_args": []
   },
   {
@@ -839,10 +786,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 3442053927, 615009301, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536941348, 615009301, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "1132560d7df621753366cc71ba3984b828db468d5c19015f2af1cb85bbba9593",
+    "events": "7b25c0f2e72e75905d8bbc37e399c639bca79f01a464cb7cada43a599106c221",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -853,17 +800,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1839753098,
-     2706821390,
-     3442053927,
+     536946568,
+     536940812,
+     536941348,
      1170652979
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-32",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 32,
     "xpsr": 0
    },
@@ -884,10 +832,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 922796015, 2360084761, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536952812, 2360084761, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "a5ae7eb7ce162cb1abd6c0166cdca0fc4ff1706eec0d7347565d300e7b399264",
+    "events": "ac54c42502f2a9edac49b588fece7df27f083e9dd86b25efb4cb47b9e8da79c7",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -898,17 +846,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     12,
-     3990671540,
-     922796015,
+     536950120,
+     536940724,
+     536952812,
      2147483647
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 34,
     "xpsr": 0
    },
@@ -929,10 +878,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 4001652011, 4019880274, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536943912, 4019880274, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "d9fafac9f66ad2e4434ae6227f0631088c09beca8a17f4550f750f0bd9940d72",
+    "events": "5c278ef0a169890dff5e0bc1fdf2410e2fb029fdba57168e695e577340251376",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -943,21 +892,22 @@
    "fixture": {
     "abs": [],
     "args": [
-     2726887024,
-     3578977268,
-     4001652011,
+     536952432,
+     536943604,
+     536943912,
      1
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
-   "new_instructions": 30,
+   "new_instructions": 25,
    "stack_args": []
   },
   {
@@ -974,10 +924,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 2147483647, 823752600, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536945964, 823752600, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "e09f945c6a40c4e19557f5feba86963c2ef2de6106467360d738268ec4d5df06",
+    "events": "8472c80a1ca5c823aa72e9368eb9b2f0f54228c8a7e6b2caaba8e512cb9b0022",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -988,17 +938,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     0,
-     12,
-     2147483647,
+     536944224,
+     536949832,
+     536945964,
      8
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 36,
     "xpsr": 0
    },
@@ -1019,10 +970,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 3774328631, 2944518647, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536948532, 2944518647, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "79b1929c1434aadbe682f10f4f1f29c6f5fc77cf8342c5a65e38d6f8c5699873",
+    "events": "960bc02c948a72b5ab7bb043427cad0be9f3659d63adcb4720ddb8d7b0b82366",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1033,21 +984,22 @@
    "fixture": {
     "abs": [],
     "args": [
-     3,
-     1587124134,
-     3774328631,
+     536941424,
+     536942500,
+     536948532,
      1997155928
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
     "xpsr": 0
    },
-   "new_instructions": 25,
+   "new_instructions": 30,
    "stack_args": []
   },
   {
@@ -1064,10 +1016,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 3059135833, 2096484019, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536950104, 2096484019, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ee7e79b8ad6eea8a12bede78d5607955d9dab74aea1f1252ec94437d83b4b930",
+    "events": "666966b6eed2fce9eea41f9ba58cbf9dca62e2eeaf1963b455ae7f3d0e127596",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1078,21 +1030,22 @@
    "fixture": {
     "abs": [],
     "args": [
-     3886568119,
-     256,
-     3059135833,
+     536941236,
+     536950764,
+     536950104,
      1
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-41",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 41,
     "xpsr": 0
    },
-   "new_instructions": 25,
+   "new_instructions": 27,
    "stack_args": []
   },
   {
@@ -1109,10 +1062,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 12, 509112996, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536943656, 509112996, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ddd010f76a8315cf4e2ed2eacba796f4f5c63d28296bdb129fedb3d03b575372",
+    "events": "3196e90432e82b465d9ce09e0aef639a09ad7cf1146f8693d7e7ab96eb87fbdf",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1123,17 +1076,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     538639782,
-     4,
-     12,
+     536952228,
+     536940324,
+     536943656,
      3983748582
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-42",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 42,
     "xpsr": 0
    },
@@ -1154,10 +1108,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 1643521744, 217414738, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536946384, 217414738, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "797d83ed66dd0e0b7fbadcab9c76b68be2f3940f959591a03ececbf4e34b746b",
+    "events": "05f2224fa8921c52b5bdb93578fc723df30a79f25c8f535ea4b2f5d4e0a28788",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1168,21 +1122,22 @@
    "fixture": {
     "abs": [],
     "args": [
-     0,
-     3098095624,
-     1643521744,
+     536939280,
+     536948744,
+     536946384,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-44",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 44,
     "xpsr": 0
    },
-   "new_instructions": 30,
+   "new_instructions": 27,
    "stack_args": []
   },
   {
@@ -1224,6 +1179,7 @@
     "mem": [],
     "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 700,
     "xpsr": 0
    },
@@ -1269,6 +1225,7 @@
     "mem": [],
     "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 702,
     "xpsr": 0
    },
@@ -1314,6 +1271,7 @@
     "mem": [],
     "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 703,
     "xpsr": 0
    },
@@ -1359,6 +1317,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 700,
     "xpsr": 0
    },
@@ -1404,6 +1363,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 702,
     "xpsr": 0
    },
@@ -1449,6 +1409,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 703,
     "xpsr": 0
    },
@@ -1469,10 +1430,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 2147483647, 2987881189, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536940552, 1114733997, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "41eb25cad876301e89d62cea91409b08e3541477d2bfa1146ba6627aa2a79763",
+    "events": "0f233422f0b13585a7036612e1d0581bbca7dfa48b15db685815868c4f93a468",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1481,23 +1442,147 @@
     "returned": true
    },
    "fixture": {
-    "abs": [],
-    "args": [
-     4294967295,
-     4142138223,
-     2147483647,
-     2671219995
+    "abs": [
+     [
+      536940544,
+      "4010012044100120491001204c1001205010012054100120591001205c1001206010012064100120691001206c1001207010012074100120791001207c1001208010012084100120891001208c1001209010012094100120991001209c100120a0100120a4100120a9100120ac100120b0100120b4100120b9100120bc100120c0100120c4100120c9100120cc100120d0100120d4100120d9100120dc100120e0100120e4100120e9100120ec100120f0100120f4100120f9100120fc1001200011012004110120091101200c1101201011012014110120191101201c1101202011012024110120291101202c1101203011012034110120391101203c1101204011012044110120491101204c1101205011012054110120591101205c1101206011012064110120691101206c1101207011012074110120791101207c1101208011012084110120891101208c1101209011012094110120991101209c110120a0110120a4110120a9110120ac110120b0110120b4110120b9110120bc110120c0110120c4110120c9110120cc110120d0110120d4110120d9110120dc110120e0110120e4110120e9110120ec110120f0110120f4110120f9110120fc1101200010012004100120091001200c1001201010012014100120191001201c1001202010012024100120291001202c1001203010012034100120391001203c100120"
+     ]
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1065353216,
-     "1": 3204448256
-    },
-    "id": "fp-49",
+    "args": [
+     536940544,
+     536940548,
+     536940552,
+     3232220875
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-2",
     "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 49,
+    "nptr": 3,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 832,
     "xpsr": 0
    },
    "new_instructions": 27,
@@ -1517,10 +1602,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 3, 3904235970, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536940552, 2322744795, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "2c8f621461c2f71c2e5a56d7c25e90eeb0ac8c624e620e906800ab73b47a5c66",
+    "events": "42bfb0833496cbd5e15c8131ad54060d452fd1ec0fd828a8b543f288f64fefd3",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1529,359 +1614,26 @@
     "returned": true
    },
    "fixture": {
-    "abs": [],
+    "abs": [
+     [
+      536940544,
+      "4010012044100120481001204d1001205010012054100120581001205d1001206010012064100120681001206d1001207010012074100120781001207d1001208010012084100120881001208d1001209010012094100120981001209d100120a0100120a4100120a8100120ad100120b0100120b4100120b8100120bd100120c0100120c4100120c8100120cd100120d0100120d4100120d8100120dd100120e0100120e4100120e8100120ed100120f0100120f4100120f8100120fd1001200011012004110120081101200d1101201011012014110120181101201d1101202011012024110120281101202d1101203011012034110120381101203d1101204011012044110120481101204d1101205011012054110120581101205d1101206011012064110120681101206d1101207011012074110120781101207d1101208011012084110120881101208d1101209011012094110120981101209d110120a0110120a4110120a8110120ad110120b0110120b4110120b8110120bd110120c0110120c4110120c8110120cd110120d0110120d4110120d8110120dd110120e0110120e4110120e8110120ed110120f0110120f4110120f8110120fd1101200010012004100120081001200d1001201010012014100120181001201d1001202010012024100120281001202d1001203010012034100120381001203d100120"
+     ]
+    ],
     "args": [
-     271826021,
-     7,
-     3,
-     3948225427
+     536940544,
+     536940548,
+     536940552,
+     5
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3212836864,
-     "1": 0
-    },
-    "id": "fp-50",
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-3",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
-    "scratch_seed": 50,
-    "xpsr": 0
-   },
-   "new_instructions": 25,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "void"
-   ],
-   "call_targets": [
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 2147483647, 735384069, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "b75e8465e5c0112f02c68fdc16273194e5d4936eaea2e13539aabc69b436a9c4",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     4294967295
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3856939601,
-     1894272194,
-     2147483647,
-     2092907358
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3204448256,
-     "1": 3239897098
-    },
-    "id": "fp-52",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 52,
-    "xpsr": 0
-   },
-   "new_instructions": 30,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "void"
-   ],
-   "call_targets": [
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 2147483647, 3921118200, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "c69deb6a81b8e0ac62385b73186fb4eda83fde3901b1ba271e7eb657cbc59bb4",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     4294967295
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     1740848604,
-     2393220392,
-     2147483647,
-     2556506514
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 2147483648,
-     "1": 3204448256
-    },
-    "id": "fp-54",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 54,
-    "xpsr": 0
-   },
-   "new_instructions": 30,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "void"
-   ],
-   "call_targets": [
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 3578670822, 1028059815, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "f11667b386b6baee9f33e3704d2fb94ea9d6986c84e0a75d1fc5e09ddea759d8",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     4294967295
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     8,
-     3577755483,
-     3578670822,
-     8
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1065353216,
-     "1": 0
-    },
-    "id": "fp-55",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 55,
-    "xpsr": 0
-   },
-   "new_instructions": 25,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "void"
-   ],
-   "call_targets": [
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 206381930, 480847480, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "581eb55a0b6cf05ace0693275149684a94255a75081ac05e4487fdf1591f52ed",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     4294967295
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     5,
-     3291529428,
-     206381930,
-     1
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3212836864,
-     "1": 3184315597
-    },
-    "id": "fp-56",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 56,
-    "xpsr": 0
-   },
-   "new_instructions": 30,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "void"
-   ],
-   "call_targets": [
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 1677850251, 2444602602, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "50f9cb46bde677b91361461431e75ed9c4864eeb8d3e049d677529545ab8f665",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     4294967295
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3720324128,
-     2846093838,
-     1677850251,
-     7
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1056964608,
-     "1": 3239897098
-    },
-    "id": "fp-57",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 57,
-    "xpsr": 0
-   },
-   "new_instructions": 30,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "void"
-   ],
-   "call_targets": [
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 4, 2059510718, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "f8a56c0cb81237eccaa4b8f45454ec3b416e5d0ba3be16088a14b6cfa8764e9a",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     4294967295
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     8,
-     2,
-     4,
-     2495041172
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3204448256,
-     "1": 1266679808
-    },
-    "id": "fp-58",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 58,
-    "xpsr": 0
-   },
-   "new_instructions": 25,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "void"
-   ],
-   "call_targets": [
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 1966003740, 913139319, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "8a03714dbda0f8574f1ecd04b8710677d8305304d1be6e23a1ce400d3a1cfa68",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     4294967295
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     2684056074,
-     2147483647,
-     1966003740,
-     0
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 2147483648,
-     "1": 0
-    },
-    "id": "fp-60",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 60,
+    "outparam": null,
+    "scratch_seed": 803,
     "xpsr": 0
    },
    "new_instructions": 27,
@@ -1901,10 +1653,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 1, 3330584012, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536940552, 124486711, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "f5db77f4f4dd07f935ea8e5b5a26f00fa160f82acbefde5892dc7b8e31614e1f",
+    "events": "c1cab499914b546598e3d754a781b145ebc6ab2cd9b5098895141b33aae584cd",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1913,26 +1665,1042 @@
     "returned": true
    },
    "fixture": {
-    "abs": [],
-    "args": [
-     256,
-     3605787990,
-     1,
-     0
+    "abs": [
+     [
+      536940544,
+      "05100120081001200c1001201010012015100120181001201c1001202010012025100120281001202c1001203010012035100120381001203c1001204010012045100120481001204c1001205010012055100120581001205c1001206010012065100120681001206c1001207010012075100120781001207c1001208010012085100120881001208c1001209010012095100120981001209c100120a0100120a5100120a8100120ac100120b0100120b5100120b8100120bc100120c0100120c5100120c8100120cc100120d0100120d5100120d8100120dc100120e0100120e5100120e8100120ec100120f0100120f5100120f8100120fc1001200011012005110120081101200c1101201011012015110120181101201c1101202011012025110120281101202c1101203011012035110120381101203c1101204011012045110120481101204c1101205011012055110120581101205c1101206011012065110120681101206c1101207011012075110120781101207c1101208011012085110120881101208c1101209011012095110120981101209c110120a0110120a5110120a8110120ac110120b0110120b5110120b8110120bc110120c0110120c5110120c8110120cc110120d0110120d5110120d8110120dc110120e0110120e5110120e8110120ec110120f0110120f5110120f8110120fc11012000100120"
+     ]
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1065353216,
-     "1": 3184315597
-    },
-    "id": "fp-61",
+    "args": [
+     536940544,
+     536940548,
+     536940552,
+     4294967295
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-4",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
-    "scratch_seed": 61,
+    "outparam": null,
+    "scratch_seed": 804,
     "xpsr": 0
    },
-   "new_instructions": 25,
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536940552, 3811744857, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "572e1fbdd8c376104c03086ee58de5bd683dc917c8cf2924b5c66e16ac71399e",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "04100120091001200c1001201010012014100120191001201c1001202010012024100120291001202c1001203010012034100120391001203c1001204010012044100120491001204c1001205010012054100120591001205c1001206010012064100120691001206c1001207010012074100120791001207c1001208010012084100120891001208c1001209010012094100120991001209c100120a0100120a4100120a9100120ac100120b0100120b4100120b9100120bc100120c0100120c4100120c9100120cc100120d0100120d4100120d9100120dc100120e0100120e4100120e9100120ec100120f0100120f4100120f9100120fc1001200011012004110120091101200c1101201011012014110120191101201c1101202011012024110120291101202c1101203011012034110120391101203c1101204011012044110120491101204c1101205011012054110120591101205c1101206011012064110120691101206c1101207011012074110120791101207c1101208011012084110120891101208c1101209011012094110120991101209c110120a0110120a4110120a9110120ac110120b0110120b4110120b9110120bc110120c0110120c4110120c9110120cc110120d0110120d4110120d9110120dc110120e0110120e4110120e9110120ec110120f0110120f4110120f9110120fc11012000100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     536940548,
+     536940552,
+     1831443650
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-5",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 805,
+    "xpsr": 0
+   },
+   "new_instructions": 30,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536940552, 3204408865, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "6c902540c2ee4223376a8626e47a4fe4659050a1feabcd275b7ecc4ae1692b25",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "04100120091001200c1001201010012014100120191001201c1001202010012024100120291001202c1001203010012034100120391001203c1001204010012044100120491001204c1001205010012054100120591001205c1001206010012064100120691001206c1001207010012074100120791001207c1001208010012084100120891001208c1001209010012094100120991001209c100120a0100120a4100120a9100120ac100120b0100120b4100120b9100120bc100120c0100120c4100120c9100120cc100120d0100120d4100120d9100120dc100120e0100120e4100120e9100120ec100120f0100120f4100120f9100120fc1001200011012004110120091101200c1101201011012014110120191101201c1101202011012024110120291101202c1101203011012034110120391101203c1101204011012044110120491101204c1101205011012054110120591101205c1101206011012064110120691101206c1101207011012074110120791101207c1101208011012084110120891101208c1101209011012094110120991101209c110120a0110120a4110120a9110120ac110120b0110120b4110120b9110120bc110120c0110120c4110120c9110120cc110120d0110120d4110120d9110120dc110120e0110120e4110120e9110120ec110120f0110120f4110120f9110120fc11012000100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     536940548,
+     536940552,
+     1831443650
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-5",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 835,
+    "xpsr": 0
+   },
+   "new_instructions": 30,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536940552, 3753546315, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "61e3f78ee0bb9c625fcbeb0201d0a1dc353761163b4313e8dc9fbe82a91aa684",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "04100120081001200d1001201010012014100120181001201d1001202010012024100120281001202d1001203010012034100120381001203d1001204010012044100120481001204d1001205010012054100120581001205d1001206010012064100120681001206d1001207010012074100120781001207d1001208010012084100120881001208d1001209010012094100120981001209d100120a0100120a4100120a8100120ad100120b0100120b4100120b8100120bd100120c0100120c4100120c8100120cd100120d0100120d4100120d8100120dd100120e0100120e4100120e8100120ed100120f0100120f4100120f8100120fd1001200011012004110120081101200d1101201011012014110120181101201d1101202011012024110120281101202d1101203011012034110120381101203d1101204011012044110120481101204d1101205011012054110120581101205d1101206011012064110120681101206d1101207011012074110120781101207d1101208011012084110120881101208d1101209011012094110120981101209d110120a0110120a4110120a8110120ad110120b0110120b4110120b8110120bd110120c0110120c4110120c8110120cd110120d0110120d4110120d8110120dd110120e0110120e4110120e8110120ed110120f0110120f4110120f8110120fd11012000100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     536940548,
+     536940552,
+     1979409823
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-6",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 806,
+    "xpsr": 0
+   },
+   "new_instructions": 30,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536940552, 2629500200, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0691f8bce750a496e436164743ad5c69a3c68f4b4c6f972902c1e972dea4dad4",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "0111012004110120081101200c1101201111012014110120181101201c1101202111012024110120281101202c1101203111012034110120381101203c1101204111012044110120481101204c1101205111012054110120581101205c1101206111012064110120681101206c1101207111012074110120781101207c1101208111012084110120881101208c1101209111012094110120981101209c110120a1110120a4110120a8110120ac110120b1110120b4110120b8110120bc110120c1110120c4110120c8110120cc110120d1110120d4110120d8110120dc110120e1110120e4110120e8110120ec110120f1110120f4110120f8110120fc1101200110012004100120081001200c1001201110012014100120181001201c1001202110012024100120281001202c1001203110012034100120381001203c1001204110012044100120481001204c1001205110012054100120581001205c1001206110012064100120681001206c1001207110012074100120781001207c1001208110012084100120881001208c1001209110012094100120981001209c100120a1100120a4100120a8100120ac100120b1100120b4100120b8100120bc100120c1100120c4100120c8100120cc100120d1100120d4100120d8100120dc100120e1100120e4100120e8100120ec100120f1100120f4100120f8100120fc100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     536940548,
+     536940552,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-8",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 838,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536940552, 4129539460, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c5827aaa0b452093a86ec4ec3f47ce89053b036d7dd82190df0051f56b7b0d23",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "0011012005110120081101200c1101201011012015110120181101201c1101202011012025110120281101202c1101203011012035110120381101203c1101204011012045110120481101204c1101205011012055110120581101205c1101206011012065110120681101206c1101207011012075110120781101207c1101208011012085110120881101208c1101209011012095110120981101209c110120a0110120a5110120a8110120ac110120b0110120b5110120b8110120bc110120c0110120c5110120c8110120cc110120d0110120d5110120d8110120dc110120e0110120e5110120e8110120ec110120f0110120f5110120f8110120fc1101200010012005100120081001200c1001201010012015100120181001201c1001202010012025100120281001202c1001203010012035100120381001203c1001204010012045100120481001204c1001205010012055100120581001205c1001206010012065100120681001206c1001207010012075100120781001207c1001208010012085100120881001208c1001209010012095100120981001209c100120a0100120a5100120a8100120ac100120b0100120b5100120b8100120bc100120c0100120c5100120c8100120cc100120d0100120d5100120d8100120dc100120e0100120e5100120e8100120ec100120f0100120f5100120f8100120fc100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     536940548,
+     536940552,
+     3945435217
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-9",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 809,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536940552, 1229008232, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1c4a18af67bb6361c88c5b82cb7195c9678e3652abc098290dcbca4395c6d2c1",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "0011012005110120081101200c1101201011012015110120181101201c1101202011012025110120281101202c1101203011012035110120381101203c1101204011012045110120481101204c1101205011012055110120581101205c1101206011012065110120681101206c1101207011012075110120781101207c1101208011012085110120881101208c1101209011012095110120981101209c110120a0110120a5110120a8110120ac110120b0110120b5110120b8110120bc110120c0110120c5110120c8110120cc110120d0110120d5110120d8110120dc110120e0110120e5110120e8110120ec110120f0110120f5110120f8110120fc1101200010012005100120081001200c1001201010012015100120181001201c1001202010012025100120281001202c1001203010012035100120381001203c1001204010012045100120481001204c1001205010012055100120581001205c1001206010012065100120681001206c1001207010012075100120781001207c1001208010012085100120881001208c1001209010012095100120981001209c100120a0100120a5100120a8100120ac100120b0100120b5100120b8100120bc100120c0100120c5100120c8100120cc100120d0100120d5100120d8100120dc100120e0100120e5100120e8100120ec100120f0100120f5100120f8100120fc100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     536940548,
+     536940552,
+     3945435217
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-9",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 839,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536940552, 111899093, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e26414864e7ec262ff99743dc080e3d85c7b02ece8ccd0950f3837364d81d792",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "0011012004110120091101200c1101201011012014110120191101201c1101202011012024110120291101202c1101203011012034110120391101203c1101204011012044110120491101204c1101205011012054110120591101205c1101206011012064110120691101206c1101207011012074110120791101207c1101208011012084110120891101208c1101209011012094110120991101209c110120a0110120a4110120a9110120ac110120b0110120b4110120b9110120bc110120c0110120c4110120c9110120cc110120d0110120d4110120d9110120dc110120e0110120e4110120e9110120ec110120f0110120f4110120f9110120fc1101200010012004100120091001200c1001201010012014100120191001201c1001202010012024100120291001202c1001203010012034100120391001203c1001204010012044100120491001204c1001205010012054100120591001205c1001206010012064100120691001206c1001207010012074100120791001207c1001208010012084100120891001208c1001209010012094100120991001209c100120a0100120a4100120a9100120ac100120b0100120b4100120b9100120bc100120c0100120c4100120c9100120cc100120d0100120d4100120d9100120dc100120e0100120e4100120e9100120ec100120f0100120f4100120f9100120fc100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     536940548,
+     536940552,
+     1542803971
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-10",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 840,
+    "xpsr": 0
+   },
+   "new_instructions": 30,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): input param error,please check postion content\\n'), ('RO', b'gui_bitmps_merge_draw'), 536940552, 277593939, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "b8748d2f522b749739a8033996cad715cd77a635b2de0e6e2eca827cabcf654b",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "0011012004110120081101200d1101201011012014110120181101201d1101202011012024110120281101202d1101203011012034110120381101203d1101204011012044110120481101204d1101205011012054110120581101205d1101206011012064110120681101206d1101207011012074110120781101207d1101208011012084110120881101208d1101209011012094110120981101209d110120a0110120a4110120a8110120ad110120b0110120b4110120b8110120bd110120c0110120c4110120c8110120cd110120d0110120d4110120d8110120dd110120e0110120e4110120e8110120ed110120f0110120f4110120f8110120fd1101200010012004100120081001200d1001201010012014100120181001201d1001202010012024100120281001202d1001203010012034100120381001203d1001204010012044100120481001204d1001205010012054100120581001205d1001206010012064100120681001206d1001207010012074100120781001207d1001208010012084100120881001208d1001209010012094100120981001209d100120a0100120a4100120a8100120ad100120b0100120b4100120b8100120bd100120c0100120c4100120c8100120cd100120d0100120d4100120d8100120dd100120e0100120e4100120e8100120ed100120f0100120f4100120f8100120fd100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     536940548,
+     536940552,
+     256
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-11",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 841,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
    "stack_args": []
   }
  ],
@@ -1951,8 +2719,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "gui",
@@ -1961,16 +2732,26 @@
   "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
   "source": "shipped image"
  },
- "pointer_arg_mask": [],
+ "pointer_arg_mask": [
+  0,
+  1,
+  2
+ ],
  "ret_kind": "i32",
  "search": {
-  "candidates": 183,
+  "candidates": 272,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 272,
   "harness_errors": 0,
-  "kept": 43,
-  "pointer_arg_mask": [],
+  "kept": 42,
+  "pointer_arg_mask": [
+   0,
+   1,
+   2
+  ],
   "pointer_arg_mask_derived": true
  },
  "size": 416,

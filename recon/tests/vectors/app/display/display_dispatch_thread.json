@@ -34,7 +34,7 @@
     92072
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 4, 3694469211, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 536948308, 3694469211, 'S', 'F', 'T', None)",
     "('W', 536947356, 4, 18)",
     "('W', 536947640, 1, 0)",
     "('C', 1, ('RO', b'%s(): raster_height_gear:%d, canvas_distance_gear:%d\\n'), ('RO', b'display_dispatch_thread'), 86, 99, 'S', 'F', 'T', None)",
@@ -51,7 +51,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "9d579de15f07980246426fbb3f7962d4127ead026ead9db0d83902fa2b4d3df9",
+    "events": "7a524af4fa4749bc9b8fdff7b91ecbf859a79b1676ea0ec5ac85c092f69667e0",
     "kind": "fault",
     "ncalls": 6
    },
@@ -60,15 +60,16 @@
     "args": [
      536943568,
      12,
-     4,
+     536948308,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -125,15 +126,16 @@
     "args": [
      536947244,
      1797429778,
-     2147483648,
+     536940476,
      315044147
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -174,7 +176,7 @@
     92072
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 3677430904, 471345317, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 536945784, 471345317, 'S', 'F', 'T', None)",
     "('W', 536947100, 4, 18)",
     "('W', 536947384, 1, 0)",
     "('C', 1, ('RO', b'%s(): raster_height_gear:%d, canvas_distance_gear:%d\\n'), ('RO', b'display_dispatch_thread'), 94, 35, 'S', 'F', 'T', None)",
@@ -191,7 +193,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "fae2d5dba9c38aacdd99246e88663c69dcb2220ef99e50b470e33c8adfcf55e7",
+    "events": "3aa0282cb91da3e9693047bf76a9647ae8f5431bcec0ee3cc3b7e95ccd06ff2f",
     "kind": "fault",
     "ncalls": 6
    },
@@ -200,15 +202,16 @@
     "args": [
      536943312,
      598759513,
-     3677430904,
+     536945784,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
@@ -265,15 +268,16 @@
     "args": [
      536945628,
      255,
-     8,
+     536943096,
      3619521758
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-3",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 3,
     "xpsr": 0
    },
@@ -314,7 +318,7 @@
     92072
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 3842370354, 2655161023, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 536947504, 2655161023, 'S', 'F', 'T', None)",
     "('W', 536949652, 4, 18)",
     "('W', 536949936, 1, 0)",
     "('C', 1, ('RO', b'%s(): raster_height_gear:%d, canvas_distance_gear:%d\\n'), ('RO', b'display_dispatch_thread'), 111, 100, 'S', 'F', 'T', None)",
@@ -331,7 +335,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "8f740ba2e297a8aeb844a26531d9971d75727aec4048738be70ef98660f3e24a",
+    "events": "291db2136d7a29802f9facc8dc0da92546f5423a10990c3388672e1d89718992",
     "kind": "fault",
     "ncalls": 6
    },
@@ -340,15 +344,16 @@
     "args": [
      536945864,
      2147483647,
-     3842370354,
+     536947504,
      6
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 4,
     "xpsr": 0
    },
@@ -405,15 +410,16 @@
     "args": [
      536939588,
      3188701995,
-     8,
+     536944168,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-5",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 5,
     "xpsr": 0
    },
@@ -470,15 +476,16 @@
     "args": [
      536950900,
      3322790363,
-     5,
+     536947060,
      2147483647
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-6",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 6,
     "xpsr": 0
    },
@@ -535,15 +542,16 @@
     "args": [
      536941592,
      1604804925,
-     1,
+     536950368,
      2363272863
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-7",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 7,
     "xpsr": 0
    },
@@ -600,15 +608,16 @@
     "args": [
      536939044,
      708972563,
-     558645175,
+     536952756,
      4
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-8",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 8,
     "xpsr": 0
    },
@@ -649,7 +658,7 @@
     92072
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 499087790, 3178863954, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 536951212, 3178863954, 'S', 'F', 'T', None)",
     "('W', 536948480, 4, 18)",
     "('W', 536948764, 1, 0)",
     "('C', 1, ('RO', b'%s(): raster_height_gear:%d, canvas_distance_gear:%d\\n'), ('RO', b'display_dispatch_thread'), 168, 226, 'S', 'F', 'T', None)",
@@ -666,7 +675,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "594b38f7a939088ee199f011fc591bce5ad039193e8c50531b0c7c126bdf6612",
+    "events": "e5853ace7cb769425350003fc17e689bea5afa7aa54c3f6185b34d7d9a4eced7",
     "kind": "fault",
     "ncalls": 6
    },
@@ -675,15 +684,16 @@
     "args": [
      536944692,
      1556998536,
-     499087790,
+     536951212,
      2147483647
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 9,
     "xpsr": 0
    },
@@ -724,7 +734,7 @@
     92072
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 8, 3586673693, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 536946200, 3586673693, 'S', 'F', 'T', None)",
     "('W', 536942992, 4, 18)",
     "('W', 536943276, 1, 0)",
     "('C', 1, ('RO', b'%s(): raster_height_gear:%d, canvas_distance_gear:%d\\n'), ('RO', b'display_dispatch_thread'), 31, 94, 'S', 'F', 'T', None)",
@@ -741,7 +751,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "7c7008b33c94dc0219d16b2703579a1eddb23e9db790b88d7b7c5252bcf83ab7",
+    "events": "11cc09c722d865765d638b3e887ce02f692c9142931c086ca35b1e8feeff385d",
     "kind": "fault",
     "ncalls": 6
    },
@@ -750,15 +760,16 @@
     "args": [
      536939204,
      995058044,
-     8,
+     536946200,
      1
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 10,
     "xpsr": 0
    },
@@ -799,7 +810,7 @@
     92072
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 256, 801746852, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 536938076, 801746852, 'S', 'F', 'T', None)",
     "('W', 536940828, 4, 18)",
     "('W', 536941112, 1, 0)",
     "('C', 1, ('RO', b'%s(): raster_height_gear:%d, canvas_distance_gear:%d\\n'), ('RO', b'display_dispatch_thread'), 238, 44, 'S', 'F', 'T', None)",
@@ -816,7 +827,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "0bdd70aca78fc3e8ca944c017917a3e7ef477f412bce95eccd561dd4cf8f77dc",
+    "events": "16c4ff659930dec830fbcc37f5f95b6af64371c2325dcefe376d9c941c1b005b",
     "kind": "fault",
     "ncalls": 6
    },
@@ -825,15 +836,16 @@
     "args": [
      536937040,
      2147483648,
-     256,
+     536938076,
      1426281073
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 11,
     "xpsr": 0
    },
@@ -874,7 +886,7 @@
     92072
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 5, 1542880163, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 536941268, 1542880163, 'S', 'F', 'T', None)",
     "('W', 536948308, 4, 18)",
     "('W', 536948592, 1, 0)",
     "('C', 1, ('RO', b'%s(): raster_height_gear:%d, canvas_distance_gear:%d\\n'), ('RO', b'display_dispatch_thread'), 239, 145, 'S', 'F', 'T', None)",
@@ -891,7 +903,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "823c789127d52787fe7ff7b3d34ac75f8c9773f96ce43a22ba120eaea8fad5ab",
+    "events": "3695b2cd8325f8af9d6f2c9002c4e6b59dd43ebc20f51510376896659b5f8ad0",
     "kind": "fault",
     "ncalls": 6
    },
@@ -900,15 +912,16 @@
     "args": [
      536944520,
      3217736208,
-     5,
+     536941268,
      1103693227
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-12",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 12,
     "xpsr": 0
    },
@@ -949,7 +962,7 @@
     92072
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 6, 287561451, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 536939060, 287561451, 'S', 'F', 'T', None)",
     "('W', 536948092, 4, 18)",
     "('W', 536948376, 1, 0)",
     "('C', 1, ('RO', b'%s(): raster_height_gear:%d, canvas_distance_gear:%d\\n'), ('RO', b'display_dispatch_thread'), 142, 67, 'S', 'F', 'T', None)",
@@ -966,7 +979,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "f2063b815bbd151f8dbf8022b4265602a98713acd1d8aebf2882a8c41ba134d6",
+    "events": "5a09535e8a70190de99bc51843915ffd9820246c49bf59785b24083075509e6c",
     "kind": "fault",
     "ncalls": 6
    },
@@ -975,15 +988,16 @@
     "args": [
      536944304,
      1944344031,
-     6,
+     536939060,
      617681966
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 13,
     "xpsr": 0
    },
@@ -1040,15 +1054,16 @@
     "args": [
      536943892,
      12,
-     3,
+     536943328,
      470668832
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-14",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 14,
     "xpsr": 0
    },
@@ -1105,15 +1120,16 @@
     "args": [
      536952404,
      256,
-     5,
+     536951236,
      4
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-15",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 15,
     "xpsr": 0
    },
@@ -1154,7 +1170,7 @@
     92072
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 3454407978, 886755549, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 536941864, 886755549, 'S', 'F', 'T', None)",
     "('W', 536947048, 4, 18)",
     "('W', 536947332, 1, 0)",
     "('C', 1, ('RO', b'%s(): raster_height_gear:%d, canvas_distance_gear:%d\\n'), ('RO', b'display_dispatch_thread'), 170, 117, 'S', 'F', 'T', None)",
@@ -1171,7 +1187,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "1402a93bf64b321e79cae063bc4d291464c12a7ba692919f27b7719121bb0506",
+    "events": "fb36a716a52f188bac8680a7b5a1c2dff3c0d43b882178c4653455f57ae9bc47",
     "kind": "fault",
     "ncalls": 6
    },
@@ -1180,15 +1196,16 @@
     "args": [
      536943260,
      2147483648,
-     3454407978,
+     536941864,
      16
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
@@ -1245,15 +1262,16 @@
     "args": [
      536944016,
      3254638692,
-     1168623309,
+     536938188,
      4252165479
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-17",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 17,
     "xpsr": 0
    },
@@ -1310,15 +1328,16 @@
     "args": [
      536944948,
      0,
-     697236451,
+     536951776,
      1
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-18",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 18,
     "xpsr": 0
    },
@@ -1359,7 +1378,7 @@
     92072
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 4178753371, 4075769455, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 536950616, 4075769455, 'S', 'F', 'T', None)",
     "('W', 536943072, 4, 18)",
     "('W', 536943356, 1, 0)",
     "('C', 1, ('RO', b'%s(): raster_height_gear:%d, canvas_distance_gear:%d\\n'), ('RO', b'display_dispatch_thread'), 0, 0, 'S', 'F', 'T', None)",
@@ -1376,7 +1395,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "e92aff4692f345ffff421db6a1ffb0332ccf6c81bff2e5961ff27a231b0a819a",
+    "events": "2a78c88e15e9cce69aefa0381a02ef2731ea7b1f8c16c89c829097efa90e5f5b",
     "kind": "fault",
     "ncalls": 6
    },
@@ -1385,15 +1404,16 @@
     "args": [
      536939284,
      1536401714,
-     4178753371,
+     536950616,
      255
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 19,
     "xpsr": 0
    },
@@ -1450,15 +1470,16 @@
     "args": [
      536952740,
      2306919366,
-     2,
+     536939760,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-20",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 20,
     "xpsr": 0
    },
@@ -1499,7 +1520,7 @@
     92072
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 2870852768, 2217669457, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 536951968, 2217669457, 'S', 'F', 'T', None)",
     "('W', 536945208, 4, 18)",
     "('W', 536945492, 1, 0)",
     "('C', 1, ('RO', b'%s(): raster_height_gear:%d, canvas_distance_gear:%d\\n'), ('RO', b'display_dispatch_thread'), 179, 68, 'S', 'F', 'T', None)",
@@ -1516,7 +1537,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "402239384e49a8c65d8b684aef8d5662f5055ef5fd84731b760a1c1f62188b19",
+    "events": "e5a0c3f288c025039306f06a09ac61ae233b8ff31f5d524c4085f3c45443b828",
     "kind": "fault",
     "ncalls": 6
    },
@@ -1525,15 +1546,16 @@
     "args": [
      536941420,
      1,
-     2870852768,
+     536951968,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-21",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 21,
     "xpsr": 0
    },
@@ -1590,15 +1612,16 @@
     "args": [
      536937396,
      3001296298,
-     4294967295,
+     536949836,
      2451975022
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-22",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 22,
     "xpsr": 0
    },
@@ -1655,15 +1678,16 @@
     "args": [
      536952228,
      241044672,
-     2034212132,
+     536943908,
      1515885587
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-23",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 23,
     "xpsr": 0
    },
@@ -1720,15 +1744,16 @@
     "args": [
      536949908,
      6,
-     2967241396,
+     536937140,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-24",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 24,
     "xpsr": 0
    },
@@ -1769,7 +1794,7 @@
     92072
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 2149248134, 3712121755, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 536947844, 3712121755, 'S', 'F', 'T', None)",
     "('W', 536942040, 4, 18)",
     "('W', 536942324, 1, 0)",
     "('C', 1, ('RO', b'%s(): raster_height_gear:%d, canvas_distance_gear:%d\\n'), ('RO', b'display_dispatch_thread'), 247, 152, 'S', 'F', 'T', None)",
@@ -1786,7 +1811,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "4b8be80e048b9a5561d11341cf110df07207d4388134c72f86c11398ff5f3a59",
+    "events": "3db8cf15dd6227614b28903208eee80888e8766bafd01a91d445a112803de936",
     "kind": "fault",
     "ncalls": 6
    },
@@ -1795,15 +1820,16 @@
     "args": [
      536938252,
      12,
-     2149248134,
+     536947844,
      604019693
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 25,
     "xpsr": 0
    },
@@ -1860,15 +1886,16 @@
     "args": [
      536942224,
      12,
-     3037640278,
+     536950356,
      2678623347
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-26",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 26,
     "xpsr": 0
    },
@@ -1909,7 +1936,7 @@
     92072
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 3639365232, 1775869161, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 536940144, 1775869161, 'S', 'F', 'T', None)",
     "('W', 536948980, 4, 18)",
     "('W', 536949264, 1, 0)",
     "('C', 1, ('RO', b'%s(): raster_height_gear:%d, canvas_distance_gear:%d\\n'), ('RO', b'display_dispatch_thread'), 0, 0, 'S', 'F', 'T', None)",
@@ -1926,7 +1953,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "6a6d7a5265423f0b81f9a07f5c358bb14eea40b51e72da898e0142f2eabd26fe",
+    "events": "2883f0ffed5c5e900dc8cc3071685230de39c9538562cc94d5f5470a22166011",
     "kind": "fault",
     "ncalls": 6
    },
@@ -1935,15 +1962,16 @@
     "args": [
      536945192,
      681194263,
-     3639365232,
+     536940144,
      4125446660
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 27,
     "xpsr": 0
    },
@@ -1984,7 +2012,7 @@
     92072
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 1, 1542213390, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 536946096, 1542213390, 'S', 'F', 'T', None)",
     "('W', 536949872, 4, 18)",
     "('W', 536950156, 1, 0)",
     "('C', 1, ('RO', b'%s(): raster_height_gear:%d, canvas_distance_gear:%d\\n'), ('RO', b'display_dispatch_thread'), 99, 144, 'S', 'F', 'T', None)",
@@ -2001,7 +2029,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "826e9ca7dd93510be3360a4f6cd4e3a28039f3385fb6ef74f13e9d4d67587f94",
+    "events": "55e80469c677cd411fb10f81064e73abf7ba084b913b3633bc9de81a052354b9",
     "kind": "fault",
     "ncalls": 6
    },
@@ -2010,15 +2038,16 @@
     "args": [
      536946084,
      4285183211,
-     1,
+     536946096,
      2592385448
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-28",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 28,
     "xpsr": 0
    },
@@ -2075,15 +2104,16 @@
     "args": [
      536947488,
      256,
-     3886541357,
+     536947244,
      8
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-29",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 29,
     "xpsr": 0
    },
@@ -2124,7 +2154,7 @@
     92072
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 1, 2417460406, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 536945744, 2417460406, 'S', 'F', 'T', None)",
     "('W', 536956584, 4, 18)",
     "('W', 536956868, 1, 0)",
     "('C', 1, ('RO', b'%s(): raster_height_gear:%d, canvas_distance_gear:%d\\n'), ('RO', b'display_dispatch_thread'), 122, 123, 'S', 'F', 'T', None)",
@@ -2141,7 +2171,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "3187b6c5427325e90fe9120caf8641ad8ec6edd444c38ae7ac2c79fd14c971ad",
+    "events": "a39edaaa5647a03bc388b5089e870b1c93abbae15a83a3feb0b8db29bdea7c07",
     "kind": "fault",
     "ncalls": 6
    },
@@ -2150,15 +2180,16 @@
     "args": [
      536952796,
      8,
-     1,
+     536945744,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-30",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 30,
     "xpsr": 0
    },
@@ -2199,7 +2230,7 @@
     92072
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 7, 1988174091, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 536938932, 1988174091, 'S', 'F', 'T', None)",
     "('W', 536956088, 4, 18)",
     "('W', 536956372, 1, 0)",
     "('C', 1, ('RO', b'%s(): raster_height_gear:%d, canvas_distance_gear:%d\\n'), ('RO', b'display_dispatch_thread'), 0, 0, 'S', 'F', 'T', None)",
@@ -2216,7 +2247,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "8833a6c03bc8e71a7d2ed18b2cbc8664cd95104c9a1993b97b16a2428976c01d",
+    "events": "76f60aa32d8b0fb5ae0e15097639d50c79ed1617b9803810af58f227c0c4d27b",
     "kind": "fault",
     "ncalls": 6
    },
@@ -2225,15 +2256,16 @@
     "args": [
      536952300,
      2461003590,
-     7,
+     536938932,
      53351545
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
@@ -2274,7 +2306,7 @@
     92072
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 3442053927, 615009301, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 536941348, 615009301, 'S', 'F', 'T', None)",
     "('W', 536950356, 4, 18)",
     "('W', 536950640, 1, 0)",
     "('C', 1, ('RO', b'%s(): raster_height_gear:%d, canvas_distance_gear:%d\\n'), ('RO', b'display_dispatch_thread'), 100, 42, 'S', 'F', 'T', None)",
@@ -2291,7 +2323,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "c1f2c7cbb9e6e75dc56fa32c1e86a461cd42617f683d753455eada6ce4ce2dd1",
+    "events": "9ee4736a8e20a1a929304bdccd8fd82469a812816f2ea1ac1677af7f7b6a0ada",
     "kind": "fault",
     "ncalls": 6
    },
@@ -2300,15 +2332,16 @@
     "args": [
      536946568,
      2706821390,
-     3442053927,
+     536941348,
      1170652979
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-32",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 32,
     "xpsr": 0
    },
@@ -2365,15 +2398,16 @@
     "args": [
      536946060,
      7,
-     7,
+     536944276,
      5
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-33",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 33,
     "xpsr": 0
    },
@@ -2414,7 +2448,7 @@
     92072
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 922796015, 2360084761, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 536952812, 2360084761, 'S', 'F', 'T', None)",
     "('W', 536953908, 4, 18)",
     "('W', 536954192, 1, 0)",
     "('C', 1, ('RO', b'%s(): raster_height_gear:%d, canvas_distance_gear:%d\\n'), ('RO', b'display_dispatch_thread'), 111, 54, 'S', 'F', 'T', None)",
@@ -2431,7 +2465,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "b7f98b050325a206410c22ab909e9322fbd08fcc2745190308ac6f54060adbb7",
+    "events": "d2185d6a896f38b28e043b669e3974b4721c0d1b8eff8e2bf3135ad92c602a01",
     "kind": "fault",
     "ncalls": 6
    },
@@ -2440,15 +2474,16 @@
     "args": [
      536950120,
      3990671540,
-     922796015,
+     536952812,
      2147483647
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 34,
     "xpsr": 0
    },
@@ -2489,7 +2524,7 @@
     92072
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 4001652011, 4019880274, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 536943912, 4019880274, 'S', 'F', 'T', None)",
     "('W', 536956220, 4, 18)",
     "('W', 536956504, 1, 0)",
     "('C', 1, ('RO', b'%s(): raster_height_gear:%d, canvas_distance_gear:%d\\n'), ('RO', b'display_dispatch_thread'), 0, 0, 'S', 'F', 'T', None)",
@@ -2506,7 +2541,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "dda826c6b39094ef9d057f8246cd4f40eb702802e562a735e787bd9b0bbafe9c",
+    "events": "fd61b4beea7fa174c2cea05a9c0a84f95460c5e7cc1e011d5c6d5216007edcd3",
     "kind": "fault",
     "ncalls": 6
    },
@@ -2515,15 +2550,16 @@
     "args": [
      536952432,
      3578977268,
-     4001652011,
+     536943912,
      1
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
@@ -2564,7 +2600,7 @@
     92072
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 2147483647, 823752600, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 536945964, 823752600, 'S', 'F', 'T', None)",
     "('W', 536948012, 4, 18)",
     "('W', 536948296, 1, 0)",
     "('C', 1, ('RO', b'%s(): raster_height_gear:%d, canvas_distance_gear:%d\\n'), ('RO', b'display_dispatch_thread'), 102, 39, 'S', 'F', 'T', None)",
@@ -2581,7 +2617,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "d2eaba304858a4cca9c7d17337b957121dcc4dc08038fdda573989a98c444df3",
+    "events": "a97a053b44f86bfafba7497552f08cd9143903cf2e2dfe2f2f9fd625a90d2988",
     "kind": "fault",
     "ncalls": 6
    },
@@ -2590,15 +2626,16 @@
     "args": [
      536944224,
      12,
-     2147483647,
+     536945964,
      8
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 36,
     "xpsr": 0
    },
@@ -2655,15 +2692,16 @@
     "args": [
      536951728,
      2057795936,
-     2725586938,
+     536946680,
      1299241558
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-37",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 37,
     "xpsr": 0
    },
@@ -2720,15 +2758,16 @@
     "args": [
      536939760,
      255,
-     1,
+     536936976,
      2
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-38",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 38,
     "xpsr": 0
    },
@@ -2769,7 +2808,7 @@
     92072
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 3774328631, 2944518647, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 536948532, 2944518647, 'S', 'F', 'T', None)",
     "('W', 536945212, 4, 18)",
     "('W', 536945496, 1, 0)",
     "('C', 1, ('RO', b'%s(): raster_height_gear:%d, canvas_distance_gear:%d\\n'), ('RO', b'display_dispatch_thread'), 0, 0, 'S', 'F', 'T', None)",
@@ -2786,7 +2825,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "c848cb122bdac5ebd0495d2d61421d1428ec35e475e0322fe354cbd0e35bb385",
+    "events": "b3ddf1f72ee84731e3e375c7ddb579fbfbf53d6b044a607809007212e9339b0d",
     "kind": "fault",
     "ncalls": 6
    },
@@ -2795,15 +2834,16 @@
     "args": [
      536941424,
      1587124134,
-     3774328631,
+     536948532,
      1997155928
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
     "xpsr": 0
    },
@@ -2860,15 +2900,16 @@
     "args": [
      536943600,
      3928041777,
-     1786326658,
+     536948352,
      1835695343
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-40",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 40,
     "xpsr": 0
    },
@@ -2968,14 +3009,14 @@
     "args": [
      536940544,
      558208872,
-     2224734438,
+     536940552,
      3003667676
     ],
     "float_scratch": false,
     "fp": {},
     "id": "chain0-0",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [
      [
       0,
@@ -3098,6 +3139,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 830,
     "xpsr": 0
    },
@@ -3182,7 +3224,7 @@
     92492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 704474048, 1114733997, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 536940552, 1114733997, 'S', 'F', 'T', None)",
     "('W', 536944332, 4, 18)",
     "('W', 536944616, 1, 0)",
     "('C', 1, ('RO', b'%s(): raster_height_gear:%d, canvas_distance_gear:%d\\n'), ('RO', b'display_dispatch_thread'), 210, 60, 'S', 'F', 'T', None)",
@@ -3213,7 +3255,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "4e41eb95ca0ea89558d8f70c8f99c1e92bb85c4fb4efc6a485636880949fda9f",
+    "events": "aac6e7e27f7b3125a84c5b95824957603baedf31d3f220ead54cce23e9e12935",
     "kind": "fault",
     "ncalls": 17
    },
@@ -3227,14 +3269,14 @@
     "args": [
      536940544,
      2951236948,
-     704474048,
+     536940552,
      3232220875
     ],
     "float_scratch": false,
     "fp": {},
     "id": "chain0-2",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [
      [
       0,
@@ -3357,6 +3399,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 832,
     "xpsr": 0
    },
@@ -3506,14 +3549,14 @@
     "args": [
      536940544,
      3541054321,
-     256,
+     536940552,
      4294967295
     ],
     "float_scratch": false,
     "fp": {},
     "id": "chain0-4",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [
      [
       0,
@@ -3636,6 +3679,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 834,
     "xpsr": 0
    },
@@ -3724,7 +3768,7 @@
     67648
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 2395374528, 2629500200, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): enter\\n'), ('RO', b'display_dispatch_thread'), 536940552, 2629500200, 'S', 'F', 'T', None)",
     "('W', 536944332, 4, 18)",
     "('W', 536944616, 1, 0)",
     "('C', 1, ('RO', b'%s(): raster_height_gear:%d, canvas_distance_gear:%d\\n'), ('RO', b'display_dispatch_thread'), 18, 100, 'S', 'F', 'T', None)",
@@ -3758,7 +3802,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "2371f71e5aa03fb48fa5bdebab7499e805276492d5b550709fce085e441dcc4b",
+    "events": "51bde3a8ea17542487b9de24ff4a95bf8cc85b4cf65a0afc2a6da7ced29e11c4",
     "kind": "fault",
     "ncalls": 18
    },
@@ -3772,14 +3816,14 @@
     "args": [
      536940544,
      0,
-     2395374528,
+     536940552,
      6
     ],
     "float_scratch": false,
     "fp": {},
     "id": "chain0-8",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [
      [
       0,
@@ -3902,17 +3946,105 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 838,
     "xpsr": 0
    },
    "new_instructions": 194,
    "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    2,
+    1,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    92072,
+    92072,
+    274352,
+    92492,
+    208612,
+    92072
+   ],
+   "events_head": [
+    "('W', 536953436, 4, 0)",
+    "('W', 536953460, 4, 18)",
+    "('W', 536953744, 1, 0)",
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 2556513955, 1927133727, 'S', 'F', 'T', None)",
+    "('W', 536949885, 1, 0)",
+    "('W', 536949886, 2, 35952)",
+    "('W', 536949888, 2, 25398)",
+    "('W', 536953488, 4, 0)",
+    "('W', 536953743, 1, 1)",
+    "('C', 3, 2, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "3027a075a67d81293b0205b26b4992c143eb2888ee9569918113b85543089b66",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536949672,
+     12,
+     536950884,
+     108926623
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee4-0-5",
+    "mem": [
+     [
+      0,
+      0,
+      "05000000"
+     ],
+     [
+      0,
+      4,
+      "05000000"
+     ]
+    ],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 955,
+    "xpsr": 0
+   },
+   "new_instructions": 55,
+   "stack_args": []
   }
  ],
  "core": "app",
  "coverage": {
-  "covered": 270,
-  "ratio": 0.4608,
+  "covered": 275,
+  "ratio": 0.4693,
   "total": 586,
   "unresolved_indirect": 1
  },
@@ -3931,8 +4063,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "display",
@@ -3942,18 +4077,22 @@
   "source": "shipped image"
  },
  "pointer_arg_mask": [
-  0
+  0,
+  2
  ],
  "ret_kind": "void",
  "search": {
-  "candidates": 275,
+  "candidates": 346,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
-  "kept": 45,
+  "kept": 46,
   "pointer_arg_mask": [
-   0
+   0,
+   2
   ],
   "pointer_arg_mask_derived": true
  },

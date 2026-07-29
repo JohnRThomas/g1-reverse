@@ -18,11 +18,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 12, 4, 0, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536948040, 536948308, 536940048, 'S', 'F', 'T', None)",
     "('C', 1, 1276959699, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ed35e374eabc3d0313f03ca77ad2ebbb256cac046112c3e8dbcdae435266744a",
+    "events": "72404fa76e01cecfbac312fd7436bdec9d0762f0205e9daceb3afbde4eb09989",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -32,16 +32,17 @@
     "abs": [],
     "args": [
      1276959699,
-     12,
-     4,
-     0
+     536948040,
+     536948308,
+     536940048
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -66,11 +67,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 1797429778, 2147483648, 315044147, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536943120, 536940476, 536949040, 'S', 'F', 'T', None)",
     "('C', 1, 4067469868, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "1eb0457be6fc2d8de587abf79c945274beff75607c56b0223c99ff82747cdf12",
+    "events": "00c3ed3ea344a25e3d159ee22ea302255ed15ef22e405cd0191455d32444a04f",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -80,16 +81,17 @@
     "abs": [],
     "args": [
      4067469868,
-     1797429778,
-     2147483648,
-     315044147
+     536943120,
+     536940476,
+     536949040
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -114,11 +116,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 598759513, 3677430904, 7, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536942680, 536945784, 536943396, 'S', 'F', 'T', None)",
     "('C', 1, 4290042576, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c5bc41f14ed18b1fabab9a0c8251a2abe8163994462feb82b344300e29bbaabc",
+    "events": "ddb498d2c4c6c112c23c9e7c59aba8d1608035c78aec649b25e39421156ff73e",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -128,16 +130,17 @@
     "abs": [],
     "args": [
      4290042576,
-     598759513,
-     3677430904,
-     7
+     536942680,
+     536945784,
+     536943396
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
@@ -162,11 +165,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 255, 8, 3619521758, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536940936, 536943096, 536937692, 'S', 'F', 'T', None)",
     "('C', 1, 2618385373, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "60ad1e07831f631190d741722fd54242e9a334e0807762c1f3195bf24fb63229",
+    "events": "808d503c2736dcdd00249ab01551947b3f2a557831e88eaf7901da7e2f8dace4",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -176,16 +179,17 @@
     "abs": [],
     "args": [
      2618385373,
-     255,
-     8,
-     3619521758
+     536940936,
+     536943096,
+     536937692
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-3",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 3,
     "xpsr": 0
    },
@@ -210,11 +214,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 2147483647, 3842370354, 6, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536944284, 536947504, 536951124, 'S', 'F', 'T', None)",
     "('C', 1, 16, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "cd147597b7ec8c220465f9ed1b4a48e4894d0190aeaf73875416563213ee5a83",
+    "events": "cb6892765c508d583ea17f12a95c86aff2c145112260d379a4b72672677fcc03",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -224,16 +228,17 @@
     "abs": [],
     "args": [
      16,
-     2147483647,
-     3842370354,
-     6
+     536944284,
+     536947504,
+     536951124
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 4,
     "xpsr": 0
    },
@@ -258,11 +263,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 3188701995, 8, 7, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536951592, 536944168, 536942644, 'S', 'F', 'T', None)",
     "('C', 1, 4, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b433f46652271adedea05cd0ba03abb0ef4fdc34f2a991a60075933ac8401654",
+    "events": "6c8176f04c406e7e7c60c3732bbc7369cc607f5a916090a951f82d4639d8ab0b",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -272,16 +277,17 @@
     "abs": [],
     "args": [
      4,
-     3188701995,
-     8,
-     7
+     536951592,
+     536944168,
+     536942644
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-5",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 5,
     "xpsr": 0
    },
@@ -306,11 +312,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 3322790363, 5, 2147483647, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536936920, 536947060, 536952236, 'S', 'F', 'T', None)",
     "('C', 1, 4, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "f27f99a58b785f62ca88068c9f6694f3ec9d965cb9d2606ff4ed5169336b68c8",
+    "events": "49b6e6a8e10a420d75c1e924b0d6ad6d89565007647bf9d1b74332b9395d2d9a",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -320,16 +326,17 @@
     "abs": [],
     "args": [
      4,
-     3322790363,
-     5,
-     2147483647
+     536936920,
+     536947060,
+     536952236
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-6",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 6,
     "xpsr": 0
    },
@@ -354,11 +361,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 1604804925, 1, 2363272863, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536944956, 536950368, 536948380, 'S', 'F', 'T', None)",
     "('C', 1, 2300957721, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "02087254787741bc91bd846efe2f1ae4811dec63b7407b4344ebb695ec4e210f",
+    "events": "45104a34179b9eb2a65bc8f2fab9bcd0c83af67e6fb99d122aae4754fdf4b117",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -368,16 +375,17 @@
     "abs": [],
     "args": [
      2300957721,
-     1604804925,
-     1,
-     2363272863
+     536944956,
+     536950368,
+     536948380
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-7",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 7,
     "xpsr": 0
    },
@@ -402,11 +410,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 708972563, 558645175, 4, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536940560, 536952756, 536949588, 'S', 'F', 'T', None)",
     "('C', 1, 2156366374, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "80b27fb8b1ec12b5c04e476fae2585db6e54f1fa3461a3a0d31add75f049f95a",
+    "events": "4f647374ec3bd057cb56a4462e96fee9ec8d1b9a2b2a846d891e27f2d41283f3",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -416,16 +424,17 @@
     "abs": [],
     "args": [
      2156366374,
-     708972563,
-     558645175,
-     4
+     536940560,
+     536952756,
+     536949588
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-8",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 8,
     "xpsr": 0
    },
@@ -450,11 +459,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 1556998536, 499087790, 2147483647, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536947080, 536951212, 536940988, 'S', 'F', 'T', None)",
     "('C', 1, 1346232374, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9385ef3dba038b5db57377100267fed4354d71e4681b2c0908c18884b4ed99f2",
+    "events": "084b062145f0a895e96143463a267aca827c65ec80d3c736eef2b483c9ec7546",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -464,16 +473,17 @@
     "abs": [],
     "args": [
      1346232374,
-     1556998536,
-     499087790,
-     2147483647
+     536947080,
+     536951212,
+     536940988
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 9,
     "xpsr": 0
    },
@@ -498,11 +508,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 995058044, 8, 1, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536945020, 536946200, 536947328, 'S', 'F', 'T', None)",
     "('C', 1, 182454980, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "f7c34e3a0e8eea19414b8742851976d44fe2a3acce32e30e0273cdf01989f9d1",
+    "events": "72240716f9e0e1473a09baa73c0a411b19752a18edd36aca65871b1b7af21aa9",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -512,16 +522,17 @@
     "abs": [],
     "args": [
      182454980,
-     995058044,
-     8,
-     1
+     536945020,
+     536946200,
+     536947328
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 10,
     "xpsr": 0
    },
@@ -546,11 +557,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 2147483648, 256, 1426281073, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536948284, 536938076, 536941168, 'S', 'F', 'T', None)",
     "('C', 1, 3, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "7bf018bd3526d750d50b6be3357c5f070320aed94ec1f01c4ee77b22cb69dc80",
+    "events": "f7006ac9fda8020cbda6778b40e7ba71f339faff1296f6ae4b34d36e7c1193a6",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -560,16 +571,17 @@
     "abs": [],
     "args": [
      3,
-     2147483648,
-     256,
-     1426281073
+     536948284,
+     536938076,
+     536941168
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 11,
     "xpsr": 0
    },
@@ -594,11 +606,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 3217736208, 5, 1103693227, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536936976, 536941268, 536937896, 'S', 'F', 'T', None)",
     "('C', 1, 8, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "8afb3a9c55bb808ee072a13e417cd1f438846f3ee2fc14284f1cbe58ac754c37",
+    "events": "ff1365ef6cdf029391d13408c745c8f5426f28dc60d11882e78c2766661ec851",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -608,16 +620,17 @@
     "abs": [],
     "args": [
      8,
-     3217736208,
-     5,
-     1103693227
+     536936976,
+     536941268,
+     536937896
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-12",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 12,
     "xpsr": 0
    },
@@ -642,11 +655,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 1944344031, 6, 617681966, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536942044, 536939060, 536941612, 'S', 'F', 'T', None)",
     "('C', 1, 1156718256, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "3c3f28e0b26bdb09fe8261e8ae9d4495bcfe8d6896751f5c6a5c81cce09d2f4e",
+    "events": "af95476a753ebc5ff4a10e85a63516204dd42b4cd16a76cae6c4c0ad624393d8",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -656,16 +669,17 @@
     "abs": [],
     "args": [
      1156718256,
-     1944344031,
-     6,
-     617681966
+     536942044,
+     536939060,
+     536941612
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 13,
     "xpsr": 0
    },
@@ -690,11 +704,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 12, 3, 470668832, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536949848, 536943328, 536942112, 'S', 'F', 'T', None)",
     "('C', 1, 1996365079, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "39bf1dacb911c64e60f4abcad79598e1d1949754e677c7bd1c4fd8a765f6fab3",
+    "events": "1f8a85626b7831034e5aef7876d60500bd90a66aa9efec0cf4ada3e07b3f6a5c",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -704,16 +718,17 @@
     "abs": [],
     "args": [
      1996365079,
-     12,
-     3,
-     470668832
+     536949848,
+     536943328,
+     536942112
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-14",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 14,
     "xpsr": 0
    },
@@ -738,11 +753,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 256, 5, 4, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536941132, 536951236, 536949908, 'S', 'F', 'T', None)",
     "('C', 1, 7, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "84d9e42de906891ddc7dc5d0711cbe97eefb909000818604a7cd8d84a74a93b5",
+    "events": "a27711c945c669d6c6eb0067a1532bd4144ad6f16233163805a0b8292caddaf2",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -752,16 +767,17 @@
     "abs": [],
     "args": [
      7,
-     256,
-     5,
-     4
+     536941132,
+     536951236,
+     536949908
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-15",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 15,
     "xpsr": 0
    },
@@ -786,11 +802,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 2147483648, 3454407978, 16, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536942972, 536941864, 536940136, 'S', 'F', 'T', None)",
     "('C', 1, 2024561310, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "2751e3f6fcf8bf35d49cdeebb4b0907001608e669bba2354e6d8c8ea4b9033f2",
+    "events": "f8f492188982d56dd0a19d7345ed27eae4aef84968d0253b7b0a9f8ecd98db5b",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -800,16 +816,17 @@
     "abs": [],
     "args": [
      2024561310,
-     2147483648,
-     3454407978,
-     16
+     536942972,
+     536941864,
+     536940136
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
@@ -834,11 +851,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 3254638692, 1168623309, 4252165479, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536942692, 536938188, 536946020, 'S', 'F', 'T', None)",
     "('C', 1, 3, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "40a08701cbf812626e20a5642cfd813e7aa90280bc9c740ad7db83f437c02680",
+    "events": "c64ae01cbf91a00e12af7287adac16df01ae8cb0fca2a70b56e4736c704befd2",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -848,16 +865,17 @@
     "abs": [],
     "args": [
      3,
-     3254638692,
-     1168623309,
-     4252165479
+     536942692,
+     536938188,
+     536946020
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-17",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 17,
     "xpsr": 0
    },
@@ -882,11 +900,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 0, 697236451, 1, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536937440, 536951776, 536945600, 'S', 'F', 'T', None)",
     "('C', 1, 3912442165, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "73822a8b22026d9be8ef6a8ccb01842b9803a898b14b6cbd187082454e36f29f",
+    "events": "e71734ab70245dc6b11fd5a7eec23d4eaeee6be2ae38afe49cf63bb7ce9142fe",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -896,16 +914,17 @@
     "abs": [],
     "args": [
      3912442165,
-     0,
-     697236451,
-     1
+     536937440,
+     536951776,
+     536945600
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-18",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 18,
     "xpsr": 0
    },
@@ -930,11 +949,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 1536401714, 4178753371, 255, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536944944, 536950616, 536947592, 'S', 'F', 'T', None)",
     "('C', 1, 6, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "28ebd2834166693c884a9d648c1cb846bab1a23fca817dc4f3e27da476e4eb71",
+    "events": "57cce1b9394bb2d24e5a85cb0f6e4bd4ba96796c738289c9708f8ac885dd40eb",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -944,16 +963,17 @@
     "abs": [],
     "args": [
      6,
-     1536401714,
-     4178753371,
-     255
+     536944944,
+     536950616,
+     536947592
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 19,
     "xpsr": 0
    },
@@ -978,11 +998,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 2306919366, 2, 7, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536939460, 536939760, 536951108, 'S', 'F', 'T', None)",
     "('C', 1, 4, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "83d2c8855503568a206d6029285c3821e32efa7a119682a1d73c9ba50d008d80",
+    "events": "1081dae7fa68edf4ff326caa57aa463bf99727993d35cc63acd80f3ca0863f08",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -992,16 +1012,17 @@
     "abs": [],
     "args": [
      4,
-     2306919366,
-     2,
-     7
+     536939460,
+     536939760,
+     536951108
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-20",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 20,
     "xpsr": 0
    },
@@ -1026,11 +1047,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 1, 2870852768, 0, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536936640, 536951968, 536943488, 'S', 'F', 'T', None)",
     "('C', 1, 843060076, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "7fe8cb957be5e1c06337f49aa300130a5680941e1fb273ef6f4fb66d8e9a7f0e",
+    "events": "466dc04c9ab5949a6be7564ef26c674c1e1d583b7ce16f4d0d1232abb80e92f7",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1040,16 +1061,17 @@
     "abs": [],
     "args": [
      843060076,
-     1,
-     2870852768,
-     0
+     536936640,
+     536951968,
+     536943488
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-21",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 21,
     "xpsr": 0
    },
@@ -1074,11 +1096,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 3001296298, 4294967295, 2451975022, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536946088, 536949836, 536947564, 'S', 'F', 'T', None)",
     "('C', 1, 7, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ef2ad12e1aa20634ef666c880284d5db918c1b5a510bb921e84e4d9a994d99b6",
+    "events": "fe0d673d0ebf72f3ce3cc5fa1059b1f0b11a21395277fbd482d70fa60cbe6d57",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1088,16 +1110,17 @@
     "abs": [],
     "args": [
      7,
-     3001296298,
-     4294967295,
-     2451975022
+     536946088,
+     536949836,
+     536947564
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-22",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 22,
     "xpsr": 0
    },
@@ -1122,11 +1145,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 241044672, 2034212132, 1515885587, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536939712, 536943908, 536941584, 'S', 'F', 'T', None)",
     "('C', 1, 1591295399, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "0b4e3a0ae976a0b7a66a69682bd5410275a2c1cc40ecc1dba79ad005da0525a4",
+    "events": "382a6565866fd93d12ac685fa2747848e8813db92744ee26b817dc131423c349",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1136,16 +1159,17 @@
     "abs": [],
     "args": [
      1591295399,
-     241044672,
-     2034212132,
-     1515885587
+     536939712,
+     536943908,
+     536941584
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-23",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 23,
     "xpsr": 0
    },
@@ -1170,11 +1194,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 6, 2967241396, 7, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536944852, 536937140, 536951364, 'S', 'F', 'T', None)",
     "('C', 1, 4, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "edea6fdaad687a934f262357dec074cb7a49c9064c339ef52f2c904dc24bbb9c",
+    "events": "4da27bf070914c514c973936eae6605fff171185efe54bfd8588fbd234f8e522",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1184,16 +1208,17 @@
     "abs": [],
     "args": [
      4,
-     6,
-     2967241396,
-     7
+     536944852,
+     536937140,
+     536951364
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-24",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 24,
     "xpsr": 0
    },
@@ -1218,11 +1243,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 12, 2149248134, 604019693, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536941512, 536947844, 536943596, 'S', 'F', 'T', None)",
     "('C', 1, 3751937804, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "eb6ec2ec95d45d23be51b2be5f8608206b6fbe0ebe0dd707092f439b5a235700",
+    "events": "6f8039c70316db865978705ddc672ae2185a2d5a559d015109ebbcb9d0edae6d",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1232,16 +1257,17 @@
     "abs": [],
     "args": [
      3751937804,
-     12,
-     2149248134,
-     604019693
+     536941512,
+     536947844,
+     536943596
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 25,
     "xpsr": 0
    },
@@ -1266,11 +1292,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 12, 3037640278, 2678623347, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536937032, 536950356, 536939632, 'S', 'F', 'T', None)",
     "('C', 1, 2992330384, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "92df7d6e10b9549a73c59383e766354010d21e7e4784d14aeb0c6421f680c9e2",
+    "events": "42e9f2a64ec039c77eb4a282f9625ed786e0f36f1a01be22f51ee290cf756289",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1280,16 +1306,17 @@
     "abs": [],
     "args": [
      2992330384,
-     12,
-     3037640278,
-     2678623347
+     536937032,
+     536950356,
+     536939632
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-26",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 26,
     "xpsr": 0
    },
@@ -1314,11 +1341,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 681194263, 3639365232, 4125446660, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536949524, 536940144, 536941060, 'S', 'F', 'T', None)",
     "('C', 1, 187818536, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "4ce5b53c3f3326d4d5b9162f744ab21b15b223db3bb5240f2404fe15256f32bd",
+    "events": "b3a44fb30085c82795c385c9a0bc70566b80b3ed4256a32632a58ae11624cfc9",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1328,16 +1355,17 @@
     "abs": [],
     "args": [
      187818536,
-     681194263,
-     3639365232,
-     4125446660
+     536949524,
+     536940144,
+     536941060
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 27,
     "xpsr": 0
    },
@@ -1362,11 +1390,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 4285183211, 1, 2592385448, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536949992, 536946096, 536947112, 'S', 'F', 'T', None)",
     "('C', 1, 3711083943, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b972e4fbc7c3685f12c00062597051b561849e0c8ded6406864d2238010b419a",
+    "events": "98cff2272e180b5f1d4ac9979d0f0cc529e3e7a8561bda170b4854cd6e6a3a64",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1376,16 +1404,17 @@
     "abs": [],
     "args": [
      3711083943,
-     4285183211,
-     1,
-     2592385448
+     536949992,
+     536946096,
+     536947112
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-28",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 28,
     "xpsr": 0
    },
@@ -1410,11 +1439,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 256, 3886541357, 8, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536937084, 536947244, 536938744, 'S', 'F', 'T', None)",
     "('C', 1, 739928864, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "11bfe75534f2af97c4a3578087211575db9c7685024b00a28d4a82b4e3f2dbc2",
+    "events": "83fc4fbbe6ec54bb7651e0fb8d7d2bf6dda3729cb35c27bd9116a64746e32a24",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1424,16 +1453,17 @@
     "abs": [],
     "args": [
      739928864,
-     256,
-     3886541357,
-     8
+     536937084,
+     536947244,
+     536938744
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-29",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 29,
     "xpsr": 0
    },
@@ -1458,11 +1488,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 8, 1, 7, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536941720, 536945744, 536939284, 'S', 'F', 'T', None)",
     "('C', 1, 256, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "e4eb3d21f4afe4a94cccdc6765c3a01e79d298a4b09eba0836f66c497519f4f6",
+    "events": "1089df81cf6a4c0aff02f3d1dbd0f3a24c653dc2caf89e09b237ec2122aebbac",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1472,16 +1502,17 @@
     "abs": [],
     "args": [
      256,
-     8,
-     1,
-     7
+     536941720,
+     536945744,
+     536939284
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-30",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 30,
     "xpsr": 0
    },
@@ -1506,11 +1537,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 2461003590, 7, 53351545, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536948548, 536938932, 536941688, 'S', 'F', 'T', None)",
     "('C', 1, 4294967295, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "baef926b21550a1344b45efe4851b559aae0965424c180aec891bddea1994138",
+    "events": "2ac523510d2c4aa43dd657c343a8740a1136e58b9322845053552b1871afe1bd",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1520,16 +1551,17 @@
     "abs": [],
     "args": [
      4294967295,
-     2461003590,
-     7,
-     53351545
+     536948548,
+     536938932,
+     536941688
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
@@ -1554,11 +1586,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 2706821390, 3442053927, 1170652979, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536940812, 536941348, 536952624, 'S', 'F', 'T', None)",
     "('C', 1, 1839753098, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "693d0f05a28697c77517fd77f9b1efdd3f0051e5f33a2a009e4cd0dc7594d8c5",
+    "events": "af9521a115440f2f1df60e1dd4ec468c9f4296869fbac252e3b6bbc91cd11279",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1568,16 +1600,17 @@
     "abs": [],
     "args": [
      1839753098,
-     2706821390,
-     3442053927,
-     1170652979
+     536940812,
+     536941348,
+     536952624
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-32",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 32,
     "xpsr": 0
    },
@@ -1602,11 +1635,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 7, 7, 5, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536942020, 536944276, 536938756, 'S', 'F', 'T', None)",
     "('C', 1, 1076094348, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "aaffece479c820f598197571c4e864de577dc0809f7d6d322bdce0c986b454c9",
+    "events": "0b17499388a1636b7f03547acfe3d428fdadbdd7d0c0d1bd8283a6b921ebf71a",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1616,16 +1649,17 @@
     "abs": [],
     "args": [
      1076094348,
-     7,
-     7,
-     5
+     536942020,
+     536944276,
+     536938756
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-33",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 33,
     "xpsr": 0
    },
@@ -1650,11 +1684,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 3990671540, 922796015, 2147483647, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536940724, 536952812, 536936476, 'S', 'F', 'T', None)",
     "('C', 1, 12, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "e8aa37d8b089031b045bcdb86bc47b6c7e2c7c3ef9ca47e3bc16c21431906e0c",
+    "events": "3fb7dd74d72ddc0ff66f970ebf1338225a44b5ea0fbaef3afd850a502bf5f814",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1664,16 +1698,17 @@
     "abs": [],
     "args": [
      12,
-     3990671540,
-     922796015,
-     2147483647
+     536940724,
+     536952812,
+     536936476
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 34,
     "xpsr": 0
    },
@@ -1698,11 +1733,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 3578977268, 4001652011, 1, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536943604, 536943912, 536937872, 'S', 'F', 'T', None)",
     "('C', 1, 2726887024, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "63114689a29a36d6ba118bfa3721ac0a56a36322e76965470367db08683975f9",
+    "events": "34a76b182b3032c751516ff0d051e1f05ec55bc13167d847a9aeb0aaa8a98574",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1712,16 +1747,17 @@
     "abs": [],
     "args": [
      2726887024,
-     3578977268,
-     4001652011,
-     1
+     536943604,
+     536943912,
+     536937872
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
@@ -1746,11 +1782,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 12, 2147483647, 8, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536949832, 536945964, 536950872, 'S', 'F', 'T', None)",
     "('C', 1, 0, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "40de51e564bd51c789edd2a9d36ea688a662cacf4d603cb876ab6cad14fa0532",
+    "events": "a4602eeb764dce24ad1c6f07eb8bc9b038e0f740c5364f89be6fd708461e9b09",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1760,16 +1796,17 @@
     "abs": [],
     "args": [
      0,
-     12,
-     2147483647,
-     8
+     536949832,
+     536945964,
+     536950872
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 36,
     "xpsr": 0
    },
@@ -1794,11 +1831,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 2057795936, 2725586938, 1299241558, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536951136, 536946680, 536943188, 'S', 'F', 'T', None)",
     "('C', 1, 1, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "432efea61510d4f7c1933c32f7f7a9fa1d1504b2cadbe7ad775fe8ae26157fda",
+    "events": "16faa7e65010f793321a0cb41465fd2d6c06b1a0b336bede9b3aca3ef3d314fc",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1808,16 +1845,17 @@
     "abs": [],
     "args": [
      1,
-     2057795936,
-     2725586938,
-     1299241558
+     536951136,
+     536946680,
+     536943188
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-37",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 37,
     "xpsr": 0
    },
@@ -1842,11 +1880,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 255, 1, 2, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536941672, 536936976, 536945104, 'S', 'F', 'T', None)",
     "('C', 1, 0, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "459fdd71eebb5568dbbedc2139a1cb965db4aab6287644ca5bf6a05af0da70af",
+    "events": "d86f3bd4817623bc5051de53626e31eb9636b8f7c9ad3cf98cdd85fd7adb9663",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1856,16 +1894,17 @@
     "abs": [],
     "args": [
      0,
-     255,
-     1,
-     2
+     536941672,
+     536936976,
+     536945104
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-38",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 38,
     "xpsr": 0
    },
@@ -1890,11 +1929,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 1587124134, 3774328631, 1997155928, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536942500, 536948532, 536948312, 'S', 'F', 'T', None)",
     "('C', 1, 3, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "78008156352756c8f778d79af1348132e77a28296e68c44b7a22665d60888fa7",
+    "events": "bf7db9ec8e91e33134bd9b75088dd1afa7d5b6b456166941b9bcc791dd8b08d0",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1904,16 +1943,17 @@
     "abs": [],
     "args": [
      3,
-     1587124134,
-     3774328631,
-     1997155928
+     536942500,
+     536948532,
+     536948312
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
     "xpsr": 0
    },
@@ -1938,11 +1978,11 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 3928041777, 1786326658, 1835695343, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'GATT Service could not be found during the discovery\\n'), 536946992, 536948352, 536952044, 'S', 'F', 'T', None)",
     "('C', 1, 0, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "67e8f05790003208f726ab9469a4d8d73e28325005cf362436ff8006bee71e6d",
+    "events": "b82624e395f86b89bfcbd1b42223b875b5496b501e4c176eac8a1d893277eec5",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1952,16 +1992,17 @@
     "abs": [],
     "args": [
      0,
-     3928041777,
-     1786326658,
-     1835695343
+     536946992,
+     536948352,
+     536952044
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-40",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 40,
     "xpsr": 0
    },
@@ -1980,8 +2021,11 @@
  "globals": [],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "ble",
@@ -1990,16 +2034,26 @@
   "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
   "source": "shipped image"
  },
- "pointer_arg_mask": [],
+ "pointer_arg_mask": [
+  1,
+  2,
+  3
+ ],
  "ret_kind": "void",
  "search": {
-  "candidates": 129,
+  "candidates": 197,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
   "kept": 41,
-  "pointer_arg_mask": [],
+  "pointer_arg_mask": [
+   1,
+   2,
+   3
+  ],
   "pointer_arg_mask_derived": true
  },
  "size": 22,

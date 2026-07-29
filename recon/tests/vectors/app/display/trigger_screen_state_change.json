@@ -20,10 +20,10 @@
    "events_head": [
     "('W', 536952112, 1, 1)",
     "('C', 0, 536948120, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 1276959699, 1, 'S', 'F', 'T', None)"
+    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 536943568, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "43d6e0e17c94aff78d7dcdc7809e88e0a2e89801b4f6f3c24c46c99ed37c5acc",
+    "events": "2e8e083799cbdff0a82465559e2d076a97c9330ee3085d4c3ac9cbe2702e8376",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -34,7 +34,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     1276959699,
+     536943568,
      536948040,
      4,
      0
@@ -43,8 +43,9 @@
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -80,7 +81,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     4067469868,
+     536947244,
      536943120,
      2147483648,
      315044147
@@ -89,8 +90,9 @@
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -117,10 +119,10 @@
    "events_head": [
     "('W', 536946752, 1, 1)",
     "('C', 0, 536942760, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 4290042576, 1, 'S', 'F', 'T', None)"
+    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 536943312, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ac24110680878fbc9297be3a89e66b4ebe89bbccddfba0a9b9fce66e724dd16b",
+    "events": "86a181bfb9eb07c247baff99509ade899345b7114c062bf4a0ea172caad2fa2c",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -131,7 +133,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     4290042576,
+     536943312,
      536942680,
      3677430904,
      7
@@ -140,8 +142,9 @@
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
@@ -177,7 +180,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     2618385373,
+     536945628,
      536940936,
      8,
      3619521758
@@ -186,8 +189,9 @@
     "fp": {},
     "id": "seed-3",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 3,
     "xpsr": 0
    },
@@ -214,10 +218,10 @@
    "events_head": [
     "('W', 536948356, 1, 1)",
     "('C', 0, 536944364, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 16, 1, 'S', 'F', 'T', None)"
+    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 536945864, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "08d3830af91002d836fafea88be35cfa029bb163b4033e1fc23ea902b3ba42a1",
+    "events": "4b865a6d5cee3d4bb5d80aab9a9612950d53fc128601edd7212a176ff4cf6db2",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -228,7 +232,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     16,
+     536945864,
      536944284,
      3842370354,
      6
@@ -237,8 +241,9 @@
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 4,
     "xpsr": 0
    },
@@ -274,7 +279,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     4,
+     536939588,
      536951592,
      8,
      7
@@ -283,8 +288,9 @@
     "fp": {},
     "id": "seed-5",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 5,
     "xpsr": 0
    },
@@ -320,7 +326,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     4,
+     536950900,
      536936920,
      5,
      2147483647
@@ -329,8 +335,9 @@
     "fp": {},
     "id": "seed-6",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 6,
     "xpsr": 0
    },
@@ -366,7 +373,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     2300957721,
+     536941592,
      536944956,
      1,
      2363272863
@@ -375,8 +382,9 @@
     "fp": {},
     "id": "seed-7",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 7,
     "xpsr": 0
    },
@@ -412,7 +420,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     2156366374,
+     536939044,
      536940560,
      558645175,
      4
@@ -421,8 +429,9 @@
     "fp": {},
     "id": "seed-8",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 8,
     "xpsr": 0
    },
@@ -449,10 +458,10 @@
    "events_head": [
     "('W', 536951152, 1, 1)",
     "('C', 0, 536947160, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 1346232374, 1, 'S', 'F', 'T', None)"
+    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 536944692, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "a02d9ec49324eb1b82dcaa5fe5dcb4c15240515bdce79896371cd9cc6d6269de",
+    "events": "42cfab06570bafe765650d359e3d5069c250056abd42a071db869e49637402b3",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -463,7 +472,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     1346232374,
+     536944692,
      536947080,
      499087790,
      2147483647
@@ -472,8 +481,9 @@
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 9,
     "xpsr": 0
    },
@@ -500,10 +510,10 @@
    "events_head": [
     "('W', 536949092, 1, 1)",
     "('C', 0, 536945100, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 182454980, 1, 'S', 'F', 'T', None)"
+    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 536939204, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "20f25fdcf13712cd5f66f67c6f358e5e204fe8fcf282c7466aac6eb263946610",
+    "events": "d984996ddbe73385e45e14835c8c6431b05203de1b2b4f9b00fc86399ff0dca1",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -514,7 +524,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     182454980,
+     536939204,
      536945020,
      8,
      1
@@ -523,8 +533,9 @@
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 10,
     "xpsr": 0
    },
@@ -551,10 +562,10 @@
    "events_head": [
     "('W', 536952356, 1, 1)",
     "('C', 0, 536948364, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 3, 1, 'S', 'F', 'T', None)"
+    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 536937040, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "6ce86a1bb80e5821138ace0a6a8fc57d9a6b476e10b582836b327a5f157e15bd",
+    "events": "ab5e12281748d59f8a5b1c044ee63498b6ba2feb6457b5bcaf0a455bcf3fe884",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -565,7 +576,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     3,
+     536937040,
      536948284,
      256,
      1426281073
@@ -574,8 +585,9 @@
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 11,
     "xpsr": 0
    },
@@ -602,10 +614,10 @@
    "events_head": [
     "('W', 536941048, 1, 1)",
     "('C', 0, 536937056, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 8, 1, 'S', 'F', 'T', None)"
+    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 536944520, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b8adfa2fa3b96b60211f61d01972d76f5628245a33f19a5bde3e0c322d1a7880",
+    "events": "9308a5837b6c6fdbfc596121164d99c8c47f20e0cbaad76b388df376e7fee629",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -616,7 +628,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     8,
+     536944520,
      536936976,
      5,
      1103693227
@@ -625,8 +637,9 @@
     "fp": {},
     "id": "seed-12",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 12,
     "xpsr": 0
    },
@@ -653,10 +666,10 @@
    "events_head": [
     "('W', 536946116, 1, 1)",
     "('C', 0, 536942124, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 1156718256, 1, 'S', 'F', 'T', None)"
+    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 536944304, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "a6830a2c387b6502c6d04835d48c9f279c0891fb2f293ad53a90f903fbb7e195",
+    "events": "364faf508c57bfc0a4301f26d676c9d98a4a1f6e26dba617d63267abc834ae1a",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -667,7 +680,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     1156718256,
+     536944304,
      536942044,
      6,
      617681966
@@ -676,8 +689,9 @@
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 13,
     "xpsr": 0
    },
@@ -713,7 +727,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     1996365079,
+     536943892,
      536949848,
      3,
      470668832
@@ -722,8 +736,9 @@
     "fp": {},
     "id": "seed-14",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 14,
     "xpsr": 0
    },
@@ -759,7 +774,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     7,
+     536952404,
      536941132,
      5,
      4
@@ -768,8 +783,9 @@
     "fp": {},
     "id": "seed-15",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 15,
     "xpsr": 0
    },
@@ -796,10 +812,10 @@
    "events_head": [
     "('W', 536947044, 1, 1)",
     "('C', 0, 536943052, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 2024561310, 1, 'S', 'F', 'T', None)"
+    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 536943260, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "0223b3f94303ab81a4605c1a7c58b0955a114eabbe9008a53f3fe0499fe81545",
+    "events": "45dc509b98a6ae1a984bddc53264d6a19262aa1fca3d548e540238a7e3f056d3",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -810,7 +826,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     2024561310,
+     536943260,
      536942972,
      3454407978,
      16
@@ -819,8 +835,9 @@
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
@@ -856,7 +873,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     3,
+     536944016,
      536942692,
      1168623309,
      4252165479
@@ -865,8 +882,9 @@
     "fp": {},
     "id": "seed-17",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 17,
     "xpsr": 0
    },
@@ -902,7 +920,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     3912442165,
+     536944948,
      536937440,
      697236451,
      1
@@ -911,8 +929,9 @@
     "fp": {},
     "id": "seed-18",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 18,
     "xpsr": 0
    },
@@ -939,10 +958,10 @@
    "events_head": [
     "('W', 536949016, 1, 1)",
     "('C', 0, 536945024, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 6, 1, 'S', 'F', 'T', None)"
+    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 536939284, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "605b83a9447129bc8a43b5fbf021c1e45c2b20eb8ae54eb927671d9c4b1a42d5",
+    "events": "75c9ce6f879accdb28f936eecc1d1d06d47e21faa0b75f724ae148831810d3ce",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -953,7 +972,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     6,
+     536939284,
      536944944,
      4178753371,
      255
@@ -962,8 +981,9 @@
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 19,
     "xpsr": 0
    },
@@ -999,7 +1019,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     4,
+     536952740,
      536939460,
      2,
      7
@@ -1008,8 +1028,9 @@
     "fp": {},
     "id": "seed-20",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 20,
     "xpsr": 0
    },
@@ -1036,10 +1057,10 @@
    "events_head": [
     "('W', 536940712, 1, 1)",
     "('C', 0, 536936720, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 843060076, 1, 'S', 'F', 'T', None)"
+    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 536941420, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "4aea7fca25691d566e3055650b56f06d3679222b8c592ed256b34fb1cde85aee",
+    "events": "5154c67277c34f97c5ef9f8eb801e07a22d37afe27877ef16acb9986c4c3870e",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1050,7 +1071,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     843060076,
+     536941420,
      536936640,
      2870852768,
      0
@@ -1059,8 +1080,9 @@
     "fp": {},
     "id": "seed-21",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 21,
     "xpsr": 0
    },
@@ -1096,7 +1118,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     7,
+     536937396,
      536946088,
      4294967295,
      2451975022
@@ -1105,8 +1127,9 @@
     "fp": {},
     "id": "seed-22",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 22,
     "xpsr": 0
    },
@@ -1142,7 +1165,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     1591295399,
+     536952228,
      536939712,
      2034212132,
      1515885587
@@ -1151,8 +1174,9 @@
     "fp": {},
     "id": "seed-23",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 23,
     "xpsr": 0
    },
@@ -1188,7 +1212,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     4,
+     536949908,
      536944852,
      2967241396,
      7
@@ -1197,8 +1221,9 @@
     "fp": {},
     "id": "seed-24",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 24,
     "xpsr": 0
    },
@@ -1225,10 +1250,10 @@
    "events_head": [
     "('W', 536945584, 1, 1)",
     "('C', 0, 536941592, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 3751937804, 1, 'S', 'F', 'T', None)"
+    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 536938252, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ae1ac0a2831cc1e1e52b9ef49cac583a5a3a0135123ed6b5c829c26f613f1495",
+    "events": "45a4dd66c6527406fb11c90d1c437263b650079b826b48a2535e25ea14ed434e",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1239,7 +1264,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     3751937804,
+     536938252,
      536941512,
      2149248134,
      604019693
@@ -1248,8 +1273,9 @@
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 25,
     "xpsr": 0
    },
@@ -1285,7 +1311,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     2992330384,
+     536942224,
      536937032,
      3037640278,
      2678623347
@@ -1294,8 +1320,9 @@
     "fp": {},
     "id": "seed-26",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 26,
     "xpsr": 0
    },
@@ -1322,10 +1349,10 @@
    "events_head": [
     "('W', 536953596, 1, 1)",
     "('C', 0, 536949604, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 187818536, 1, 'S', 'F', 'T', None)"
+    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 536945192, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "2c88f4c9cd587928b6e63cb269f4fa6fdcfb2cc27d39b008d5d27a7a610d1dfa",
+    "events": "18b150e4a0dd1a0671d1a7343e9459abae4ed8270a2d59b12568c59f0bb466a7",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1336,7 +1363,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     187818536,
+     536945192,
      536949524,
      3639365232,
      4125446660
@@ -1345,8 +1372,9 @@
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 27,
     "xpsr": 0
    },
@@ -1373,10 +1401,10 @@
    "events_head": [
     "('W', 536954064, 1, 1)",
     "('C', 0, 536950072, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 3711083943, 1, 'S', 'F', 'T', None)"
+    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 536946084, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "8bec8932193b8b1a2708f1d6566e429acecb163d5a5de3f623e8402e311c940b",
+    "events": "f65b08dcd20e4d0e2048861ca72815766a4ebfea37ae95baf4bb63f126765556",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1387,7 +1415,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     3711083943,
+     536946084,
      536949992,
      1,
      2592385448
@@ -1396,8 +1424,9 @@
     "fp": {},
     "id": "seed-28",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 28,
     "xpsr": 0
    },
@@ -1433,7 +1462,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     739928864,
+     536947488,
      536937084,
      3886541357,
      8
@@ -1442,8 +1471,9 @@
     "fp": {},
     "id": "seed-29",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 29,
     "xpsr": 0
    },
@@ -1470,10 +1500,10 @@
    "events_head": [
     "('W', 536945792, 1, 1)",
     "('C', 0, 536941800, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 256, 1, 'S', 'F', 'T', None)"
+    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 536952796, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "e63ac9d8f068d1d8fecc23e6e4c47192d771c23392c75250e01c591f4751d596",
+    "events": "bd32318c3efc4d455d5fa13ec4f4e374d0592524e5f86c5750db00381d9fd397",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1484,7 +1514,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     256,
+     536952796,
      536941720,
      1,
      7
@@ -1493,8 +1523,9 @@
     "fp": {},
     "id": "seed-30",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 30,
     "xpsr": 0
    },
@@ -1521,10 +1552,10 @@
    "events_head": [
     "('W', 536952620, 1, 1)",
     "('C', 0, 536948628, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 4294967295, 1, 'S', 'F', 'T', None)"
+    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 536952300, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "8d48f2a4cd2446cf2c40c5c6a6ad1558962ed74b006554fda2ed6a6f89c6af2b",
+    "events": "b625cec9a23e330e63a9442229c89e641ae993f5546123317c6088a422a105d3",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1535,7 +1566,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     4294967295,
+     536952300,
      536948548,
      7,
      53351545
@@ -1544,8 +1575,9 @@
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
@@ -1572,10 +1604,10 @@
    "events_head": [
     "('W', 536944884, 1, 1)",
     "('C', 0, 536940892, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 1839753098, 1, 'S', 'F', 'T', None)"
+    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 536946568, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "595223f32d8abfcf508043eb6ed885da39fd98711d37b8da5f97b2f4af36c5b1",
+    "events": "d3a2f7b18516ab6ebc7f22c95fa36cb32f87c5115d93d156d71c534f51db79cc",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1586,7 +1618,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     1839753098,
+     536946568,
      536940812,
      3442053927,
      1170652979
@@ -1595,8 +1627,9 @@
     "fp": {},
     "id": "seed-32",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 32,
     "xpsr": 0
    },
@@ -1632,7 +1665,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     1076094348,
+     536946060,
      536942020,
      7,
      5
@@ -1641,8 +1674,9 @@
     "fp": {},
     "id": "seed-33",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 33,
     "xpsr": 0
    },
@@ -1669,10 +1703,10 @@
    "events_head": [
     "('W', 536944796, 1, 1)",
     "('C', 0, 536940804, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 12, 1, 'S', 'F', 'T', None)"
+    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 536950120, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "96817440623ac71f6f04968e98bcdaadc99fd936654d916482292e8b74e5627e",
+    "events": "dfb46d376db5e8466c6a013972b35fcdac1f02907442e905ddb330731a2f2512",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1683,7 +1717,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     12,
+     536950120,
      536940724,
      922796015,
      2147483647
@@ -1692,8 +1726,9 @@
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 34,
     "xpsr": 0
    },
@@ -1720,10 +1755,10 @@
    "events_head": [
     "('W', 536947676, 1, 1)",
     "('C', 0, 536943684, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 2726887024, 1, 'S', 'F', 'T', None)"
+    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 536952432, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ac7d533f1b5a04b6e5f8d09765e93f0c3336eef71b5b237e4e6e9319872c1211",
+    "events": "69d8dd54148f77a40afe89b53aad37e3930679322d04a5b0b40a2b7c8ecfa538",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1734,7 +1769,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     2726887024,
+     536952432,
      536943604,
      4001652011,
      1
@@ -1743,8 +1778,9 @@
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
@@ -1771,10 +1807,10 @@
    "events_head": [
     "('W', 536953904, 1, 1)",
     "('C', 0, 536949912, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 0, 1, 'S', 'F', 'T', None)"
+    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 536944224, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "386f4c0ba1734035866addea215990675c8a04d4f3dc61492343570e88cea8fe",
+    "events": "e41cf5779161ee9267209ddd000eee351338cf7c192bf775c20d055e3f9266d0",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1785,7 +1821,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     0,
+     536944224,
      536949832,
      2147483647,
      8
@@ -1794,8 +1830,9 @@
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 36,
     "xpsr": 0
    },
@@ -1831,7 +1868,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     1,
+     536951728,
      536951136,
      2725586938,
      1299241558
@@ -1840,8 +1877,9 @@
     "fp": {},
     "id": "seed-37",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 37,
     "xpsr": 0
    },
@@ -1877,7 +1915,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     0,
+     536939760,
      536941672,
      1,
      2
@@ -1886,8 +1924,9 @@
     "fp": {},
     "id": "seed-38",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 38,
     "xpsr": 0
    },
@@ -1914,10 +1953,10 @@
    "events_head": [
     "('W', 536946572, 1, 1)",
     "('C', 0, 536942580, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 3, 1, 'S', 'F', 'T', None)"
+    "('C', 1, ('RO', b'%s(): %s: trigger_on_screen -> %d\\n'), ('RO', b'trigger_screen_state_change'), 536941424, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c41690a8cce17d79bedb21503950b3a6fa95180c4b4e56e0363b2e5aaab257d7",
+    "events": "6767e6f4a0a27a4c9f6eabda09a934202c1a119394684931f16aef71d2e14b3d",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1928,7 +1967,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     3,
+     536941424,
      536942500,
      3774328631,
      1997155928
@@ -1937,8 +1976,9 @@
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
     "xpsr": 0
    },
@@ -1974,7 +2014,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     0,
+     536943600,
      536946992,
      1786326658,
      1835695343
@@ -1983,8 +2023,9 @@
     "fp": {},
     "id": "seed-40",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 40,
     "xpsr": 0
    },
@@ -2016,7 +2057,7 @@
      ]
     ],
     "args": [
-     3,
+     536940544,
      536940548,
      0,
      1458775353
@@ -2025,8 +2066,9 @@
     "fp": {},
     "id": "chain-1",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 801,
     "xpsr": 0
    },
@@ -2051,7 +2093,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     4294967295,
+     536943756,
      536943580,
      0,
      2113830739
@@ -2063,8 +2105,9 @@
     },
     "id": "fp-48",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 48,
     "xpsr": 0
    },
@@ -2086,8 +2129,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "display",
@@ -2097,17 +2143,21 @@
   "source": "shipped image"
  },
  "pointer_arg_mask": [
+  0,
   1
  ],
  "ret_kind": "i32",
  "search": {
-  "candidates": 197,
+  "candidates": 237,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
   "kept": 43,
   "pointer_arg_mask": [
+   0,
    1
   ],
   "pointer_arg_mask_derived": true

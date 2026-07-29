@@ -18,15 +18,15 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 12, 4, 0, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'set_imu_base para is NULL\\n'), 3677333764, 4, 0, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536948040, 536948308, 536940048, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536948308, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "01aba3db01101cf82c6ea40db5f48e46a389b0cf32abb04936d78dd1850280bf",
+    "events": "9ac67ccfeed988c8e4ccd3bd36916b3e838e3ab3de1278f82b4198f2f0d66a7d",
     "kind": "return",
     "ncalls": 2,
     "ret": [
-     4294967295
+     4294967294
     ],
     "returned": true
    },
@@ -34,20 +34,21 @@
     "abs": [],
     "args": [
      1276959699,
-     12,
-     4,
-     0
+     536948040,
+     536948308,
+     536940048
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
-   "new_instructions": 13,
+   "new_instructions": 18,
    "stack_args": []
   },
   {
@@ -68,11 +69,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 1797429778, 2147483648, 315044147, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 2147483648, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536943120, 536940476, 536949040, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536940476, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "01fc1734dc56f511af438595f165bbb294ce5ac83087f51913e334dcd9c7a857",
+    "events": "c5c482717d72e9978a977a38ca08247d8168890d95fc3305d509dda20d5b82e5",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -84,16 +85,17 @@
     "abs": [],
     "args": [
      4067469868,
-     1797429778,
-     2147483648,
-     315044147
+     536943120,
+     536940476,
+     536949040
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -118,11 +120,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 598759513, 3677430904, 7, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3677430904, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536942680, 536945784, 536943396, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536945784, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "54f50c6f4b58f5d5533bfe3e0f69cb8d72a82ef06ec78b37b123aaec1f83d59e",
+    "events": "5c8078690c54731afb5ca7c6ef7b290252c39fa0121eb0075474ba35d0b3e2b4",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -134,16 +136,17 @@
     "abs": [],
     "args": [
      4290042576,
-     598759513,
-     3677430904,
-     7
+     536942680,
+     536945784,
+     536943396
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
@@ -168,11 +171,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 255, 8, 3619521758, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 8, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536940936, 536943096, 536937692, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536943096, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "153c2886de7a6c5805def3dd71aeebc593aba44fb43be95498066dc8bef44980",
+    "events": "16c281ca2d27ae4b372a07a4aa3673b0b4c18d04f0267b9dc4cb5bd1716c9333",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -184,16 +187,17 @@
     "abs": [],
     "args": [
      2618385373,
-     255,
-     8,
-     3619521758
+     536940936,
+     536943096,
+     536937692
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-3",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 3,
     "xpsr": 0
    },
@@ -218,11 +222,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 2147483647, 3842370354, 6, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3842370354, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536944284, 536947504, 536951124, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536947504, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "2441e5ee583d9aca7e6780e56623b25654f33a816e685a54e5df9f29258530f7",
+    "events": "c10faa895386035ffcb1026f7733a2142ff5dddf43a9e2ff2b2d188a29ae3999",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -234,16 +238,17 @@
     "abs": [],
     "args": [
      16,
-     2147483647,
-     3842370354,
-     6
+     536944284,
+     536947504,
+     536951124
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 4,
     "xpsr": 0
    },
@@ -268,11 +273,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 3188701995, 8, 7, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 8, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536951592, 536944168, 536942644, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536944168, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "153230cdf539584ecc52105af1620d01735e16989a312718f21bed68d3bffa21",
+    "events": "0c90ff3218a3552a5ee605ddc1964acc37b4a0a25d778db3cfad15c8d5edfe7e",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -284,16 +289,17 @@
     "abs": [],
     "args": [
      4,
-     3188701995,
-     8,
-     7
+     536951592,
+     536944168,
+     536942644
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-5",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 5,
     "xpsr": 0
    },
@@ -318,11 +324,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 3322790363, 5, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 5, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536936920, 536947060, 536952236, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536947060, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "76f5ba65fec0ab797b460dcec68f25097fe419a5421edb3fa7119ea216c3ec3e",
+    "events": "3dd3a7641ebbf31e9a9deadac57ee2ec52bdd76ecf1b910b7a13c7a2fafd49e6",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -334,16 +340,17 @@
     "abs": [],
     "args": [
      4,
-     3322790363,
-     5,
-     2147483647
+     536936920,
+     536947060,
+     536952236
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-6",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 6,
     "xpsr": 0
    },
@@ -368,11 +375,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 1604804925, 1, 2363272863, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 1, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536944956, 536950368, 536948380, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536950368, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "4f27c92233cbfd1aa7e57f8a78e351b7c403a13ba4454118ce69d0eb1fc3c99c",
+    "events": "09aba3995a166ebec3d9f430a333fb85d4612cd86e54ab0d833ecb23f8d036ff",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -384,16 +391,17 @@
     "abs": [],
     "args": [
      2300957721,
-     1604804925,
-     1,
-     2363272863
+     536944956,
+     536950368,
+     536948380
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-7",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 7,
     "xpsr": 0
    },
@@ -418,11 +426,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 708972563, 558645175, 4, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 558645175, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536940560, 536952756, 536949588, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536952756, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "f6441738f898327e6aa491931c2b1649fe99be9352acc949e74b59fa08b2dbe5",
+    "events": "c131f98b366eab966f450a3e8c2f650d6fb3bf0336f5addad9d1f7fd2a7b13c4",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -434,16 +442,17 @@
     "abs": [],
     "args": [
      2156366374,
-     708972563,
-     558645175,
-     4
+     536940560,
+     536952756,
+     536949588
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-8",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 8,
     "xpsr": 0
    },
@@ -468,11 +477,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 1556998536, 499087790, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 499087790, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536947080, 536951212, 536940988, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536951212, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ef61db1bf0ea88636dca845d85c1ace715fae938718ec575b78af53a5f9224d5",
+    "events": "d13abdeb73a9fbd52837bcf9966525122f43e779c1fc79b9b85be1c2fd797a0b",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -484,16 +493,17 @@
     "abs": [],
     "args": [
      1346232374,
-     1556998536,
-     499087790,
-     2147483647
+     536947080,
+     536951212,
+     536940988
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 9,
     "xpsr": 0
    },
@@ -518,11 +528,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 995058044, 8, 1, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 8, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536945020, 536946200, 536947328, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536946200, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "654ac3624d35404ff2c75cb48b97cf7af4bb159a585a08ada33bd63f87ee223f",
+    "events": "6c257848331db50e9595b6838859ea4c8e8e9b3299910590a2ebe246724f187e",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -534,16 +544,17 @@
     "abs": [],
     "args": [
      182454980,
-     995058044,
-     8,
-     1
+     536945020,
+     536946200,
+     536947328
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 10,
     "xpsr": 0
    },
@@ -568,11 +579,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 2147483648, 256, 1426281073, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 256, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536948284, 536938076, 536941168, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536938076, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "30a73c4c476d03983a59c21432dadbec85a44ff03093188a25516e55c8fee0f5",
+    "events": "46f56344088fef39bb0322d618becab4ea4ce834ff503a91adcb34d091f9eb6b",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -584,16 +595,17 @@
     "abs": [],
     "args": [
      3,
-     2147483648,
-     256,
-     1426281073
+     536948284,
+     536938076,
+     536941168
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 11,
     "xpsr": 0
    },
@@ -618,11 +630,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 3217736208, 5, 1103693227, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 5, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536936976, 536941268, 536937896, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536941268, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "7e23a52e94d161cbd3b6855aa52f38c217a702fdc8865dbe812be0ac85f98331",
+    "events": "7ce79889717d09bd34a751fdc58cb1330d640fa192d6f5e79d3081a043b09307",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -634,16 +646,17 @@
     "abs": [],
     "args": [
      8,
-     3217736208,
-     5,
-     1103693227
+     536936976,
+     536941268,
+     536937896
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-12",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 12,
     "xpsr": 0
    },
@@ -668,11 +681,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 1944344031, 6, 617681966, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 6, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536942044, 536939060, 536941612, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536939060, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9dc0c1aee67f290d58b3ceb28b58ef939e002c1cf1db8dfb1a41b375b812da13",
+    "events": "a850b6f52aa3c2e870a73a09ce5ffe9bffe4226a81e0ce17b3b98d7fbed45b07",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -684,16 +697,17 @@
     "abs": [],
     "args": [
      1156718256,
-     1944344031,
-     6,
-     617681966
+     536942044,
+     536939060,
+     536941612
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 13,
     "xpsr": 0
    },
@@ -718,11 +732,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 12, 3, 470668832, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536949848, 536943328, 536942112, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536943328, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "35ca643e1a6f97681e8ee160bf9bb21119cc316dca63959adda98dffae5a251e",
+    "events": "def7426ef63887820cc013420b6ed18e53e778bdfbc1b1d26a14ee7cca424282",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -734,16 +748,17 @@
     "abs": [],
     "args": [
      1996365079,
-     12,
-     3,
-     470668832
+     536949848,
+     536943328,
+     536942112
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-14",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 14,
     "xpsr": 0
    },
@@ -768,11 +783,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 256, 5, 4, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 5, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536941132, 536951236, 536949908, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536951236, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9c7fb6aba816493de4b1f3e6e69214476a7ec6436bc523a6b07f4fa9cdf83196",
+    "events": "0afd32d16383263b54fbad51f3a114eb131de06037a0e3bb126051b5c0228b61",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -784,16 +799,17 @@
     "abs": [],
     "args": [
      7,
-     256,
-     5,
-     4
+     536941132,
+     536951236,
+     536949908
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-15",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 15,
     "xpsr": 0
    },
@@ -818,11 +834,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 2147483648, 3454407978, 16, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3454407978, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536942972, 536941864, 536940136, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536941864, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "4b032e11b2e829320a1346a93d62b66db1efd6ece67861dc3d0ff5af77a2dfc6",
+    "events": "4d27c79b147248e17187cc1b3968de15351e2a1a7f8e563e5ddb8bfac008e240",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -834,16 +850,17 @@
     "abs": [],
     "args": [
      2024561310,
-     2147483648,
-     3454407978,
-     16
+     536942972,
+     536941864,
+     536940136
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
@@ -868,11 +885,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 3254638692, 1168623309, 4252165479, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 1168623309, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536942692, 536938188, 536946020, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536938188, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "37a377e5c106d2fa310801838e3236d6cc8ac61bbe01b749a168d427a0268554",
+    "events": "45d6564d000dab3ed7541c95fc06378fac64024da534c57730859c01ee131c0a",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -884,16 +901,17 @@
     "abs": [],
     "args": [
      3,
-     3254638692,
-     1168623309,
-     4252165479
+     536942692,
+     536938188,
+     536946020
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-17",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 17,
     "xpsr": 0
    },
@@ -918,11 +936,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 0, 697236451, 1, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 697236451, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536937440, 536951776, 536945600, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536951776, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "dd15f991bb4f435a3db3af6f8f0992e83dec150047e49287682cccd86244f764",
+    "events": "21cb74edfdfc27047752df02257845d319c1b4f478d16fc5622d3e33f8fc1fdc",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -934,16 +952,17 @@
     "abs": [],
     "args": [
      3912442165,
-     0,
-     697236451,
-     1
+     536937440,
+     536951776,
+     536945600
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-18",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 18,
     "xpsr": 0
    },
@@ -968,11 +987,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 1536401714, 4178753371, 255, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 4178753371, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536944944, 536950616, 536947592, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536950616, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "db2fcb521b5f80fa5cd55a5536e486966061805a91547f565a71d59b50f44c2e",
+    "events": "2edee0fca424c744e47e54b24bae67e38397dd63b53a8e8e4fb49dead708aa38",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -984,16 +1003,17 @@
     "abs": [],
     "args": [
      6,
-     1536401714,
-     4178753371,
-     255
+     536944944,
+     536950616,
+     536947592
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 19,
     "xpsr": 0
    },
@@ -1018,11 +1038,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 2306919366, 2, 7, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 2, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536939460, 536939760, 536951108, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536939760, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ca4ef835b4cc8e1da23f0bfb00ce59d020a25bb6e0bbeaa24d71ad39e973594b",
+    "events": "e6c829cdd70411d876eb7a102d0838641367aedf014a370b90a087584d19a46e",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1034,16 +1054,17 @@
     "abs": [],
     "args": [
      4,
-     2306919366,
-     2,
-     7
+     536939460,
+     536939760,
+     536951108
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-20",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 20,
     "xpsr": 0
    },
@@ -1068,15 +1089,15 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 1, 2870852768, 0, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'set_imu_base para is NULL\\n'), 3677333764, 2870852768, 0, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536936640, 536951968, 536943488, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536951968, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "897265e2cbefa59d23143bab7b65decf7720328659695a3e8b90c9dab9ea1b7e",
+    "events": "bb92f1827a5f57e6044a1738cda57c91e540112d45be064e656663215c18154d",
     "kind": "return",
     "ncalls": 2,
     "ret": [
-     4294967295
+     4294967294
     ],
     "returned": true
    },
@@ -1084,20 +1105,21 @@
     "abs": [],
     "args": [
      843060076,
-     1,
-     2870852768,
-     0
+     536936640,
+     536951968,
+     536943488
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-21",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 21,
     "xpsr": 0
    },
-   "new_instructions": 13,
+   "new_instructions": 18,
    "stack_args": []
   },
   {
@@ -1118,11 +1140,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 3001296298, 4294967295, 2451975022, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 4294967295, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536946088, 536949836, 536947564, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536949836, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "8fa8d07e3972e481cb43cc59641e0e880f927b1a76d9597098de375a711422ca",
+    "events": "363ea6f2a182b11175a3ac18a98eba9632f92e9bcf317382e785c3cf7a654f71",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1134,16 +1156,17 @@
     "abs": [],
     "args": [
      7,
-     3001296298,
-     4294967295,
-     2451975022
+     536946088,
+     536949836,
+     536947564
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-22",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 22,
     "xpsr": 0
    },
@@ -1168,11 +1191,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 241044672, 2034212132, 1515885587, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 2034212132, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536939712, 536943908, 536941584, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536943908, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "dfc632c6832388629fca37feaae69339d36b673cf73d9c02767f9f10b70295a3",
+    "events": "0200999536213f095190f974f0ab6f7ef2a3631dad66e099ed31dee1295f8c74",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1184,16 +1207,17 @@
     "abs": [],
     "args": [
      1591295399,
-     241044672,
-     2034212132,
-     1515885587
+     536939712,
+     536943908,
+     536941584
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-23",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 23,
     "xpsr": 0
    },
@@ -1218,11 +1242,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 6, 2967241396, 7, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 2967241396, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536944852, 536937140, 536951364, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536937140, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "950e3a66393c7bacc502e78522c44f8d5d322c34d614a6c5f8db2d1e7159fbbe",
+    "events": "d585cc43f787b56ccba930fce962ea81a81f24d27cb5e8fb44adbfb5e8b5a78a",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1234,16 +1258,17 @@
     "abs": [],
     "args": [
      4,
-     6,
-     2967241396,
-     7
+     536944852,
+     536937140,
+     536951364
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-24",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 24,
     "xpsr": 0
    },
@@ -1268,11 +1293,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 12, 2149248134, 604019693, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 2149248134, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536941512, 536947844, 536943596, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536947844, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c3c30f26665819c5013fd377074c0ebdfbfa1bc1686c0aae45698614257ed00f",
+    "events": "dc5e32431ecf874136d905aa9c69cbc490f12b2c0354db9249c05425c71f72d3",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1284,16 +1309,17 @@
     "abs": [],
     "args": [
      3751937804,
-     12,
-     2149248134,
-     604019693
+     536941512,
+     536947844,
+     536943596
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 25,
     "xpsr": 0
    },
@@ -1318,11 +1344,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 12, 3037640278, 2678623347, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3037640278, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536937032, 536950356, 536939632, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536950356, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ac93207850705d5a9bc29c216374df8836415376fc5a9d012c5ddfd416dfff14",
+    "events": "4403b73a5a1e0bcc403b954f9377b864933a6df889c430631ac6e6a06c6c1c70",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1334,16 +1360,17 @@
     "abs": [],
     "args": [
      2992330384,
-     12,
-     3037640278,
-     2678623347
+     536937032,
+     536950356,
+     536939632
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-26",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 26,
     "xpsr": 0
    },
@@ -1368,11 +1395,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 681194263, 3639365232, 4125446660, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3639365232, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536949524, 536940144, 536941060, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536940144, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b8d81c2dda92632d3a15a3cd8eab59623f96586ddfae7b43c2b30277251fdd9e",
+    "events": "10173aa5ad77cd1d7c8b0dfbedf80acf3f97a3fcfae473dc69158ecce9c9fa9e",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1384,16 +1411,17 @@
     "abs": [],
     "args": [
      187818536,
-     681194263,
-     3639365232,
-     4125446660
+     536949524,
+     536940144,
+     536941060
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 27,
     "xpsr": 0
    },
@@ -1418,11 +1446,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 4285183211, 1, 2592385448, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 1, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536949992, 536946096, 536947112, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536946096, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "fb9727d537501654a8ed6bc56057a6f419e708f5dea8d149b321dc1c5b7d1b72",
+    "events": "19985e10adc7de55524d4645a5d28e1c5d9ac4ea47f9db8ea85082bee2f1ecc6",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1434,16 +1462,17 @@
     "abs": [],
     "args": [
      3711083943,
-     4285183211,
-     1,
-     2592385448
+     536949992,
+     536946096,
+     536947112
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-28",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 28,
     "xpsr": 0
    },
@@ -1468,11 +1497,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 256, 3886541357, 8, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3886541357, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536937084, 536947244, 536938744, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536947244, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "d23f057ca53ff5db511be5131c3a60a8ad3f40995d9b143b9ed6796855d6da56",
+    "events": "dd4101a5b377778bbf29d2b379c3eea44a4d90bdf551e9b79c90cc921b1f7d9e",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1484,16 +1513,17 @@
     "abs": [],
     "args": [
      739928864,
-     256,
-     3886541357,
-     8
+     536937084,
+     536947244,
+     536938744
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-29",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 29,
     "xpsr": 0
    },
@@ -1518,11 +1548,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 8, 1, 7, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 1, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536941720, 536945744, 536939284, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536945744, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "f3a44833666930f2178268d290dcb916c679640faf4d8991b5bb274d5e929b48",
+    "events": "8f49f3849cbed322d100973d85283b8de0ebe63326f31bc82a95f2adb38627dc",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1534,16 +1564,17 @@
     "abs": [],
     "args": [
      256,
-     8,
-     1,
-     7
+     536941720,
+     536945744,
+     536939284
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-30",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 30,
     "xpsr": 0
    },
@@ -1568,11 +1599,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 2461003590, 7, 53351545, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 7, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536948548, 536938932, 536941688, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536938932, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "3b641824a623bacd1da643e77389f9add0e3a06d57b6566d46770ea707528136",
+    "events": "2efe23839b8450cbd843b0747c1b0fd7f922666fed8342837e406691655c5df2",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1584,16 +1615,17 @@
     "abs": [],
     "args": [
      4294967295,
-     2461003590,
-     7,
-     53351545
+     536948548,
+     536938932,
+     536941688
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
@@ -1618,11 +1650,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 2706821390, 3442053927, 1170652979, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3442053927, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536940812, 536941348, 536952624, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536941348, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "e9de64d23b862ff9c5ddc2341cdadd2ccc56450c48ec125317c7fc30bb1069c2",
+    "events": "cd00d1565b74fdf609278051bd9478ceb62b478e915d3bda86a4068508515eb9",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1634,16 +1666,17 @@
     "abs": [],
     "args": [
      1839753098,
-     2706821390,
-     3442053927,
-     1170652979
+     536940812,
+     536941348,
+     536952624
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-32",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 32,
     "xpsr": 0
    },
@@ -1668,11 +1701,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 7, 7, 5, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 7, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536942020, 536944276, 536938756, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536944276, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ca88329733073ffdbf2598c00bfeeaad4c8c7e98372bccc870e44b791adf1c23",
+    "events": "6dba1c5865179bb9ccec93c435f1090e151381423d0a914ff9aec99604e90089",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1684,16 +1717,17 @@
     "abs": [],
     "args": [
      1076094348,
-     7,
-     7,
-     5
+     536942020,
+     536944276,
+     536938756
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-33",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 33,
     "xpsr": 0
    },
@@ -1718,11 +1752,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 3990671540, 922796015, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 922796015, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536940724, 536952812, 536936476, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536952812, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "167e09542aeda050e8c88525f03812754f1b96ba3aa7732fa90416fb7866ae92",
+    "events": "6b00b7d619938517413185b0a257472db1e5e71bb404a72718cb3ab7d3671d20",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1734,16 +1768,17 @@
     "abs": [],
     "args": [
      12,
-     3990671540,
-     922796015,
-     2147483647
+     536940724,
+     536952812,
+     536936476
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 34,
     "xpsr": 0
    },
@@ -1768,11 +1803,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 3578977268, 4001652011, 1, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 4001652011, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536943604, 536943912, 536937872, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536943912, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "737c295ecbfc3adbbd717447fda6aad682ffb91a0d932b434c6a937094f53950",
+    "events": "632373c9703804cf48128106597447c64dc01706f27fadc91dd26a1ce4e17a7d",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1784,16 +1819,17 @@
     "abs": [],
     "args": [
      2726887024,
-     3578977268,
-     4001652011,
-     1
+     536943604,
+     536943912,
+     536937872
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
@@ -1818,11 +1854,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 12, 2147483647, 8, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 2147483647, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536949832, 536945964, 536950872, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536945964, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "afdcf9246b1beb4a908f1c8814aa96f921ff68473581a87386b30595df89f23e",
+    "events": "96eb1b8423092e3ca00783619a5617b6d7b3d33c282f2e492df74df71fbd9ffc",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1834,16 +1870,17 @@
     "abs": [],
     "args": [
      0,
-     12,
-     2147483647,
-     8
+     536949832,
+     536945964,
+     536950872
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 36,
     "xpsr": 0
    },
@@ -1868,11 +1905,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 2057795936, 2725586938, 1299241558, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 2725586938, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536951136, 536946680, 536943188, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536946680, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b7c346b762e28dbaa849baf344671fade717a549264df5a9b5894caf8630bb47",
+    "events": "7a13e58cd666db469b2b2cf3cda14bfeb8d59a6b28de39fb2112ebf1375536da",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1884,16 +1921,17 @@
     "abs": [],
     "args": [
      1,
-     2057795936,
-     2725586938,
-     1299241558
+     536951136,
+     536946680,
+     536943188
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-37",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 37,
     "xpsr": 0
    },
@@ -1918,11 +1956,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 255, 1, 2, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 1, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536941672, 536936976, 536945104, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536936976, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "22cc2e1d46f12b3b175956d2689a83cf834c2a9abb4c6392f5bfa1226ca0da16",
+    "events": "41f0013826e9ca4e42d882dbbcecf8c3a11155ac8722ae2658223af882ba8748",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1934,16 +1972,17 @@
     "abs": [],
     "args": [
      0,
-     255,
-     1,
-     2
+     536941672,
+     536936976,
+     536945104
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-38",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 38,
     "xpsr": 0
    },
@@ -1968,11 +2007,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 1587124134, 3774328631, 1997155928, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3774328631, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536942500, 536948532, 536948312, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536948532, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "56143069ae6d5993ad500e9f5e0bbaf9716fd266b1b682e3d135027396a8ea66",
+    "events": "bd3457ce5474208efb8eb80b7171af560417d328815ebaf1dd6afb2aabdf8e92",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1984,16 +2023,17 @@
     "abs": [],
     "args": [
      3,
-     1587124134,
-     3774328631,
-     1997155928
+     536942500,
+     536948532,
+     536948312
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
     "xpsr": 0
    },
@@ -2018,11 +2058,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 3928041777, 1786326658, 1835695343, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 1786326658, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536946992, 536948352, 536952044, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536948352, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "d433c1184a6e635840df494ecb7c82cf0c6a8ea4968316f93b184dc583b27a81",
+    "events": "106a0d9df31df6cf544ec4f677958dd94bb4e2cab739162dcfce6cd05ed88bc1",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -2034,16 +2074,17 @@
     "abs": [],
     "args": [
      0,
-     3928041777,
-     1786326658,
-     1835695343
+     536946992,
+     536948352,
+     536952044
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-40",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 40,
     "xpsr": 0
    },
@@ -2068,36 +2109,37 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 256, 3059135833, 1, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3059135833, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536948040, 0, 536940048, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'set_imu_base para is NULL\\n'), 3677333764, 0, 536940048, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "f1ab38268ed5816f17045b5c8f0c6b1617ae9934ff1c4aa03ffc741b972332a7",
+    "events": "fe654ec7a2c2d2bc01ecc309a068877382532dd9b9bc99c1de5d58cbfb69a7ce",
     "kind": "return",
     "ncalls": 2,
     "ret": [
-     4294967294
+     4294967295
     ],
     "returned": true
    },
    "fixture": {
     "abs": [],
     "args": [
-     3886568119,
-     256,
-     3059135833,
-     1
+     1276959699,
+     536948040,
+     0,
+     536940048
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "seed-41",
+    "id": "cfgsel-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
-    "scratch_seed": 41,
+    "outparam": null,
+    "scratch_seed": 0,
     "xpsr": 0
    },
-   "new_instructions": 18,
+   "new_instructions": 12,
    "stack_args": []
   },
   {
@@ -2114,11 +2156,12 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 1797429778, 2147483648, 315044147, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536943120, 536940476, 536949040, 'S', 'F', 'T', None)",
+    "('W', 2347576118, 1, 45)"
    ],
    "expect": {
-    "error": "Invalid memory read",
-    "events": "bfabc6814cee112b956c6f7d38ad55ae1a28b6b94c7fcee8f0eead941cd38577",
+    "error": "Invalid memory write",
+    "events": "ef1f8f06ddbbde6314a97cdbd1d65720c6b201cae4c1823ecc4c1953a56b31a5",
     "kind": "fault",
     "ncalls": 1
    },
@@ -2126,25 +2169,26 @@
     "abs": [
      [
       536977139,
-      "01000000"
+      "01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000"
      ]
     ],
     "args": [
      4067469868,
-     1797429778,
-     2147483648,
-     315044147
+     536943120,
+     536940476,
+     536949040
     ],
     "float_scratch": false,
     "fp": {},
     "id": "glob-0-1",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
-   "new_instructions": 14,
+   "new_instructions": 16,
    "stack_args": []
   },
   {
@@ -2229,18 +2273,18 @@
     512330
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_imu_base\\n'), 812981861, 2, 2147483648, 'S', 'F', 'T', None)",
-    "('W', 0, 1, 45)",
-    "('W', 1, 1, 1)",
-    "('W', 2, 1, 3)",
-    "('W', 3, 1, 5)",
+    "('C', 0, ('RO', b'join in set_imu_base\\n'), 536944228, 536938128, 536944236, 'S', 'F', 'T', None)",
+    "('W', 1088739482, 1, 45)",
+    "('W', 1088739484, 1, 3)",
+    "('W', 1088739485, 1, 5)",
+    "('W', 1088739483, 1, 1)",
     "('C', 1, ('SP', 0), 0, 16, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('W', 3940, 4, 1)",
-    "('W', 4, 1, 0)",
+    "('W', 1088739486, 1, 0)",
     "('C', 3, ('SP', -4), 0, 20, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('W', 5, 4, 1)",
+    "('W', 1088739487, 4, 1)",
     "('C', 5, 'S', 'F', 'T', None)",
     "('C', 6, 0, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
@@ -2254,45 +2298,48 @@
     "('C', 15, 100, 'S', 'F', 'T', None)",
     "('C', 16, ('SP', 16), 'S', 'F', 'T', None)",
     "('C', 17, 100, 'S', 'F', 'T', None)",
-    "('W', 2147483648, 1, 9)",
-    "('W', 4, 1, 2)"
+    "('W', 1088739486, 1, 2)",
+    "('W', 536944236, 1, 9)"
    ],
    "expect": {
-    "error": "Invalid memory write",
-    "events": "ab9aae38498f10c6d8021612d233962e44efcfdd5fe974be4c1aebc6a3084f53",
-    "kind": "fault",
-    "ncalls": 18
+    "events": "4dfde77b0338e72b76e219244c97410b5adce72776cb7c2a3f9775a87b5d79ff",
+    "kind": "return",
+    "ncalls": 18,
+    "ret": [
+     0
+    ],
+    "returned": true
    },
    "fixture": {
     "abs": [
      [
       536977139,
-      "01000000"
+      "01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000"
      ],
      [
       536902316,
-      "01000000"
+      "01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000"
      ],
      [
       536902312,
-      "01000000"
+      "01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000"
      ],
      [
       536902308,
-      "01000000"
+      "01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000"
      ]
     ],
     "args": [
      3667252315,
-     812981861,
-     2,
-     2147483648
+     536944228,
+     536938128,
+     536944236
     ],
     "float_scratch": false,
     "fp": {},
     "id": "combo-1-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [
      [
       0,
@@ -2445,10 +2492,11 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 604,
     "xpsr": 0
    },
-   "new_instructions": 72,
+   "new_instructions": 75,
    "stack_args": [
     [
      3,
@@ -2481,8 +2529,8 @@
  ],
  "core": "app",
  "coverage": {
-  "covered": 81,
-  "ratio": 0.8617,
+  "covered": 82,
+  "ratio": 0.8723,
   "total": 94,
   "unresolved_indirect": 0
  },
@@ -2495,8 +2543,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "core",
@@ -2505,16 +2556,26 @@
   "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
   "source": "shipped image"
  },
- "pointer_arg_mask": [],
+ "pointer_arg_mask": [
+  1,
+  2,
+  3
+ ],
  "ret_kind": "i32",
  "search": {
-  "candidates": 203,
+  "candidates": 284,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 1,
   "harness_errors": 0,
   "kept": 44,
-  "pointer_arg_mask": [],
+  "pointer_arg_mask": [
+   1,
+   2,
+   3
+  ],
   "pointer_arg_mask_derived": true
  },
  "size": 240,

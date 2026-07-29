@@ -16,28 +16,68 @@
    "fixture": {
     "abs": [],
     "args": [
-     1276959699,
-     12,
-     4,
+     536943568,
+     536948040,
+     536948308,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
    "new_instructions": 9,
    "stack_args": []
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [],
+   "expect": {
+    "events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536907180,
+      "3c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a01203c1a0120"
+     ]
+    ],
+    "args": [
+     536943164,
+     536946340,
+     536942680,
+     2180343322
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "globarg-0-0",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 1000,
+    "xpsr": 0
+   },
+   "new_instructions": 12,
+   "stack_args": []
   }
  ],
  "core": "app",
  "coverage": {
-  "covered": 9,
-  "ratio": 0.0393,
+  "covered": 12,
+  "ratio": 0.0524,
   "total": 229,
   "unresolved_indirect": 0
  },
@@ -55,8 +95,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "notify",
@@ -65,16 +108,26 @@
   "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
   "source": "shipped image"
  },
- "pointer_arg_mask": [],
+ "pointer_arg_mask": [
+  0,
+  1,
+  2
+ ],
  "ret_kind": "void",
  "search": {
-  "candidates": 239,
+  "candidates": 338,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
-  "kept": 1,
-  "pointer_arg_mask": [],
+  "kept": 2,
+  "pointer_arg_mask": [
+   0,
+   1,
+   2
+  ],
   "pointer_arg_mask_derived": true
  },
  "size": 636,

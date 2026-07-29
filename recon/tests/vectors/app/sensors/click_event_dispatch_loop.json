@@ -22,13 +22,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536943568, 12, 4, 0, 'S', 'F', 'T', None)",
+    "('C', 0, 536943568, 536948040, 536948308, 536940048, 'S', 'F', 'T', None)",
     "('C', 1, 536943744, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "947549b0d2bccfe9613fd9098e5bc5bd3bb4d244f0ed2d249f11eb9eeea05cde",
+    "events": "6f0e0e4c03032f8d43ac19434883e4f0b728f90c2d6301430c30a5a6d8eaecdf",
     "kind": "fault",
     "ncalls": 3
    },
@@ -36,16 +36,17 @@
     "abs": [],
     "args": [
      536943568,
-     12,
-     4,
-     0
+     536948040,
+     536948308,
+     536940048
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -74,13 +75,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536947244, 1797429778, 2147483648, 315044147, 'S', 'F', 'T', None)",
+    "('C', 0, 536947244, 536943120, 536940476, 536949040, 'S', 'F', 'T', None)",
     "('C', 1, 536947420, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "c1320d19948db69297b6d6a54adc78b43b0e1d8d17bcb107d69ad8504ef4d980",
+    "events": "540ab882b4c5aab0bf47dfed54292dd4505f69a215ef9553869dacb5391ea499",
     "kind": "fault",
     "ncalls": 3
    },
@@ -88,16 +89,17 @@
     "abs": [],
     "args": [
      536947244,
-     1797429778,
-     2147483648,
-     315044147
+     536943120,
+     536940476,
+     536949040
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -126,13 +128,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536943312, 598759513, 3677430904, 7, 'S', 'F', 'T', None)",
+    "('C', 0, 536943312, 536942680, 536945784, 536943396, 'S', 'F', 'T', None)",
     "('C', 1, 536943488, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "3c7d34afad293b39f688d9259a22589eba97483346dfac08525a848e33b9c8c4",
+    "events": "545c707793011ba62c5cc9fc43c2df7b350dc1b2fa05b35cd33b7bd7bf3d1525",
     "kind": "fault",
     "ncalls": 3
    },
@@ -140,16 +142,17 @@
     "abs": [],
     "args": [
      536943312,
-     598759513,
-     3677430904,
-     7
+     536942680,
+     536945784,
+     536943396
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
@@ -178,13 +181,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536945628, 255, 8, 3619521758, 'S', 'F', 'T', None)",
+    "('C', 0, 536945628, 536940936, 536943096, 536937692, 'S', 'F', 'T', None)",
     "('C', 1, 536945804, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "5532d2ac9a1dfdb9e3affe3f56d83a635d1e097935d4e4d0b54d38b4f3173860",
+    "events": "8c7b660e07d288211a1db820f2c697b7a0bdeb519d956569ca94da3d59040eca",
     "kind": "fault",
     "ncalls": 3
    },
@@ -192,16 +195,17 @@
     "abs": [],
     "args": [
      536945628,
-     255,
-     8,
-     3619521758
+     536940936,
+     536943096,
+     536937692
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-3",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 3,
     "xpsr": 0
    },
@@ -230,13 +234,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536945864, 2147483647, 3842370354, 6, 'S', 'F', 'T', None)",
+    "('C', 0, 536945864, 536944284, 536947504, 536951124, 'S', 'F', 'T', None)",
     "('C', 1, 536946040, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "dae4e62bab379cb546e7382bf5a82d161358a5bda7c63356c3c9cb258456ecb0",
+    "events": "c27f592bcab0e16ba57e3d317bc15012ed274ac38e12f8fcb312d5e10250b277",
     "kind": "fault",
     "ncalls": 3
    },
@@ -244,16 +248,17 @@
     "abs": [],
     "args": [
      536945864,
-     2147483647,
-     3842370354,
-     6
+     536944284,
+     536947504,
+     536951124
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 4,
     "xpsr": 0
    },
@@ -282,13 +287,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536939588, 3188701995, 8, 7, 'S', 'F', 'T', None)",
+    "('C', 0, 536939588, 536951592, 536944168, 536942644, 'S', 'F', 'T', None)",
     "('C', 1, 536939764, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "142c73d1480e904c2333fc5a29eaecf94f0824faf727c03b4be838a12f439ffa",
+    "events": "50674313bffe03dc2f282a45b3e95ec705716401cd360edea6167861904eb6a6",
     "kind": "fault",
     "ncalls": 3
    },
@@ -296,16 +301,17 @@
     "abs": [],
     "args": [
      536939588,
-     3188701995,
-     8,
-     7
+     536951592,
+     536944168,
+     536942644
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-5",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 5,
     "xpsr": 0
    },
@@ -334,13 +340,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536950900, 3322790363, 5, 2147483647, 'S', 'F', 'T', None)",
+    "('C', 0, 536950900, 536936920, 536947060, 536952236, 'S', 'F', 'T', None)",
     "('C', 1, 536951076, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "b27c405a46007529256e53be708949dbf3b0dab1df627e9d27f52b0b633cbc68",
+    "events": "5e5fb059cdc4fb0c936385581ba94bc182af244b2cf427beb91d56c412b46026",
     "kind": "fault",
     "ncalls": 3
    },
@@ -348,16 +354,17 @@
     "abs": [],
     "args": [
      536950900,
-     3322790363,
-     5,
-     2147483647
+     536936920,
+     536947060,
+     536952236
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-6",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 6,
     "xpsr": 0
    },
@@ -386,13 +393,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536941592, 1604804925, 1, 2363272863, 'S', 'F', 'T', None)",
+    "('C', 0, 536941592, 536944956, 536950368, 536948380, 'S', 'F', 'T', None)",
     "('C', 1, 536941768, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "b4150c79d1967d203ecc1e89c57a0ccddc551fcdf0aace5a5602b4b3774a89c5",
+    "events": "58b2405a04257ac7126db117a250389d525815e0725b51c2b28b9dfc194b9c7f",
     "kind": "fault",
     "ncalls": 3
    },
@@ -400,16 +407,17 @@
     "abs": [],
     "args": [
      536941592,
-     1604804925,
-     1,
-     2363272863
+     536944956,
+     536950368,
+     536948380
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-7",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 7,
     "xpsr": 0
    },
@@ -438,13 +446,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536939044, 708972563, 558645175, 4, 'S', 'F', 'T', None)",
+    "('C', 0, 536939044, 536940560, 536952756, 536949588, 'S', 'F', 'T', None)",
     "('C', 1, 536939220, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "0b4e906e22b18574b5bc586cb01ad2a3b13b9674500ba5289cf1c6667196a48c",
+    "events": "0340ba9b8c7a9841c225f76f5fd89da306debd52fc502cb0e9b4807cd3327fe8",
     "kind": "fault",
     "ncalls": 3
    },
@@ -452,16 +460,17 @@
     "abs": [],
     "args": [
      536939044,
-     708972563,
-     558645175,
-     4
+     536940560,
+     536952756,
+     536949588
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-8",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 8,
     "xpsr": 0
    },
@@ -490,13 +499,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536944692, 1556998536, 499087790, 2147483647, 'S', 'F', 'T', None)",
+    "('C', 0, 536944692, 536947080, 536951212, 536940988, 'S', 'F', 'T', None)",
     "('C', 1, 536944868, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "e0bdf96fed49a9297a87212cede3701ba3f54972b40d622dcf378961fe25a4b8",
+    "events": "c5b9128f44264c0f4ae7ea98074e98cc75113536ec315865fb8eaf2a1ee78f8d",
     "kind": "fault",
     "ncalls": 3
    },
@@ -504,16 +513,17 @@
     "abs": [],
     "args": [
      536944692,
-     1556998536,
-     499087790,
-     2147483647
+     536947080,
+     536951212,
+     536940988
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 9,
     "xpsr": 0
    },
@@ -542,13 +552,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536939204, 995058044, 8, 1, 'S', 'F', 'T', None)",
+    "('C', 0, 536939204, 536945020, 536946200, 536947328, 'S', 'F', 'T', None)",
     "('C', 1, 536939380, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "f127c33930748d22c3af038f59137261fd77d5c668630fba77a55b96ef24c1c6",
+    "events": "0b581625d00ee030a57468097be3d8d7794ca1780b3c4d48aefd632f8e2dcfa5",
     "kind": "fault",
     "ncalls": 3
    },
@@ -556,16 +566,17 @@
     "abs": [],
     "args": [
      536939204,
-     995058044,
-     8,
-     1
+     536945020,
+     536946200,
+     536947328
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 10,
     "xpsr": 0
    },
@@ -594,13 +605,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536937040, 2147483648, 256, 1426281073, 'S', 'F', 'T', None)",
+    "('C', 0, 536937040, 536948284, 536938076, 536941168, 'S', 'F', 'T', None)",
     "('C', 1, 536937216, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "820710733d5bf3c7732972eadf00261a66a4f2402b53cef30e863c322107a1a9",
+    "events": "6ebfd2c0d9a1d4bb847e5eb01696400ff9f6be65ddde527c8d0edb7602f2528c",
     "kind": "fault",
     "ncalls": 3
    },
@@ -608,16 +619,17 @@
     "abs": [],
     "args": [
      536937040,
-     2147483648,
-     256,
-     1426281073
+     536948284,
+     536938076,
+     536941168
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 11,
     "xpsr": 0
    },
@@ -646,13 +658,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536944520, 3217736208, 5, 1103693227, 'S', 'F', 'T', None)",
+    "('C', 0, 536944520, 536936976, 536941268, 536937896, 'S', 'F', 'T', None)",
     "('C', 1, 536944696, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "23d66360f7f39e908d835aedd81e0b310b570422f498988390b0ad97fb28e9e1",
+    "events": "ed1a155c394bfa6ee223d6ae8c1b3bdbaceaa3cd84c5bf114565cec7470b0c49",
     "kind": "fault",
     "ncalls": 3
    },
@@ -660,16 +672,17 @@
     "abs": [],
     "args": [
      536944520,
-     3217736208,
-     5,
-     1103693227
+     536936976,
+     536941268,
+     536937896
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-12",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 12,
     "xpsr": 0
    },
@@ -698,13 +711,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536944304, 1944344031, 6, 617681966, 'S', 'F', 'T', None)",
+    "('C', 0, 536944304, 536942044, 536939060, 536941612, 'S', 'F', 'T', None)",
     "('C', 1, 536944480, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "72f1da69cfb79fa28478ff76650d94e1067aa8a917e5cde4a12456d2b3ec400f",
+    "events": "b8d2e2c27c6f2314c0016e102614ca9c1afe360d801fd18ad6ee49b897ca8396",
     "kind": "fault",
     "ncalls": 3
    },
@@ -712,16 +725,17 @@
     "abs": [],
     "args": [
      536944304,
-     1944344031,
-     6,
-     617681966
+     536942044,
+     536939060,
+     536941612
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 13,
     "xpsr": 0
    },
@@ -750,13 +764,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536943892, 12, 3, 470668832, 'S', 'F', 'T', None)",
+    "('C', 0, 536943892, 536949848, 536943328, 536942112, 'S', 'F', 'T', None)",
     "('C', 1, 536944068, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "3e8f5faf8324dd9affb82f918aae157e226e4ca48595dd8fe7588843645e1b17",
+    "events": "f30840560d6e60a36b41744335ba834faa8bc860fde6f79802a5d4d9d09db29c",
     "kind": "fault",
     "ncalls": 3
    },
@@ -764,16 +778,17 @@
     "abs": [],
     "args": [
      536943892,
-     12,
-     3,
-     470668832
+     536949848,
+     536943328,
+     536942112
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-14",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 14,
     "xpsr": 0
    },
@@ -802,13 +817,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536952404, 256, 5, 4, 'S', 'F', 'T', None)",
+    "('C', 0, 536952404, 536941132, 536951236, 536949908, 'S', 'F', 'T', None)",
     "('C', 1, 536952580, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "f4af397e57b34ca0bb6e4f9cf1e5905063f95314841784724c7ffb67134971e5",
+    "events": "e7cb8a1a5ff45c18c0e1c6183667d1cbbded916b7705152fd90ce18611b49b12",
     "kind": "fault",
     "ncalls": 3
    },
@@ -816,16 +831,17 @@
     "abs": [],
     "args": [
      536952404,
-     256,
-     5,
-     4
+     536941132,
+     536951236,
+     536949908
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-15",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 15,
     "xpsr": 0
    },
@@ -854,13 +870,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536943260, 2147483648, 3454407978, 16, 'S', 'F', 'T', None)",
+    "('C', 0, 536943260, 536942972, 536941864, 536940136, 'S', 'F', 'T', None)",
     "('C', 1, 536943436, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "0132a994318d7d9493e0a764fc7cecdef90718adb40e95705409274d4550456d",
+    "events": "3e620d3d778302962f6e29a5905398ce598a57e87a8a0a56bf864829f984e82e",
     "kind": "fault",
     "ncalls": 3
    },
@@ -868,16 +884,17 @@
     "abs": [],
     "args": [
      536943260,
-     2147483648,
-     3454407978,
-     16
+     536942972,
+     536941864,
+     536940136
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
@@ -906,13 +923,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536944016, 3254638692, 1168623309, 4252165479, 'S', 'F', 'T', None)",
+    "('C', 0, 536944016, 536942692, 536938188, 536946020, 'S', 'F', 'T', None)",
     "('C', 1, 536944192, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "5d75e4a7c6985cbb32c3e23ed878354591548d356eff69669845e19ea4dfd810",
+    "events": "1fa976898586d929d961de87a5a1df756ebb55a115b3b6b9722522e7600f7438",
     "kind": "fault",
     "ncalls": 3
    },
@@ -920,16 +937,17 @@
     "abs": [],
     "args": [
      536944016,
-     3254638692,
-     1168623309,
-     4252165479
+     536942692,
+     536938188,
+     536946020
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-17",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 17,
     "xpsr": 0
    },
@@ -958,13 +976,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536944948, 0, 697236451, 1, 'S', 'F', 'T', None)",
+    "('C', 0, 536944948, 536937440, 536951776, 536945600, 'S', 'F', 'T', None)",
     "('C', 1, 536945124, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "ca62eb201c8320d197d136bfd1eb35b6081d78d7b4294107cac2719452a057f2",
+    "events": "b9b75c8a63754f8394a0574e32c2955bae3e54d842d3e3e9c84c21a7a3a47eba",
     "kind": "fault",
     "ncalls": 3
    },
@@ -972,16 +990,17 @@
     "abs": [],
     "args": [
      536944948,
-     0,
-     697236451,
-     1
+     536937440,
+     536951776,
+     536945600
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-18",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 18,
     "xpsr": 0
    },
@@ -1010,13 +1029,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536939284, 1536401714, 4178753371, 255, 'S', 'F', 'T', None)",
+    "('C', 0, 536939284, 536944944, 536950616, 536947592, 'S', 'F', 'T', None)",
     "('C', 1, 536939460, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "8d54f895e32a44387130427796ff38151e89e3328ee063eb0e86ec875da2e9c0",
+    "events": "0e0bf06ef823fe737a76e1ed10f5c2917610bb66da2b2feb707361952743511e",
     "kind": "fault",
     "ncalls": 3
    },
@@ -1024,16 +1043,17 @@
     "abs": [],
     "args": [
      536939284,
-     1536401714,
-     4178753371,
-     255
+     536944944,
+     536950616,
+     536947592
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 19,
     "xpsr": 0
    },
@@ -1062,13 +1082,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536952740, 2306919366, 2, 7, 'S', 'F', 'T', None)",
+    "('C', 0, 536952740, 536939460, 536939760, 536951108, 'S', 'F', 'T', None)",
     "('C', 1, 536952916, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "9395401c072c8ae7b930d86d93930787855721a88e28aa63e8d36f3b48445cff",
+    "events": "5a32f9480999a7290b72fa48c99bf940c003c7f1757fa23df18d48b4569e9e4a",
     "kind": "fault",
     "ncalls": 3
    },
@@ -1076,16 +1096,17 @@
     "abs": [],
     "args": [
      536952740,
-     2306919366,
-     2,
-     7
+     536939460,
+     536939760,
+     536951108
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-20",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 20,
     "xpsr": 0
    },
@@ -1114,13 +1135,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536941420, 1, 2870852768, 0, 'S', 'F', 'T', None)",
+    "('C', 0, 536941420, 536936640, 536951968, 536943488, 'S', 'F', 'T', None)",
     "('C', 1, 536941596, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "a6e1593f232aa62cbbaf903075b7107fc23b9dc02d50b99e3fdcf0ae6f3e5e1f",
+    "events": "413d9de8cbd945db81797b97b0e33c928fb4e945cfc4516b6064951acfdf7896",
     "kind": "fault",
     "ncalls": 3
    },
@@ -1128,16 +1149,17 @@
     "abs": [],
     "args": [
      536941420,
-     1,
-     2870852768,
-     0
+     536936640,
+     536951968,
+     536943488
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-21",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 21,
     "xpsr": 0
    },
@@ -1166,13 +1188,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536937396, 3001296298, 4294967295, 2451975022, 'S', 'F', 'T', None)",
+    "('C', 0, 536937396, 536946088, 536949836, 536947564, 'S', 'F', 'T', None)",
     "('C', 1, 536937572, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "3e334bfadf11eaaa676f6e6aa2fa533751917503cf922c1abf667af2262262cf",
+    "events": "4554c04b98d1384ba484e27622f527bf961e9159372c4049308c278abf253ba0",
     "kind": "fault",
     "ncalls": 3
    },
@@ -1180,16 +1202,17 @@
     "abs": [],
     "args": [
      536937396,
-     3001296298,
-     4294967295,
-     2451975022
+     536946088,
+     536949836,
+     536947564
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-22",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 22,
     "xpsr": 0
    },
@@ -1218,13 +1241,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536952228, 241044672, 2034212132, 1515885587, 'S', 'F', 'T', None)",
+    "('C', 0, 536952228, 536939712, 536943908, 536941584, 'S', 'F', 'T', None)",
     "('C', 1, 536952404, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "25188b3ebb965cfca2992e1b06c01d7f3b6f27b0e9752b35ee1fcbeb265d8d91",
+    "events": "351b5a502edadf5fcf54cd534937db99bc0a6351cbc87f8ce88df551a395d427",
     "kind": "fault",
     "ncalls": 3
    },
@@ -1232,16 +1255,17 @@
     "abs": [],
     "args": [
      536952228,
-     241044672,
-     2034212132,
-     1515885587
+     536939712,
+     536943908,
+     536941584
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-23",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 23,
     "xpsr": 0
    },
@@ -1270,13 +1294,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536949908, 6, 2967241396, 7, 'S', 'F', 'T', None)",
+    "('C', 0, 536949908, 536944852, 536937140, 536951364, 'S', 'F', 'T', None)",
     "('C', 1, 536950084, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "92d8fba59b605b7af61dc3ccceaf75a46500a18d6e70272a05118b166665cddd",
+    "events": "559c23878ea378a27f33c6125e112de516c364af6577834cc0d70bf125b06c45",
     "kind": "fault",
     "ncalls": 3
    },
@@ -1284,16 +1308,17 @@
     "abs": [],
     "args": [
      536949908,
-     6,
-     2967241396,
-     7
+     536944852,
+     536937140,
+     536951364
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-24",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 24,
     "xpsr": 0
    },
@@ -1322,13 +1347,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536938252, 12, 2149248134, 604019693, 'S', 'F', 'T', None)",
+    "('C', 0, 536938252, 536941512, 536947844, 536943596, 'S', 'F', 'T', None)",
     "('C', 1, 536938428, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "143bbe07f1900facee3c0de5b87687e9cb5e6a3e54f5a58b71776f3ae1348857",
+    "events": "1ef15268fe215fe3b0caa1df5bc91f1076fb214658a3710812a89304f94c6017",
     "kind": "fault",
     "ncalls": 3
    },
@@ -1336,16 +1361,17 @@
     "abs": [],
     "args": [
      536938252,
-     12,
-     2149248134,
-     604019693
+     536941512,
+     536947844,
+     536943596
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 25,
     "xpsr": 0
    },
@@ -1374,13 +1400,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536942224, 12, 3037640278, 2678623347, 'S', 'F', 'T', None)",
+    "('C', 0, 536942224, 536937032, 536950356, 536939632, 'S', 'F', 'T', None)",
     "('C', 1, 536942400, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "2b0bd5623b12090425747a20c899d28802322375ab09783a26672fc4215aaf0a",
+    "events": "dd23d5ebf8c2cc62ef94d43c9362af7079db28e2eea1d0a4eebdb3ac56a40f44",
     "kind": "fault",
     "ncalls": 3
    },
@@ -1388,16 +1414,17 @@
     "abs": [],
     "args": [
      536942224,
-     12,
-     3037640278,
-     2678623347
+     536937032,
+     536950356,
+     536939632
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-26",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 26,
     "xpsr": 0
    },
@@ -1426,13 +1453,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536945192, 681194263, 3639365232, 4125446660, 'S', 'F', 'T', None)",
+    "('C', 0, 536945192, 536949524, 536940144, 536941060, 'S', 'F', 'T', None)",
     "('C', 1, 536945368, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "74fe6a40271dc265a7f53bb55d5b4de0d6e8b51b845ed3289d6d6e796ca7d43f",
+    "events": "49730171100dc8411f9ca2169c2593d87fa212fefe4f796406fad8abf2ec36b1",
     "kind": "fault",
     "ncalls": 3
    },
@@ -1440,16 +1467,17 @@
     "abs": [],
     "args": [
      536945192,
-     681194263,
-     3639365232,
-     4125446660
+     536949524,
+     536940144,
+     536941060
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 27,
     "xpsr": 0
    },
@@ -1478,13 +1506,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536946084, 4285183211, 1, 2592385448, 'S', 'F', 'T', None)",
+    "('C', 0, 536946084, 536949992, 536946096, 536947112, 'S', 'F', 'T', None)",
     "('C', 1, 536946260, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "e256e749bc4d41da6f6df30115ba42bd72198bbef8066cc216198ef53b915ddd",
+    "events": "0e80e655ed424ccef7909836a0732362b6fadbaf5d142801736fd9b879737fdf",
     "kind": "fault",
     "ncalls": 3
    },
@@ -1492,16 +1520,17 @@
     "abs": [],
     "args": [
      536946084,
-     4285183211,
-     1,
-     2592385448
+     536949992,
+     536946096,
+     536947112
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-28",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 28,
     "xpsr": 0
    },
@@ -1530,13 +1559,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536947488, 256, 3886541357, 8, 'S', 'F', 'T', None)",
+    "('C', 0, 536947488, 536937084, 536947244, 536938744, 'S', 'F', 'T', None)",
     "('C', 1, 536947664, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "ad205c2191af489c992e5fd845ef30d772fa8ddd7248834df61dad11e99bec40",
+    "events": "3946e71c33bb52b4297bd1cd7309b26798f845146379b948989ae3c1849f8215",
     "kind": "fault",
     "ncalls": 3
    },
@@ -1544,16 +1573,17 @@
     "abs": [],
     "args": [
      536947488,
-     256,
-     3886541357,
-     8
+     536937084,
+     536947244,
+     536938744
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-29",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 29,
     "xpsr": 0
    },
@@ -1582,13 +1612,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536952796, 8, 1, 7, 'S', 'F', 'T', None)",
+    "('C', 0, 536952796, 536941720, 536945744, 536939284, 'S', 'F', 'T', None)",
     "('C', 1, 536952972, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "77d204298ee3167a3160d2c10da7e93519ac609b67a3bd0cac9b0d3ad612b75b",
+    "events": "a1f2f3d7a38da2666c99881bcbfc8231b3df395ddf12ac45a32f76a5391b96a8",
     "kind": "fault",
     "ncalls": 3
    },
@@ -1596,16 +1626,17 @@
     "abs": [],
     "args": [
      536952796,
-     8,
-     1,
-     7
+     536941720,
+     536945744,
+     536939284
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-30",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 30,
     "xpsr": 0
    },
@@ -1634,13 +1665,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536952300, 2461003590, 7, 53351545, 'S', 'F', 'T', None)",
+    "('C', 0, 536952300, 536948548, 536938932, 536941688, 'S', 'F', 'T', None)",
     "('C', 1, 536952476, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "7662c2e2b8dfc01ae87231195d368536457cf55c426489c517049bc955a2c2c9",
+    "events": "7857337eb09f9857415b2af6667f0a84454a62a0012b3ac61d6d411bbdb0cc94",
     "kind": "fault",
     "ncalls": 3
    },
@@ -1648,16 +1679,17 @@
     "abs": [],
     "args": [
      536952300,
-     2461003590,
-     7,
-     53351545
+     536948548,
+     536938932,
+     536941688
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
@@ -1686,13 +1718,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536946568, 2706821390, 3442053927, 1170652979, 'S', 'F', 'T', None)",
+    "('C', 0, 536946568, 536940812, 536941348, 536952624, 'S', 'F', 'T', None)",
     "('C', 1, 536946744, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "aa52a01bf235717c91af3fb05cae1c68d9d8eaf71f144baf39ff688840d89496",
+    "events": "c6cbe5c327e99c2d75786be6bdce9105946874b88fc5b0f7e207d62b6de67daa",
     "kind": "fault",
     "ncalls": 3
    },
@@ -1700,16 +1732,17 @@
     "abs": [],
     "args": [
      536946568,
-     2706821390,
-     3442053927,
-     1170652979
+     536940812,
+     536941348,
+     536952624
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-32",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 32,
     "xpsr": 0
    },
@@ -1738,13 +1771,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536946060, 7, 7, 5, 'S', 'F', 'T', None)",
+    "('C', 0, 536946060, 536942020, 536944276, 536938756, 'S', 'F', 'T', None)",
     "('C', 1, 536946236, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "792fd4825be44746b4700f9140fa93e463387e086190d46c484b9e9ca1800c8b",
+    "events": "6ceae746b3df306d9498e3307716d2f290ea2abdc61126ca4370ed4d48e034de",
     "kind": "fault",
     "ncalls": 3
    },
@@ -1752,16 +1785,17 @@
     "abs": [],
     "args": [
      536946060,
-     7,
-     7,
-     5
+     536942020,
+     536944276,
+     536938756
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-33",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 33,
     "xpsr": 0
    },
@@ -1790,13 +1824,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536950120, 3990671540, 922796015, 2147483647, 'S', 'F', 'T', None)",
+    "('C', 0, 536950120, 536940724, 536952812, 536936476, 'S', 'F', 'T', None)",
     "('C', 1, 536950296, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "e9132f6a703ee53225265287fe5dbe362aac3c48a74490b0e7af1b93a8dbd2a7",
+    "events": "a7de2197ac7a98b717e98bcd6ff7f174a10120c54fc24158f6946f93beffc7dd",
     "kind": "fault",
     "ncalls": 3
    },
@@ -1804,16 +1838,17 @@
     "abs": [],
     "args": [
      536950120,
-     3990671540,
-     922796015,
-     2147483647
+     536940724,
+     536952812,
+     536936476
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 34,
     "xpsr": 0
    },
@@ -1842,13 +1877,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536952432, 3578977268, 4001652011, 1, 'S', 'F', 'T', None)",
+    "('C', 0, 536952432, 536943604, 536943912, 536937872, 'S', 'F', 'T', None)",
     "('C', 1, 536952608, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "2e341236862bcefade0d950b0025ec59d15d5fcf41ba9fbe145c1e74c480fa04",
+    "events": "b643bf66eef268d361c62e23a7bcbf564d51922d4ba30c7b8352b60d3ad89abc",
     "kind": "fault",
     "ncalls": 3
    },
@@ -1856,16 +1891,17 @@
     "abs": [],
     "args": [
      536952432,
-     3578977268,
-     4001652011,
-     1
+     536943604,
+     536943912,
+     536937872
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
@@ -1894,13 +1930,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536944224, 12, 2147483647, 8, 'S', 'F', 'T', None)",
+    "('C', 0, 536944224, 536949832, 536945964, 536950872, 'S', 'F', 'T', None)",
     "('C', 1, 536944400, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "8ccca2e3deb4c081d88d546a745ccb690093ff78cfc90a90f223ce65132270fb",
+    "events": "40ff4f819719e2ccc63bc32a1f4b741ecd29d5ef2195ded7283ca28fcc8199d6",
     "kind": "fault",
     "ncalls": 3
    },
@@ -1908,16 +1944,17 @@
     "abs": [],
     "args": [
      536944224,
-     12,
-     2147483647,
-     8
+     536949832,
+     536945964,
+     536950872
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 36,
     "xpsr": 0
    },
@@ -1946,13 +1983,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536951728, 2057795936, 2725586938, 1299241558, 'S', 'F', 'T', None)",
+    "('C', 0, 536951728, 536951136, 536946680, 536943188, 'S', 'F', 'T', None)",
     "('C', 1, 536951904, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "7023ea56bae427641e013180be2058360fec876bc184f0016725fbab934d98ee",
+    "events": "51db153c933ee2c9fcb51f778e0f4c17b0bde274603bc908f98c4ff19679780d",
     "kind": "fault",
     "ncalls": 3
    },
@@ -1960,16 +1997,17 @@
     "abs": [],
     "args": [
      536951728,
-     2057795936,
-     2725586938,
-     1299241558
+     536951136,
+     536946680,
+     536943188
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-37",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 37,
     "xpsr": 0
    },
@@ -1998,13 +2036,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536939760, 255, 1, 2, 'S', 'F', 'T', None)",
+    "('C', 0, 536939760, 536941672, 536936976, 536945104, 'S', 'F', 'T', None)",
     "('C', 1, 536939936, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "e6b662db91e6f9df3db29d858e029512743b5008889e161d11006a3515c64723",
+    "events": "c50739eba92bf6785b63947949a3a07848c3c2ed23fbf0d9fc347ea80084b33e",
     "kind": "fault",
     "ncalls": 3
    },
@@ -2012,16 +2050,17 @@
     "abs": [],
     "args": [
      536939760,
-     255,
-     1,
-     2
+     536941672,
+     536936976,
+     536945104
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-38",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 38,
     "xpsr": 0
    },
@@ -2050,13 +2089,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536941424, 1587124134, 3774328631, 1997155928, 'S', 'F', 'T', None)",
+    "('C', 0, 536941424, 536942500, 536948532, 536948312, 'S', 'F', 'T', None)",
     "('C', 1, 536941600, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "1694fae7af449ca43fe3a5f0d2e121c6c77b1f394253d8d40ca39e19a9f7eb04",
+    "events": "1e7f6292c603098164bb9080076eb272e3dcc342fe16e8992bcbfd94a1de29c4",
     "kind": "fault",
     "ncalls": 3
    },
@@ -2064,16 +2103,17 @@
     "abs": [],
     "args": [
      536941424,
-     1587124134,
-     3774328631,
-     1997155928
+     536942500,
+     536948532,
+     536948312
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
     "xpsr": 0
    },
@@ -2102,13 +2142,13 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536943600, 3928041777, 1786326658, 1835695343, 'S', 'F', 'T', None)",
+    "('C', 0, 536943600, 536946992, 536948352, 536952044, 'S', 'F', 'T', None)",
     "('C', 1, 536943776, 3677333764, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "b006ef39d4f806286a8366a94bd6413af3dda39cda9363bca85219624ebee975",
+    "events": "8bb5ad195c963833100814c6e5d0516c3fa0570b553f6e2ad6acfd1e22f7d846",
     "kind": "fault",
     "ncalls": 3
    },
@@ -2116,16 +2156,17 @@
     "abs": [],
     "args": [
      536943600,
-     3928041777,
-     1786326658,
-     1835695343
+     536946992,
+     536948352,
+     536952044
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-40",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 40,
     "xpsr": 0
    },
@@ -2202,7 +2243,7 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536940544, 558208872, 2224734438, 3003667676, 'S', 'F', 'T', None)",
+    "('C', 0, 536940544, 536940548, 536940552, 536940556, 'S', 'F', 'T', None)",
     "('C', 1, 536940720, 0, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('C', 3, 0, 0, 16384, 0, 'S', 'F', 'T', None)",
@@ -2220,7 +2261,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "646cd04cb3f7fcf69ae9b8582e5eced1f9995eb99948128d72305c9d16871d10",
+    "events": "c84cf866c932e77d90222d712d19e7c477d93c82552b08b05ae7c514907928ab",
     "kind": "fault",
     "ncalls": 15
    },
@@ -2233,15 +2274,15 @@
     ],
     "args": [
      536940544,
-     558208872,
-     2224734438,
-     3003667676
+     536940548,
+     536940552,
+     536940556
     ],
     "float_scratch": false,
     "fp": {},
     "id": "chain0-0",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [
      [
       0,
@@ -2364,6 +2405,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 830,
     "xpsr": 0
    },
@@ -2444,7 +2486,7 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536940544, 0, 0, 1458775353, 'S', 'F', 'T', None)",
+    "('C', 0, 536940544, 536940548, 536940552, 536940556, 'S', 'F', 'T', None)",
     "('C', 1, 536940720, 0, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
@@ -2464,7 +2506,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "0a3b057f48ae6096f368d4c557a5cd8eac57c646c16fd6b59fd78d8ab95dfcc7",
+    "events": "8952682573cfeb7d7b44abdbc64f05508dafa78f3220bd93ad48dd1e12fec667",
     "kind": "fault",
     "ncalls": 16
    },
@@ -2477,15 +2519,15 @@
     ],
     "args": [
      536940544,
-     0,
-     0,
-     1458775353
+     536940548,
+     536940552,
+     536940556
     ],
     "float_scratch": false,
     "fp": {},
     "id": "chain0-1",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [
      [
       0,
@@ -2608,6 +2650,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 831,
     "xpsr": 0
    },
@@ -2628,10 +2671,10 @@
     208860
    ],
    "events_head": [
-    "('C', 0, 536943352, 2876352768, 168044460, 6, 'S', 'F', 'T', None)"
+    "('C', 0, 536943352, 536946944, 536946604, 536945892, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "20b48b8d49a31977b5696c4105d620807121c20726623ee8b4241256640f2b28",
+    "events": "de9c1a10e6f93f1c39825cb0b8db33994a8f6b86c1ca03d7d32fc3eb438feae7",
     "kind": "return",
     "ncalls": 1,
     "ret": [],
@@ -2641,15 +2684,15 @@
     "abs": [],
     "args": [
      536943352,
-     2876352768,
-     168044460,
-     6
+     536946944,
+     536946604,
+     536945892
     ],
     "float_scratch": false,
     "fp": {},
     "id": "orc-all-1",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [
      [
       0,
@@ -2912,6 +2955,7 @@
       1
      ]
     ],
+    "outparam": null,
     "scratch_seed": 401,
     "xpsr": 0
    },
@@ -3064,7 +3108,7 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536941656, 812981861, 2, 2147483648, 'S', 'F', 'T', None)",
+    "('C', 0, 536941656, 536944228, 536938128, 536944236, 'S', 'F', 'T', None)",
     "('C', 1, 536941832, 0, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
@@ -3104,7 +3148,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "7bde318938b1d1b775f9b2f6a952170a66ebd824972c3bfd36d84a1cc5257ef3",
+    "events": "71ca4864727fd233078726a0e1060a585cd7c9ba950fc5f492fb41e5505ffb10",
     "kind": "fault",
     "ncalls": 34
    },
@@ -3112,32 +3156,32 @@
     "abs": [
      [
       536898048,
-      "01000000"
+      "01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000"
      ],
      [
       536976812,
-      "01000000"
+      "01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000"
      ],
      [
       536879884,
-      "01000000"
+      "01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000"
      ],
      [
       536900948,
-      "01000000"
+      "01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000"
      ]
     ],
     "args": [
      536941656,
-     812981861,
-     2,
-     2147483648
+     536944228,
+     536938128,
+     536944236
     ],
     "float_scratch": false,
     "fp": {},
     "id": "combo-1-0",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [
      [
       0,
@@ -3400,6 +3444,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 604,
     "xpsr": 0
    },
@@ -3552,7 +3597,7 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 536936892, 1952819114, 269192271, 1277542989, 'S', 'F', 'T', None)",
+    "('C', 0, 536936892, 536946600, 536939596, 536937036, 'S', 'F', 'T', None)",
     "('C', 1, 536937068, 100000, 16384, 0, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
@@ -3592,7 +3637,7 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "9ea37704f79c94dc5371855b15b6930f87591314afa771f571eaacecaa948dfe",
+    "events": "48ec52c23291f96e7c3adf2a4a82407095b98fdc9448a97ea0d89d2d586036ba",
     "kind": "fault",
     "ncalls": 34
    },
@@ -3600,32 +3645,32 @@
     "abs": [
      [
       536898048,
-      "01000000"
+      "01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000"
      ],
      [
       536976812,
-      "01000000"
+      "01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000"
      ],
      [
       536879884,
-      "01000000"
+      "01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000"
      ],
      [
       536900948,
-      "01000000"
+      "01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000"
      ]
     ],
     "args": [
      536936892,
-     1952819114,
-     269192271,
-     1277542989
+     536946600,
+     536939596,
+     536937036
     ],
     "float_scratch": false,
     "fp": {},
     "id": "combo-1-3",
     "mem": [],
-    "nptr": 1,
+    "nptr": 4,
     "oracle": [
      [
       0,
@@ -3888,6 +3933,7 @@
       100000
      ]
     ],
+    "outparam": null,
     "scratch_seed": 607,
     "xpsr": 0
    },
@@ -3911,8 +3957,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "sensors",
@@ -3922,18 +3971,26 @@
   "source": "shipped image"
  },
  "pointer_arg_mask": [
-  0
+  0,
+  1,
+  2,
+  3
  ],
  "ret_kind": "void",
  "search": {
-  "candidates": 227,
+  "candidates": 281,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
   "kept": 46,
   "pointer_arg_mask": [
-   0
+   0,
+   1,
+   2,
+   3
   ],
   "pointer_arg_mask_derived": true
  },

@@ -26,13 +26,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 4, 3694469211, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 536948308, 3694469211, 'S', 'F', 'T', None)",
     "('C', 1, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
     "('C', 2, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'%s(): enqueue_dmic failed\\r\\n\\n'), ('RO', b'delAudioStreamRecord'), 0, 3694469211, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c7fa8e5b2acf57b0f749d0410076305e8b00159e577a66a724f70d08b842dc05",
+    "events": "c46552f4aec0c0c95bd230098fad48871435fac4a84dc15f8b6613e3820331d5",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -45,15 +45,16 @@
     "args": [
      1276959699,
      12,
-     4,
+     536948308,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -122,15 +123,16 @@
     "args": [
      4067469868,
      1797429778,
-     2147483648,
+     536940476,
      315044147
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -190,13 +192,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 3677430904, 471345317, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 536945784, 471345317, 'S', 'F', 'T', None)",
     "('C', 1, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
     "('C', 2, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'%s(): enqueue_dmic failed\\r\\n\\n'), ('RO', b'delAudioStreamRecord'), 0, 471345317, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "4f811429026b4387a0392356347742ed5087cc5042e0f69d3b521cab3126c90e",
+    "events": "71782d3b88a438ac39e88fa2c06b0fe0ab4a6b79fe4014d2d34c3767f56c699d",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -209,15 +211,16 @@
     "args": [
      4290042576,
      598759513,
-     3677430904,
+     536945784,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
@@ -286,15 +289,16 @@
     "args": [
      2618385373,
      255,
-     8,
+     536943096,
      3619521758
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-3",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 3,
     "xpsr": 0
    },
@@ -354,13 +358,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 3842370354, 2655161023, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 536947504, 2655161023, 'S', 'F', 'T', None)",
     "('C', 1, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
     "('C', 2, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'%s(): enqueue_dmic failed\\r\\n\\n'), ('RO', b'delAudioStreamRecord'), 0, 2655161023, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "2215b64db33d700b7596aa7434957e33b27f8093e60c6f6c9f7152451efc0fd7",
+    "events": "1ae4ba41c07e51f1fe8866833e8b98b7ced61e2ff5e56944ef116ef04de37bb8",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -373,15 +377,16 @@
     "args": [
      16,
      2147483647,
-     3842370354,
+     536947504,
      6
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 4,
     "xpsr": 0
    },
@@ -450,15 +455,16 @@
     "args": [
      4,
      3188701995,
-     8,
+     536944168,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-5",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 5,
     "xpsr": 0
    },
@@ -527,15 +533,16 @@
     "args": [
      2300957721,
      1604804925,
-     1,
+     536950368,
      2363272863
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-7",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 7,
     "xpsr": 0
    },
@@ -604,15 +611,16 @@
     "args": [
      2156366374,
      708972563,
-     558645175,
+     536952756,
      4
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-8",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 8,
     "xpsr": 0
    },
@@ -672,13 +680,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 499087790, 3178863954, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 536951212, 3178863954, 'S', 'F', 'T', None)",
     "('C', 1, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
     "('C', 2, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'%s(): enqueue_dmic failed\\r\\n\\n'), ('RO', b'delAudioStreamRecord'), 0, 3178863954, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "50fa39da017635310b179829138610a9086fe2d21cc1addf89e20395ce8edd25",
+    "events": "84e64a95cd79876ddb411fac3563bd1f0c1919c8b8df2e9b31a31249fa7325ce",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -691,15 +699,16 @@
     "args": [
      1346232374,
      1556998536,
-     499087790,
+     536951212,
      2147483647
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 9,
     "xpsr": 0
    },
@@ -759,13 +768,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 8, 3586673693, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 536946200, 3586673693, 'S', 'F', 'T', None)",
     "('C', 1, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
     "('C', 2, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'%s(): enqueue_dmic failed\\r\\n\\n'), ('RO', b'delAudioStreamRecord'), 0, 3586673693, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "5a322c6e274bfadcfa0ae775567a8b44053d8e9b04b2537ed9f00b2cf5bcb183",
+    "events": "292c0d822a4cb539beca8c2465b49d2a1278323c15f9ece509da897d31331691",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -778,15 +787,16 @@
     "args": [
      182454980,
      995058044,
-     8,
+     536946200,
      1
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 10,
     "xpsr": 0
    },
@@ -846,13 +856,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 256, 801746852, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 536938076, 801746852, 'S', 'F', 'T', None)",
     "('C', 1, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
     "('C', 2, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'%s(): enqueue_dmic failed\\r\\n\\n'), ('RO', b'delAudioStreamRecord'), 0, 801746852, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "4cefc4d7bd1eb4feef7e905d20e4cde2dd064b2059fcd64ff1aec8d02c1b915f",
+    "events": "b56fca2715550b3a2127effbed44c8dfe1a860c1f48164d4392c0c6badb85f0f",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -865,15 +875,16 @@
     "args": [
      3,
      2147483648,
-     256,
+     536938076,
      1426281073
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 11,
     "xpsr": 0
    },
@@ -933,13 +944,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 5, 1542880163, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 536941268, 1542880163, 'S', 'F', 'T', None)",
     "('C', 1, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
     "('C', 2, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'%s(): enqueue_dmic failed\\r\\n\\n'), ('RO', b'delAudioStreamRecord'), 0, 1542880163, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "d3d906ecef27bdb22b18929d6290e81d3907dfe396202786b35c54af92c3fb22",
+    "events": "80360a2179bc05a73347ddc2d8a910c86de8683406b8c6d6320a37783f79e5e8",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -952,15 +963,16 @@
     "args": [
      8,
      3217736208,
-     5,
+     536941268,
      1103693227
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-12",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 12,
     "xpsr": 0
    },
@@ -1020,13 +1032,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 6, 287561451, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 536939060, 287561451, 'S', 'F', 'T', None)",
     "('C', 1, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
     "('C', 2, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'%s(): enqueue_dmic failed\\r\\n\\n'), ('RO', b'delAudioStreamRecord'), 0, 287561451, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "87865226e1aca57093610a1323e873324ea90d43bfa3b7c86b32e2ee61dc0bbf",
+    "events": "19a679ab7321c23ffd9812d50bacf8efcce0f1241b09267262e8a826a19a789e",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1039,15 +1051,16 @@
     "args": [
      1156718256,
      1944344031,
-     6,
+     536939060,
      617681966
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 13,
     "xpsr": 0
    },
@@ -1116,15 +1129,16 @@
     "args": [
      1996365079,
      12,
-     3,
+     536943328,
      470668832
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-14",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 14,
     "xpsr": 0
    },
@@ -1193,15 +1207,16 @@
     "args": [
      7,
      256,
-     5,
+     536951236,
      4
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-15",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 15,
     "xpsr": 0
    },
@@ -1261,13 +1276,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 3454407978, 886755549, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 536941864, 886755549, 'S', 'F', 'T', None)",
     "('C', 1, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
     "('C', 2, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'%s(): enqueue_dmic failed\\r\\n\\n'), ('RO', b'delAudioStreamRecord'), 0, 886755549, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "f592b5f1e0aa051cd98e6881c0a5961e4f94c08f13fc97b53c6ae17205c33738",
+    "events": "3cbffe186430419bdb639d5be5b8bc14bbf828746e10795efb73b94971e97b0b",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1280,15 +1295,16 @@
     "args": [
      2024561310,
      2147483648,
-     3454407978,
+     536941864,
      16
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
@@ -1357,15 +1373,16 @@
     "args": [
      3,
      3254638692,
-     1168623309,
+     536938188,
      4252165479
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-17",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 17,
     "xpsr": 0
    },
@@ -1434,15 +1451,16 @@
     "args": [
      3912442165,
      0,
-     697236451,
+     536951776,
      1
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-18",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 18,
     "xpsr": 0
    },
@@ -1502,13 +1520,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 4178753371, 4075769455, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 536950616, 4075769455, 'S', 'F', 'T', None)",
     "('C', 1, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
     "('C', 2, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'%s(): enqueue_dmic failed\\r\\n\\n'), ('RO', b'delAudioStreamRecord'), 0, 4075769455, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "87f5b6382c79b4abbfbd33912ac4a2f432012655fe683f5cfd780b5e8f844f07",
+    "events": "b200a841018a82f1cf809b1c368d8ad9790af9bb9fd30226da1b81a690dac3f8",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1521,15 +1539,16 @@
     "args": [
      6,
      1536401714,
-     4178753371,
+     536950616,
      255
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 19,
     "xpsr": 0
    },
@@ -1589,13 +1608,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 2870852768, 2217669457, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 536951968, 2217669457, 'S', 'F', 'T', None)",
     "('C', 1, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
     "('C', 2, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'%s(): enqueue_dmic failed\\r\\n\\n'), ('RO', b'delAudioStreamRecord'), 0, 2217669457, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "e62ebcfb58969b4ba2da044d072ea2fc935d74032b517562729cc9927c91ba65",
+    "events": "35b7dc64031de0203564d2aae6c17b3644fed0387148d160560daa2d8387ca2f",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1608,15 +1627,16 @@
     "args": [
      843060076,
      1,
-     2870852768,
+     536951968,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-21",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 21,
     "xpsr": 0
    },
@@ -1685,15 +1705,16 @@
     "args": [
      1591295399,
      241044672,
-     2034212132,
+     536943908,
      1515885587
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-23",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 23,
     "xpsr": 0
    },
@@ -1753,13 +1774,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 2149248134, 3712121755, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 536947844, 3712121755, 'S', 'F', 'T', None)",
     "('C', 1, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
     "('C', 2, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'%s(): enqueue_dmic failed\\r\\n\\n'), ('RO', b'delAudioStreamRecord'), 0, 3712121755, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9c01dbdb8f24bcaf7e779bec1027a5380f48e4590e267e97332d4aeae154e94e",
+    "events": "0a6cada720696654287ecdfe0ec7d0310a5c70b3225e34203a4d535a6c940475",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1772,15 +1793,16 @@
     "args": [
      3751937804,
      12,
-     2149248134,
+     536947844,
      604019693
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 25,
     "xpsr": 0
    },
@@ -1849,15 +1871,16 @@
     "args": [
      2992330384,
      12,
-     3037640278,
+     536950356,
      2678623347
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-26",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 26,
     "xpsr": 0
    },
@@ -1917,13 +1940,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 3639365232, 1775869161, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 536940144, 1775869161, 'S', 'F', 'T', None)",
     "('C', 1, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
     "('C', 2, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'%s(): enqueue_dmic failed\\r\\n\\n'), ('RO', b'delAudioStreamRecord'), 0, 1775869161, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "0d270c43d6a27bad9b0b29bce9ccffad0202c5e6d3164c9739124e47f11361a2",
+    "events": "4637b25430149cefae04c46375355962109ef8c3ddb85a45f46aed310e906e97",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1936,15 +1959,16 @@
     "args": [
      187818536,
      681194263,
-     3639365232,
+     536940144,
      4125446660
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 27,
     "xpsr": 0
    },
@@ -2004,13 +2028,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 1, 1542213390, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 536946096, 1542213390, 'S', 'F', 'T', None)",
     "('C', 1, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
     "('C', 2, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'%s(): enqueue_dmic failed\\r\\n\\n'), ('RO', b'delAudioStreamRecord'), 0, 1542213390, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "8fbda2d6dca78c49d61c0ca78ef524e9cd11f0edef44073d580723cce7e7a25f",
+    "events": "72ffba359747eb257ea8d6e245d608e77cd2d6f42681571b5354df9aee9e6eb9",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -2023,15 +2047,16 @@
     "args": [
      3711083943,
      4285183211,
-     1,
+     536946096,
      2592385448
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-28",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 28,
     "xpsr": 0
    },
@@ -2100,15 +2125,16 @@
     "args": [
      739928864,
      256,
-     3886541357,
+     536947244,
      8
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-29",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 29,
     "xpsr": 0
    },
@@ -2168,13 +2194,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 1, 2417460406, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 536945744, 2417460406, 'S', 'F', 'T', None)",
     "('C', 1, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
     "('C', 2, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'%s(): enqueue_dmic failed\\r\\n\\n'), ('RO', b'delAudioStreamRecord'), 0, 2417460406, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "5fb8a0c641c66aaacb50f61dfe1ea2705dfee60d95a8e6509a1adcfaf4e91318",
+    "events": "3c7659156b401eb2c4f6edb56dd4a8b4e8325b354493040c93aca8d9f21d989b",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -2187,15 +2213,16 @@
     "args": [
      256,
      8,
-     1,
+     536945744,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-30",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 30,
     "xpsr": 0
    },
@@ -2255,13 +2282,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 7, 1988174091, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 536938932, 1988174091, 'S', 'F', 'T', None)",
     "('C', 1, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
     "('C', 2, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'%s(): enqueue_dmic failed\\r\\n\\n'), ('RO', b'delAudioStreamRecord'), 0, 1988174091, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "a905b6a692eb05765ee4035667e0f6e145fd330bc21f4319c6958d59f2c250cb",
+    "events": "7115150d20d47a915afe1c729f6bd91d9eaac82aea6fe18636456030a471435a",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -2274,15 +2301,16 @@
     "args": [
      4294967295,
      2461003590,
-     7,
+     536938932,
      53351545
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
@@ -2342,13 +2370,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 3442053927, 615009301, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 536941348, 615009301, 'S', 'F', 'T', None)",
     "('C', 1, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
     "('C', 2, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'%s(): enqueue_dmic failed\\r\\n\\n'), ('RO', b'delAudioStreamRecord'), 0, 615009301, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "3e72ccb4b96e8993794ba066565196d6c286dcbd1748d82b3996cf01db91870c",
+    "events": "25e189ac5b9096aa057927ad0cfb110d870137b0a9ed4fdfa21f0d5fa414919c",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -2361,15 +2389,16 @@
     "args": [
      1839753098,
      2706821390,
-     3442053927,
+     536941348,
      1170652979
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-32",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 32,
     "xpsr": 0
    },
@@ -2438,15 +2467,16 @@
     "args": [
      1076094348,
      7,
-     7,
+     536944276,
      5
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-33",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 33,
     "xpsr": 0
    },
@@ -2506,13 +2536,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 922796015, 2360084761, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 536952812, 2360084761, 'S', 'F', 'T', None)",
     "('C', 1, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
     "('C', 2, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'%s(): enqueue_dmic failed\\r\\n\\n'), ('RO', b'delAudioStreamRecord'), 0, 2360084761, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "294bd54aca50cd0c95c09bab325e6e51be2f79e6b8443ce6f81673024a03ceae",
+    "events": "13cfbc24e98b7d7cfce35dff8e40a63650e31761bc65a0eb8fd8b5be0fc4f573",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -2525,15 +2555,16 @@
     "args": [
      12,
      3990671540,
-     922796015,
+     536952812,
      2147483647
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 34,
     "xpsr": 0
    },
@@ -2593,13 +2624,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 4001652011, 4019880274, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 536943912, 4019880274, 'S', 'F', 'T', None)",
     "('C', 1, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
     "('C', 2, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'%s(): enqueue_dmic failed\\r\\n\\n'), ('RO', b'delAudioStreamRecord'), 0, 4019880274, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "6e3c7adcbc2164a6b9ac4a105ce7861a19017d40af170226224ccd44bf76c13b",
+    "events": "fefc5bf513ffed019e8f926c35e828e3ac8e67f9342e366ed57b9c88f975c5fe",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -2612,15 +2643,16 @@
     "args": [
      2726887024,
      3578977268,
-     4001652011,
+     536943912,
      1
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
@@ -2680,13 +2712,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 2147483647, 823752600, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 536945964, 823752600, 'S', 'F', 'T', None)",
     "('C', 1, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
     "('C', 2, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'%s(): enqueue_dmic failed\\r\\n\\n'), ('RO', b'delAudioStreamRecord'), 0, 823752600, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "d22f11d0320a255976f47282322602b30ebb2070d50f23e905a82b26238f39f3",
+    "events": "e59c7263654229046f92446f572306dbeaf6330e2b6f5c1b5d45930493fa2f02",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -2699,15 +2731,16 @@
     "args": [
      0,
      12,
-     2147483647,
+     536945964,
      8
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 36,
     "xpsr": 0
    },
@@ -2776,15 +2809,16 @@
     "args": [
      1,
      2057795936,
-     2725586938,
+     536946680,
      1299241558
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-37",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 37,
     "xpsr": 0
    },
@@ -2853,15 +2887,16 @@
     "args": [
      0,
      255,
-     1,
+     536936976,
      2
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-38",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 38,
     "xpsr": 0
    },
@@ -2921,13 +2956,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 3774328631, 2944518647, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 536948532, 2944518647, 'S', 'F', 'T', None)",
     "('C', 1, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
     "('C', 2, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'%s(): enqueue_dmic failed\\r\\n\\n'), ('RO', b'delAudioStreamRecord'), 0, 2944518647, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "093e37504a27be440021449d1feb099e24af2c33ce83ba61c97a3a9289b5e884",
+    "events": "b81a4218d0e71765f6d9c2937f06c3380c7c423fd7d66cbf66ef15e0f56ed8cf",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -2940,15 +2975,16 @@
     "args": [
      3,
      1587124134,
-     3774328631,
+     536948532,
      1997155928
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
     "xpsr": 0
    },
@@ -3008,13 +3044,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 3059135833, 2096484019, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 536950104, 2096484019, 'S', 'F', 'T', None)",
     "('C', 1, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
     "('C', 2, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'%s(): enqueue_dmic failed\\r\\n\\n'), ('RO', b'delAudioStreamRecord'), 0, 2096484019, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b9c81b744fa47a926dc6555f0191d99706fb80b0033795dbfb4a7ee2eda3a69d",
+    "events": "0963591d75ea525b7857a54b0c477b86388513a3a578a6d399a0853b0b835996",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -3027,15 +3063,16 @@
     "args": [
      3886568119,
      256,
-     3059135833,
+     536950104,
      1
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-41",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 41,
     "xpsr": 0
    },
@@ -3095,13 +3132,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 12, 509112996, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 536943656, 509112996, 'S', 'F', 'T', None)",
     "('C', 1, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
     "('C', 2, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'%s(): enqueue_dmic failed\\r\\n\\n'), ('RO', b'delAudioStreamRecord'), 0, 509112996, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ba6f3d75f22972d643e80fd40bf0f038c8872daca27362d6dc54380378c47e4f",
+    "events": "51267dd831efce163c5568da223f693ea2a7b79601177a55600068930ccc1a60",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -3114,15 +3151,16 @@
     "args": [
      538639782,
      4,
-     12,
+     536943656,
      3983748582
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-42",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 42,
     "xpsr": 0
    },
@@ -3182,13 +3220,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 1643521744, 217414738, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 536946384, 217414738, 'S', 'F', 'T', None)",
     "('C', 1, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
     "('C', 2, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'%s(): enqueue_dmic failed\\r\\n\\n'), ('RO', b'delAudioStreamRecord'), 0, 217414738, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "25cecaa9b0a38dbe41832f93affaf64ef46451dc209acacbb1276eb76b114942",
+    "events": "ac40d0494982447e6a16d6d5bbd930a0a94898a0d97c3b1cb7a3d095a3af6e9b",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -3201,15 +3239,16 @@
     "args": [
      0,
      3098095624,
-     1643521744,
+     536946384,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-44",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 44,
     "xpsr": 0
    },
@@ -3278,15 +3317,16 @@
     "args": [
      12,
      2147483648,
-     2737014790,
+     536938500,
      2486441645
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-45",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 45,
     "xpsr": 0
    },
@@ -3355,15 +3395,16 @@
     "args": [
      2311625221,
      2147483648,
-     2205369221,
+     536937348,
      2288169737
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-46",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 46,
     "xpsr": 0
    },
@@ -3399,7 +3440,6 @@
   },
   {
    "call_arities": [
-    4,
     3,
     4,
     1
@@ -3407,49 +3447,50 @@
    "call_float_arities": [
     0,
     0,
-    0,
     0
    ],
    "call_return_kinds": [
-    "void",
     "void",
     "i32",
     "void"
    ],
    "call_targets": [
-    105584,
     552056,
     467152,
     469120
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delAudioStreamRecord'), 1935641720, 4140973137, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
-    "('C', 2, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
-    "('C', 3, 536902116, 'S', 'F', 'T', None)"
+    "('C', 0, ('SP', 0), 0, 203, 'S', 'F', 'T', None)",
+    "('C', 1, 536885392, ('SP', -1), 0, 0, 'S', 'F', 'T', None)",
+    "('C', 2, 536902116, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "e0d71f0562157ea31572cdffed7604666ea88abecfd6188c6efeae214c76df13",
+    "events": "99d96ed44ca07ab1ea5bc0666cce82413242be0ac03024cc53a32df0a03f2e9e",
     "kind": "return",
-    "ncalls": 4,
+    "ncalls": 3,
     "ret": [
      0
     ],
     "returned": true
    },
    "fixture": {
-    "abs": [],
+    "abs": [
+     [
+      536940544,
+      "4110012044100120481001204c1001205110012054100120581001205c1001206110012064100120681001206c1001207110012074100120781001207c1001208110012084100120881001208c1001209110012094100120981001209c100120a1100120a4100120a8100120ac100120b1100120b4100120b8100120bc100120c1100120c4100120c8100120cc100120d1100120d4100120d8100120dc100120e1100120e4100120e8100120ec100120f1100120f4100120f8100120fc1001200111012004110120081101200c1101201111012014110120181101201c1101202111012024110120281101202c1101203111012034110120381101203c1101204111012044110120481101204c1101205111012054110120581101205c1101206111012064110120681101206c1101207111012074110120781101207c1101208111012084110120881101208c1101209111012094110120981101209c110120a1110120a4110120a8110120ac110120b1110120b4110120b8110120bc110120c1110120c4110120c8110120cc110120d1110120d4110120d8110120dc110120e1110120e4110120e8110120ec110120f1110120f4110120f8110120fc1101200110012004100120081001200c1001201110012014100120181001201c1001202110012024100120281001202c1001203110012034100120381001203c100120"
+     ]
+    ],
     "args": [
-     2345269775,
-     3092785552,
-     1935641720,
-     554330043
+     3426167942,
+     558208872,
+     536940552,
+     3003667676
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "orc-all-0",
+    "id": "chain0-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [
      [
       0,
@@ -3457,38 +3498,13 @@
       0
      ],
      [
-      1,
-      0,
-      0
-     ],
-     [
-      2,
-      0,
-      0
-     ],
-     [
-      3,
-      0,
-      0
-     ],
-     [
-      4,
-      0,
-      0
-     ],
-     [
-      5,
-      0,
-      0
-     ],
-     [
-      6,
-      0,
-      0
-     ],
-     [
       0,
       1,
+      0
+     ],
+     [
+      1,
+      0,
       0
      ],
      [
@@ -3498,7 +3514,17 @@
      ],
      [
       2,
+      0,
+      0
+     ],
+     [
+      2,
       1,
+      0
+     ],
+     [
+      3,
+      0,
       0
      ],
      [
@@ -3508,7 +3534,17 @@
      ],
      [
       4,
+      0,
+      0
+     ],
+     [
+      4,
       1,
+      0
+     ],
+     [
+      5,
+      0,
       0
      ],
      [
@@ -3518,17 +3554,73 @@
      ],
      [
       6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
       1,
       0
      ]
     ],
-    "scratch_seed": 400,
+    "outparam": null,
+    "scratch_seed": 830,
     "xpsr": 0
    },
-   "new_instructions": 35,
+   "new_instructions": 29,
    "stack_args": [
     [
-     2,
+     1,
      [
       [
        1,
@@ -3547,7 +3639,7 @@
         ],
         [
          4,
-         15
+         134
         ]
        ]
       ]
@@ -3572,8 +3664,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "audio",
@@ -3582,16 +3677,22 @@
   "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
   "source": "shipped image"
  },
- "pointer_arg_mask": [],
+ "pointer_arg_mask": [
+  2
+ ],
  "ret_kind": "i32",
  "search": {
-  "candidates": 189,
+  "candidates": 252,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
   "kept": 42,
-  "pointer_arg_mask": [],
+  "pointer_arg_mask": [
+   2
+  ],
   "pointer_arg_mask_derived": true
  },
  "size": 122,

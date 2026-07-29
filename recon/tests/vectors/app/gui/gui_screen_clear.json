@@ -18,12 +18,12 @@
     513260
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 4, 3694469211, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536948308, 3694469211, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "0902d3ffaf33f3b79867db496e2ca7b0408fd693eb65cd634073a17ca2b48454",
+    "events": "43d2c334f4d10667184993a91f4b4ca9187b37b8976baafbc2cd8b1ac15647b0",
     "kind": "fault",
     "ncalls": 2
    },
@@ -32,15 +32,16 @@
     "args": [
      1276959699,
      12,
-     4,
+     536948308,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -74,15 +75,16 @@
     "args": [
      4067469868,
      1797429778,
-     2147483648,
+     536940476,
      315044147
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -107,12 +109,12 @@
     513260
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 3677430904, 471345317, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536945784, 471345317, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "deff092b88f5c2729a917856e394869987f3a144307f01d632aa182ee8462dbb",
+    "events": "7fa2126a876365a8d96fcab3395a4c5d1611029eb65e2ba63f1da82b4a4b3cb0",
     "kind": "fault",
     "ncalls": 2
    },
@@ -121,15 +123,16 @@
     "args": [
      4290042576,
      598759513,
-     3677430904,
+     536945784,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
@@ -154,12 +157,12 @@
     513260
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 3842370354, 2655161023, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536947504, 2655161023, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "3747e45b80a4efe5810ebdd81f21fbe95aea63c67d5e5e2bb4adfe2b637765f0",
+    "events": "5a50934cfedd07c1448498be75a0d1005feeab2c6781ba2c851fad6e7d9ceb7b",
     "kind": "fault",
     "ncalls": 2
    },
@@ -168,15 +171,16 @@
     "args": [
      16,
      2147483647,
-     3842370354,
+     536947504,
      6
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 4,
     "xpsr": 0
    },
@@ -201,12 +205,12 @@
     513260
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 499087790, 3178863954, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536951212, 3178863954, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "b22f54c43855d53a0df773d497f0b82d0588c9864df0329627f6601cb5e12bac",
+    "events": "899a2785efdc8d4f5407f977746c232afc89b2cbcb8895130a2db58e83b48302",
     "kind": "fault",
     "ncalls": 2
    },
@@ -215,15 +219,16 @@
     "args": [
      1346232374,
      1556998536,
-     499087790,
+     536951212,
      2147483647
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 9,
     "xpsr": 0
    },
@@ -248,12 +253,12 @@
     513260
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 8, 3586673693, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536946200, 3586673693, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "99b1cdab70e7d08c2e0527dd9e6626fb67e714b656a94ab9e0450083976d8b4e",
+    "events": "24865e30fc5a4795a6016ea65b1a6057e37f35e634439399a5b5e24603feef32",
     "kind": "fault",
     "ncalls": 2
    },
@@ -262,15 +267,16 @@
     "args": [
      182454980,
      995058044,
-     8,
+     536946200,
      1
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 10,
     "xpsr": 0
    },
@@ -295,12 +301,12 @@
     513260
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 256, 801746852, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536938076, 801746852, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "4b40b4ea9fabca097b2152b1d79112aef8358fe6b6004131e0d4a5e0b3987d5f",
+    "events": "163ab85ecca6022aef72da7d1cc97bbc9e7223eeb612fe3fb2fdf0b5b6794917",
     "kind": "fault",
     "ncalls": 2
    },
@@ -309,15 +315,16 @@
     "args": [
      3,
      2147483648,
-     256,
+     536938076,
      1426281073
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 11,
     "xpsr": 0
    },
@@ -342,12 +349,12 @@
     513260
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 5, 1542880163, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536941268, 1542880163, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "f57d8ec49ca13646ebb9be78c9fd4a29e5e05ca4cbb5df5e4cba7568e6c93e81",
+    "events": "2998130d8b2cc00ef423479ba99aef69454d33df7e072673b156b569da93121d",
     "kind": "fault",
     "ncalls": 2
    },
@@ -356,15 +363,16 @@
     "args": [
      8,
      3217736208,
-     5,
+     536941268,
      1103693227
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-12",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 12,
     "xpsr": 0
    },
@@ -389,12 +397,12 @@
     513260
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 6, 287561451, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536939060, 287561451, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "80da2d71705b86bddf1d2d2dc8ab7d44eccaf4d6d8a10dfa92bca349d178521c",
+    "events": "07d731d13764af2d097d4fab2d661a0e00182993c588c25bf5b4b06cf62a1f2e",
     "kind": "fault",
     "ncalls": 2
    },
@@ -403,15 +411,16 @@
     "args": [
      1156718256,
      1944344031,
-     6,
+     536939060,
      617681966
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 13,
     "xpsr": 0
    },
@@ -436,12 +445,12 @@
     513260
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 3454407978, 886755549, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536941864, 886755549, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "dd2a040d1d1d4c1ab597dc2c2a4e92389f53097e3f22af312a29bdb4f525bf86",
+    "events": "85e25f9cf5dd6861d27fe12b6df8b5a686baf1107513505611d09fb0b7187196",
     "kind": "fault",
     "ncalls": 2
    },
@@ -450,15 +459,16 @@
     "args": [
      2024561310,
      2147483648,
-     3454407978,
+     536941864,
      16
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
@@ -483,12 +493,12 @@
     513260
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 4178753371, 4075769455, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536950616, 4075769455, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "d9970d779a5dc3ee60a84dc0adbad44c5c99765fad86e457db66d1e845613be8",
+    "events": "5b2c9a36fd7d79231da06c44e534cbca98f7fce8419e307d9f996c43844a78cf",
     "kind": "fault",
     "ncalls": 2
    },
@@ -497,15 +507,16 @@
     "args": [
      6,
      1536401714,
-     4178753371,
+     536950616,
      255
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 19,
     "xpsr": 0
    },
@@ -530,12 +541,12 @@
     513260
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 2870852768, 2217669457, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536951968, 2217669457, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "d4c0a3a12d021cc170e310c8919916546fa6a7552e9702bf6a4049a4443fe652",
+    "events": "ba3cd51f1738a8511013c727155d5d904de4be7c22cb41cef12b2f585393d2ca",
     "kind": "fault",
     "ncalls": 2
    },
@@ -544,15 +555,16 @@
     "args": [
      843060076,
      1,
-     2870852768,
+     536951968,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-21",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 21,
     "xpsr": 0
    },
@@ -577,12 +589,12 @@
     513260
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 2149248134, 3712121755, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536947844, 3712121755, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "3d004893321b3af15552aacf249dbcedbc8719451119aa2ef7084fdfda322188",
+    "events": "98cbcaa6b78e7dee195aa342ae08a0ac7f30bc694758c1eb795963008f3571ad",
     "kind": "fault",
     "ncalls": 2
    },
@@ -591,15 +603,16 @@
     "args": [
      3751937804,
      12,
-     2149248134,
+     536947844,
      604019693
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 25,
     "xpsr": 0
    },
@@ -624,12 +637,12 @@
     513260
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 3639365232, 1775869161, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536940144, 1775869161, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "3780883c65d4f11123b3faecd37f0cd43f5fdda7069fb4c0a892b9ec896c0c52",
+    "events": "e21178b9ee2ea0fe2b26bc202b0deb735cf759e7d36a1ec84708a08e1e8e959f",
     "kind": "fault",
     "ncalls": 2
    },
@@ -638,15 +651,16 @@
     "args": [
      187818536,
      681194263,
-     3639365232,
+     536940144,
      4125446660
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 27,
     "xpsr": 0
    },
@@ -671,12 +685,12 @@
     513260
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 1, 1542213390, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536946096, 1542213390, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "3a28b5265b9b2fc67fd1ca4862d8c9a9a79aa74d08acb289e751b1c385a7a8c8",
+    "events": "248ca5b92cfb423021a278f6b619535ece841dca8e10b0e9afb61e9e6f5d716c",
     "kind": "fault",
     "ncalls": 2
    },
@@ -685,15 +699,16 @@
     "args": [
      3711083943,
      4285183211,
-     1,
+     536946096,
      2592385448
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-28",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 28,
     "xpsr": 0
    },
@@ -718,12 +733,12 @@
     513260
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 1, 2417460406, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536945744, 2417460406, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "c83fb298d477ca6e3e1b885f7af095e7797ac7db46d49246ce466b42ff7e0609",
+    "events": "bde78a5bf6bb41cebe62221f17477f54dc31d546305c98ae5fb9ba9a613f0530",
     "kind": "fault",
     "ncalls": 2
    },
@@ -732,15 +747,16 @@
     "args": [
      256,
      8,
-     1,
+     536945744,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-30",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 30,
     "xpsr": 0
    },
@@ -765,12 +781,12 @@
     513260
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 7, 1988174091, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536938932, 1988174091, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "aa0a8ff7dbd0c45e5cbf622bc7c259e578dfa89d1dce0583e939dfcbf3b7db45",
+    "events": "ef20d0866c16643647b87ed39ac4c7b2f76a53773484beadf1539efe125b109c",
     "kind": "fault",
     "ncalls": 2
    },
@@ -779,15 +795,16 @@
     "args": [
      4294967295,
      2461003590,
-     7,
+     536938932,
      53351545
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
@@ -812,12 +829,12 @@
     513260
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 3442053927, 615009301, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536941348, 615009301, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "a37d54149d5cb91c3da099df8ab3b54a1552396795e8698028999fc5cc8a5187",
+    "events": "b83f00c02bba533dba1af9d9d9df1b4a7bbea63a596d2dafb8d96d9f9cf4712e",
     "kind": "fault",
     "ncalls": 2
    },
@@ -826,15 +843,16 @@
     "args": [
      1839753098,
      2706821390,
-     3442053927,
+     536941348,
      1170652979
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-32",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 32,
     "xpsr": 0
    },
@@ -859,12 +877,12 @@
     513260
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 922796015, 2360084761, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536952812, 2360084761, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "e8dc9b5f90bd60b5e1b6b2e2ffeb4aa5635bd2dc28033dc11a3fc853a3f46881",
+    "events": "324c2535e3564cc1fe2064c29272f74be7498381d71ecfda090f405e26d290c6",
     "kind": "fault",
     "ncalls": 2
    },
@@ -873,15 +891,16 @@
     "args": [
      12,
      3990671540,
-     922796015,
+     536952812,
      2147483647
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 34,
     "xpsr": 0
    },
@@ -906,12 +925,12 @@
     513260
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 4001652011, 4019880274, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536943912, 4019880274, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "b5a457fcf6050533e9b2e91856977ab2400aa66d0ea9d5c042a93e859025965e",
+    "events": "d4f58819b802ec581728919de46f6245de4f45bd7368cfaed3f758b34bf02c0d",
     "kind": "fault",
     "ncalls": 2
    },
@@ -920,15 +939,16 @@
     "args": [
      2726887024,
      3578977268,
-     4001652011,
+     536943912,
      1
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
@@ -953,12 +973,12 @@
     513260
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 2147483647, 823752600, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536945964, 823752600, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "e717bb776434b09acbf83d102e9ed8c424c9d7fec7e5dceef897915eaa0d22ee",
+    "events": "1aa4133c576c4bedf77376ebc9768e26ade91a9d4bbcb5c773d9f7484e3b094c",
     "kind": "fault",
     "ncalls": 2
    },
@@ -967,15 +987,16 @@
     "args": [
      0,
      12,
-     2147483647,
+     536945964,
      8
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 36,
     "xpsr": 0
    },
@@ -1000,12 +1021,12 @@
     513260
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 3774328631, 2944518647, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536948532, 2944518647, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "47f9682bfafbedbddd2eb8c0dafa2f283407a76fccad1fe8f6781510bfd75cbb",
+    "events": "14ee1d0f66dec27afa90c36ad1110500e4b8f7437f215e2fc96b1465c8de3835",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1014,15 +1035,16 @@
     "args": [
      3,
      1587124134,
-     3774328631,
+     536948532,
      1997155928
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
     "xpsr": 0
    },
@@ -1047,12 +1069,12 @@
     513260
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 3059135833, 2096484019, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536950104, 2096484019, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "3b623f84983394cade1b2d6cfae705d72a7d6afaf9ec227d57cc698e14896dec",
+    "events": "a1780a95e4e39279780a90b8bdd9e87217d44fae7ec50622085f8d283ec72f79",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1061,15 +1083,16 @@
     "args": [
      3886568119,
      256,
-     3059135833,
+     536950104,
      1
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-41",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 41,
     "xpsr": 0
    },
@@ -1094,12 +1117,12 @@
     513260
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 12, 509112996, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536943656, 509112996, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "f869125b796f400ac70ef8bb92bc73844b80caefef2dd1c99c3b05463489a84b",
+    "events": "665415d333f1d142c10230758d8674f418dae383e5af5eff1784732a4fecd23d",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1108,15 +1131,16 @@
     "args": [
      538639782,
      4,
-     12,
+     536943656,
      3983748582
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-42",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 42,
     "xpsr": 0
    },
@@ -1141,12 +1165,12 @@
     513260
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 1643521744, 217414738, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536946384, 217414738, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "415ee72be3a2d153181cf6011bea60950425e4208e3b10efafaf50cd0d16756c",
+    "events": "e4868043ac7fd34fe9d060629020ccf36c0230bfc80843a81eba73a7c0816b57",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1155,15 +1179,16 @@
     "args": [
      0,
      3098095624,
-     1643521744,
+     536946384,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-44",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 44,
     "xpsr": 0
    },
@@ -1211,6 +1236,7 @@
     "mem": [],
     "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 700,
     "xpsr": 0
    },
@@ -1258,6 +1284,7 @@
     "mem": [],
     "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 702,
     "xpsr": 0
    },
@@ -1305,6 +1332,7 @@
     "mem": [],
     "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 703,
     "xpsr": 0
    },
@@ -1352,6 +1380,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 700,
     "xpsr": 0
    },
@@ -1399,6 +1428,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 702,
     "xpsr": 0
    },
@@ -1446,6 +1476,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 703,
     "xpsr": 0
    },
@@ -1454,499 +1485,171 @@
   },
   {
    "call_arities": [
-    4,
     0
    ],
    "call_float_arities": [
-    0,
     0
    ],
    "call_return_kinds": [
-    "void",
     "i32"
    ],
    "call_targets": [
-    105584,
     513260
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 2147483647, 2987881189, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)"
+    "('C', 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "error": "Invalid memory read",
-    "events": "3e8e92f877b60534659eb37440ead22cf36f4273ac19866a4ea5725b3cfa2576",
-    "kind": "fault",
-    "ncalls": 2
+    "events": "224e60b24cfba8ccbb749ad0735912f56546fc3b88ccc22503219362cc1fd656",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
    },
    "fixture": {
-    "abs": [],
-    "args": [
-     4294967295,
-     4142138223,
-     2147483647,
-     2671219995
+    "abs": [
+     [
+      536940544,
+      "4110012044100120481001204c1001205110012054100120581001205c1001206110012064100120681001206c1001207110012074100120781001207c1001208110012084100120881001208c1001209110012094100120981001209c100120a1100120a4100120a8100120ac100120b1100120b4100120b8100120bc100120c1100120c4100120c8100120cc100120d1100120d4100120d8100120dc100120e1100120e4100120e8100120ec100120f1100120f4100120f8100120fc1001200111012004110120081101200c1101201111012014110120181101201c1101202111012024110120281101202c1101203111012034110120381101203c1101204111012044110120481101204c1101205111012054110120581101205c1101206111012064110120681101206c1101207111012074110120781101207c1101208111012084110120881101208c1101209111012094110120981101209c110120a1110120a4110120a8110120ac110120b1110120b4110120b8110120bc110120c1110120c4110120c8110120cc110120d1110120d4110120d8110120dc110120e1110120e4110120e8110120ec110120f1110120f4110120f8110120fc1101200110012004100120081001200c1001201110012014100120181001201c1001202110012024100120281001202c1001203110012034100120381001203c100120"
+     ]
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1065353216,
-     "1": 3204448256
-    },
-    "id": "fp-49",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 49,
-    "xpsr": 0
-   },
-   "new_instructions": 13,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32"
-   ],
-   "call_targets": [
-    105584,
-    513260
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 3, 3904235970, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "error": "Invalid memory read",
-    "events": "dfded491579292aac332565477cb202a7e7655d3b5c994f37f96c779e0632b94",
-    "kind": "fault",
-    "ncalls": 2
-   },
-   "fixture": {
-    "abs": [],
     "args": [
-     271826021,
-     7,
-     3,
-     3948225427
+     3426167942,
+     558208872,
+     536940552,
+     3003667676
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3212836864,
-     "1": 0
-    },
-    "id": "fp-50",
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-0",
     "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 50,
-    "xpsr": 0
-   },
-   "new_instructions": 13,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32"
-   ],
-   "call_targets": [
-    105584,
-    513260
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 2147483647, 735384069, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "error": "Invalid memory read",
-    "events": "62deef00d534e85781c83c6deeec01e4c498c93cfa420267e9674a3242043245",
-    "kind": "fault",
-    "ncalls": 2
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3856939601,
-     1894272194,
-     2147483647,
-     2092907358
+    "nptr": 1,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3204448256,
-     "1": 3239897098
-    },
-    "id": "fp-52",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 52,
-    "xpsr": 0
-   },
-   "new_instructions": 13,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32"
-   ],
-   "call_targets": [
-    105584,
-    513260
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 2147483647, 3921118200, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "error": "Invalid memory read",
-    "events": "dca178e995b20d9dcb764d1f7b9f22a34ab774ec53489a048c6b4ef7ec9a8233",
-    "kind": "fault",
-    "ncalls": 2
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     1740848604,
-     2393220392,
-     2147483647,
-     2556506514
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 2147483648,
-     "1": 3204448256
-    },
-    "id": "fp-54",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 54,
-    "xpsr": 0
-   },
-   "new_instructions": 13,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32"
-   ],
-   "call_targets": [
-    105584,
-    513260
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 3578670822, 1028059815, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "error": "Invalid memory read",
-    "events": "0761c4b2e028c36f0db8c71af0b831773c2bfe5f3f7f1997eb6a14fc89289a3a",
-    "kind": "fault",
-    "ncalls": 2
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     8,
-     3577755483,
-     3578670822,
-     8
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1065353216,
-     "1": 0
-    },
-    "id": "fp-55",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 55,
-    "xpsr": 0
-   },
-   "new_instructions": 13,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32"
-   ],
-   "call_targets": [
-    105584,
-    513260
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 206381930, 480847480, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "error": "Invalid memory read",
-    "events": "77d92f5c78e066e6e7d354374b87aafe316435fbab53b2f01fcbb0344f440ff0",
-    "kind": "fault",
-    "ncalls": 2
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     5,
-     3291529428,
-     206381930,
-     1
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3212836864,
-     "1": 3184315597
-    },
-    "id": "fp-56",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 56,
-    "xpsr": 0
-   },
-   "new_instructions": 13,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32"
-   ],
-   "call_targets": [
-    105584,
-    513260
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 1677850251, 2444602602, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "error": "Invalid memory read",
-    "events": "ffff3b7380706beda078552c37fac4b40d36880124056621b1181f2b366a594d",
-    "kind": "fault",
-    "ncalls": 2
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3720324128,
-     2846093838,
-     1677850251,
-     7
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1056964608,
-     "1": 3239897098
-    },
-    "id": "fp-57",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 57,
-    "xpsr": 0
-   },
-   "new_instructions": 13,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32"
-   ],
-   "call_targets": [
-    105584,
-    513260
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 4, 2059510718, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "error": "Invalid memory read",
-    "events": "643409fb69ffcd3a5d92695d4e78054d06eef26c2ef10a02d21043af87ef8249",
-    "kind": "fault",
-    "ncalls": 2
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     8,
-     2,
-     4,
-     2495041172
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3204448256,
-     "1": 1266679808
-    },
-    "id": "fp-58",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 58,
-    "xpsr": 0
-   },
-   "new_instructions": 13,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32"
-   ],
-   "call_targets": [
-    105584,
-    513260
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 1966003740, 913139319, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "error": "Invalid memory read",
-    "events": "5ce885d43cd3db79e04f804e5cad390fa26c8c2e7f399323048d72cf676f508a",
-    "kind": "fault",
-    "ncalls": 2
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     2684056074,
-     2147483647,
-     1966003740,
-     0
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 2147483648,
-     "1": 0
-    },
-    "id": "fp-60",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 60,
-    "xpsr": 0
-   },
-   "new_instructions": 13,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32"
-   ],
-   "call_targets": [
-    105584,
-    513260
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 1, 3330584012, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "error": "Invalid memory read",
-    "events": "19bee232a3b8628d65c4106cc6f4cacac011cd5db1921fee6eb8354fc1dd74b2",
-    "kind": "fault",
-    "ncalls": 2
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     256,
-     3605787990,
-     1,
-     0
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1065353216,
-     "1": 3184315597
-    },
-    "id": "fp-61",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 61,
+    "outparam": null,
+    "scratch_seed": 830,
     "xpsr": 0
    },
    "new_instructions": 13,
@@ -1974,12 +1677,12 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 1935641720, 4140973137, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536940552, 1114733997, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b\"%s(): c->init_done = 0,init failed, can't write data!\\n\"), ('RO', b'gui_screen_clear'), 1935641720, 4140973137, 'S', 'F', 'T', None)"
+    "('C', 2, ('RO', b\"%s(): c->init_done = 0,init failed, can't write data!\\n\"), ('RO', b'gui_screen_clear'), 536940552, 1114733997, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "11a8ced173bb9e20aabd4c15c99b73dbffbee0be4ce0f1485bb13568d340e9c0",
+    "events": "c696240cdfe9ffd5f276864d477febf6945bdfce950f0c2f3088bce36a4e3f2d",
     "kind": "return",
     "ncalls": 3,
     "ret": [
@@ -1988,18 +1691,23 @@
     "returned": true
    },
    "fixture": {
-    "abs": [],
+    "abs": [
+     [
+      536940544,
+      "4010012044100120491001204c1001205010012054100120591001205c1001206010012064100120691001206c1001207010012074100120791001207c1001208010012084100120891001208c1001209010012094100120991001209c100120a0100120a4100120a9100120ac100120b0100120b4100120b9100120bc100120c0100120c4100120c9100120cc100120d0100120d4100120d9100120dc100120e0100120e4100120e9100120ec100120f0100120f4100120f9100120fc1001200011012004110120091101200c1101201011012014110120191101201c1101202011012024110120291101202c1101203011012034110120391101203c1101204011012044110120491101204c1101205011012054110120591101205c1101206011012064110120691101206c1101207011012074110120791101207c1101208011012084110120891101208c1101209011012094110120991101209c110120a0110120a4110120a9110120ac110120b0110120b4110120b9110120bc110120c0110120c4110120c9110120cc110120d0110120d4110120d9110120dc110120e0110120e4110120e9110120ec110120f0110120f4110120f9110120fc1101200010012004100120091001200c1001201010012014100120191001201c1001202010012024100120291001202c1001203010012034100120391001203c100120"
+     ]
+    ],
     "args": [
-     2345269775,
-     3092785552,
-     1935641720,
-     554330043
+     1422763229,
+     2951236948,
+     536940552,
+     3232220875
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "orc-all-0",
+    "id": "chain0-2",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [
      [
       0,
@@ -2007,33 +1715,13 @@
       0
      ],
      [
-      1,
-      0,
-      0
-     ],
-     [
-      2,
-      0,
-      0
-     ],
-     [
-      3,
-      0,
-      0
-     ],
-     [
-      4,
-      0,
-      0
-     ],
-     [
-      5,
-      0,
-      0
-     ],
-     [
       0,
       1,
+      0
+     ],
+     [
+      1,
+      0,
       0
      ],
      [
@@ -2043,7 +1731,17 @@
      ],
      [
       2,
+      0,
+      0
+     ],
+     [
+      2,
       1,
+      0
+     ],
+     [
+      3,
+      0,
       0
      ],
      [
@@ -2053,16 +1751,1262 @@
      ],
      [
       4,
+      0,
+      0
+     ],
+     [
+      4,
       1,
       0
      ],
      [
       5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
       1,
       0
      ]
     ],
-    "scratch_seed": 400,
+    "outparam": null,
+    "scratch_seed": 832,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    105584,
+    513260
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536940552, 2322744795, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "fdcada8125c62f7d80e128f6018c966047c9ef46b8b3504859670c68273dd641",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "4010012044100120481001204d1001205010012054100120581001205d1001206010012064100120681001206d1001207010012074100120781001207d1001208010012084100120881001208d1001209010012094100120981001209d100120a0100120a4100120a8100120ad100120b0100120b4100120b8100120bd100120c0100120c4100120c8100120cd100120d0100120d4100120d8100120dd100120e0100120e4100120e8100120ed100120f0100120f4100120f8100120fd1001200011012004110120081101200d1101201011012014110120181101201d1101202011012024110120281101202d1101203011012034110120381101203d1101204011012044110120481101204d1101205011012054110120581101205d1101206011012064110120681101206d1101207011012074110120781101207d1101208011012084110120881101208d1101209011012094110120981101209d110120a0110120a4110120a8110120ad110120b0110120b4110120b8110120bd110120c0110120c4110120c8110120cd110120d0110120d4110120d8110120dd110120e0110120e4110120e8110120ed110120f0110120f4110120f8110120fd1101200010012004100120081001200d1001201010012014100120181001201d1001202010012024100120281001202d1001203010012034100120381001203d100120"
+     ]
+    ],
+    "args": [
+     6,
+     540395309,
+     536940552,
+     5
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-3",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 803,
+    "xpsr": 0
+   },
+   "new_instructions": 13,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    105584,
+    513260
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536940552, 124486711, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "8d2563caab65f78fba68e54ac7b04beea5b743586b0b624f951812719a6f84c9",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "05100120081001200c1001201010012015100120181001201c1001202010012025100120281001202c1001203010012035100120381001203c1001204010012045100120481001204c1001205010012055100120581001205c1001206010012065100120681001206c1001207010012075100120781001207c1001208010012085100120881001208c1001209010012095100120981001209c100120a0100120a5100120a8100120ac100120b0100120b5100120b8100120bc100120c0100120c5100120c8100120cc100120d0100120d5100120d8100120dc100120e0100120e5100120e8100120ec100120f0100120f5100120f8100120fc1001200011012005110120081101200c1101201011012015110120181101201c1101202011012025110120281101202c1101203011012035110120381101203c1101204011012045110120481101204c1101205011012055110120581101205c1101206011012065110120681101206c1101207011012075110120781101207c1101208011012085110120881101208c1101209011012095110120981101209c110120a0110120a5110120a8110120ac110120b0110120b5110120b8110120bc110120c0110120c5110120c8110120cc110120d0110120d5110120d8110120dc110120e0110120e5110120e8110120ec110120f0110120f5110120f8110120fc11012000100120"
+     ]
+    ],
+    "args": [
+     4294967295,
+     3541054321,
+     536940552,
+     4294967295
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-4",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 804,
+    "xpsr": 0
+   },
+   "new_instructions": 13,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    105584,
+    513260
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536940552, 3811744857, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "aad22367b23ace41e9d49b3c16373b60ba8b1317ee777cdd3b61cee175eeaabe",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "04100120091001200c1001201010012014100120191001201c1001202010012024100120291001202c1001203010012034100120391001203c1001204010012044100120491001204c1001205010012054100120591001205c1001206010012064100120691001206c1001207010012074100120791001207c1001208010012084100120891001208c1001209010012094100120991001209c100120a0100120a4100120a9100120ac100120b0100120b4100120b9100120bc100120c0100120c4100120c9100120cc100120d0100120d4100120d9100120dc100120e0100120e4100120e9100120ec100120f0100120f4100120f9100120fc1001200011012004110120091101200c1101201011012014110120191101201c1101202011012024110120291101202c1101203011012034110120391101203c1101204011012044110120491101204c1101205011012054110120591101205c1101206011012064110120691101206c1101207011012074110120791101207c1101208011012084110120891101208c1101209011012094110120991101209c110120a0110120a4110120a9110120ac110120b0110120b4110120b9110120bc110120c0110120c4110120c9110120cc110120d0110120d4110120d9110120dc110120e0110120e4110120e9110120ec110120f0110120f4110120f9110120fc11012000100120"
+     ]
+    ],
+    "args": [
+     16,
+     2147483647,
+     536940552,
+     1831443650
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-5",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 805,
+    "xpsr": 0
+   },
+   "new_instructions": 13,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    513260,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536940552, 3204408865, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b\"%s(): c->init_done = 0,init failed, can't write data!\\n\"), ('RO', b'gui_screen_clear'), 536940552, 3204408865, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "663f97f6ceb32d4047941f796be9cbb5a2397208acb4b41dfdba07402c88b6a6",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "04100120091001200c1001201010012014100120191001201c1001202010012024100120291001202c1001203010012034100120391001203c1001204010012044100120491001204c1001205010012054100120591001205c1001206010012064100120691001206c1001207010012074100120791001207c1001208010012084100120891001208c1001209010012094100120991001209c100120a0100120a4100120a9100120ac100120b0100120b4100120b9100120bc100120c0100120c4100120c9100120cc100120d0100120d4100120d9100120dc100120e0100120e4100120e9100120ec100120f0100120f4100120f9100120fc1001200011012004110120091101200c1101201011012014110120191101201c1101202011012024110120291101202c1101203011012034110120391101203c1101204011012044110120491101204c1101205011012054110120591101205c1101206011012064110120691101206c1101207011012074110120791101207c1101208011012084110120891101208c1101209011012094110120991101209c110120a0110120a4110120a9110120ac110120b0110120b4110120b9110120bc110120c0110120c4110120c9110120cc110120d0110120d4110120d9110120dc110120e0110120e4110120e9110120ec110120f0110120f4110120f9110120fc11012000100120"
+     ]
+    ],
+    "args": [
+     16,
+     2147483647,
+     536940552,
+     1831443650
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-5",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 835,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    105584,
+    513260
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536940552, 3753546315, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "32f8b10b8bb9adce55322cc2621fcc8dba4d7a8b937b1a06abd508d960d865a2",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "04100120081001200d1001201010012014100120181001201d1001202010012024100120281001202d1001203010012034100120381001203d1001204010012044100120481001204d1001205010012054100120581001205d1001206010012064100120681001206d1001207010012074100120781001207d1001208010012084100120881001208d1001209010012094100120981001209d100120a0100120a4100120a8100120ad100120b0100120b4100120b8100120bd100120c0100120c4100120c8100120cd100120d0100120d4100120d8100120dd100120e0100120e4100120e8100120ed100120f0100120f4100120f8100120fd1001200011012004110120081101200d1101201011012014110120181101201d1101202011012024110120281101202d1101203011012034110120381101203d1101204011012044110120481101204d1101205011012054110120581101205d1101206011012064110120681101206d1101207011012074110120781101207d1101208011012084110120881101208d1101209011012094110120981101209d110120a0110120a4110120a8110120ad110120b0110120b4110120b8110120bd110120c0110120c4110120c8110120cd110120d0110120d4110120d8110120dd110120e0110120e4110120e8110120ed110120f0110120f4110120f8110120fd11012000100120"
+     ]
+    ],
+    "args": [
+     1004936853,
+     1756652880,
+     536940552,
+     1979409823
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-6",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 806,
+    "xpsr": 0
+   },
+   "new_instructions": 13,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    513260,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536940552, 2629500200, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b\"%s(): c->init_done = 0,init failed, can't write data!\\n\"), ('RO', b'gui_screen_clear'), 536940552, 2629500200, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "b788fdaab434adcd14a99c5fbcb07e6c5b848e809d8578ac3e9a2a04b67cc04a",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "0111012004110120081101200c1101201111012014110120181101201c1101202111012024110120281101202c1101203111012034110120381101203c1101204111012044110120481101204c1101205111012054110120581101205c1101206111012064110120681101206c1101207111012074110120781101207c1101208111012084110120881101208c1101209111012094110120981101209c110120a1110120a4110120a8110120ac110120b1110120b4110120b8110120bc110120c1110120c4110120c8110120cc110120d1110120d4110120d8110120dc110120e1110120e4110120e8110120ec110120f1110120f4110120f8110120fc1101200110012004100120081001200c1001201110012014100120181001201c1001202110012024100120281001202c1001203110012034100120381001203c1001204110012044100120481001204c1001205110012054100120581001205c1001206110012064100120681001206c1001207110012074100120781001207c1001208110012084100120881001208c1001209110012094100120981001209c100120a1100120a4100120a8100120ac100120b1100120b4100120b8100120bc100120c1100120c4100120c8100120cc100120d1100120d4100120d8100120dc100120e1100120e4100120e8100120ec100120f1100120f4100120f8100120fc100120"
+     ]
+    ],
+    "args": [
+     5,
+     0,
+     536940552,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-8",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 838,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    105584,
+    513260
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536940552, 4129539460, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "c1241a8d79fbe5a4692f988b6715c395105e892ab12c6642aa1f36c27fc60032",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "0011012005110120081101200c1101201011012015110120181101201c1101202011012025110120281101202c1101203011012035110120381101203c1101204011012045110120481101204c1101205011012055110120581101205c1101206011012065110120681101206c1101207011012075110120781101207c1101208011012085110120881101208c1101209011012095110120981101209c110120a0110120a5110120a8110120ac110120b0110120b5110120b8110120bc110120c0110120c5110120c8110120cc110120d0110120d5110120d8110120dc110120e0110120e5110120e8110120ec110120f0110120f5110120f8110120fc1101200010012005100120081001200c1001201010012015100120181001201c1001202010012025100120281001202c1001203010012035100120381001203c1001204010012045100120481001204c1001205010012055100120581001205c1001206010012065100120681001206c1001207010012075100120781001207c1001208010012085100120881001208c1001209010012095100120981001209c100120a0100120a5100120a8100120ac100120b0100120b5100120b8100120bc100120c0100120c5100120c8100120cc100120d0100120d5100120d8100120dc100120e0100120e5100120e8100120ec100120f0100120f5100120f8100120fc100120"
+     ]
+    ],
+    "args": [
+     1550294124,
+     2147483648,
+     536940552,
+     3945435217
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-9",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 809,
+    "xpsr": 0
+   },
+   "new_instructions": 13,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    513260,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536940552, 1229008232, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b\"%s(): c->init_done = 0,init failed, can't write data!\\n\"), ('RO', b'gui_screen_clear'), 536940552, 1229008232, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ea06ef4399c93672ce9e8eee7574140670cb552c1b6872c2ea6dcfa2fa86dd03",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "0011012005110120081101200c1101201011012015110120181101201c1101202011012025110120281101202c1101203011012035110120381101203c1101204011012045110120481101204c1101205011012055110120581101205c1101206011012065110120681101206c1101207011012075110120781101207c1101208011012085110120881101208c1101209011012095110120981101209c110120a0110120a5110120a8110120ac110120b0110120b5110120b8110120bc110120c0110120c5110120c8110120cc110120d0110120d5110120d8110120dc110120e0110120e5110120e8110120ec110120f0110120f5110120f8110120fc1101200010012005100120081001200c1001201010012015100120181001201c1001202010012025100120281001202c1001203010012035100120381001203c1001204010012045100120481001204c1001205010012055100120581001205c1001206010012065100120681001206c1001207010012075100120781001207c1001208010012085100120881001208c1001209010012095100120981001209c100120a0100120a5100120a8100120ac100120b0100120b5100120b8100120bc100120c0100120c5100120c8100120cc100120d0100120d5100120d8100120dc100120e0100120e5100120e8100120ec100120f0100120f5100120f8100120fc100120"
+     ]
+    ],
+    "args": [
+     1550294124,
+     2147483648,
+     536940552,
+     3945435217
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-9",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 839,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    513260,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536940552, 111899093, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b\"%s(): c->init_done = 0,init failed, can't write data!\\n\"), ('RO', b'gui_screen_clear'), 536940552, 111899093, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "fe253c45292d97f652eaea1ece0f9ba4c559b3d33618331de3502167dcf2de66",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "0011012004110120091101200c1101201011012014110120191101201c1101202011012024110120291101202c1101203011012034110120391101203c1101204011012044110120491101204c1101205011012054110120591101205c1101206011012064110120691101206c1101207011012074110120791101207c1101208011012084110120891101208c1101209011012094110120991101209c110120a0110120a4110120a9110120ac110120b0110120b4110120b9110120bc110120c0110120c4110120c9110120cc110120d0110120d4110120d9110120dc110120e0110120e4110120e9110120ec110120f0110120f4110120f9110120fc1101200010012004100120091001200c1001201010012014100120191001201c1001202010012024100120291001202c1001203010012034100120391001203c1001204010012044100120491001204c1001205010012054100120591001205c1001206010012064100120691001206c1001207010012074100120791001207c1001208010012084100120891001208c1001209010012094100120991001209c100120a0100120a4100120a9100120ac100120b0100120b4100120b9100120bc100120c0100120c4100120c9100120cc100120d0100120d4100120d9100120dc100120e0100120e4100120e9100120ec100120f0100120f4100120f9100120fc100120"
+     ]
+    ],
+    "args": [
+     3,
+     2147483647,
+     536940552,
+     1542803971
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-10",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 840,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    513260,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): exec screen clear command....\\n'), ('RO', b'gui_screen_clear'), 536940552, 277593939, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b\"%s(): c->init_done = 0,init failed, can't write data!\\n\"), ('RO', b'gui_screen_clear'), 536940552, 277593939, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ec009e791eb952520f0191fef22801eed8b199a590875e7cd0d032f90f7dedb5",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "0011012004110120081101200d1101201011012014110120181101201d1101202011012024110120281101202d1101203011012034110120381101203d1101204011012044110120481101204d1101205011012054110120581101205d1101206011012064110120681101206d1101207011012074110120781101207d1101208011012084110120881101208d1101209011012094110120981101209d110120a0110120a4110120a8110120ad110120b0110120b4110120b8110120bd110120c0110120c4110120c8110120cd110120d0110120d4110120d8110120dd110120e0110120e4110120e8110120ed110120f0110120f4110120f8110120fd1101200010012004100120081001200d1001201010012014100120181001201d1001202010012024100120281001202d1001203010012034100120381001203d1001204010012044100120481001204d1001205010012054100120581001205d1001206010012064100120681001206d1001207010012074100120781001207d1001208010012084100120881001208d1001209010012094100120981001209d100120a0100120a4100120a8100120ad100120b0100120b4100120b8100120bd100120c0100120c4100120c8100120cd100120d0100120d4100120d8100120dd100120e0100120e4100120e8100120ed100120f0100120f4100120f8100120fd100120"
+     ]
+    ],
+    "args": [
+     3243051193,
+     2147483647,
+     536940552,
+     256
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-11",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 841,
     "xpsr": 0
    },
    "new_instructions": 25,
@@ -2083,8 +3027,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "gui",
@@ -2093,16 +3040,22 @@
   "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
   "source": "shipped image"
  },
- "pointer_arg_mask": [],
+ "pointer_arg_mask": [
+  2
+ ],
  "ret_kind": "i32",
  "search": {
-  "candidates": 171,
+  "candidates": 227,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
-  "kept": 42,
-  "pointer_arg_mask": [],
+  "kept": 43,
+  "pointer_arg_mask": [
+   2
+  ],
   "pointer_arg_mask_derived": true
  },
  "size": 82,

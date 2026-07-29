@@ -36,14 +36,15 @@
      536943568,
      12,
      4,
-     0
+     536940048
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -93,13 +94,13 @@
      536940544,
      558208872,
      2224734438,
-     3003667676
+     536940556
     ],
     "float_scratch": false,
     "fp": {},
     "id": "chain0-0",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [
      [
       0,
@@ -222,6 +223,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 830,
     "xpsr": 0
    },
@@ -344,13 +346,13 @@
      536940544,
      540395309,
      4223594990,
-     5
+     536940556
     ],
     "float_scratch": false,
     "fp": {},
     "id": "chain0-3",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [
      [
       0,
@@ -473,6 +475,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 833,
     "xpsr": 0
    },
@@ -665,13 +668,13 @@
      536940544,
      564882806,
      8,
-     1008447141
+     536940556
     ],
     "float_scratch": false,
     "fp": {},
     "id": "chain0-7",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [
      [
       0,
@@ -794,6 +797,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 837,
     "xpsr": 0
    },
@@ -986,13 +990,13 @@
      536940544,
      2147483647,
      4294967295,
-     256
+     536940556
     ],
     "float_scratch": false,
     "fp": {},
     "id": "chain0-11",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [
      [
       0,
@@ -1115,6 +1119,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 841,
     "xpsr": 0
    },
@@ -1244,13 +1249,13 @@
      536951308,
      3092785552,
      1935641720,
-     554330043
+     536946616
     ],
     "float_scratch": false,
     "fp": {},
     "id": "orc-all-0",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [
      [
       0,
@@ -1293,6 +1298,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 400,
     "xpsr": 0
    },
@@ -1326,8 +1332,11 @@
  "globals": [],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "ble",
@@ -1337,18 +1346,22 @@
   "source": "shipped image"
  },
  "pointer_arg_mask": [
-  0
+  0,
+  3
  ],
  "ret_kind": "i32",
  "search": {
-  "candidates": 163,
+  "candidates": 208,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
   "kept": 6,
   "pointer_arg_mask": [
-   0
+   0,
+   3
   ],
   "pointer_arg_mask_derived": true
  },

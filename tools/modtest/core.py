@@ -317,6 +317,64 @@ def true_extent(core, va, ghidra_size, max_scan=0x2000):
 #: mutation kill rate to 100 %.  The numbers are in the architecture document.
 STACK_ARG_WINDOW = int(os.environ.get("MODTEST_STACK_ARG_WINDOW", "48"))
 
+#: How far above a stack pointer handed to an oracled call counts as "the
+#: buffer the callee was supposed to fill".  512 is inherited from the detector
+#: that measured the class (§28.5.2, `outparam_scope.py`, 6 of 376 app
+#: symbols); it is a DETECTION window only -- nothing is compared over it -- so
+#: making it generous costs fixtures, never correctness.
+OUTPARAM_WINDOW = int(os.environ.get("MODTEST_OUTPARAM_WINDOW", "512"))
+
+#: ★ FILL the out-parameter instead of dropping the fixture.  This is the
+#: counterpart of the r0/r1 preservation of §28.1 -- there the oracle wrote too
+#: MUCH, here it writes too LITTLE -- and it is the difference between
+#: reporting these symbols as UNDECIDABLE and actually deciding them.
+#:
+#: The mechanism: a stack byte inside a buffer this run handed to an oracled
+#: call, which nothing in the run has written, is given a deterministic value
+#: keyed by (call ordinal, argument index, OFFSET FROM THE POINTER) at the
+#: moment it is read -- on BOTH sides.  emu seeds all of RAM from a PRNG, so
+#: those bytes were never "random": they were deterministic BY ADDRESS, which
+#: is precisely the wrong key, because the shipped frame and the candidate's
+#: frame put the same buffer at different addresses.  Keying on the offset from
+#: the pointer the callee received makes the value frame-independent, which is
+#: what the real callee's output is.
+#:
+#: It cannot manufacture a pass.  A candidate that reads a DIFFERENT offset of
+#: the buffer gets a different byte; one that reads a different buffer, or the
+#: wrong number of bytes, or in a different order, still diverges.  The only
+#: comparisons it changes are those decided by which garbage a frame happened
+#: to hold, which decide nothing.
+OUTPARAM_FILL = os.environ.get("MODTEST_OUTPARAM_FILL", "1") == "1"
+#: Fallback for OUTPARAM_FILL=0: drop the fixture instead (the net pass's own
+#: "safe version", which cannot manufacture anything because it only removes
+#: evidence -- measured cost: `md5_process_block` 41 fixtures -> 1, coverage
+#: 0 %, i.e. the symbol becomes untested rather than falsely failing).
+DROP_OUTPARAM_UNINIT = os.environ.get("MODTEST_DROP_OUTPARAM", "0") == "1"
+
+_OUTPARAM_PATTERN = {}
+
+
+def outparam_bytes(ordinal, index, word=None):
+    """Deterministic content an opaque callee is modelled as writing.
+
+    `word` (the fixture's `outparam` dimension) replaces the hash pattern with
+    one repeated 32-bit value, which is how a message-loop's command selector
+    gets driven -- see `generate.POINTEE_LADDER`.
+    """
+    if word is not None:
+        return (int(word) & 0xffffffff).to_bytes(4, "little") * \
+            (OUTPARAM_WINDOW // 4 + 1)
+    key = (int(ordinal), int(index))
+    if key not in _OUTPARAM_PATTERN:
+        blob = b""
+        counter = 0
+        while len(blob) < OUTPARAM_WINDOW:
+            blob += hashlib.sha256(b"modtest-outparam|%d|%d|%d"
+                                   % (key[0], key[1], counter)).digest()
+            counter += 1
+        _OUTPARAM_PATTERN[key] = blob[:OUTPARAM_WINDOW]
+    return _OUTPARAM_PATTERN[key]
+
 
 class _CoverageRunner(emu.Runner):
     """emu.Runner + executed-PC coverage + STACK-RECORD CONTENT at calls.
@@ -367,6 +425,13 @@ class _CoverageRunner(emu.Runner):
         self.covered = set()
         self.stack_arg_trace = []
         self.stack_raw_trace = []
+        self.stack_ro_trace = []
+        self._outparam_regions = []
+        self.outparam_uninit = []
+        self.outparam_filled = 0
+        self.uninit_stack_reads = 0
+        #: fixture dimension; set by run_original / run_candidate
+        self.outparam_word = None
         self._pending_preserve = None
         self._preserve_cache = {}
         self._otm = None
@@ -394,14 +459,69 @@ class _CoverageRunner(emu.Runner):
         pushed = set()
         classified = {}
 
+        #: ★ THE UNMODELLED OUT-PARAMETER (§28.5.2; net_test_coverage.md §12.1).
+        #: `emu` models a callee as opaque and writes r0/r1 only, so a callee
+        #: whose JOB is to fill a caller-supplied buffer fills NOTHING, and the
+        #: caller then reads a stack byte that nothing in the run ever wrote.
+        #: Both sides read garbage; the two frames are not the same frame; the
+        #: comparison decides nothing about the reconstruction.  It is detected
+        #: EXACTLY -- a read of a never-written byte inside a region this run
+        #: passed by pointer to an oracled call -- and the fixture is DROPPED at
+        #: `gen` (`generate.select`).  Dropping can only remove evidence, never
+        #: manufacture it.
+        #:
+        #: `written` alone is the WRONG set to test against here, and using it
+        #: would have flagged nearly everything: a byte the PROLOGUE pushed is
+        #: classified into `pushed`, so the epilogue's `pop` reads a byte not in
+        #: `written`, and a 512-byte window from a stack local reaches the
+        #: frame's own saved registers on most functions.  A pushed byte is
+        #: initialised.  Rule 6's `inherited` keeps its existing meaning
+        #: untouched -- it defines what a stored record contains and is a
+        #: different question.
         def _read(_uc, _access, address, size, _value, _ud):
             if not (stack_low <= address < stack_high):
                 return True
             for offset in range(size):
-                if (address + offset) not in written:
-                    inherited.add(address + offset)
+                byte_address = address + offset
+                if byte_address not in written:
+                    inherited.add(byte_address)
+                if byte_address in written or byte_address in pushed:
+                    continue
+                self.uninit_stack_reads += 1
+                # WHICH buffer a byte belongs to, when several pointer
+                # arguments' windows overlap: the CLOSEST PRECEDING pointer,
+                # then the most recent call.  Picking "the last region
+                # registered" instead would be decided by the order two
+                # arguments happened to be classified and by how far apart the
+                # frame put them -- i.e. by frame layout, which is the very
+                # thing this fill exists to be independent of.  The RELATIVE
+                # layout of the pointers actually passed is compared in the
+                # trace, so this choice agrees on both sides whenever the trace
+                # does.
+                best = None
+                for region in self._outparam_regions:
+                    low_bound, high_bound, ordinal, index = region
+                    if low_bound <= byte_address < high_bound:
+                        if best is None or (low_bound, ordinal) > (best[0],
+                                                                   best[2]):
+                            best = region
+                if best is None:
+                    continue
+                low_bound, _high, ordinal, index = best
+                self.outparam_uninit.append((byte_address, low_bound))
+                if OUTPARAM_FILL:
+                    # Writing inside a UC_HOOK_MEM_READ callback DOES change the
+                    # value the access returns (verified directly against
+                    # unicorn before relying on it).
+                    pattern = outparam_bytes(ordinal, index,
+                                             self.outparam_word)
+                    _uc.mem_write(byte_address,
+                                  pattern[byte_address - low_bound:
+                                          byte_address - low_bound + 1])
+                    self.outparam_filled += 1
             return True
-        if self.stack_content and STACK_ARG_WINDOW:
+        if (self.stack_content and STACK_ARG_WINDOW) or (OUTPARAM_FILL and
+                                                         self.call_sites):
             uc.hook_add(UC_HOOK_MEM_READ, _read)
 
         def _write(_uc, _access, address, size, _value, _ud):
@@ -440,7 +560,12 @@ class _CoverageRunner(emu.Runner):
                     written.add(address + offset)
                     pushed.discard(address + offset)
             return True
-        if self.stack_content and STACK_ARG_WINDOW:
+        if (self.stack_content and STACK_ARG_WINDOW) or (OUTPARAM_FILL and
+                                                         self.call_sites):
+            # The write hook is what distinguishes an INITIALISED stack byte
+            # from an unwritten one, so the out-parameter fill needs it on the
+            # CANDIDATE side too -- not only on the golden, where the record
+            # content is captured.
             uc.hook_add(UC_HOOK_MEM_WRITE, _write)
 
         def _coverage(_uc, address, _size, _ud):
@@ -480,14 +605,31 @@ class _CoverageRunner(emu.Runner):
                          for index in keep})
             record = []
             raw = []
+            readonly_words = []
             for index in range(4):
                 value = int(_uc.reg_read(emu.REG[index])) & 0xffffffff
                 if not (stack_low <= value < stack_high):
                     continue
+                # The out-parameter region for this argument: whatever the
+                # callee was handed a pointer to.  Registered on BOTH sides.
+                # Capped at STACK_TOP so a shallow frame's region can never
+                # reach the stack-argument area emu writes above it.
+                self._outparam_regions.append(
+                    (value, min(value + OUTPARAM_WINDOW, emu.STACK_TOP),
+                     ordinal, index))
                 span = min(STACK_ARG_WINDOW, stack_high - value)
+                window = b""
                 if span > 0:
-                    raw.append((index,
-                                bytes(_uc.mem_read(value, span)).hex()))
+                    window = bytes(_uc.mem_read(value, span))
+                    raw.append((index, window.hex()))
+                    # ★ READ-ONLY POINTER INSIDE A STACK RECORD (§28.6.1).
+                    # Computed on BOTH sides, from the same function of the
+                    # observed word, so the golden stores WHICH string and the
+                    # candidate is asked the same question about its own word.
+                    markers = self._readonly_markers(value, window)
+                    if markers:
+                        readonly_words.append(
+                            (index, tuple(sorted(markers.items()))))
                 if not self.stack_content:
                     continue
                 # RULE 6: an offset the run read before writing is inherited
@@ -512,10 +654,36 @@ class _CoverageRunner(emu.Runner):
                                           "little")
                     if stack_low <= word < stack_high:
                         pointer_words.update(offset + k for k in range(4))
+                # ★ A POINTER TO A STRING LITERAL IS THE SAME KIND OF NUMBER AS
+                # A POINTER TO A STACK LOCAL, and it was being compared
+                # EXACTLY.  Measured: four of the six `stack-record` failures in
+                # §28.6 mismatch at arg 2 offset 4 with a golden word that
+                # decodes as a `printf` format string in the shipped image's
+                # pool and a candidate word that is the SAME STRING in its own
+                # `.rodata`.  `bt_dev_show_info` failed 41 of 41 fixtures at
+                # 100 % coverage on that alone.
+                # It is NOT blanked -- that would let a candidate pass the wrong
+                # string.  The CONTENT is recorded instead, so *which* string is
+                # compared and *where it lives* is not.  (§28.6.1)
+                readonly_offsets = dict(readonly_words[-1][1]) \
+                    if (readonly_words and readonly_words[-1][0] == index) else {}
+                # A word only counts as a stored read-only pointer when the run
+                # wrote ALL FOUR of its bytes; a partially-written word is not a
+                # pointer this function produced.
+                readonly_span = {}
+                for base_offset in readonly_offsets:
+                    if all(base_offset + k in present for k in range(4)):
+                        for k in range(4):
+                            readonly_span[base_offset + k] = base_offset
                 content = []
                 for offset in sorted(present):
                     if offset in pointer_words:
                         content.append((offset, "P"))
+                    elif offset in readonly_span:
+                        base_offset = readonly_span[offset]
+                        content.append(
+                            (offset, ["RO", readonly_offsets[base_offset]]
+                             if offset == base_offset else "-"))
                     else:
                         content.append((offset,
                                         _uc.mem_read(value + offset, 1)[0]))
@@ -525,7 +693,9 @@ class _CoverageRunner(emu.Runner):
                 self.stack_arg_trace.append((ordinal, tuple(record)))
             if raw:
                 self.stack_raw_trace.append((ordinal, tuple(raw)))
-        if STACK_ARG_WINDOW or self.preserve_core is not None:
+            if readonly_words:
+                self.stack_ro_trace.append((ordinal, tuple(readonly_words)))
+        if STACK_ARG_WINDOW or OUTPARAM_FILL or self.preserve_core is not None:
             for site in sorted(self.call_sites):
                 uc.hook_add(UC_HOOK_CODE, _hook, begin=site, end=site)
 
@@ -552,6 +722,38 @@ class _CoverageRunner(emu.Runner):
                         begin=emu.ORACLE_TRAMPOLINE,
                         end=emu.ORACLE_TRAMPOLINE)
         return uc
+
+    def _readonly_markers(self, base, window):
+        """{offset: content-digest} for words of `window` that point at a
+        read-only STRING, by `emu.ReadOnlyPointees`' own narrow test.
+
+        The same function of the same observed word is applied on both sides,
+        so two equal words always produce equal markers and the verdict can
+        only change for a pair whose two addresses hold byte-identical strings
+        -- which is exactly the equivalence being asserted.  `emu`'s test is
+        already deliberately narrow (a complete NUL-terminated printable string
+        whose head the address is); anything failing it keeps EXACT byte
+        comparison, so no discrimination is lost for const tables, device
+        structs or function pointers.
+
+        Disabled wherever `emu.RODATA_EQUIVALENCE_CORES` is (i.e. on net, where
+        the analysis and runtime windows overlap numerically and a content
+        lookup could decode the wrong object) -- there `self.readonly` is
+        falsy and this returns nothing, leaving today's byte comparison.
+        """
+        readonly = getattr(self, "readonly", None)
+        if not readonly:
+            return {}
+        markers = {}
+        for offset in range(0, max(len(window) - 3, 0)):
+            if (base + offset) & 3:
+                continue
+            word = int.from_bytes(window[offset:offset + 4], "little")
+            identity = readonly.content(word)
+            if identity is not None:
+                markers[offset] = hashlib.sha256(
+                    identity[1]).hexdigest()[:16]
+        return markers
 
     _REG_INDEX = {**{"r%d" % i: i for i in range(13)},
                   "ip": 12, "sb": 9, "sl": 10, "fp": 11}
@@ -595,6 +797,11 @@ class _CoverageRunner(emu.Runner):
     def run(self, *args, **kwargs):
         self.stack_arg_trace = []
         self.stack_raw_trace = []
+        self.stack_ro_trace = []
+        self._outparam_regions = []
+        self.outparam_uninit = []
+        self.outparam_filled = 0
+        self.uninit_stack_reads = 0
         self._call_seq = 0
         self._pending_preserve = None
         self.preserved_calls = []
@@ -615,10 +822,20 @@ class _CoverageRunner(emu.Runner):
         state["stack_raw"] = {ordinal: dict(record)
                               for ordinal, record in self.stack_raw_trace
                               if ordinal < calls}
+        state["stack_ro"] = {ordinal: {index: dict(markers)
+                                       for index, markers in record}
+                             for ordinal, record in self.stack_ro_trace
+                             if ordinal < calls}
+        # Reported, not acted on, from here: `generate.select` decides what to
+        # do with it and the vector file records the count, so the class stays
+        # visible instead of becoming an invisible filter.
+        state["outparam_uninit"] = len(self.outparam_uninit)
+        state["outparam_filled"] = self.outparam_filled
+        state["uninit_stack_reads"] = self.uninit_stack_reads
         return state
 
 
-def stack_args_mismatch(golden, candidate_raw):
+def stack_args_mismatch(golden, candidate_raw, candidate_ro=None):
     """RULE 7: the GOLDEN defines the extent of a stack record.
 
     `golden` is what the SHIPPED bytes produced -- a list of
@@ -649,10 +866,31 @@ def stack_args_mismatch(golden, candidate_raw):
                 return {"call_ordinal": ordinal, "arg": index,
                         "reason": "candidate passed no stack pointer here"}
             data = bytes.fromhex(blob)
+            markers = ((candidate_ro or {}).get(ordinal)
+                       or (candidate_ro or {}).get(str(ordinal)) or {})
+            markers = markers.get(index, markers.get(str(index))) or {}
             for item in content:
                 offset, expected = item[0], item[1]
                 if expected == "P":
                     continue            # frame-layout word, blanked on both
+                if expected == "-":
+                    continue            # 2nd..4th byte of a read-only pointer
+                if isinstance(expected, (list, tuple)) and expected[0] == "RO":
+                    # WHICH STRING, not where it lives (§28.6.1).  The
+                    # candidate's word must resolve, by the same test, to a
+                    # read-only string with the same content.  A candidate that
+                    # stores a DIFFERENT string still fails, and one that stores
+                    # a non-pointer fails with `reason` saying so -- this is not
+                    # a blanking rule.
+                    got = markers.get(offset, markers.get(str(offset)))
+                    if got != expected[1]:
+                        return {"call_ordinal": ordinal, "arg": index,
+                                "offset": offset,
+                                "expected_readonly_content": expected[1],
+                                "got_readonly_content": got,
+                                "reason": ("candidate word is not a read-only "
+                                           "string with the same content")}
+                    continue
                 if offset >= len(data):
                     return {"call_ordinal": ordinal, "arg": index,
                             "offset": offset, "reason": "window short"}
@@ -681,11 +919,15 @@ class Fixture(dict):
       mem            [[arg_index, offset, hex]] pointee writes
       xpsr           architectural mode (0 = thread, nonzero = handler)
       float_scratch  seed the argument-pointer region with plausible binary32
+      outparam       word an oracled callee is modelled as writing through a
+                     stack pointer argument (core.OUTPARAM_FILL); None = the
+                     default hash pattern
     """
 
     @staticmethod
     def make(fid, args, nptr=2, scratch_seed=0, fp=None, abs_mem=None,
-             mem=None, xpsr=0, float_scratch=False, oracle=None):
+             mem=None, xpsr=0, float_scratch=False, oracle=None,
+             outparam=None):
         return Fixture(id=fid, args=[int(a) & 0xffffffff for a in args],
                        nptr=int(nptr), scratch_seed=int(scratch_seed),
                        fp={str(k): int(v) & 0xffffffff
@@ -698,7 +940,9 @@ class Fixture(dict):
                            for i, o, b in (mem or [])],
                        xpsr=int(xpsr), float_scratch=bool(float_scratch),
                        oracle=[[int(i), int(r), int(v) & 0xffffffff]
-                               for i, r, v in (oracle or [])])
+                               for i, r, v in (oracle or [])],
+                       outparam=(None if outparam is None
+                                 else int(outparam) & 0xffffffff))
 
     def run_kwargs(self):
         oracle = {}
@@ -1273,6 +1517,7 @@ def run_original(core, va, size, fixture, ret_kind="i32", max_insns=200000):
     body = ctx["read"](va, size, pad=literal_pad(core, va, size))
     runner = _CoverageRunner(va & ~1, size, body, ctx["code_base"],
                              preserve_core=core)
+    runner.outparam_word = fixture.get("outparam")
     kwargs = fixture.run_kwargs()
     state = runner.run(max_insns=max_insns, **callee_abi(core), **kwargs)
     return state, runner.covered
@@ -1334,8 +1579,18 @@ def _tree_cflags(tree, unit):
 #:   * an unbannered file-local helper is spelling and may inline freely.
 #: Only the interprocedural transforms that would MERGE or RESHAPE a
 #: banner-named function stay as flags.
+#: `-fno-ipa-vrp` ADDED 2026-07-29 (§28.6.3).  INTERPROCEDURAL VALUE-RANGE
+#: PROPAGATION is not covered by `-fno-ipa-cp` and leaks the unit boundary in a
+#: MERGED TU only: when the TU also defines a callee whose return value GCC can
+#: pin (`ble_appearance_value` is `{ return 0x341; }`), the compiler substitutes
+#: the constant and DELETES the call the shipped code makes.
+#: `__attribute__((noinline))` does not stop it, because this is not inlining.
+#: It can only happen in the refactored tree, so it presents as a TREE
+#: DISAGREEMENT -- the headline metric of this whole design.  Bisected against
+#: the whole flag set: this one flag restores `read_appearance` to 2 calls and
+#: no other flag changes it.
 UNIT_BOUNDARY_CFLAGS = ["-fno-ipa-icf", "-fno-ipa-sra", "-fno-ipa-cp",
-                        "-fno-partial-inlining"]
+                        "-fno-ipa-vrp", "-fno-partial-inlining"]
 
 
 def _definition_span(text, name, start=0):
@@ -1535,6 +1790,32 @@ def linker_pins(tree, core):
     return pins
 
 
+def _only_directives(before):
+    """True when `before` is whitespace and COMPLETE preprocessor lines only.
+
+    Used by `_expose_target` to decide whether `static` opens its declaration.
+    The LAST fragment (everything after the final newline, i.e. what sits on
+    the same line as `static`) must be blank; every earlier line must be blank
+    or a `#`-directive, and a directive continued with a trailing backslash is
+    followed to its end so that its continuation body is not read as code.
+    """
+    parts = before.split("\n")
+    if parts[-1].strip():
+        return False
+    continued = False
+    for line in parts[:-1]:
+        stripped = line.strip()
+        if continued:
+            continued = stripped.endswith("\\")
+            continue
+        if not stripped:
+            continue
+        if not stripped.startswith("#"):
+            return False
+        continued = stripped.endswith("\\")
+    return not continued
+
+
 def _expose_target(text, symbol):
     """Drop `static` from the TARGET function's own definition, and only that.
 
@@ -1591,7 +1872,18 @@ def _expose_target(text, symbol):
             continue
         before = head[:position]
         after_kw = head[position + 6:]
-        if before.strip() or not after_kw[:1].isspace():
+        # A PREPROCESSOR DIRECTIVE IS NOT A STATEMENT, and the walk-back above
+        # cannot see one: a directive ends with a NEWLINE, not with `;`, `}` or
+        # `*/`, so `start` steps straight over it and `before` is
+        # '\n#include "g1_display.h"\n' -- non-empty, so the declaration was
+        # SKIPPED.  Measured cost: `get_demo_image_source`,
+        # `refresh_box_field_timer`, `set_misc_286c_value` and `uarte_nrfx_init`
+        # -- FOUR of the SEVEN tree disagreements in the 593-symbol fan-out of
+        # §28.8, i.e. the harness manufacturing the metric it exists to report.
+        # Accept a `before` made only of whitespace and COMPLETE directive
+        # lines; anything else still means `static` did not open the
+        # declaration.  (§28.6.2)
+        if not _only_directives(before) or not after_kw[:1].isspace():
             continue                     # `static` must open the declaration
         text = text[:start + position] + after_kw + text[index:]
         count += 1
@@ -1772,6 +2064,18 @@ def _compile_candidate(tree, symbol, va, extra_cflags=None, text_override=None):
         if target is None:
             raise RuntimeError("symbol %s not found after link" % symbol)
         text_section = elf.get_section_by_name(".text")
+        if text_section is None:
+            # `main` is the one symbol of the 634-symbol fan-out with NO result
+            # at all: this returned None, the subscript raised TypeError, and
+            # because `cli.cmd_run` had no per-symbol guard the exception took
+            # the whole batch with it -- 23 further symbols silently lost
+            # (§28.8.4).  A link that produced no `.text` is an ordinary
+            # compile-side failure and must be reported as CCFAIL, not as a
+            # crash.
+            raise RuntimeError(
+                "linked object for %s has no .text section (sections: %s)"
+                % (symbol, ", ".join(s.name for s in elf.iter_sections()
+                                     if s.name)[:200]))
         base = text_section["sh_addr"]
         size = text_section["sh_size"]
         end = max(s["sh_addr"] + s["sh_size"] for s in elf.iter_sections()
@@ -1822,6 +2126,7 @@ def run_candidate(core, symbol, tree, va, fixture, golden, ret_kind="i32",
         runner.readonly = emu.ReadOnlyPointees([
             emu._bytes_extent(linked_va + size, runner.body[size:]),
             emu._firmware_readonly_extent(core_ctx(core)["code_base"])])
+    runner.outparam_word = fixture.get("outparam")
     kwargs = fixture.run_kwargs()
     state = runner.run(
         max_insns=max_insns,
@@ -1920,15 +2225,34 @@ def harness_rev():
 def vector_staleness(record):
     """None if this vector may be replayed, else why not.
 
-    An UNSTAMPED vector is allowed with no complaint from here: every vector
-    written before the stamp existed is unstamped, and refusing them all would
-    turn a safety feature into a wall.  `cli.cmd_run` reports the count so the
-    gap is visible.  A vector stamped with a DIFFERENT fingerprint is refused.
+    ⚠ THIS USED TO FAIL OPEN AND THAT WAS THE WHOLE HOLE.  The previous version
+    returned None -- *replay permitted, silently* -- for an UNSTAMPED vector,
+    on the reasoning that refusing every pre-stamp vector "would turn a safety
+    feature into a wall", and claimed in this docstring that `cli.cmd_run`
+    reported the count.  It did not (`grep -n unstamped cli.py` returned
+    nothing), so the guard's ONE escape hatch was also its only invisible path.
+    The net pass measured the consequence: all 233 of its inherited vectors
+    were unstamped, i.e. **100 % of the corpus took the permissive branch**,
+    replaying against a harness that had since changed in four ways that each
+    redefine the stored expectation (net_test_coverage.md §9.1).
+
+    It now FAILS CLOSED: no stamp, no replay.  The wall is the point -- `gen`
+    is cheap, a wrong verdict is not -- and it is one regeneration deep.
+
+    The env-var switches are checked the same way: a vector that does not
+    RECORD one is refused rather than assumed to match, because "the field is
+    missing" and "the field agrees" are not the same statement and only the
+    second one licenses a comparison.  (Written this way deliberately: the
+    obvious `if field in harness` spelling reopens the identical hole one level
+    down -- an old vector simply omits the field and sails through.)
     """
     harness = record.get("harness") or {}
     stamped = harness.get("rev")
     if stamped is None:
-        return None
+        return ("vector is UNSTAMPED -- it was frozen by an unknown harness "
+                "version, and what it stores as 'expected' may not be what "
+                "this harness (%s) compares against; regenerate it "
+                "(`cli.py gen`)" % harness_rev())
     if stamped != harness_rev():
         return ("vector was generated by harness %s, this is %s -- regenerate "
                 "it (`cli.py gen`); the expectation it stores may not mean "
@@ -1940,13 +2264,35 @@ def vector_staleness(record):
     # "expected" under one fingerprint.  Both are recorded at `gen`; compare
     # them.  (Found while A/B-measuring the r0-clobber class -- the control arm
     # and the treatment arm produced indistinguishable vector files.)
-    for field, current in (("derived_arity", DERIVED_ARITY),
-                           ("oracle_preserve", ORACLE_PRESERVE)):
-        if field in harness and bool(harness[field]) != bool(current):
+    for field, current in sorted(harness_env().items()):
+        if field not in harness:
+            return ("vector does not record %s, so it cannot be shown to mean "
+                    "what this run compares against -- regenerate it "
+                    "(`cli.py gen`)" % field)
+        if harness[field] != current:
             return ("vector was generated with %s=%s, this run has %s -- "
                     "regenerate it (`cli.py gen`)"
                     % (field, harness[field], current))
     return None
+
+
+def harness_env():
+    """Every ENVIRONMENT switch that changes what a golden expectation MEANS.
+
+    One place, so the next switch is covered by construction.  `harness_rev()`
+    fingerprints SOURCE and is blind to all of these: two runs of byte-identical
+    code with different values here freeze two different definitions of
+    "expected" under one fingerprint.  `gen` records this dict and
+    `vector_staleness` refuses a vector that does not match it -- including one
+    that simply OMITS a key, which is how the same hole would otherwise reopen
+    one level down.
+    """
+    return {"outparam_fill": bool(OUTPARAM_FILL),
+            "derived_arity": bool(DERIVED_ARITY),
+            "oracle_preserve": bool(ORACLE_PRESERVE),
+            "stack_arg_window": int(STACK_ARG_WINDOW),
+            "outparam_window": int(OUTPARAM_WINDOW),
+            "drop_outparam_uninit": bool(DROP_OUTPARAM_UNINIT)}
 
 
 def vector_path(core, module, symbol):

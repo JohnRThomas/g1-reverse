@@ -28,30 +28,31 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 4, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536948308, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "11da812c294288a2dd1128f5b5c79573b08207b5bd20720a513562e0db866844",
+    "events": "b6bcf7326212bdabcc63ce9104a5946f5c0e93de9b1e876f7f162e0690bf4220",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     1276959699,
-     12,
-     4,
-     0
+     536943568,
+     536948040,
+     536948308,
+     536940048
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -86,30 +87,31 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 2147483648, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536940476, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "df982a2eeefa2279220d3ebe5f0451d4434a90bad68dc4d5e81f999b422ab998",
+    "events": "7cd19e1527d857e7fe34b6a0faead663702ab537cef2294452b8f3062ea3e530",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     4067469868,
-     1797429778,
-     2147483648,
-     315044147
+     536947244,
+     536943120,
+     536940476,
+     536949040
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -144,30 +146,31 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 3677430904, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536945784, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "b8ef5c7490c9fe8491bf49d73111302626e34e884d645d4bead3ab8b1dc45e35",
+    "events": "f9f5e7961cee775ec7258a00ba9022e2b1fa3ad68d124ce4329c5bd621e3a573",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     4290042576,
-     598759513,
-     3677430904,
-     7
+     536943312,
+     536942680,
+     536945784,
+     536943396
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
@@ -202,30 +205,31 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 8, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536943096, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "6d800cd81a1f58b31b7d8cd75873e7ac31654747bf88ef0d525b56a60200ccdf",
+    "events": "7485e0c2563cc6db405e298c8d0320be048a261224730c69ee950970f46d82c7",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     2618385373,
-     255,
-     8,
-     3619521758
+     536945628,
+     536940936,
+     536943096,
+     536937692
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-3",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 3,
     "xpsr": 0
    },
@@ -260,30 +264,31 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 3842370354, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536947504, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "ea233b79e31c8a86cb74a8dc9881294b5c7917c1c82a3ef7f622414badf0a9aa",
+    "events": "e5ad2bb112fe1e435b704a5c75c9706dac1578e7ae1446c43fddbbfb9f9b82df",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     16,
-     2147483647,
-     3842370354,
-     6
+     536945864,
+     536944284,
+     536947504,
+     536951124
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 4,
     "xpsr": 0
    },
@@ -318,30 +323,90 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 5, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536944168, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "477e629c8ef70b1e5739cec004b16e07629464bb6b6a1156eca89cf32f64ae61",
+    "events": "2f48ecba51c23c01dee5590287bf6036cd3800563ab63313064461fa74a28280",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     4,
-     3322790363,
-     5,
-     2147483647
+     536939588,
+     536951592,
+     536944168,
+     536942644
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-5",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 5,
+    "xpsr": 0
+   },
+   "new_instructions": 7,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    3,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    293560,
+    92072,
+    179580,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536947060, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617729, 1, 1)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "a875768b40add04d6f82eb77e8ef4e747ec65fefe1d3bd7d94c847655e7d7390",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536950900,
+     536936920,
+     536947060,
+     536952236
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-6",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 6,
     "xpsr": 0
    },
@@ -376,30 +441,31 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 1, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536950368, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "a5adaaa08481a0b01877bc6872d41c58fb35885e6438a0a9ab83b391845c88c1",
+    "events": "81867e517294a153efaa4a051bb41e812ff51ae7ebe88dec8a032be44b3306a0",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     2300957721,
-     1604804925,
-     1,
-     2363272863
+     536941592,
+     536944956,
+     536950368,
+     536948380
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-7",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 7,
     "xpsr": 0
    },
@@ -434,30 +500,31 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 558645175, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536952756, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "63e5a45a3de0a0f9c26e36ac9decf591bbf4cf2053c7504e18a13e9b3778a395",
+    "events": "03ca88a1ec75d61387db8010a287be28dd0aa10cddf892b2d339c24fc2914c80",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     2156366374,
-     708972563,
-     558645175,
-     4
+     536939044,
+     536940560,
+     536952756,
+     536949588
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-8",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 8,
     "xpsr": 0
    },
@@ -492,30 +559,31 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 499087790, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536951212, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "9e1f4b882e1111447deecc0d003b52eb26313e7f61f083960719ad267d573880",
+    "events": "f4ca3972b9b8ef2ef40e8fc126f72a46d33123befcf8ddfb35f6c4e84ea53ae8",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     1346232374,
-     1556998536,
-     499087790,
-     2147483647
+     536944692,
+     536947080,
+     536951212,
+     536940988
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 9,
     "xpsr": 0
    },
@@ -550,30 +618,90 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 256, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536946200, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "b9746e5b86cbec6f3c6dc0376762127c36934991645726487ed732d22fc75673",
+    "events": "82e1425a02707c7dd57fcc8a3da2c7670577513754bd263fe5fa294bfc7f2d59",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     3,
-     2147483648,
-     256,
-     1426281073
+     536939204,
+     536945020,
+     536946200,
+     536947328
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-10",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 10,
+    "xpsr": 0
+   },
+   "new_instructions": 7,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    3,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    293560,
+    92072,
+    179580,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536938076, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617729, 1, 1)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "db9a2e52c8681a8bea0b7c8402fe82c7a30189978c956c8efbe02aa4c98971ae",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536937040,
+     536948284,
+     536938076,
+     536941168
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 11,
     "xpsr": 0
    },
@@ -608,30 +736,90 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 6, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536941268, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "15fcdcee7f4a6207cc210e06850d7a9d558b8092ff119f3e134b471a1ea78d0e",
+    "events": "113d97dfbb98e757fbbaeba4aef7c32e88fe7f8e84dbc8694087b3573474cf0a",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     1156718256,
-     1944344031,
-     6,
-     617681966
+     536944520,
+     536936976,
+     536941268,
+     536937896
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-12",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 12,
+    "xpsr": 0
+   },
+   "new_instructions": 7,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    3,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    293560,
+    92072,
+    179580,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536939060, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617729, 1, 1)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "8b81b41d8eaa69488288906f79a4ac12ce1167eb78d1754e799596f4428a2231",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944304,
+     536942044,
+     536939060,
+     536941612
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 13,
     "xpsr": 0
    },
@@ -666,30 +854,31 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 3, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536943328, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "35165e3ceec61881b2758c15670d298571595502f0f71a662f848051a936907d",
+    "events": "d55bee15c5f494a376ec83faac1453921c0d33994c9b94f4aa51cbfa27e44884",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     1996365079,
-     12,
-     3,
-     470668832
+     536943892,
+     536949848,
+     536943328,
+     536942112
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-14",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 14,
     "xpsr": 0
    },
@@ -724,30 +913,90 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 3454407978, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536951236, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "69d1891faa5869b946b548cfa8e7059497140993c7b62f7c8d923e7800bf6999",
+    "events": "a7bdcd157fab66ef976a7126709a2c1729659e591829b1b53f6a9d3a53122de8",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     2024561310,
-     2147483648,
-     3454407978,
-     16
+     536952404,
+     536941132,
+     536951236,
+     536949908
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-15",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 15,
+    "xpsr": 0
+   },
+   "new_instructions": 7,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    3,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    293560,
+    92072,
+    179580,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536941864, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617729, 1, 1)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "3b43819055c1f20de8aa9f7461d725ab1d9248b9dd199136ba564902cd658195",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943260,
+     536942972,
+     536941864,
+     536940136
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
@@ -782,30 +1031,31 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 1168623309, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536938188, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "d695043973687bb22edf963b8b57ff79a451b4dfea2fce38ce4e2b67f7951d10",
+    "events": "5a9c7c871faddb1134314ed1acaab0a1e7966d3ac4c6620136bbfa1a38f50481",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     3,
-     3254638692,
-     1168623309,
-     4252165479
+     536944016,
+     536942692,
+     536938188,
+     536946020
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-17",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 17,
     "xpsr": 0
    },
@@ -840,30 +1090,31 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 697236451, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536951776, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "3e825010e294a128c04c76d15c3daddec61931e5c2fa9ee8cb6b0de2a9e00418",
+    "events": "89ecb9b4c014a0484c0051555162f9774861f8c3d8a017b464f02cc8ba54b054",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     3912442165,
-     0,
-     697236451,
-     1
+     536944948,
+     536937440,
+     536951776,
+     536945600
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-18",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 18,
     "xpsr": 0
    },
@@ -898,30 +1149,31 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 4178753371, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536950616, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "97035ef6a0856ecfdeafc9374a7b551004e9641ae7112e1df9d0c57abe615d8b",
+    "events": "741e956338856220069a91989bcbb0e47c27d08d6859238b18f5d5a5833145f5",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     6,
-     1536401714,
-     4178753371,
-     255
+     536939284,
+     536944944,
+     536950616,
+     536947592
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 19,
     "xpsr": 0
    },
@@ -956,30 +1208,31 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 2, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536939760, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "788c4506b312a8d97423625d252ae8d13a80a25e7f5a1b453f6a0b863971ba91",
+    "events": "d9cfcb233bceb54e364de29ad36ac0a31d8db1703df7167990497f1548130b12",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     4,
-     2306919366,
-     2,
-     7
+     536952740,
+     536939460,
+     536939760,
+     536951108
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-20",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 20,
     "xpsr": 0
    },
@@ -1014,30 +1267,31 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 2870852768, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536951968, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "d53250e6dc6d74d59c90d8b10e865a3581cc75c7ef972e5ce7ce95b9b95921b6",
+    "events": "497ca42105749c2975551f4c94c549e5636e5b70526df17720ee98ae75c6e84a",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     843060076,
-     1,
-     2870852768,
-     0
+     536941420,
+     536936640,
+     536951968,
+     536943488
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-21",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 21,
     "xpsr": 0
    },
@@ -1072,30 +1326,31 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 4294967295, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536949836, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "14a5e1fe409cca52b783bfaf40126e3ca45090df266afae7015dcd5b7790762a",
+    "events": "bcee1c3ccf728ee515ceea07979f02663dfd46b8cc57c1f62e679f5fb13dda43",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     7,
-     3001296298,
-     4294967295,
-     2451975022
+     536937396,
+     536946088,
+     536949836,
+     536947564
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-22",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 22,
     "xpsr": 0
    },
@@ -1130,30 +1385,31 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 2034212132, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536943908, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "4a9e66052ad28d77e5f0de193ae81e7c662fd2a740f4e84a50cef2a4992b901a",
+    "events": "1f049cd4518e904560cc4199b620f732720db417cc352aaa92da2bd16076c4c3",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     1591295399,
-     241044672,
-     2034212132,
-     1515885587
+     536952228,
+     536939712,
+     536943908,
+     536941584
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-23",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 23,
     "xpsr": 0
    },
@@ -1188,30 +1444,31 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 2967241396, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536937140, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "869f425d6dbba52c79d03144e991b48fbfa5a51a4cd06ce88562e9bd31214b53",
+    "events": "433b1b1881cd29f6f0e6fab5545561989213c31f44a0ee2ac9ba885be58ae24b",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     4,
-     6,
-     2967241396,
-     7
+     536949908,
+     536944852,
+     536937140,
+     536951364
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-24",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 24,
     "xpsr": 0
    },
@@ -1246,30 +1503,31 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 2149248134, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536947844, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "477693f3a1ea5cff5baac11093343d86ddc89fc94f451abc00362298006f470b",
+    "events": "a3d4f6b72f43b50550d1fce85a9abc77eb8e7fedd14c66745a75d44aa0117733",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     3751937804,
-     12,
-     2149248134,
-     604019693
+     536938252,
+     536941512,
+     536947844,
+     536943596
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 25,
     "xpsr": 0
    },
@@ -1304,30 +1562,31 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 3037640278, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536950356, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "5d464185f460240d172fe0a396beae0474b651b109f540bb18d86adfb1b59287",
+    "events": "459ccbfd3f17a37d877c4ae19fae07c6a9b54520856a0c065859cd459237c329",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     2992330384,
-     12,
-     3037640278,
-     2678623347
+     536942224,
+     536937032,
+     536950356,
+     536939632
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-26",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 26,
     "xpsr": 0
    },
@@ -1362,30 +1621,31 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 3639365232, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536940144, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "3c3c98869ea3ad9996ea7be7d7d38ec71b34ae105f04ff252d333a53d44bd228",
+    "events": "23c67c1adfe60fb588a80a8a300dd7ec28a169350bedab9f767d56f2a1d00637",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     187818536,
-     681194263,
-     3639365232,
-     4125446660
+     536945192,
+     536949524,
+     536940144,
+     536941060
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 27,
     "xpsr": 0
    },
@@ -1420,30 +1680,90 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 3886541357, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536946096, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "7958b26633f60dd891a022886a402709906a576d3db0f9cd92dc67044415e254",
+    "events": "ac77aeb35dfdadaf13b0916414dcb57fb09b2e47bf8d3c3f203d6146db124179",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     739928864,
-     256,
-     3886541357,
-     8
+     536946084,
+     536949992,
+     536946096,
+     536947112
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-28",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 28,
+    "xpsr": 0
+   },
+   "new_instructions": 7,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    3,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    293560,
+    92072,
+    179580,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536947244, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617729, 1, 1)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "3e7cb18c2bdf8b19915e471e556ecdb201856c3a72046a69bdf3123bd3387c37",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536947488,
+     536937084,
+     536947244,
+     536938744
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-29",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 29,
     "xpsr": 0
    },
@@ -1478,30 +1798,90 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 7, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536945744, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "fbdd7828896cd0415face1d0d209d5e9fbd65b4c5e4f4b0c7026c5a55692b313",
+    "events": "fa01e32df7626f74d3bd115159f6b1fcd5db7d8c5facd7d28e85029f6b933b60",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     4294967295,
-     2461003590,
-     7,
-     53351545
+     536952796,
+     536941720,
+     536945744,
+     536939284
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-30",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 30,
+    "xpsr": 0
+   },
+   "new_instructions": 7,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    3,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    293560,
+    92072,
+    179580,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536938932, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617729, 1, 1)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "d37c10761d277e829e9e4d10c760bd77dc6af2c000d2b8d4db50ab2b67e5ea40",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952300,
+     536948548,
+     536938932,
+     536941688
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
@@ -1536,30 +1916,31 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 3442053927, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536941348, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "4a2e4ad6480a0b2c7b80a40654bd684375822e1e89f65d4b37aa7e98dfc42c76",
+    "events": "c4420b94ba90ad6158e4303ca716c1ee263df92a6b1a1eb87d54fcc8afa50c60",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     1839753098,
-     2706821390,
-     3442053927,
-     1170652979
+     536946568,
+     536940812,
+     536941348,
+     536952624
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-32",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 32,
     "xpsr": 0
    },
@@ -1594,30 +1975,90 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 922796015, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536944276, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "8e81f178d5bd226f913007d33828cfd429b89276d249a4a3c84cc84d2873970d",
+    "events": "dccf2ae491629568983c150f944dc24050d3a48f34381d31bfc377ff0cfe33ab",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     12,
-     3990671540,
-     922796015,
-     2147483647
+     536946060,
+     536942020,
+     536944276,
+     536938756
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-33",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 33,
+    "xpsr": 0
+   },
+   "new_instructions": 7,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    3,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    293560,
+    92072,
+    179580,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536952812, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617729, 1, 1)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "39bd468010a981cdc43ad9361b57351fa547739c1605b4d8a36edacbf1023c69",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536950120,
+     536940724,
+     536952812,
+     536936476
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 34,
     "xpsr": 0
    },
@@ -1652,30 +2093,31 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 4001652011, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536943912, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "c665aad89baf86d7c02eae9dc8c49fa1a0dd4c12bda13f78420f2ac023eabcb3",
+    "events": "5ba374023df1430c3dce205744e02fe3d2a65edce093baafb5a986b899e57f70",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     2726887024,
-     3578977268,
-     4001652011,
-     1
+     536952432,
+     536943604,
+     536943912,
+     536937872
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
@@ -1710,30 +2152,31 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 2147483647, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536945964, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "1d38f90951e28845768275ad142a7837e3271ef7b1b83b6a02fd01ae3f4f22f9",
+    "events": "de8c0ef678e81c678c592e17ca1a4644290b0288754b400df135db09cdbb2bf1",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     0,
-     12,
-     2147483647,
-     8
+     536944224,
+     536949832,
+     536945964,
+     536950872
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 36,
     "xpsr": 0
    },
@@ -1768,30 +2211,31 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 2725586938, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536946680, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "a976d9fe2199b4bc71bf99c2b2b5fd9ca8c84127cc856a4019fdc9506a765f9e",
+    "events": "58d4e3f48f4adbe5dc8016ddd96584803044ce208eefc33d188e7e6e570b9d60",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     1,
-     2057795936,
-     2725586938,
-     1299241558
+     536951728,
+     536951136,
+     536946680,
+     536943188
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-37",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 37,
     "xpsr": 0
    },
@@ -1826,30 +2270,90 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 3774328631, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536936976, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "054688e6f1ab67cddf9f091a94537d4058eee711ae5c393a35cde3ca46fef236",
+    "events": "8f415d28cbaf0d8ed60f41e84b38dbd68f1cd19bf7832c013bdc0cbe3b977dfa",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     3,
-     1587124134,
-     3774328631,
-     1997155928
+     536939760,
+     536941672,
+     536936976,
+     536945104
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-38",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 38,
+    "xpsr": 0
+   },
+   "new_instructions": 7,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    3,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    293560,
+    92072,
+    179580,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536948532, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617729, 1, 1)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "da2d8dd3acf7b5044fc145014953db819876148ebe2affe4b686a6d5bf23ceca",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941424,
+     536942500,
+     536948532,
+     536948312
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
     "xpsr": 0
    },
@@ -1884,495 +2388,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 1786326658, 'S', 'F', 'T', None)",
+    "('C', 2, 1927129959, 3677333764, 536948352, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 86617729, 1, 1)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "04cd159176115f9a3e7bdfcff5cee641a954561f1853309f8553f6324f488a58",
+    "events": "ecc4fb386ac83088875ffb11dcbb3fd075bea85dd1beada9a8ffd399f2816d16",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     0,
-     3928041777,
-     1786326658,
-     1835695343
+     536943600,
+     536946992,
+     536948352,
+     536952044
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-40",
     "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 40,
-    "xpsr": 0
-   },
-   "new_instructions": 7,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    0,
-    0,
-    3,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    293560,
-    92072,
-    179580,
-    92072
-   ],
-   "events_head": [
-    "('C', 0, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 3059135833, 'S', 'F', 'T', None)",
-    "('C', 3, 'S', 'F', 'T', None)",
-    "('W', 86617729, 1, 1)"
-   ],
-   "expect": {
-    "error": "Invalid memory write",
-    "events": "0eef5271d81918c1adb878696deee2e97a23d5a8bf1f80ca1f697fad2c4c70b4",
-    "kind": "fault",
-    "ncalls": 4
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3886568119,
-     256,
-     3059135833,
-     1
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-41",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 41,
-    "xpsr": 0
-   },
-   "new_instructions": 7,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    0,
-    0,
-    3,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    293560,
-    92072,
-    179580,
-    92072
-   ],
-   "events_head": [
-    "('C', 0, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 12, 'S', 'F', 'T', None)",
-    "('C', 3, 'S', 'F', 'T', None)",
-    "('W', 86617729, 1, 1)"
-   ],
-   "expect": {
-    "error": "Invalid memory write",
-    "events": "64ad3095e21dfa7eddc5a1612093fb7fa33bd01a12e826508dc69423ed3d6f49",
-    "kind": "fault",
-    "ncalls": 4
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     538639782,
-     4,
-     12,
-     3983748582
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-42",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 42,
-    "xpsr": 0
-   },
-   "new_instructions": 7,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    0,
-    0,
-    3,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    293560,
-    92072,
-    179580,
-    92072
-   ],
-   "events_head": [
-    "('C', 0, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 4239591256, 'S', 'F', 'T', None)",
-    "('C', 3, 'S', 'F', 'T', None)",
-    "('W', 86617729, 1, 1)"
-   ],
-   "expect": {
-    "error": "Invalid memory write",
-    "events": "8c391db9c2c96e2f3e71b1116115311a5b359a9b31c4e6766489178b9543d820",
-    "kind": "fault",
-    "ncalls": 4
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     1,
-     2,
-     4239591256,
-     899981045
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-43",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 43,
-    "xpsr": 0
-   },
-   "new_instructions": 7,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    0,
-    0,
-    3,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    293560,
-    92072,
-    179580,
-    92072
-   ],
-   "events_head": [
-    "('C', 0, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 1643521744, 'S', 'F', 'T', None)",
-    "('C', 3, 'S', 'F', 'T', None)",
-    "('W', 86617729, 1, 1)"
-   ],
-   "expect": {
-    "error": "Invalid memory write",
-    "events": "43bb642dfbf593151a3238dc31dfdc7430e68014da20b69b7049650859283a21",
-    "kind": "fault",
-    "ncalls": 4
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     0,
-     3098095624,
-     1643521744,
-     0
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-44",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 44,
-    "xpsr": 0
-   },
-   "new_instructions": 7,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    0,
-    0,
-    3,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    293560,
-    92072,
-    179580,
-    92072
-   ],
-   "events_head": [
-    "('C', 0, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 2737014790, 'S', 'F', 'T', None)",
-    "('C', 3, 'S', 'F', 'T', None)",
-    "('W', 86617729, 1, 1)"
-   ],
-   "expect": {
-    "error": "Invalid memory write",
-    "events": "9b966534698970b6e81aed8c4b43892313e160d917e3ba4e021e77deb5ac9c04",
-    "kind": "fault",
-    "ncalls": 4
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     12,
-     2147483648,
-     2737014790,
-     2486441645
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-45",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 45,
-    "xpsr": 0
-   },
-   "new_instructions": 7,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    0,
-    0,
-    3,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    293560,
-    92072,
-    179580,
-    92072
-   ],
-   "events_head": [
-    "('C', 0, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 2205369221, 'S', 'F', 'T', None)",
-    "('C', 3, 'S', 'F', 'T', None)",
-    "('W', 86617729, 1, 1)"
-   ],
-   "expect": {
-    "error": "Invalid memory write",
-    "events": "72bc3f981329967f8e5bbfc691814d043d4a3b189c4fcefd78497739882fd7ac",
-    "kind": "fault",
-    "ncalls": 4
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     2311625221,
-     2147483648,
-     2205369221,
-     2288169737
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-46",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 46,
-    "xpsr": 0
-   },
-   "new_instructions": 7,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    0,
-    0,
-    3,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    293560,
-    92072,
-    179580,
-    92072
-   ],
-   "events_head": [
-    "('C', 0, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 16, 'S', 'F', 'T', None)",
-    "('C', 3, 'S', 'F', 'T', None)",
-    "('W', 86617729, 1, 1)"
-   ],
-   "expect": {
-    "error": "Invalid memory write",
-    "events": "0e652f44c2675ca0b67fcf4881e9ae1a1860d8e6c71ba50cb9eec54717b45b05",
-    "kind": "fault",
-    "ncalls": 4
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     2147483647,
-     1010879855,
-     16,
-     6
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-47",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 47,
-    "xpsr": 0
-   },
-   "new_instructions": 7,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    0,
-    0,
-    3,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    293560,
-    92072,
-    179580,
-    92072
-   ],
-   "events_head": [
-    "('C', 0, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1927129959, 3677333764, 536950448, 'S', 'F', 'T', None)",
-    "('C', 3, 'S', 'F', 'T', None)",
-    "('W', 86617729, 1, 1)"
-   ],
-   "expect": {
-    "error": "Invalid memory write",
-    "events": "956928775952a2a482dcf593b1c34658efc9fe4e448ad08a793f6f3e5bf0b43a",
-    "kind": "fault",
-    "ncalls": 4
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536941384,
-     536952304,
-     536950448,
-     536949968
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "ptr4-0",
-    "mem": [],
     "nptr": 4,
     "oracle": [],
-    "scratch_seed": 700,
+    "outparam": null,
+    "scratch_seed": 40,
     "xpsr": 0
    },
    "new_instructions": 7,
@@ -2414,7 +2455,7 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 0, 0, 1935641720, 'S', 'F', 'T', None)",
+    "('C', 2, 0, 0, 536940552, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('W', 3812, 1, 1)",
     "('C', 4, 3, 'S', 'F', 'T', None)",
@@ -2423,25 +2464,30 @@
     "('W', 536972683, 1, 0)"
    ],
    "expect": {
-    "events": "7c5091d43f3817d0438ab5cdc2bbfd27927d069aeab31ad6ad9905e96563d2ad",
+    "events": "7bf554b89417499121768646c101e5af0634f49327ea64e44a4500009a4e2b75",
     "kind": "return",
     "ncalls": 6,
     "ret": [],
     "returned": true
    },
    "fixture": {
-    "abs": [],
+    "abs": [
+     [
+      536940544,
+      "4110012044100120481001204c1001205110012054100120581001205c1001206110012064100120681001206c1001207110012074100120781001207c1001208110012084100120881001208c1001209110012094100120981001209c100120a1100120a4100120a8100120ac100120b1100120b4100120b8100120bc100120c1100120c4100120c8100120cc100120d1100120d4100120d8100120dc100120e1100120e4100120e8100120ec100120f1100120f4100120f8100120fc1001200111012004110120081101200c1101201111012014110120181101201c1101202111012024110120281101202c1101203111012034110120381101203c1101204111012044110120481101204c1101205111012054110120581101205c1101206111012064110120681101206c1101207111012074110120781101207c1101208111012084110120881101208c1101209111012094110120981101209c110120a1110120a4110120a8110120ac110120b1110120b4110120b8110120bc110120c1110120c4110120c8110120cc110120d1110120d4110120d8110120dc110120e1110120e4110120e8110120ec110120f1110120f4110120f8110120fc1101200110012004100120081001200c1001201110012014100120181001201c1001202110012024100120281001202c1001203110012034100120381001203c100120"
+     ]
+    ],
     "args": [
-     2345269775,
-     3092785552,
-     1935641720,
-     554330043
+     536940544,
+     536940548,
+     536940552,
+     536940556
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "orc-all-0",
+    "id": "chain0-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [
      [
       0,
@@ -2449,33 +2495,13 @@
       0
      ],
      [
-      1,
-      0,
-      0
-     ],
-     [
-      2,
-      0,
-      0
-     ],
-     [
-      3,
-      0,
-      0
-     ],
-     [
-      4,
-      0,
-      0
-     ],
-     [
-      5,
-      0,
-      0
-     ],
-     [
       0,
       1,
+      0
+     ],
+     [
+      1,
+      0,
       0
      ],
      [
@@ -2485,7 +2511,17 @@
      ],
      [
       2,
+      0,
+      0
+     ],
+     [
+      2,
       1,
+      0
+     ],
+     [
+      3,
+      0,
       0
      ],
      [
@@ -2495,16 +2531,87 @@
      ],
      [
       4,
+      0,
+      0
+     ],
+     [
+      4,
       1,
       0
      ],
      [
       5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
       1,
       0
      ]
     ],
-    "scratch_seed": 400,
+    "outparam": null,
+    "scratch_seed": 830,
     "xpsr": 0
    },
    "new_instructions": 15,
@@ -2524,8 +2631,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "core",
@@ -2534,16 +2644,28 @@
   "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
   "source": "shipped image"
  },
- "pointer_arg_mask": [],
+ "pointer_arg_mask": [
+  0,
+  1,
+  2,
+  3
+ ],
  "ret_kind": "void",
  "search": {
-  "candidates": 163,
+  "candidates": 229,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
   "kept": 42,
-  "pointer_arg_mask": [],
+  "pointer_arg_mask": [
+   0,
+   1,
+   2,
+   3
+  ],
   "pointer_arg_mask_derived": true
  },
  "size": 46,

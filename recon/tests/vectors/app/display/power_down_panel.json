@@ -48,7 +48,7 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 4, 3694469211, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536948308, 3694469211, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
     "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 3694469211, 'S', 'F', 'T', None)",
@@ -57,7 +57,7 @@
     "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 3694469211, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "edac99606bfe8d29e430d0885b121a1ac34241cee28c95fe16e0e8c419ac3610",
+    "events": "29af93520e6babf7767c3edb71ba98110a3c8f5077a37363f33e7f2c524d6f0f",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -69,16 +69,17 @@
     "abs": [],
     "args": [
      1276959699,
-     12,
-     4,
-     0
+     536948040,
+     536948308,
+     536940048
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -139,16 +140,17 @@
     "abs": [],
     "args": [
      4067469868,
-     1797429778,
-     2147483648,
-     315044147
+     536943120,
+     536940476,
+     536949040
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -203,7 +205,7 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 3677430904, 471345317, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536945784, 471345317, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
     "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 471345317, 'S', 'F', 'T', None)",
@@ -212,7 +214,7 @@
     "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 471345317, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "62fedd695b4c6636f163cf56d904afaabd3ed0688faa08cbde3889ee86f72597",
+    "events": "0ea17038fde7d774142d7d9f81252d819843cdfee333005fb3dda87259058e7e",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -224,16 +226,17 @@
     "abs": [],
     "args": [
      4290042576,
-     598759513,
-     3677430904,
-     7
+     536942680,
+     536945784,
+     536943396
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
@@ -288,7 +291,7 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 3842370354, 2655161023, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536947504, 2655161023, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
     "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 2655161023, 'S', 'F', 'T', None)",
@@ -297,7 +300,7 @@
     "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 2655161023, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "46b5b7a80e88f5f0d75054815b5f655fa458fbbe7a31d5246d376f55f37c82f6",
+    "events": "265b6127c28481efc95a06683216b513dd6d50e221dae3e158d6ed8e0573b1d2",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -309,16 +312,17 @@
     "abs": [],
     "args": [
      16,
-     2147483647,
-     3842370354,
-     6
+     536944284,
+     536947504,
+     536951124
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 4,
     "xpsr": 0
    },
@@ -373,7 +377,7 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 499087790, 3178863954, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536951212, 3178863954, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
     "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 3178863954, 'S', 'F', 'T', None)",
@@ -382,7 +386,7 @@
     "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 3178863954, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "02014cd36ea6711da93afe91deb8b9b7726000e8b43059739bf7c551c590347c",
+    "events": "dc937b637b75ed38a97fa82ab3c1847107e209754bf3f7663dc7d70e3f1c6211",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -394,16 +398,17 @@
     "abs": [],
     "args": [
      1346232374,
-     1556998536,
-     499087790,
-     2147483647
+     536947080,
+     536951212,
+     536940988
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 9,
     "xpsr": 0
    },
@@ -458,7 +463,7 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 8, 3586673693, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536946200, 3586673693, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
     "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 3586673693, 'S', 'F', 'T', None)",
@@ -467,7 +472,7 @@
     "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 3586673693, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "46833d6872f1c952ff93eb2e7c56b21b2cb318cef7f8091b56a8a7d2eacfb8a5",
+    "events": "ed451c314aa2ab57e6c9c75df6444f9af743ec6492b4e21b4d8f845b8c9d8766",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -479,16 +484,17 @@
     "abs": [],
     "args": [
      182454980,
-     995058044,
-     8,
-     1
+     536945020,
+     536946200,
+     536947328
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 10,
     "xpsr": 0
    },
@@ -543,7 +549,7 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 256, 801746852, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536938076, 801746852, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
     "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 801746852, 'S', 'F', 'T', None)",
@@ -552,7 +558,7 @@
     "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 801746852, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "f5a718cf0bd867a2ae09fd77b4f6f90279527d1f808f01d21e437ae613c09c8a",
+    "events": "fe1bb243fe7b893f9aea54bdc37f76fa2b3b20b8dc70bde74adbb1ee827d42a6",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -564,16 +570,17 @@
     "abs": [],
     "args": [
      3,
-     2147483648,
-     256,
-     1426281073
+     536948284,
+     536938076,
+     536941168
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 11,
     "xpsr": 0
    },
@@ -628,7 +635,7 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 5, 1542880163, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536941268, 1542880163, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
     "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 1542880163, 'S', 'F', 'T', None)",
@@ -637,7 +644,7 @@
     "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 1542880163, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "7d31fd81a0a0383b783907df5d2e239532f35490217fefa07bf6e26fa38998a1",
+    "events": "b34cb1165426f680702552e65d182f56f0a8f99013818cfa908954e165b5a564",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -649,16 +656,17 @@
     "abs": [],
     "args": [
      8,
-     3217736208,
-     5,
-     1103693227
+     536936976,
+     536941268,
+     536937896
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-12",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 12,
     "xpsr": 0
    },
@@ -713,7 +721,7 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 6, 287561451, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536939060, 287561451, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
     "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 287561451, 'S', 'F', 'T', None)",
@@ -722,7 +730,7 @@
     "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 287561451, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "a662812a727fd6857650d0f9dc731121fb9805a6c5fc16b6d4d51d448a4b720b",
+    "events": "6626f074d611a43cc6480b2d21e7e6bb4374c739a99c66d6022656c91100915d",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -734,16 +742,17 @@
     "abs": [],
     "args": [
      1156718256,
-     1944344031,
-     6,
-     617681966
+     536942044,
+     536939060,
+     536941612
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 13,
     "xpsr": 0
    },
@@ -798,7 +807,7 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 3454407978, 886755549, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536941864, 886755549, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
     "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 886755549, 'S', 'F', 'T', None)",
@@ -807,7 +816,7 @@
     "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 886755549, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "5901afe8ad4480e6ca8d08e63f1417f55c099aea8462fe6995138f5fc106a588",
+    "events": "02af61563a40c2705cbef7611a8ae6a700a87f75fbb201804b3279bf600b2679",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -819,16 +828,17 @@
     "abs": [],
     "args": [
      2024561310,
-     2147483648,
-     3454407978,
-     16
+     536942972,
+     536941864,
+     536940136
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
@@ -883,7 +893,7 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 4178753371, 4075769455, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536950616, 4075769455, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
     "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 4075769455, 'S', 'F', 'T', None)",
@@ -892,7 +902,7 @@
     "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 4075769455, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "101fcfcd61386de3e42457d35a997f9a42c93dbe46379e08ccb3d0647efb1765",
+    "events": "ad43a490102515c50c6b349a882a0118ef252c793658de684ce88223e722024f",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -904,16 +914,17 @@
     "abs": [],
     "args": [
      6,
-     1536401714,
-     4178753371,
-     255
+     536944944,
+     536950616,
+     536947592
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 19,
     "xpsr": 0
    },
@@ -968,7 +979,7 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 2870852768, 2217669457, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536951968, 2217669457, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
     "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 2217669457, 'S', 'F', 'T', None)",
@@ -977,7 +988,7 @@
     "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 2217669457, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b065deff7efb99ed31b2574f1fba3cf4966c721b76e01ac362112db40e6250e2",
+    "events": "17c7d973580b5cb31a4f419319cbe2b66ff4480cca8576f705eff3e7ea3e7557",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -989,16 +1000,17 @@
     "abs": [],
     "args": [
      843060076,
-     1,
-     2870852768,
-     0
+     536936640,
+     536951968,
+     536943488
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-21",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 21,
     "xpsr": 0
    },
@@ -1053,7 +1065,7 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 2149248134, 3712121755, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536947844, 3712121755, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
     "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 3712121755, 'S', 'F', 'T', None)",
@@ -1062,7 +1074,7 @@
     "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 3712121755, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ff8c933e9388c4cc432a0c3f56826bc414c20269dac9971cdf79e98d9f7541d8",
+    "events": "5c5c3ae2a5ca6f558dde34430bef0dc3ee1f294eb73ea51b5f99d14f70e61c9c",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -1074,16 +1086,17 @@
     "abs": [],
     "args": [
      3751937804,
-     12,
-     2149248134,
-     604019693
+     536941512,
+     536947844,
+     536943596
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 25,
     "xpsr": 0
    },
@@ -1138,7 +1151,7 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 3639365232, 1775869161, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536940144, 1775869161, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
     "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 1775869161, 'S', 'F', 'T', None)",
@@ -1147,7 +1160,7 @@
     "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 1775869161, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "e298c5f28a5f3a22e73fb337e959daf8d4988c49456299fd25620dd4c6effca2",
+    "events": "4f97eda6fe3c5ef82714ffec2270f9c12a58657600d0b90f1d3b1874051f5f2e",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -1159,16 +1172,17 @@
     "abs": [],
     "args": [
      187818536,
-     681194263,
-     3639365232,
-     4125446660
+     536949524,
+     536940144,
+     536941060
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 27,
     "xpsr": 0
    },
@@ -1223,7 +1237,7 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 1, 1542213390, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536946096, 1542213390, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
     "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 1542213390, 'S', 'F', 'T', None)",
@@ -1232,7 +1246,7 @@
     "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 1542213390, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "fff458ff2febc1d80de92b32b082b4cb88209bfb1c546e551439c07ed2724675",
+    "events": "58fa5bad147bda833ced154b8e85ee232a45a6aca8326eaadf0d088b3674a6b7",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -1244,16 +1258,17 @@
     "abs": [],
     "args": [
      3711083943,
-     4285183211,
-     1,
-     2592385448
+     536949992,
+     536946096,
+     536947112
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-28",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 28,
     "xpsr": 0
    },
@@ -1308,7 +1323,7 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 1, 2417460406, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536945744, 2417460406, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
     "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 2417460406, 'S', 'F', 'T', None)",
@@ -1317,7 +1332,7 @@
     "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 2417460406, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "6b2e7c7ac9ba2c41c719e92ce13ce9570ed3869a23566b2495b16f6762eb6e1d",
+    "events": "a41f16e078c692c44692149a22df5f9d1df66ab0382fcb82f4a0e8e63abde531",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -1329,16 +1344,17 @@
     "abs": [],
     "args": [
      256,
-     8,
-     1,
-     7
+     536941720,
+     536945744,
+     536939284
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-30",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 30,
     "xpsr": 0
    },
@@ -1393,7 +1409,7 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 7, 1988174091, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536938932, 1988174091, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
     "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 1988174091, 'S', 'F', 'T', None)",
@@ -1402,7 +1418,7 @@
     "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 1988174091, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "2844b4da11b2e1e84dd374ab6beafd38b33e6b8666d95802210e119afd09f377",
+    "events": "efdfb13825907d2b8028782dc8cab530c4ffe61f22361bc4b67db400ae4cbc90",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -1414,16 +1430,17 @@
     "abs": [],
     "args": [
      4294967295,
-     2461003590,
-     7,
-     53351545
+     536948548,
+     536938932,
+     536941688
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
@@ -1478,7 +1495,7 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 3442053927, 615009301, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536941348, 615009301, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
     "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 615009301, 'S', 'F', 'T', None)",
@@ -1487,7 +1504,7 @@
     "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 615009301, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "1f67336ee09b21fc9a61b1bdf0e65ef48f079327c7623ea0e610ea01fd806c72",
+    "events": "e13b062e739f323ac4c040e9fc1acccce5ca5f33bccdea59826c58b4a656931c",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -1499,16 +1516,17 @@
     "abs": [],
     "args": [
      1839753098,
-     2706821390,
-     3442053927,
-     1170652979
+     536940812,
+     536941348,
+     536952624
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-32",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 32,
     "xpsr": 0
    },
@@ -1563,7 +1581,7 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 922796015, 2360084761, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536952812, 2360084761, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
     "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 2360084761, 'S', 'F', 'T', None)",
@@ -1572,7 +1590,7 @@
     "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 2360084761, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "44b2cd3bb0480daa955ebe649b63d310dff0d169a6d46f170109630b71ad1ace",
+    "events": "e187b9f5e0569d28d06b020c1f534b1e57472054611c9b1a25942b9b9f754d79",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -1584,16 +1602,17 @@
     "abs": [],
     "args": [
      12,
-     3990671540,
-     922796015,
-     2147483647
+     536940724,
+     536952812,
+     536936476
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 34,
     "xpsr": 0
    },
@@ -1648,7 +1667,7 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 4001652011, 4019880274, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536943912, 4019880274, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
     "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 4019880274, 'S', 'F', 'T', None)",
@@ -1657,7 +1676,7 @@
     "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 4019880274, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "a780b2702f2556ea4bbd2eb7aca1f0802707211d017df7bf1b5ddcc3c5ab6dac",
+    "events": "7ec58492def8784fbd144571e4d7875fe2b35e7bf5930c43cd157affca31d6ff",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -1669,16 +1688,17 @@
     "abs": [],
     "args": [
      2726887024,
-     3578977268,
-     4001652011,
-     1
+     536943604,
+     536943912,
+     536937872
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
@@ -1733,7 +1753,7 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 2147483647, 823752600, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536945964, 823752600, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
     "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 823752600, 'S', 'F', 'T', None)",
@@ -1742,7 +1762,7 @@
     "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 823752600, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "161659dbfd8f83432a6495304db64a8cc861c217062d6ffd8dc08e686726b9e8",
+    "events": "35391270614036d7e48f2d902d7c10f553fc1a8079ae238a3c207d27ae95aa5a",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -1754,16 +1774,17 @@
     "abs": [],
     "args": [
      0,
-     12,
-     2147483647,
-     8
+     536949832,
+     536945964,
+     536950872
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 36,
     "xpsr": 0
    },
@@ -1818,7 +1839,7 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 3774328631, 2944518647, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536948532, 2944518647, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
     "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 2944518647, 'S', 'F', 'T', None)",
@@ -1827,7 +1848,7 @@
     "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 2944518647, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b5bbbb218fd86a0d92684464aa7bac63ea6b98d8d6f549e8e28047880f306740",
+    "events": "e3619a71b2260af488270de45c6ed2d3766e981342ed649593b35a98a8996ef2",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -1839,16 +1860,17 @@
     "abs": [],
     "args": [
      3,
-     1587124134,
-     3774328631,
-     1997155928
+     536942500,
+     536948532,
+     536948312
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
     "xpsr": 0
    },
@@ -1903,7 +1925,7 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 3059135833, 2096484019, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536950104, 2096484019, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
     "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 2096484019, 'S', 'F', 'T', None)",
@@ -1912,7 +1934,7 @@
     "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 2096484019, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "35cdf04e8fd0c64a9a4bd1f010a3c4388e6cd446e66a6a997bcbca75c555d2f1",
+    "events": "0920233ff10ee8ae4a7cc396c94c82596948ff3c19618c3bbc496baefcb62439",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -1924,16 +1946,17 @@
     "abs": [],
     "args": [
      3886568119,
-     256,
-     3059135833,
-     1
+     536950764,
+     536950104,
+     536943712
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-41",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 41,
     "xpsr": 0
    },
@@ -1988,7 +2011,7 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 12, 509112996, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536943656, 509112996, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
     "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 509112996, 'S', 'F', 'T', None)",
@@ -1997,7 +2020,7 @@
     "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 509112996, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c7548214db2c63c708ba9fbcf1e7ed9b77b97cf7cdd51a7fb6c9f856e2c911c7",
+    "events": "635ed5efafe0b0f9e86782670f6304b84aa24fb79629ee9db535e6ec59650d7f",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -2009,16 +2032,17 @@
     "abs": [],
     "args": [
      538639782,
-     4,
-     12,
-     3983748582
+     536940324,
+     536943656,
+     536948196
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-42",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 42,
     "xpsr": 0
    },
@@ -2073,7 +2097,7 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 1643521744, 217414738, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536946384, 217414738, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
     "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 217414738, 'S', 'F', 'T', None)",
@@ -2082,7 +2106,7 @@
     "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 217414738, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "3f7bd90746f0b230f1ecb334a5788eb5506b3cec854293d789a18edf51162b0c",
+    "events": "9ccc9129b47597b0de257025af8a5e35f6af12f4d2731135bef83842f43bb051",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -2094,16 +2118,17 @@
     "abs": [],
     "args": [
      0,
-     3098095624,
-     1643521744,
-     0
+     536948744,
+     536946384,
+     536942624
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-44",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 44,
     "xpsr": 0
    },
@@ -2189,6 +2214,7 @@
     "mem": [],
     "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 700,
     "xpsr": 0
    },
@@ -2274,6 +2300,7 @@
     "mem": [],
     "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 702,
     "xpsr": 0
    },
@@ -2359,6 +2386,7 @@
     "mem": [],
     "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 703,
     "xpsr": 0
    },
@@ -2444,6 +2472,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 700,
     "xpsr": 0
    },
@@ -2529,6 +2558,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 702,
     "xpsr": 0
    },
@@ -2614,6 +2644,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 703,
     "xpsr": 0
    },
@@ -2668,16 +2699,16 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 2147483647, 2987881189, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536940552, 1114733997, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 2987881189, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 1114733997, 'S', 'F', 'T', None)",
     "('C', 6, 5, 'S', 'F', 'T', None)",
     "('C', 7, 0, 8, 1, 1, 'S', 'F', 'T', None)",
-    "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 2987881189, 'S', 'F', 'T', None)"
+    "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 1114733997, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "0cf475e50ca63171e3d2a62e0d8d36ef0e96794bbcc0c9fa981fc176f07f575c",
+    "events": "3ae89fa97852db33df68da77f3e2ee56884263c6c29771eb0841830b7611d066",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -2686,23 +2717,329 @@
     "returned": true
    },
    "fixture": {
-    "abs": [],
+    "abs": [
+     [
+      536940544,
+      "4010012044100120491001204c1001205010012054100120591001205c1001206010012064100120691001206c1001207010012074100120791001207c1001208010012084100120891001208c1001209010012094100120991001209c100120a0100120a4100120a9100120ac100120b0100120b4100120b9100120bc100120c0100120c4100120c9100120cc100120d0100120d4100120d9100120dc100120e0100120e4100120e9100120ec100120f0100120f4100120f9100120fc1001200011012004110120091101200c1101201011012014110120191101201c1101202011012024110120291101202c1101203011012034110120391101203c1101204011012044110120491101204c1101205011012054110120591101205c1101206011012064110120691101206c1101207011012074110120791101207c1101208011012084110120891101208c1101209011012094110120991101209c110120a0110120a4110120a9110120ac110120b0110120b4110120b9110120bc110120c0110120c4110120c9110120cc110120d0110120d4110120d9110120dc110120e0110120e4110120e9110120ec110120f0110120f4110120f9110120fc1101200010012004100120091001200c1001201010012014100120191001201c1001202010012024100120291001202c1001203010012034100120391001203c100120"
+     ]
+    ],
+    "args": [
+     1422763229,
+     536940548,
+     536940552,
+     536940556
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-2",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 832,
+    "xpsr": 0
+   },
+   "new_instructions": 57,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    1,
+    4,
+    4,
+    1,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "i32",
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    507960,
+    96736,
+    105584,
+    507960,
+    540104,
+    105584,
+    507960,
+    540104,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 2, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536940552, 2322744795, 'S', 'F', 'T', None)",
+    "('C', 3, 16, 'S', 'F', 'T', None)",
+    "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 2322744795, 'S', 'F', 'T', None)",
+    "('C', 6, 5, 'S', 'F', 'T', None)",
+    "('C', 7, 0, 8, 1, 1, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 2322744795, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "2ea2592809acf2d6e27c5d42ef9dd6fdc69921fd8d38bcf05da308d7624717ad",
+    "kind": "return",
+    "ncalls": 9,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "4010012044100120481001204d1001205010012054100120581001205d1001206010012064100120681001206d1001207010012074100120781001207d1001208010012084100120881001208d1001209010012094100120981001209d100120a0100120a4100120a8100120ad100120b0100120b4100120b8100120bd100120c0100120c4100120c8100120cd100120d0100120d4100120d8100120dd100120e0100120e4100120e8100120ed100120f0100120f4100120f8100120fd1001200011012004110120081101200d1101201011012014110120181101201d1101202011012024110120281101202d1101203011012034110120381101203d1101204011012044110120481101204d1101205011012054110120581101205d1101206011012064110120681101206d1101207011012074110120781101207d1101208011012084110120881101208d1101209011012094110120981101209d110120a0110120a4110120a8110120ad110120b0110120b4110120b8110120bd110120c0110120c4110120c8110120cd110120d0110120d4110120d8110120dd110120e0110120e4110120e8110120ed110120f0110120f4110120f8110120fd1101200010012004100120081001200d1001201010012014100120181001201d1001202010012024100120281001202d1001203010012034100120381001203d100120"
+     ]
+    ],
+    "args": [
+     6,
+     536940548,
+     536940552,
+     536940556
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-3",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 803,
+    "xpsr": 0
+   },
+   "new_instructions": 57,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1,
+    0,
+    4,
+    1,
+    4,
+    4,
+    1,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "i32",
+    "void",
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    507960,
+    96736,
+    105584,
+    507960,
+    540104,
+    105584,
+    507960,
+    540104,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 2, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536940552, 124486711, 'S', 'F', 'T', None)",
+    "('C', 3, 16, 'S', 'F', 'T', None)",
+    "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 124486711, 'S', 'F', 'T', None)",
+    "('C', 6, 5, 'S', 'F', 'T', None)",
+    "('C', 7, 0, 8, 1, 1, 'S', 'F', 'T', None)",
+    "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 124486711, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "016013eaea6e1a50eaa5f46c718a63e205afdf734e6aea7dfbf435dedbf613e9",
+    "kind": "return",
+    "ncalls": 9,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "05100120081001200c1001201010012015100120181001201c1001202010012025100120281001202c1001203010012035100120381001203c1001204010012045100120481001204c1001205010012055100120581001205c1001206010012065100120681001206c1001207010012075100120781001207c1001208010012085100120881001208c1001209010012095100120981001209c100120a0100120a5100120a8100120ac100120b0100120b5100120b8100120bc100120c0100120c5100120c8100120cc100120d0100120d5100120d8100120dc100120e0100120e5100120e8100120ec100120f0100120f5100120f8100120fc1001200011012005110120081101200c1101201011012015110120181101201c1101202011012025110120281101202c1101203011012035110120381101203c1101204011012045110120481101204c1101205011012055110120581101205c1101206011012065110120681101206c1101207011012075110120781101207c1101208011012085110120881101208c1101209011012095110120981101209c110120a0110120a5110120a8110120ac110120b0110120b5110120b8110120bc110120c0110120c5110120c8110120cc110120d0110120d5110120d8110120dc110120e0110120e5110120e8110120ec110120f0110120f5110120f8110120fc11012000100120"
+     ]
+    ],
     "args": [
      4294967295,
-     4142138223,
-     2147483647,
-     2671219995
+     536940548,
+     536940552,
+     536940556
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1065353216,
-     "1": 3204448256
-    },
-    "id": "fp-49",
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-4",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
-    "scratch_seed": 49,
+    "outparam": null,
+    "scratch_seed": 804,
     "xpsr": 0
    },
    "new_instructions": 57,
@@ -2756,16 +3093,16 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 3, 3904235970, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536940552, 3811744857, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 3904235970, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 3811744857, 'S', 'F', 'T', None)",
     "('C', 6, 5, 'S', 'F', 'T', None)",
     "('C', 7, 0, 8, 1, 1, 'S', 'F', 'T', None)",
-    "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 3904235970, 'S', 'F', 'T', None)"
+    "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 3811744857, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "585789fe265bc2ffa70e51189d5e70e7765da00b420fc381ccafed4b6be0aec4",
+    "events": "a8516dfe68d01b6a1dae76fb6a732b9a1434d118a258ccdb3e20da1984db46cb",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -2774,23 +3111,26 @@
     "returned": true
    },
    "fixture": {
-    "abs": [],
+    "abs": [
+     [
+      536940544,
+      "04100120091001200c1001201010012014100120191001201c1001202010012024100120291001202c1001203010012034100120391001203c1001204010012044100120491001204c1001205010012054100120591001205c1001206010012064100120691001206c1001207010012074100120791001207c1001208010012084100120891001208c1001209010012094100120991001209c100120a0100120a4100120a9100120ac100120b0100120b4100120b9100120bc100120c0100120c4100120c9100120cc100120d0100120d4100120d9100120dc100120e0100120e4100120e9100120ec100120f0100120f4100120f9100120fc1001200011012004110120091101200c1101201011012014110120191101201c1101202011012024110120291101202c1101203011012034110120391101203c1101204011012044110120491101204c1101205011012054110120591101205c1101206011012064110120691101206c1101207011012074110120791101207c1101208011012084110120891101208c1101209011012094110120991101209c110120a0110120a4110120a9110120ac110120b0110120b4110120b9110120bc110120c0110120c4110120c9110120cc110120d0110120d4110120d9110120dc110120e0110120e4110120e9110120ec110120f0110120f4110120f9110120fc11012000100120"
+     ]
+    ],
     "args": [
-     271826021,
-     7,
-     3,
-     3948225427
+     16,
+     536940548,
+     536940552,
+     536940556
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3212836864,
-     "1": 0
-    },
-    "id": "fp-50",
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-5",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
-    "scratch_seed": 50,
+    "outparam": null,
+    "scratch_seed": 805,
     "xpsr": 0
    },
    "new_instructions": 57,
@@ -2844,16 +3184,16 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 2147483647, 735384069, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536940552, 3204408865, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 735384069, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 3204408865, 'S', 'F', 'T', None)",
     "('C', 6, 5, 'S', 'F', 'T', None)",
     "('C', 7, 0, 8, 1, 1, 'S', 'F', 'T', None)",
-    "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 735384069, 'S', 'F', 'T', None)"
+    "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 3204408865, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "1e987bc5840537a8db4fbb4b4daf59f781be619da45f4f88a9472ddf54a0cee0",
+    "events": "aff0f14d309ffd37094b480b0a12f38dba6b723207aa407e3834499781a4e650",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -2862,23 +3202,147 @@
     "returned": true
    },
    "fixture": {
-    "abs": [],
+    "abs": [
+     [
+      536940544,
+      "04100120091001200c1001201010012014100120191001201c1001202010012024100120291001202c1001203010012034100120391001203c1001204010012044100120491001204c1001205010012054100120591001205c1001206010012064100120691001206c1001207010012074100120791001207c1001208010012084100120891001208c1001209010012094100120991001209c100120a0100120a4100120a9100120ac100120b0100120b4100120b9100120bc100120c0100120c4100120c9100120cc100120d0100120d4100120d9100120dc100120e0100120e4100120e9100120ec100120f0100120f4100120f9100120fc1001200011012004110120091101200c1101201011012014110120191101201c1101202011012024110120291101202c1101203011012034110120391101203c1101204011012044110120491101204c1101205011012054110120591101205c1101206011012064110120691101206c1101207011012074110120791101207c1101208011012084110120891101208c1101209011012094110120991101209c110120a0110120a4110120a9110120ac110120b0110120b4110120b9110120bc110120c0110120c4110120c9110120cc110120d0110120d4110120d9110120dc110120e0110120e4110120e9110120ec110120f0110120f4110120f9110120fc11012000100120"
+     ]
+    ],
     "args": [
-     3856939601,
-     1894272194,
-     2147483647,
-     2092907358
+     16,
+     536940548,
+     536940552,
+     536940556
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3204448256,
-     "1": 3239897098
-    },
-    "id": "fp-52",
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-5",
     "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 52,
+    "nptr": 3,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 835,
     "xpsr": 0
    },
    "new_instructions": 57,
@@ -2932,16 +3396,16 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 2147483647, 3921118200, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536940552, 3753546315, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 3921118200, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 3753546315, 'S', 'F', 'T', None)",
     "('C', 6, 5, 'S', 'F', 'T', None)",
     "('C', 7, 0, 8, 1, 1, 'S', 'F', 'T', None)",
-    "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 3921118200, 'S', 'F', 'T', None)"
+    "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 3753546315, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "d190fb5a1644161ec395f5f414b2cbe6b86b1afc4bc4d224ddb845d914a6ceba",
+    "events": "429c37a695ff8488c9e24b146577efd796edad3b9ed8d2b07222cd65b6983092",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -2950,23 +3414,26 @@
     "returned": true
    },
    "fixture": {
-    "abs": [],
+    "abs": [
+     [
+      536940544,
+      "04100120081001200d1001201010012014100120181001201d1001202010012024100120281001202d1001203010012034100120381001203d1001204010012044100120481001204d1001205010012054100120581001205d1001206010012064100120681001206d1001207010012074100120781001207d1001208010012084100120881001208d1001209010012094100120981001209d100120a0100120a4100120a8100120ad100120b0100120b4100120b8100120bd100120c0100120c4100120c8100120cd100120d0100120d4100120d8100120dd100120e0100120e4100120e8100120ed100120f0100120f4100120f8100120fd1001200011012004110120081101200d1101201011012014110120181101201d1101202011012024110120281101202d1101203011012034110120381101203d1101204011012044110120481101204d1101205011012054110120581101205d1101206011012064110120681101206d1101207011012074110120781101207d1101208011012084110120881101208d1101209011012094110120981101209d110120a0110120a4110120a8110120ad110120b0110120b4110120b8110120bd110120c0110120c4110120c8110120cd110120d0110120d4110120d8110120dd110120e0110120e4110120e8110120ed110120f0110120f4110120f8110120fd11012000100120"
+     ]
+    ],
     "args": [
-     1740848604,
-     2393220392,
-     2147483647,
-     2556506514
+     1004936853,
+     536940548,
+     536940552,
+     536940556
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 2147483648,
-     "1": 3204448256
-    },
-    "id": "fp-54",
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-6",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
-    "scratch_seed": 54,
+    "outparam": null,
+    "scratch_seed": 806,
     "xpsr": 0
    },
    "new_instructions": 57,
@@ -3020,16 +3487,16 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 3578670822, 1028059815, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536940552, 2629500200, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 1028059815, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 2629500200, 'S', 'F', 'T', None)",
     "('C', 6, 5, 'S', 'F', 'T', None)",
     "('C', 7, 0, 8, 1, 1, 'S', 'F', 'T', None)",
-    "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 1028059815, 'S', 'F', 'T', None)"
+    "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 2629500200, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "01d82da7cc503296393051588e1c5082908c4cbb08bd0541c972c1e810a0e684",
+    "events": "0bd6c7225a54df6286ce8f857a8afca58c17b0d30cd8873f0412f385f1eb4f7d",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -3038,111 +3505,147 @@
     "returned": true
    },
    "fixture": {
-    "abs": [],
-    "args": [
-     8,
-     3577755483,
-     3578670822,
-     8
+    "abs": [
+     [
+      536940544,
+      "0111012004110120081101200c1101201111012014110120181101201c1101202111012024110120281101202c1101203111012034110120381101203c1101204111012044110120481101204c1101205111012054110120581101205c1101206111012064110120681101206c1101207111012074110120781101207c1101208111012084110120881101208c1101209111012094110120981101209c110120a1110120a4110120a8110120ac110120b1110120b4110120b8110120bc110120c1110120c4110120c8110120cc110120d1110120d4110120d8110120dc110120e1110120e4110120e8110120ec110120f1110120f4110120f8110120fc1101200110012004100120081001200c1001201110012014100120181001201c1001202110012024100120281001202c1001203110012034100120381001203c1001204110012044100120481001204c1001205110012054100120581001205c1001206110012064100120681001206c1001207110012074100120781001207c1001208110012084100120881001208c1001209110012094100120981001209c100120a1100120a4100120a8100120ac100120b1100120b4100120b8100120bc100120c1100120c4100120c8100120cc100120d1100120d4100120d8100120dc100120e1100120e4100120e8100120ec100120f1100120f4100120f8100120fc100120"
+     ]
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1065353216,
-     "1": 0
-    },
-    "id": "fp-55",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 55,
-    "xpsr": 0
-   },
-   "new_instructions": 57,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    1,
-    0,
-    4,
-    1,
-    4,
-    4,
-    1,
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void",
-    "void",
-    "i32",
-    "void",
-    "void",
-    "i32",
-    "void"
-   ],
-   "call_targets": [
-    507960,
-    96736,
-    105584,
-    507960,
-    540104,
-    105584,
-    507960,
-    540104,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, 2, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 206381930, 480847480, 'S', 'F', 'T', None)",
-    "('C', 3, 16, 'S', 'F', 'T', None)",
-    "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 480847480, 'S', 'F', 'T', None)",
-    "('C', 6, 5, 'S', 'F', 'T', None)",
-    "('C', 7, 0, 8, 1, 1, 'S', 'F', 'T', None)",
-    "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 480847480, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "cfce3f51e4b0e10a3d8f08a22b4dfac54dd0189378455f8b16d50e762ed02aeb",
-    "kind": "return",
-    "ncalls": 9,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
     "args": [
      5,
-     3291529428,
-     206381930,
-     1
+     536940548,
+     536940552,
+     536940556
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3212836864,
-     "1": 3184315597
-    },
-    "id": "fp-56",
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-8",
     "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 56,
+    "nptr": 3,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 838,
     "xpsr": 0
    },
    "new_instructions": 57,
@@ -3196,16 +3699,16 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 1677850251, 2444602602, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536940552, 4129539460, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 2444602602, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 4129539460, 'S', 'F', 'T', None)",
     "('C', 6, 5, 'S', 'F', 'T', None)",
     "('C', 7, 0, 8, 1, 1, 'S', 'F', 'T', None)",
-    "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 2444602602, 'S', 'F', 'T', None)"
+    "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 4129539460, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "53715daa23f38a93aa7ade5df0c27ab52aa8ea6fd940020b3bed93db5313f438",
+    "events": "3bc5e648eccac699b0bb80c599dc802888617d6ce466b7d701106ec34b4e93a3",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -3214,23 +3717,26 @@
     "returned": true
    },
    "fixture": {
-    "abs": [],
-    "args": [
-     3720324128,
-     2846093838,
-     1677850251,
-     7
+    "abs": [
+     [
+      536940544,
+      "0011012005110120081101200c1101201011012015110120181101201c1101202011012025110120281101202c1101203011012035110120381101203c1101204011012045110120481101204c1101205011012055110120581101205c1101206011012065110120681101206c1101207011012075110120781101207c1101208011012085110120881101208c1101209011012095110120981101209c110120a0110120a5110120a8110120ac110120b0110120b5110120b8110120bc110120c0110120c5110120c8110120cc110120d0110120d5110120d8110120dc110120e0110120e5110120e8110120ec110120f0110120f5110120f8110120fc1101200010012005100120081001200c1001201010012015100120181001201c1001202010012025100120281001202c1001203010012035100120381001203c1001204010012045100120481001204c1001205010012055100120581001205c1001206010012065100120681001206c1001207010012075100120781001207c1001208010012085100120881001208c1001209010012095100120981001209c100120a0100120a5100120a8100120ac100120b0100120b5100120b8100120bc100120c0100120c5100120c8100120cc100120d0100120d5100120d8100120dc100120e0100120e5100120e8100120ec100120f0100120f5100120f8100120fc100120"
+     ]
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1056964608,
-     "1": 3239897098
-    },
-    "id": "fp-57",
+    "args": [
+     1550294124,
+     536940548,
+     536940552,
+     536940556
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-9",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
-    "scratch_seed": 57,
+    "outparam": null,
+    "scratch_seed": 809,
     "xpsr": 0
    },
    "new_instructions": 57,
@@ -3284,16 +3790,16 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 4, 2059510718, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536940552, 1229008232, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 2059510718, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 1229008232, 'S', 'F', 'T', None)",
     "('C', 6, 5, 'S', 'F', 'T', None)",
     "('C', 7, 0, 8, 1, 1, 'S', 'F', 'T', None)",
-    "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 2059510718, 'S', 'F', 'T', None)"
+    "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 1229008232, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "41228fb4f92e14d2497d4d66ba954c5393a7bbb256cc68beae6e2ddfe8410689",
+    "events": "54d34dd94f65357f03dc896936c0485798eb5f5fac07f94b2f970c40eb09298b",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -3302,23 +3808,147 @@
     "returned": true
    },
    "fixture": {
-    "abs": [],
-    "args": [
-     8,
-     2,
-     4,
-     2495041172
+    "abs": [
+     [
+      536940544,
+      "0011012005110120081101200c1101201011012015110120181101201c1101202011012025110120281101202c1101203011012035110120381101203c1101204011012045110120481101204c1101205011012055110120581101205c1101206011012065110120681101206c1101207011012075110120781101207c1101208011012085110120881101208c1101209011012095110120981101209c110120a0110120a5110120a8110120ac110120b0110120b5110120b8110120bc110120c0110120c5110120c8110120cc110120d0110120d5110120d8110120dc110120e0110120e5110120e8110120ec110120f0110120f5110120f8110120fc1101200010012005100120081001200c1001201010012015100120181001201c1001202010012025100120281001202c1001203010012035100120381001203c1001204010012045100120481001204c1001205010012055100120581001205c1001206010012065100120681001206c1001207010012075100120781001207c1001208010012085100120881001208c1001209010012095100120981001209c100120a0100120a5100120a8100120ac100120b0100120b5100120b8100120bc100120c0100120c5100120c8100120cc100120d0100120d5100120d8100120dc100120e0100120e5100120e8100120ec100120f0100120f5100120f8100120fc100120"
+     ]
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3204448256,
-     "1": 1266679808
-    },
-    "id": "fp-58",
+    "args": [
+     1550294124,
+     536940548,
+     536940552,
+     536940556
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-9",
     "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 58,
+    "nptr": 3,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 839,
     "xpsr": 0
    },
    "new_instructions": 57,
@@ -3372,16 +4002,16 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 1966003740, 913139319, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536940552, 111899093, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 913139319, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 111899093, 'S', 'F', 'T', None)",
     "('C', 6, 5, 'S', 'F', 'T', None)",
     "('C', 7, 0, 8, 1, 1, 'S', 'F', 'T', None)",
-    "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 913139319, 'S', 'F', 'T', None)"
+    "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 111899093, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "1f10ff80475ba4a766e6940a821c584d539505b7256f6c831ca5458a8043587e",
+    "events": "245fcac836231a0e496b0e64163adbb591b3b0f244a65dd7f7cde239067fabfd",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -3390,23 +4020,147 @@
     "returned": true
    },
    "fixture": {
-    "abs": [],
-    "args": [
-     2684056074,
-     2147483647,
-     1966003740,
-     0
+    "abs": [
+     [
+      536940544,
+      "0011012004110120091101200c1101201011012014110120191101201c1101202011012024110120291101202c1101203011012034110120391101203c1101204011012044110120491101204c1101205011012054110120591101205c1101206011012064110120691101206c1101207011012074110120791101207c1101208011012084110120891101208c1101209011012094110120991101209c110120a0110120a4110120a9110120ac110120b0110120b4110120b9110120bc110120c0110120c4110120c9110120cc110120d0110120d4110120d9110120dc110120e0110120e4110120e9110120ec110120f0110120f4110120f9110120fc1101200010012004100120091001200c1001201010012014100120191001201c1001202010012024100120291001202c1001203010012034100120391001203c1001204010012044100120491001204c1001205010012054100120591001205c1001206010012064100120691001206c1001207010012074100120791001207c1001208010012084100120891001208c1001209010012094100120991001209c100120a0100120a4100120a9100120ac100120b0100120b4100120b9100120bc100120c0100120c4100120c9100120cc100120d0100120d4100120d9100120dc100120e0100120e4100120e9100120ec100120f0100120f4100120f9100120fc100120"
+     ]
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 2147483648,
-     "1": 0
-    },
-    "id": "fp-60",
+    "args": [
+     3,
+     536940548,
+     536940552,
+     536940556
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-10",
     "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 60,
+    "nptr": 3,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 840,
     "xpsr": 0
    },
    "new_instructions": 57,
@@ -3460,16 +4214,16 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 1, 3330584012, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536940552, 277593939, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 3330584012, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 277593939, 'S', 'F', 'T', None)",
     "('C', 6, 5, 'S', 'F', 'T', None)",
     "('C', 7, 0, 8, 1, 1, 'S', 'F', 'T', None)",
-    "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 3330584012, 'S', 'F', 'T', None)"
+    "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 277593939, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "7b865245662e98c250898266a7d940767ff12cf6946a5e4be502d520fd3d6708",
+    "events": "b09a467baf9989262a64fd689b39c09a99bc9492990f1ab90764561a56929f43",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -3478,111 +4232,147 @@
     "returned": true
    },
    "fixture": {
-    "abs": [],
+    "abs": [
+     [
+      536940544,
+      "0011012004110120081101200d1101201011012014110120181101201d1101202011012024110120281101202d1101203011012034110120381101203d1101204011012044110120481101204d1101205011012054110120581101205d1101206011012064110120681101206d1101207011012074110120781101207d1101208011012084110120881101208d1101209011012094110120981101209d110120a0110120a4110120a8110120ad110120b0110120b4110120b8110120bd110120c0110120c4110120c8110120cd110120d0110120d4110120d8110120dd110120e0110120e4110120e8110120ed110120f0110120f4110120f8110120fd1101200010012004100120081001200d1001201010012014100120181001201d1001202010012024100120281001202d1001203010012034100120381001203d1001204010012044100120481001204d1001205010012054100120581001205d1001206010012064100120681001206d1001207010012074100120781001207d1001208010012084100120881001208d1001209010012094100120981001209d100120a0100120a4100120a8100120ad100120b0100120b4100120b8100120bd100120c0100120c4100120c8100120cd100120d0100120d4100120d8100120dd100120e0100120e4100120e8100120ed100120f0100120f4100120f8100120fd100120"
+     ]
+    ],
     "args": [
-     256,
-     3605787990,
-     1,
-     0
+     3243051193,
+     536940548,
+     536940552,
+     536940556
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1065353216,
-     "1": 3184315597
-    },
-    "id": "fp-61",
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-11",
     "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 61,
-    "xpsr": 0
-   },
-   "new_instructions": 57,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    1,
-    0,
-    4,
-    1,
-    4,
-    4,
-    1,
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void",
-    "void",
-    "i32",
-    "void",
-    "void",
-    "i32",
-    "void"
-   ],
-   "call_targets": [
-    507960,
-    96736,
-    105584,
-    507960,
-    540104,
-    105584,
-    507960,
-    540104,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, 2, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 1271289561, 2313802153, 'S', 'F', 'T', None)",
-    "('C', 3, 16, 'S', 'F', 'T', None)",
-    "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'%s(): disable buck2 1.2v\\n'), ('RO', b'power_down_panel'), 3, 2313802153, 'S', 'F', 'T', None)",
-    "('C', 6, 5, 'S', 'F', 'T', None)",
-    "('C', 7, 0, 8, 1, 1, 'S', 'F', 'T', None)",
-    "('C', 8, ('RO', b'%s(): disable ldsw1 1.8v for panel\\n'), ('RO', b'power_down_panel'), 1, 2313802153, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "66c06f5537db5845137e7d656f9418f3954433b0a8518623f9e4dfc2763c4ab1",
-    "kind": "return",
-    "ncalls": 9,
-    "ret": [
-     0
+    "nptr": 3,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
     ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     222493114,
-     4294967295,
-     1271289561,
-     5
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3212836864,
-     "1": 3239897098
-    },
-    "id": "fp-62",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 62,
+    "outparam": null,
+    "scratch_seed": 841,
     "xpsr": 0
    },
    "new_instructions": 57,
@@ -3632,15 +4422,15 @@
     "abs": [],
     "args": [
      5,
-     5,
-     2896198881,
-     256
+     536938964,
+     536952032,
+     536941660
     ],
     "float_scratch": false,
     "fp": {},
     "id": "orc-all-3",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [
      [
       0,
@@ -3763,6 +4553,7 @@
       4294967295
      ]
     ],
+    "outparam": null,
     "scratch_seed": 403,
     "xpsr": 0
    },
@@ -3805,13 +4596,13 @@
    "events_head": [
     "('C', 0, 2, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 62306477, 2238308712, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): turn off -2v for panel.\\n'), ('RO', b'power_down_panel'), 536950956, 2238308712, 'S', 'F', 'T', None)",
     "('C', 3, 16, 'S', 'F', 'T', None)",
     "('C', 4, 0, 4, 3, 1, 'S', 'F', 'T', None)",
     "('C', 5, ('RO', b'%s(): Could not set buck2.\\n'), ('RO', b'power_down_panel'), 3, 2238308712, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ed07f5562da04c451e0259c10abce1ae92e97bf33558299de6726ab2f27c08b2",
+    "events": "c0c31f539a87f6bad8d09cbe18ce78afeac247d4085f4a7a4127b721df4baec0",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -3823,15 +4614,15 @@
     "abs": [],
     "args": [
      684158906,
-     917497122,
-     62306477,
-     4
+     536945952,
+     536950956,
+     536950516
     ],
     "float_scratch": false,
     "fp": {},
     "id": "orc-all-4",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [
      [
       0,
@@ -3954,6 +4745,7 @@
       4294967285
      ]
     ],
+    "outparam": null,
     "scratch_seed": 404,
     "xpsr": 0
    },
@@ -3975,8 +4767,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "display",
@@ -3985,16 +4780,26 @@
   "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
   "source": "shipped image"
  },
- "pointer_arg_mask": [],
+ "pointer_arg_mask": [
+  1,
+  2,
+  3
+ ],
  "ret_kind": "i32",
  "search": {
-  "candidates": 183,
+  "candidates": 255,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
   "kept": 44,
-  "pointer_arg_mask": [],
+  "pointer_arg_mask": [
+   1,
+   2,
+   3
+  ],
   "pointer_arg_mask_derived": true
  },
  "size": 176,

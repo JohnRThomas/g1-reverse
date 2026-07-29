@@ -34,7 +34,7 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 4, 3694469211, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536948308, 3694469211, 'S', 'F', 'T', None)",
     "('C', 1, 556040, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 3694469211, 'S', 'F', 'T', None)",
     "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
@@ -43,7 +43,7 @@
     "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 3694469211, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "99a0c7a9630d85d1813c5198eda2af87f1ba9df0548db7c8d319117fea2985b4",
+    "events": "60e3ab7d2e821e9843ff1eb01c99572953446f330b17260934bd24a9f9f5560d",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -56,15 +56,16 @@
     "args": [
      1276959699,
      12,
-     4,
+     536948308,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -101,15 +102,16 @@
     "args": [
      4067469868,
      1797429778,
-     2147483648,
+     536940476,
      315044147
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -150,7 +152,7 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 3677430904, 471345317, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536945784, 471345317, 'S', 'F', 'T', None)",
     "('C', 1, 556040, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 471345317, 'S', 'F', 'T', None)",
     "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
@@ -159,7 +161,7 @@
     "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 471345317, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "67e4802806bd9a6b0649f04e6ce418f9f3545e2a81eafd41e2601d33e91a493e",
+    "events": "01c057e029c83d617c7c83de3dcdb93eee165c5ad20e40bf236bd09cc96ef88b",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -172,15 +174,16 @@
     "args": [
      4290042576,
      598759513,
-     3677430904,
+     536945784,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
@@ -221,7 +224,7 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 3842370354, 2655161023, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536947504, 2655161023, 'S', 'F', 'T', None)",
     "('C', 1, 556040, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 2655161023, 'S', 'F', 'T', None)",
     "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
@@ -230,7 +233,7 @@
     "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 2655161023, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "7ec0f8af232c6a44a6291430832a7b3ea9444383a978f63229959069a4c7a79f",
+    "events": "c4119fdcc2581c41b3e835a51dfb4b45e2593a0db3ba69ebce827e66a1e7d3e7",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -243,15 +246,16 @@
     "args": [
      16,
      2147483647,
-     3842370354,
+     536947504,
      6
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 4,
     "xpsr": 0
    },
@@ -292,7 +296,7 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 499087790, 3178863954, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536951212, 3178863954, 'S', 'F', 'T', None)",
     "('C', 1, 556040, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 3178863954, 'S', 'F', 'T', None)",
     "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
@@ -301,7 +305,7 @@
     "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 3178863954, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "6ae4167477e22f909e47e67983980bd6f5ba54779028c7169938a5490d2e39a0",
+    "events": "6896dfa32f2cce85137e4fca5d867859715844835c557a404f16b8f77b7e8369",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -314,15 +318,16 @@
     "args": [
      1346232374,
      1556998536,
-     499087790,
+     536951212,
      2147483647
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 9,
     "xpsr": 0
    },
@@ -363,7 +368,7 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 8, 3586673693, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536946200, 3586673693, 'S', 'F', 'T', None)",
     "('C', 1, 556040, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 3586673693, 'S', 'F', 'T', None)",
     "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
@@ -372,7 +377,7 @@
     "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 3586673693, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "fc7374be5e98d8316de52d60127a8ae0364dc5973aa8da1db50bb04b5c075e92",
+    "events": "fba224872403f9491823923a8487cf530fb2b1204dec41128a6fdb37d6b2590f",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -385,15 +390,16 @@
     "args": [
      182454980,
      995058044,
-     8,
+     536946200,
      1
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 10,
     "xpsr": 0
    },
@@ -434,7 +440,7 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 256, 801746852, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536938076, 801746852, 'S', 'F', 'T', None)",
     "('C', 1, 556040, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 801746852, 'S', 'F', 'T', None)",
     "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
@@ -443,7 +449,7 @@
     "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 801746852, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "71c9c5ad88bef4a4aca470a03a13821ab57a642d479feb593049a277333b622e",
+    "events": "d9e7b2a89a0e539a466a010ad8935feeec119ff2b71444f67d7caaf9e6b33917",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -456,15 +462,16 @@
     "args": [
      3,
      2147483648,
-     256,
+     536938076,
      1426281073
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 11,
     "xpsr": 0
    },
@@ -505,7 +512,7 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 5, 1542880163, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536941268, 1542880163, 'S', 'F', 'T', None)",
     "('C', 1, 556040, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 1542880163, 'S', 'F', 'T', None)",
     "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
@@ -514,7 +521,7 @@
     "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 1542880163, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "5a06d5beb928cca33cc4d9cdd589af0dd67f36fbb519851ffeed8bef091180b9",
+    "events": "84d54b46e1e66ba28a1138646732aa496160fe60375b975a2b566643a2419510",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -527,15 +534,16 @@
     "args": [
      8,
      3217736208,
-     5,
+     536941268,
      1103693227
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-12",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 12,
     "xpsr": 0
    },
@@ -576,7 +584,7 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 6, 287561451, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536939060, 287561451, 'S', 'F', 'T', None)",
     "('C', 1, 556040, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 287561451, 'S', 'F', 'T', None)",
     "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
@@ -585,7 +593,7 @@
     "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 287561451, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "2e8bfca5ef813010aa57f28bbfcf5c173fc5bb55d04b072ae8684f4d9c4a73d6",
+    "events": "bbd68650ab8bc7d2b1ed6010bec0cf1ece271ae5abc65e6430e2432f2ef392b4",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -598,15 +606,16 @@
     "args": [
      1156718256,
      1944344031,
-     6,
+     536939060,
      617681966
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 13,
     "xpsr": 0
    },
@@ -647,7 +656,7 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 3454407978, 886755549, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536941864, 886755549, 'S', 'F', 'T', None)",
     "('C', 1, 556040, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 886755549, 'S', 'F', 'T', None)",
     "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
@@ -656,7 +665,7 @@
     "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 886755549, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "af5aca2f91c03f4e08d297db19879256fc41627d3cc900e838197fd3208c9d69",
+    "events": "5f2c2ec26918ccb63d896154807ef5890f48399c7d8464f9ad5cc653f50ba8fc",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -669,15 +678,16 @@
     "args": [
      2024561310,
      2147483648,
-     3454407978,
+     536941864,
      16
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
@@ -718,7 +728,7 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 4178753371, 4075769455, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536950616, 4075769455, 'S', 'F', 'T', None)",
     "('C', 1, 556040, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 4075769455, 'S', 'F', 'T', None)",
     "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
@@ -727,7 +737,7 @@
     "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 4075769455, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "84b5112c02422d108ba9966fc74a62c1f7eb1da0253e310872e504bda4f9f3cf",
+    "events": "b7f9d4ee35e763600e0f9d0779097856074365976f563b6c740a8419d64fa826",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -740,15 +750,16 @@
     "args": [
      6,
      1536401714,
-     4178753371,
+     536950616,
      255
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 19,
     "xpsr": 0
    },
@@ -789,7 +800,7 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 2870852768, 2217669457, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536951968, 2217669457, 'S', 'F', 'T', None)",
     "('C', 1, 556040, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 2217669457, 'S', 'F', 'T', None)",
     "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
@@ -798,7 +809,7 @@
     "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 2217669457, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "61fc83523937127ceda3e7aa94532ec14d351f4fc1623e68e3685d93a0bad7e9",
+    "events": "40399387ed48f46c403be69bb2d903bfec5e1b2e3b334cbfa47c68b4c826a320",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -811,15 +822,16 @@
     "args": [
      843060076,
      1,
-     2870852768,
+     536951968,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-21",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 21,
     "xpsr": 0
    },
@@ -860,7 +872,7 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 2149248134, 3712121755, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536947844, 3712121755, 'S', 'F', 'T', None)",
     "('C', 1, 556040, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 3712121755, 'S', 'F', 'T', None)",
     "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
@@ -869,7 +881,7 @@
     "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 3712121755, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b961edcc59d70a73812a87dbdf99b8fba9eddb33a92a937153a1195cce20623b",
+    "events": "f44098d7f8ebccf731df086e8c7a8c9c4b7d462569adce9aee376174cc0ad8b4",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -882,15 +894,16 @@
     "args": [
      3751937804,
      12,
-     2149248134,
+     536947844,
      604019693
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 25,
     "xpsr": 0
    },
@@ -931,7 +944,7 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 3639365232, 1775869161, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536940144, 1775869161, 'S', 'F', 'T', None)",
     "('C', 1, 556040, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 1775869161, 'S', 'F', 'T', None)",
     "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
@@ -940,7 +953,7 @@
     "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 1775869161, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "8d4810929d43d18e0a46f54bf97acdfd1068464151d114d72cba0beb1fceee0a",
+    "events": "105842dd8e25951ffc13c3cf4c7a8eea7ccb3a4b03d6676751c4954d4bd1c906",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -953,15 +966,16 @@
     "args": [
      187818536,
      681194263,
-     3639365232,
+     536940144,
      4125446660
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 27,
     "xpsr": 0
    },
@@ -1002,7 +1016,7 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 1, 1542213390, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536946096, 1542213390, 'S', 'F', 'T', None)",
     "('C', 1, 556040, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 1542213390, 'S', 'F', 'T', None)",
     "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
@@ -1011,7 +1025,7 @@
     "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 1542213390, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "67f8fcb68ba65191a8c5d7182b5ee9f6e6f69526061a37f4617974a621828b95",
+    "events": "1fe5d67057a50fdb06ccf1d1ebf730c29432ca578057183ca8ddf0884b1a2d09",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -1024,15 +1038,16 @@
     "args": [
      3711083943,
      4285183211,
-     1,
+     536946096,
      2592385448
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-28",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 28,
     "xpsr": 0
    },
@@ -1073,7 +1088,7 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 1, 2417460406, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536945744, 2417460406, 'S', 'F', 'T', None)",
     "('C', 1, 556040, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 2417460406, 'S', 'F', 'T', None)",
     "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
@@ -1082,7 +1097,7 @@
     "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 2417460406, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c1dfd9fe0c865522dea1a9a08af15bcb8caecb1575596aa0f638b4419dd261c7",
+    "events": "4953b321289d90d1dc2abc3b90624aab215ea8ef5f300a135aa55fe673a42c99",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -1095,15 +1110,16 @@
     "args": [
      256,
      8,
-     1,
+     536945744,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-30",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 30,
     "xpsr": 0
    },
@@ -1144,7 +1160,7 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 7, 1988174091, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536938932, 1988174091, 'S', 'F', 'T', None)",
     "('C', 1, 556040, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 1988174091, 'S', 'F', 'T', None)",
     "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
@@ -1153,7 +1169,7 @@
     "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 1988174091, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "636aaaa1e94efa1fc4901b5b3fa9ce9eee47404829b017ec1398f5298e569f38",
+    "events": "994a82ea15df73d21c339b174875fd6b1baa271d251ed4d005719ed912b29833",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -1166,15 +1182,16 @@
     "args": [
      4294967295,
      2461003590,
-     7,
+     536938932,
      53351545
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
@@ -1215,7 +1232,7 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 3442053927, 615009301, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536941348, 615009301, 'S', 'F', 'T', None)",
     "('C', 1, 556040, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 615009301, 'S', 'F', 'T', None)",
     "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
@@ -1224,7 +1241,7 @@
     "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 615009301, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "542e58a052fb7874ba7991552eba29886d3d45b81be05602a8b84a663d8d265c",
+    "events": "a5e34d61e3d89301d2573efef119c76da34ff7eb16445eafa2f3a5c395fbc5c0",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -1237,15 +1254,16 @@
     "args": [
      1839753098,
      2706821390,
-     3442053927,
+     536941348,
      1170652979
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-32",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 32,
     "xpsr": 0
    },
@@ -1286,7 +1304,7 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 922796015, 2360084761, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536952812, 2360084761, 'S', 'F', 'T', None)",
     "('C', 1, 556040, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 2360084761, 'S', 'F', 'T', None)",
     "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
@@ -1295,7 +1313,7 @@
     "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 2360084761, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "d521c2f3ffdde90ff47c4df74e1bbce6bd651127932157dcc842271e8278a9e8",
+    "events": "0318d5ec1972548bd0251140951ca1400bebd6e3572bcc0fc448202dc7c9e455",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -1308,15 +1326,16 @@
     "args": [
      12,
      3990671540,
-     922796015,
+     536952812,
      2147483647
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 34,
     "xpsr": 0
    },
@@ -1357,7 +1376,7 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 4001652011, 4019880274, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536943912, 4019880274, 'S', 'F', 'T', None)",
     "('C', 1, 556040, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 4019880274, 'S', 'F', 'T', None)",
     "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
@@ -1366,7 +1385,7 @@
     "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 4019880274, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "98aeec1c1aa8fe71132e9e12b029fe099680923927204feb584ef72657459afd",
+    "events": "6d328622c4c44fd9174afb1c2b09b34e09eaa3617024189404361a3b18979e2f",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -1379,15 +1398,16 @@
     "args": [
      2726887024,
      3578977268,
-     4001652011,
+     536943912,
      1
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
@@ -1428,7 +1448,7 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 2147483647, 823752600, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536945964, 823752600, 'S', 'F', 'T', None)",
     "('C', 1, 556040, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 823752600, 'S', 'F', 'T', None)",
     "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
@@ -1437,7 +1457,7 @@
     "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 823752600, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "dacc9e4f2b39878030cf77e2d096d68c5c0eb180de5637d8611d2adea3911da0",
+    "events": "d06bd353064458c39047656948d4fc42bdd7a22b7fd320baea56d493fb17a23c",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -1450,15 +1470,16 @@
     "args": [
      0,
      12,
-     2147483647,
+     536945964,
      8
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 36,
     "xpsr": 0
    },
@@ -1499,7 +1520,7 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 3774328631, 2944518647, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536948532, 2944518647, 'S', 'F', 'T', None)",
     "('C', 1, 556040, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 2944518647, 'S', 'F', 'T', None)",
     "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
@@ -1508,7 +1529,7 @@
     "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 2944518647, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ab2881e256ceb00981532907992ab55849c4032bdff29a0180631f866351a97a",
+    "events": "2b30aee7eeabd8d97a9cc45bd91055731a486bb92f93ec9a17ab65a7596fa268",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -1521,15 +1542,16 @@
     "args": [
      3,
      1587124134,
-     3774328631,
+     536948532,
      1997155928
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
     "xpsr": 0
    },
@@ -1570,7 +1592,7 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 3059135833, 2096484019, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536950104, 2096484019, 'S', 'F', 'T', None)",
     "('C', 1, 556040, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 2096484019, 'S', 'F', 'T', None)",
     "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
@@ -1579,7 +1601,7 @@
     "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 2096484019, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "d03b82d4b01a0d24bb779dc3c3c1f08ceac362d4011cc31beec3f63ff51c3a28",
+    "events": "1a3d8ce37901663455b536fbe4bf9b8b0244ceaaeb264375109fdc8d62dcf9f4",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -1592,15 +1614,16 @@
     "args": [
      3886568119,
      256,
-     3059135833,
+     536950104,
      1
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-41",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 41,
     "xpsr": 0
    },
@@ -1641,7 +1664,7 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 12, 509112996, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536943656, 509112996, 'S', 'F', 'T', None)",
     "('C', 1, 556040, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 509112996, 'S', 'F', 'T', None)",
     "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
@@ -1650,7 +1673,7 @@
     "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 509112996, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "aa9c71475a064242f9838e64836c83d716c7fdca0b0fa2879109d808a1e9b8b8",
+    "events": "15d7d1a7c92af62f1d3ffbe5d961abef4845c61461b88d5c8efaba8586a00c79",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -1663,15 +1686,16 @@
     "args": [
      538639782,
      4,
-     12,
+     536943656,
      3983748582
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-42",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 42,
     "xpsr": 0
    },
@@ -1712,7 +1736,7 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 1643521744, 217414738, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536946384, 217414738, 'S', 'F', 'T', None)",
     "('C', 1, 556040, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 217414738, 'S', 'F', 'T', None)",
     "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
@@ -1721,7 +1745,7 @@
     "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 217414738, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "18d15cd9349b472a55983c39dde130152fc652a40f155297e31b4615aaec9f06",
+    "events": "4e07f1ed82ffe0289aa36564257235a52b6033beafff1575be940238a40c19c0",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -1734,15 +1758,16 @@
     "args": [
      0,
      3098095624,
-     1643521744,
+     536946384,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-44",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 44,
     "xpsr": 0
    },
@@ -1814,6 +1839,7 @@
     "mem": [],
     "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 700,
     "xpsr": 0
    },
@@ -1885,6 +1911,7 @@
     "mem": [],
     "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 702,
     "xpsr": 0
    },
@@ -1956,6 +1983,7 @@
     "mem": [],
     "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 703,
     "xpsr": 0
    },
@@ -2027,6 +2055,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 700,
     "xpsr": 0
    },
@@ -2098,6 +2127,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 702,
     "xpsr": 0
    },
@@ -2169,6 +2199,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 703,
     "xpsr": 0
    },
@@ -2177,6 +2208,189 @@
   },
   {
    "call_arities": [
+    1,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    314256,
+    314348,
+    469256
+   ],
+   "events_head": [
+    "('C', 0, 556040, 'S', 'F', 'T', None)",
+    "('C', 1, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
+    "('C', 2, 536885704, 0, 4294967295, 4294967295, 'S', 'F', 'T', None)",
+    "('W', 536902272, 4, 1)"
+   ],
+   "expect": {
+    "events": "c3c9742aecc4de5d158bc343848c91c80cdc8fdcc60e742c1b0e486b79d5eed6",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "4110012044100120481001204c1001205110012054100120581001205c1001206110012064100120681001206c1001207110012074100120781001207c1001208110012084100120881001208c1001209110012094100120981001209c100120a1100120a4100120a8100120ac100120b1100120b4100120b8100120bc100120c1100120c4100120c8100120cc100120d1100120d4100120d8100120dc100120e1100120e4100120e8100120ec100120f1100120f4100120f8100120fc1001200111012004110120081101200c1101201111012014110120181101201c1101202111012024110120281101202c1101203111012034110120381101203c1101204111012044110120481101204c1101205111012054110120581101205c1101206111012064110120681101206c1101207111012074110120781101207c1101208111012084110120881101208c1101209111012094110120981101209c110120a1110120a4110120a8110120ac110120b1110120b4110120b8110120bc110120c1110120c4110120c8110120cc110120d1110120d4110120d8110120dc110120e1110120e4110120e8110120ec110120f1110120f4110120f8110120fc1101200110012004100120081001200c1001201110012014100120181001201c1001202110012024100120281001202c1001203110012034100120381001203c100120"
+     ]
+    ],
+    "args": [
+     3426167942,
+     558208872,
+     536940552,
+     3003667676
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-0",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 830,
+    "xpsr": 0
+   },
+   "new_instructions": 30,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
     4,
     1,
     4,
@@ -2209,16 +2423,16 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 2147483647, 2987881189, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536940552, 1114733997, 'S', 'F', 'T', None)",
     "('C', 1, 556040, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 2987881189, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 0, 1114733997, 'S', 'F', 'T', None)",
     "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
-    "('C', 4, 536885704, 1656661543, 4294967295, 4294967295, 'S', 'F', 'T', None)",
+    "('C', 4, 536885704, 0, 4294967295, 4294967295, 'S', 'F', 'T', None)",
     "('W', 536902272, 4, 1)",
-    "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 2987881189, 'S', 'F', 'T', None)"
+    "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 1114733997, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "2dd9dd464e6b7fad0701df3e0e5e7cd42876b8d76332f1781e83ff305ac34fdd",
+    "events": "46c50258737ee4a7c2dc565d3156405162d0450c39a90e5cc205b7e120c9f0c7",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -2227,23 +2441,147 @@
     "returned": true
    },
    "fixture": {
-    "abs": [],
-    "args": [
-     4294967295,
-     4142138223,
-     2147483647,
-     2671219995
+    "abs": [
+     [
+      536940544,
+      "4010012044100120491001204c1001205010012054100120591001205c1001206010012064100120691001206c1001207010012074100120791001207c1001208010012084100120891001208c1001209010012094100120991001209c100120a0100120a4100120a9100120ac100120b0100120b4100120b9100120bc100120c0100120c4100120c9100120cc100120d0100120d4100120d9100120dc100120e0100120e4100120e9100120ec100120f0100120f4100120f9100120fc1001200011012004110120091101200c1101201011012014110120191101201c1101202011012024110120291101202c1101203011012034110120391101203c1101204011012044110120491101204c1101205011012054110120591101205c1101206011012064110120691101206c1101207011012074110120791101207c1101208011012084110120891101208c1101209011012094110120991101209c110120a0110120a4110120a9110120ac110120b0110120b4110120b9110120bc110120c0110120c4110120c9110120cc110120d0110120d4110120d9110120dc110120e0110120e4110120e9110120ec110120f0110120f4110120f9110120fc1101200010012004100120091001200c1001201010012014100120191001201c1001202010012024100120291001202c1001203010012034100120391001203c100120"
+     ]
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1065353216,
-     "1": 3204448256
-    },
-    "id": "fp-49",
+    "args": [
+     1422763229,
+     2951236948,
+     536940552,
+     3232220875
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-2",
     "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 49,
+    "nptr": 1,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 832,
     "xpsr": 0
    },
    "new_instructions": 49,
@@ -2283,16 +2621,16 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 3, 3904235970, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536940552, 2322744795, 'S', 'F', 'T', None)",
     "('C', 1, 556040, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 3904235970, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 2322744795, 'S', 'F', 'T', None)",
     "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
     "('C', 4, 536885704, 1656661543, 4294967295, 4294967295, 'S', 'F', 'T', None)",
     "('W', 536902272, 4, 1)",
-    "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 3904235970, 'S', 'F', 'T', None)"
+    "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 2322744795, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "519d6144134fb748bb65557dd96813863b9da57d1e775c63eaf16bf9cc07c9e9",
+    "events": "04c640a9bc77161b0c9449669bb8218611445c202475f263cc1e7324457ce06f",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -2301,689 +2639,1126 @@
     "returned": true
    },
    "fixture": {
-    "abs": [],
+    "abs": [
+     [
+      536940544,
+      "4010012044100120481001204d1001205010012054100120581001205d1001206010012064100120681001206d1001207010012074100120781001207d1001208010012084100120881001208d1001209010012094100120981001209d100120a0100120a4100120a8100120ad100120b0100120b4100120b8100120bd100120c0100120c4100120c8100120cd100120d0100120d4100120d8100120dd100120e0100120e4100120e8100120ed100120f0100120f4100120f8100120fd1001200011012004110120081101200d1101201011012014110120181101201d1101202011012024110120281101202d1101203011012034110120381101203d1101204011012044110120481101204d1101205011012054110120581101205d1101206011012064110120681101206d1101207011012074110120781101207d1101208011012084110120881101208d1101209011012094110120981101209d110120a0110120a4110120a8110120ad110120b0110120b4110120b8110120bd110120c0110120c4110120c8110120cd110120d0110120d4110120d8110120dd110120e0110120e4110120e8110120ed110120f0110120f4110120f8110120fd1101200010012004100120081001200d1001201010012014100120181001201d1001202010012024100120281001202d1001203010012034100120381001203d100120"
+     ]
+    ],
     "args": [
-     271826021,
-     7,
-     3,
-     3948225427
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3212836864,
-     "1": 0
-    },
-    "id": "fp-50",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 50,
-    "xpsr": 0
-   },
-   "new_instructions": 49,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    1,
-    4,
-    3,
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "i32",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    314256,
-    105584,
-    314348,
-    469256,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 2147483647, 735384069, 'S', 'F', 'T', None)",
-    "('C', 1, 556040, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 735384069, 'S', 'F', 'T', None)",
-    "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
-    "('C', 4, 536885704, 1656661543, 4294967295, 4294967295, 'S', 'F', 'T', None)",
-    "('W', 536902272, 4, 1)",
-    "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 735384069, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "e6c26148ba0a1fdf58ff7fa278600d13a8dd30372d579acd53bd9ca480689cb7",
-    "kind": "return",
-    "ncalls": 6,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3856939601,
-     1894272194,
-     2147483647,
-     2092907358
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3204448256,
-     "1": 3239897098
-    },
-    "id": "fp-52",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 52,
-    "xpsr": 0
-   },
-   "new_instructions": 49,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    1,
-    4,
-    3,
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "i32",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    314256,
-    105584,
-    314348,
-    469256,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 2147483647, 3921118200, 'S', 'F', 'T', None)",
-    "('C', 1, 556040, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 3921118200, 'S', 'F', 'T', None)",
-    "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
-    "('C', 4, 536885704, 1656661543, 4294967295, 4294967295, 'S', 'F', 'T', None)",
-    "('W', 536902272, 4, 1)",
-    "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 3921118200, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "dce6c33b91f3d4da5b27a3c403e6ef9af6c31a385793f42bd54b37c6bfb827a5",
-    "kind": "return",
-    "ncalls": 6,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     1740848604,
-     2393220392,
-     2147483647,
-     2556506514
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 2147483648,
-     "1": 3204448256
-    },
-    "id": "fp-54",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 54,
-    "xpsr": 0
-   },
-   "new_instructions": 49,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    1,
-    4,
-    3,
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "i32",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    314256,
-    105584,
-    314348,
-    469256,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 3578670822, 1028059815, 'S', 'F', 'T', None)",
-    "('C', 1, 556040, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 1028059815, 'S', 'F', 'T', None)",
-    "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
-    "('C', 4, 536885704, 1656661543, 4294967295, 4294967295, 'S', 'F', 'T', None)",
-    "('W', 536902272, 4, 1)",
-    "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 1028059815, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "14197e8c04d1dc397fc65874640ca00e84ec92fd0c986f3109e5f73e8a00c737",
-    "kind": "return",
-    "ncalls": 6,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     8,
-     3577755483,
-     3578670822,
-     8
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1065353216,
-     "1": 0
-    },
-    "id": "fp-55",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 55,
-    "xpsr": 0
-   },
-   "new_instructions": 49,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    1,
-    4,
-    3,
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "i32",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    314256,
-    105584,
-    314348,
-    469256,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 206381930, 480847480, 'S', 'F', 'T', None)",
-    "('C', 1, 556040, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 480847480, 'S', 'F', 'T', None)",
-    "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
-    "('C', 4, 536885704, 1656661543, 4294967295, 4294967295, 'S', 'F', 'T', None)",
-    "('W', 536902272, 4, 1)",
-    "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 480847480, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "3b1c02e6d460e3eeef18fa8846e8d28ff785b11bab22001e8d3f39d356fbbc47",
-    "kind": "return",
-    "ncalls": 6,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     5,
-     3291529428,
-     206381930,
-     1
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3212836864,
-     "1": 3184315597
-    },
-    "id": "fp-56",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 56,
-    "xpsr": 0
-   },
-   "new_instructions": 49,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    1,
-    4,
-    3,
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "i32",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    314256,
-    105584,
-    314348,
-    469256,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 1677850251, 2444602602, 'S', 'F', 'T', None)",
-    "('C', 1, 556040, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 2444602602, 'S', 'F', 'T', None)",
-    "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
-    "('C', 4, 536885704, 1656661543, 4294967295, 4294967295, 'S', 'F', 'T', None)",
-    "('W', 536902272, 4, 1)",
-    "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 2444602602, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "752d38fdcd9e410594894c5969791bdfd3481b982f447ec382f5593eec687656",
-    "kind": "return",
-    "ncalls": 6,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3720324128,
-     2846093838,
-     1677850251,
-     7
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1056964608,
-     "1": 3239897098
-    },
-    "id": "fp-57",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 57,
-    "xpsr": 0
-   },
-   "new_instructions": 49,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    1,
-    4,
-    3,
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "i32",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    314256,
-    105584,
-    314348,
-    469256,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 4, 2059510718, 'S', 'F', 'T', None)",
-    "('C', 1, 556040, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 2059510718, 'S', 'F', 'T', None)",
-    "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
-    "('C', 4, 536885704, 1656661543, 4294967295, 4294967295, 'S', 'F', 'T', None)",
-    "('W', 536902272, 4, 1)",
-    "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 2059510718, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "6bf8b658ca057b99a5dc3274c5d2239b3993e4d24bb4d4c8b30c40aefbc8e35f",
-    "kind": "return",
-    "ncalls": 6,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     8,
-     2,
-     4,
-     2495041172
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3204448256,
-     "1": 1266679808
-    },
-    "id": "fp-58",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 58,
-    "xpsr": 0
-   },
-   "new_instructions": 49,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    1,
-    4,
-    3,
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "i32",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    314256,
-    105584,
-    314348,
-    469256,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 1966003740, 913139319, 'S', 'F', 'T', None)",
-    "('C', 1, 556040, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 913139319, 'S', 'F', 'T', None)",
-    "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
-    "('C', 4, 536885704, 1656661543, 4294967295, 4294967295, 'S', 'F', 'T', None)",
-    "('W', 536902272, 4, 1)",
-    "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 913139319, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "66b4cf5af36e9d78996bb556501cff161a85d8467fca6350a0b546d9f818acb4",
-    "kind": "return",
-    "ncalls": 6,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     2684056074,
-     2147483647,
-     1966003740,
-     0
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 2147483648,
-     "1": 0
-    },
-    "id": "fp-60",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 60,
-    "xpsr": 0
-   },
-   "new_instructions": 49,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    1,
-    4,
-    3,
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "i32",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    314256,
-    105584,
-    314348,
-    469256,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 1, 3330584012, 'S', 'F', 'T', None)",
-    "('C', 1, 556040, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 3330584012, 'S', 'F', 'T', None)",
-    "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
-    "('C', 4, 536885704, 1656661543, 4294967295, 4294967295, 'S', 'F', 'T', None)",
-    "('W', 536902272, 4, 1)",
-    "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 3330584012, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "384f77d4c065869cae58c26bb0fb21a2bab0132675507d9a1f084fe8e46863c4",
-    "kind": "return",
-    "ncalls": 6,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     256,
-     3605787990,
-     1,
-     0
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1065353216,
-     "1": 3184315597
-    },
-    "id": "fp-61",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 61,
-    "xpsr": 0
-   },
-   "new_instructions": 49,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    1,
-    4,
-    3,
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "i32",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    314256,
-    105584,
-    314348,
-    469256,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 1271289561, 2313802153, 'S', 'F', 'T', None)",
-    "('C', 1, 556040, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 2313802153, 'S', 'F', 'T', None)",
-    "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
-    "('C', 4, 536885704, 1656661543, 4294967295, 4294967295, 'S', 'F', 'T', None)",
-    "('W', 536902272, 4, 1)",
-    "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 2313802153, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "0731de3b69540e65676ca33bd74bf88fc2f3be01e64bd56c5a5b9bf6772c88ca",
-    "kind": "return",
-    "ncalls": 6,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     222493114,
-     4294967295,
-     1271289561,
+     6,
+     540395309,
+     536940552,
      5
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3212836864,
-     "1": 3239897098
-    },
-    "id": "fp-62",
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-3",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
-    "scratch_seed": 62,
+    "outparam": null,
+    "scratch_seed": 803,
+    "xpsr": 0
+   },
+   "new_instructions": 49,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    1,
+    4,
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    314256,
+    105584,
+    314348,
+    469256,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536940552, 124486711, 'S', 'F', 'T', None)",
+    "('C', 1, 556040, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 124486711, 'S', 'F', 'T', None)",
+    "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
+    "('C', 4, 536885704, 1656661543, 4294967295, 4294967295, 'S', 'F', 'T', None)",
+    "('W', 536902272, 4, 1)",
+    "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 124486711, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "4c9ef6d7c57ad99b21bb4eaa4f254023b9c9af660f3e3380f2b3674bf741cc32",
+    "kind": "return",
+    "ncalls": 6,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "05100120081001200c1001201010012015100120181001201c1001202010012025100120281001202c1001203010012035100120381001203c1001204010012045100120481001204c1001205010012055100120581001205c1001206010012065100120681001206c1001207010012075100120781001207c1001208010012085100120881001208c1001209010012095100120981001209c100120a0100120a5100120a8100120ac100120b0100120b5100120b8100120bc100120c0100120c5100120c8100120cc100120d0100120d5100120d8100120dc100120e0100120e5100120e8100120ec100120f0100120f5100120f8100120fc1001200011012005110120081101200c1101201011012015110120181101201c1101202011012025110120281101202c1101203011012035110120381101203c1101204011012045110120481101204c1101205011012055110120581101205c1101206011012065110120681101206c1101207011012075110120781101207c1101208011012085110120881101208c1101209011012095110120981101209c110120a0110120a5110120a8110120ac110120b0110120b5110120b8110120bc110120c0110120c5110120c8110120cc110120d0110120d5110120d8110120dc110120e0110120e5110120e8110120ec110120f0110120f5110120f8110120fc11012000100120"
+     ]
+    ],
+    "args": [
+     4294967295,
+     3541054321,
+     536940552,
+     4294967295
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-4",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 804,
+    "xpsr": 0
+   },
+   "new_instructions": 49,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    1,
+    4,
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    314256,
+    105584,
+    314348,
+    469256,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536940552, 3811744857, 'S', 'F', 'T', None)",
+    "('C', 1, 556040, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 3811744857, 'S', 'F', 'T', None)",
+    "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
+    "('C', 4, 536885704, 1656661543, 4294967295, 4294967295, 'S', 'F', 'T', None)",
+    "('W', 536902272, 4, 1)",
+    "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 3811744857, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "706a015b0ee012b3804abae8761b13d2174ba6062df0ee08b703303da64c0a50",
+    "kind": "return",
+    "ncalls": 6,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "04100120091001200c1001201010012014100120191001201c1001202010012024100120291001202c1001203010012034100120391001203c1001204010012044100120491001204c1001205010012054100120591001205c1001206010012064100120691001206c1001207010012074100120791001207c1001208010012084100120891001208c1001209010012094100120991001209c100120a0100120a4100120a9100120ac100120b0100120b4100120b9100120bc100120c0100120c4100120c9100120cc100120d0100120d4100120d9100120dc100120e0100120e4100120e9100120ec100120f0100120f4100120f9100120fc1001200011012004110120091101200c1101201011012014110120191101201c1101202011012024110120291101202c1101203011012034110120391101203c1101204011012044110120491101204c1101205011012054110120591101205c1101206011012064110120691101206c1101207011012074110120791101207c1101208011012084110120891101208c1101209011012094110120991101209c110120a0110120a4110120a9110120ac110120b0110120b4110120b9110120bc110120c0110120c4110120c9110120cc110120d0110120d4110120d9110120dc110120e0110120e4110120e9110120ec110120f0110120f4110120f9110120fc11012000100120"
+     ]
+    ],
+    "args": [
+     16,
+     2147483647,
+     536940552,
+     1831443650
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-5",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 805,
+    "xpsr": 0
+   },
+   "new_instructions": 49,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    1,
+    4,
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    314256,
+    105584,
+    314348,
+    469256,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536940552, 3204408865, 'S', 'F', 'T', None)",
+    "('C', 1, 556040, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 0, 3204408865, 'S', 'F', 'T', None)",
+    "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
+    "('C', 4, 536885704, 0, 4294967295, 4294967295, 'S', 'F', 'T', None)",
+    "('W', 536902272, 4, 1)",
+    "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 3204408865, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "12611c692552e457d7766d96fbd334e80637ecf99c8d058ddd03906fbb2fee90",
+    "kind": "return",
+    "ncalls": 6,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "04100120091001200c1001201010012014100120191001201c1001202010012024100120291001202c1001203010012034100120391001203c1001204010012044100120491001204c1001205010012054100120591001205c1001206010012064100120691001206c1001207010012074100120791001207c1001208010012084100120891001208c1001209010012094100120991001209c100120a0100120a4100120a9100120ac100120b0100120b4100120b9100120bc100120c0100120c4100120c9100120cc100120d0100120d4100120d9100120dc100120e0100120e4100120e9100120ec100120f0100120f4100120f9100120fc1001200011012004110120091101200c1101201011012014110120191101201c1101202011012024110120291101202c1101203011012034110120391101203c1101204011012044110120491101204c1101205011012054110120591101205c1101206011012064110120691101206c1101207011012074110120791101207c1101208011012084110120891101208c1101209011012094110120991101209c110120a0110120a4110120a9110120ac110120b0110120b4110120b9110120bc110120c0110120c4110120c9110120cc110120d0110120d4110120d9110120dc110120e0110120e4110120e9110120ec110120f0110120f4110120f9110120fc11012000100120"
+     ]
+    ],
+    "args": [
+     16,
+     2147483647,
+     536940552,
+     1831443650
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-5",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 835,
+    "xpsr": 0
+   },
+   "new_instructions": 49,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    1,
+    4,
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    314256,
+    105584,
+    314348,
+    469256,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536940552, 3753546315, 'S', 'F', 'T', None)",
+    "('C', 1, 556040, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 3753546315, 'S', 'F', 'T', None)",
+    "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
+    "('C', 4, 536885704, 1656661543, 4294967295, 4294967295, 'S', 'F', 'T', None)",
+    "('W', 536902272, 4, 1)",
+    "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 3753546315, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "39730d0392fc792c02c944ba7a460db441f84d67304e7331fadf75be250c69cb",
+    "kind": "return",
+    "ncalls": 6,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "04100120081001200d1001201010012014100120181001201d1001202010012024100120281001202d1001203010012034100120381001203d1001204010012044100120481001204d1001205010012054100120581001205d1001206010012064100120681001206d1001207010012074100120781001207d1001208010012084100120881001208d1001209010012094100120981001209d100120a0100120a4100120a8100120ad100120b0100120b4100120b8100120bd100120c0100120c4100120c8100120cd100120d0100120d4100120d8100120dd100120e0100120e4100120e8100120ed100120f0100120f4100120f8100120fd1001200011012004110120081101200d1101201011012014110120181101201d1101202011012024110120281101202d1101203011012034110120381101203d1101204011012044110120481101204d1101205011012054110120581101205d1101206011012064110120681101206d1101207011012074110120781101207d1101208011012084110120881101208d1101209011012094110120981101209d110120a0110120a4110120a8110120ad110120b0110120b4110120b8110120bd110120c0110120c4110120c8110120cd110120d0110120d4110120d8110120dd110120e0110120e4110120e8110120ed110120f0110120f4110120f8110120fd11012000100120"
+     ]
+    ],
+    "args": [
+     1004936853,
+     1756652880,
+     536940552,
+     1979409823
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-6",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 806,
+    "xpsr": 0
+   },
+   "new_instructions": 49,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    1,
+    4,
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    314256,
+    105584,
+    314348,
+    469256,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536940552, 2629500200, 'S', 'F', 'T', None)",
+    "('C', 1, 556040, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 0, 2629500200, 'S', 'F', 'T', None)",
+    "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
+    "('C', 4, 536885704, 0, 4294967295, 4294967295, 'S', 'F', 'T', None)",
+    "('W', 536902272, 4, 1)",
+    "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 2629500200, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1734ef7b6165e4d0fe7428fbe6e7a2ab9e73e2c7dd9711a8bcbdf70155caee53",
+    "kind": "return",
+    "ncalls": 6,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "0111012004110120081101200c1101201111012014110120181101201c1101202111012024110120281101202c1101203111012034110120381101203c1101204111012044110120481101204c1101205111012054110120581101205c1101206111012064110120681101206c1101207111012074110120781101207c1101208111012084110120881101208c1101209111012094110120981101209c110120a1110120a4110120a8110120ac110120b1110120b4110120b8110120bc110120c1110120c4110120c8110120cc110120d1110120d4110120d8110120dc110120e1110120e4110120e8110120ec110120f1110120f4110120f8110120fc1101200110012004100120081001200c1001201110012014100120181001201c1001202110012024100120281001202c1001203110012034100120381001203c1001204110012044100120481001204c1001205110012054100120581001205c1001206110012064100120681001206c1001207110012074100120781001207c1001208110012084100120881001208c1001209110012094100120981001209c100120a1100120a4100120a8100120ac100120b1100120b4100120b8100120bc100120c1100120c4100120c8100120cc100120d1100120d4100120d8100120dc100120e1100120e4100120e8100120ec100120f1100120f4100120f8100120fc100120"
+     ]
+    ],
+    "args": [
+     5,
+     0,
+     536940552,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-8",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 838,
+    "xpsr": 0
+   },
+   "new_instructions": 49,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    1,
+    4,
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    314256,
+    105584,
+    314348,
+    469256,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536940552, 4129539460, 'S', 'F', 'T', None)",
+    "('C', 1, 556040, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 1927129959, 4129539460, 'S', 'F', 'T', None)",
+    "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
+    "('C', 4, 536885704, 1656661543, 4294967295, 4294967295, 'S', 'F', 'T', None)",
+    "('W', 536902272, 4, 1)",
+    "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 4129539460, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "98e1b273710dcaa6c2beeb24b1c9fce7e05a1c68be29e89fdc0a5b2f372f6271",
+    "kind": "return",
+    "ncalls": 6,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "0011012005110120081101200c1101201011012015110120181101201c1101202011012025110120281101202c1101203011012035110120381101203c1101204011012045110120481101204c1101205011012055110120581101205c1101206011012065110120681101206c1101207011012075110120781101207c1101208011012085110120881101208c1101209011012095110120981101209c110120a0110120a5110120a8110120ac110120b0110120b5110120b8110120bc110120c0110120c5110120c8110120cc110120d0110120d5110120d8110120dc110120e0110120e5110120e8110120ec110120f0110120f5110120f8110120fc1101200010012005100120081001200c1001201010012015100120181001201c1001202010012025100120281001202c1001203010012035100120381001203c1001204010012045100120481001204c1001205010012055100120581001205c1001206010012065100120681001206c1001207010012075100120781001207c1001208010012085100120881001208c1001209010012095100120981001209c100120a0100120a5100120a8100120ac100120b0100120b5100120b8100120bc100120c0100120c5100120c8100120cc100120d0100120d5100120d8100120dc100120e0100120e5100120e8100120ec100120f0100120f5100120f8100120fc100120"
+     ]
+    ],
+    "args": [
+     1550294124,
+     2147483648,
+     536940552,
+     3945435217
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-9",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 809,
+    "xpsr": 0
+   },
+   "new_instructions": 49,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    1,
+    4,
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    314256,
+    105584,
+    314348,
+    469256,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536940552, 1229008232, 'S', 'F', 'T', None)",
+    "('C', 1, 556040, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 0, 1229008232, 'S', 'F', 'T', None)",
+    "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
+    "('C', 4, 536885704, 0, 4294967295, 4294967295, 'S', 'F', 'T', None)",
+    "('W', 536902272, 4, 1)",
+    "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 1229008232, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "8a249d49c398ec37e2d4b4c0af85bb4fdc407af2af02e85e4b53148449b95bea",
+    "kind": "return",
+    "ncalls": 6,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "0011012005110120081101200c1101201011012015110120181101201c1101202011012025110120281101202c1101203011012035110120381101203c1101204011012045110120481101204c1101205011012055110120581101205c1101206011012065110120681101206c1101207011012075110120781101207c1101208011012085110120881101208c1101209011012095110120981101209c110120a0110120a5110120a8110120ac110120b0110120b5110120b8110120bc110120c0110120c5110120c8110120cc110120d0110120d5110120d8110120dc110120e0110120e5110120e8110120ec110120f0110120f5110120f8110120fc1101200010012005100120081001200c1001201010012015100120181001201c1001202010012025100120281001202c1001203010012035100120381001203c1001204010012045100120481001204c1001205010012055100120581001205c1001206010012065100120681001206c1001207010012075100120781001207c1001208010012085100120881001208c1001209010012095100120981001209c100120a0100120a5100120a8100120ac100120b0100120b5100120b8100120bc100120c0100120c5100120c8100120cc100120d0100120d5100120d8100120dc100120e0100120e5100120e8100120ec100120f0100120f5100120f8100120fc100120"
+     ]
+    ],
+    "args": [
+     1550294124,
+     2147483648,
+     536940552,
+     3945435217
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-9",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 839,
+    "xpsr": 0
+   },
+   "new_instructions": 49,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    1,
+    4,
+    3,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    314256,
+    105584,
+    314348,
+    469256,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): IPC-service HOST init started\\n'), ('RO', b'serialization_init'), 536940552, 111899093, 'S', 'F', 'T', None)",
+    "('C', 1, 556040, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): ipc open %d\\n'), ('RO', b'serialization_init'), 0, 111899093, 'S', 'F', 'T', None)",
+    "('C', 3, 556040, 536902264, 536880092, 'S', 'F', 'T', None)",
+    "('C', 4, 536885704, 0, 4294967295, 4294967295, 'S', 'F', 'T', None)",
+    "('W', 536902272, 4, 1)",
+    "('C', 5, ('RO', b'%s(): ipc_service[HOST] has ready!\\n\\n'), ('RO', b'serialization_init'), 1, 111899093, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "a0ea611a6eae8c43be8f0cdde528c54ac729b7d22d6dd5165caec710c02f00d6",
+    "kind": "return",
+    "ncalls": 6,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "0011012004110120091101200c1101201011012014110120191101201c1101202011012024110120291101202c1101203011012034110120391101203c1101204011012044110120491101204c1101205011012054110120591101205c1101206011012064110120691101206c1101207011012074110120791101207c1101208011012084110120891101208c1101209011012094110120991101209c110120a0110120a4110120a9110120ac110120b0110120b4110120b9110120bc110120c0110120c4110120c9110120cc110120d0110120d4110120d9110120dc110120e0110120e4110120e9110120ec110120f0110120f4110120f9110120fc1101200010012004100120091001200c1001201010012014100120191001201c1001202010012024100120291001202c1001203010012034100120391001203c1001204010012044100120491001204c1001205010012054100120591001205c1001206010012064100120691001206c1001207010012074100120791001207c1001208010012084100120891001208c1001209010012094100120991001209c100120a0100120a4100120a9100120ac100120b0100120b4100120b9100120bc100120c0100120c4100120c9100120cc100120d0100120d4100120d9100120dc100120e0100120e4100120e9100120ec100120f0100120f4100120f9100120fc100120"
+     ]
+    ],
+    "args": [
+     3,
+     2147483647,
+     536940552,
+     1542803971
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-10",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 840,
     "xpsr": 0
    },
    "new_instructions": 49,
@@ -3023,21 +3798,22 @@
     "abs": [
      [
       536879884,
-      "01000000"
+      "01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000"
      ]
     ],
     "args": [
      4067469868,
      1797429778,
-     2147483648,
+     536940476,
      315044147
     ],
     "float_scratch": false,
     "fp": {},
     "id": "glob-0-1",
     "mem": [],
-    "nptr": 0,
+    "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -3063,8 +3839,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "core",
@@ -3073,16 +3852,22 @@
   "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
   "source": "shipped image"
  },
- "pointer_arg_mask": [],
+ "pointer_arg_mask": [
+  2
+ ],
  "ret_kind": "i32",
  "search": {
-  "candidates": 213,
+  "candidates": 280,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
   "kept": 43,
-  "pointer_arg_mask": [],
+  "pointer_arg_mask": [
+   2
+  ],
   "pointer_arg_mask_derived": true
  },
  "size": 184,

@@ -18,11 +18,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 12, 4, 536940048, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 4, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536948040, 536948308, 536940048, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536948308, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "3eaef302c647d3bcc24968c266d6ef7c34116ff14bcbf503aec0cb5f2ad7f42a",
+    "events": "c491eafffc2a37fc9321e88f36ee3acfbec954a5ee9613dd0909c7d66c01ddea",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -34,16 +34,17 @@
     "abs": [],
     "args": [
      536943568,
-     12,
-     4,
+     536948040,
+     536948308,
      536940048
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -68,11 +69,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 1797429778, 2147483648, 536949040, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 2147483648, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536943120, 536940476, 536949040, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536940476, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "af4808b40accb518debae5a30262c55d2b1b0d6c6c21fa847afce97dac44502c",
+    "events": "5e8386d4f2d217d7bcf3214622225ca7072d67002dc07515a95c7b82046879a0",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -84,16 +85,17 @@
     "abs": [],
     "args": [
      536947244,
-     1797429778,
-     2147483648,
+     536943120,
+     536940476,
      536949040
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -118,11 +120,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 598759513, 3677430904, 536943396, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3677430904, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536942680, 536945784, 536943396, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536945784, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "a997aeaa5701fdeae543dff0cbc82db8f5049aac56a0123505ad02c06f39c3f8",
+    "events": "5249ef0c54f38d45424a14fcf147b62bd745311f03402a52c74542f1c95c5f02",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -134,16 +136,17 @@
     "abs": [],
     "args": [
      536943312,
-     598759513,
-     3677430904,
+     536942680,
+     536945784,
      536943396
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
@@ -168,11 +171,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 255, 8, 536937692, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 8, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536940936, 536943096, 536937692, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536943096, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "13efa855d4dcd68d643b11c437d8be9b1168e53d01f1335034ce0d0e155bf771",
+    "events": "51d25a2420acc5afbb27e51617a3c2c0d4483326d541a5fd729f24f293ea42d7",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -184,16 +187,17 @@
     "abs": [],
     "args": [
      536945628,
-     255,
-     8,
+     536940936,
+     536943096,
      536937692
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-3",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 3,
     "xpsr": 0
    },
@@ -218,11 +222,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 2147483647, 3842370354, 536951124, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3842370354, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536944284, 536947504, 536951124, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536947504, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "96033bd9fdfa9d46138ae0a42c3923ebc68fb243e9f94a8deef2bbfcebc32c18",
+    "events": "5a1b053e68a87d6a69b8ca1b14e8dde52acc1425ede475f686223e38a9171d2d",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -234,16 +238,17 @@
     "abs": [],
     "args": [
      536945864,
-     2147483647,
-     3842370354,
+     536944284,
+     536947504,
      536951124
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 4,
     "xpsr": 0
    },
@@ -268,11 +273,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 3188701995, 8, 536942644, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 8, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536951592, 536944168, 536942644, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536944168, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ee4dbdc3a569ee6a768106a92bc0d267a06eff4b15f7455a53152f7b60d8c4da",
+    "events": "d0ab2a454849098f73ed622051e55c7e463fb64435e2fff4efa0a96015aeacd2",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -284,16 +289,17 @@
     "abs": [],
     "args": [
      536939588,
-     3188701995,
-     8,
+     536951592,
+     536944168,
      536942644
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-5",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 5,
     "xpsr": 0
    },
@@ -318,11 +324,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 3322790363, 5, 536952236, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 5, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536936920, 536947060, 536952236, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536947060, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c95410d93044627c26f6418fc824e084c770b80eaaab9c38c9541a7eab07cd49",
+    "events": "79f37c8de3038e5f99a1d6e8b3a8f32021b8689529a8ae1c66b2c665f9683912",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -334,16 +340,17 @@
     "abs": [],
     "args": [
      536950900,
-     3322790363,
-     5,
+     536936920,
+     536947060,
      536952236
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-6",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 6,
     "xpsr": 0
    },
@@ -368,11 +375,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 1604804925, 1, 536948380, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 1, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536944956, 536950368, 536948380, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536950368, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "8cedd5f36864383000e989e5921a5cc790e562713a98f788716fcc6860f8d032",
+    "events": "427864c59eacc6ac5b06c3f2a968fd41b5b511ff24ca2d4a7a71f2cb33d70907",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -384,16 +391,17 @@
     "abs": [],
     "args": [
      536941592,
-     1604804925,
-     1,
+     536944956,
+     536950368,
      536948380
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-7",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 7,
     "xpsr": 0
    },
@@ -418,11 +426,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 708972563, 558645175, 536949588, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 558645175, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536940560, 536952756, 536949588, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536952756, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "aa2180914c5179a62117585b40a124695a3a904a42a8fe8c98f6332c58a7cfad",
+    "events": "edb7d80bc8094504c79d7796caf27b83aa4368aafea298552e61e9a475b3bd4f",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -434,16 +442,17 @@
     "abs": [],
     "args": [
      536939044,
-     708972563,
-     558645175,
+     536940560,
+     536952756,
      536949588
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-8",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 8,
     "xpsr": 0
    },
@@ -468,11 +477,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 1556998536, 499087790, 536940988, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 499087790, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536947080, 536951212, 536940988, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536951212, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "926fc82db01515b597f796cc31efdcbf02f5205735258202865413dbe771c75a",
+    "events": "aa030011047e5f16c604a65640c7f679bd1025d47758152d9a61c16ddbfa6482",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -484,16 +493,17 @@
     "abs": [],
     "args": [
      536944692,
-     1556998536,
-     499087790,
+     536947080,
+     536951212,
      536940988
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 9,
     "xpsr": 0
    },
@@ -518,11 +528,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 995058044, 8, 536947328, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 8, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536945020, 536946200, 536947328, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536946200, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "993bd9864d69a72e292f3374c5b4f7d33e37c6c661a9887398ded3059b256d04",
+    "events": "8b54b8b765660d81b898d60c0183480c7e2323e13c176b35c460b8181c9c6f7a",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -534,16 +544,17 @@
     "abs": [],
     "args": [
      536939204,
-     995058044,
-     8,
+     536945020,
+     536946200,
      536947328
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 10,
     "xpsr": 0
    },
@@ -568,11 +579,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 2147483648, 256, 536941168, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 256, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536948284, 536938076, 536941168, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536938076, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "1ce60703ef2f81c6cc998c51714dfdca9d324a7996b758abb643c897fb41023b",
+    "events": "847be0d19715c066c43fe3822884781c08d7898600dc2feea2a2287486470862",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -584,16 +595,17 @@
     "abs": [],
     "args": [
      536937040,
-     2147483648,
-     256,
+     536948284,
+     536938076,
      536941168
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 11,
     "xpsr": 0
    },
@@ -618,11 +630,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 3217736208, 5, 536937896, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 5, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536936976, 536941268, 536937896, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536941268, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b7677fd4cdf11ecfed25b70ba0af7919c7ebfa1ba13df9860ea455f9472e205f",
+    "events": "0de55e6bde8e39310c7d12272af4ca42c9e04a5178db71be3470927111fbfe54",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -634,16 +646,17 @@
     "abs": [],
     "args": [
      536944520,
-     3217736208,
-     5,
+     536936976,
+     536941268,
      536937896
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-12",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 12,
     "xpsr": 0
    },
@@ -668,11 +681,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 1944344031, 6, 536941612, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 6, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536942044, 536939060, 536941612, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536939060, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "5d5d553fb443ae2005f49db12201df5b08608e2635b73941bc1fef1841764521",
+    "events": "be3bc1dd6bd238609dd4cd3e38ee0a7b134633031ebb8b29d87bed8ec2722f49",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -684,16 +697,17 @@
     "abs": [],
     "args": [
      536944304,
-     1944344031,
-     6,
+     536942044,
+     536939060,
      536941612
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 13,
     "xpsr": 0
    },
@@ -718,11 +732,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 12, 3, 536942112, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536949848, 536943328, 536942112, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536943328, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "df61274806f71edafcfc56eb9118640f0fdb25d9b9772a23bef91e1d685710e9",
+    "events": "8fbc35c2ed63f17a2b61321437265e34eef1aa535038467ac0270c8f628ad48f",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -734,16 +748,17 @@
     "abs": [],
     "args": [
      536943892,
-     12,
-     3,
+     536949848,
+     536943328,
      536942112
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-14",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 14,
     "xpsr": 0
    },
@@ -768,11 +783,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 256, 5, 536949908, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 5, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536941132, 536951236, 536949908, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536951236, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "fa7fae62559371ee82dd81dd222311bf319f08796bfbacdbdce7519d0cb18fd2",
+    "events": "85a6bc58cfeeb925502cf4e9d3ec15ab7399258fa35e70d9e8072405a98c0793",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -784,16 +799,17 @@
     "abs": [],
     "args": [
      536952404,
-     256,
-     5,
+     536941132,
+     536951236,
      536949908
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-15",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 15,
     "xpsr": 0
    },
@@ -818,11 +834,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 2147483648, 3454407978, 536940136, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3454407978, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536942972, 536941864, 536940136, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536941864, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "8eadcf9a01ca29429ef2b7ac5624d0b317e4f9e39147fc693f44aafa86a6900d",
+    "events": "be443f5b07abfb4048d68e4135a9f62723a507cad63ea98278d79b8bc131bdfc",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -834,16 +850,17 @@
     "abs": [],
     "args": [
      536943260,
-     2147483648,
-     3454407978,
+     536942972,
+     536941864,
      536940136
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
@@ -868,11 +885,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 3254638692, 1168623309, 536946020, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 1168623309, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536942692, 536938188, 536946020, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536938188, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c4022672b729f90a65916c70ea867d46d2a5bb7f039054725d8e7e1421e29f37",
+    "events": "6982689b05c0929ba5bbd8b851458f101a4573355e26bfe3cd48a88197a99eca",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -884,16 +901,17 @@
     "abs": [],
     "args": [
      536944016,
-     3254638692,
-     1168623309,
+     536942692,
+     536938188,
      536946020
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-17",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 17,
     "xpsr": 0
    },
@@ -918,11 +936,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 0, 697236451, 536945600, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 697236451, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536937440, 536951776, 536945600, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536951776, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "e84cd38b927acd4cf1cb0ebd2881ccdac15d4b8daf11f82ba99262206d673b07",
+    "events": "5559a3ef813bd32eca6896e9a1b0e43f78195a1157f70fba855e18ee8e10cbb0",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -934,16 +952,17 @@
     "abs": [],
     "args": [
      536944948,
-     0,
-     697236451,
+     536937440,
+     536951776,
      536945600
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-18",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 18,
     "xpsr": 0
    },
@@ -968,11 +987,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 1536401714, 4178753371, 536947592, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 4178753371, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536944944, 536950616, 536947592, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536950616, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "443319c761ba3e75b13a4e0159f59cefa780b44828c8374cba5eccbd024455fb",
+    "events": "d7079784e9fb644015470ba6d912c5de44ed854a272255a23b472a2835422e7b",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -984,16 +1003,17 @@
     "abs": [],
     "args": [
      536939284,
-     1536401714,
-     4178753371,
+     536944944,
+     536950616,
      536947592
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 19,
     "xpsr": 0
    },
@@ -1018,11 +1038,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 2306919366, 2, 536951108, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 2, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536939460, 536939760, 536951108, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536939760, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "6dda3a1262950337c6f259d2b6d780e9d9c4a1c31403e16a59d456379bc5219b",
+    "events": "a8d6c521c7c6902a768d4b07e3d4bfd15d017335f5ceb1c35fc6e9a546b38feb",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1034,16 +1054,17 @@
     "abs": [],
     "args": [
      536952740,
-     2306919366,
-     2,
+     536939460,
+     536939760,
      536951108
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-20",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 20,
     "xpsr": 0
    },
@@ -1068,11 +1089,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 1, 2870852768, 536943488, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 2870852768, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536936640, 536951968, 536943488, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536951968, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b6d3c431301eeca891a3bdbefc5eccef6561e0691a2e138ff1cc32ea8f062bc4",
+    "events": "0a648d0bf9d1b4f440be5618856f5bbb4d3b6f14abafe12fda525663f7b4a90d",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1084,16 +1105,17 @@
     "abs": [],
     "args": [
      536941420,
-     1,
-     2870852768,
+     536936640,
+     536951968,
      536943488
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-21",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 21,
     "xpsr": 0
    },
@@ -1118,11 +1140,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 3001296298, 4294967295, 536947564, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 4294967295, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536946088, 536949836, 536947564, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536949836, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "4db3f95509eb696976b28bb77a9915e8811ecebf75bee11b4548c08b0f545bbf",
+    "events": "50949afcc6f61bc40f30d2469ccfb1f2dd36c83935f0bde0faf89d36d26c3a18",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1134,16 +1156,17 @@
     "abs": [],
     "args": [
      536937396,
-     3001296298,
-     4294967295,
+     536946088,
+     536949836,
      536947564
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-22",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 22,
     "xpsr": 0
    },
@@ -1168,11 +1191,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 241044672, 2034212132, 536941584, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 2034212132, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536939712, 536943908, 536941584, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536943908, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "98095ba8ae5120194af1ffd03ec3f7f9fbb377b5c9f2c44e2a40072577a9429e",
+    "events": "a6a9726accc67af9539befe99200ef26123492fd353867991053b5520ed21ea7",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1184,16 +1207,17 @@
     "abs": [],
     "args": [
      536952228,
-     241044672,
-     2034212132,
+     536939712,
+     536943908,
      536941584
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-23",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 23,
     "xpsr": 0
    },
@@ -1218,11 +1242,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 6, 2967241396, 536951364, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 2967241396, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536944852, 536937140, 536951364, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536937140, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b08dae5f985e6fbe02d43f77fbd45855a0aee8278f7009560d94d132c409028f",
+    "events": "f73ad247c60be36bfb957510860d5b4babd6474628ac2ce2dfacc76aaa2378b8",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1234,16 +1258,17 @@
     "abs": [],
     "args": [
      536949908,
-     6,
-     2967241396,
+     536944852,
+     536937140,
      536951364
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-24",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 24,
     "xpsr": 0
    },
@@ -1268,11 +1293,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 12, 2149248134, 536943596, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 2149248134, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536941512, 536947844, 536943596, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536947844, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ba37de4798da9fe47dff5d4fa5bcd50f6a24a6725f24d188a839f05c489e8920",
+    "events": "c0e6afc0cdda93a57c8024bf7ec8e74538851f43f797dac55d188e61b669c278",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1284,16 +1309,17 @@
     "abs": [],
     "args": [
      536938252,
-     12,
-     2149248134,
+     536941512,
+     536947844,
      536943596
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 25,
     "xpsr": 0
    },
@@ -1318,11 +1344,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 12, 3037640278, 536939632, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3037640278, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536937032, 536950356, 536939632, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536950356, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "6101732dfe4f462e200cc421fc0942af3b5530226c3064c87ea2b898c48da7c9",
+    "events": "dc0030b1078b880837ac8dafc67f4578e75e0c4714ace2379ab8b37c2fd0ccfc",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1334,16 +1360,17 @@
     "abs": [],
     "args": [
      536942224,
-     12,
-     3037640278,
+     536937032,
+     536950356,
      536939632
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-26",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 26,
     "xpsr": 0
    },
@@ -1368,11 +1395,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 681194263, 3639365232, 536941060, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3639365232, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536949524, 536940144, 536941060, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536940144, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "8f2a301e6dc52b3292a2c64833699dcfc2ca22f2f0bf8f76478eb703b19bbd38",
+    "events": "95b990b41bad302541f7875ceea2bcc23011d1975a8e51177283404528376d96",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1384,16 +1411,17 @@
     "abs": [],
     "args": [
      536945192,
-     681194263,
-     3639365232,
+     536949524,
+     536940144,
      536941060
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 27,
     "xpsr": 0
    },
@@ -1418,11 +1446,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 4285183211, 1, 536947112, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 1, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536949992, 536946096, 536947112, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536946096, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "0a546c6ea90667d195de711231816ff16f1a223de91f7cb2ca6d5459eecdf4c1",
+    "events": "a2dd95e1865217bde72a83d7ee15c2625e2c854e561e40105be65dc1f2308b89",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1434,16 +1462,17 @@
     "abs": [],
     "args": [
      536946084,
-     4285183211,
-     1,
+     536949992,
+     536946096,
      536947112
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-28",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 28,
     "xpsr": 0
    },
@@ -1468,11 +1497,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 256, 3886541357, 536938744, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3886541357, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536937084, 536947244, 536938744, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536947244, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "a688e51ccc53641e5b1083271a6949d9b499471043ed3015b505e67e0197806c",
+    "events": "48e91e548cfb01dfd27d7cdf0df69bc01d006f9d7d0859a88c119169e2a9d957",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1484,16 +1513,17 @@
     "abs": [],
     "args": [
      536947488,
-     256,
-     3886541357,
+     536937084,
+     536947244,
      536938744
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-29",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 29,
     "xpsr": 0
    },
@@ -1518,11 +1548,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 8, 1, 536939284, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 1, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536941720, 536945744, 536939284, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536945744, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "08bdb1ac477db4b8da5aa7b00a1c258534723595f0a1ed031bf6fd509849388b",
+    "events": "2ab6fc4802e8f3a459157e4e9b048c7774884768ca043e3192d42df3025a2784",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1534,16 +1564,17 @@
     "abs": [],
     "args": [
      536952796,
-     8,
-     1,
+     536941720,
+     536945744,
      536939284
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-30",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 30,
     "xpsr": 0
    },
@@ -1568,11 +1599,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 2461003590, 7, 536941688, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 7, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536948548, 536938932, 536941688, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536938932, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "5293fd1b794f4d42a272ae7b1df77ec046f95e3f5a92d6406a5b51cb56928081",
+    "events": "c7f028e329e499ed2a085cf16567077eddef39fde3ff8f20f14d547ee716d869",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1584,16 +1615,17 @@
     "abs": [],
     "args": [
      536952300,
-     2461003590,
-     7,
+     536948548,
+     536938932,
      536941688
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
@@ -1618,11 +1650,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 2706821390, 3442053927, 536952624, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3442053927, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536940812, 536941348, 536952624, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536941348, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "31363d9a56c2f30e30ded40e4c1b7cfa38d1e6844970141dda0e1418aa7fdc46",
+    "events": "3e39c074c7fc06c4b51cca36f692d258e6265120c045fc5e520bb9c1788ab4ed",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1634,16 +1666,17 @@
     "abs": [],
     "args": [
      536946568,
-     2706821390,
-     3442053927,
+     536940812,
+     536941348,
      536952624
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-32",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 32,
     "xpsr": 0
    },
@@ -1668,11 +1701,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 7, 7, 536938756, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 7, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536942020, 536944276, 536938756, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536944276, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "fe521acb1b18bd2dda1b8677befcd8b3f43d322c2ba9191e839f5b9dd50c39e9",
+    "events": "06aa6aafde6044162734879851f20bd0706f3c2fdcc65ea3b0cc87d976d01172",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1684,16 +1717,17 @@
     "abs": [],
     "args": [
      536946060,
-     7,
-     7,
+     536942020,
+     536944276,
      536938756
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-33",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 33,
     "xpsr": 0
    },
@@ -1718,11 +1752,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 3990671540, 922796015, 536936476, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 922796015, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536940724, 536952812, 536936476, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536952812, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ec790d3fa2d226538cec0e3812db92958ca0550c94e9f4f469c1b67d2222d308",
+    "events": "9c37022e4573932f9e39b72086e574aa2feee82fe58a7b3ae2dbd59305541f0c",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1734,16 +1768,17 @@
     "abs": [],
     "args": [
      536950120,
-     3990671540,
-     922796015,
+     536940724,
+     536952812,
      536936476
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 34,
     "xpsr": 0
    },
@@ -1768,11 +1803,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 3578977268, 4001652011, 536937872, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 4001652011, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536943604, 536943912, 536937872, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536943912, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "2facf4894904f87caf34bf73825fc2ad26312cd33aabf71f089438ea33ca9ae3",
+    "events": "0f28794a58f13dfc53b03ba3471333f0f4dff19c8e2874e92c99af7bc398ed81",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1784,16 +1819,17 @@
     "abs": [],
     "args": [
      536952432,
-     3578977268,
-     4001652011,
+     536943604,
+     536943912,
      536937872
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
@@ -1818,11 +1854,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 12, 2147483647, 536950872, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 2147483647, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536949832, 536945964, 536950872, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536945964, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "541f8f1bf122c198632c40b81b663b6ad62481c980beee9011d5bf1e348a2fee",
+    "events": "ebd18ebd9752df6bbabd82df464d479f2f5bbac946e97772520446d13e326108",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1834,16 +1870,17 @@
     "abs": [],
     "args": [
      536944224,
-     12,
-     2147483647,
+     536949832,
+     536945964,
      536950872
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 36,
     "xpsr": 0
    },
@@ -1868,11 +1905,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 2057795936, 2725586938, 536943188, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 2725586938, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536951136, 536946680, 536943188, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536946680, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c5315ff8bfd44cb6b5ab2759ff3569d58a858095643d9906021eaf7564a34bb0",
+    "events": "c14b2614fe16f435c790bc52a88c5a658dc016dae6a2740cba7bc6b43246e33e",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1884,16 +1921,17 @@
     "abs": [],
     "args": [
      536951728,
-     2057795936,
-     2725586938,
+     536951136,
+     536946680,
      536943188
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-37",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 37,
     "xpsr": 0
    },
@@ -1918,11 +1956,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 255, 1, 536945104, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 1, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536941672, 536936976, 536945104, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536936976, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "0db210ba71461d9ac6169480670cc26fe8fed6a0b0b0262ea4c65bda0c7a2983",
+    "events": "93d601ce706eda7e86dbe25f091c50319c7acd46a86eb3b87085c348462b54bf",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1934,16 +1972,17 @@
     "abs": [],
     "args": [
      536939760,
-     255,
-     1,
+     536941672,
+     536936976,
      536945104
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-38",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 38,
     "xpsr": 0
    },
@@ -1968,11 +2007,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 1587124134, 3774328631, 536948312, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3774328631, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536942500, 536948532, 536948312, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536948532, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "97f45ebc1d25cff64f171361c459cb354ddfbb52dc440b71a305da0466c27471",
+    "events": "c3f8e8197361cd6f2f17ac63ffdb3985458ee3af94aa10800b3590b2bddc3ad0",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1984,16 +2023,17 @@
     "abs": [],
     "args": [
      536941424,
-     1587124134,
-     3774328631,
+     536942500,
+     536948532,
      536948312
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
     "xpsr": 0
    },
@@ -2018,11 +2058,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 3928041777, 1786326658, 536952044, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 1786326658, 536977139, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536946992, 536948352, 536952044, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536948352, 536977139, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "3023953c25d88f1b078c253ec8653a6e93573274450b6d8c9042841173aa7f85",
+    "events": "802f0c2dabfa6cb0414e6812f117bd733a524aefdf3bbcb9c290a3426f63eef5",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -2034,16 +2074,17 @@
     "abs": [],
     "args": [
      536943600,
-     3928041777,
-     1786326658,
+     536946992,
+     536948352,
      536952044
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-40",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 40,
     "xpsr": 0
    },
@@ -2068,11 +2109,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 0, 0, 536940556, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'set_brightness_lum_base para is NULL\\n'), 3677333764, 0, 536940556, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536948040, 0, 536940048, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'set_brightness_lum_base para is NULL\\n'), 3677333764, 0, 536940048, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b401a162e18ff127fc1b2c2929550e62ce6ab75f875340c52e54d490089949c7",
+    "events": "4e419997e1c4a2e4ee4610302200f4df0b81f7868606f664e5ab46d329831571",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -2081,25 +2122,21 @@
     "returned": true
    },
    "fixture": {
-    "abs": [
-     [
-      536940544,
-      "4010012045100120481001204c1001205010012055100120581001205c1001206010012065100120681001206c1001207010012075100120781001207c1001208010012085100120881001208c1001209010012095100120981001209c100120a0100120a5100120a8100120ac100120b0100120b5100120b8100120bc100120c0100120c5100120c8100120cc100120d0100120d5100120d8100120dc100120e0100120e5100120e8100120ec100120f0100120f5100120f8100120fc1001200011012005110120081101200c1101201011012015110120181101201c1101202011012025110120281101202c1101203011012035110120381101203c1101204011012045110120481101204c1101205011012055110120581101205c1101206011012065110120681101206c1101207011012075110120781101207c1101208011012085110120881101208c1101209011012095110120981101209c110120a0110120a5110120a8110120ac110120b0110120b5110120b8110120bc110120c0110120c5110120c8110120cc110120d0110120d5110120d8110120dc110120e0110120e5110120e8110120ec110120f0110120f5110120f8110120fc1101200010012005100120081001200c1001201010012015100120181001201c1001202010012025100120281001202c1001203010012035100120381001203c100120"
-     ]
-    ],
+    "abs": [],
     "args": [
-     536940544,
+     536943568,
+     536948040,
      0,
-     0,
-     536940556
+     536940048
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "chain-1",
+    "id": "cfgsel-0",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
-    "scratch_seed": 801,
+    "outparam": null,
+    "scratch_seed": 0,
     "xpsr": 0
    },
    "new_instructions": 13,
@@ -2119,11 +2156,12 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 1797429778, 2147483648, 536949040, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536943120, 536940476, 536949040, 'S', 'F', 'T', None)",
+    "('W', 2347576118, 1, 54)"
    ],
    "expect": {
-    "error": "Invalid memory read",
-    "events": "c4e6cd422dc58f9c95ef9fdde9fa50672c7d068ce536da3db58380ad38a3a550",
+    "error": "Invalid memory write",
+    "events": "6e653dcbdccea0e88c53a716773220bbcddee4766b606059d5badc7936545ebe",
     "kind": "fault",
     "ncalls": 1
    },
@@ -2131,25 +2169,26 @@
     "abs": [
      [
       536977139,
-      "01000000"
+      "01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000"
      ]
     ],
     "args": [
      536947244,
-     1797429778,
-     2147483648,
+     536943120,
+     536940476,
      536949040
     ],
     "float_scratch": false,
     "fp": {},
     "id": "glob-0-1",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
-   "new_instructions": 16,
+   "new_instructions": 17,
    "stack_args": []
   },
   {
@@ -2218,12 +2257,12 @@
     512330
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 812981861, 2, 536944236, 'S', 'F', 'T', None)",
-    "('W', 0, 1, 54)",
-    "('W', 1, 1, 1)",
-    "('W', 2, 1, 3)",
-    "('W', 3, 1, 2)",
-    "('W', 4, 1, 1)",
+    "('C', 0, ('RO', b'join in set_brightness_lum_base\\n'), 536944228, 536938128, 536944236, 'S', 'F', 'T', None)",
+    "('W', 1088739482, 1, 54)",
+    "('W', 1088739484, 1, 3)",
+    "('W', 1088739485, 1, 2)",
+    "('W', 1088739483, 1, 1)",
+    "('W', 1088739486, 1, 1)",
     "('C', 1, 'S', 'F', 'T', None)",
     "('W', 3800, 2, 63)",
     "('C', 2, 'S', 'F', 'T', None)",
@@ -2238,12 +2277,12 @@
     "('C', 11, 100, 'S', 'F', 'T', None)",
     "('C', 12, ('SP', 0), 'S', 'F', 'T', None)",
     "('C', 13, 100, 'S', 'F', 'T', None)",
-    "('W', 4, 1, 2)",
-    "('W', 5, 1, 14)",
+    "('W', 1088739486, 1, 2)",
+    "('W', 1088739487, 1, 14)",
     "('W', 536944236, 1, 6)"
    ],
    "expect": {
-    "events": "ba2f522081f55c7404fb74753901fa040bf1ec86b4bb63a80a3c1d0e241caa95",
+    "events": "cff05be05c16512a96e194c103dab5e836113002dedd4e9e1bc4c5e5ef20dc07",
     "kind": "return",
     "ncalls": 14,
     "ret": [
@@ -2255,28 +2294,28 @@
     "abs": [
      [
       536977139,
-      "01000000"
+      "01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000"
      ],
      [
       536879884,
-      "01000000"
+      "01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000"
      ],
      [
       536900948,
-      "01000000"
+      "01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000"
      ]
     ],
     "args": [
      536941656,
-     812981861,
-     2,
+     536944228,
+     536938128,
      536944236
     ],
     "float_scratch": false,
     "fp": {},
     "id": "combo-1-0",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [
      [
       0,
@@ -2409,6 +2448,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 604,
     "xpsr": 0
    },
@@ -2431,8 +2471,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "display",
@@ -2443,18 +2486,24 @@
  },
  "pointer_arg_mask": [
   0,
+  1,
+  2,
   3
  ],
  "ret_kind": "i32",
  "search": {
-  "candidates": 223,
+  "candidates": 275,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
   "kept": 44,
   "pointer_arg_mask": [
    0,
+   1,
+   2,
    3
   ],
   "pointer_arg_mask_derived": true

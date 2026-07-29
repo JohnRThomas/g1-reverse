@@ -131,7 +131,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 1276959699, 3694469211, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536943568, 3694469211, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -157,7 +157,7 @@
     "('C', 28, ('SP', 68), 291, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "26bb54f6cf03be77d96f51e3fcba4103dcdd0923cf3446046bb4fd0cca9590f7",
+    "events": "25a0f5d98023e709ebd8fa8fd8c4b24628a102edabfa993a3a200cab40276897",
     "kind": "return",
     "ncalls": 29,
     "ret": [],
@@ -166,17 +166,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1276959699,
+     536943568,
      12,
      4,
-     0
+     536940048
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -585,7 +586,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 4067469868, 2429414634, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536947244, 2429414634, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -593,24 +594,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "c4f2314696d91f76a72cfc30af8cb0d7a195c58ac23934b7606db788d043beff",
+    "events": "3376aeb55323fb44b925ae7d7bba2df2aca2cf4600cc953df55ac8e42f2ef7d3",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     4067469868,
+     536947244,
      1797429778,
      2147483648,
-     315044147
+     536949040
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -725,7 +727,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 4290042576, 471345317, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536943312, 471345317, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -733,24 +735,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "55c220d74f7c122835d6909f694c50983842ddecce8fe42beb16679d03546f29",
+    "events": "4bb071fb8543fc9e8c1b9f79542f21fa20d616b39922d3469277424b2a01184f",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     4290042576,
+     536943312,
      598759513,
      3677430904,
-     7
+     536943396
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
@@ -941,7 +944,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 2618385373, 2205054065, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536945628, 2205054065, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -967,7 +970,7 @@
     "('C', 28, ('SP', 68), 291, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "102f35491396d6f77af1e46a8bd1674d56a49916c11743ba409b377a6e3c5bd4",
+    "events": "edd5503e69dacc29d40aaa30d1d7e5172b3f861fbe6547d661e3746d9726d1f7",
     "kind": "return",
     "ncalls": 29,
     "ret": [],
@@ -976,17 +979,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2618385373,
+     536945628,
      255,
      8,
-     3619521758
+     536937692
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-3",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 3,
     "xpsr": 0
    },
@@ -1395,7 +1399,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 16, 2655161023, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536945864, 2655161023, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -1403,24 +1407,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "4545bf774e686cc50a335e511cb4729a3b969d4cbc4964ad7b1bb00c9a0d2ecf",
+    "events": "a110b53c2de2e357529a82ed46eb2fdc33a83d26e455d4a1447b5605e9b4a7ea",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     16,
+     536945864,
      2147483647,
      3842370354,
-     6
+     536951124
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 4,
     "xpsr": 0
    },
@@ -1535,7 +1540,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 4, 151242190, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536939588, 151242190, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -1543,24 +1548,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "2406f86c97aa08d31940ef90dab9adc519bab7dab4b1cbaf97196749f8072a86",
+    "events": "dd13ba01664f3779464bb2bf68768458e1b2afd633076c6b8618932fdc0725c5",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     4,
+     536939588,
      3188701995,
      8,
-     7
+     536942644
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-5",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 5,
     "xpsr": 0
    },
@@ -1675,7 +1681,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 4, 1447905683, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536950900, 1447905683, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -1683,24 +1689,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "f938717e55d4cfd821f1baeb695647e3b751515d047b893410774665ab66c7cc",
+    "events": "7b5a571fefe2d55f8c18f3222ddc7adc542613ed6dcad4dd191a8976c0b86bd0",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     4,
+     536950900,
      3322790363,
      5,
-     2147483647
+     536952236
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-6",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 6,
     "xpsr": 0
    },
@@ -1815,7 +1822,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 2300957721, 1060514798, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536941592, 1060514798, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -1823,24 +1830,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "910787ff68a736387932126f816f3aac1e99e9e50963365936ff2b8953769d4f",
+    "events": "793ee3d9120b69969802db6c0315e9ae72acbcff0aced940ffa2ac15e8740005",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     2300957721,
+     536941592,
      1604804925,
      1,
-     2363272863
+     536948380
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-7",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 7,
     "xpsr": 0
    },
@@ -1955,7 +1963,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 2156366374, 2352949406, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536939044, 2352949406, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -1963,24 +1971,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "02a61c6039fc798e1e8266a7569072730514f7a0b97adbb125563f9c3c7fe8c7",
+    "events": "f96033d8f7d00e43adabe64c63e2e978a607e2205b6d06e716ef370af7e7c876",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     2156366374,
+     536939044,
      708972563,
      558645175,
-     4
+     536949588
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-8",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 8,
     "xpsr": 0
    },
@@ -2095,7 +2104,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 1346232374, 3178863954, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536944692, 3178863954, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -2103,24 +2112,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "00c6f4d23f84cc7601732b171ef3bf53d32e89c6cec77e6a5a186489b036d559",
+    "events": "ac9f09bd16574c9356f4e9330263a303030c21435a89511cabf9092249f08ac7",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     1346232374,
+     536944692,
      1556998536,
      499087790,
-     2147483647
+     536940988
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 9,
     "xpsr": 0
    },
@@ -2235,7 +2245,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 182454980, 3586673693, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536939204, 3586673693, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -2243,24 +2253,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "b26e3fc2953fc787524ccb45858336b892bd44f4d1c2279751abbc06ec561a49",
+    "events": "992d9feff450babae12d621bcbb03f5c567958a4536665776036660f5f845ca6",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     182454980,
+     536939204,
      995058044,
      8,
-     1
+     536947328
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 10,
     "xpsr": 0
    },
@@ -2375,7 +2386,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 3, 801746852, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536937040, 801746852, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -2383,24 +2394,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "e8f914caf73ca84dab268254bda22ef613eaf0e3cca916951ae19a2830928ba9",
+    "events": "3eef3936a82ee035ae8dd2ac7ff10ff2d66904d3a9350282b5721f7785197d30",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     3,
+     536937040,
      2147483648,
      256,
-     1426281073
+     536941168
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 11,
     "xpsr": 0
    },
@@ -2515,7 +2527,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 8, 1542880163, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536944520, 1542880163, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -2523,24 +2535,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "b7dbbfe0fea1d7bee5750a8152c27464ca393c6c745fa5cae160f28c8b267076",
+    "events": "b56307839a0083f31a95baf91ebaef160a998921f93cf07f5a96e6e2f00c41a5",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     8,
+     536944520,
      3217736208,
      5,
-     1103693227
+     536937896
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-12",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 12,
     "xpsr": 0
    },
@@ -2655,7 +2668,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 1156718256, 287561451, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536944304, 287561451, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -2663,24 +2676,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "4d83f3eb9c984ac60e0faea2f6f028e47ca25b3e189e66f0e9234416882573e5",
+    "events": "ee3900bc078e69c6e86d9122433624cc3a70d12e3eb0b792d1c2fc0af876ef3f",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     1156718256,
+     536944304,
      1944344031,
      6,
-     617681966
+     536941612
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 13,
     "xpsr": 0
    },
@@ -2871,7 +2885,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 1996365079, 1403193323, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536943892, 1403193323, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -2897,7 +2911,7 @@
     "('C', 28, ('SP', 68), 291, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "926688b049704e176d31c06f9277b90a6efddc34e12627bdfa91eb698f433940",
+    "events": "f9f5256dcc41db76c6ff015affcd09e295e794cd69a93262cba08a62b2484c91",
     "kind": "return",
     "ncalls": 29,
     "ret": [],
@@ -2906,17 +2920,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1996365079,
+     536943892,
      12,
      3,
-     470668832
+     536942112
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-14",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 14,
     "xpsr": 0
    },
@@ -3401,7 +3416,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 7, 2417077168, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536952404, 2417077168, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -3427,7 +3442,7 @@
     "('C', 28, ('SP', 68), 291, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "053e3277f86f85720dd86462004fa10af2bca1d79d8c7236433b69337c0db454",
+    "events": "a46f9c2ec267d8ab0cd9a4949e456cf42909993a523775ef0f02886ed9de93fd",
     "kind": "return",
     "ncalls": 29,
     "ret": [],
@@ -3436,17 +3451,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     7,
+     536952404,
      256,
      5,
-     4
+     536949908
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-15",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 15,
     "xpsr": 0
    },
@@ -3855,7 +3871,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 2024561310, 886755549, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536943260, 886755549, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -3863,24 +3879,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "c4dc3e6ecac5a914032122e77a545724dfa2ff9509e69a4b46dd7a0ec549d159",
+    "events": "7096ddcaf94fedee4f3bd67a919855ab67167436ee3a7664fdd36f16d227c8a5",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     2024561310,
+     536943260,
      2147483648,
      3454407978,
-     16
+     536940136
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
@@ -3995,7 +4012,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 3, 3896400791, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536944016, 3896400791, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -4003,24 +4020,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "668d642bebc1b56cfd22cf0be281bf7954e7ea7914c14e346f0b20dff643b9bd",
+    "events": "65c77b31fd2335915dd8b39ce1d7b2f32805f324fe62f073e6ca50863f869abc",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     3,
+     536944016,
      3254638692,
      1168623309,
-     4252165479
+     536946020
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-17",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 17,
     "xpsr": 0
    },
@@ -4121,17 +4139,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3912442165,
+     536944948,
      0,
      697236451,
-     1
+     536945600
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-18",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 18,
     "xpsr": 0
    },
@@ -4220,7 +4239,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 6, 4075769455, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536939284, 4075769455, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -4228,24 +4247,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "2c9eff692fd016ff1f8eaf0fb67e54eacd02b98ad0d17dbd70695ebcf95b555f",
+    "events": "0675fe2ba03390d241313fa6ac87a044a760fb98fef69f1b72b3865b0d1b2c8b",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     6,
+     536939284,
      1536401714,
      4178753371,
-     255
+     536947592
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 19,
     "xpsr": 0
    },
@@ -4360,7 +4380,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 4, 3043713821, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536952740, 3043713821, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -4368,24 +4388,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "422b838f01a20b2bab2d167381e29ac7134ea85a7c6f26ee3e7923daf81a1a37",
+    "events": "c5c123dc7b84ddc1fe1600d89469f4bb36fc928ae9cb08842495f76478c64a56",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     4,
+     536952740,
      2306919366,
      2,
-     7
+     536951108
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-20",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 20,
     "xpsr": 0
    },
@@ -4576,7 +4597,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 843060076, 2217669457, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536941420, 2217669457, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -4602,7 +4623,7 @@
     "('C', 28, ('SP', 68), 291, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "a9a02f842a5d6d8da5ac93ba6973ebe56fcd518c9e33d71d509ef1daa156706a",
+    "events": "4fcbb11b1967333a02333b0ae3a25e14ec38857745ae0fe2831b821d58fa8457",
     "kind": "return",
     "ncalls": 29,
     "ret": [],
@@ -4611,17 +4632,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     843060076,
+     536941420,
      1,
      2870852768,
-     0
+     536943488
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-21",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 21,
     "xpsr": 0
    },
@@ -5030,7 +5052,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 7, 1480053828, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536937396, 1480053828, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -5038,24 +5060,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "9bb4dace73e62612f97efe2d135787b45a6bdd471ba7b90b0e90aa67fa6f59c8",
+    "events": "147bc3045e928c0ff1948b5dbcf20f5fa2129e39f0a722dd757dbdf9f318360d",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     7,
+     536937396,
      3001296298,
      4294967295,
-     2451975022
+     536947564
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-22",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 22,
     "xpsr": 0
    },
@@ -5170,7 +5193,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 1591295399, 2142178815, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536952228, 2142178815, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -5178,24 +5201,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "229381b003fa329e206a977fc715a0a426c67811660f9d7abcae9a339dccecea",
+    "events": "645712b4a576aebfd0902f8aa9b35f5cfff2475e5c728242e0b43ebe725dbc7e",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     1591295399,
+     536952228,
      241044672,
      2034212132,
-     1515885587
+     536941584
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-23",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 23,
     "xpsr": 0
    },
@@ -5386,7 +5410,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 4, 1304546403, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536949908, 1304546403, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -5412,7 +5436,7 @@
     "('C', 28, ('SP', 68), 291, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "1fa2f50988f6cba325a8860a355e13f79659e562ff181a8e6625fee1443431f3",
+    "events": "0dea2d2c9b925f434e523df7535b427823620a173061eb89d2b72cfc2db7ffbc",
     "kind": "return",
     "ncalls": 29,
     "ret": [],
@@ -5421,17 +5445,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4,
+     536949908,
      6,
      2967241396,
-     7
+     536951364
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-24",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 24,
     "xpsr": 0
    },
@@ -5916,7 +5941,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 3751937804, 3712121755, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536938252, 3712121755, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -5942,7 +5967,7 @@
     "('C', 28, ('SP', 68), 291, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9993d72e5669f1b8686109bb69ed0fd5e8e180d3dc0837ab20934836eba26e98",
+    "events": "18bfcfb8ec732dd9d81c398d84c32d6ec14da068a3dee683c6c8e879816f6ce2",
     "kind": "return",
     "ncalls": 29,
     "ret": [],
@@ -5951,17 +5976,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3751937804,
+     536938252,
      12,
      2149248134,
-     604019693
+     536943596
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 25,
     "xpsr": 0
    },
@@ -6446,7 +6472,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 2992330384, 4058280526, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536942224, 4058280526, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -6472,7 +6498,7 @@
     "('C', 28, ('SP', 68), 291, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ef0f7fb55d6a92d24773e4698de6fa21edb836f6191fb9a1f600cf074d0f7cdd",
+    "events": "4b7fd5cd82dd2f8535c4a6b8810b53aedbef688f150ff26d9feac09e2dc80565",
     "kind": "return",
     "ncalls": 29,
     "ret": [],
@@ -6481,17 +6507,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2992330384,
+     536942224,
      12,
      3037640278,
-     2678623347
+     536939632
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-26",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 26,
     "xpsr": 0
    },
@@ -6900,7 +6927,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 187818536, 1775869161, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536945192, 1775869161, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -6908,24 +6935,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "ab14973e1c4250ee0697b557604fbaaeae285b4e9b1fe541d6040fa5634091a2",
+    "events": "c69299d5c168384d5820dfbf3b9987f0ed52814b620271a92c0d404b3552d91b",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     187818536,
+     536945192,
      681194263,
      3639365232,
-     4125446660
+     536941060
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 27,
     "xpsr": 0
    },
@@ -7040,7 +7068,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 3711083943, 1542213390, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536946084, 1542213390, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -7048,24 +7076,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "3d4710b53951a167e0f406e50a45a1eb3493c7c8f213e18bab402805681cd166",
+    "events": "69cfa7b1e51ae2bf382a62bd2b926323151dbbf97ccfed8a37a5c75ab57c5327",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     3711083943,
+     536946084,
      4285183211,
      1,
-     2592385448
+     536947112
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-28",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 28,
     "xpsr": 0
    },
@@ -7256,7 +7285,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 739928864, 2490855531, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536947488, 2490855531, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -7282,7 +7311,7 @@
     "('C', 28, ('SP', 68), 291, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b0e9d362eb8174752edd7013d4e823b2ed819253affcd9441dc7e659e2d5440f",
+    "events": "aa208930817f70170e0514174d134062e44bdcb9a1abc9612a86c7912c82f509",
     "kind": "return",
     "ncalls": 29,
     "ret": [],
@@ -7291,17 +7320,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     739928864,
+     536947488,
      256,
      3886541357,
-     8
+     536938744
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-29",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 29,
     "xpsr": 0
    },
@@ -7786,7 +7816,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 256, 2417460406, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536952796, 2417460406, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -7812,7 +7842,7 @@
     "('C', 28, ('SP', 68), 291, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "10a37129070eb64f17d6e7316a0e6b77813e4e74e5d27c090c109fd324a0b8e4",
+    "events": "0188eb8cacd7daee58c1428f8be5b29f460d7bab719615d1be370e8ebe3881e2",
     "kind": "return",
     "ncalls": 29,
     "ret": [],
@@ -7821,17 +7851,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     256,
+     536952796,
      8,
      1,
-     7
+     536939284
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-30",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 30,
     "xpsr": 0
    },
@@ -8240,7 +8271,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 4294967295, 1988174091, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536952300, 1988174091, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -8248,24 +8279,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "dcbd11318a3470c28130bdec7f0f2bba08a6deef73bcce8b180acf0a15011213",
+    "events": "d5aa56e30d39b69df7fcdbb8624a5a866836a5792501b27f874be66c3b749bb3",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     4294967295,
+     536952300,
      2461003590,
      7,
-     53351545
+     536941688
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
@@ -8380,7 +8412,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 1839753098, 615009301, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536946568, 615009301, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -8388,24 +8420,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "18975a1b7b2aa111a2a5fbbfc6f0caca7c13544527b30a8315dcbef6db7e1619",
+    "events": "df1997e5cb0ea2930c9891254d63f4ad332029cc99bb6835328383820a19a32c",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     1839753098,
+     536946568,
      2706821390,
      3442053927,
-     1170652979
+     536952624
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-32",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 32,
     "xpsr": 0
    },
@@ -8596,7 +8629,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 1076094348, 1452493058, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536946060, 1452493058, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -8622,7 +8655,7 @@
     "('C', 28, ('SP', 68), 291, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "85d9d05f275dab88ddae2d22279090206aafcc6297882d56703b0dee707c8bc2",
+    "events": "fd8fc0ecf6c088524f583867678389b720b1d1f237285e1954db691a3f7a40b8",
     "kind": "return",
     "ncalls": 29,
     "ret": [],
@@ -8631,17 +8664,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1076094348,
+     536946060,
      7,
      7,
-     5
+     536938756
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-33",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 33,
     "xpsr": 0
    },
@@ -9050,7 +9084,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 12, 2360084761, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536950120, 2360084761, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -9058,24 +9092,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "ae0bcfad08de26724faff9efbac129e08c2193fdc36bbf4c50e0e265b8bd0b0d",
+    "events": "c3f9ceb69a8158322d9d648cc7906dd57f5091832ca13bcb7a2b6f5c768b99ac",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     12,
+     536950120,
      3990671540,
      922796015,
-     2147483647
+     536936476
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 34,
     "xpsr": 0
    },
@@ -9190,7 +9225,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 2726887024, 4019880274, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536952432, 4019880274, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -9198,24 +9233,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "d0f40649eb9fe61d34a77ad6141aea7517bb0168d59963116922444f8de9a457",
+    "events": "6256e143d00b9a0d1ba390a4cbf4afa5e3636c95f5fdb6d5edf9c8d6bd21af8a",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     2726887024,
+     536952432,
      3578977268,
      4001652011,
-     1
+     536937872
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
@@ -9406,7 +9442,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 0, 823752600, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536944224, 823752600, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -9432,7 +9468,7 @@
     "('C', 28, ('SP', 68), 291, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "eb3dc95ad2762a5f0833edd888ce5676ae0e4e941ebd4a341a9e1f9929841eb2",
+    "events": "1258ea15ea60f140d82bb7ddcbaefc9d9fe35aa80a76cad957a71bbef611076e",
     "kind": "return",
     "ncalls": 29,
     "ret": [],
@@ -9441,17 +9477,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     0,
+     536944224,
      12,
      2147483647,
-     8
+     536950872
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 36,
     "xpsr": 0
    },
@@ -9860,7 +9897,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 1, 2373057660, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536951728, 2373057660, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -9868,24 +9905,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "d18483957fe7650e38bd558624c0dfcfc0bee0f5b47e6a5cee2c7c3014c0a4e5",
+    "events": "6e6d8a344ce73a17d9dc6a05ac1459c6a3f421f195462aa8a6341ccb930778b6",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     1,
+     536951728,
      2057795936,
      2725586938,
-     1299241558
+     536943188
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-37",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 37,
     "xpsr": 0
    },
@@ -10076,7 +10114,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 0, 1627783973, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536939760, 1627783973, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -10102,7 +10140,7 @@
     "('C', 28, ('SP', 68), 291, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "dd1c6b8cb94bf1ae29df38df93d40631569943d053fa432ee7ed979b2bfa3dd2",
+    "events": "289a90f895752f384f8c71c79b17146cd57bf44dd3f103aac4840fb6351c078e",
     "kind": "return",
     "ncalls": 29,
     "ret": [],
@@ -10111,17 +10149,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     0,
+     536939760,
      255,
      1,
-     2
+     536945104
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-38",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 38,
     "xpsr": 0
    },
@@ -10530,7 +10569,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 3, 2944518647, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536941424, 2944518647, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -10538,24 +10577,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "55f9758fbc53312c7034c2627cfb6ba174142a2c3208beef11d35ff28f19b7c5",
+    "events": "0d458991a8e482c25458a934d7caa8b3dce8fb8a966546d422b00f021c9088b9",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     3,
+     536941424,
      1587124134,
      3774328631,
-     1997155928
+     536948312
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
     "xpsr": 0
    },
@@ -10670,7 +10710,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 0, 2382425351, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536943600, 2382425351, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -10678,24 +10718,25 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "fb5d183d1fba49bf0f51a6e94e49e59cf403c111bbb22a0f4ca445210e86005b",
+    "events": "8bfb144b6fa4021a21b02673f2aad86be8ab0212601e3248584ea5ac84a6f994",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     0,
+     536943600,
      3928041777,
      1786326658,
-     1835695343
+     536952044
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-40",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 40,
     "xpsr": 0
    },
@@ -10886,7 +10927,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 3886568119, 2096484019, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536941236, 2096484019, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -10912,7 +10953,7 @@
     "('C', 28, ('SP', 68), 291, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9c78ceb0a7e72208b79176867930bdcc735f4c3e827fd3c62f96474d99d0089a",
+    "events": "973a5add5ab71b2997000cd1cf25fc9850fd22be08c315bd8f98acb9beb47951",
     "kind": "return",
     "ncalls": 29,
     "ret": [],
@@ -10921,17 +10962,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3886568119,
+     536941236,
      256,
      3059135833,
-     1
+     536943712
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-41",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 41,
     "xpsr": 0
    },
@@ -11462,6 +11504,7 @@
     "mem": [],
     "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 700,
     "xpsr": 0
    },
@@ -11832,6 +11875,355 @@
     0,
     0,
     0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    552056,
+    552056,
+    552056,
+    213904,
+    215100,
+    105584,
+    513006,
+    513094,
+    275588,
+    552056,
+    489748,
+    513006,
+    513094,
+    513006,
+    513094,
+    280600
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 68, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', -32), 0, 28, 'S', 'F', 'T', None)",
+    "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 0, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 0, 536940544, 272190669, 'S', 'F', 'T', None)",
+    "('C', 6, 'S', 'F', 'T', None)",
+    "('C', 7, 'S', 'F', 'T', None)",
+    "('C', 8, 56, 0, 4, 0, 'S', 'F', 'T', None)",
+    "('C', 9, ('SP', -4), 0, 72, 'S', 'F', 'T', None)",
+    "('C', 10, ('SP', -4), 72, 'S', 'F', 'T', None)",
+    "('C', 11, 'S', 'F', 'T', None)",
+    "('C', 12, 'S', 'F', 'T', None)",
+    "('C', 13, 'S', 'F', 'T', None)",
+    "('C', 14, 'S', 'F', 'T', None)",
+    "('C', 15, 0, ('SP', -4), 0, 36, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "b9b1bebc4d711552cfafed7236d7d9c3273cd47445f540f5a04ae00fd11301cd",
+    "kind": "fault",
+    "ncalls": 16
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "4110012044100120481001204c1001205110012054100120581001205c1001206110012064100120681001206c1001207110012074100120781001207c1001208110012084100120881001208c1001209110012094100120981001209c100120a1100120a4100120a8100120ac100120b1100120b4100120b8100120bc100120c1100120c4100120c8100120cc100120d1100120d4100120d8100120dc100120e1100120e4100120e8100120ec100120f1100120f4100120f8100120fc1001200111012004110120081101200c1101201111012014110120181101201c1101202111012024110120281101202c1101203111012034110120381101203c1101204111012044110120481101204c1101205111012054110120581101205c1101206111012064110120681101206c1101207111012074110120781101207c1101208111012084110120881101208c1101209111012094110120981101209c110120a1110120a4110120a8110120ac110120b1110120b4110120b8110120bc110120c1110120c4110120c8110120cc110120d1110120d4110120d8110120dc110120e1110120e4110120e8110120ec110120f1110120f4110120f8110120fc1101200110012004100120081001200c1001201110012014100120181001201c1001202110012024100120281001202c1001203110012034100120381001203c100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     558208872,
+     2224734438,
+     536940556
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-0",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 830,
+    "xpsr": 0
+   },
+   "new_instructions": 82,
+   "stack_args": [
+    [
+     1,
+     [
+      [
+       0,
+       [
+        [
+         28,
+         0
+        ],
+        [
+         29,
+         0
+        ],
+        [
+         30,
+         0
+        ],
+        [
+         31,
+         0
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     9,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     10,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     15,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3,
+    3,
+    3,
+    0,
+    1,
+    4,
+    0,
+    0,
+    4,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0,
     4,
     4,
     2,
@@ -11946,7 +12338,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 86613917, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 1276959699, 0, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 609312507, 536943568, 0, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 56, 1254795386, 1514103276, 0, 'S', 'F', 'T', None)",
@@ -11972,7 +12364,7 @@
     "('C', 28, ('SP', 68), 291, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "786e51162af7b1d1a9d3fff8268c45cb5a44b3d1be608c696d56a007e4f6e921",
+    "events": "30fb591b7938ee7bb07e9c5e78f4dd91a049f6cf90826ba6a353eda3fdfde145",
     "kind": "return",
     "ncalls": 29,
     "ret": [],
@@ -11982,21 +12374,22 @@
     "abs": [
      [
       536900948,
-      "00000000"
+      "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
      ]
     ],
     "args": [
-     1276959699,
+     536943568,
      12,
      4,
-     0
+     536940048
     ],
     "float_scratch": false,
     "fp": {},
     "id": "glob-0-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -12428,711 +12821,8 @@
     "('C', 1, ('SP', -32), 0, 28, 'S', 'F', 'T', None)",
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
-    "('C', 4, 0, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 0, 2345269775, 4140973137, 'S', 'F', 'T', None)",
-    "('C', 6, 'S', 'F', 'T', None)",
-    "('C', 7, 'S', 'F', 'T', None)",
-    "('C', 8, 56, 0, 4, 0, 'S', 'F', 'T', None)",
-    "('C', 9, ('SP', -4), 0, 72, 'S', 'F', 'T', None)",
-    "('C', 10, ('SP', -4), 72, 'S', 'F', 'T', None)",
-    "('C', 11, 'S', 'F', 'T', None)",
-    "('C', 12, 'S', 'F', 'T', None)",
-    "('C', 13, 'S', 'F', 'T', None)",
-    "('C', 14, 'S', 'F', 'T', None)",
-    "('C', 15, 0, ('SP', -4), 0, 36, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "error": "Invalid memory read",
-    "events": "c9f52dad35cdea846015c28f66de329ec666a99b116c0711b17d0a0c27437bd9",
-    "kind": "fault",
-    "ncalls": 16
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     2345269775,
-     3092785552,
-     1935641720,
-     554330043
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "orc-all-0",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [
-     [
-      0,
-      0,
-      0
-     ],
-     [
-      1,
-      0,
-      0
-     ],
-     [
-      2,
-      0,
-      0
-     ],
-     [
-      3,
-      0,
-      0
-     ],
-     [
-      4,
-      0,
-      0
-     ],
-     [
-      5,
-      0,
-      0
-     ],
-     [
-      6,
-      0,
-      0
-     ],
-     [
-      7,
-      0,
-      0
-     ],
-     [
-      8,
-      0,
-      0
-     ],
-     [
-      9,
-      0,
-      0
-     ],
-     [
-      10,
-      0,
-      0
-     ],
-     [
-      11,
-      0,
-      0
-     ],
-     [
-      12,
-      0,
-      0
-     ],
-     [
-      13,
-      0,
-      0
-     ],
-     [
-      14,
-      0,
-      0
-     ],
-     [
-      15,
-      0,
-      0
-     ],
-     [
-      16,
-      0,
-      0
-     ],
-     [
-      17,
-      0,
-      0
-     ],
-     [
-      18,
-      0,
-      0
-     ],
-     [
-      19,
-      0,
-      0
-     ],
-     [
-      20,
-      0,
-      0
-     ],
-     [
-      21,
-      0,
-      0
-     ],
-     [
-      22,
-      0,
-      0
-     ],
-     [
-      23,
-      0,
-      0
-     ],
-     [
-      24,
-      0,
-      0
-     ],
-     [
-      25,
-      0,
-      0
-     ],
-     [
-      26,
-      0,
-      0
-     ],
-     [
-      27,
-      0,
-      0
-     ],
-     [
-      28,
-      0,
-      0
-     ],
-     [
-      29,
-      0,
-      0
-     ],
-     [
-      30,
-      0,
-      0
-     ],
-     [
-      31,
-      0,
-      0
-     ],
-     [
-      32,
-      0,
-      0
-     ],
-     [
-      33,
-      0,
-      0
-     ],
-     [
-      34,
-      0,
-      0
-     ],
-     [
-      35,
-      0,
-      0
-     ],
-     [
-      36,
-      0,
-      0
-     ],
-     [
-      37,
-      0,
-      0
-     ],
-     [
-      38,
-      0,
-      0
-     ],
-     [
-      39,
-      0,
-      0
-     ],
-     [
-      40,
-      0,
-      0
-     ],
-     [
-      41,
-      0,
-      0
-     ],
-     [
-      42,
-      0,
-      0
-     ],
-     [
-      43,
-      0,
-      0
-     ],
-     [
-      44,
-      0,
-      0
-     ],
-     [
-      45,
-      0,
-      0
-     ],
-     [
-      46,
-      0,
-      0
-     ],
-     [
-      47,
-      0,
-      0
-     ],
-     [
-      0,
-      1,
-      0
-     ],
-     [
-      1,
-      1,
-      0
-     ],
-     [
-      2,
-      1,
-      0
-     ],
-     [
-      3,
-      1,
-      0
-     ],
-     [
-      4,
-      1,
-      0
-     ],
-     [
-      5,
-      1,
-      0
-     ],
-     [
-      6,
-      1,
-      0
-     ],
-     [
-      7,
-      1,
-      0
-     ],
-     [
-      8,
-      1,
-      0
-     ],
-     [
-      9,
-      1,
-      0
-     ],
-     [
-      10,
-      1,
-      0
-     ],
-     [
-      11,
-      1,
-      0
-     ],
-     [
-      12,
-      1,
-      0
-     ],
-     [
-      13,
-      1,
-      0
-     ],
-     [
-      14,
-      1,
-      0
-     ],
-     [
-      15,
-      1,
-      0
-     ],
-     [
-      16,
-      1,
-      0
-     ],
-     [
-      17,
-      1,
-      0
-     ],
-     [
-      18,
-      1,
-      0
-     ],
-     [
-      19,
-      1,
-      0
-     ],
-     [
-      20,
-      1,
-      0
-     ],
-     [
-      21,
-      1,
-      0
-     ],
-     [
-      22,
-      1,
-      0
-     ],
-     [
-      23,
-      1,
-      0
-     ],
-     [
-      24,
-      1,
-      0
-     ],
-     [
-      25,
-      1,
-      0
-     ],
-     [
-      26,
-      1,
-      0
-     ],
-     [
-      27,
-      1,
-      0
-     ],
-     [
-      28,
-      1,
-      0
-     ],
-     [
-      29,
-      1,
-      0
-     ],
-     [
-      30,
-      1,
-      0
-     ],
-     [
-      31,
-      1,
-      0
-     ],
-     [
-      32,
-      1,
-      0
-     ],
-     [
-      33,
-      1,
-      0
-     ],
-     [
-      34,
-      1,
-      0
-     ],
-     [
-      35,
-      1,
-      0
-     ],
-     [
-      36,
-      1,
-      0
-     ],
-     [
-      37,
-      1,
-      0
-     ],
-     [
-      38,
-      1,
-      0
-     ],
-     [
-      39,
-      1,
-      0
-     ],
-     [
-      40,
-      1,
-      0
-     ],
-     [
-      41,
-      1,
-      0
-     ],
-     [
-      42,
-      1,
-      0
-     ],
-     [
-      43,
-      1,
-      0
-     ],
-     [
-      44,
-      1,
-      0
-     ],
-     [
-      45,
-      1,
-      0
-     ],
-     [
-      46,
-      1,
-      0
-     ],
-     [
-      47,
-      1,
-      0
-     ]
-    ],
-    "scratch_seed": 400,
-    "xpsr": 0
-   },
-   "new_instructions": 82,
-   "stack_args": [
-    [
-     1,
-     [
-      [
-       0,
-       [
-        [
-         28,
-         0
-        ],
-        [
-         29,
-         0
-        ],
-        [
-         30,
-         0
-        ],
-        [
-         31,
-         0
-        ]
-       ]
-      ]
-     ]
-    ],
-    [
-     9,
-     [
-      [
-       0,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ]
-       ]
-      ]
-     ]
-    ],
-    [
-     10,
-     [
-      [
-       0,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ]
-       ]
-      ]
-     ]
-    ],
-    [
-     15,
-     [
-      [
-       1,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ]
-       ]
-      ]
-     ]
-    ]
-   ]
-  },
-  {
-   "call_arities": [
-    3,
-    3,
-    3,
-    0,
-    1,
-    4,
-    0,
-    0,
-    4,
-    3,
-    2,
-    0,
-    0,
-    0,
-    0,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void",
-    "i32",
-    "i32",
-    "void",
-    "i32",
-    "i32",
-    "i32",
-    "void",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    552056,
-    552056,
-    552056,
-    213904,
-    215100,
-    105584,
-    513006,
-    513094,
-    275588,
-    552056,
-    489748,
-    513006,
-    513094,
-    513006,
-    513094,
-    280600
-   ],
-   "events_head": [
-    "('C', 0, ('SP', 0), 0, 68, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', -32), 0, 28, 'S', 'F', 'T', None)",
-    "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
-    "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 1, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 1, 3358579451, 2235425154, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 1, 536943352, 2235425154, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 55, 1, 5, 0, 'S', 'F', 'T', None)",
@@ -13146,23 +12836,23 @@
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "10c050b69229cb40fac0c2ad4cd6ef8c24661df209aefe4452269427ab27e580",
+    "events": "fbf58c33dcaff6594c6240b790320a8ba86bf785d3511b6cf35a108aabbdede5",
     "kind": "fault",
     "ncalls": 16
    },
    "fixture": {
     "abs": [],
     "args": [
-     3358579451,
+     536943352,
      2876352768,
      168044460,
-     6
+     536945892
     ],
     "float_scratch": false,
     "fp": {},
     "id": "orc-all-1",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [
      [
       0,
@@ -13645,6 +13335,7 @@
       1
      ]
     ],
+    "outparam": null,
     "scratch_seed": 401,
     "xpsr": 0
    },
@@ -13843,7 +13534,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 2, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 2, 2301873280, 1593104201, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 2, 536939648, 1593104201, 'S', 'F', 'T', None)",
     "('C', 6, ('SP', -4), 0, 72, 'S', 'F', 'T', None)",
     "('C', 7, ('SP', -4), 72, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
@@ -13858,7 +13549,7 @@
     "('C', 17, ('SP', 68), 291, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "10d7f75ce495088cfcb10bca712641e7c324ca5d5c76b23acfe9c941d66521a6",
+    "events": "52e233db791c245d78965845bc1213fbc3b6c4085694336c8e4900c5488743e5",
     "kind": "return",
     "ncalls": 18,
     "ret": [],
@@ -13867,16 +13558,16 @@
    "fixture": {
     "abs": [],
     "args": [
-     2301873280,
+     536939648,
      2147483647,
      5,
-     888612868
+     536946692
     ],
     "float_scratch": false,
     "fp": {},
     "id": "orc-all-2",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [
      [
       0,
@@ -14359,6 +14050,7 @@
       2
      ]
     ],
+    "outparam": null,
     "scratch_seed": 402,
     "xpsr": 0
    },
@@ -14653,7 +14345,7 @@
     "('C', 2, ('SP', 72), 0, 287, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 1, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 1, 4294967295, 1, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'show msgType is %d unReadCount %d\\n'), 1, 536943484, 1, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 55, 1, 5, 0, 'S', 'F', 'T', None)",
@@ -14679,7 +14371,7 @@
     "('C', 28, ('SP', 68), 291, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "3298e59e814d4c992872dc23e3c52d3b18ba434cfd70a81fb82c204425793e4b",
+    "events": "d53f66ea7b4736cb7fd54a8d5eabe1138cc119cc12a4e9f2c41957aa43ab4e29",
     "kind": "return",
     "ncalls": 29,
     "ret": [],
@@ -14689,20 +14381,20 @@
     "abs": [
      [
       536900948,
-      "01000000"
+      "01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000"
      ]
     ],
     "args": [
-     4294967295,
+     536943484,
      5,
      3514336102,
-     6
+     536939828
     ],
     "float_scratch": false,
     "fp": {},
     "id": "combo-1-1",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [
      [
       0,
@@ -15185,6 +14877,7 @@
       1
      ]
     ],
+    "outparam": null,
     "scratch_seed": 605,
     "xpsr": 0
    },
@@ -15552,8 +15245,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "gui",
@@ -15562,16 +15258,24 @@
   "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
   "source": "shipped image"
  },
- "pointer_arg_mask": [],
+ "pointer_arg_mask": [
+  0,
+  3
+ ],
  "ret_kind": "void",
  "search": {
-  "candidates": 177,
+  "candidates": 267,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
   "kept": 48,
-  "pointer_arg_mask": [],
+  "pointer_arg_mask": [
+   0,
+   3
+  ],
   "pointer_arg_mask_derived": true
  },
  "size": 1054,

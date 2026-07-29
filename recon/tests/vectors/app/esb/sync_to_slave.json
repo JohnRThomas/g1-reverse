@@ -28,14 +28,15 @@
      536943568,
      12,
      536948308,
-     0
+     536940048
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 2,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -81,14 +82,15 @@
      536939204,
      995058044,
      536946200,
-     1
+     536947328
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 2,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 10,
     "xpsr": 0
    },
@@ -133,14 +135,15 @@
      536952432,
      3578977268,
      536943912,
-     1
+     536937872
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 2,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
@@ -186,14 +189,15 @@
      536941424,
      1587124134,
      536948532,
-     1997155928
+     536948312
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 2,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
     "xpsr": 0
    },
@@ -239,15 +243,76 @@
      536942764,
      1010879855,
      536951704,
-     6
+     536952452
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-47",
     "mem": [],
-    "nptr": 2,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 47,
+    "xpsr": 0
+   },
+   "new_instructions": 19,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    3,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    552056,
+    92480,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), 0, 248, 'S', 'F', 'T', None)",
+    "('R', 1100747218, 4, 0)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "b8d0f241adbd529f754546e71f2e26b4825391a7d2f597228d5a15ef020114da",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536949608,
+     620054538,
+     536937944,
+     536947952
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee-0-0",
+    "mem": [
+     [
+      0,
+      0,
+      "00000000"
+     ]
+    ],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 900,
     "xpsr": 0
    },
    "new_instructions": 19,
@@ -292,7 +357,7 @@
      536950900,
      3322790363,
      536947060,
-     2147483647
+     536952236
     ],
     "float_scratch": true,
     "fp": {
@@ -301,8 +366,9 @@
     },
     "id": "fp-6",
     "mem": [],
-    "nptr": 2,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 6,
     "xpsr": 0
    },
@@ -328,8 +394,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "esb",
@@ -340,19 +409,23 @@
  },
  "pointer_arg_mask": [
   0,
-  2
+  2,
+  3
  ],
  "ret_kind": "i32",
  "search": {
-  "candidates": 248,
+  "candidates": 325,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
-  "kept": 6,
+  "kept": 7,
   "pointer_arg_mask": [
    0,
-   2
+   2,
+   3
   ],
   "pointer_arg_mask_derived": true
  },

@@ -22,12 +22,12 @@
     297820
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 4, 3694469211, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 232, 12, 'S', 'F', 'T', None)",
-    "('C', 2, 1276959699, 12, 4, 0, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 536948308, 3694469211, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 232, 536948040, 'S', 'F', 'T', None)",
+    "('C', 2, 536943568, 536948040, 536948308, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "2cc2f57b9e7b3efb3e1c9968f9f987513f6eadbe976fcccbd0ae9daddb9d42c3",
+    "events": "f056bba72a294764576104f759797a3d2629c0fd1ad603e81efcc8846a4f55cc",
     "kind": "return",
     "ncalls": 3,
     "ret": [
@@ -38,17 +38,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1276959699,
-     12,
-     4,
+     536943568,
+     536948040,
+     536948308,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -69,10 +70,10 @@
     297820
    ],
    "events_head": [
-    "('C', 0, 4067469868, 1797429778, 2147483648, 315044147, 'S', 'F', 'T', None)"
+    "('C', 0, 536947244, 536943120, 536940476, 315044147, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "2e73f2ffb3d1896bde6420defca0117d77020f0172a6eb6cbc4c29def8113ddc",
+    "events": "40e8aedd21b9c8cd4b665fb58592259a1b1b03434f7ea65a360b900851ce9d8b",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -83,17 +84,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4067469868,
-     1797429778,
-     2147483648,
+     536947244,
+     536943120,
+     536940476,
      315044147
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -122,12 +124,12 @@
     297820
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 3677430904, 471345317, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 107, 598759513, 'S', 'F', 'T', None)",
-    "('C', 2, 4290042576, 598759513, 3677430904, 7, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 536945784, 471345317, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 107, 536942680, 'S', 'F', 'T', None)",
+    "('C', 2, 536943312, 536942680, 536945784, 7, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b43247e0e20e5d366b30f54b146e967721fccefa08a0d35244c6d4acad795098",
+    "events": "f2b6021bc109f35e3666aee01fb594fb4bb34bdd510e7c835d3a0fc1d771c4ac",
     "kind": "return",
     "ncalls": 3,
     "ret": [
@@ -138,17 +140,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4290042576,
-     598759513,
-     3677430904,
+     536943312,
+     536942680,
+     536945784,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
@@ -169,10 +172,10 @@
     297820
    ],
    "events_head": [
-    "('C', 0, 2618385373, 255, 8, 3619521758, 'S', 'F', 'T', None)"
+    "('C', 0, 536945628, 536940936, 536943096, 3619521758, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "48e27f8a4dcfc3299f5c412bad3188bbae7d749f5157792bb0f79f63adbcf129",
+    "events": "132a139244e6daf493016036905ca57646b0ad50b32e62c8a37d88af420ee765",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -183,17 +186,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2618385373,
-     255,
-     8,
+     536945628,
+     536940936,
+     536943096,
      3619521758
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-3",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 3,
     "xpsr": 0
    },
@@ -222,12 +226,12 @@
     297820
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 3842370354, 2655161023, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 156, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 2, 16, 2147483647, 3842370354, 6, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 536947504, 2655161023, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 156, 536944284, 'S', 'F', 'T', None)",
+    "('C', 2, 536945864, 536944284, 536947504, 6, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "1e5f5a9030d6cf0947718e7869804972f1c9850b6c38bb490ce3240e7707cd32",
+    "events": "e7ab9ff061ad2cb6d5195106b5e6dc2b50c8997b9054a27cfc98916329c90181",
     "kind": "return",
     "ncalls": 3,
     "ret": [
@@ -238,17 +242,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     16,
-     2147483647,
-     3842370354,
+     536945864,
+     536944284,
+     536947504,
      6
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 4,
     "xpsr": 0
    },
@@ -269,10 +274,10 @@
     297820
    ],
    "events_head": [
-    "('C', 0, 4, 3188701995, 8, 7, 'S', 'F', 'T', None)"
+    "('C', 0, 536939588, 536951592, 536944168, 7, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9ba12b73f25415241f8068db27de1b873e2e59ac79a3e9677a829a1f85bc5188",
+    "events": "fafaa7afe50476f1b709696d8c4714c2466f805086fbcace57c98927098cab08",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -283,17 +288,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4,
-     3188701995,
-     8,
+     536939588,
+     536951592,
+     536944168,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-5",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 5,
     "xpsr": 0
    },
@@ -314,10 +320,10 @@
     297820
    ],
    "events_head": [
-    "('C', 0, 4, 3322790363, 5, 2147483647, 'S', 'F', 'T', None)"
+    "('C', 0, 536950900, 536936920, 536947060, 2147483647, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "f6973cf8e0179ac5ab384f690d8687b08d32693486f8f6b135b515849b17ba26",
+    "events": "8c0ce00231d760dad2f400ed3101a35fbc5da3a13cdaa50006bee69dc203a3dc",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -328,17 +334,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4,
-     3322790363,
-     5,
+     536950900,
+     536936920,
+     536947060,
      2147483647
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-6",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 6,
     "xpsr": 0
    },
@@ -359,10 +366,10 @@
     297820
    ],
    "events_head": [
-    "('C', 0, 2300957721, 1604804925, 1, 2363272863, 'S', 'F', 'T', None)"
+    "('C', 0, 536941592, 536944956, 536950368, 2363272863, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "46aa7e990df8fd148488b1348b3d52b13d8c62450e6d0e2f9980f59c7b988ef4",
+    "events": "1672807d2d4e1cc9495be68a2387da6e38345cbd61425e07ade802708e9ee176",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -373,17 +380,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2300957721,
-     1604804925,
-     1,
+     536941592,
+     536944956,
+     536950368,
      2363272863
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-7",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 7,
     "xpsr": 0
    },
@@ -404,10 +412,10 @@
     297820
    ],
    "events_head": [
-    "('C', 0, 2156366374, 708972563, 558645175, 4, 'S', 'F', 'T', None)"
+    "('C', 0, 536939044, 536940560, 536952756, 4, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "170286ec5802170de4fa520ee7536a1e1f324e93f00fa9612e098db9831cccda",
+    "events": "e83619f1bf443bb0b7451af559f115b87f6a4afc18519e3f1ddfe7500504a61f",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -418,17 +426,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2156366374,
-     708972563,
-     558645175,
+     536939044,
+     536940560,
+     536952756,
      4
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-8",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 8,
     "xpsr": 0
    },
@@ -457,12 +466,12 @@
     297820
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 499087790, 3178863954, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 148, 1556998536, 'S', 'F', 'T', None)",
-    "('C', 2, 1346232374, 1556998536, 499087790, 2147483647, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 536951212, 3178863954, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 148, 536947080, 'S', 'F', 'T', None)",
+    "('C', 2, 536944692, 536947080, 536951212, 2147483647, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "10f0de1afbf502b692d26b50c2c26abd988c29b751e10f6122d8b5babbc4e607",
+    "events": "66b430be7e24a2dc5ad958f507564ffebc7053033320f0e59dbf8767b5762ad4",
     "kind": "return",
     "ncalls": 3,
     "ret": [
@@ -473,17 +482,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1346232374,
-     1556998536,
-     499087790,
+     536944692,
+     536947080,
+     536951212,
      2147483647
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 9,
     "xpsr": 0
    },
@@ -524,16 +534,16 @@
     297820
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): ----------------------------------------------------------------------------------------\\n'), ('RO', b'display_reflash_handler'), 8, 3586673693, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 69, 995058044, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): ----------------------------------------------------------------------------------------\\n'), ('RO', b'display_reflash_handler'), 536946200, 3586673693, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 69, 536945020, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): The UI framework closes the opened UI application first, and the closed application ScreenID is %d\\n'), ('RO', b'display_reflash_handler'), 69, 3586673693, 'S', 'F', 'T', None)",
-    "('C', 3, 182454980, 69, 8, 2, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'%s(): Because ScreenID has changed, close the old screenID application first and update the backup value of screenID to %d\\n'), ('RO', b'display_reflash_handler'), 995058044, 3586673693, 'S', 'F', 'T', None)",
+    "('C', 3, 536939204, 69, 536946200, 2, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'%s(): Because ScreenID has changed, close the old screenID application first and update the backup value of screenID to %d\\n'), ('RO', b'display_reflash_handler'), 536945020, 3586673693, 'S', 'F', 'T', None)",
     "('W', 536990792, 1, 124)",
-    "('C', 5, 182454980, 995058044, 8, 1, 'S', 'F', 'T', None)"
+    "('C', 5, 536939204, 536945020, 536946200, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ec5056cbe4d09b21b8a7a097437f187b2e4d19b668dbfcfabc51a8a99fb499ae",
+    "events": "59814cf5d9d4d3c41efef85fda6f6a6a020f009226cded560a204699401319e7",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -544,17 +554,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     182454980,
-     995058044,
-     8,
+     536939204,
+     536945020,
+     536946200,
      1
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 10,
     "xpsr": 0
    },
@@ -583,12 +594,12 @@
     297820
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 256, 801746852, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 45, 2147483648, 'S', 'F', 'T', None)",
-    "('C', 2, 3, 2147483648, 256, 1426281073, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 536938076, 801746852, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 45, 536948284, 'S', 'F', 'T', None)",
+    "('C', 2, 536937040, 536948284, 536938076, 1426281073, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "d4c9a664a299c27a6b779bf08cb311cc8b92a10fc447d1565e98aaf6444519bc",
+    "events": "b7ea50d6ee423a99fc85abb85442a32faa0e5421ca0077c9037a5599bfbd7f87",
     "kind": "return",
     "ncalls": 3,
     "ret": [
@@ -599,17 +610,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3,
-     2147483648,
-     256,
+     536937040,
+     536948284,
+     536938076,
      1426281073
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 11,
     "xpsr": 0
    },
@@ -638,12 +650,12 @@
     297820
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 5, 1542880163, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 142, 3217736208, 'S', 'F', 'T', None)",
-    "('C', 2, 8, 3217736208, 5, 1103693227, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 536941268, 1542880163, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 142, 536936976, 'S', 'F', 'T', None)",
+    "('C', 2, 536944520, 536936976, 536941268, 1103693227, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ac904e179290cd1e12fc71625fde9ecb3deb6d703302adc5eb96cbd5d259901d",
+    "events": "1298250fca2aae9ce52d02c980f3800a05bc3cb9ef77b6a3782dfede9071c75f",
     "kind": "return",
     "ncalls": 3,
     "ret": [
@@ -654,17 +666,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     8,
-     3217736208,
-     5,
+     536944520,
+     536936976,
+     536941268,
      1103693227
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-12",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 12,
     "xpsr": 0
    },
@@ -693,12 +706,12 @@
     297820
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 6, 287561451, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 231, 1944344031, 'S', 'F', 'T', None)",
-    "('C', 2, 1156718256, 1944344031, 6, 617681966, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 536939060, 287561451, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 231, 536942044, 'S', 'F', 'T', None)",
+    "('C', 2, 536944304, 536942044, 536939060, 617681966, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b630998ab4044fba373c13effb20fdee4e335ff30894d344d26a7f925bcc518c",
+    "events": "4e4d000ccfea011bbcbcba725b7b28f3207277e7b881be905b6c1887b7f3b608",
     "kind": "return",
     "ncalls": 3,
     "ret": [
@@ -709,17 +722,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1156718256,
-     1944344031,
-     6,
+     536944304,
+     536942044,
+     536939060,
      617681966
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 13,
     "xpsr": 0
    },
@@ -740,10 +754,10 @@
     297820
    ],
    "events_head": [
-    "('C', 0, 1996365079, 12, 3, 470668832, 'S', 'F', 'T', None)"
+    "('C', 0, 536943892, 536949848, 536943328, 470668832, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "06d722b25370fcd6da704cb6a3badb513704c914368cc556cfa35f24d656ce74",
+    "events": "70e84b1e81b7ff644822a1cb49e8c928ce21bb4ce973729c6d51d0547df44f2a",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -754,17 +768,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1996365079,
-     12,
-     3,
+     536943892,
+     536949848,
+     536943328,
      470668832
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-14",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 14,
     "xpsr": 0
    },
@@ -785,10 +800,10 @@
     297820
    ],
    "events_head": [
-    "('C', 0, 7, 256, 5, 4, 'S', 'F', 'T', None)"
+    "('C', 0, 536952404, 536941132, 536951236, 4, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "f5ee8ee33b11f715ee16b4dfdfea565542fd1178cc5a260f8fc419fc266c366a",
+    "events": "7061ef11732164e7e574ab8e205555603e7235dfc2516ebf2b665caea368fa33",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -799,17 +814,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     7,
-     256,
-     5,
+     536952404,
+     536941132,
+     536951236,
      4
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-15",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 15,
     "xpsr": 0
    },
@@ -838,12 +854,12 @@
     297820
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 3454407978, 886755549, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 149, 2147483648, 'S', 'F', 'T', None)",
-    "('C', 2, 2024561310, 2147483648, 3454407978, 16, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 536941864, 886755549, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 149, 536942972, 'S', 'F', 'T', None)",
+    "('C', 2, 536943260, 536942972, 536941864, 16, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ba61134c1b77111404a0045c64a4303ffdd8bf0ef89a23513135e5c21c0abe22",
+    "events": "03036682bd7c102b710fb601c53ce161d9569b2bac9bd7c975656268a4d10916",
     "kind": "return",
     "ncalls": 3,
     "ret": [
@@ -854,17 +870,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2024561310,
-     2147483648,
-     3454407978,
+     536943260,
+     536942972,
+     536941864,
      16
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
@@ -885,10 +902,10 @@
     297820
    ],
    "events_head": [
-    "('C', 0, 3, 3254638692, 1168623309, 4252165479, 'S', 'F', 'T', None)"
+    "('C', 0, 536944016, 536942692, 536938188, 4252165479, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9c6ac4093e837203eb60e17774873eea2661c09d02d99dac84683883bf1535de",
+    "events": "942313dde6ee6ac8eaef234b6cc191d677908c6f463d5c1d482b8e171df6b4a5",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -899,17 +916,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3,
-     3254638692,
-     1168623309,
+     536944016,
+     536942692,
+     536938188,
      4252165479
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-17",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 17,
     "xpsr": 0
    },
@@ -934,12 +952,12 @@
     297820
    ],
    "events_head": [
-    "('C', 0, 3912442165, 137, 697236451, 2, 'S', 'F', 'T', None)",
-    "('W', 536990792, 1, 0)",
-    "('C', 1, 3912442165, 0, 697236451, 1, 'S', 'F', 'T', None)"
+    "('C', 0, 536944948, 137, 536951776, 2, 'S', 'F', 'T', None)",
+    "('W', 536990792, 1, 224)",
+    "('C', 1, 536944948, 536937440, 536951776, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "445cd0852acc806d60f3fa8a139af2f616ad688b3e9ea762c639e0e9fc2ec832",
+    "events": "806146fbd9890e403da5dc78e43563660cc0818a77f24b47bfc8198e39192964",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -950,17 +968,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3912442165,
-     0,
-     697236451,
+     536944948,
+     536937440,
+     536951776,
      1
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-18",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 18,
     "xpsr": 0
    },
@@ -989,12 +1008,12 @@
     297820
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 4178753371, 4075769455, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 240, 1536401714, 'S', 'F', 'T', None)",
-    "('C', 2, 6, 1536401714, 4178753371, 255, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 536950616, 4075769455, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 240, 536944944, 'S', 'F', 'T', None)",
+    "('C', 2, 536939284, 536944944, 536950616, 255, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "32c5f03035ad4853cfa31a7726d912d04abaaf4c9a8c4d2246adfcade0d9a6dc",
+    "events": "100fcfae1c7853dfe3700af3050ad1e5e0ba2995ea587bc7ed0e7e62bcc1130c",
     "kind": "return",
     "ncalls": 3,
     "ret": [
@@ -1005,17 +1024,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     6,
-     1536401714,
-     4178753371,
+     536939284,
+     536944944,
+     536950616,
      255
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 19,
     "xpsr": 0
    },
@@ -1036,10 +1056,10 @@
     297820
    ],
    "events_head": [
-    "('C', 0, 4, 2306919366, 2, 7, 'S', 'F', 'T', None)"
+    "('C', 0, 536952740, 536939460, 536939760, 7, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "0dd1c401681507805b0d143f01ba767bdc1b5ea66d04922a0c3a6fd1c8f6cfdc",
+    "events": "cca53713ba4fe93d38dd29c134e5fd45430016590c0981020f752617dd1c2f22",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1050,17 +1070,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4,
-     2306919366,
-     2,
+     536952740,
+     536939460,
+     536939760,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-20",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 20,
     "xpsr": 0
    },
@@ -1089,12 +1110,12 @@
     297820
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 2870852768, 2217669457, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 220, 1, 'S', 'F', 'T', None)",
-    "('C', 2, 843060076, 1, 2870852768, 0, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 536951968, 2217669457, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 220, 536936640, 'S', 'F', 'T', None)",
+    "('C', 2, 536941420, 536936640, 536951968, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "1bd6c07bf8b7c5dce4013c4e246d5e2b578359737dc1502e46447d7da133bd48",
+    "events": "31fd2471ecb4a81e98e91290896121dcce4ea6a91203f931b58e20b45fac0b5c",
     "kind": "return",
     "ncalls": 3,
     "ret": [
@@ -1105,17 +1126,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     843060076,
-     1,
-     2870852768,
+     536941420,
+     536936640,
+     536951968,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-21",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 21,
     "xpsr": 0
    },
@@ -1136,10 +1158,10 @@
     297820
    ],
    "events_head": [
-    "('C', 0, 7, 3001296298, 4294967295, 2451975022, 'S', 'F', 'T', None)"
+    "('C', 0, 536937396, 536946088, 536949836, 2451975022, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "0bfc6e322f944460db08a53d544a026720b4938803c801eaa5fdf6a531248d87",
+    "events": "760e453cd35521570fb03225cb9746c150580445663d7d29c84816e813e3b027",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1150,17 +1172,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     7,
-     3001296298,
-     4294967295,
+     536937396,
+     536946088,
+     536949836,
      2451975022
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-22",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 22,
     "xpsr": 0
    },
@@ -1181,10 +1204,10 @@
     297820
    ],
    "events_head": [
-    "('C', 0, 1591295399, 241044672, 2034212132, 1515885587, 'S', 'F', 'T', None)"
+    "('C', 0, 536952228, 536939712, 536943908, 1515885587, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "42bd027f294601bc684ceee94fcdeef6f512eaabab8b77b4e3e88bb060272480",
+    "events": "e060ed3af0eba89b21324ea28ca461b93386e30de1022c8b331dc170ed806ea8",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1195,17 +1218,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1591295399,
-     241044672,
-     2034212132,
+     536952228,
+     536939712,
+     536943908,
      1515885587
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-23",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 23,
     "xpsr": 0
    },
@@ -1226,10 +1250,10 @@
     297820
    ],
    "events_head": [
-    "('C', 0, 4, 6, 2967241396, 7, 'S', 'F', 'T', None)"
+    "('C', 0, 536949908, 536944852, 536937140, 7, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "857b27344b498850df3a85552cdfb972a7ca389e8cf25326325c07506549bad1",
+    "events": "ef1541318fd204f1ed97a423a1a359b4d785b24111218391531d1192d51ee03d",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1240,17 +1264,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4,
-     6,
-     2967241396,
+     536949908,
+     536944852,
+     536937140,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-24",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 24,
     "xpsr": 0
    },
@@ -1279,12 +1304,12 @@
     297820
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 2149248134, 3712121755, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 5, 12, 'S', 'F', 'T', None)",
-    "('C', 2, 3751937804, 12, 2149248134, 604019693, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 536947844, 3712121755, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 5, 536941512, 'S', 'F', 'T', None)",
+    "('C', 2, 536938252, 536941512, 536947844, 604019693, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "507ac82e042653ee23bd0e73fa2d7275e54d4abbed663f87ebd9b76dc98c64e8",
+    "events": "866662e880813291a88b7b76595fc56ab65ad8e209295fe28d9c4e180b13c280",
     "kind": "return",
     "ncalls": 3,
     "ret": [
@@ -1295,17 +1320,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3751937804,
-     12,
-     2149248134,
+     536938252,
+     536941512,
+     536947844,
      604019693
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 25,
     "xpsr": 0
    },
@@ -1326,10 +1352,10 @@
     297820
    ],
    "events_head": [
-    "('C', 0, 2992330384, 12, 3037640278, 2678623347, 'S', 'F', 'T', None)"
+    "('C', 0, 536942224, 536937032, 536950356, 2678623347, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "28b0606154b5b48eb6baf5bad88bdb3ad0dc36578eeca629fb0320821748ecbe",
+    "events": "6566406bc29fd61f46baaa5d9b61458cf80409025f464eb14dad76dc7565a7ca",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1340,17 +1366,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2992330384,
-     12,
-     3037640278,
+     536942224,
+     536937032,
+     536950356,
      2678623347
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-26",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 26,
     "xpsr": 0
    },
@@ -1379,12 +1406,12 @@
     297820
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 3639365232, 1775869161, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 120, 681194263, 'S', 'F', 'T', None)",
-    "('C', 2, 187818536, 681194263, 3639365232, 4125446660, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 536940144, 1775869161, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 120, 536949524, 'S', 'F', 'T', None)",
+    "('C', 2, 536945192, 536949524, 536940144, 4125446660, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "0041ad753a9cb54eb11485f60f9c5bff9b679456a8a3e5cb3cefb5e0e1eca89c",
+    "events": "553325dbe537e7c8f1d503439cf33d156c14a14491dd97befaa2aecf93ffe28f",
     "kind": "return",
     "ncalls": 3,
     "ret": [
@@ -1395,17 +1422,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     187818536,
-     681194263,
-     3639365232,
+     536945192,
+     536949524,
+     536940144,
      4125446660
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 27,
     "xpsr": 0
    },
@@ -1434,12 +1462,12 @@
     297820
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 1, 1542213390, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 23, 4285183211, 'S', 'F', 'T', None)",
-    "('C', 2, 3711083943, 4285183211, 1, 2592385448, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 536946096, 1542213390, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 23, 536949992, 'S', 'F', 'T', None)",
+    "('C', 2, 536946084, 536949992, 536946096, 2592385448, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "4ad4bd6ce2f85f5dbe3f4c42ba80236abdf39a6161b04b34dbacd9d049268a74",
+    "events": "593ea522c52d80b1709adb21ecd67ce336627c9bd020237b02a911f4d060dc32",
     "kind": "return",
     "ncalls": 3,
     "ret": [
@@ -1450,17 +1478,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3711083943,
-     4285183211,
-     1,
+     536946084,
+     536949992,
+     536946096,
      2592385448
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-28",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 28,
     "xpsr": 0
    },
@@ -1481,10 +1510,10 @@
     297820
    ],
    "events_head": [
-    "('C', 0, 739928864, 256, 3886541357, 8, 'S', 'F', 'T', None)"
+    "('C', 0, 536947488, 536937084, 536947244, 8, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "2c86d9c638bae328ff3ae7e7feae51ec80b1724821f044c915ceec70828565a0",
+    "events": "a47dbb86561d10b796630098ec3b5aa45f2489202f8b8ec9fd37a2cf38944134",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1495,17 +1524,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     739928864,
-     256,
-     3886541357,
+     536947488,
+     536937084,
+     536947244,
      8
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-29",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 29,
     "xpsr": 0
    },
@@ -1534,12 +1564,12 @@
     297820
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 1, 2417460406, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 219, 8, 'S', 'F', 'T', None)",
-    "('C', 2, 256, 8, 1, 7, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 536945744, 2417460406, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 219, 536941720, 'S', 'F', 'T', None)",
+    "('C', 2, 536952796, 536941720, 536945744, 7, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b6147b27a9dda81ee7e0ead1ab0f2d4d1136b5b6b820afac3daac700205728c7",
+    "events": "daad50568e62f43ddf75b2a4ad11a650c584083509bb36d43dfe68b4164457c6",
     "kind": "return",
     "ncalls": 3,
     "ret": [
@@ -1550,17 +1580,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     256,
-     8,
-     1,
+     536952796,
+     536941720,
+     536945744,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-30",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 30,
     "xpsr": 0
    },
@@ -1589,12 +1620,12 @@
     297820
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 7, 1988174091, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 87, 2461003590, 'S', 'F', 'T', None)",
-    "('C', 2, 4294967295, 2461003590, 7, 53351545, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 536938932, 1988174091, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 87, 536948548, 'S', 'F', 'T', None)",
+    "('C', 2, 536952300, 536948548, 536938932, 53351545, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "0ae9bcb971c1d605550756b280c84117ee0b163465ab36802bce2dc7d17b0d43",
+    "events": "09ef6377f97584af96089b6c6f39a9d93f80f23b054b93d067f4f4581e85408d",
     "kind": "return",
     "ncalls": 3,
     "ret": [
@@ -1605,17 +1636,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4294967295,
-     2461003590,
-     7,
+     536952300,
+     536948548,
+     536938932,
      53351545
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
@@ -1644,12 +1676,12 @@
     297820
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 3442053927, 615009301, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 238, 2706821390, 'S', 'F', 'T', None)",
-    "('C', 2, 1839753098, 2706821390, 3442053927, 1170652979, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 536941348, 615009301, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 238, 536940812, 'S', 'F', 'T', None)",
+    "('C', 2, 536946568, 536940812, 536941348, 1170652979, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "f8a8f4e763f42f7505f9fb75786f6acafdf570312d00bbdde8021043f1fd2eea",
+    "events": "8272ab36c6513594cda670c2011b541965bce9659a6ff66d80aa6b5d87a9b4b0",
     "kind": "return",
     "ncalls": 3,
     "ret": [
@@ -1660,17 +1692,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1839753098,
-     2706821390,
-     3442053927,
+     536946568,
+     536940812,
+     536941348,
      1170652979
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-32",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 32,
     "xpsr": 0
    },
@@ -1691,10 +1724,10 @@
     297820
    ],
    "events_head": [
-    "('C', 0, 1076094348, 7, 7, 5, 'S', 'F', 'T', None)"
+    "('C', 0, 536946060, 536942020, 536944276, 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ccb4034ca5188064bb503ba56cb7b3393fdf6bffcff23a5e7be9e48a5484bb28",
+    "events": "3550d27e9a52916108eaafc5e310a2bb57b6fcfd8a030a38897bfca149b437a8",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1705,17 +1738,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1076094348,
-     7,
-     7,
+     536946060,
+     536942020,
+     536944276,
      5
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-33",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 33,
     "xpsr": 0
    },
@@ -1744,12 +1778,12 @@
     297820
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 922796015, 2360084761, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 209, 3990671540, 'S', 'F', 'T', None)",
-    "('C', 2, 12, 3990671540, 922796015, 2147483647, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 536952812, 2360084761, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 209, 536940724, 'S', 'F', 'T', None)",
+    "('C', 2, 536950120, 536940724, 536952812, 2147483647, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "3322668f75b5ea1ddea2152f13173dd373c717ea2bfcb7d1a41bc2bf1fc4b233",
+    "events": "cb9a6cd70852122b5714ddd39c9028addcdaa6553aef688eba666193c982042b",
     "kind": "return",
     "ncalls": 3,
     "ret": [
@@ -1760,17 +1794,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     12,
-     3990671540,
-     922796015,
+     536950120,
+     536940724,
+     536952812,
      2147483647
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 34,
     "xpsr": 0
    },
@@ -1811,16 +1846,16 @@
     297820
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): ----------------------------------------------------------------------------------------\\n'), ('RO', b'display_reflash_handler'), 4001652011, 4019880274, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 231, 3578977268, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): ----------------------------------------------------------------------------------------\\n'), ('RO', b'display_reflash_handler'), 536943912, 4019880274, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 231, 536943604, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): The UI framework closes the opened UI application first, and the closed application ScreenID is %d\\n'), ('RO', b'display_reflash_handler'), 231, 4019880274, 'S', 'F', 'T', None)",
-    "('C', 3, 2726887024, 231, 4001652011, 2, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'%s(): Because ScreenID has changed, close the old screenID application first and update the backup value of screenID to %d\\n'), ('RO', b'display_reflash_handler'), 3578977268, 4019880274, 'S', 'F', 'T', None)",
+    "('C', 3, 536952432, 231, 536943912, 2, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'%s(): Because ScreenID has changed, close the old screenID application first and update the backup value of screenID to %d\\n'), ('RO', b'display_reflash_handler'), 536943604, 4019880274, 'S', 'F', 'T', None)",
     "('W', 536990792, 1, 244)",
-    "('C', 5, 2726887024, 3578977268, 4001652011, 1, 'S', 'F', 'T', None)"
+    "('C', 5, 536952432, 536943604, 536943912, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "51358e9a77fd12b438d446a767dd0a457e92a01f895f97a1e317467329eabd2f",
+    "events": "dd7397c8c508f9958bd735e279e8b214ce8f4ac2f86650ada8d6179bb88f46e7",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -1831,17 +1866,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2726887024,
-     3578977268,
-     4001652011,
+     536952432,
+     536943604,
+     536943912,
      1
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
@@ -1870,12 +1906,12 @@
     297820
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 2147483647, 823752600, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 176, 12, 'S', 'F', 'T', None)",
-    "('C', 2, 0, 12, 2147483647, 8, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 536945964, 823752600, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 176, 536949832, 'S', 'F', 'T', None)",
+    "('C', 2, 536944224, 536949832, 536945964, 8, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "3ad137bb26374d05af0f171cab9dd44e797c9d87395a5461287e4c1f2b87b49f",
+    "events": "cafa847b2dbc7121828b11941ef181be2d9dc5e189a3c1a1f59eed02d023a220",
     "kind": "return",
     "ncalls": 3,
     "ret": [
@@ -1886,17 +1922,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     0,
-     12,
-     2147483647,
+     536944224,
+     536949832,
+     536945964,
      8
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 36,
     "xpsr": 0
    },
@@ -1917,10 +1954,10 @@
     297820
    ],
    "events_head": [
-    "('C', 0, 1, 2057795936, 2725586938, 1299241558, 'S', 'F', 'T', None)"
+    "('C', 0, 536951728, 536951136, 536946680, 1299241558, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "2a484a7824bb379ee4425626a78b4b334ca3280fccee636042722c3bc6495d39",
+    "events": "072a6b4c9faadd61d33bc50867aad764fbbde546cc6136eea05e32473717e891",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1931,17 +1968,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1,
-     2057795936,
-     2725586938,
+     536951728,
+     536951136,
+     536946680,
      1299241558
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-37",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 37,
     "xpsr": 0
    },
@@ -1962,10 +2000,10 @@
     297820
    ],
    "events_head": [
-    "('C', 0, 0, 255, 1, 2, 'S', 'F', 'T', None)"
+    "('C', 0, 536939760, 536941672, 536936976, 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "7d4d3b66cf2888678934dc8a484abd39b2b9a191219650ae4802bdfa701eb7a8",
+    "events": "3fe9428bc67ab2aaac80b27f94712e71246aaacb6206167767f194990d791636",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1976,17 +2014,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     0,
-     255,
-     1,
+     536939760,
+     536941672,
+     536936976,
      2
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-38",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 38,
     "xpsr": 0
    },
@@ -2015,12 +2054,12 @@
     297820
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 3774328631, 2944518647, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 69, 1587124134, 'S', 'F', 'T', None)",
-    "('C', 2, 3, 1587124134, 3774328631, 1997155928, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 536948532, 2944518647, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 69, 536942500, 'S', 'F', 'T', None)",
+    "('C', 2, 536941424, 536942500, 536948532, 1997155928, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "e3321d31a0c5679f80a937f762742b4105848fe4dd3a229e6fa534a610f34df4",
+    "events": "6867256be96933cc3aa04536998e4ac3df4a7f2cf705e69b8d1fc3d715a66289",
     "kind": "return",
     "ncalls": 3,
     "ret": [
@@ -2031,17 +2070,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3,
-     1587124134,
-     3774328631,
+     536941424,
+     536942500,
+     536948532,
      1997155928
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
     "xpsr": 0
    },
@@ -2062,10 +2102,10 @@
     297820
    ],
    "events_head": [
-    "('C', 0, 0, 3928041777, 1786326658, 1835695343, 'S', 'F', 'T', None)"
+    "('C', 0, 536943600, 536946992, 536948352, 1835695343, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9fde39ac2decd2937864d731197c336f989956342bfff48197db28783ea80936",
+    "events": "4b4353ead5ac1c3cd9f29bc4b1bcd720125b8cff7f97e475f6b929e13fda9998",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -2076,17 +2116,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     0,
-     3928041777,
-     1786326658,
+     536943600,
+     536946992,
+     536948352,
      1835695343
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-40",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 40,
     "xpsr": 0
    },
@@ -2127,16 +2168,16 @@
     297820
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): ----------------------------------------------------------------------------------------\\n'), ('RO', b'display_reflash_handler'), 3059135833, 2096484019, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 243, 256, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): ----------------------------------------------------------------------------------------\\n'), ('RO', b'display_reflash_handler'), 536950104, 2096484019, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 243, 536950764, 'S', 'F', 'T', None)",
     "('C', 2, ('RO', b'%s(): The UI framework closes the opened UI application first, and the closed application ScreenID is %d\\n'), ('RO', b'display_reflash_handler'), 243, 2096484019, 'S', 'F', 'T', None)",
-    "('C', 3, 3886568119, 243, 3059135833, 2, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'%s(): Because ScreenID has changed, close the old screenID application first and update the backup value of screenID to %d\\n'), ('RO', b'display_reflash_handler'), 256, 2096484019, 'S', 'F', 'T', None)",
-    "('W', 536990792, 1, 0)",
-    "('C', 5, 3886568119, 256, 3059135833, 1, 'S', 'F', 'T', None)"
+    "('C', 3, 536941236, 243, 536950104, 2, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'%s(): Because ScreenID has changed, close the old screenID application first and update the backup value of screenID to %d\\n'), ('RO', b'display_reflash_handler'), 536950764, 2096484019, 'S', 'F', 'T', None)",
+    "('W', 536990792, 1, 236)",
+    "('C', 5, 536941236, 536950764, 536950104, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "8b96b23404e3fc63da9444a9717fa0192c0007d4f58b9ae0ac1548a23b753458",
+    "events": "8a4523cd951fa5e44a6815c47330af99b09d7fd2c9b76366f3d92837d2e09616",
     "kind": "return",
     "ncalls": 6,
     "ret": [
@@ -2147,17 +2188,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3886568119,
-     256,
-     3059135833,
+     536941236,
+     536950764,
+     536950104,
      1
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-41",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 41,
     "xpsr": 0
    },
@@ -2186,12 +2228,12 @@
     297820
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 12, 509112996, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 238, 4, 'S', 'F', 'T', None)",
-    "('C', 2, 538639782, 4, 12, 3983748582, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 536943656, 509112996, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 238, 536940324, 'S', 'F', 'T', None)",
+    "('C', 2, 536952228, 536940324, 536943656, 3983748582, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "532ac496327a2cb3a8952469bbbacc442f57a4d420dc81605e3c0dee7fd403c3",
+    "events": "2d4b65d5854565682aca63b50f2786da198b09558ff2261243f19a1d3490dd23",
     "kind": "return",
     "ncalls": 3,
     "ret": [
@@ -2202,21 +2244,89 @@
    "fixture": {
     "abs": [],
     "args": [
-     538639782,
-     4,
-     12,
+     536952228,
+     536940324,
+     536943656,
      3983748582
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-42",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 42,
     "xpsr": 0
    },
    "new_instructions": 44,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4,
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    105584,
+    105584,
+    105584,
+    297820
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\\n'), ('RO', b'display_reflash_handler'), 536944308, 3926512751, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): The wrong screen ID has appeared, and the exception handling is closed,The message ID at startup is %d. The current message ID is%d\\n'), ('RO', b'display_reflash_handler'), 232, 536941684, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s(): To perform exception handling, close the previous SCREEN ID = %d UI application first\\n'), ('RO', b'display_reflash_handler'), 232, 3926512751, 'S', 'F', 'T', None)",
+    "('C', 3, 536946724, 536941684, 536944308, 2, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "29f39d9b59b651b50241d98557606ce74453028d7b90ab6dcd36ed425cf3f0ba",
+    "kind": "return",
+    "ncalls": 4,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946724,
+     536941684,
+     536944308,
+     2
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee-0-7",
+    "mem": [
+     [
+      0,
+      0,
+      "ffffffff"
+     ]
+    ],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 907,
+    "xpsr": 0
+   },
+   "new_instructions": 50,
    "stack_args": []
   },
   {
@@ -2241,12 +2351,12 @@
     297820
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 558645175, 0, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 149, 708972563, 'S', 'F', 'T', None)",
-    "('C', 2, 2156366374, 708972563, 558645175, 4, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): *************************************************************************************************\\n'), ('RO', b'display_reflash_handler'), 536952756, 0, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): There is a screen ID error. The previous screen iD was %d, the current screen ID is %d, and the UI process to be performed is %d\\n'), ('RO', b'display_reflash_handler'), 149, 536940560, 'S', 'F', 'T', None)",
+    "('C', 2, 536939044, 536940560, 536952756, 4, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "d5c86b4a3ba420c7dea5ff41f81966ed69fe8947c9a6ea3589d64473fb7b5abf",
+    "events": "8b8ec78f3ba912a71bcdc9883e41a887cbaf3dda9b6324d7e66e3e63c8e6229c",
     "kind": "return",
     "ncalls": 3,
     "ret": [
@@ -2258,96 +2368,26 @@
     "abs": [
      [
       536900948,
-      "00000000"
+      "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
      ]
     ],
     "args": [
-     2156366374,
-     708972563,
-     558645175,
+     536939044,
+     536940560,
+     536952756,
      4
     ],
     "float_scratch": false,
     "fp": {},
     "id": "glob-2-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
    "new_instructions": 45,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4,
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void",
-    "i32"
-   ],
-   "call_targets": [
-    105584,
-    105584,
-    105584,
-    297820
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\\n'), ('RO', b'display_reflash_handler'), 2439673209, 1706521452, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): The wrong screen ID has appeared, and the exception handling is closed,The message ID at startup is %d. The current message ID is%d\\n'), ('RO', b'display_reflash_handler'), 120, 2920335562, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'%s(): To perform exception handling, close the previous SCREEN ID = %d UI application first\\n'), ('RO', b'display_reflash_handler'), 120, 1706521452, 'S', 'F', 'T', None)",
-    "('C', 3, 3, 2920335562, 2439673209, 2, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "3819fab713b4dba065c80430a8b761f0c825f7ac6d1f0b5577457946891ddd8b",
-    "kind": "return",
-    "ncalls": 4,
-    "ret": [
-     4294967295
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3,
-     2920335562,
-     2439673209,
-     2
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "orc-11-0",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [
-     [
-      11,
-      0,
-      0
-     ],
-     [
-      11,
-      1,
-      0
-     ]
-    ],
-    "scratch_seed": 522,
-    "xpsr": 0
-   },
-   "new_instructions": 50,
    "stack_args": []
   }
  ],
@@ -2366,8 +2406,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "display",
@@ -2376,16 +2419,26 @@
   "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
   "source": "shipped image"
  },
- "pointer_arg_mask": [],
+ "pointer_arg_mask": [
+  0,
+  1,
+  2
+ ],
  "ret_kind": "i32",
  "search": {
-  "candidates": 196,
+  "candidates": 270,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
   "kept": 45,
-  "pointer_arg_mask": [],
+  "pointer_arg_mask": [
+   0,
+   1,
+   2
+  ],
   "pointer_arg_mask_derived": true
  },
  "size": 410,

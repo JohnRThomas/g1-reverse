@@ -26,6 +26,7 @@
     "mem": [],
     "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -70,6 +71,7 @@
     "mem": [],
     "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 11,
     "xpsr": 0
    },
@@ -114,6 +116,7 @@
     "mem": [],
     "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 47,
     "xpsr": 0
    },
@@ -157,6 +160,7 @@
     "mem": [],
     "nptr": 0,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 700,
     "xpsr": 0
    },
@@ -205,6 +209,7 @@
     "mem": [],
     "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 800,
     "xpsr": 0
    },
@@ -375,6 +380,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 830,
     "xpsr": 0
    },
@@ -423,6 +429,7 @@
     "mem": [],
     "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 801,
     "xpsr": 0
    },
@@ -593,6 +600,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 831,
     "xpsr": 0
    },
@@ -763,6 +771,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 832,
     "xpsr": 0
    },
@@ -811,6 +820,7 @@
     "mem": [],
     "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 804,
     "xpsr": 0
    },
@@ -981,6 +991,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 834,
     "xpsr": 0
    },
@@ -1029,6 +1040,7 @@
     "mem": [],
     "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 805,
     "xpsr": 0
    },
@@ -1199,6 +1211,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 835,
     "xpsr": 0
    },
@@ -1247,6 +1260,7 @@
     "mem": [],
     "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 806,
     "xpsr": 0
    },
@@ -1417,6 +1431,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 836,
     "xpsr": 0
    },
@@ -1587,6 +1602,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 837,
     "xpsr": 0
    },
@@ -1635,6 +1651,7 @@
     "mem": [],
     "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 808,
     "xpsr": 0
    },
@@ -1805,6 +1822,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 838,
     "xpsr": 0
    },
@@ -1853,6 +1871,7 @@
     "mem": [],
     "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 809,
     "xpsr": 0
    },
@@ -2023,6 +2042,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 839,
     "xpsr": 0
    },
@@ -2193,6 +2213,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 840,
     "xpsr": 0
    },
@@ -2240,6 +2261,7 @@
     "mem": [],
     "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 32,
     "xpsr": 0
    },
@@ -2287,6 +2309,7 @@
     "mem": [],
     "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 53,
     "xpsr": 0
    },
@@ -2334,6 +2357,7 @@
     "mem": [],
     "nptr": 1,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 57,
     "xpsr": 0
    },
@@ -2352,8 +2376,11 @@
  "globals": [],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "core",
@@ -2367,10 +2394,12 @@
  ],
  "ret_kind": "void",
  "search": {
-  "candidates": 157,
+  "candidates": 181,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
   "kept": 24,
   "pointer_arg_mask": [

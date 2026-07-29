@@ -44,6 +44,7 @@
     "mem": [],
     "nptr": 0,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -139,6 +140,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 400,
     "xpsr": 0
    },
@@ -225,6 +227,7 @@
       4294967295
      ]
     ],
+    "outparam": null,
     "scratch_seed": 403,
     "xpsr": 0
    },
@@ -325,6 +328,7 @@
       4294967285
      ]
     ],
+    "outparam": null,
     "scratch_seed": 404,
     "xpsr": 0
    },
@@ -372,8 +376,11 @@
  "globals": [],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "core",
@@ -385,10 +392,12 @@
  "pointer_arg_mask": [],
  "ret_kind": "i32",
  "search": {
-  "candidates": 131,
+  "candidates": 139,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
   "kept": 4,
   "pointer_arg_mask": [],

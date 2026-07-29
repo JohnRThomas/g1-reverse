@@ -88,11 +88,11 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1276959699, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 12, 1927129947, 'S', 'F', 'T', None)",
+    "('C', 2, 536943568, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536948040, 1390181919, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 12, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 1276959699, 'S', 'F', 'T', None)",
+    "('C', 5, 536948040, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536943568, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
@@ -102,12 +102,12 @@
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
     "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 1276959699, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536943568, 0, 3098473944, 'S', 'F', 'T', None)",
     "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 1276959699, 3694469211, 'S', 'F', 'T', None)"
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536943568, 3694469211, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "102c03f1cdc91c1e444743225b03e367f4960d531be9fd4f63b39d8552ecbb75",
+    "events": "7ee2f29b6c4c5be5157a1df276f6104d68de4ff263fa99a1a0765ec4342cb18d",
     "kind": "return",
     "ncalls": 19,
     "ret": [],
@@ -116,17 +116,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1276959699,
-     12,
-     4,
-     0
+     536943568,
+     536948040,
+     536948308,
+     536940048
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -280,11 +281,11 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 4067469868, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 1797429778, 129700181, 'S', 'F', 'T', None)",
+    "('C', 2, 536947244, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536943120, 1390186839, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 1797429778, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 4067469868, 'S', 'F', 'T', None)",
+    "('C', 5, 536943120, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536947244, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
@@ -294,12 +295,12 @@
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
     "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 4067469868, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536947244, 0, 3098473944, 'S', 'F', 'T', None)",
     "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 4067469868, 2429414634, 'S', 'F', 'T', None)"
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536947244, 2429414634, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "d603b2eaab61d20ded52fe1a4aa6d19e4d33068a6af1a45c9cfb3ab8b88ad637",
+    "events": "53d8cf0e68bd29687b49b974abba0af13004b50da804f9531916167cd93eab0e",
     "kind": "return",
     "ncalls": 19,
     "ret": [],
@@ -308,17 +309,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4067469868,
-     1797429778,
-     2147483648,
-     315044147
+     536947244,
+     536943120,
+     536940476,
+     536949040
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -472,11 +474,11 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 4290042576, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 598759513, 1328370446, 'S', 'F', 'T', None)",
+    "('C', 2, 536943312, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536942680, 1390187279, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 598759513, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 4290042576, 'S', 'F', 'T', None)",
+    "('C', 5, 536942680, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536943312, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
@@ -486,12 +488,12 @@
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
     "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 4290042576, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536943312, 0, 3098473944, 'S', 'F', 'T', None)",
     "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 4290042576, 471345317, 'S', 'F', 'T', None)"
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536943312, 471345317, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9cf58ad45bdf959a4dae0a89d8e387667232f30affec061929665e74f3be9828",
+    "events": "33569b25cb37604b4f4b3015b2488ecb4ae83922e0cac6cea61ad20acce64afe",
     "kind": "return",
     "ncalls": 19,
     "ret": [],
@@ -500,17 +502,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4290042576,
-     598759513,
-     3677430904,
-     7
+     536943312,
+     536942680,
+     536945784,
+     536943396
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
@@ -664,11 +667,11 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 2618385373, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 255, 1927129704, 'S', 'F', 'T', None)",
+    "('C', 2, 536945628, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536940936, 1390189023, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 255, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 2618385373, 'S', 'F', 'T', None)",
+    "('C', 5, 536940936, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536945628, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
@@ -678,12 +681,12 @@
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
     "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 2618385373, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536945628, 0, 3098473944, 'S', 'F', 'T', None)",
     "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 2618385373, 2205054065, 'S', 'F', 'T', None)"
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536945628, 2205054065, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "f26929988ce064fd8324b4642107a1ea158307ca2f8ef74b2e961dddceb10aa5",
+    "events": "00c21fda65fdfbd3fe80642993c98fb9b71d8ac06233465209a1995d470bf62e",
     "kind": "return",
     "ncalls": 19,
     "ret": [],
@@ -692,17 +695,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2618385373,
-     255,
-     8,
-     3619521758
+     536945628,
+     536940936,
+     536943096,
+     536937692
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-3",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 3,
     "xpsr": 0
    },
@@ -767,390 +771,6 @@
      ]
     ]
    ]
-  },
-  {
-   "call_arities": [
-    0,
-    0,
-    3,
-    4,
-    0,
-    2,
-    0,
-    0,
-    0,
-    0,
-    4,
-    0,
-    0,
-    0,
-    0,
-    4,
-    0,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "void",
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "void"
-   ],
-   "call_targets": [
-    92072,
-    512548,
-    552056,
-    105584,
-    147168,
-    552942,
-    513006,
-    513094,
-    513006,
-    513094,
-    291276,
-    513006,
-    513094,
-    513006,
-    513094,
-    282308,
-    513006,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 16, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 2147483647, 0, 'S', 'F', 'T', None)",
-    "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 16, ('RO', b'Now'), 'S', 'F', 'T', None)",
-    "('C', 6, 'S', 'F', 'T', None)",
-    "('C', 7, 'S', 'F', 'T', None)",
-    "('C', 8, 'S', 'F', 'T', None)",
-    "('C', 9, 'S', 'F', 'T', None)",
-    "('C', 10, 2556513135, 0, 1254795792, 1514103272, 'S', 'F', 'T', None)",
-    "('C', 11, 'S', 'F', 'T', None)",
-    "('C', 12, 'S', 'F', 'T', None)",
-    "('C', 13, 'S', 'F', 'T', None)",
-    "('C', 14, 'S', 'F', 'T', None)",
-    "('C', 15, 0, 16, 0, 417935969, 'S', 'F', 'T', None)",
-    "('C', 16, 'S', 'F', 'T', None)",
-    "('C', 17, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 3894965001, 16, 2655161023, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "66638beb519546f6543d5af525d5cc1cf7ed7f487600d52df2c1fce69a292623",
-    "kind": "return",
-    "ncalls": 18,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     16,
-     2147483647,
-     3842370354,
-     6
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-4",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 4,
-    "xpsr": 0
-   },
-   "new_instructions": 80,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    0,
-    0,
-    3,
-    4,
-    0,
-    2,
-    0,
-    0,
-    0,
-    0,
-    4,
-    0,
-    0,
-    0,
-    0,
-    4,
-    0,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "void",
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "void"
-   ],
-   "call_targets": [
-    92072,
-    512548,
-    552056,
-    105584,
-    147168,
-    552942,
-    513006,
-    513094,
-    513006,
-    513094,
-    291276,
-    513006,
-    513094,
-    513006,
-    513094,
-    282308,
-    513006,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 4, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 3188701995, 0, 'S', 'F', 'T', None)",
-    "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 4, ('RO', b'Now'), 'S', 'F', 'T', None)",
-    "('C', 6, 'S', 'F', 'T', None)",
-    "('C', 7, 'S', 'F', 'T', None)",
-    "('C', 8, 'S', 'F', 'T', None)",
-    "('C', 9, 'S', 'F', 'T', None)",
-    "('C', 10, 2556513135, 0, 1254795792, 1514103272, 'S', 'F', 'T', None)",
-    "('C', 11, 'S', 'F', 'T', None)",
-    "('C', 12, 'S', 'F', 'T', None)",
-    "('C', 13, 'S', 'F', 'T', None)",
-    "('C', 14, 'S', 'F', 'T', None)",
-    "('C', 15, 0, 4, 0, 417935969, 'S', 'F', 'T', None)",
-    "('C', 16, 'S', 'F', 'T', None)",
-    "('C', 17, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 3894965001, 4, 151242190, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "e22ffe24c21c2e402a29f5130c2af7334581e7e72753026893039473a73de796",
-    "kind": "return",
-    "ncalls": 18,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     4,
-     3188701995,
-     8,
-     7
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-5",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 5,
-    "xpsr": 0
-   },
-   "new_instructions": 80,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    0,
-    0,
-    3,
-    4,
-    0,
-    2,
-    0,
-    0,
-    0,
-    0,
-    4,
-    0,
-    0,
-    0,
-    0,
-    4,
-    0,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "void",
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "void"
-   ],
-   "call_targets": [
-    92072,
-    512548,
-    552056,
-    105584,
-    147168,
-    552942,
-    513006,
-    513094,
-    513006,
-    513094,
-    291276,
-    513006,
-    513094,
-    513006,
-    513094,
-    282308,
-    513006,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 4, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 3322790363, 0, 'S', 'F', 'T', None)",
-    "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 4, ('RO', b'Now'), 'S', 'F', 'T', None)",
-    "('C', 6, 'S', 'F', 'T', None)",
-    "('C', 7, 'S', 'F', 'T', None)",
-    "('C', 8, 'S', 'F', 'T', None)",
-    "('C', 9, 'S', 'F', 'T', None)",
-    "('C', 10, 2556513135, 0, 1254795792, 1514103272, 'S', 'F', 'T', None)",
-    "('C', 11, 'S', 'F', 'T', None)",
-    "('C', 12, 'S', 'F', 'T', None)",
-    "('C', 13, 'S', 'F', 'T', None)",
-    "('C', 14, 'S', 'F', 'T', None)",
-    "('C', 15, 0, 4, 0, 417935969, 'S', 'F', 'T', None)",
-    "('C', 16, 'S', 'F', 'T', None)",
-    "('C', 17, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 3894965001, 4, 1447905683, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "616dda20609daac05eaa38cbd5fa9f39f9966e857cef38d87bc2872e2002362e",
-    "kind": "return",
-    "ncalls": 18,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     4,
-     3322790363,
-     5,
-     2147483647
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-6",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 6,
-    "xpsr": 0
-   },
-   "new_instructions": 80,
-   "stack_args": []
   },
   {
    "call_arities": [
@@ -1240,11 +860,11 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 2300957721, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 1604804925, 322325034, 'S', 'F', 'T', None)",
+    "('C', 2, 536945864, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536944284, 1390185675, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 1604804925, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 2300957721, 'S', 'F', 'T', None)",
+    "('C', 5, 536944284, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536945864, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
@@ -1254,12 +874,12 @@
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
     "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 2300957721, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536945864, 0, 3098473944, 'S', 'F', 'T', None)",
     "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 2300957721, 1060514798, 'S', 'F', 'T', None)"
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536945864, 2655161023, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "6b3938f925ed75b3779c8215c06b92673a294459555f7802e65639845ccd622b",
+    "events": "4ae62a26d01331e00b4d0940e7f498fbbec68057aad86844f311caf79b4db7e0",
     "kind": "return",
     "ncalls": 19,
     "ret": [],
@@ -1268,17 +888,597 @@
    "fixture": {
     "abs": [],
     "args": [
-     2300957721,
-     1604804925,
-     1,
-     2363272863
+     536945864,
+     536944284,
+     536947504,
+     536951124
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-4",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 4,
+    "xpsr": 0
+   },
+   "new_instructions": 111,
+   "stack_args": [
+    [
+     5,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         0
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         0
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    3,
+    4,
+    0,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "void",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    92072,
+    512548,
+    552056,
+    105584,
+    147168,
+    303544,
+    489852,
+    513006,
+    513094,
+    513006,
+    513094,
+    291276,
+    513006,
+    513094,
+    513006,
+    513094,
+    282308,
+    513006,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 536939588, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536951592, 1390178367, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 536951592, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536939588, 'S', 'F', 'T', None)",
+    "('C', 7, 'S', 'F', 'T', None)",
+    "('C', 8, 'S', 'F', 'T', None)",
+    "('C', 9, 'S', 'F', 'T', None)",
+    "('C', 10, 'S', 'F', 'T', None)",
+    "('C', 11, 2556513135, 0, 1514103678, 1616279260, 'S', 'F', 'T', None)",
+    "('C', 12, 'S', 'F', 'T', None)",
+    "('C', 13, 'S', 'F', 'T', None)",
+    "('C', 14, 'S', 'F', 'T', None)",
+    "('C', 15, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536939588, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 17, 'S', 'F', 'T', None)",
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536939588, 151242190, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "23a39a0576cde89c2942d24ca3433f3fe5532d9ba1769971ab475c12d0fbeb82",
+    "kind": "return",
+    "ncalls": 19,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939588,
+     536951592,
+     536944168,
+     536942644
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-5",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 5,
+    "xpsr": 0
+   },
+   "new_instructions": 111,
+   "stack_args": [
+    [
+     5,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         0
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         0
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    3,
+    4,
+    0,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "void",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    92072,
+    512548,
+    552056,
+    105584,
+    147168,
+    303544,
+    489852,
+    513006,
+    513094,
+    513006,
+    513094,
+    291276,
+    513006,
+    513094,
+    513006,
+    513094,
+    282308,
+    513006,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 536950900, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536936920, 1390193039, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 536936920, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536950900, 'S', 'F', 'T', None)",
+    "('C', 7, 'S', 'F', 'T', None)",
+    "('C', 8, 'S', 'F', 'T', None)",
+    "('C', 9, 'S', 'F', 'T', None)",
+    "('C', 10, 'S', 'F', 'T', None)",
+    "('C', 11, 2556513135, 0, 1514103678, 1616279260, 'S', 'F', 'T', None)",
+    "('C', 12, 'S', 'F', 'T', None)",
+    "('C', 13, 'S', 'F', 'T', None)",
+    "('C', 14, 'S', 'F', 'T', None)",
+    "('C', 15, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536950900, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 17, 'S', 'F', 'T', None)",
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536950900, 1447905683, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "a12b8d17431d83b659ee4bb014998c16adb36b2603ca88d81bec57fb4e1549f4",
+    "kind": "return",
+    "ncalls": 19,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536950900,
+     536936920,
+     536947060,
+     536952236
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-6",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 6,
+    "xpsr": 0
+   },
+   "new_instructions": 111,
+   "stack_args": [
+    [
+     5,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         0
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         0
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    3,
+    4,
+    0,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "void",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    92072,
+    512548,
+    552056,
+    105584,
+    147168,
+    303544,
+    489852,
+    513006,
+    513094,
+    513006,
+    513094,
+    291276,
+    513006,
+    513094,
+    513006,
+    513094,
+    282308,
+    513006,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 536941592, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536944956, 1390185003, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 536944956, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536941592, 'S', 'F', 'T', None)",
+    "('C', 7, 'S', 'F', 'T', None)",
+    "('C', 8, 'S', 'F', 'T', None)",
+    "('C', 9, 'S', 'F', 'T', None)",
+    "('C', 10, 'S', 'F', 'T', None)",
+    "('C', 11, 2556513135, 0, 1514103678, 1616279260, 'S', 'F', 'T', None)",
+    "('C', 12, 'S', 'F', 'T', None)",
+    "('C', 13, 'S', 'F', 'T', None)",
+    "('C', 14, 'S', 'F', 'T', None)",
+    "('C', 15, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536941592, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 17, 'S', 'F', 'T', None)",
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536941592, 1060514798, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e2829beef663534add75347ccdbe6e84f34c451c35a6e3df654031b5f540c02a",
+    "kind": "return",
+    "ncalls": 19,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941592,
+     536944956,
+     536950368,
+     536948380
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-7",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 7,
     "xpsr": 0
    },
@@ -1432,11 +1632,11 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 2156366374, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 708972563, 1218157396, 'S', 'F', 'T', None)",
+    "('C', 2, 536939044, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536940560, 1390189399, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 708972563, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 2156366374, 'S', 'F', 'T', None)",
+    "('C', 5, 536940560, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536939044, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
@@ -1446,12 +1646,12 @@
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
     "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 2156366374, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536939044, 0, 3098473944, 'S', 'F', 'T', None)",
     "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 2156366374, 2352949406, 'S', 'F', 'T', None)"
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536939044, 2352949406, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "8f37d293dce81791da7876f87c077a55cce37f944d9f5bf116914cd6a6fbed4b",
+    "events": "7810474d25c29c82ec9f83fc79c1197931bef5c72cdc6063e063fad9a7cd1ac6",
     "kind": "return",
     "ncalls": 19,
     "ret": [],
@@ -1460,17 +1660,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2156366374,
-     708972563,
-     558645175,
-     4
+     536939044,
+     536940560,
+     536952756,
+     536949588
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-8",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 8,
     "xpsr": 0
    },
@@ -1624,11 +1825,11 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1346232374, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 1556998536, 370131423, 'S', 'F', 'T', None)",
+    "('C', 2, 536944692, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536947080, 1390182879, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 1556998536, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 1346232374, 'S', 'F', 'T', None)",
+    "('C', 5, 536947080, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536944692, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
@@ -1638,12 +1839,12 @@
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
     "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 1346232374, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536944692, 0, 3098473944, 'S', 'F', 'T', None)",
     "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 1346232374, 3178863954, 'S', 'F', 'T', None)"
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536944692, 3178863954, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "6b5bf429fa50354160f20563c6f4b0f7d2742e9ea1f8be4602839684e073257f",
+    "events": "4a7b8dede5a6381e26a6041cdd065ab03062f24bacd8a3e37c754e6199cfc9b2",
     "kind": "return",
     "ncalls": 19,
     "ret": [],
@@ -1652,17 +1853,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1346232374,
-     1556998536,
-     499087790,
-     2147483647
+     536944692,
+     536947080,
+     536951212,
+     536940988
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 9,
     "xpsr": 0
    },
@@ -1816,11 +2018,11 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 182454980, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 995058044, 932071915, 'S', 'F', 'T', None)",
+    "('C', 2, 536939204, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536945020, 1390184939, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 995058044, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 182454980, 'S', 'F', 'T', None)",
+    "('C', 5, 536945020, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536939204, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
@@ -1830,12 +2032,12 @@
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
     "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 182454980, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536939204, 0, 3098473944, 'S', 'F', 'T', None)",
     "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 182454980, 3586673693, 'S', 'F', 'T', None)"
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536939204, 3586673693, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "0beae5bbe13b2d4e1bbec3b6e58cb14469ff9ac89c42c679f86298a8d447cd68",
+    "events": "896515ca201dc8c9bd0bc3d40f5b6b3c127543a47fbaf2bb61d65cc998ef01e0",
     "kind": "return",
     "ncalls": 19,
     "ret": [],
@@ -1844,17 +2046,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     182454980,
-     995058044,
-     8,
-     1
+     536939204,
+     536945020,
+     536946200,
+     536947328
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 10,
     "xpsr": 0
    },
@@ -1919,390 +2122,6 @@
      ]
     ]
    ]
-  },
-  {
-   "call_arities": [
-    0,
-    0,
-    3,
-    4,
-    0,
-    2,
-    0,
-    0,
-    0,
-    0,
-    4,
-    0,
-    0,
-    0,
-    0,
-    4,
-    0,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "void",
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "void"
-   ],
-   "call_targets": [
-    92072,
-    512548,
-    552056,
-    105584,
-    147168,
-    552942,
-    513006,
-    513094,
-    513006,
-    513094,
-    291276,
-    513006,
-    513094,
-    513006,
-    513094,
-    282308,
-    513006,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 3, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 2147483648, 0, 'S', 'F', 'T', None)",
-    "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 3, ('RO', b'Now'), 'S', 'F', 'T', None)",
-    "('C', 6, 'S', 'F', 'T', None)",
-    "('C', 7, 'S', 'F', 'T', None)",
-    "('C', 8, 'S', 'F', 'T', None)",
-    "('C', 9, 'S', 'F', 'T', None)",
-    "('C', 10, 2556513135, 0, 1254795792, 1514103272, 'S', 'F', 'T', None)",
-    "('C', 11, 'S', 'F', 'T', None)",
-    "('C', 12, 'S', 'F', 'T', None)",
-    "('C', 13, 'S', 'F', 'T', None)",
-    "('C', 14, 'S', 'F', 'T', None)",
-    "('C', 15, 0, 3, 0, 417935969, 'S', 'F', 'T', None)",
-    "('C', 16, 'S', 'F', 'T', None)",
-    "('C', 17, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 3894965001, 3, 801746852, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "92c265c39bab098ef7f36051d94a55ea351e27cad9e40fc156cecadc0446690d",
-    "kind": "return",
-    "ncalls": 18,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3,
-     2147483648,
-     256,
-     1426281073
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-11",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 11,
-    "xpsr": 0
-   },
-   "new_instructions": 80,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    0,
-    0,
-    3,
-    4,
-    0,
-    2,
-    0,
-    0,
-    0,
-    0,
-    4,
-    0,
-    0,
-    0,
-    0,
-    4,
-    0,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "void",
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "void"
-   ],
-   "call_targets": [
-    92072,
-    512548,
-    552056,
-    105584,
-    147168,
-    552942,
-    513006,
-    513094,
-    513006,
-    513094,
-    291276,
-    513006,
-    513094,
-    513006,
-    513094,
-    282308,
-    513006,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 8, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 3217736208, 0, 'S', 'F', 'T', None)",
-    "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 8, ('RO', b'Now'), 'S', 'F', 'T', None)",
-    "('C', 6, 'S', 'F', 'T', None)",
-    "('C', 7, 'S', 'F', 'T', None)",
-    "('C', 8, 'S', 'F', 'T', None)",
-    "('C', 9, 'S', 'F', 'T', None)",
-    "('C', 10, 2556513135, 0, 1254795792, 1514103272, 'S', 'F', 'T', None)",
-    "('C', 11, 'S', 'F', 'T', None)",
-    "('C', 12, 'S', 'F', 'T', None)",
-    "('C', 13, 'S', 'F', 'T', None)",
-    "('C', 14, 'S', 'F', 'T', None)",
-    "('C', 15, 0, 8, 0, 417935969, 'S', 'F', 'T', None)",
-    "('C', 16, 'S', 'F', 'T', None)",
-    "('C', 17, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 3894965001, 8, 1542880163, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "d8ac91d4866d8953e65fa0e192153fd2794d989c22558e0bab6a47292603f66b",
-    "kind": "return",
-    "ncalls": 18,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     8,
-     3217736208,
-     5,
-     1103693227
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-12",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 12,
-    "xpsr": 0
-   },
-   "new_instructions": 80,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    0,
-    0,
-    3,
-    4,
-    0,
-    2,
-    0,
-    0,
-    0,
-    0,
-    4,
-    0,
-    0,
-    0,
-    0,
-    4,
-    0,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "void",
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "void"
-   ],
-   "call_targets": [
-    92072,
-    512548,
-    552056,
-    105584,
-    147168,
-    552942,
-    513006,
-    513094,
-    513006,
-    513094,
-    291276,
-    513006,
-    513094,
-    513006,
-    513094,
-    282308,
-    513006,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1156718256, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 1944344031, 0, 'S', 'F', 'T', None)",
-    "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 1156718256, ('RO', b'Now'), 'S', 'F', 'T', None)",
-    "('C', 6, 'S', 'F', 'T', None)",
-    "('C', 7, 'S', 'F', 'T', None)",
-    "('C', 8, 'S', 'F', 'T', None)",
-    "('C', 9, 'S', 'F', 'T', None)",
-    "('C', 10, 2556513135, 0, 1254795792, 1514103272, 'S', 'F', 'T', None)",
-    "('C', 11, 'S', 'F', 'T', None)",
-    "('C', 12, 'S', 'F', 'T', None)",
-    "('C', 13, 'S', 'F', 'T', None)",
-    "('C', 14, 'S', 'F', 'T', None)",
-    "('C', 15, 0, 1156718256, 0, 417935969, 'S', 'F', 'T', None)",
-    "('C', 16, 'S', 'F', 'T', None)",
-    "('C', 17, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 3894965001, 1156718256, 287561451, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "024ce811962bc10daff58822c9de0ecdb03d12f1d6e9fb86edbda3f3081d155b",
-    "kind": "return",
-    "ncalls": 18,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     1156718256,
-     1944344031,
-     6,
-     617681966
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-13",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 13,
-    "xpsr": 0
-   },
-   "new_instructions": 80,
-   "stack_args": []
   },
   {
    "call_arities": [
@@ -2392,11 +2211,11 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1996365079, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 12, 1927129947, 'S', 'F', 'T', None)",
+    "('C', 2, 536937040, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536948284, 1390181675, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 12, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 1996365079, 'S', 'F', 'T', None)",
+    "('C', 5, 536948284, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536937040, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
@@ -2406,12 +2225,12 @@
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
     "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 1996365079, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536937040, 0, 3098473944, 'S', 'F', 'T', None)",
     "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 1996365079, 1403193323, 'S', 'F', 'T', None)"
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536937040, 801746852, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "4947eb8be9a4ebc99269f720fd36834fa2e4d741db3decd72cbd3eb0b32af505",
+    "events": "085a7336a9773641c49743c6e983fac8ace7cf9181d5c68762fae5e484ef54d3",
     "kind": "return",
     "ncalls": 19,
     "ret": [],
@@ -2420,17 +2239,597 @@
    "fixture": {
     "abs": [],
     "args": [
-     1996365079,
-     12,
-     3,
-     470668832
+     536937040,
+     536948284,
+     536938076,
+     536941168
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-11",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 11,
+    "xpsr": 0
+   },
+   "new_instructions": 111,
+   "stack_args": [
+    [
+     5,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         0
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         0
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    3,
+    4,
+    0,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "void",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    92072,
+    512548,
+    552056,
+    105584,
+    147168,
+    303544,
+    489852,
+    513006,
+    513094,
+    513006,
+    513094,
+    291276,
+    513006,
+    513094,
+    513006,
+    513094,
+    282308,
+    513006,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 536944520, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536936976, 1390192983, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 536936976, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536944520, 'S', 'F', 'T', None)",
+    "('C', 7, 'S', 'F', 'T', None)",
+    "('C', 8, 'S', 'F', 'T', None)",
+    "('C', 9, 'S', 'F', 'T', None)",
+    "('C', 10, 'S', 'F', 'T', None)",
+    "('C', 11, 2556513135, 0, 1514103678, 1616279260, 'S', 'F', 'T', None)",
+    "('C', 12, 'S', 'F', 'T', None)",
+    "('C', 13, 'S', 'F', 'T', None)",
+    "('C', 14, 'S', 'F', 'T', None)",
+    "('C', 15, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536944520, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 17, 'S', 'F', 'T', None)",
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536944520, 1542880163, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "69fdb7e0457ea624ed3b617033beafc407e7f5d3cd8579f73d0fb73edaedd505",
+    "kind": "return",
+    "ncalls": 19,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944520,
+     536936976,
+     536941268,
+     536937896
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-12",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 12,
+    "xpsr": 0
+   },
+   "new_instructions": 111,
+   "stack_args": [
+    [
+     5,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         0
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         0
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    3,
+    4,
+    0,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "void",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    92072,
+    512548,
+    552056,
+    105584,
+    147168,
+    303544,
+    489852,
+    513006,
+    513094,
+    513006,
+    513094,
+    291276,
+    513006,
+    513094,
+    513006,
+    513094,
+    282308,
+    513006,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 536944304, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536942044, 1390187915, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 536942044, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536944304, 'S', 'F', 'T', None)",
+    "('C', 7, 'S', 'F', 'T', None)",
+    "('C', 8, 'S', 'F', 'T', None)",
+    "('C', 9, 'S', 'F', 'T', None)",
+    "('C', 10, 'S', 'F', 'T', None)",
+    "('C', 11, 2556513135, 0, 1514103678, 1616279260, 'S', 'F', 'T', None)",
+    "('C', 12, 'S', 'F', 'T', None)",
+    "('C', 13, 'S', 'F', 'T', None)",
+    "('C', 14, 'S', 'F', 'T', None)",
+    "('C', 15, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536944304, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 17, 'S', 'F', 'T', None)",
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536944304, 287561451, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "af4c7e18f7dc90bc2b629c5d16312d94f32ae95d6ffb1f0697979b2245ced725",
+    "kind": "return",
+    "ncalls": 19,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944304,
+     536942044,
+     536939060,
+     536941612
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-13",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 13,
+    "xpsr": 0
+   },
+   "new_instructions": 111,
+   "stack_args": [
+    [
+     5,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         0
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         0
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    3,
+    4,
+    0,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "void",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    92072,
+    512548,
+    552056,
+    105584,
+    147168,
+    303544,
+    489852,
+    513006,
+    513094,
+    513006,
+    513094,
+    291276,
+    513006,
+    513094,
+    513006,
+    513094,
+    282308,
+    513006,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 536943892, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536949848, 1390180111, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 536949848, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536943892, 'S', 'F', 'T', None)",
+    "('C', 7, 'S', 'F', 'T', None)",
+    "('C', 8, 'S', 'F', 'T', None)",
+    "('C', 9, 'S', 'F', 'T', None)",
+    "('C', 10, 'S', 'F', 'T', None)",
+    "('C', 11, 2556513135, 0, 1514103678, 1616279260, 'S', 'F', 'T', None)",
+    "('C', 12, 'S', 'F', 'T', None)",
+    "('C', 13, 'S', 'F', 'T', None)",
+    "('C', 14, 'S', 'F', 'T', None)",
+    "('C', 15, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536943892, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 17, 'S', 'F', 'T', None)",
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536943892, 1403193323, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "fa5d13e1067306daefc0de08f369684f12e6e00ed0260d4ae0fec2c8500fda0d",
+    "kind": "return",
+    "ncalls": 19,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943892,
+     536949848,
+     536943328,
+     536942112
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-14",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 14,
     "xpsr": 0
    },
@@ -2584,11 +2983,11 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 7, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 256, 1927129703, 'S', 'F', 'T', None)",
+    "('C', 2, 536952404, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536941132, 1390188827, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 256, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 7, 'S', 'F', 'T', None)",
+    "('C', 5, 536941132, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536952404, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
@@ -2598,12 +2997,12 @@
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
     "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 7, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536952404, 0, 3098473944, 'S', 'F', 'T', None)",
     "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 7, 2417077168, 'S', 'F', 'T', None)"
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536952404, 2417077168, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c3fe8c7a936d57ffda1eead2b90d2605408e527d627979ada1bcfcdd37c02081",
+    "events": "71cf726f62545a2dfb9819e194ab1c608b93badffdfb43d4f5c4e3e9bb65d695",
     "kind": "return",
     "ncalls": 19,
     "ret": [],
@@ -2612,17 +3011,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     7,
-     256,
-     5,
-     4
+     536952404,
+     536941132,
+     536951236,
+     536949908
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-15",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 15,
     "xpsr": 0
    },
@@ -2687,262 +3087,6 @@
      ]
     ]
    ]
-  },
-  {
-   "call_arities": [
-    0,
-    0,
-    3,
-    4,
-    0,
-    2,
-    0,
-    0,
-    0,
-    0,
-    4,
-    0,
-    0,
-    0,
-    0,
-    4,
-    0,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "void",
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "void"
-   ],
-   "call_targets": [
-    92072,
-    512548,
-    552056,
-    105584,
-    147168,
-    552942,
-    513006,
-    513094,
-    513006,
-    513094,
-    291276,
-    513006,
-    513094,
-    513006,
-    513094,
-    282308,
-    513006,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 2024561310, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 2147483648, 0, 'S', 'F', 'T', None)",
-    "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 2024561310, ('RO', b'Now'), 'S', 'F', 'T', None)",
-    "('C', 6, 'S', 'F', 'T', None)",
-    "('C', 7, 'S', 'F', 'T', None)",
-    "('C', 8, 'S', 'F', 'T', None)",
-    "('C', 9, 'S', 'F', 'T', None)",
-    "('C', 10, 2556513135, 0, 1254795792, 1514103272, 'S', 'F', 'T', None)",
-    "('C', 11, 'S', 'F', 'T', None)",
-    "('C', 12, 'S', 'F', 'T', None)",
-    "('C', 13, 'S', 'F', 'T', None)",
-    "('C', 14, 'S', 'F', 'T', None)",
-    "('C', 15, 0, 2024561310, 0, 417935969, 'S', 'F', 'T', None)",
-    "('C', 16, 'S', 'F', 'T', None)",
-    "('C', 17, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 3894965001, 2024561310, 886755549, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "e5c19815fae7ea601e50ecd3eb590ce72902322fee4f23190bd74644c280e01c",
-    "kind": "return",
-    "ncalls": 18,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     2024561310,
-     2147483648,
-     3454407978,
-     16
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-16",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 16,
-    "xpsr": 0
-   },
-   "new_instructions": 80,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    0,
-    0,
-    3,
-    4,
-    0,
-    2,
-    0,
-    0,
-    0,
-    0,
-    4,
-    0,
-    0,
-    0,
-    0,
-    4,
-    0,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "void",
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "void"
-   ],
-   "call_targets": [
-    92072,
-    512548,
-    552056,
-    105584,
-    147168,
-    552942,
-    513006,
-    513094,
-    513006,
-    513094,
-    291276,
-    513006,
-    513094,
-    513006,
-    513094,
-    282308,
-    513006,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 3, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 3254638692, 0, 'S', 'F', 'T', None)",
-    "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 3, ('RO', b'Now'), 'S', 'F', 'T', None)",
-    "('C', 6, 'S', 'F', 'T', None)",
-    "('C', 7, 'S', 'F', 'T', None)",
-    "('C', 8, 'S', 'F', 'T', None)",
-    "('C', 9, 'S', 'F', 'T', None)",
-    "('C', 10, 2556513135, 0, 1254795792, 1514103272, 'S', 'F', 'T', None)",
-    "('C', 11, 'S', 'F', 'T', None)",
-    "('C', 12, 'S', 'F', 'T', None)",
-    "('C', 13, 'S', 'F', 'T', None)",
-    "('C', 14, 'S', 'F', 'T', None)",
-    "('C', 15, 0, 3, 0, 417935969, 'S', 'F', 'T', None)",
-    "('C', 16, 'S', 'F', 'T', None)",
-    "('C', 17, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 3894965001, 3, 3896400791, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "e93e6e20fc6425303c765505668cbfcd0aad6cd862398306eaeab8cca1f75150",
-    "kind": "return",
-    "ncalls": 18,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3,
-     3254638692,
-     1168623309,
-     4252165479
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-17",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 17,
-    "xpsr": 0
-   },
-   "new_instructions": 80,
-   "stack_args": []
   },
   {
    "call_arities": [
@@ -3032,11 +3176,11 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 3912442165, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 0, 1927129959, 'S', 'F', 'T', None)",
+    "('C', 2, 536943260, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536942972, 1390186987, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 0, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 3912442165, 'S', 'F', 'T', None)",
+    "('C', 5, 536942972, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536943260, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
@@ -3046,12 +3190,12 @@
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
     "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 3912442165, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536943260, 0, 3098473944, 'S', 'F', 'T', None)",
     "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 3912442165, 2620901234, 'S', 'F', 'T', None)"
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536943260, 886755549, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c873d6a5a508c35b45eff81573855265aa4602a2fcff0b168333aca0d39699d8",
+    "events": "586f3f6b621e9d71af5602b280337dec3c996923d4d5f7736ef28896a3abf9a2",
     "kind": "return",
     "ncalls": 19,
     "ret": [],
@@ -3060,17 +3204,404 @@
    "fixture": {
     "abs": [],
     "args": [
-     3912442165,
-     0,
-     697236451,
-     1
+     536943260,
+     536942972,
+     536941864,
+     536940136
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-16",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 16,
+    "xpsr": 0
+   },
+   "new_instructions": 111,
+   "stack_args": [
+    [
+     5,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         0
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         0
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    3,
+    4,
+    0,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "void",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    92072,
+    512548,
+    552056,
+    105584,
+    147168,
+    303544,
+    489852,
+    513006,
+    513094,
+    513006,
+    513094,
+    291276,
+    513006,
+    513094,
+    513006,
+    513094,
+    282308,
+    513006,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 536944016, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536942692, 1390187267, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 536942692, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536944016, 'S', 'F', 'T', None)",
+    "('C', 7, 'S', 'F', 'T', None)",
+    "('C', 8, 'S', 'F', 'T', None)",
+    "('C', 9, 'S', 'F', 'T', None)",
+    "('C', 10, 'S', 'F', 'T', None)",
+    "('C', 11, 2556513135, 0, 1514103678, 1616279260, 'S', 'F', 'T', None)",
+    "('C', 12, 'S', 'F', 'T', None)",
+    "('C', 13, 'S', 'F', 'T', None)",
+    "('C', 14, 'S', 'F', 'T', None)",
+    "('C', 15, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536944016, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 17, 'S', 'F', 'T', None)",
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536944016, 3896400791, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "3c3f3e3f761bbe3929c65fe5e83f2b2d4d3199c2f41a5f7dce5afeffccc86f7e",
+    "kind": "return",
+    "ncalls": 19,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944016,
+     536942692,
+     536938188,
+     536946020
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-17",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 17,
+    "xpsr": 0
+   },
+   "new_instructions": 111,
+   "stack_args": [
+    [
+     5,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         0
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         0
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    3,
+    4,
+    0,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "void",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    92072,
+    512548,
+    552056,
+    105584,
+    147168,
+    303544,
+    489852,
+    513006,
+    513094,
+    513006,
+    513094,
+    291276,
+    513006,
+    513094,
+    513006,
+    513094,
+    282308,
+    513006,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 536944948, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536937440, 1390192519, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 536937440, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536944948, 'S', 'F', 'T', None)",
+    "('C', 7, 'S', 'F', 'T', None)",
+    "('C', 8, 'S', 'F', 'T', None)",
+    "('C', 9, 'S', 'F', 'T', None)",
+    "('C', 10, 'S', 'F', 'T', None)",
+    "('C', 11, 2556513135, 0, 1514103678, 1616279260, 'S', 'F', 'T', None)",
+    "('C', 12, 'S', 'F', 'T', None)",
+    "('C', 13, 'S', 'F', 'T', None)",
+    "('C', 14, 'S', 'F', 'T', None)",
+    "('C', 15, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536944948, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 17, 'S', 'F', 'T', None)",
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536944948, 2620901234, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "9b6de36fddbe587514405ad104e3301150264a1a86291c75522136d48569c9db",
+    "kind": "return",
+    "ncalls": 19,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944948,
+     536937440,
+     536951776,
+     536945600
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-18",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 18,
     "xpsr": 0
    },
@@ -3224,11 +3755,11 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 6, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 1536401714, 390728245, 'S', 'F', 'T', None)",
+    "('C', 2, 536939284, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536944944, 1390185015, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 1536401714, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 6, 'S', 'F', 'T', None)",
+    "('C', 5, 536944944, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536939284, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
@@ -3238,12 +3769,12 @@
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
     "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 6, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536939284, 0, 3098473944, 'S', 'F', 'T', None)",
     "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 6, 4075769455, 'S', 'F', 'T', None)"
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536939284, 4075769455, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "114ce00c758d43590f5a127e4a32038916200c4be14203ead208795d879e83ee",
+    "events": "ee60457f1a4c3ca91f0b4642749bec0940df15b163bf199faffc20e7299e4c5e",
     "kind": "return",
     "ncalls": 19,
     "ret": [],
@@ -3252,17 +3783,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     6,
-     1536401714,
-     4178753371,
-     255
+     536939284,
+     536944944,
+     536950616,
+     536947592
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 19,
     "xpsr": 0
    },
@@ -3336,6 +3868,7 @@
     4,
     0,
     2,
+    1,
     0,
     0,
     0,
@@ -3367,6 +3900,7 @@
     0,
     0,
     0,
+    0,
     0
    ],
    "call_return_kinds": [
@@ -3374,6 +3908,7 @@
     "i32",
     "void",
     "void",
+    "i32",
     "i32",
     "void",
     "i32",
@@ -3395,7 +3930,8 @@
     552056,
     105584,
     147168,
-    552942,
+    303544,
+    489852,
     513006,
     513094,
     513006,
@@ -3412,49 +3948,110 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 4, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 2306919366, 0, 'S', 'F', 'T', None)",
+    "('C', 2, 536952740, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536939460, 1390190499, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 4, ('RO', b'Now'), 'S', 'F', 'T', None)",
-    "('C', 6, 'S', 'F', 'T', None)",
+    "('C', 5, 536939460, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536952740, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
-    "('C', 10, 2556513135, 0, 1254795792, 1514103272, 'S', 'F', 'T', None)",
-    "('C', 11, 'S', 'F', 'T', None)",
+    "('C', 10, 'S', 'F', 'T', None)",
+    "('C', 11, 2556513135, 0, 1514103678, 1616279260, 'S', 'F', 'T', None)",
     "('C', 12, 'S', 'F', 'T', None)",
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
-    "('C', 15, 0, 4, 0, 417935969, 'S', 'F', 'T', None)",
-    "('C', 16, 'S', 'F', 'T', None)",
-    "('C', 17, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 3894965001, 4, 3043713821, 'S', 'F', 'T', None)"
+    "('C', 15, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536952740, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 17, 'S', 'F', 'T', None)",
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536952740, 3043713821, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "e45c462cbfd21937482afd9276b4d44ee15f3d8cafec6303c00d9896ad41d22f",
+    "events": "0ec0e82bb01dbb2ede661c3bfb3c0d0369e908d84236ea7a28402132cd575e55",
     "kind": "return",
-    "ncalls": 18,
+    "ncalls": 19,
     "ret": [],
     "returned": true
    },
    "fixture": {
     "abs": [],
     "args": [
-     4,
-     2306919366,
-     2,
-     7
+     536952740,
+     536939460,
+     536939760,
+     536951108
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-20",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 20,
     "xpsr": 0
    },
-   "new_instructions": 80,
-   "stack_args": []
+   "new_instructions": 111,
+   "stack_args": [
+    [
+     5,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         0
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         0
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
   },
   {
    "call_arities": [
@@ -3544,11 +4141,11 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 843060076, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 1, 1927129958, 'S', 'F', 'T', None)",
+    "('C', 2, 536941420, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536936640, 1390193319, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 1, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 843060076, 'S', 'F', 'T', None)",
+    "('C', 5, 536936640, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536941420, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
@@ -3558,12 +4155,12 @@
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
     "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 843060076, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536941420, 0, 3098473944, 'S', 'F', 'T', None)",
     "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 843060076, 2217669457, 'S', 'F', 'T', None)"
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536941420, 2217669457, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "e1d7e263799239e30da25ffd95c6313e9ba61898fc64d9041483397f3712483b",
+    "events": "08a97026fed056773679c55f4e175cd8dbc2df2e0b79b563c4a51444957ad2bc",
     "kind": "return",
     "ncalls": 19,
     "ret": [],
@@ -3572,17 +4169,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     843060076,
-     1,
-     2870852768,
-     0
+     536941420,
+     536936640,
+     536951968,
+     536943488
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-21",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 21,
     "xpsr": 0
    },
@@ -3656,6 +4254,7 @@
     4,
     0,
     2,
+    1,
     0,
     0,
     0,
@@ -3687,6 +4286,7 @@
     0,
     0,
     0,
+    0,
     0
    ],
    "call_return_kinds": [
@@ -3694,6 +4294,7 @@
     "i32",
     "void",
     "void",
+    "i32",
     "i32",
     "void",
     "i32",
@@ -3715,7 +4316,8 @@
     552056,
     105584,
     147168,
-    552942,
+    303544,
+    489852,
     513006,
     513094,
     513006,
@@ -3732,49 +4334,110 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 7, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 3001296298, 0, 'S', 'F', 'T', None)",
+    "('C', 2, 536937396, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536946088, 1390183871, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 7, ('RO', b'Now'), 'S', 'F', 'T', None)",
-    "('C', 6, 'S', 'F', 'T', None)",
+    "('C', 5, 536946088, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536937396, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
-    "('C', 10, 2556513135, 0, 1254795792, 1514103272, 'S', 'F', 'T', None)",
-    "('C', 11, 'S', 'F', 'T', None)",
+    "('C', 10, 'S', 'F', 'T', None)",
+    "('C', 11, 2556513135, 0, 1514103678, 1616279260, 'S', 'F', 'T', None)",
     "('C', 12, 'S', 'F', 'T', None)",
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
-    "('C', 15, 0, 7, 0, 417935969, 'S', 'F', 'T', None)",
-    "('C', 16, 'S', 'F', 'T', None)",
-    "('C', 17, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 3894965001, 7, 1480053828, 'S', 'F', 'T', None)"
+    "('C', 15, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536937396, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 17, 'S', 'F', 'T', None)",
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536937396, 1480053828, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b40be6aa6075861c3a20f76e770b8a947d99e7aec35d0df87d244b85fe23b479",
+    "events": "03a7616e6d33fabacb06ea175ad4161dc662bbc5f8c968dbb14d43d285b4c603",
     "kind": "return",
-    "ncalls": 18,
+    "ncalls": 19,
     "ret": [],
     "returned": true
    },
    "fixture": {
     "abs": [],
     "args": [
-     7,
-     3001296298,
-     4294967295,
-     2451975022
+     536937396,
+     536946088,
+     536949836,
+     536947564
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-22",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 22,
     "xpsr": 0
    },
-   "new_instructions": 80,
-   "stack_args": []
+   "new_instructions": 111,
+   "stack_args": [
+    [
+     5,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         0
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         0
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
   },
   {
    "call_arities": [
@@ -3864,11 +4527,11 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1591295399, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 241044672, 1686085287, 'S', 'F', 'T', None)",
+    "('C', 2, 536952228, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536939712, 1390190247, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 241044672, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 1591295399, 'S', 'F', 'T', None)",
+    "('C', 5, 536939712, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536952228, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
@@ -3878,12 +4541,12 @@
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
     "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 1591295399, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536952228, 0, 3098473944, 'S', 'F', 'T', None)",
     "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 1591295399, 2142178815, 'S', 'F', 'T', None)"
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536952228, 2142178815, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "1d4c59283282c69dd207b122944d8b7cb910c7418a7cfb2926b2988f7da44280",
+    "events": "5618f5ac4fd48b9f5eba2353261f4eb9503bdc6d684c0dc9735f8beee0aac373",
     "kind": "return",
     "ncalls": 19,
     "ret": [],
@@ -3892,17 +4555,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1591295399,
-     241044672,
-     2034212132,
-     1515885587
+     536952228,
+     536939712,
+     536943908,
+     536941584
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-23",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 23,
     "xpsr": 0
    },
@@ -4056,11 +4720,11 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 4, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 6, 1927129953, 'S', 'F', 'T', None)",
+    "('C', 2, 536949908, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536944852, 1390185107, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 6, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 4, 'S', 'F', 'T', None)",
+    "('C', 5, 536944852, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536949908, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
@@ -4070,12 +4734,12 @@
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
     "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 4, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536949908, 0, 3098473944, 'S', 'F', 'T', None)",
     "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 4, 1304546403, 'S', 'F', 'T', None)"
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536949908, 1304546403, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "79d5bb6d87ac30edc35560d6ae65002c96f9ffd3c5d2024dd5cad335cf482604",
+    "events": "4f10991a92dac24ad9fb38e346b82c887470af181ea358a4aa49c4b40a53513f",
     "kind": "return",
     "ncalls": 19,
     "ret": [],
@@ -4084,17 +4748,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4,
-     6,
-     2967241396,
-     7
+     536949908,
+     536944852,
+     536937140,
+     536951364
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-24",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 24,
     "xpsr": 0
    },
@@ -4248,11 +4913,11 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 3751937804, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 12, 1927129947, 'S', 'F', 'T', None)",
+    "('C', 2, 536938252, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536941512, 1390188447, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 12, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 3751937804, 'S', 'F', 'T', None)",
+    "('C', 5, 536941512, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536938252, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
@@ -4262,12 +4927,12 @@
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
     "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 3751937804, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536938252, 0, 3098473944, 'S', 'F', 'T', None)",
     "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 3751937804, 3712121755, 'S', 'F', 'T', None)"
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536938252, 3712121755, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "e2d2097df4a3969879fd874da27173f4c318821b57c2e2d1d5553dcfb34d2776",
+    "events": "27a129410cc93b35dd91c3ea94d7603139f77d4ee0d13c3ef685ee220931b8ec",
     "kind": "return",
     "ncalls": 19,
     "ret": [],
@@ -4276,17 +4941,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3751937804,
-     12,
-     2149248134,
-     604019693
+     536938252,
+     536941512,
+     536947844,
+     536943596
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 25,
     "xpsr": 0
    },
@@ -4440,11 +5106,11 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 2992330384, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 12, 1927129947, 'S', 'F', 'T', None)",
+    "('C', 2, 536942224, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536937032, 1390192927, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 12, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 2992330384, 'S', 'F', 'T', None)",
+    "('C', 5, 536937032, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536942224, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
@@ -4454,12 +5120,12 @@
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
     "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 2992330384, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536942224, 0, 3098473944, 'S', 'F', 'T', None)",
     "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 2992330384, 4058280526, 'S', 'F', 'T', None)"
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536942224, 4058280526, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "2f73a3794b3212649fe67701de9bdee4c6581b11a7a30ea79692af8da8cbc660",
+    "events": "eb4a5ae0d5b792ee98bb4af543256a8fa7f7c42f7c6676dd242e89c2f510fa81",
     "kind": "return",
     "ncalls": 19,
     "ret": [],
@@ -4468,17 +5134,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2992330384,
-     12,
-     3037640278,
-     2678623347
+     536942224,
+     536937032,
+     536950356,
+     536939632
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-26",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 26,
     "xpsr": 0
    },
@@ -4632,11 +5299,11 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 187818536, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 681194263, 1245935696, 'S', 'F', 'T', None)",
+    "('C', 2, 536945192, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536949524, 1390180435, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 681194263, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 187818536, 'S', 'F', 'T', None)",
+    "('C', 5, 536949524, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536945192, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
@@ -4646,12 +5313,12 @@
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
     "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 187818536, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536945192, 0, 3098473944, 'S', 'F', 'T', None)",
     "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 187818536, 1775869161, 'S', 'F', 'T', None)"
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536945192, 1775869161, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "6148b1b10213016a96fe03e94035d3bb22aecc78f735ba48eea940ed6908751e",
+    "events": "1180b51eea75c883fa29d74eb272d6909c31784128acd76e804a9ab819f88aa4",
     "kind": "return",
     "ncalls": 19,
     "ret": [],
@@ -4660,17 +5327,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     187818536,
-     681194263,
-     3639365232,
-     4125446660
+     536945192,
+     536949524,
+     536940144,
+     536941060
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 27,
     "xpsr": 0
    },
@@ -4824,11 +5492,11 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 3711083943, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 4285183211, 1936914044, 'S', 'F', 'T', None)",
+    "('C', 2, 536946084, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536949992, 1390179967, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 4285183211, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 3711083943, 'S', 'F', 'T', None)",
+    "('C', 5, 536949992, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536946084, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
@@ -4838,12 +5506,12 @@
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
     "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 3711083943, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536946084, 0, 3098473944, 'S', 'F', 'T', None)",
     "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 3711083943, 1542213390, 'S', 'F', 'T', None)"
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536946084, 1542213390, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "29130a9c82e5f3b5fe0de8c0c59ed6cc8b232ba8c35b9d1732d9aa9153bccde4",
+    "events": "9a6735db1c9a4d04194d68373d0f84c382fd43f0685455e3f64cfef22b7b1ccc",
     "kind": "return",
     "ncalls": 19,
     "ret": [],
@@ -4852,17 +5520,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3711083943,
-     4285183211,
-     1,
-     2592385448
+     536946084,
+     536949992,
+     536946096,
+     536947112
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-28",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 28,
     "xpsr": 0
    },
@@ -5016,11 +5685,11 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 739928864, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 256, 1927129703, 'S', 'F', 'T', None)",
+    "('C', 2, 536947488, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536937084, 1390192875, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 256, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 739928864, 'S', 'F', 'T', None)",
+    "('C', 5, 536937084, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536947488, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
@@ -5030,12 +5699,12 @@
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
     "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 739928864, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536947488, 0, 3098473944, 'S', 'F', 'T', None)",
     "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 739928864, 2490855531, 'S', 'F', 'T', None)"
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536947488, 2490855531, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "facd0a2e8e8aefe142db2ca4b877d70264504f7ec66a2b04085c9ae509034e92",
+    "events": "81f588a62dace147e75027364a121c7c9f5dbc6dfe23fca5e068ca116aa3efe1",
     "kind": "return",
     "ncalls": 19,
     "ret": [],
@@ -5044,17 +5713,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     739928864,
-     256,
-     3886541357,
-     8
+     536947488,
+     536937084,
+     536947244,
+     536938744
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-29",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 29,
     "xpsr": 0
    },
@@ -5208,11 +5878,11 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 256, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 8, 1927129951, 'S', 'F', 'T', None)",
+    "('C', 2, 536952796, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536941720, 1390188239, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 8, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 256, 'S', 'F', 'T', None)",
+    "('C', 5, 536941720, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536952796, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
@@ -5222,12 +5892,12 @@
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
     "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 256, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536952796, 0, 3098473944, 'S', 'F', 'T', None)",
     "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 256, 2417460406, 'S', 'F', 'T', None)"
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536952796, 2417460406, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "7e286c284e8e667a2acac70c8196511fe92f2bf9a68659301afa21c7bfdb24c6",
+    "events": "fe6b2519b675d4fdf7ed028190ab1e164262089a27359c2c67ae5893476e39df",
     "kind": "return",
     "ncalls": 19,
     "ret": [],
@@ -5236,17 +5906,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     256,
-     8,
-     1,
-     7
+     536952796,
+     536941720,
+     536945744,
+     536939284
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-30",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 30,
     "xpsr": 0
    },
@@ -5320,6 +5991,7 @@
     4,
     0,
     2,
+    1,
     0,
     0,
     0,
@@ -5351,6 +6023,7 @@
     0,
     0,
     0,
+    0,
     0
    ],
    "call_return_kinds": [
@@ -5358,6 +6031,7 @@
     "i32",
     "void",
     "void",
+    "i32",
     "i32",
     "void",
     "i32",
@@ -5379,7 +6053,8 @@
     552056,
     105584,
     147168,
-    552942,
+    303544,
+    489852,
     513006,
     513094,
     513006,
@@ -5396,177 +6071,110 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 4294967295, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 2461003590, 0, 'S', 'F', 'T', None)",
+    "('C', 2, 536952300, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536948548, 1390181411, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 4294967295, ('RO', b'Now'), 'S', 'F', 'T', None)",
-    "('C', 6, 'S', 'F', 'T', None)",
+    "('C', 5, 536948548, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536952300, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
-    "('C', 10, 2556513135, 0, 1254795792, 1514103272, 'S', 'F', 'T', None)",
-    "('C', 11, 'S', 'F', 'T', None)",
+    "('C', 10, 'S', 'F', 'T', None)",
+    "('C', 11, 2556513135, 0, 1514103678, 1616279260, 'S', 'F', 'T', None)",
     "('C', 12, 'S', 'F', 'T', None)",
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
-    "('C', 15, 0, 4294967295, 0, 417935969, 'S', 'F', 'T', None)",
-    "('C', 16, 'S', 'F', 'T', None)",
-    "('C', 17, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 3894965001, 4294967295, 1988174091, 'S', 'F', 'T', None)"
+    "('C', 15, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536952300, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 17, 'S', 'F', 'T', None)",
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536952300, 1988174091, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "795c415ad32cbc41f0643e8a9dbedce5a8e3216db920008f22ec21c2d44425dd",
+    "events": "2ceed2f7b40a0fc886b4804a43682a70cb4fb6808806130f8e0e00057b1b4f42",
     "kind": "return",
-    "ncalls": 18,
+    "ncalls": 19,
     "ret": [],
     "returned": true
    },
    "fixture": {
     "abs": [],
     "args": [
-     4294967295,
-     2461003590,
-     7,
-     53351545
+     536952300,
+     536948548,
+     536938932,
+     536941688
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
-   "new_instructions": 80,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    0,
-    0,
-    3,
-    4,
-    0,
-    2,
-    0,
-    0,
-    0,
-    0,
-    4,
-    0,
-    0,
-    0,
-    0,
-    4,
-    0,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "void",
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "void"
-   ],
-   "call_targets": [
-    92072,
-    512548,
-    552056,
-    105584,
-    147168,
-    552942,
-    513006,
-    513094,
-    513006,
-    513094,
-    291276,
-    513006,
-    513094,
-    513006,
-    513094,
-    282308,
-    513006,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1839753098, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 2706821390, 0, 'S', 'F', 'T', None)",
-    "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 1839753098, ('RO', b'Now'), 'S', 'F', 'T', None)",
-    "('C', 6, 'S', 'F', 'T', None)",
-    "('C', 7, 'S', 'F', 'T', None)",
-    "('C', 8, 'S', 'F', 'T', None)",
-    "('C', 9, 'S', 'F', 'T', None)",
-    "('C', 10, 2556513135, 0, 1254795792, 1514103272, 'S', 'F', 'T', None)",
-    "('C', 11, 'S', 'F', 'T', None)",
-    "('C', 12, 'S', 'F', 'T', None)",
-    "('C', 13, 'S', 'F', 'T', None)",
-    "('C', 14, 'S', 'F', 'T', None)",
-    "('C', 15, 0, 1839753098, 0, 417935969, 'S', 'F', 'T', None)",
-    "('C', 16, 'S', 'F', 'T', None)",
-    "('C', 17, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 3894965001, 1839753098, 615009301, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "f4bf1f10c03344dd1ce56f8309180e56cb4dc76b502d277176ab5921747ff176",
-    "kind": "return",
-    "ncalls": 18,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     1839753098,
-     2706821390,
-     3442053927,
-     1170652979
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-32",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 32,
-    "xpsr": 0
-   },
-   "new_instructions": 80,
-   "stack_args": []
+   "new_instructions": 111,
+   "stack_args": [
+    [
+     5,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         0
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         0
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
   },
   {
    "call_arities": [
@@ -5656,11 +6264,11 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1076094348, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 7, 1927129952, 'S', 'F', 'T', None)",
+    "('C', 2, 536946568, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536940812, 1390189147, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 7, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 1076094348, 'S', 'F', 'T', None)",
+    "('C', 5, 536940812, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536946568, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
@@ -5670,12 +6278,12 @@
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
     "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 1076094348, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536946568, 0, 3098473944, 'S', 'F', 'T', None)",
     "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 1076094348, 1452493058, 'S', 'F', 'T', None)"
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536946568, 615009301, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "7ded5fd7c9aef767282bbd468996b126d4ad6850066093a0ed3cd6e87dddc12d",
+    "events": "af10f60bb28cc8941c1d01b5c1bcd47b1e61b4ac9760d173dd43827cd224f7e0",
     "kind": "return",
     "ncalls": 19,
     "ret": [],
@@ -5684,17 +6292,211 @@
    "fixture": {
     "abs": [],
     "args": [
-     1076094348,
-     7,
-     7,
-     5
+     536946568,
+     536940812,
+     536941348,
+     536952624
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-32",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 32,
+    "xpsr": 0
+   },
+   "new_instructions": 111,
+   "stack_args": [
+    [
+     5,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         0
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         0
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    3,
+    4,
+    0,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "void",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    92072,
+    512548,
+    552056,
+    105584,
+    147168,
+    303544,
+    489852,
+    513006,
+    513094,
+    513006,
+    513094,
+    291276,
+    513006,
+    513094,
+    513006,
+    513094,
+    282308,
+    513006,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 536946060, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536942020, 1390187939, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 536942020, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536946060, 'S', 'F', 'T', None)",
+    "('C', 7, 'S', 'F', 'T', None)",
+    "('C', 8, 'S', 'F', 'T', None)",
+    "('C', 9, 'S', 'F', 'T', None)",
+    "('C', 10, 'S', 'F', 'T', None)",
+    "('C', 11, 2556513135, 0, 1514103678, 1616279260, 'S', 'F', 'T', None)",
+    "('C', 12, 'S', 'F', 'T', None)",
+    "('C', 13, 'S', 'F', 'T', None)",
+    "('C', 14, 'S', 'F', 'T', None)",
+    "('C', 15, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536946060, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 17, 'S', 'F', 'T', None)",
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536946060, 1452493058, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "f96e05af45a3c25fa7d13470c05a65de1a4c954b50198290785eca65778b478b",
+    "kind": "return",
+    "ncalls": 19,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946060,
+     536942020,
+     536944276,
+     536938756
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-33",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 33,
     "xpsr": 0
    },
@@ -5768,6 +6570,7 @@
     4,
     0,
     2,
+    1,
     0,
     0,
     0,
@@ -5799,6 +6602,7 @@
     0,
     0,
     0,
+    0,
     0
    ],
    "call_return_kinds": [
@@ -5806,6 +6610,7 @@
     "i32",
     "void",
     "void",
+    "i32",
     "i32",
     "void",
     "i32",
@@ -5827,7 +6632,8 @@
     552056,
     105584,
     147168,
-    552942,
+    303544,
+    489852,
     513006,
     513094,
     513006,
@@ -5844,177 +6650,110 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 12, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 3990671540, 0, 'S', 'F', 'T', None)",
+    "('C', 2, 536950120, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536940724, 1390189235, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 12, ('RO', b'Now'), 'S', 'F', 'T', None)",
-    "('C', 6, 'S', 'F', 'T', None)",
+    "('C', 5, 536940724, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536950120, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
-    "('C', 10, 2556513135, 0, 1254795792, 1514103272, 'S', 'F', 'T', None)",
-    "('C', 11, 'S', 'F', 'T', None)",
+    "('C', 10, 'S', 'F', 'T', None)",
+    "('C', 11, 2556513135, 0, 1514103678, 1616279260, 'S', 'F', 'T', None)",
     "('C', 12, 'S', 'F', 'T', None)",
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
-    "('C', 15, 0, 12, 0, 417935969, 'S', 'F', 'T', None)",
-    "('C', 16, 'S', 'F', 'T', None)",
-    "('C', 17, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 3894965001, 12, 2360084761, 'S', 'F', 'T', None)"
+    "('C', 15, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536950120, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 17, 'S', 'F', 'T', None)",
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536950120, 2360084761, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "273e28d6832cd088533af07e96b2617b01d0d5a3e90898f5f092fc71e8cedb1b",
+    "events": "bb4cf6f52e260fb73bac8f203c708124333791611337eb5ea993a2d2cf5b9329",
     "kind": "return",
-    "ncalls": 18,
+    "ncalls": 19,
     "ret": [],
     "returned": true
    },
    "fixture": {
     "abs": [],
     "args": [
-     12,
-     3990671540,
-     922796015,
-     2147483647
+     536950120,
+     536940724,
+     536952812,
+     536936476
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 34,
     "xpsr": 0
    },
-   "new_instructions": 80,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    0,
-    0,
-    3,
-    4,
-    0,
-    2,
-    0,
-    0,
-    0,
-    0,
-    4,
-    0,
-    0,
-    0,
-    0,
-    4,
-    0,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "void",
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "void"
-   ],
-   "call_targets": [
-    92072,
-    512548,
-    552056,
-    105584,
-    147168,
-    552942,
-    513006,
-    513094,
-    513006,
-    513094,
-    291276,
-    513006,
-    513094,
-    513006,
-    513094,
-    282308,
-    513006,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 2726887024, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 3578977268, 0, 'S', 'F', 'T', None)",
-    "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 2726887024, ('RO', b'Now'), 'S', 'F', 'T', None)",
-    "('C', 6, 'S', 'F', 'T', None)",
-    "('C', 7, 'S', 'F', 'T', None)",
-    "('C', 8, 'S', 'F', 'T', None)",
-    "('C', 9, 'S', 'F', 'T', None)",
-    "('C', 10, 2556513135, 0, 1254795792, 1514103272, 'S', 'F', 'T', None)",
-    "('C', 11, 'S', 'F', 'T', None)",
-    "('C', 12, 'S', 'F', 'T', None)",
-    "('C', 13, 'S', 'F', 'T', None)",
-    "('C', 14, 'S', 'F', 'T', None)",
-    "('C', 15, 0, 2726887024, 0, 417935969, 'S', 'F', 'T', None)",
-    "('C', 16, 'S', 'F', 'T', None)",
-    "('C', 17, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 3894965001, 2726887024, 4019880274, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "9eee8212866dcf235715457b7534e3628fa2ce9851588ce82966cc9602c7eb56",
-    "kind": "return",
-    "ncalls": 18,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     2726887024,
-     3578977268,
-     4001652011,
-     1
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-35",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 35,
-    "xpsr": 0
-   },
-   "new_instructions": 80,
-   "stack_args": []
+   "new_instructions": 111,
+   "stack_args": [
+    [
+     5,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         0
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         0
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
   },
   {
    "call_arities": [
@@ -6104,11 +6843,11 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 0, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 12, 1927129947, 'S', 'F', 'T', None)",
+    "('C', 2, 536952432, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536943604, 1390186355, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 12, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 0, 'S', 'F', 'T', None)",
+    "('C', 5, 536943604, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536952432, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
@@ -6118,12 +6857,12 @@
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
     "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 0, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536952432, 0, 3098473944, 'S', 'F', 'T', None)",
     "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 0, 823752600, 'S', 'F', 'T', None)"
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536952432, 4019880274, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "7a5acc5671028bd1e9a6c51a313cb53430c2879299cb28f287d5e0b16974ab66",
+    "events": "58784f169fd0c20630c1ef176e9a6f491b221164e4d177c575a89eab68bc3b5f",
     "kind": "return",
     "ncalls": 19,
     "ret": [],
@@ -6132,17 +6871,211 @@
    "fixture": {
     "abs": [],
     "args": [
-     0,
-     12,
-     2147483647,
-     8
+     536952432,
+     536943604,
+     536943912,
+     536937872
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-35",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 35,
+    "xpsr": 0
+   },
+   "new_instructions": 111,
+   "stack_args": [
+    [
+     5,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         0
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         0
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    3,
+    4,
+    0,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "void",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    92072,
+    512548,
+    552056,
+    105584,
+    147168,
+    303544,
+    489852,
+    513006,
+    513094,
+    513006,
+    513094,
+    291276,
+    513006,
+    513094,
+    513006,
+    513094,
+    282308,
+    513006,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 536944224, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536949832, 1390180127, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 536949832, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536944224, 'S', 'F', 'T', None)",
+    "('C', 7, 'S', 'F', 'T', None)",
+    "('C', 8, 'S', 'F', 'T', None)",
+    "('C', 9, 'S', 'F', 'T', None)",
+    "('C', 10, 'S', 'F', 'T', None)",
+    "('C', 11, 2556513135, 0, 1514103678, 1616279260, 'S', 'F', 'T', None)",
+    "('C', 12, 'S', 'F', 'T', None)",
+    "('C', 13, 'S', 'F', 'T', None)",
+    "('C', 14, 'S', 'F', 'T', None)",
+    "('C', 15, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536944224, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 17, 'S', 'F', 'T', None)",
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536944224, 823752600, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e26e88333bdc839e8630e1fc0f93eeabfbbea5e3ead369bb8c8de1faa7e31528",
+    "kind": "return",
+    "ncalls": 19,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944224,
+     536949832,
+     536945964,
+     536950872
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 36,
     "xpsr": 0
    },
@@ -6216,6 +7149,7 @@
     4,
     0,
     2,
+    1,
     0,
     0,
     0,
@@ -6247,6 +7181,7 @@
     0,
     0,
     0,
+    0,
     0
    ],
    "call_return_kinds": [
@@ -6254,6 +7189,7 @@
     "i32",
     "void",
     "void",
+    "i32",
     "i32",
     "void",
     "i32",
@@ -6275,7 +7211,8 @@
     552056,
     105584,
     147168,
-    552942,
+    303544,
+    489852,
     513006,
     513094,
     513006,
@@ -6292,49 +7229,110 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 2057795936, 0, 'S', 'F', 'T', None)",
+    "('C', 2, 536951728, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536951136, 1390178823, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 1, ('RO', b'Now'), 'S', 'F', 'T', None)",
-    "('C', 6, 'S', 'F', 'T', None)",
+    "('C', 5, 536951136, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536951728, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
-    "('C', 10, 2556513135, 0, 1254795792, 1514103272, 'S', 'F', 'T', None)",
-    "('C', 11, 'S', 'F', 'T', None)",
+    "('C', 10, 'S', 'F', 'T', None)",
+    "('C', 11, 2556513135, 0, 1514103678, 1616279260, 'S', 'F', 'T', None)",
     "('C', 12, 'S', 'F', 'T', None)",
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
-    "('C', 15, 0, 1, 0, 417935969, 'S', 'F', 'T', None)",
-    "('C', 16, 'S', 'F', 'T', None)",
-    "('C', 17, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 3894965001, 1, 2373057660, 'S', 'F', 'T', None)"
+    "('C', 15, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536951728, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 17, 'S', 'F', 'T', None)",
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536951728, 2373057660, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "f7cfcda900fffcb6e4f17b6cd7fff5bd8c34f0c065dde40b7f44d465a34ff6f3",
+    "events": "fa44ad9430d695bbb962d34641dc682248ca78a75d78106af2d9d3430caf7a08",
     "kind": "return",
-    "ncalls": 18,
+    "ncalls": 19,
     "ret": [],
     "returned": true
    },
    "fixture": {
     "abs": [],
     "args": [
-     1,
-     2057795936,
-     2725586938,
-     1299241558
+     536951728,
+     536951136,
+     536946680,
+     536943188
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-37",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 37,
     "xpsr": 0
    },
-   "new_instructions": 80,
-   "stack_args": []
+   "new_instructions": 111,
+   "stack_args": [
+    [
+     5,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         0
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         0
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
   },
   {
    "call_arities": [
@@ -6424,11 +7422,11 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 0, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 255, 1927129704, 'S', 'F', 'T', None)",
+    "('C', 2, 536939760, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536941672, 1390188287, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 255, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 0, 'S', 'F', 'T', None)",
+    "('C', 5, 536941672, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536939760, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
@@ -6438,12 +7436,12 @@
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
     "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 0, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536939760, 0, 3098473944, 'S', 'F', 'T', None)",
     "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 0, 1627783973, 'S', 'F', 'T', None)"
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536939760, 1627783973, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "0681dd4c8248a945b94ca9a902056479cfe22c6c7099c87720e1f478231ccad1",
+    "events": "427336f54a14278e368890612d58a839479af9e36b259ada6ba2fe4c93074bbe",
     "kind": "return",
     "ncalls": 19,
     "ret": [],
@@ -6452,17 +7450,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     0,
-     255,
-     1,
-     2
+     536939760,
+     536941672,
+     536936976,
+     536945104
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-38",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 38,
     "xpsr": 0
    },
@@ -6616,11 +7615,11 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 3, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 1587124134, 340005825, 'S', 'F', 'T', None)",
+    "('C', 2, 536941424, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536942500, 1390187459, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 1587124134, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 3, 'S', 'F', 'T', None)",
+    "('C', 5, 536942500, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536941424, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
@@ -6630,12 +7629,12 @@
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
     "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 3, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536941424, 0, 3098473944, 'S', 'F', 'T', None)",
     "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 3, 2944518647, 'S', 'F', 'T', None)"
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536941424, 2944518647, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "50bdfad7415082ed7d54a2b890876e063b44b98f4ec6862871f99e5e926f5d77",
+    "events": "b9f733ca34ad4c846245a1d5875ed447b18b50d7267bc4b6362ca38eec148370",
     "kind": "return",
     "ncalls": 19,
     "ret": [],
@@ -6644,18 +7643,212 @@
    "fixture": {
     "abs": [],
     "args": [
-     3,
-     1587124134,
-     3774328631,
-     1997155928
+     536941424,
+     536942500,
+     536948532,
+     536948312
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
+    "xpsr": 0
+   },
+   "new_instructions": 111,
+   "stack_args": [
+    [
+     5,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         1,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         0
+        ],
+        [
+         4,
+         0
+        ],
+        [
+         5,
+         0
+        ],
+        [
+         6,
+         0
+        ],
+        [
+         7,
+         0
+        ],
+        [
+         8,
+         0
+        ],
+        [
+         9,
+         0
+        ],
+        [
+         10,
+         0
+        ],
+        [
+         11,
+         0
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    3,
+    4,
+    0,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "void",
+    "void",
+    "i32",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    92072,
+    512548,
+    552056,
+    105584,
+    147168,
+    303544,
+    489852,
+    513006,
+    513094,
+    513006,
+    513094,
+    291276,
+    513006,
+    513094,
+    513006,
+    513094,
+    282308,
+    513006,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 536943600, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536946992, 1390182967, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 536946992, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536943600, 'S', 'F', 'T', None)",
+    "('C', 7, 'S', 'F', 'T', None)",
+    "('C', 8, 'S', 'F', 'T', None)",
+    "('C', 9, 'S', 'F', 'T', None)",
+    "('C', 10, 'S', 'F', 'T', None)",
+    "('C', 11, 2556513135, 0, 1514103678, 1616279260, 'S', 'F', 'T', None)",
+    "('C', 12, 'S', 'F', 'T', None)",
+    "('C', 13, 'S', 'F', 'T', None)",
+    "('C', 14, 'S', 'F', 'T', None)",
+    "('C', 15, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536943600, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 17, 'S', 'F', 'T', None)",
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536943600, 2382425351, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c07d8881af1b4d0daea4f936552d932e61000cad366b4dc428330b1c69bf1add",
+    "kind": "return",
+    "ncalls": 19,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943600,
+     536946992,
+     536948352,
+     536952044
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-40",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 40,
     "xpsr": 0
    },
    "new_instructions": 111,
@@ -6804,241 +7997,176 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 0, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 3928041777, 0, 'S', 'F', 'T', None)",
+    "('C', 2, 536940544, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 0, 536940548, 0, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 0, ('RO', b'Now'), 'S', 'F', 'T', None)",
+    "('C', 5, 536940544, ('RO', b'Now'), 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
-    "('C', 10, 2556513135, 0, 1254795792, 1514103272, 'S', 'F', 'T', None)",
+    "('C', 10, 2960, 0, 406, 0, 'S', 'F', 'T', None)",
     "('C', 11, 'S', 'F', 'T', None)",
     "('C', 12, 'S', 'F', 'T', None)",
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
-    "('C', 15, 0, 0, 0, 417935969, 'S', 'F', 'T', None)",
+    "('C', 15, 0, 536940544, 0, 406, 'S', 'F', 'T', None)",
     "('C', 16, 'S', 'F', 'T', None)",
-    "('C', 17, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 3894965001, 0, 2382425351, 'S', 'F', 'T', None)"
+    "('C', 17, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 3894965001, 536940544, 272190669, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "559b1a864a1d80cdfa4c4c1babc554def455cddd5e600f723ffa51cd6701814c",
+    "events": "4a2e2b79c771b56f5b73c49cb230a1903a91b0ad047121975870ad562c4b1acf",
     "kind": "return",
     "ncalls": 18,
     "ret": [],
     "returned": true
    },
    "fixture": {
-    "abs": [],
+    "abs": [
+     [
+      536940544,
+      "4110012044100120481001204c1001205110012054100120581001205c1001206110012064100120681001206c1001207110012074100120781001207c1001208110012084100120881001208c1001209110012094100120981001209c100120a1100120a4100120a8100120ac100120b1100120b4100120b8100120bc100120c1100120c4100120c8100120cc100120d1100120d4100120d8100120dc100120e1100120e4100120e8100120ec100120f1100120f4100120f8100120fc1001200111012004110120081101200c1101201111012014110120181101201c1101202111012024110120281101202c1101203111012034110120381101203c1101204111012044110120481101204c1101205111012054110120581101205c1101206111012064110120681101206c1101207111012074110120781101207c1101208111012084110120881101208c1101209111012094110120981101209c110120a1110120a4110120a8110120ac110120b1110120b4110120b8110120bc110120c1110120c4110120c8110120cc110120d1110120d4110120d8110120dc110120e1110120e4110120e8110120ec110120f1110120f4110120f8110120fc1101200110012004100120081001200c1001201110012014100120181001201c1001202110012024100120281001202c1001203110012034100120381001203c100120"
+     ]
+    ],
     "args": [
-     0,
-     3928041777,
-     1786326658,
-     1835695343
+     536940544,
+     536940548,
+     536940552,
+     536940556
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "seed-40",
+    "id": "chain0-0",
     "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 40,
+    "nptr": 4,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 830,
     "xpsr": 0
    },
    "new_instructions": 80,
    "stack_args": []
-  },
-  {
-   "call_arities": [
-    0,
-    0,
-    3,
-    4,
-    0,
-    2,
-    1,
-    0,
-    0,
-    0,
-    0,
-    4,
-    0,
-    0,
-    0,
-    0,
-    4,
-    0,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "void",
-    "void",
-    "i32",
-    "i32",
-    "void",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "void"
-   ],
-   "call_targets": [
-    92072,
-    512548,
-    552056,
-    105584,
-    147168,
-    303544,
-    489852,
-    513006,
-    513094,
-    513006,
-    513094,
-    291276,
-    513006,
-    513094,
-    513006,
-    513094,
-    282308,
-    513006,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 3886568119, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 256, 1927129703, 'S', 'F', 'T', None)",
-    "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 256, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 3886568119, 'S', 'F', 'T', None)",
-    "('C', 7, 'S', 'F', 'T', None)",
-    "('C', 8, 'S', 'F', 'T', None)",
-    "('C', 9, 'S', 'F', 'T', None)",
-    "('C', 10, 'S', 'F', 'T', None)",
-    "('C', 11, 2556513135, 0, 1514103678, 1616279260, 'S', 'F', 'T', None)",
-    "('C', 12, 'S', 'F', 'T', None)",
-    "('C', 13, 'S', 'F', 'T', None)",
-    "('C', 14, 'S', 'F', 'T', None)",
-    "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 3886568119, 0, 3098473944, 'S', 'F', 'T', None)",
-    "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 3886568119, 2096484019, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "84e32d0fb76854198db24cf2c91a39f90a6cba83bad754ee39d53c4db2d69628",
-    "kind": "return",
-    "ncalls": 19,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3886568119,
-     256,
-     3059135833,
-     1
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-41",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 41,
-    "xpsr": 0
-   },
-   "new_instructions": 111,
-   "stack_args": [
-    [
-     5,
-     [
-      [
-       1,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ],
-        [
-         4,
-         0
-        ],
-        [
-         5,
-         0
-        ],
-        [
-         6,
-         0
-        ],
-        [
-         7,
-         0
-        ],
-        [
-         8,
-         0
-        ],
-        [
-         9,
-         0
-        ],
-        [
-         10,
-         0
-        ],
-        [
-         11,
-         0
-        ]
-       ]
-      ]
-     ]
-    ]
-   ]
   },
   {
    "call_arities": [
@@ -7128,11 +8256,11 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1276959699, 0, 32, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 12, 1927129947, 'S', 'F', 'T', None)",
+    "('C', 2, 536943568, 0, 32, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'currentTime is %d,recvTime is %d,unReadTime is %d \\n'), 1927129959, 536948040, 1390181919, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 12, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 6, 1276959699, 'S', 'F', 'T', None)",
+    "('C', 5, 536948040, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 536943568, 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)",
@@ -7142,12 +8270,12 @@
     "('C', 13, 'S', 'F', 'T', None)",
     "('C', 14, 'S', 'F', 'T', None)",
     "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 0, 1276959699, 0, 3098473944, 'S', 'F', 'T', None)",
+    "('C', 16, 0, 536943568, 0, 3098473944, 'S', 'F', 'T', None)",
     "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 1276959699, 0, 'S', 'F', 'T', None)"
+    "('C', 18, ('RO', b'gui_getScreenoffset_x=%d,timeDiffBuf is %s \\n'), 2483420292, 536943568, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9b286b707e776614ec646fa7a2c0f42142c8e379dd341116c4703687bb3c0158",
+    "events": "b361dc9dad5a0c424bf9f01b842c57e7d124d0a95772c307f684cc1149023be8",
     "kind": "return",
     "ncalls": 19,
     "ret": [],
@@ -7157,21 +8285,22 @@
     "abs": [
      [
       536900948,
-      "00000000"
+      "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
      ]
     ],
     "args": [
-     1276959699,
-     12,
-     4,
-     0
+     536943568,
+     536948040,
+     536948308,
+     536940048
     ],
     "float_scratch": false,
     "fp": {},
     "id": "glob-0-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -7251,8 +8380,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "gui",
@@ -7261,16 +8393,28 @@
   "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
   "source": "shipped image"
  },
- "pointer_arg_mask": [],
+ "pointer_arg_mask": [
+  0,
+  1,
+  2,
+  3
+ ],
  "ret_kind": "void",
  "search": {
-  "candidates": 175,
+  "candidates": 271,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
   "kept": 43,
-  "pointer_arg_mask": [],
+  "pointer_arg_mask": [
+   0,
+   1,
+   2,
+   3
+  ],
   "pointer_arg_mask_derived": true
  },
  "size": 714,

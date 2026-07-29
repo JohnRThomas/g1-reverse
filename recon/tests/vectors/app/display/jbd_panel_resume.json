@@ -26,13 +26,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 4, 3694469211, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 4, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 536948308, 3694469211, 'S', 'F', 'T', None)",
+    "('C', 1, 2556510175, 3677333764, 536948308, 'S', 'F', 'T', None)",
     "('C', 2, 7, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 4, 3694469211, 'S', 'F', 'T', None)"
+    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 536948308, 3694469211, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "8741dc83018a74bc07e06322bfc81de692ad3b6fb71c1328bc469d3883e73e12",
+    "events": "71a48050ff3b23c6f3793af5ed95a0af5b6a17f256a3575d6b999c93422ba1d4",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -45,15 +45,16 @@
     "args": [
      536943568,
      12,
-     4,
+     536948308,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -78,11 +79,11 @@
     290364
    ],
    "events_head": [
-    "('C', 0, 536947244, 1797429778, 2147483648, 'S', 'F', 'T', None)",
+    "('C', 0, 536947244, 1797429778, 536940476, 'S', 'F', 'T', None)",
     "('C', 1, 159, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "564bf783ec8954c1f27436fa4fc9e16585390c237bcf3c3f6de1722101551586",
+    "events": "63bd995d0ed948b8c85854afe1c032c5e800887d075fe9e76fb78f15d69f3063",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -95,15 +96,16 @@
     "args": [
      536947244,
      1797429778,
-     2147483648,
+     536940476,
      315044147
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -136,13 +138,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 3677430904, 471345317, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 3677430904, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 536945784, 471345317, 'S', 'F', 'T', None)",
+    "('C', 1, 2556510175, 3677333764, 536945784, 'S', 'F', 'T', None)",
     "('C', 2, 12, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 3677430904, 471345317, 'S', 'F', 'T', None)"
+    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 536945784, 471345317, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "26b2c71239326cf09474b106f2f0a7f5deff1ae3b8ed7a0ba07b73e0bd582757",
+    "events": "9a7dccab4808c950d8608858f7b1ac6b8578dd49d4db9ab1b5e006c0177263bb",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -155,15 +157,16 @@
     "args": [
      536943312,
      598759513,
-     3677430904,
+     536945784,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
@@ -188,11 +191,11 @@
     290364
    ],
    "events_head": [
-    "('C', 0, 536945628, 255, 8, 'S', 'F', 'T', None)",
+    "('C', 0, 536945628, 255, 536943096, 'S', 'F', 'T', None)",
     "('C', 1, 36, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "098104ff3c998e91dceb5acffbeeaec5b341abd48e49fdab3e95738f746e4883",
+    "events": "0ec42098c69368c8e00a894f3fd1e056342be713f855c1f1f7a886d574fc74d0",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -205,15 +208,16 @@
     "args": [
      536945628,
      255,
-     8,
+     536943096,
      3619521758
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-3",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 3,
     "xpsr": 0
    },
@@ -246,13 +250,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 3842370354, 2655161023, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 3842370354, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 536947504, 2655161023, 'S', 'F', 'T', None)",
+    "('C', 1, 2556510175, 3677333764, 536947504, 'S', 'F', 'T', None)",
     "('C', 2, 191, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 3842370354, 2655161023, 'S', 'F', 'T', None)"
+    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 536947504, 2655161023, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "794099aafb473c2a168ca72cc3ae6bc0c36e74daf001e4e408838566483e3c1a",
+    "events": "4060adcac3625a989771ae2c5b89fc54beb65f16ea99756f00cf8fff8d7f912c",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -265,15 +269,16 @@
     "args": [
      536945864,
      2147483647,
-     3842370354,
+     536947504,
      6
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 4,
     "xpsr": 0
    },
@@ -298,11 +303,11 @@
     290364
    ],
    "events_head": [
-    "('C', 0, 536939588, 3188701995, 8, 'S', 'F', 'T', None)",
+    "('C', 0, 536939588, 3188701995, 536944168, 'S', 'F', 'T', None)",
     "('C', 1, 203, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "2417cd9de6f9f533a59e8190d579fe1d542cad8155a549ae79db8b9a7399956a",
+    "events": "7470585e75cda7c9bfbd9d0a9321b31323b6124c107c5241caef3ee8575ab0b4",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -315,15 +320,16 @@
     "args": [
      536939588,
      3188701995,
-     8,
+     536944168,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-5",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 5,
     "xpsr": 0
    },
@@ -348,11 +354,11 @@
     290364
    ],
    "events_head": [
-    "('C', 0, 536950900, 3322790363, 5, 'S', 'F', 'T', None)",
+    "('C', 0, 536950900, 3322790363, 536947060, 'S', 'F', 'T', None)",
     "('C', 1, 121, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "49d0e0841f9157f660b7decccf133e746617edfe4025542700a93ec0f67f80c7",
+    "events": "d598a0423ddf7fc5e9b07a095a6440e44ad95478c5a9d1f1b237ea245f66b574",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -365,15 +371,16 @@
     "args": [
      536950900,
      3322790363,
-     5,
+     536947060,
      2147483647
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-6",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 6,
     "xpsr": 0
    },
@@ -398,11 +405,11 @@
     290364
    ],
    "events_head": [
-    "('C', 0, 536941592, 1604804925, 1, 'S', 'F', 'T', None)",
+    "('C', 0, 536941592, 1604804925, 536950368, 'S', 'F', 'T', None)",
     "('C', 1, 15, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "bf349b457972dcb29cdd9048a5dc75e544d1f66198393ec05c954a6b8a8ba1f5",
+    "events": "fa88ca97db32261c45dc3e26c325bac91b35e8e46b1ca33bab2b8bf30cfd4dbd",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -415,15 +422,16 @@
     "args": [
      536941592,
      1604804925,
-     1,
+     536950368,
      2363272863
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-7",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 7,
     "xpsr": 0
    },
@@ -448,11 +456,11 @@
     290364
    ],
    "events_head": [
-    "('C', 0, 536939044, 708972563, 558645175, 'S', 'F', 'T', None)",
+    "('C', 0, 536939044, 708972563, 536952756, 'S', 'F', 'T', None)",
     "('C', 1, 54, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "140afe3028c98c2f44632d9e0b076dc22e8bc3a04d71bc4c88b42273246bdf93",
+    "events": "d6aa9e5b226708ba2b6739f30bbce5dfc03c844ba2bf578de19d00f3b77b95f4",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -465,15 +473,16 @@
     "args": [
      536939044,
      708972563,
-     558645175,
+     536952756,
      4
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-8",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 8,
     "xpsr": 0
    },
@@ -506,13 +515,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 499087790, 3178863954, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 499087790, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 536951212, 3178863954, 'S', 'F', 'T', None)",
+    "('C', 1, 2556510175, 3677333764, 536951212, 'S', 'F', 'T', None)",
     "('C', 2, 14, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 499087790, 3178863954, 'S', 'F', 'T', None)"
+    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 536951212, 3178863954, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "d10254d2c277374c7daa6f951439312e4874c194322079f3dc0582a5cef5ada7",
+    "events": "b8eb5f3b564ef202c36202c2d6f6bed050f79cc85a0efad061c9931acc6a791a",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -525,15 +534,16 @@
     "args": [
      536944692,
      1556998536,
-     499087790,
+     536951212,
      2147483647
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 9,
     "xpsr": 0
    },
@@ -566,13 +576,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 8, 3586673693, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 8, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 536946200, 3586673693, 'S', 'F', 'T', None)",
+    "('C', 1, 2556510175, 3677333764, 536946200, 'S', 'F', 'T', None)",
     "('C', 2, 208, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 8, 3586673693, 'S', 'F', 'T', None)"
+    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 536946200, 3586673693, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "0168a08ffb5744ff787c90bb0134739ed20bd197dbb78cb172081cbab8580c07",
+    "events": "3f6060d4574252dc9acfdae0468a43a74d3c290fab00bb8ebbf5aa8292f9e84d",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -585,15 +595,16 @@
     "args": [
      536939204,
      995058044,
-     8,
+     536946200,
      1
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 10,
     "xpsr": 0
    },
@@ -626,13 +637,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 256, 801746852, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 256, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 536938076, 801746852, 'S', 'F', 'T', None)",
+    "('C', 1, 2556510175, 3677333764, 536938076, 'S', 'F', 'T', None)",
     "('C', 2, 250, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 256, 801746852, 'S', 'F', 'T', None)"
+    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 536938076, 801746852, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "beba8f1ccfa13f0dddff4a6b5bb17a2ccc5acf6a96dec504d37659406b03210d",
+    "events": "a65b58ceb3a475c201c672bdde0308bf5d6d4fb9e37ea9606e45dd025bf5fa58",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -645,15 +656,16 @@
     "args": [
      536937040,
      2147483648,
-     256,
+     536938076,
      1426281073
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 11,
     "xpsr": 0
    },
@@ -686,13 +698,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 5, 1542880163, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 5, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 536941268, 1542880163, 'S', 'F', 'T', None)",
+    "('C', 1, 2556510175, 3677333764, 536941268, 'S', 'F', 'T', None)",
     "('C', 2, 184, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 5, 1542880163, 'S', 'F', 'T', None)"
+    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 536941268, 1542880163, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "24c6959ebae4df12268821840bcb63d108c5672ca8979f987e35ed962144dd3d",
+    "events": "8776d2016937590626be5780b5c7d0c6e2929f58019965ee23bbece6545cb46d",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -705,15 +717,16 @@
     "args": [
      536944520,
      3217736208,
-     5,
+     536941268,
      1103693227
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-12",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 12,
     "xpsr": 0
    },
@@ -746,13 +759,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 6, 287561451, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 6, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 536939060, 287561451, 'S', 'F', 'T', None)",
+    "('C', 1, 2556510175, 3677333764, 536939060, 'S', 'F', 'T', None)",
     "('C', 2, 56, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 6, 287561451, 'S', 'F', 'T', None)"
+    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 536939060, 287561451, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "e3712e01a2bc344c8c8f1466621d5195c746d77d3cd8e26ec248cb49ca7d4686",
+    "events": "0b713abff919866e2605bee0914ca6a8fb69394a5f48f77b11918d8a0a738eb2",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -765,15 +778,16 @@
     "args": [
      536944304,
      1944344031,
-     6,
+     536939060,
      617681966
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 13,
     "xpsr": 0
    },
@@ -798,11 +812,11 @@
     290364
    ],
    "events_head": [
-    "('C', 0, 536943892, 12, 3, 'S', 'F', 'T', None)",
+    "('C', 0, 536943892, 12, 536943328, 'S', 'F', 'T', None)",
     "('C', 1, 18, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "e76539ad6df5c1b81519bf509403f6a20c9e806d7ccb1c26a6a8d9ed0110126d",
+    "events": "9f6bb5e1e4296c3a367484027f932529a4d9f1a52982d602455fefa1df207278",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -815,15 +829,16 @@
     "args": [
      536943892,
      12,
-     3,
+     536943328,
      470668832
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-14",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 14,
     "xpsr": 0
    },
@@ -848,11 +863,11 @@
     290364
    ],
    "events_head": [
-    "('C', 0, 536952404, 256, 5, 'S', 'F', 'T', None)",
+    "('C', 0, 536952404, 256, 536951236, 'S', 'F', 'T', None)",
     "('C', 1, 204, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c599f432aca799f9ebe3134522902b3ada0ba7322f98d417707a8728b4b4dd41",
+    "events": "a360956081a1df55ad0404d12d3daa75e68124050f861d27167e59614ef03dd6",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -865,15 +880,16 @@
     "args": [
      536952404,
      256,
-     5,
+     536951236,
      4
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-15",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 15,
     "xpsr": 0
    },
@@ -906,13 +922,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 3454407978, 886755549, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 3454407978, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 536941864, 886755549, 'S', 'F', 'T', None)",
+    "('C', 1, 2556510175, 3677333764, 536941864, 'S', 'F', 'T', None)",
     "('C', 2, 124, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 3454407978, 886755549, 'S', 'F', 'T', None)"
+    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 536941864, 886755549, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "51de6130a7a7021086e314bf5ab8a8ed4c3e52d4c737ac47afc9a054b89508cb",
+    "events": "4986072da96d9043c983eb6a08c6c38bf8f6992662b58d921a31df0fb611221e",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -925,15 +941,16 @@
     "args": [
      536943260,
      2147483648,
-     3454407978,
+     536941864,
      16
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
@@ -958,11 +975,11 @@
     290364
    ],
    "events_head": [
-    "('C', 0, 536944016, 3254638692, 1168623309, 'S', 'F', 'T', None)",
+    "('C', 0, 536944016, 3254638692, 536938188, 'S', 'F', 'T', None)",
     "('C', 1, 249, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "7553eca6ca24607537f4a6c25bb3bbdd63d3ec2690b0a640bb65e1e5aa780210",
+    "events": "ab630d1ed88807bfef7d1cbdb9ccc5a3e139b37d967b570c2e08168169786714",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -975,15 +992,16 @@
     "args": [
      536944016,
      3254638692,
-     1168623309,
+     536938188,
      4252165479
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-17",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 17,
     "xpsr": 0
    },
@@ -1008,11 +1026,11 @@
     290364
    ],
    "events_head": [
-    "('C', 0, 536944948, 0, 697236451, 'S', 'F', 'T', None)",
+    "('C', 0, 536944948, 0, 536951776, 'S', 'F', 'T', None)",
     "('C', 1, 48, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "01dca27eb083d2232998f7ca3a43dd0ce4e9c8ad8adc1f50a1059a516aa0d48d",
+    "events": "9d24c2af386c4549175b4d48ddfe4548e7f0c88860afd62d1408eaa45d536b26",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1025,15 +1043,16 @@
     "args": [
      536944948,
      0,
-     697236451,
+     536951776,
      1
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-18",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 18,
     "xpsr": 0
    },
@@ -1066,13 +1085,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 4178753371, 4075769455, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 4178753371, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 536950616, 4075769455, 'S', 'F', 'T', None)",
+    "('C', 1, 2556510175, 3677333764, 536950616, 'S', 'F', 'T', None)",
     "('C', 2, 0, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 4178753371, 4075769455, 'S', 'F', 'T', None)"
+    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 536950616, 4075769455, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "12cbd43d917cdabdbbf5a5d54eb8a547b6cf4592f30c7a02f7cfe0f7fe4d7ce0",
+    "events": "0e067f959129b030ffbf0f57308916d5f1e670651769eccfb07c68c9f44ff578",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1085,15 +1104,16 @@
     "args": [
      536939284,
      1536401714,
-     4178753371,
+     536950616,
      255
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 19,
     "xpsr": 0
    },
@@ -1118,11 +1138,11 @@
     290364
    ],
    "events_head": [
-    "('C', 0, 536952740, 2306919366, 2, 'S', 'F', 'T', None)",
+    "('C', 0, 536952740, 2306919366, 536939760, 'S', 'F', 'T', None)",
     "('C', 1, 187, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ea476f5211feadab7d9c48d4cfb79fafd26bbba3208e3de52f3b288c1a367384",
+    "events": "c9f6c3eee0e10bcf5750bac201ca0bb4c65916135595cec309b443f3abcf3cd7",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1135,15 +1155,16 @@
     "args": [
      536952740,
      2306919366,
-     2,
+     536939760,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-20",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 20,
     "xpsr": 0
    },
@@ -1176,13 +1197,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 2870852768, 2217669457, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 2870852768, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 536951968, 2217669457, 'S', 'F', 'T', None)",
+    "('C', 1, 2556510175, 3677333764, 536951968, 'S', 'F', 'T', None)",
     "('C', 2, 179, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 2870852768, 2217669457, 'S', 'F', 'T', None)"
+    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 536951968, 2217669457, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "97074808a66835488e6fb54d7ad516a4fe2ee3fbf2dfb993be8235685d52fa75",
+    "events": "95c5189b788aa15e99a572c7052b4951151a7232c728beb6f096b6a729eb50c8",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1195,15 +1216,16 @@
     "args": [
      536941420,
      1,
-     2870852768,
+     536951968,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-21",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 21,
     "xpsr": 0
    },
@@ -1228,11 +1250,11 @@
     290364
    ],
    "events_head": [
-    "('C', 0, 536937396, 3001296298, 4294967295, 'S', 'F', 'T', None)",
+    "('C', 0, 536937396, 3001296298, 536949836, 'S', 'F', 'T', None)",
     "('C', 1, 211, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ef94e1ef27146413073a95215a90557c40f2b7572a62bb61789539c1205a1853",
+    "events": "370ab4511661e3314e5b34c868a8eac95216861066bfc5cdd63d169b22985fa2",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1245,15 +1267,16 @@
     "args": [
      536937396,
      3001296298,
-     4294967295,
+     536949836,
      2451975022
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-22",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 22,
     "xpsr": 0
    },
@@ -1278,11 +1301,11 @@
     290364
    ],
    "events_head": [
-    "('C', 0, 536952228, 241044672, 2034212132, 'S', 'F', 'T', None)",
+    "('C', 0, 536952228, 241044672, 536943908, 'S', 'F', 'T', None)",
     "('C', 1, 232, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "82ca6c488790929b3dc80452dda83f92c5b1e815e7b4ddae56fd9284d87d7402",
+    "events": "f69fdeabedc8cfe8be59ab17dda1fa9c262a510ce1d2292a814fc17203fd562b",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1295,15 +1318,16 @@
     "args": [
      536952228,
      241044672,
-     2034212132,
+     536943908,
      1515885587
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-23",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 23,
     "xpsr": 0
    },
@@ -1328,11 +1352,11 @@
     290364
    ],
    "events_head": [
-    "('C', 0, 536949908, 6, 2967241396, 'S', 'F', 'T', None)",
+    "('C', 0, 536949908, 6, 536937140, 'S', 'F', 'T', None)",
     "('C', 1, 67, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "990babbf19debd65d8280de115fd819cd05e7b1ea42015560c085fbb7f0efe64",
+    "events": "d79a27def9b6076aa0f6b4ad0e52ebd9f8c514b44429d37182cf513580473aa1",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1345,15 +1369,16 @@
     "args": [
      536949908,
      6,
-     2967241396,
+     536937140,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-24",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 24,
     "xpsr": 0
    },
@@ -1386,13 +1411,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 2149248134, 3712121755, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 2149248134, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 536947844, 3712121755, 'S', 'F', 'T', None)",
+    "('C', 1, 2556510175, 3677333764, 536947844, 'S', 'F', 'T', None)",
     "('C', 2, 106, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 2149248134, 3712121755, 'S', 'F', 'T', None)"
+    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 536947844, 3712121755, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "fa956d6df0cde7903bd96a186de91620730650bd4ecdccc1bbca03e28ece22b4",
+    "events": "6693ddfb36d9066e9803be2b425aa4482f906650bb2c9bb0a3be981b3742228e",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1405,15 +1430,16 @@
     "args": [
      536938252,
      12,
-     2149248134,
+     536947844,
      604019693
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 25,
     "xpsr": 0
    },
@@ -1438,11 +1464,11 @@
     290364
    ],
    "events_head": [
-    "('C', 0, 536942224, 12, 3037640278, 'S', 'F', 'T', None)",
+    "('C', 0, 536942224, 12, 536950356, 'S', 'F', 'T', None)",
     "('C', 1, 206, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "2d0578e0845351305776eeebb164fae1dbecf2e96b2b592edc37c2cfa4adc6f1",
+    "events": "2122a995d04fbe48c1939f0fbc42de2534b17636da12079c682d246f730d12da",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1455,15 +1481,16 @@
     "args": [
      536942224,
      12,
-     3037640278,
+     536950356,
      2678623347
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-26",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 26,
     "xpsr": 0
    },
@@ -1496,13 +1523,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 3639365232, 1775869161, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 3639365232, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 536940144, 1775869161, 'S', 'F', 'T', None)",
+    "('C', 1, 2556510175, 3677333764, 536940144, 'S', 'F', 'T', None)",
     "('C', 2, 43, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 3639365232, 1775869161, 'S', 'F', 'T', None)"
+    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 536940144, 1775869161, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "d5980dfbd33924bf38cce284be470d4bba78a254ccdb7ebabc42e8c386bf4498",
+    "events": "04545c6a7258778974a69129cce01e174ac44c623900e14f554a79b6aa36f01a",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1515,15 +1542,16 @@
     "args": [
      536945192,
      681194263,
-     3639365232,
+     536940144,
      4125446660
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 27,
     "xpsr": 0
    },
@@ -1556,13 +1584,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 1, 1542213390, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 1, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 536946096, 1542213390, 'S', 'F', 'T', None)",
+    "('C', 1, 2556510175, 3677333764, 536946096, 'S', 'F', 'T', None)",
     "('C', 2, 195, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 1, 1542213390, 'S', 'F', 'T', None)"
+    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 536946096, 1542213390, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9e1cf066e8d9a5e70ca642564941ad51417a16a73cb9fa8e6f818213d8246c91",
+    "events": "59a54b9f3dc9239996d434f83ebd8c7f46acfb52c2ea50f05b2d36aef2352035",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1575,15 +1603,16 @@
     "args": [
      536946084,
      4285183211,
-     1,
+     536946096,
      2592385448
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-28",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 28,
     "xpsr": 0
    },
@@ -1608,11 +1637,11 @@
     290364
    ],
    "events_head": [
-    "('C', 0, 536947488, 256, 3886541357, 'S', 'F', 'T', None)",
+    "('C', 0, 536947488, 256, 536947244, 'S', 'F', 'T', None)",
     "('C', 1, 140, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "07f7bd29f6b23361355eb8be77380c0247d3373a57614ea7a676c0d6186828e2",
+    "events": "f84f6cecc26d397f29faae5156bc17337bd3fa1094ff6b41479ca0a40969d7b7",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1625,15 +1654,16 @@
     "args": [
      536947488,
      256,
-     3886541357,
+     536947244,
      8
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-29",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 29,
     "xpsr": 0
    },
@@ -1666,13 +1696,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 1, 2417460406, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 1, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 536945744, 2417460406, 'S', 'F', 'T', None)",
+    "('C', 1, 2556510175, 3677333764, 536945744, 'S', 'F', 'T', None)",
     "('C', 2, 200, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 1, 2417460406, 'S', 'F', 'T', None)"
+    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 536945744, 2417460406, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "f58bf395b0c0afdff2e03095b61f9c3041df08c00371ec961619a83743f4009b",
+    "events": "47a3a27a66e29743b427a32c2f0093f2365a3679dbdd59f9a3fe6646cb6eec1d",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1685,15 +1715,16 @@
     "args": [
      536952796,
      8,
-     1,
+     536945744,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-30",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 30,
     "xpsr": 0
    },
@@ -1726,13 +1757,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 7, 1988174091, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 7, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 536938932, 1988174091, 'S', 'F', 'T', None)",
+    "('C', 1, 2556510175, 3677333764, 536938932, 'S', 'F', 'T', None)",
     "('C', 2, 0, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 7, 1988174091, 'S', 'F', 'T', None)"
+    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 536938932, 1988174091, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "cc2d8a4025072585e54da7c25721b89be06c2ffbb04ced07dc340663c4e57a62",
+    "events": "3f9a152b5ec40e73d2ce902c0245e36f643cfe9b6c03a9141519aaddfe7e064d",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1745,15 +1776,16 @@
     "args": [
      536952300,
      2461003590,
-     7,
+     536938932,
      53351545
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
@@ -1786,13 +1818,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 3442053927, 615009301, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 3442053927, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 536941348, 615009301, 'S', 'F', 'T', None)",
+    "('C', 1, 2556510175, 3677333764, 536941348, 'S', 'F', 'T', None)",
     "('C', 2, 63, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 3442053927, 615009301, 'S', 'F', 'T', None)"
+    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 536941348, 615009301, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "db9e251396a65059363cdc7ce1c798801c5a8efaec836a4e74a7faa1a76f18da",
+    "events": "1e9cf04d23c684467b976ae8a5bc773bddb89d77dff29c6d460ef9fcdb11ba92",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1805,15 +1837,16 @@
     "args": [
      536946568,
      2706821390,
-     3442053927,
+     536941348,
      1170652979
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-32",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 32,
     "xpsr": 0
    },
@@ -1838,11 +1871,11 @@
     290364
    ],
    "events_head": [
-    "('C', 0, 536946060, 7, 7, 'S', 'F', 'T', None)",
+    "('C', 0, 536946060, 7, 536944276, 'S', 'F', 'T', None)",
     "('C', 1, 165, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b82c435c3408d88064447c2c99d7b21c190e75f75f3ac454dd8413424d4fc147",
+    "events": "81220190cc901f6e76207b72e8a34838c80218ca532591402fb9c2ada3b2f310",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1855,15 +1888,16 @@
     "args": [
      536946060,
      7,
-     7,
+     536944276,
      5
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-33",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 33,
     "xpsr": 0
    },
@@ -1896,13 +1930,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 922796015, 2360084761, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 922796015, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 536952812, 2360084761, 'S', 'F', 'T', None)",
+    "('C', 1, 2556510175, 3677333764, 536952812, 'S', 'F', 'T', None)",
     "('C', 2, 105, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 922796015, 2360084761, 'S', 'F', 'T', None)"
+    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 536952812, 2360084761, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "6ce00c3ad0e32e7727075d52d772d4d280abcefdca6911d1318c70f2b868e1aa",
+    "events": "d3b2cbbb11d73cbeae554a6cd3a64900905af965b6cd5efecbff7571d46c9257",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1915,15 +1949,16 @@
     "args": [
      536950120,
      3990671540,
-     922796015,
+     536952812,
      2147483647
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 34,
     "xpsr": 0
    },
@@ -1956,13 +1991,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 4001652011, 4019880274, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 4001652011, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 536943912, 4019880274, 'S', 'F', 'T', None)",
+    "('C', 1, 2556510175, 3677333764, 536943912, 'S', 'F', 'T', None)",
     "('C', 2, 242, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 4001652011, 4019880274, 'S', 'F', 'T', None)"
+    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 536943912, 4019880274, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "aa1b4d6d2c675a9aa3352847ba906ff92900db57d8dd86acdb34df819fcb2ab8",
+    "events": "18ecf550a9749e4cfbb3fbe8f9a272192826885d3633d035c074599f84e1bda0",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1975,15 +2010,16 @@
     "args": [
      536952432,
      3578977268,
-     4001652011,
+     536943912,
      1
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
@@ -2016,13 +2052,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 2147483647, 823752600, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 2147483647, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 536945964, 823752600, 'S', 'F', 'T', None)",
+    "('C', 1, 2556510175, 3677333764, 536945964, 'S', 'F', 'T', None)",
     "('C', 2, 0, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 2147483647, 823752600, 'S', 'F', 'T', None)"
+    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 536945964, 823752600, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "dd39f2bfeb2dcf3a132393841d41388cff8767efa14229b7a3c5980c5a7f18ca",
+    "events": "609ff8753f6cc5b6466c9c5e4042aebbd72e24c1e391f8a91e749a4015060403",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -2035,15 +2071,16 @@
     "args": [
      536944224,
      12,
-     2147483647,
+     536945964,
      8
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 36,
     "xpsr": 0
    },
@@ -2068,11 +2105,11 @@
     290364
    ],
    "events_head": [
-    "('C', 0, 536951728, 2057795936, 2725586938, 'S', 'F', 'T', None)",
+    "('C', 0, 536951728, 2057795936, 536946680, 'S', 'F', 'T', None)",
     "('C', 1, 206, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "7587a5a43b0be22a1d96bda33de8195825ace050e802363e7de12e545eaf3874",
+    "events": "960a42b714342b64c8cd0c0d2ad5f413d54b2158d4f838a772d0241836d7c0c7",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -2085,15 +2122,16 @@
     "args": [
      536951728,
      2057795936,
-     2725586938,
+     536946680,
      1299241558
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-37",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 37,
     "xpsr": 0
    },
@@ -2118,11 +2156,11 @@
     290364
    ],
    "events_head": [
-    "('C', 0, 536939760, 255, 1, 'S', 'F', 'T', None)",
+    "('C', 0, 536939760, 255, 536936976, 'S', 'F', 'T', None)",
     "('C', 1, 8, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "f8bad20dccfbb28905a2542ad27a679a7f5bc44d45f2a571bf61232902bb3e0b",
+    "events": "76a92d0daea678036fe52863eddefb012993e4c2cce31d4d2a365394a2b980fd",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -2135,15 +2173,16 @@
     "args": [
      536939760,
      255,
-     1,
+     536936976,
      2
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-38",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 38,
     "xpsr": 0
    },
@@ -2176,13 +2215,13 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 3774328631, 2944518647, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 3677333764, 3774328631, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): release from deep power down\\n'), ('RO', b'jbd_panel_resume'), 536948532, 2944518647, 'S', 'F', 'T', None)",
+    "('C', 1, 2556510175, 3677333764, 536948532, 'S', 'F', 'T', None)",
     "('C', 2, 0, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 3774328631, 2944518647, 'S', 'F', 'T', None)"
+    "('C', 3, ('RO', b'%s(): resume completed\\n'), ('RO', b'jbd_panel_resume'), 536948532, 2944518647, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "32f1e36db342a5fbb9365107a0f9b18c84411c60917e95a402949265e7fb5652",
+    "events": "5563fa84b2c82b5f8c418ed13f28ed0416f5ee6b9e95327e98484f9aeb47e96d",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -2195,15 +2234,16 @@
     "args": [
      536941424,
      1587124134,
-     3774328631,
+     536948532,
      1997155928
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
     "xpsr": 0
    },
@@ -2228,11 +2268,11 @@
     290364
    ],
    "events_head": [
-    "('C', 0, 536943600, 3928041777, 1786326658, 'S', 'F', 'T', None)",
+    "('C', 0, 536943600, 3928041777, 536948352, 'S', 'F', 'T', None)",
     "('C', 1, 239, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "6ec3b6eb508e5bdc0127997b0bc496d65817195be344fe711f6b224c0736a158",
+    "events": "a3399c87cce6fadb9046f52d369d3131ccf07b08df01b946be89fe7b6c5256fd",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -2245,15 +2285,16 @@
     "args": [
      536943600,
      3928041777,
-     1786326658,
+     536948352,
      1835695343
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-40",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 40,
     "xpsr": 0
    },
@@ -2275,8 +2316,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "display",
@@ -2286,18 +2330,22 @@
   "source": "shipped image"
  },
  "pointer_arg_mask": [
-  0
+  0,
+  2
  ],
  "ret_kind": "i32",
  "search": {
-  "candidates": 199,
+  "candidates": 243,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
   "kept": 41,
   "pointer_arg_mask": [
-   0
+   0,
+   2
   ],
   "pointer_arg_mask_derived": true
  },

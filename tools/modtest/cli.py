@@ -110,14 +110,11 @@ def cmd_gen(args, trees):
             # The fingerprint of the harness code that DEFINES this
             # expectation.  `run` refuses a vector whose fingerprint differs.
             # See core.harness_rev for the incident that made this necessary.
-            "harness": {"rev": mtcore.harness_rev(),
-                        "stack_arg_window": mtcore.STACK_ARG_WINDOW,
-                        "derived_arity": mtcore.DERIVED_ARITY,
-                        # §22.3: whether r0/r1 the callee provably never writes
-                        # were carried across an oracled call.  An ENV switch,
-                        # so it is invisible to `harness_rev` and is checked
-                        # separately by `core.vector_staleness`.
-                        "oracle_preserve": mtcore.ORACLE_PRESERVE},
+            # `harness_env()` is every ENV switch that changes what this
+            # expectation MEANS -- invisible to `harness_rev`, which hashes
+            # source, and checked key-by-key by `core.vector_staleness`
+            # (including refusing a vector that omits one).
+            "harness": {"rev": mtcore.harness_rev(), **mtcore.harness_env()},
             "coverage": {"covered": len(covered), "total": len(denominator),
                          "unresolved_indirect": unresolved,
                          "ratio": round(len(covered) / max(len(denominator), 1), 4)},
@@ -197,7 +194,8 @@ def _replay(core, symbol, tree, record, extra_cflags=None, source_override=None)
             return False, {"stage": "compile", "error": str(exc)[:400]}
         covered |= hit
         stack = mtcore.stack_args_mismatch(case.get("stack_args"),
-                                           meta["state"].get("stack_raw"))
+                                           meta["state"].get("stack_raw"),
+                                           meta["state"].get("stack_ro"))
         if stack is not None and key == case["expect"]:
             failures.append({"fixture": fixture["id"], "stack_record": stack})
             continue
@@ -230,54 +228,85 @@ def _replay(core, symbol, tree, record, extra_cflags=None, source_override=None)
 
 def cmd_run(args, trees):
     rows = []
+    unstamped = 0
     for symbol in args.symbols:
-        va, module = _resolve(args.core, symbol, trees)
-        if va is None:
-            print("SKIP %-40s not in any tree" % symbol)
-            continue
         try:
-            record = mtcore.load_vectors(args.core, module or "unsorted", symbol)
-        except FileNotFoundError:
-            print("SKIP %-40s no vectors (run `gen` first)" % symbol)
+            row = _run_one(args, trees, symbol)
+        except Exception as exc:                        # noqa: BLE001
+            # ★ NO PER-SYMBOL GUARD USED TO EXIST, and one unhandled exception
+            # inside `compile_candidate` killed the whole batch: `fanrun_core_0`
+            # died after 13 of 24 symbols and **23 further symbols were silently
+            # lost**, reappearing only because the requested list was reconciled
+            # against the produced rows rather than trusted (§28.8.4).  A crash
+            # in one symbol is that symbol's result, not the batch's.
+            print("ERROR %-40s %s: %s"
+                  % (symbol, type(exc).__name__, str(exc)[:200]))
+            if args.traceback:
+                traceback.print_exc()
+            rows.append({"symbol": symbol, "stage": "error",
+                         "error": "%s: %s" % (type(exc).__name__, str(exc)[:400])})
             continue
-        line = ["%-40s" % symbol]
-        row = {"symbol": symbol, "module": module}
-        for label, tree in trees.items():
-            if tree.unit_for(symbol) is None:
-                line.append("%s=ABSENT" % label)
-                row[label] = "absent"
-                continue
-            ok, detail = _replay(args.core, symbol, tree, record)
-            row[label] = {"ok": ok, **detail}
-            if detail.get("stage") == "compile":
-                line.append("%s=CCFAIL" % label)
-            elif detail.get("stage") == "vacuous":
-                line.append("%s=VACUOUS(0 fixtures)" % label)
-            elif detail.get("stage") == "stale-vector":
-                line.append("%s=STALE-VECTOR" % label)
-            else:
-                line.append("%s=%s(%d/%d)" % (
-                    label, "OK" if ok else "FAIL",
-                    detail["cases"] - detail["n_failures"], detail["cases"]))
-        line.append("cov=%.0f%%" % (100 * record["coverage"]["ratio"]))
-        print("  ".join(line))
-        for label in trees:
-            entry = row.get(label)
-            if isinstance(entry, dict) and not entry.get("ok"):
-                if entry.get("stage") == "compile":
-                    print("      %s compile: %s" % (label, entry["error"][:300]))
-                elif entry.get("stage") == "stale-vector":
-                    print("      %s %s" % (label, entry["error"]))
-                elif entry.get("stage") == "vacuous":
-                    print("      %s every candidate fixture was dropped; this "
-                          "symbol is UNTESTED, not passing" % label)
-                for failure in entry.get("failures", [])[:3]:
-                    print("      %s %s" % (label, json.dumps(failure)[:400]))
+        if row is None:
+            continue
+        if row.pop("_unstamped", False):
+            unstamped += 1
         rows.append(row)
+    if unstamped:
+        print("NOTE %d of %d vectors are UNSTAMPED and were REFUSED "
+              "(core.vector_staleness fails closed since 2026-07-29); "
+              "regenerate them with `gen`." % (unstamped, len(rows)))
     if args.json:
         with open(args.json, "w") as handle:
             json.dump(rows, handle, indent=1)
     return rows
+
+
+def _run_one(args, trees, symbol):
+    """One symbol's row, or None when there is nothing to replay."""
+    va, module = _resolve(args.core, symbol, trees)
+    if va is None:
+        print("SKIP %-40s not in any tree" % symbol)
+        return None
+    try:
+        record = mtcore.load_vectors(args.core, module or "unsorted", symbol)
+    except FileNotFoundError:
+        print("SKIP %-40s no vectors (run `gen` first)" % symbol)
+        return None
+    line = ["%-40s" % symbol]
+    row = {"symbol": symbol, "module": module}
+    for label, tree in trees.items():
+        if tree.unit_for(symbol) is None:
+            line.append("%s=ABSENT" % label)
+            row[label] = "absent"
+            continue
+        ok, detail = _replay(args.core, symbol, tree, record)
+        row[label] = {"ok": ok, **detail}
+        if detail.get("stage") == "compile":
+            line.append("%s=CCFAIL" % label)
+        elif detail.get("stage") == "vacuous":
+            line.append("%s=VACUOUS(0 fixtures)" % label)
+        elif detail.get("stage") == "stale-vector":
+            line.append("%s=STALE-VECTOR" % label)
+        else:
+            line.append("%s=%s(%d/%d)" % (
+                label, "OK" if ok else "FAIL",
+                detail["cases"] - detail["n_failures"], detail["cases"]))
+    line.append("cov=%.0f%%" % (100 * record["coverage"]["ratio"]))
+    print("  ".join(line))
+    for label in trees:
+        entry = row.get(label)
+        if isinstance(entry, dict) and not entry.get("ok"):
+            if entry.get("stage") == "compile":
+                print("      %s compile: %s" % (label, entry["error"][:300]))
+            elif entry.get("stage") == "stale-vector":
+                print("      %s %s" % (label, entry["error"]))
+            elif entry.get("stage") == "vacuous":
+                print("      %s every candidate fixture was dropped; this "
+                      "symbol is UNTESTED, not passing" % label)
+            for failure in entry.get("failures", [])[:3]:
+                print("      %s %s" % (label, json.dumps(failure)[:400]))
+    row["_unstamped"] = not (record.get("harness") or {}).get("rev")
+    return row
 
 
 def cmd_grade(args, trees):
@@ -356,7 +385,14 @@ def main(argv=None):
     #: (generate.pointer_arg_mask).  A non-negative value reproduces the old
     #: fixed-prefix behaviour and exists only so the two can be compared.
     parser.add_argument("--nptr", type=int, default=-1)
-    parser.add_argument("--budget", type=int, default=400)
+    #: RAISED 400 -> 600 on 2026-07-29.  Three fixture dimensions were added
+    #: in the same burst (pointee ladder, out-parameter ladder, global SPAN and
+    #: global-equals-argument), and `select` truncates the candidate list at
+    #: this budget IN ORDER -- so leaving it at 400 would have silently pushed
+    #: the LAST dimensions (globals, callee-result, global x callee-result) off
+    #: the end for the symbols that need them most.  Measured worst case after
+    #: the additions: 338 candidates.
+    parser.add_argument("--budget", type=int, default=600)
     parser.add_argument("--mutants", type=int, default=24)
     parser.add_argument("--limit", type=int, default=0)
     parser.add_argument("--json")

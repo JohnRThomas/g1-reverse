@@ -26,6 +26,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -74,6 +75,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
@@ -169,6 +171,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
@@ -264,6 +267,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 701,
     "xpsr": 0
    },
@@ -359,6 +363,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 702,
     "xpsr": 0
    },
@@ -454,6 +459,7 @@
     "mem": [],
     "nptr": 0,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 701,
     "xpsr": 0
    },
@@ -555,6 +561,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 800,
     "xpsr": 0
    },
@@ -772,6 +779,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 830,
     "xpsr": 0
    },
@@ -850,6 +858,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 801,
     "xpsr": 0
    },
@@ -1067,6 +1076,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 831,
     "xpsr": 0
    },
@@ -1146,6 +1156,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 802,
     "xpsr": 0
    },
@@ -1247,6 +1258,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 803,
     "xpsr": 0
    },
@@ -1348,6 +1360,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 804,
     "xpsr": 0
    },
@@ -1565,6 +1578,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 834,
     "xpsr": 0
    },
@@ -1644,6 +1658,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 805,
     "xpsr": 0
    },
@@ -1861,6 +1876,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 835,
     "xpsr": 0
    },
@@ -1940,6 +1956,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 806,
     "xpsr": 0
    },
@@ -2041,6 +2058,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 807,
     "xpsr": 0
    },
@@ -2141,6 +2159,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 808,
     "xpsr": 0
    },
@@ -2358,6 +2377,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 838,
     "xpsr": 0
    },
@@ -2437,6 +2457,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 809,
     "xpsr": 0
    },
@@ -2654,6 +2675,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 839,
     "xpsr": 0
    },
@@ -2733,6 +2755,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 810,
     "xpsr": 0
    },
@@ -2802,33 +2825,37 @@
     527678
    ],
    "events_head": [
-    "('C', 0, 1056964608, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 1, 1056964608, ('SP', 0), 'S', 'F', 'T', None)"
+    "('C', 0, 3821998094, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 1, 3821998094, ('SP', 0), 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "edb055b9b46614d29cef45d8a7e4ba9bb374f6839d8750f4033cdfa246210e43",
+    "events": "0cc6842217ece1fa1c32da9023fb1b6a6b71d5d0320d67b8e2ce835be2214456",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     536939588,
-     3188701995,
-     536944168,
-     7
+     536949608,
+     620054538,
+     536937944,
+     3
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3204448256,
-     "1": 0
-    },
-    "id": "fp-5",
-    "mem": [],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee-2-0",
+    "mem": [
+     [
+      2,
+      0,
+      "00000000"
+     ]
+    ],
     "nptr": 2,
     "oracle": [],
-    "scratch_seed": 5,
+    "outparam": null,
+    "scratch_seed": 900,
     "xpsr": 0
    },
    "new_instructions": 28,
@@ -2897,33 +2924,953 @@
     527678
    ],
    "events_head": [
-    "('C', 0, 1124551239, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 1, 1124551239, ('SP', 0), 'S', 'F', 'T', None)"
+    "('C', 0, 2432414200, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 1, 2432414200, ('SP', 0), 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "03e50f089934c464ca2c7f00a2819aba54af25a90b43ee6972d3e7b670f24d55",
+    "events": "20cfed1e95af7a51392d66ee150ecdd146a07d8372fbd393281bbb043c41bd96",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     536939044,
-     708972563,
-     536952756,
+     536938904,
+     3982296698,
+     536949936,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee4-2-0",
+    "mem": [
+     [
+      2,
+      0,
+      "00000000"
+     ],
+     [
+      2,
+      4,
+      "00000000"
+     ]
+    ],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 950,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         1
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    527678,
+    527678
+   ],
+   "events_head": [
+    "('C', 0, 2887326733, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 1, 2887326733, ('SP', 0), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "ccc4800310001016cfb8fd1d4c708c89da06cfe6e3a6d52f36c0ed6bd3429bc1",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536950928,
+     1417665950,
+     536951888,
+     1496312853
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee-2-1",
+    "mem": [
+     [
+      2,
+      0,
+      "01000000"
+     ]
+    ],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 901,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         1
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    527678,
+    527678
+   ],
+   "events_head": [
+    "('C', 0, 1508673526, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 1, 1508673526, ('SP', 0), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "67d2b9cf225af9d4284b9594d785ef31e6085abca5c373635257749b71620399",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946308,
+     3757625057,
+     536938428,
+     2147483648
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee4-2-1",
+    "mem": [
+     [
+      2,
+      0,
+      "01000000"
+     ],
+     [
+      2,
+      4,
+      "01000000"
+     ]
+    ],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 951,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         1
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    527678,
+    527678
+   ],
+   "events_head": [
+    "('C', 0, 2178710387, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 1, 2178710387, ('SP', 0), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "c6983c879e7f8b0fc4cdaa8a20a487773280d4f15b419a19036df33228eeb0c4",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536942336,
+     3,
+     536940504,
+     256
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee-2-2",
+    "mem": [
+     [
+      2,
+      0,
+      "02000000"
+     ]
+    ],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 902,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         1
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    527678,
+    527678
+   ],
+   "events_head": [
+    "('C', 0, 3472627891, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 1, 3472627891, ('SP', 0), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "46e986343973314e4d379954b2a7d6f25f3ab97af5d444ec7df7de0746cc1eab",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536942492,
+     1126323739,
+     536951228,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee4-2-2",
+    "mem": [
+     [
+      2,
+      0,
+      "02000000"
+     ],
+     [
+      2,
+      4,
+      "02000000"
+     ]
+    ],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 952,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         1
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    527678,
+    527678
+   ],
+   "events_head": [
+    "('C', 0, 1759273520, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 1, 1759273520, ('SP', 0), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "40676c2068200a06ba70bc3d0f28bd0c472761b25cddf60d06d4ea4624c4b7cb",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943348,
+     256,
+     536951252,
+     3664520808
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee-2-3",
+    "mem": [
+     [
+      2,
+      0,
+      "03000000"
+     ]
+    ],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 903,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         1
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    527678,
+    527678
+   ],
+   "events_head": [
+    "('C', 0, 1838979633, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 1, 1838979633, ('SP', 0), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "c4dc52a4f5c5215c484b6980096e64c6c1b18668a21d651fb02fe368d78f665c",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946600,
+     1751716957,
+     536940076,
+     255
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee4-2-3",
+    "mem": [
+     [
+      2,
+      0,
+      "03000000"
+     ],
+     [
+      2,
+      4,
+      "03000000"
+     ]
+    ],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 953,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         1
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    527678,
+    527678
+   ],
+   "events_head": [
+    "('C', 0, 2196401492, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 1, 2196401492, ('SP', 0), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "9d6946db65f7d9b96b3998b084b00170c78852effe603fc3eb62318c1ab8a6cf",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536938928,
+     4294967295,
+     536940220,
+     3652382158
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee-2-4",
+    "mem": [
+     [
+      2,
+      0,
+      "04000000"
+     ]
+    ],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 904,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         1
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    527678,
+    527678
+   ],
+   "events_head": [
+    "('C', 0, 1273459211, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 1, 1273459211, ('SP', 0), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "37de9c082f17b632499b59d55f5642e229a99640e248f068fecbbd1af7d5561f",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946428,
+     2,
+     536941572,
+     256
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee4-2-4",
+    "mem": [
+     [
+      2,
+      0,
+      "04000000"
+     ],
+     [
+      2,
+      4,
+      "04000000"
+     ]
+    ],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 954,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         1
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    527678,
+    527678
+   ],
+   "events_head": [
+    "('C', 0, 3572230987, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 1, 3572230987, ('SP', 0), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "e797b96ef5423d2daa314fff7bce2a51b2dbb3190006dacf3a78acc5909aed83",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536949556,
+     2568063343,
+     536947744,
      4
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1048576000,
-     "1": 1266679808
-    },
-    "id": "fp-8",
-    "mem": [],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee-2-5",
+    "mem": [
+     [
+      2,
+      0,
+      "05000000"
+     ]
+    ],
     "nptr": 2,
     "oracle": [],
-    "scratch_seed": 8,
+    "outparam": null,
+    "scratch_seed": 905,
     "xpsr": 0
    },
    "new_instructions": 28,
@@ -2992,34 +3939,42 @@
     527678
    ],
    "events_head": [
-    "('R', 1092616200, 4, 0)",
-    "('C', 0, 3093519815, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 1, 3093519815, ('SP', 0), 'S', 'F', 'T', None)"
+    "('C', 0, 1790248852, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 1, 1790248852, ('SP', 0), 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "4ced58f170ca54e832011969c0350ec0a876d6cafaf1f2531caa2b15d9dac9e2",
+    "events": "c961f5deea60223a9b18fbe970c6c401d2f9a85a3a7632a7f546c07e21822f52",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     536944520,
-     3217736208,
-     536941268,
-     1103693227
+     536949672,
+     12,
+     536950884,
+     108926623
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1036831949,
-     "1": 3239897098
-    },
-    "id": "fp-12",
-    "mem": [],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee4-2-5",
+    "mem": [
+     [
+      2,
+      0,
+      "05000000"
+     ],
+     [
+      2,
+      4,
+      "05000000"
+     ]
+    ],
     "nptr": 2,
     "oracle": [],
-    "scratch_seed": 12,
+    "outparam": null,
+    "scratch_seed": 955,
     "xpsr": 0
    },
    "new_instructions": 28,
@@ -3088,34 +4043,37 @@
     527678
    ],
    "events_head": [
-    "('R', 1092413458, 4, 0)",
-    "('C', 0, 0, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 1, 0, ('SP', 0), 'S', 'F', 'T', None)"
+    "('C', 0, 3091865441, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 1, 3091865441, ('SP', 0), 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "6251dd466a9dd8c886cbcdff81bef430164752a4f3c5bb50995c3c61e49e0b06",
+    "events": "940348895463dbfb42a980f167d429843416d084546a7da85ffb6fb1c3eaf81a",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     536952740,
-     2306919366,
-     536939760,
-     7
+     536940636,
+     6,
+     536944744,
+     944950795
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1061997773,
-     "1": 0
-    },
-    "id": "fp-20",
-    "mem": [],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee-2-6",
+    "mem": [
+     [
+      2,
+      0,
+      "ff000000"
+     ]
+    ],
     "nptr": 2,
     "oracle": [],
-    "scratch_seed": 20,
+    "outparam": null,
+    "scratch_seed": 906,
     "xpsr": 0
    },
    "new_instructions": 28,
@@ -3184,34 +4142,42 @@
     527678
    ],
    "events_head": [
-    "('R', 1077936136, 4, 0)",
-    "('C', 0, 3207922931, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 1, 3207922931, ('SP', 0), 'S', 'F', 'T', None)"
+    "('C', 0, 1596870643, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 1, 1596870643, ('SP', 0), 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "6bd705a92a80df67d2580b63cdb44f190b075ea87bc89b58a4b5323c6bbe3e3b",
+    "events": "58b5509b6f8d01a64bc88e75a5b1a30bc94d109f083c744dca726ff17f4779ad",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     536947488,
-     256,
-     536947244,
-     8
+     536941068,
+     8,
+     536937788,
+     1295397848
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1070141403,
-     "1": 3204448256
-    },
-    "id": "fp-29",
-    "mem": [],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee4-2-6",
+    "mem": [
+     [
+      2,
+      0,
+      "ff000000"
+     ],
+     [
+      2,
+      4,
+      "ff000000"
+     ]
+    ],
     "nptr": 2,
     "oracle": [],
-    "scratch_seed": 29,
+    "outparam": null,
+    "scratch_seed": 956,
     "xpsr": 0
    },
    "new_instructions": 28,
@@ -3280,33 +4246,141 @@
     527678
    ],
    "events_head": [
-    "('C', 0, 989064473, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 1, 989064473, ('SP', 0), 'S', 'F', 'T', None)"
+    "('C', 0, 2002724626, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 1, 2002724626, ('SP', 0), 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "e08b609cc5507706784122b3997f20acab8018346a45c19c805d6531f771db3b",
+    "events": "9cc7697358e87da13a895f4cc9d04dc2f83bfb4e564298f8e6e1de1ac2189649",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     536937120,
+     536946724,
+     387175541,
+     536944308,
+     2
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee-2-7",
+    "mem": [
+     [
+      2,
+      0,
+      "ffffffff"
+     ]
+    ],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 907,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         1
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    527678,
+    527678
+   ],
+   "events_head": [
+    "('C', 0, 295730221, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 1, 295730221, ('SP', 0), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "fecda760b5185de1b35f76170ade0416518feeba7248419446e831e2ff964eb6",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536937720,
      2147483648,
-     536949960,
-     319156785
+     536943172,
+     561119631
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1056964608,
-     "1": 3184315597
-    },
-    "id": "fp-51",
-    "mem": [],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee4-2-7",
+    "mem": [
+     [
+      2,
+      0,
+      "ffffffff"
+     ],
+     [
+      2,
+      4,
+      "ffffffff"
+     ]
+    ],
     "nptr": 2,
     "oracle": [],
-    "scratch_seed": 51,
+    "outparam": null,
+    "scratch_seed": 957,
     "xpsr": 0
    },
    "new_instructions": 28,
@@ -3375,34 +4449,547 @@
     527678
    ],
    "events_head": [
-    "('R', 1084873322, 4, 0)",
-    "('C', 0, 1120403456, ('SP', 0), 'S', 'F', 'T', None)",
-    "('C', 1, 1120403456, ('SP', 0), 'S', 'F', 'T', None)"
+    "('C', 0, 761404680, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 1, 761404680, ('SP', 0), 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "32573a1536eb0d49ead6199427d02acd8fc867b6c11caf52a75c2226dae6ade4",
+    "events": "0261f48915de3788375472bac811893790d80f5bcc1714e76da381fced22e3e9",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     536947512,
-     2,
-     536939460,
-     2495041172
+     536951748,
+     8,
+     536950624,
+     5
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3204448256,
-     "1": 1266679808
-    },
-    "id": "fp-58",
-    "mem": [],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee-2-8",
+    "mem": [
+     [
+      2,
+      0,
+      "4c000000"
+     ]
+    ],
     "nptr": 2,
     "oracle": [],
-    "scratch_seed": 58,
+    "outparam": null,
+    "scratch_seed": 908,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         1
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    527678,
+    527678
+   ],
+   "events_head": [
+    "('C', 0, 3747407263, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 1, 3747407263, ('SP', 0), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "1678fb56041f9ff6d699ed9ff536988e41302145a18eb1cd05ecfb379278cbbc",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939700,
+     483505668,
+     536951848,
+     1298480790
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee4-2-8",
+    "mem": [
+     [
+      2,
+      0,
+      "4c000000"
+     ],
+     [
+      2,
+      4,
+      "4c000000"
+     ]
+    ],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 958,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         1
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    527678,
+    527678
+   ],
+   "events_head": [
+    "('C', 0, 325831276, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 1, 325831276, ('SP', 0), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "7ef7589a59f26faef01f1a990912224b7ab4706437ace5d7f1f54fa3ade7b47b",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536947228,
+     3744451309,
+     536952048,
+     5
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee-2-9",
+    "mem": [
+     [
+      2,
+      0,
+      "44000000"
+     ]
+    ],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 909,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         1
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    527678,
+    527678
+   ],
+   "events_head": [
+    "('C', 0, 3321841416, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 1, 3321841416, ('SP', 0), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "4cf425020b4943a5dc64c37f0b4804058a26cdd24213ed74cd2d926957d67726",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945668,
+     2098648856,
+     536941940,
+     2361834888
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee4-2-9",
+    "mem": [
+     [
+      2,
+      0,
+      "44000000"
+     ],
+     [
+      2,
+      4,
+      "44000000"
+     ]
+    ],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 959,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         1
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    527678,
+    527678
+   ],
+   "events_head": [
+    "('C', 0, 4239664067, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 1, 4239664067, ('SP', 0), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "ea765b3e44578b03edb7f68f4a2b5d9ec0ff726568dc44b800cc20002ef2556b",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536948460,
+     8,
+     536939096,
+     159002925
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee-2-10",
+    "mem": [
+     [
+      2,
+      0,
+      "20000000"
+     ]
+    ],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 910,
+    "xpsr": 0
+   },
+   "new_instructions": 28,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         1
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ],
+    [
+     1,
+     [
+      [
+       1,
+       [
+        [
+         0,
+         0
+        ],
+        [
+         2,
+         0
+        ],
+        [
+         3,
+         40
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    527678,
+    527678
+   ],
+   "events_head": [
+    "('C', 0, 3680430407, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 1, 3680430407, ('SP', 0), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "ed5acf471547d0b80ace818b41b576461ee6404ba4b99e873fe59c5b30a051a1",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536949232,
+     4,
+     536951588,
+     2173845497
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee4-2-10",
+    "mem": [
+     [
+      2,
+      0,
+      "20000000"
+     ],
+     [
+      2,
+      4,
+      "20000000"
+     ]
+    ],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 960,
     "xpsr": 0
    },
    "new_instructions": 28,
@@ -3465,8 +5052,11 @@
  "globals": [],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "unsorted",
@@ -3481,12 +5071,14 @@
  ],
  "ret_kind": "i32",
  "search": {
-  "candidates": 179,
+  "candidates": 234,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
-  "kept": 30,
+  "kept": 45,
   "pointer_arg_mask": [
    0,
    2

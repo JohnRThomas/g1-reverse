@@ -27,12 +27,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 1276959699, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536943568, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 3694469211, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "3e0513a048a9f3acb2c694e9d1c6afde988cfcd66de2210f9f5ca7355c8bba9c",
+    "events": "aa1582ceaa332edc0be2eec915dde5c2327f2ce7b8651b5dfe21e8df7977897e",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -43,17 +43,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1276959699,
+     536943568,
      12,
      4,
-     0
+     536940048
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -102,12 +103,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 4067469868, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536947244, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 2429414634, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "adefba973d61ede478f144a02ff597787b214a30484203b305f53d3975176041",
+    "events": "80d3389beb34f8f49fad3dd8dc01de26eeca8122352713045b788ae25c61cbe5",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -118,17 +119,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4067469868,
+     536947244,
      1797429778,
      2147483648,
-     315044147
+     536949040
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -177,12 +179,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 4290042576, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536943312, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 471345317, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "94dd0fac2894272fe6559fb4863038f6a85c6e07fc83359a7404ac6a0b685b23",
+    "events": "d8d316a1c82e363d88d10423a427fe442673943a134b4e13ca1ce5763c721913",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -193,17 +195,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4290042576,
+     536943312,
      598759513,
      3677430904,
-     7
+     536943396
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
@@ -252,12 +255,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 2618385373, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536945628, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 2205054065, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9910eb9b5432b44a65ff137e40408fc46f1f767b1960308bad894976183994ee",
+    "events": "ee4ce19825b6620fe380929e52b3e7119321a0a6843cce022b908df4fad1a55d",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -268,17 +271,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2618385373,
+     536945628,
      255,
      8,
-     3619521758
+     536937692
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-3",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 3,
     "xpsr": 0
    },
@@ -327,12 +331,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 16, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536945864, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 2655161023, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "38f593b89b0de087900894c35e15d0c104a3becf43ee443e8286be6e725a2723",
+    "events": "1855daf5bdd1f57c2594c66ada4d6009944640947831c51d5c236d5e2857d210",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -343,17 +347,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     16,
+     536945864,
      2147483647,
      3842370354,
-     6
+     536951124
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 4,
     "xpsr": 0
    },
@@ -402,12 +407,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 4, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536939588, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 151242190, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "23dd7f74b72449cf6fcf140c8244107e59aadcb92bb714656bba75de41221ae6",
+    "events": "ebbcaafb1ad86aea49383040cdda07dc1c87eb9cb6823283b35ef0642b6354b2",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -418,17 +423,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4,
+     536939588,
      3188701995,
      8,
-     7
+     536942644
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-5",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 5,
     "xpsr": 0
    },
@@ -477,12 +483,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 4, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536950900, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 1447905683, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "deba3882514270f18ac167d60d4caf10dfe62b5aba4fddbcbf2c5bcca27baeb5",
+    "events": "8c543296ecc8ebc25e2489e0fb82dc0fcb71248488acb50c17273895dd5bbf7e",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -493,17 +499,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4,
+     536950900,
      3322790363,
      5,
-     2147483647
+     536952236
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-6",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 6,
     "xpsr": 0
    },
@@ -552,12 +559,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 2300957721, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536941592, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 1060514798, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "2ad4302e1ad75e94a39e21571db3872be442262bb35350ebc6bfc12396167911",
+    "events": "f574b6a07fa29ea96a9475c35770a86460fc0e8c68e5ee5a6c37b6e92ae14a04",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -568,17 +575,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2300957721,
+     536941592,
      1604804925,
      1,
-     2363272863
+     536948380
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-7",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 7,
     "xpsr": 0
    },
@@ -627,12 +635,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 2156366374, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536939044, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 2352949406, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "d474777d99e67084bb5152cf2b5c110f3295d81130371a27096d0217f0593096",
+    "events": "344bf0fa3b37de72f1d31ca88bc6e652424bc7afd5f4c9fbe3be87d3be6e4a2d",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -643,17 +651,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2156366374,
+     536939044,
      708972563,
      558645175,
-     4
+     536949588
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-8",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 8,
     "xpsr": 0
    },
@@ -702,12 +711,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 1346232374, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536944692, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 3178863954, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b822063f0519761ef4a6555f216c675bc9039fb8ce7aa0ef7c2c3ef47b024d38",
+    "events": "25371d2fe5be2e92d6398a2a4fa564a001d4cf7d63494c5565fb6c0da2ef77b3",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -718,17 +727,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1346232374,
+     536944692,
      1556998536,
      499087790,
-     2147483647
+     536940988
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 9,
     "xpsr": 0
    },
@@ -777,12 +787,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 182454980, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536939204, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 3586673693, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "585cbc67bc66e9470324e64c40b01cbec74a2370c6018d186866e0242e98068c",
+    "events": "2d4607cd412aed0eb5bd9aadb47f1ae87c8b9ef5730c8e239092589a4bc205e6",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -793,17 +803,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     182454980,
+     536939204,
      995058044,
      8,
-     1
+     536947328
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 10,
     "xpsr": 0
    },
@@ -852,12 +863,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 3, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536937040, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 801746852, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "4a125034c81fad59fb909d78e80d997359319e75721f11ad4305b6a11c6c216c",
+    "events": "2adde5641349866bf87fbd4dd5f3b12b1fadd8e4a825e55a30691690d7e93896",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -868,17 +879,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3,
+     536937040,
      2147483648,
      256,
-     1426281073
+     536941168
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 11,
     "xpsr": 0
    },
@@ -927,12 +939,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 8, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536944520, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 1542880163, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "64a8f9dd8086d3aef3fcc86d4ce0f97052a57fc2eb8d393e4d0ac9c3a071bfe9",
+    "events": "1ea18fc8db96cf653834b6432ca0ee17fb0ba3b19b6d4d78637c24e0ebdeca3a",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -943,17 +955,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     8,
+     536944520,
      3217736208,
      5,
-     1103693227
+     536937896
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-12",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 12,
     "xpsr": 0
    },
@@ -1002,12 +1015,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 1156718256, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536944304, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 287561451, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9af99febf9b88254375e1e62cd9b5dc2c0eb9b3e4bd470db07efbfed85bdbbac",
+    "events": "76a949639173d8c33b2cddbc9f8736e11a8c11e56b4982ef114d4c2669727072",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1018,17 +1031,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1156718256,
+     536944304,
      1944344031,
      6,
-     617681966
+     536941612
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 13,
     "xpsr": 0
    },
@@ -1077,12 +1091,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 1996365079, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536943892, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 1403193323, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "bc43d6753264107d0b91d4d9ea29cb56663c80b1bddbac241a927ec16846fa2c",
+    "events": "029c1bb658f9ada2f4caa23ec200d4bfcf21abbb1503fc23a0b675fece746305",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1093,17 +1107,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1996365079,
+     536943892,
      12,
      3,
-     470668832
+     536942112
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-14",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 14,
     "xpsr": 0
    },
@@ -1152,12 +1167,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 7, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536952404, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 2417077168, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "0e597a0bc8053101311a1f0ffdacd4eb6cca83bbdf33173e3b464eb6cd4bec2d",
+    "events": "489d6feea830413ba5364fa6f44b1c265041a6c956cfa56ddfa8b94bb776b5a6",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1168,17 +1183,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     7,
+     536952404,
      256,
      5,
-     4
+     536949908
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-15",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 15,
     "xpsr": 0
    },
@@ -1227,12 +1243,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 2024561310, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536943260, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 886755549, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "96c45f35849c5a61b237f8d862731e3e690cd54bb86a4ae53ba5cf0430cee1b8",
+    "events": "2c1a50989dc0194578b385fe47ec29062cd90af107381661efc3d1f47dfbf36b",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1243,17 +1259,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2024561310,
+     536943260,
      2147483648,
      3454407978,
-     16
+     536940136
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
@@ -1302,12 +1319,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 3, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536944016, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 3896400791, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "91865588e99247db6dff8ae1d076c9ed55a497e89b68e85ba19dd509e1dc4c32",
+    "events": "5ac733108a3f270af297d4fd872ae0c3fcfd9c37f9ae18e68f93ee1a804ca6a9",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1318,17 +1335,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3,
+     536944016,
      3254638692,
      1168623309,
-     4252165479
+     536946020
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-17",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 17,
     "xpsr": 0
    },
@@ -1377,12 +1395,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 3912442165, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536944948, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 2620901234, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "5459951ea13943eeed68a06e709c10def187584e256ea446a485106d19027145",
+    "events": "208e98c582b16f773872a02838a7be35fbdb6c9dace06d94ca89ad7e5c0e642b",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1393,17 +1411,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3912442165,
+     536944948,
      0,
      697236451,
-     1
+     536945600
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-18",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 18,
     "xpsr": 0
    },
@@ -1452,12 +1471,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 6, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536939284, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 4075769455, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "a466b15fe14441120fc5b6f9ff0215179f8e6b8714a29fd8cb30855e52b773bc",
+    "events": "8c2553a25520000809bc6a175bf79cefe7268d89569f9e97220daf6b118590dc",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1468,17 +1487,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     6,
+     536939284,
      1536401714,
      4178753371,
-     255
+     536947592
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 19,
     "xpsr": 0
    },
@@ -1527,12 +1547,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 4, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536952740, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 3043713821, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "76fc1ba728fd8f49a695909cf8e5aa885de8ed410f1ecc476b132d461a8b7604",
+    "events": "4354f8604749759cfbccda1f006d9fb5fe4325b721e15638872604934e56d43f",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1543,17 +1563,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4,
+     536952740,
      2306919366,
      2,
-     7
+     536951108
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-20",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 20,
     "xpsr": 0
    },
@@ -1602,12 +1623,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 843060076, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536941420, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 2217669457, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "baef0744e9f9ee6c574cb00a16da22e95a7be548dd48bde4745e4206fed00d86",
+    "events": "5fea1ace3c5819b38eaef40c37fb5eec4892258be0d7df0745febde493247502",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1618,17 +1639,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     843060076,
+     536941420,
      1,
      2870852768,
-     0
+     536943488
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-21",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 21,
     "xpsr": 0
    },
@@ -1677,12 +1699,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 7, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536937396, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 1480053828, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "520f3228117835c4e48b8b356b9c9c1023d2daec675cd2267e12ee8e04513585",
+    "events": "b0710431b63c605e77c8d13b0dba58d8dac597e96400edbec6d33bb4397e8569",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1693,17 +1715,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     7,
+     536937396,
      3001296298,
      4294967295,
-     2451975022
+     536947564
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-22",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 22,
     "xpsr": 0
    },
@@ -1752,12 +1775,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 1591295399, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536952228, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 2142178815, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "792329478c06aaa58afe15f0377ec74f79d8cb8920e29a8c1bd604584667def1",
+    "events": "ebce3492fd1187e06405fbc46ac543537089e523802d730aed8f39412e2f44d4",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1768,17 +1791,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1591295399,
+     536952228,
      241044672,
      2034212132,
-     1515885587
+     536941584
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-23",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 23,
     "xpsr": 0
    },
@@ -1827,12 +1851,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 4, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536949908, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 1304546403, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9237bde540c974311085816eed3e6db6ffc392cc33fc87dfa8bef14160f5ef6f",
+    "events": "a9b55ee0f0679d4b69b2331a4d4a9365e7d0d156a6b6587b4de80cd8c799c721",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1843,17 +1867,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4,
+     536949908,
      6,
      2967241396,
-     7
+     536951364
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-24",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 24,
     "xpsr": 0
    },
@@ -1902,12 +1927,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 3751937804, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536938252, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 3712121755, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "27d07a5f01653cd03cb5dba39b75f56fca087ed3644243dc9ebbef7f5b08b02a",
+    "events": "81c2ed56ab60a3f6db3c4d5a93fdf9698022af64b8bdf840ff65855a190dc702",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1918,17 +1943,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3751937804,
+     536938252,
      12,
      2149248134,
-     604019693
+     536943596
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 25,
     "xpsr": 0
    },
@@ -1977,12 +2003,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 2992330384, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536942224, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 4058280526, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "4416669cb212177228d390cfeca6e957ee0286d3da01432289b9f79f7a6dfb91",
+    "events": "05332a4e8ad171fe76f8b68d5f562ddd5f55c2b4a3352ea6f098f735104ed48e",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -1993,17 +2019,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2992330384,
+     536942224,
      12,
      3037640278,
-     2678623347
+     536939632
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-26",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 26,
     "xpsr": 0
    },
@@ -2052,12 +2079,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 187818536, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536945192, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 1775869161, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "72f6d7968228ca8851529c789629e0abf8b632d61e0ad04a2b9d7eca82e55e29",
+    "events": "5d28059bd150e64f91b814bd46212f33b3e1739ab7c3b8615e719fcf34c0e5b3",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -2068,17 +2095,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     187818536,
+     536945192,
      681194263,
      3639365232,
-     4125446660
+     536941060
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 27,
     "xpsr": 0
    },
@@ -2127,12 +2155,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 3711083943, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536946084, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 1542213390, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "5a87bcb630906bd6289ab5ec0e2c6938e86788d3b896989ec4765860c535f10b",
+    "events": "b4ef895cab6d5d933a54b6aa6609e78176c21cea2be12c1caaf072d6b2978f7e",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -2143,17 +2171,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3711083943,
+     536946084,
      4285183211,
      1,
-     2592385448
+     536947112
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-28",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 28,
     "xpsr": 0
    },
@@ -2202,12 +2231,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 739928864, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536947488, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 2490855531, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "1d326a6edae1f6bd2280fb679a7b1ff7516b40037b25db7ec1dbcb0da29ef68f",
+    "events": "0d14085951382413fbb5d8d71b3a09a51c6a897539438472b032545c8a86bde5",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -2218,17 +2247,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     739928864,
+     536947488,
      256,
      3886541357,
-     8
+     536938744
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-29",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 29,
     "xpsr": 0
    },
@@ -2277,12 +2307,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 256, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536952796, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 2417460406, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "eab5efe342e50d4018d18fcef270a24e33335972dae55a916e2d6e705dd86e17",
+    "events": "a2ec12f18a052501495930692da76c9b298d06263cb8bedba9a69b5d4fa239f8",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -2293,17 +2323,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     256,
+     536952796,
      8,
      1,
-     7
+     536939284
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-30",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 30,
     "xpsr": 0
    },
@@ -2352,12 +2383,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 4294967295, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536952300, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 1988174091, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "62c4f5102399d31b55e73632d61db1726f38b4ffdaa6e3ecce22266a5bb39539",
+    "events": "2157f3d673ce7ad08c639e13b95cd69e291373af0147c9ef834867a5325d6da0",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -2368,17 +2399,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4294967295,
+     536952300,
      2461003590,
      7,
-     53351545
+     536941688
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
@@ -2427,12 +2459,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 1839753098, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536946568, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 615009301, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "61c4b80d9f8af355889df309580eb06a25d8c8af3f09ac4ec5aa3b2246495a8c",
+    "events": "da4df0e1c025c6c553290aec99ddc3329c39701831103f3d2985e6c3599cbb36",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -2443,17 +2475,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1839753098,
+     536946568,
      2706821390,
      3442053927,
-     1170652979
+     536952624
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-32",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 32,
     "xpsr": 0
    },
@@ -2502,12 +2535,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 1076094348, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536946060, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 1452493058, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "5cc38dad50d455b9b3429323b517fec72428f622b5cb53a50603eee082113e64",
+    "events": "6707592b98c14af53fa3b2dcaa7e1a63897777bc6036d1fbe800b45641c710c5",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -2518,17 +2551,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1076094348,
+     536946060,
      7,
      7,
-     5
+     536938756
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-33",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 33,
     "xpsr": 0
    },
@@ -2577,12 +2611,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 12, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536950120, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 2360084761, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "4b88a1aee5a8feaec57fa599c5378ab0daeb044e1ecd99e4f3e123947abf148d",
+    "events": "2ea08379bbdf84deb8ff1cc5ff7948326c72ec9276620c2ba90fd89fc2f26d77",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -2593,17 +2627,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     12,
+     536950120,
      3990671540,
      922796015,
-     2147483647
+     536936476
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 34,
     "xpsr": 0
    },
@@ -2652,12 +2687,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 2726887024, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536952432, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 4019880274, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "7864b88ac056209fcd48f257497db577e7af13f1b602cefc77887322132fc22b",
+    "events": "738a3468f86463cddadd8d91916bfab17b49474f05f88ef5c422b88c4293da7b",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -2668,17 +2703,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2726887024,
+     536952432,
      3578977268,
      4001652011,
-     1
+     536937872
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
@@ -2727,12 +2763,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 0, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536944224, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 823752600, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "7e478abe4fac06c4b9d3bbd91c13075f93d5e144090a353b500c2577cf14a8d1",
+    "events": "048d118efa5af8ab5be263ff8168dc196c56318f6659b0b67bf50c5e2c725f28",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -2743,17 +2779,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     0,
+     536944224,
      12,
      2147483647,
-     8
+     536950872
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 36,
     "xpsr": 0
    },
@@ -2802,12 +2839,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 1, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536951728, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 2373057660, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "8c049c51c4671b0935ea08bf41a64caa17bba7c6c9a196a630affd9c4780ef87",
+    "events": "19d10ff3c3e21eeaec02045a406a2f61001e083edc1556b70274869bd4696e76",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -2818,17 +2855,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1,
+     536951728,
      2057795936,
      2725586938,
-     1299241558
+     536943188
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-37",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 37,
     "xpsr": 0
    },
@@ -2877,12 +2915,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 0, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536939760, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 1627783973, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "6df97acff31d7c1cc54c139a48a6ff7ad5ff66fe4e595698699b57f226bf5c78",
+    "events": "a890cae5617f9765686a594afd10ffaeee7c292ce362cf4d4cb50367b8988370",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -2893,17 +2931,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     0,
+     536939760,
      255,
      1,
-     2
+     536945104
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-38",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 38,
     "xpsr": 0
    },
@@ -2952,12 +2991,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 3, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536941424, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 2944518647, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "34be490d238c6c3e8410ac161ae4e2922ee85f8826de8741223918b2311e940e",
+    "events": "c7166b362d5c71c84e6208117484d5dc323d3685850b8c8e7eec18d850d6b0fb",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -2968,17 +3007,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3,
+     536941424,
      1587124134,
      3774328631,
-     1997155928
+     536948312
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
     "xpsr": 0
    },
@@ -3027,12 +3067,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 0, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536943600, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 2382425351, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ec4303a4286eb9a22cea7b50ac496984d0f64be7ca9ea7bc59f3c2597176f768",
+    "events": "1144fa4174daec1bda1f09093f2502832f879a5287308cb893d8ba9076adbe5a",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -3043,17 +3083,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     0,
+     536943600,
      3928041777,
      1786326658,
-     1835695343
+     536952044
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-40",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 40,
     "xpsr": 0
    },
@@ -3102,12 +3143,12 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), 0, 257, 'S', 'F', 'T', None)",
-    "('C', 1, ('SP', 1), 16, 256, 'S', 'F', 'T', None)",
+    "('C', 1, ('SP', 1), 536945864, 256, 'S', 'F', 'T', None)",
     "('C', 2, 536885496, ('SP', 0), 0, 0, 'S', 'F', 'T', None)",
     "('C', 3, ('RO', b'enqueue_bt_data failed !\\n'), 2963773301, 0, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "6b85cab2b9516523efda90a3941a443895c0270e79396cad3c75d9b90c9636e0",
+    "events": "affe5ce480491da7f1239055abb50a7852fbc8c494df256c0558cbda04bb8952",
     "kind": "return",
     "ncalls": 4,
     "ret": [
@@ -3119,21 +3160,22 @@
     "abs": [
      [
       536900948,
-      "00000000"
+      "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
      ]
     ],
     "args": [
-     16,
+     536945864,
      2147483647,
      3842370354,
-     6
+     536951124
     ],
     "float_scratch": false,
     "fp": {},
     "id": "glob-1-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 8,
     "xpsr": 0
    },
@@ -3170,8 +3212,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "core",
@@ -3180,16 +3225,24 @@
   "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
   "source": "shipped image"
  },
- "pointer_arg_mask": [],
+ "pointer_arg_mask": [
+  0,
+  3
+ ],
  "ret_kind": "i32",
  "search": {
-  "candidates": 175,
+  "candidates": 257,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
   "kept": 42,
-  "pointer_arg_mask": [],
+  "pointer_arg_mask": [
+   0,
+   3
+  ],
   "pointer_arg_mask_derived": true
  },
  "size": 114,

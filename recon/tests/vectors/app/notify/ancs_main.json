@@ -18,30 +18,31 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 1276959699)",
-    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 4, 3694469211, 'S', 'F', 'T', None)",
+    "('W', 536898232, 4, 536943568)",
+    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 536948308, 3694469211, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "df5e9be657d1827a9d6541bb6ba3acbaff1c6b94f5a357d15bd5e54fbab80554",
+    "events": "8ef6158e0e1aab094e5a0b23e6dcb3c261fc5029e65d5c91c38a8e92692d3f15",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     1276959699,
+     536943568,
      12,
-     4,
+     536948308,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -62,29 +63,30 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 4067469868)",
+    "('W', 536898232, 4, 536947244)",
     "('C', 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "1e62577a4cc2bf872f88c070b94164b638c7d281b2a2f859785012bd738b9189",
+    "events": "ad8439dc57614b86d77b2079754ef1d3ce921c8ca1d1b61e55155bdfec20f211",
     "kind": "fault",
     "ncalls": 1
    },
    "fixture": {
     "abs": [],
     "args": [
-     4067469868,
+     536947244,
      1797429778,
-     2147483648,
+     536940476,
      315044147
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -109,30 +111,31 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 4290042576)",
-    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 3677430904, 471345317, 'S', 'F', 'T', None)",
+    "('W', 536898232, 4, 536943312)",
+    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 536945784, 471345317, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "69239ad3aa4308c5ac074136a161cd120c667a93c6f79f3ac626f8b603cef0ca",
+    "events": "5f4a6e4a93287e3c3cb6c50ada4924dda43219d7d291364cbfc51e666441bcde",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     4290042576,
+     536943312,
      598759513,
-     3677430904,
+     536945784,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
@@ -153,29 +156,30 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 2618385373)",
+    "('W', 536898232, 4, 536945628)",
     "('C', 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "d42e414436625800d3f69957a636001faf07cc78e8af7eadade004d5cfa7fe79",
+    "events": "17fc68bd09deb61fd8a46c86b31c1383daa000d949a23022a39c21cd2cc90e3c",
     "kind": "fault",
     "ncalls": 1
    },
    "fixture": {
     "abs": [],
     "args": [
-     2618385373,
+     536945628,
      255,
-     8,
+     536943096,
      3619521758
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-3",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 3,
     "xpsr": 0
    },
@@ -200,30 +204,31 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 16)",
-    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 3842370354, 2655161023, 'S', 'F', 'T', None)",
+    "('W', 536898232, 4, 536945864)",
+    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 536947504, 2655161023, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "e1ef3fbf51446269268b95395ad507b934d29a3e60fc05aaab55ed850bcb163c",
+    "events": "e36713e2717a0dcc93af02967bbf85325468020d087f681e23e91afbc30a89af",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     16,
+     536945864,
      2147483647,
-     3842370354,
+     536947504,
      6
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 4,
     "xpsr": 0
    },
@@ -244,29 +249,30 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 4)",
+    "('W', 536898232, 4, 536939588)",
     "('C', 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "e4c421a8dc20e786519a823f15b0a05c88f5bf8e3013d7d803e55a2e50e523b5",
+    "events": "78e0978b042e8b0665eff5608455e5e91384c5fbca39ce3df2534cfde892c854",
     "kind": "fault",
     "ncalls": 1
    },
    "fixture": {
     "abs": [],
     "args": [
-     4,
+     536939588,
      3188701995,
-     8,
+     536944168,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-5",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 5,
     "xpsr": 0
    },
@@ -287,29 +293,74 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 2300957721)",
+    "('W', 536898232, 4, 536950900)",
     "('C', 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "2bc603c1eb613a2f69dff957483369b89302986117f814f9d0fa2ee0dafd4f9d",
+    "events": "f902616a6ea49e6fce38b5197db03f6eeafa4bd6ab08f273c088f68228e6bdc4",
     "kind": "fault",
     "ncalls": 1
    },
    "fixture": {
     "abs": [],
     "args": [
-     2300957721,
+     536950900,
+     3322790363,
+     536947060,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-6",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 6,
+    "xpsr": 0
+   },
+   "new_instructions": 14,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    92072
+   ],
+   "events_head": [
+    "('W', 536898232, 4, 536941592)",
+    "('C', 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "6ed0c70bfde7104f1e6adee77f51cfd92390e3271f7736cfc5400b7857db3431",
+    "kind": "fault",
+    "ncalls": 1
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941592,
      1604804925,
-     1,
+     536950368,
      2363272863
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-7",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 7,
     "xpsr": 0
    },
@@ -330,29 +381,30 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 2156366374)",
+    "('W', 536898232, 4, 536939044)",
     "('C', 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "1ddfe365bbfae2516aa3c175d2f34c9e6eed7ad616bd21ce6cbb637df0a8afc3",
+    "events": "613e6fcc493209d53233b6087c9e019eb0e67cfd0fde1fba42488ece458e35a1",
     "kind": "fault",
     "ncalls": 1
    },
    "fixture": {
     "abs": [],
     "args": [
-     2156366374,
+     536939044,
      708972563,
-     558645175,
+     536952756,
      4
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-8",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 8,
     "xpsr": 0
    },
@@ -377,30 +429,31 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 1346232374)",
-    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 499087790, 3178863954, 'S', 'F', 'T', None)",
+    "('W', 536898232, 4, 536944692)",
+    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 536951212, 3178863954, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "f6aaa1bb959a86e207f807291f41382b00bd43b28de4bbcced4764c17bda7bf3",
+    "events": "484a56fe22243ee296e5e5c23dacc493e1766316dd563b6598dc51d745da79c1",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     1346232374,
+     536944692,
      1556998536,
-     499087790,
+     536951212,
      2147483647
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 9,
     "xpsr": 0
    },
@@ -425,30 +478,31 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 182454980)",
-    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 8, 3586673693, 'S', 'F', 'T', None)",
+    "('W', 536898232, 4, 536939204)",
+    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 536946200, 3586673693, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "2a3e0d52edc295bc7eee94945395d4d8c59477852ccefd4fa9c16cf96caf98f1",
+    "events": "9c55cfed48adc0a587156c2c8bf423c12c0aca7448df8da5cb30b9ec5404e93f",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     182454980,
+     536939204,
      995058044,
-     8,
+     536946200,
      1
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 10,
     "xpsr": 0
    },
@@ -473,30 +527,31 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 3)",
-    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 256, 801746852, 'S', 'F', 'T', None)",
+    "('W', 536898232, 4, 536937040)",
+    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 536938076, 801746852, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "7653df5619463e8c53a21796989c4b03119c2309f0929c8799df89c8d3932c19",
+    "events": "a8e1db024e4105919e1fa284839f877c6d7a503450fa4080148aa6e2690b873a",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     3,
+     536937040,
      2147483648,
-     256,
+     536938076,
      1426281073
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 11,
     "xpsr": 0
    },
@@ -521,30 +576,31 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 8)",
-    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 5, 1542880163, 'S', 'F', 'T', None)",
+    "('W', 536898232, 4, 536944520)",
+    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 536941268, 1542880163, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "0a781f202a5274f6e4342b397e6af4a99d37b4d4efaff5e41cb32b66a5e3f6a4",
+    "events": "5d97a89ac9d276db82b8ca95c798ba864e8eba682f2663fdd1606673875efc12",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     8,
+     536944520,
      3217736208,
-     5,
+     536941268,
      1103693227
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-12",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 12,
     "xpsr": 0
    },
@@ -569,30 +625,31 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 1156718256)",
-    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 6, 287561451, 'S', 'F', 'T', None)",
+    "('W', 536898232, 4, 536944304)",
+    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 536939060, 287561451, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "f5f1fd7aef8dcbb56168dae04281464957f39fe0f4516cce75bb2f93529f95c1",
+    "events": "e745b4bbe6e231768195991bc81292e00b438a26a97466e017a3f3ab34926eb8",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     1156718256,
+     536944304,
      1944344031,
-     6,
+     536939060,
      617681966
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 13,
     "xpsr": 0
    },
@@ -613,29 +670,30 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 1996365079)",
+    "('W', 536898232, 4, 536943892)",
     "('C', 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "44c6b16e23904148f88c863006cb2d9cc148141d314cb2fa10ac5354c02a3dbd",
+    "events": "f0ccae9b5b164529309c8e088690454aad4c61fda9580d04619513e6acd7ca0b",
     "kind": "fault",
     "ncalls": 1
    },
    "fixture": {
     "abs": [],
     "args": [
-     1996365079,
+     536943892,
      12,
-     3,
+     536943328,
      470668832
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-14",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 14,
     "xpsr": 0
    },
@@ -656,29 +714,30 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 7)",
+    "('W', 536898232, 4, 536952404)",
     "('C', 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "bc314083d37af236398d967d63b5b88616d3326ac7c1ecf04b0f5b2faee0e59f",
+    "events": "4055a9b191a03a090ce7fcce3def586402c3366b74d4c0e95874c663770cdfc0",
     "kind": "fault",
     "ncalls": 1
    },
    "fixture": {
     "abs": [],
     "args": [
-     7,
+     536952404,
      256,
-     5,
+     536951236,
      4
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-15",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 15,
     "xpsr": 0
    },
@@ -703,30 +762,31 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 2024561310)",
-    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 3454407978, 886755549, 'S', 'F', 'T', None)",
+    "('W', 536898232, 4, 536943260)",
+    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 536941864, 886755549, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "01e6330ea392ca816979ab43eed69bd974f21f0a8edc0b9226df485af92b0fc4",
+    "events": "fd5f9e4e7bd64f52dd59d4d8ec5898f073cd3e0a2a2a3b73d510df4b763f72bc",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     2024561310,
+     536943260,
      2147483648,
-     3454407978,
+     536941864,
      16
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
@@ -747,29 +807,30 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 3)",
+    "('W', 536898232, 4, 536944016)",
     "('C', 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "18afc019950cc673c98d813d4b9811c5a90c953aad6e24b8d223a05e21fcbe08",
+    "events": "f5f468cf6ebe23349954af96969e84f2cd8f5860d9c1d706db668d6125d198f6",
     "kind": "fault",
     "ncalls": 1
    },
    "fixture": {
     "abs": [],
     "args": [
-     3,
+     536944016,
      3254638692,
-     1168623309,
+     536938188,
      4252165479
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-17",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 17,
     "xpsr": 0
    },
@@ -790,29 +851,30 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 3912442165)",
+    "('W', 536898232, 4, 536944948)",
     "('C', 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "254fe90242c6163240674bd3a30f6f0bcc06ca99f3178d0ca52b68d10d98e201",
+    "events": "105518a28c2118ef85821e39ea2ac220f67582d57503d82695b5546d12f663cf",
     "kind": "fault",
     "ncalls": 1
    },
    "fixture": {
     "abs": [],
     "args": [
-     3912442165,
+     536944948,
      0,
-     697236451,
+     536951776,
      1
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-18",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 18,
     "xpsr": 0
    },
@@ -837,30 +899,31 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 6)",
-    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 4178753371, 4075769455, 'S', 'F', 'T', None)",
+    "('W', 536898232, 4, 536939284)",
+    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 536950616, 4075769455, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "9cc530e81e6a4bc43f634f30fbf49e7c2ed86607cfe3b8b30b099c326ece70dc",
+    "events": "0a95146fc5b2855fd38a9fabec46ef8357bedaca2f19abb387f2d4d48ee2ee39",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     6,
+     536939284,
      1536401714,
-     4178753371,
+     536950616,
      255
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 19,
     "xpsr": 0
    },
@@ -869,54 +932,6 @@
   },
   {
    "call_arities": [
-    4,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32"
-   ],
-   "call_targets": [
-    105584,
-    92072
-   ],
-   "events_head": [
-    "('W', 536898232, 4, 843060076)",
-    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 2870852768, 2217669457, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "error": "Invalid memory read",
-    "events": "2bde319dcbf5e52ef5fac6e590b6e448d96e47d978648ce70c8f5188b5540cef",
-    "kind": "fault",
-    "ncalls": 2
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     843060076,
-     1,
-     2870852768,
-     0
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-21",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 21,
-    "xpsr": 0
-   },
-   "new_instructions": 20,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
     0
    ],
    "call_float_arities": [
@@ -929,30 +944,31 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 1591295399)",
+    "('W', 536898232, 4, 536952740)",
     "('C', 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "576c423d0f1fa34caa5884a9f2ba3d8d63c36c0b2784347282e9cb74019e9fa7",
+    "events": "7d8c24e5dee95509e4655c1a64faff9a7f24146b2dcb143c13eded75854dea17",
     "kind": "fault",
     "ncalls": 1
    },
    "fixture": {
     "abs": [],
     "args": [
-     1591295399,
-     241044672,
-     2034212132,
-     1515885587
+     536952740,
+     2306919366,
+     536939760,
+     7
     ],
-    "float_scratch": true,
+    "float_scratch": false,
     "fp": {},
-    "id": "seed-23",
+    "id": "seed-20",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
-    "scratch_seed": 23,
+    "outparam": null,
+    "scratch_seed": 20,
     "xpsr": 0
    },
    "new_instructions": 14,
@@ -976,30 +992,212 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 3751937804)",
-    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 2149248134, 3712121755, 'S', 'F', 'T', None)",
+    "('W', 536898232, 4, 536941420)",
+    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 536951968, 2217669457, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "c6648f2b289cb856192c75b546499b6a108ae9bb6b197bc726e6346e5ec1da0d",
+    "events": "92718710e13c1acf93310ac976987fe23c9d614d85cdab0ababea1b3ece74e80",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     3751937804,
+     536941420,
+     1,
+     536951968,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-21",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 21,
+    "xpsr": 0
+   },
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    92072
+   ],
+   "events_head": [
+    "('W', 536898232, 4, 536937396)",
+    "('C', 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "ab9b76b2c0f52e25c1804cc241e04e7be8b6c8cbbf9b9a199120b63afa644c34",
+    "kind": "fault",
+    "ncalls": 1
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536937396,
+     3001296298,
+     536949836,
+     2451975022
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-22",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 22,
+    "xpsr": 0
+   },
+   "new_instructions": 14,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    92072
+   ],
+   "events_head": [
+    "('W', 536898232, 4, 536952228)",
+    "('C', 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "b5eed4143d9b7f546bed0c0ad78017b65ffac2c8d48bc0a68b99369bc4da8f72",
+    "kind": "fault",
+    "ncalls": 1
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952228,
+     241044672,
+     536943908,
+     1515885587
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-23",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 23,
+    "xpsr": 0
+   },
+   "new_instructions": 14,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    92072
+   ],
+   "events_head": [
+    "('W', 536898232, 4, 536949908)",
+    "('C', 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "12a2d19146642c8888c432bb0dc1e825634ad4f99b830e84311bbce4c712c643",
+    "kind": "fault",
+    "ncalls": 1
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536949908,
+     6,
+     536937140,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-24",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 24,
+    "xpsr": 0
+   },
+   "new_instructions": 14,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    105584,
+    92072
+   ],
+   "events_head": [
+    "('W', 536898232, 4, 536938252)",
+    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 536947844, 3712121755, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "031983174f7c3ffe4262cc8a40723a3e2e85108b6da054cf0787b9f620d34faf",
+    "kind": "fault",
+    "ncalls": 2
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536938252,
      12,
-     2149248134,
+     536947844,
      604019693
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 25,
     "xpsr": 0
    },
@@ -1020,29 +1218,30 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 2992330384)",
+    "('W', 536898232, 4, 536942224)",
     "('C', 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "4ce204559a03d415a0d0095cdc336722064e1f4474bf3811ce1534fed3e95f48",
+    "events": "17c3561567b6214629553e2bbf5e55bd8a687765881ca42bd241370b5ec1ba0b",
     "kind": "fault",
     "ncalls": 1
    },
    "fixture": {
     "abs": [],
     "args": [
-     2992330384,
+     536942224,
      12,
-     3037640278,
+     536950356,
      2678623347
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-26",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 26,
     "xpsr": 0
    },
@@ -1067,30 +1266,31 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 187818536)",
-    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 3639365232, 1775869161, 'S', 'F', 'T', None)",
+    "('W', 536898232, 4, 536945192)",
+    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 536940144, 1775869161, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "0c4a74b4af5b0cb20393075c15e36624e5eb9a988a2a727756ec0ef01af57ea6",
+    "events": "df6e0a99f6fccc8b964bf005a728cb2d04f620dd7ee908df1f4679d53882ea50",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     187818536,
+     536945192,
      681194263,
-     3639365232,
+     536940144,
      4125446660
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 27,
     "xpsr": 0
    },
@@ -1115,30 +1315,31 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 3711083943)",
-    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 1, 1542213390, 'S', 'F', 'T', None)",
+    "('W', 536898232, 4, 536946084)",
+    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 536946096, 1542213390, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "7abf5dfc5d649c47f5a456c19d8ad38714aeb9d87acbcd4c6d46204fb5fb101a",
+    "events": "bde9a4956691bc2231ec28ebee281a8b5f3953ac41af932d817a98331b776ca6",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     3711083943,
+     536946084,
      4285183211,
-     1,
+     536946096,
      2592385448
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-28",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 28,
     "xpsr": 0
    },
@@ -1159,29 +1360,30 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 739928864)",
+    "('W', 536898232, 4, 536947488)",
     "('C', 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "cf1968e2b495c463ab0315740738f9265a2529e6a54a04c2dbd4e426f192f6db",
+    "events": "c8fb71bb3c160aa4889c077cb49e5a8913a246ecec6ee7ac7da0d7f9824bb148",
     "kind": "fault",
     "ncalls": 1
    },
    "fixture": {
     "abs": [],
     "args": [
-     739928864,
+     536947488,
      256,
-     3886541357,
+     536947244,
      8
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-29",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 29,
     "xpsr": 0
    },
@@ -1206,30 +1408,31 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 256)",
-    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 1, 2417460406, 'S', 'F', 'T', None)",
+    "('W', 536898232, 4, 536952796)",
+    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 536945744, 2417460406, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "d8ec11f521c121571ff82b2921e469f53bd3b72da613a321571b9b1301c2f378",
+    "events": "ea2c41897f6d55c4cbdc0168aafbe4821675405485421cb407e9bf62fe8c5572",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     256,
+     536952796,
      8,
-     1,
+     536945744,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-30",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 30,
     "xpsr": 0
    },
@@ -1254,30 +1457,31 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 4294967295)",
-    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 7, 1988174091, 'S', 'F', 'T', None)",
+    "('W', 536898232, 4, 536952300)",
+    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 536938932, 1988174091, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "c9c3592ab90e302e2e7d9a5747473496ed552bbba54a1ef33b35b1ccf41484e5",
+    "events": "0a9053887724105190da7b2364071a566918ad5e31244bf61d21142cac364f03",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     4294967295,
+     536952300,
      2461003590,
-     7,
+     536938932,
      53351545
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
@@ -1302,30 +1506,31 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 1839753098)",
-    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 3442053927, 615009301, 'S', 'F', 'T', None)",
+    "('W', 536898232, 4, 536946568)",
+    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 536941348, 615009301, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "4a02c6ab9ce80a79e7c0e0aa91f4f938344e6dbd1855355baab689985080375f",
+    "events": "17ec326c8a2341ffa2966bbb7df3a59e00d85da98194e3b8862f427189e1a057",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     1839753098,
+     536946568,
      2706821390,
-     3442053927,
+     536941348,
      1170652979
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-32",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 32,
     "xpsr": 0
    },
@@ -1346,29 +1551,30 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 1076094348)",
+    "('W', 536898232, 4, 536946060)",
     "('C', 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "f4e4d86b87e5e733a294cdd14da00eebf679872599f46940bfe085728446bb14",
+    "events": "ac6a8d6651ae1509f43eabfb8ae7fe929f1ea6f5adef1090ec36c1e7c267d506",
     "kind": "fault",
     "ncalls": 1
    },
    "fixture": {
     "abs": [],
     "args": [
-     1076094348,
+     536946060,
      7,
-     7,
+     536944276,
      5
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-33",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 33,
     "xpsr": 0
    },
@@ -1393,30 +1599,31 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 12)",
-    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 922796015, 2360084761, 'S', 'F', 'T', None)",
+    "('W', 536898232, 4, 536950120)",
+    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 536952812, 2360084761, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "762ebae0be91975d100eafc7b42b60ae304b43217d1b1a9b2f766beebd67b101",
+    "events": "2cf8509ea93403bce9879900749e73d04877da39d4179be47479f9e5427a5859",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     12,
+     536950120,
      3990671540,
-     922796015,
+     536952812,
      2147483647
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 34,
     "xpsr": 0
    },
@@ -1441,30 +1648,31 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 2726887024)",
-    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 4001652011, 4019880274, 'S', 'F', 'T', None)",
+    "('W', 536898232, 4, 536952432)",
+    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 536943912, 4019880274, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "00168ffaaefa2330d6313a50b46e1a6e6427cd8c3fc3dabc84f5b5c4e3c9929b",
+    "events": "7c6e2a41bf6a0df2406a7af94da56f7dac66c34a7ae673dcf288673d057c86e1",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     2726887024,
+     536952432,
      3578977268,
-     4001652011,
+     536943912,
      1
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
@@ -1489,30 +1697,31 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 0)",
-    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 2147483647, 823752600, 'S', 'F', 'T', None)",
+    "('W', 536898232, 4, 536944224)",
+    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 536945964, 823752600, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "78181c7ce501d47623de003be8add396fd4139b442b7e039eaa254c48d4b008b",
+    "events": "2cee1d5398545150ed857ecd8071533b259eb2ab4e6eb021488551feb25257e0",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     0,
+     536944224,
      12,
-     2147483647,
+     536945964,
      8
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 36,
     "xpsr": 0
    },
@@ -1533,29 +1742,30 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 1)",
+    "('W', 536898232, 4, 536951728)",
     "('C', 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "d98aec1b08e9f88f866ff019092172d0824421f88ea21be59674fac7e0d62a07",
+    "events": "00f58fbc742015c0fc4559e2c8c9420d34e967c254e5753b03009c2346f34989",
     "kind": "fault",
     "ncalls": 1
    },
    "fixture": {
     "abs": [],
     "args": [
-     1,
+     536951728,
      2057795936,
-     2725586938,
+     536946680,
      1299241558
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-37",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 37,
     "xpsr": 0
    },
@@ -1576,29 +1786,30 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 0)",
+    "('W', 536898232, 4, 536939760)",
     "('C', 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "0d5a8365033c90b65ff97dcb7821cf154819f6ad5f3bc66b90534b9404561a8c",
+    "events": "f448121b20ed23b3f0adf15a164fd0ab4e3a05ad21829fa61e0af0da5139a631",
     "kind": "fault",
     "ncalls": 1
    },
    "fixture": {
     "abs": [],
     "args": [
-     0,
+     536939760,
      255,
-     1,
+     536936976,
      2
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-38",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 38,
     "xpsr": 0
    },
@@ -1623,30 +1834,31 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 3)",
-    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 3774328631, 2944518647, 'S', 'F', 'T', None)",
+    "('W', 536898232, 4, 536941424)",
+    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 536948532, 2944518647, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "553961be692cebf767e97a59e2d83abd0d3dc4f7ec9b89610cbb95d85308bf29",
+    "events": "7061fe21cd3a5e2b7f8df29c7f6abb3f3dac8b6297073f3500e4f5c003680bf4",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
     "abs": [],
     "args": [
-     3,
+     536941424,
      1587124134,
-     3774328631,
+     536948532,
      1997155928
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
     "xpsr": 0
    },
@@ -1655,150 +1867,6 @@
   },
   {
    "call_arities": [
-    4,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32"
-   ],
-   "call_targets": [
-    105584,
-    92072
-   ],
-   "events_head": [
-    "('W', 536898232, 4, 3886568119)",
-    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 3059135833, 2096484019, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "error": "Invalid memory read",
-    "events": "084a75bad61c2cf3fcb07aba08a6218ba172e0f84f6bd5ff3a0787614c877920",
-    "kind": "fault",
-    "ncalls": 2
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3886568119,
-     256,
-     3059135833,
-     1
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-41",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 41,
-    "xpsr": 0
-   },
-   "new_instructions": 20,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32"
-   ],
-   "call_targets": [
-    105584,
-    92072
-   ],
-   "events_head": [
-    "('W', 536898232, 4, 538639782)",
-    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 12, 509112996, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "error": "Invalid memory read",
-    "events": "793e55f67b2827a260ba603c743d02e058fb564129a15c6a8ce982a510fa5df1",
-    "kind": "fault",
-    "ncalls": 2
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     538639782,
-     4,
-     12,
-     3983748582
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-42",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 42,
-    "xpsr": 0
-   },
-   "new_instructions": 20,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32"
-   ],
-   "call_targets": [
-    105584,
-    92072
-   ],
-   "events_head": [
-    "('W', 536898232, 4, 0)",
-    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 1643521744, 217414738, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "error": "Invalid memory read",
-    "events": "175e8d3dddbb3d10a2be43dbabbba407de0bc1204811591ac501396909e3c319",
-    "kind": "fault",
-    "ncalls": 2
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     0,
-     3098095624,
-     1643521744,
-     0
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-44",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 44,
-    "xpsr": 0
-   },
-   "new_instructions": 20,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
     0
    ],
    "call_float_arities": [
@@ -1811,30 +1879,31 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 12)",
+    "('W', 536898232, 4, 536943600)",
     "('C', 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "360541409bf14fb85aad8bcc38137c9fcadf372bb76df329c883a1fcd0c54828",
+    "events": "75cce640663baff2335dea3474561267a2d8fe4f5c86c37912268251e8b6ed72",
     "kind": "fault",
     "ncalls": 1
    },
    "fixture": {
     "abs": [],
     "args": [
-     12,
-     2147483648,
-     2737014790,
-     2486441645
+     536943600,
+     3928041777,
+     536948352,
+     1835695343
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "seed-45",
+    "id": "seed-40",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
-    "scratch_seed": 45,
+    "outparam": null,
+    "scratch_seed": 40,
     "xpsr": 0
    },
    "new_instructions": 14,
@@ -1842,45 +1911,232 @@
   },
   {
    "call_arities": [
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
     0
    ],
    "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
     0
    ],
    "call_return_kinds": [
+    "i32",
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "void",
     "i32"
    ],
    "call_targets": [
+    92072,
+    508072,
+    92072,
+    508072,
+    92072,
+    508072,
+    92072,
+    508072,
+    92072,
+    508072,
+    92072,
+    508072,
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 2311625221)",
-    "('C', 0, 'S', 'F', 'T', None)"
+    "('W', 536898232, 4, 536940544)",
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 100, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('C', 3, 100, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 100, 'S', 'F', 'T', None)",
+    "('C', 6, 'S', 'F', 'T', None)",
+    "('C', 7, 100, 'S', 'F', 'T', None)",
+    "('C', 8, 'S', 'F', 'T', None)",
+    "('C', 9, 100, 'S', 'F', 'T', None)",
+    "('C', 10, 'S', 'F', 'T', None)",
+    "('C', 11, 100, 'S', 'F', 'T', None)",
+    "('C', 12, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "d50a324153d9e858f9b2c801b436aa1f164d4a04f9fd778186a8c8a8eb6f5f14",
+    "events": "9daf326c1ad5502a18948a73ef59a93444bce160e90597c109d060dffe73bb55",
     "kind": "fault",
-    "ncalls": 1
+    "ncalls": 13
    },
    "fixture": {
-    "abs": [],
+    "abs": [
+     [
+      536940544,
+      "4110012044100120481001204c1001205110012054100120581001205c1001206110012064100120681001206c1001207110012074100120781001207c1001208110012084100120881001208c1001209110012094100120981001209c100120a1100120a4100120a8100120ac100120b1100120b4100120b8100120bc100120c1100120c4100120c8100120cc100120d1100120d4100120d8100120dc100120e1100120e4100120e8100120ec100120f1100120f4100120f8100120fc1001200111012004110120081101200c1101201111012014110120181101201c1101202111012024110120281101202c1101203111012034110120381101203c1101204111012044110120481101204c1101205111012054110120581101205c1101206111012064110120681101206c1101207111012074110120781101207c1101208111012084110120881101208c1101209111012094110120981101209c110120a1110120a4110120a8110120ac110120b1110120b4110120b8110120bc110120c1110120c4110120c8110120cc110120d1110120d4110120d8110120dc110120e1110120e4110120e8110120ec110120f1110120f4110120f8110120fc1101200110012004100120081001200c1001201110012014100120181001201c1001202110012024100120281001202c1001203110012034100120381001203c100120"
+     ]
+    ],
     "args": [
-     2311625221,
-     2147483648,
-     2205369221,
-     2288169737
+     536940544,
+     558208872,
+     536940552,
+     3003667676
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "seed-46",
+    "id": "chain0-0",
     "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 46,
+    "nptr": 2,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 830,
     "xpsr": 0
    },
-   "new_instructions": 14,
+   "new_instructions": 21,
    "stack_args": []
   },
   {
@@ -1901,13 +2157,13 @@
     92072
    ],
    "events_head": [
-    "('W', 536898232, 4, 2156366374)",
-    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 558645175, 0, 'S', 'F', 'T', None)",
+    "('W', 536898232, 4, 536939044)",
+    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 536952756, 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "2fd44bbd047b72c3458415393de0b0b2a98a302c807491c41b4472d7e4a89c60",
+    "events": "44405a3360acf377a1ee48ef06ac5b957cc4f4eaa93a287442a33ae6ff5230c5",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1915,485 +2171,26 @@
     "abs": [
      [
       536900948,
-      "00000000"
+      "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
      ]
     ],
     "args": [
-     2156366374,
+     536939044,
      708972563,
-     558645175,
+     536952756,
      4
     ],
     "float_scratch": false,
     "fp": {},
     "id": "glob-2-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
    "new_instructions": 21,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    0,
-    1,
-    0,
-    1,
-    0,
-    1,
-    0,
-    1,
-    0,
-    1,
-    0,
-    1,
-    0,
-    1,
-    0,
-    1,
-    0,
-    1,
-    0,
-    1,
-    0,
-    1,
-    0,
-    1,
-    0,
-    1,
-    0,
-    1,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "void",
-    "i32",
-    "void",
-    "i32"
-   ],
-   "call_targets": [
-    105584,
-    92072,
-    508072,
-    92072,
-    508072,
-    92072,
-    508072,
-    92072,
-    508072,
-    92072,
-    508072,
-    92072,
-    508072,
-    92072,
-    508072,
-    92072,
-    508072,
-    92072,
-    508072,
-    92072,
-    508072,
-    92072,
-    508072,
-    92072,
-    508072,
-    92072,
-    508072,
-    92072,
-    508072,
-    92072
-   ],
-   "events_head": [
-    "('W', 536898232, 4, 2345269775)",
-    "('C', 0, ('RO', b'%s(): Starting Apple Notification Center Service client\\n\\n'), ('RO', b'ancs_main'), 1935641720, 4140973137, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 100, 'S', 'F', 'T', None)",
-    "('C', 3, 'S', 'F', 'T', None)",
-    "('C', 4, 100, 'S', 'F', 'T', None)",
-    "('C', 5, 'S', 'F', 'T', None)",
-    "('C', 6, 100, 'S', 'F', 'T', None)",
-    "('C', 7, 'S', 'F', 'T', None)",
-    "('C', 8, 100, 'S', 'F', 'T', None)",
-    "('C', 9, 'S', 'F', 'T', None)",
-    "('C', 10, 100, 'S', 'F', 'T', None)",
-    "('C', 11, 'S', 'F', 'T', None)",
-    "('C', 12, 100, 'S', 'F', 'T', None)",
-    "('C', 13, 'S', 'F', 'T', None)",
-    "('C', 14, 100, 'S', 'F', 'T', None)",
-    "('C', 15, 'S', 'F', 'T', None)",
-    "('C', 16, 100, 'S', 'F', 'T', None)",
-    "('C', 17, 'S', 'F', 'T', None)",
-    "('C', 18, 100, 'S', 'F', 'T', None)",
-    "('C', 19, 'S', 'F', 'T', None)",
-    "('C', 20, 100, 'S', 'F', 'T', None)",
-    "('C', 21, 'S', 'F', 'T', None)",
-    "('C', 22, 100, 'S', 'F', 'T', None)",
-    "('C', 23, 'S', 'F', 'T', None)",
-    "('C', 24, 100, 'S', 'F', 'T', None)",
-    "('C', 25, 'S', 'F', 'T', None)",
-    "('C', 26, 100, 'S', 'F', 'T', None)",
-    "('C', 27, 'S', 'F', 'T', None)",
-    "('R', 1083270419, 1, 0)",
-    "('C', 28, 100, 'S', 'F', 'T', None)",
-    "('C', 29, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "error": "Invalid memory read",
-    "events": "09c5f88a268793946af199831032bc49d2daf9341ea5e6fec1a4a126cf35ef64",
-    "kind": "fault",
-    "ncalls": 30
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     2345269775,
-     3092785552,
-     1935641720,
-     554330043
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "orc-all-0",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [
-     [
-      0,
-      0,
-      0
-     ],
-     [
-      1,
-      0,
-      0
-     ],
-     [
-      2,
-      0,
-      0
-     ],
-     [
-      3,
-      0,
-      0
-     ],
-     [
-      4,
-      0,
-      0
-     ],
-     [
-      5,
-      0,
-      0
-     ],
-     [
-      6,
-      0,
-      0
-     ],
-     [
-      7,
-      0,
-      0
-     ],
-     [
-      8,
-      0,
-      0
-     ],
-     [
-      9,
-      0,
-      0
-     ],
-     [
-      10,
-      0,
-      0
-     ],
-     [
-      11,
-      0,
-      0
-     ],
-     [
-      12,
-      0,
-      0
-     ],
-     [
-      13,
-      0,
-      0
-     ],
-     [
-      14,
-      0,
-      0
-     ],
-     [
-      15,
-      0,
-      0
-     ],
-     [
-      16,
-      0,
-      0
-     ],
-     [
-      17,
-      0,
-      0
-     ],
-     [
-      18,
-      0,
-      0
-     ],
-     [
-      19,
-      0,
-      0
-     ],
-     [
-      20,
-      0,
-      0
-     ],
-     [
-      21,
-      0,
-      0
-     ],
-     [
-      22,
-      0,
-      0
-     ],
-     [
-      23,
-      0,
-      0
-     ],
-     [
-      24,
-      0,
-      0
-     ],
-     [
-      25,
-      0,
-      0
-     ],
-     [
-      26,
-      0,
-      0
-     ],
-     [
-      0,
-      1,
-      0
-     ],
-     [
-      1,
-      1,
-      0
-     ],
-     [
-      2,
-      1,
-      0
-     ],
-     [
-      3,
-      1,
-      0
-     ],
-     [
-      4,
-      1,
-      0
-     ],
-     [
-      5,
-      1,
-      0
-     ],
-     [
-      6,
-      1,
-      0
-     ],
-     [
-      7,
-      1,
-      0
-     ],
-     [
-      8,
-      1,
-      0
-     ],
-     [
-      9,
-      1,
-      0
-     ],
-     [
-      10,
-      1,
-      0
-     ],
-     [
-      11,
-      1,
-      0
-     ],
-     [
-      12,
-      1,
-      0
-     ],
-     [
-      13,
-      1,
-      0
-     ],
-     [
-      14,
-      1,
-      0
-     ],
-     [
-      15,
-      1,
-      0
-     ],
-     [
-      16,
-      1,
-      0
-     ],
-     [
-      17,
-      1,
-      0
-     ],
-     [
-      18,
-      1,
-      0
-     ],
-     [
-      19,
-      1,
-      0
-     ],
-     [
-      20,
-      1,
-      0
-     ],
-     [
-      21,
-      1,
-      0
-     ],
-     [
-      22,
-      1,
-      0
-     ],
-     [
-      23,
-      1,
-      0
-     ],
-     [
-      24,
-      1,
-      0
-     ],
-     [
-      25,
-      1,
-      0
-     ],
-     [
-      26,
-      1,
-      0
-     ]
-    ],
-    "scratch_seed": 400,
-    "xpsr": 0
-   },
-   "new_instructions": 27,
    "stack_args": []
   }
  ],
@@ -2416,8 +2213,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "notify",
@@ -2426,16 +2226,24 @@
   "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
   "source": "shipped image"
  },
- "pointer_arg_mask": [],
+ "pointer_arg_mask": [
+  0,
+  2
+ ],
  "ret_kind": "i32",
  "search": {
-  "candidates": 225,
+  "candidates": 317,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
   "kept": 43,
-  "pointer_arg_mask": [],
+  "pointer_arg_mask": [
+   0,
+   2
+  ],
   "pointer_arg_mask_derived": true
  },
  "size": 368,

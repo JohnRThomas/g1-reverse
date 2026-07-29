@@ -20,12 +20,12 @@
    "events_head": [
     "('W', 536944428, 4, 0)",
     "('W', 536944452, 4, 536943476)",
-    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 4, 3694469211, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 536948308, 3694469211, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "be0a0395c15f3372548f1e48f4cf3e0fb74e74528674e93edb04a31365132eff",
+    "events": "ee0267446866b2f85e1705e82154c83766f9c219b1ce2bf854f8c1537d2e516e",
     "kind": "fault",
     "ncalls": 2
    },
@@ -34,15 +34,16 @@
     "args": [
      536943568,
      12,
-     4,
+     536948308,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -78,15 +79,16 @@
     "args": [
      536947244,
      1797429778,
-     2147483648,
+     536940476,
      315044147
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -113,12 +115,12 @@
    "events_head": [
     "('W', 536944172, 4, 0)",
     "('W', 536944196, 4, 536943220)",
-    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 3677430904, 471345317, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 536945784, 471345317, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "94431bfbf553d54fefe05539995d36b4861392dbdcf5bdb9ca72a38774824920",
+    "events": "ebbcd20f1c296fa14af497cdacf001ac4fee1516515e4ec78dc7979b4d5be7cf",
     "kind": "fault",
     "ncalls": 2
    },
@@ -127,15 +129,16 @@
     "args": [
      536943312,
      598759513,
-     3677430904,
+     536945784,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
@@ -171,15 +174,16 @@
     "args": [
      536945628,
      255,
-     8,
+     536943096,
      3619521758
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-3",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 3,
     "xpsr": 0
    },
@@ -206,12 +210,12 @@
    "events_head": [
     "('W', 536946724, 4, 0)",
     "('W', 536946748, 4, 536945772)",
-    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 3842370354, 2655161023, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 536947504, 2655161023, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "d08bf8a23e291abd42ff4d350c4bb18e5d742c663219c616cdb0bca6207d01f6",
+    "events": "a25b2c2c784d30faa2104b9b3b6d5b76e6f6b01e8599f388fa985bd14f793d76",
     "kind": "fault",
     "ncalls": 2
    },
@@ -220,15 +224,16 @@
     "args": [
      536945864,
      2147483647,
-     3842370354,
+     536947504,
      6
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 4,
     "xpsr": 0
    },
@@ -264,15 +269,16 @@
     "args": [
      536939588,
      3188701995,
-     8,
+     536944168,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-5",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 5,
     "xpsr": 0
    },
@@ -308,15 +314,16 @@
     "args": [
      536950900,
      3322790363,
-     5,
+     536947060,
      2147483647
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-6",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 6,
     "xpsr": 0
    },
@@ -352,15 +359,16 @@
     "args": [
      536941592,
      1604804925,
-     1,
+     536950368,
      2363272863
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-7",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 7,
     "xpsr": 0
    },
@@ -396,15 +404,16 @@
     "args": [
      536939044,
      708972563,
-     558645175,
+     536952756,
      4
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-8",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 8,
     "xpsr": 0
    },
@@ -431,12 +440,12 @@
    "events_head": [
     "('W', 536945552, 4, 0)",
     "('W', 536945576, 4, 536944600)",
-    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 499087790, 3178863954, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 536951212, 3178863954, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory fetch",
-    "events": "873115b740e0a9e1c491b3da01ab766992faa9b4eda46665ff65b6203909f864",
+    "events": "596ef0246da1d8e73199f6b5ae00e8269ec95ffb34877108684639a3cb1fdab8",
     "kind": "fault",
     "ncalls": 2
    },
@@ -445,15 +454,16 @@
     "args": [
      536944692,
      1556998536,
-     499087790,
+     536951212,
      2147483647
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 9,
     "xpsr": 0
    },
@@ -480,12 +490,12 @@
    "events_head": [
     "('W', 536940064, 4, 0)",
     "('W', 536940088, 4, 536939112)",
-    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 8, 3586673693, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 536946200, 3586673693, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "10d535e49df7a7a6c9ab190c88a6194eebc228c66dc26d8408bdfc084ce9304e",
+    "events": "a6269c2e47918145905caa066da78b10ff7aea17feadda666b9e4b4aee74c37a",
     "kind": "fault",
     "ncalls": 2
    },
@@ -494,15 +504,16 @@
     "args": [
      536939204,
      995058044,
-     8,
+     536946200,
      1
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 10,
     "xpsr": 0
    },
@@ -529,12 +540,12 @@
    "events_head": [
     "('W', 536937900, 4, 0)",
     "('W', 536937924, 4, 536936948)",
-    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 256, 801746852, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 536938076, 801746852, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "941bd2d0f5542020e8316dd04e8be9b158bdd2bbace29fdf724c7ae1da9f2bb3",
+    "events": "f8238d0cf0b20eb05453497fd9034b2e035e4db9e09b551045c3972f52220047",
     "kind": "fault",
     "ncalls": 2
    },
@@ -543,15 +554,16 @@
     "args": [
      536937040,
      2147483648,
-     256,
+     536938076,
      1426281073
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 11,
     "xpsr": 0
    },
@@ -578,12 +590,12 @@
    "events_head": [
     "('W', 536945380, 4, 0)",
     "('W', 536945404, 4, 536944428)",
-    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 5, 1542880163, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 536941268, 1542880163, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory fetch",
-    "events": "c1abc59e62625127e4579cb4149f3beccd105bb0a7113cde7efc7cca36317052",
+    "events": "953d1868147be34708e22209f224c60c58aba4f35aa3258374edeafc1683dfaf",
     "kind": "fault",
     "ncalls": 2
    },
@@ -592,15 +604,16 @@
     "args": [
      536944520,
      3217736208,
-     5,
+     536941268,
      1103693227
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-12",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 12,
     "xpsr": 0
    },
@@ -627,12 +640,12 @@
    "events_head": [
     "('W', 536945164, 4, 0)",
     "('W', 536945188, 4, 536944212)",
-    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 6, 287561451, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 536939060, 287561451, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory fetch",
-    "events": "3811ae9c5d09b34e704fa3f8589ed6af03bf7d430e0cf1085b8c177220cc139a",
+    "events": "e94e5a88373164aa5bf886ddb8d24d9ad2af9e8f9a9bdd119163780693882f14",
     "kind": "fault",
     "ncalls": 2
    },
@@ -641,15 +654,16 @@
     "args": [
      536944304,
      1944344031,
-     6,
+     536939060,
      617681966
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 13,
     "xpsr": 0
    },
@@ -685,15 +699,16 @@
     "args": [
      536943892,
      12,
-     3,
+     536943328,
      470668832
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-14",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 14,
     "xpsr": 0
    },
@@ -729,15 +744,16 @@
     "args": [
      536952404,
      256,
-     5,
+     536951236,
      4
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-15",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 15,
     "xpsr": 0
    },
@@ -764,12 +780,12 @@
    "events_head": [
     "('W', 536944120, 4, 0)",
     "('W', 536944144, 4, 536943168)",
-    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 3454407978, 886755549, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 536941864, 886755549, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "ab6bf4590c1c67203142a0f806a8837351d979c306caafddfd859ddee24dea37",
+    "events": "2f0cf470f779bf4c9fb8d68401002e021e51332e819f331d9cbfb60616c01b94",
     "kind": "fault",
     "ncalls": 2
    },
@@ -778,15 +794,16 @@
     "args": [
      536943260,
      2147483648,
-     3454407978,
+     536941864,
      16
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
@@ -822,15 +839,16 @@
     "args": [
      536944016,
      3254638692,
-     1168623309,
+     536938188,
      4252165479
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-17",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 17,
     "xpsr": 0
    },
@@ -866,15 +884,16 @@
     "args": [
      536944948,
      0,
-     697236451,
+     536951776,
      1
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-18",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 18,
     "xpsr": 0
    },
@@ -901,12 +920,12 @@
    "events_head": [
     "('W', 536940144, 4, 0)",
     "('W', 536940168, 4, 536939192)",
-    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 4178753371, 4075769455, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 536950616, 4075769455, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "25a582d8109fee75f55d2050ced4293635a48120473ced1fecdd4ec5556e4bf5",
+    "events": "b177b6b4dea619839eb4327fd2829c1e105a58969db513133cc43c81ab0bc26f",
     "kind": "fault",
     "ncalls": 2
    },
@@ -915,15 +934,16 @@
     "args": [
      536939284,
      1536401714,
-     4178753371,
+     536950616,
      255
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 19,
     "xpsr": 0
    },
@@ -959,15 +979,16 @@
     "args": [
      536952740,
      2306919366,
-     2,
+     536939760,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-20",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 20,
     "xpsr": 0
    },
@@ -994,12 +1015,12 @@
    "events_head": [
     "('W', 536942280, 4, 0)",
     "('W', 536942304, 4, 536941328)",
-    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 2870852768, 2217669457, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 536951968, 2217669457, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "03ab60a2f49245fe087175b53e63499987f171c00e96c4444a8fcea408cad03c",
+    "events": "c7fb9b37c0a0d83b92fec7563b2ed1cb58ad7a751f29a8aab0be4dbdb26e6884",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1008,15 +1029,16 @@
     "args": [
      536941420,
      1,
-     2870852768,
+     536951968,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-21",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 21,
     "xpsr": 0
    },
@@ -1052,15 +1074,16 @@
     "args": [
      536937396,
      3001296298,
-     4294967295,
+     536949836,
      2451975022
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-22",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 22,
     "xpsr": 0
    },
@@ -1096,15 +1119,16 @@
     "args": [
      536952228,
      241044672,
-     2034212132,
+     536943908,
      1515885587
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-23",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 23,
     "xpsr": 0
    },
@@ -1140,15 +1164,16 @@
     "args": [
      536949908,
      6,
-     2967241396,
+     536937140,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-24",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 24,
     "xpsr": 0
    },
@@ -1175,12 +1200,12 @@
    "events_head": [
     "('W', 536939112, 4, 0)",
     "('W', 536939136, 4, 536938160)",
-    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 2149248134, 3712121755, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 536947844, 3712121755, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "b6c0b02410b2f96ff4a965960517189117dc78115153ef9dfffd652b0bcaf1fa",
+    "events": "1bbbeddd116d31510b4d4fe128608b770eeb6a66699103f183ebd121cff0b610",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1189,15 +1214,16 @@
     "args": [
      536938252,
      12,
-     2149248134,
+     536947844,
      604019693
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 25,
     "xpsr": 0
    },
@@ -1233,15 +1259,16 @@
     "args": [
      536942224,
      12,
-     3037640278,
+     536950356,
      2678623347
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-26",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 26,
     "xpsr": 0
    },
@@ -1268,12 +1295,12 @@
    "events_head": [
     "('W', 536946052, 4, 0)",
     "('W', 536946076, 4, 536945100)",
-    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 3639365232, 1775869161, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 536940144, 1775869161, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "71320ebc86ab79caf6fbfe8cc855c93f36cee583662ffeb4a5d139ec6e13be25",
+    "events": "248746045f54510e9c65feeeb21c0dc3d59985cc2bf525fe78b9d213105cb10c",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1282,15 +1309,16 @@
     "args": [
      536945192,
      681194263,
-     3639365232,
+     536940144,
      4125446660
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 27,
     "xpsr": 0
    },
@@ -1317,12 +1345,12 @@
    "events_head": [
     "('W', 536946944, 4, 0)",
     "('W', 536946968, 4, 536945992)",
-    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 1, 1542213390, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 536946096, 1542213390, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "4acf9f0faf92c7093181d202adc08cbd55dd5f87b06a58f6e28e70dfa5da6077",
+    "events": "e6186f70d05309c863c5fe25c47e3766f467e8d6dc0bf4b25c60166a3aac7026",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1331,15 +1359,16 @@
     "args": [
      536946084,
      4285183211,
-     1,
+     536946096,
      2592385448
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-28",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 28,
     "xpsr": 0
    },
@@ -1375,15 +1404,16 @@
     "args": [
      536947488,
      256,
-     3886541357,
+     536947244,
      8
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-29",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 29,
     "xpsr": 0
    },
@@ -1410,12 +1440,12 @@
    "events_head": [
     "('W', 536953656, 4, 0)",
     "('W', 536953680, 4, 536952704)",
-    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 1, 2417460406, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 536945744, 2417460406, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "a5920a1687361240c9ec88febedfc2dcc39306518ce2d160a3b2037c62a5b19f",
+    "events": "e795a4d762495a72813daff8923c26671d567b761ec6b2cfc2b4181c3fa3ea39",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1424,15 +1454,16 @@
     "args": [
      536952796,
      8,
-     1,
+     536945744,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-30",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 30,
     "xpsr": 0
    },
@@ -1459,12 +1490,12 @@
    "events_head": [
     "('W', 536953160, 4, 0)",
     "('W', 536953184, 4, 536952208)",
-    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 7, 1988174091, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 536938932, 1988174091, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory fetch",
-    "events": "d17b42fd505a647b5ca7cbe02e65f3fcad942cfb2b27d491607ac2eea3247401",
+    "events": "2a7bb4db43817aedf90e2b975853953a45acc51d06f0f2d2bbfbaf92f96d978a",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1473,15 +1504,16 @@
     "args": [
      536952300,
      2461003590,
-     7,
+     536938932,
      53351545
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
@@ -1508,12 +1540,12 @@
    "events_head": [
     "('W', 536947428, 4, 0)",
     "('W', 536947452, 4, 536946476)",
-    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 3442053927, 615009301, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 536941348, 615009301, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "aa5fc85f5230b9c04420175396967778a1a7e339daaca1b8877b57ee28f7e521",
+    "events": "89da18aa41e83d139e3db1cae12f343578d76d5e1dc76253325bc6f98f88a67a",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1522,15 +1554,16 @@
     "args": [
      536946568,
      2706821390,
-     3442053927,
+     536941348,
      1170652979
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-32",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 32,
     "xpsr": 0
    },
@@ -1566,15 +1599,16 @@
     "args": [
      536946060,
      7,
-     7,
+     536944276,
      5
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-33",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 33,
     "xpsr": 0
    },
@@ -1601,12 +1635,12 @@
    "events_head": [
     "('W', 536950980, 4, 0)",
     "('W', 536951004, 4, 536950028)",
-    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 922796015, 2360084761, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 536952812, 2360084761, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "0418bd890935a14218a256646abf44fb5c12d22badcad5171f6bc0fbb17fee84",
+    "events": "60fe287ca3bebe4a50df049c1566f84586c05ec482226fbb83887fac8c1b4458",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1615,15 +1649,16 @@
     "args": [
      536950120,
      3990671540,
-     922796015,
+     536952812,
      2147483647
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 34,
     "xpsr": 0
    },
@@ -1650,12 +1685,12 @@
    "events_head": [
     "('W', 536953292, 4, 0)",
     "('W', 536953316, 4, 536952340)",
-    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 4001652011, 4019880274, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 536943912, 4019880274, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory fetch",
-    "events": "f9bb4ff7fde65987af225ae34fe83f1215bc20f8d83e4bd1e6d701be8560c435",
+    "events": "21dc7503b80ab9c1b3a79ba95f6b9933882f57af83eaf5198d4d8877ca8f574d",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1664,15 +1699,16 @@
     "args": [
      536952432,
      3578977268,
-     4001652011,
+     536943912,
      1
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
@@ -1699,12 +1735,12 @@
    "events_head": [
     "('W', 536945084, 4, 0)",
     "('W', 536945108, 4, 536944132)",
-    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 2147483647, 823752600, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 536945964, 823752600, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory fetch",
-    "events": "800a3c8f6e97a0ef4b8cdbb578b700510c950d50c75b01bd88f85dd037e84cb8",
+    "events": "45304c231bb87e3a1f21fa0bd3899c04bc621406646f0669938a7f77400eee88",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1713,15 +1749,16 @@
     "args": [
      536944224,
      12,
-     2147483647,
+     536945964,
      8
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 36,
     "xpsr": 0
    },
@@ -1757,15 +1794,16 @@
     "args": [
      536951728,
      2057795936,
-     2725586938,
+     536946680,
      1299241558
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-37",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 37,
     "xpsr": 0
    },
@@ -1801,15 +1839,16 @@
     "args": [
      536939760,
      255,
-     1,
+     536936976,
      2
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-38",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 38,
     "xpsr": 0
    },
@@ -1836,12 +1875,12 @@
    "events_head": [
     "('W', 536942284, 4, 0)",
     "('W', 536942308, 4, 536941332)",
-    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 3774328631, 2944518647, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): panel_suspend enter!\\n'), ('RO', b'panel_off'), 536948532, 2944518647, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory fetch",
-    "events": "e41464ec7dc65523e1abe419e41c735fa7b02ae0ffeb2f67e7056c90f8a6793d",
+    "events": "18162d4cbc155004b82add37ca38185ae93cbef3ca00b0fc1f95d15411f9d7e0",
     "kind": "fault",
     "ncalls": 2
    },
@@ -1850,15 +1889,16 @@
     "args": [
      536941424,
      1587124134,
-     3774328631,
+     536948532,
      1997155928
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
     "xpsr": 0
    },
@@ -1894,15 +1934,16 @@
     "args": [
      536943600,
      3928041777,
-     1786326658,
+     536948352,
      1835695343
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-40",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 40,
     "xpsr": 0
    },
@@ -1948,14 +1989,14 @@
     "args": [
      536940544,
      558208872,
-     2224734438,
+     536940552,
      3003667676
     ],
     "float_scratch": false,
     "fp": {},
     "id": "chain0-0",
     "mem": [],
-    "nptr": 1,
+    "nptr": 2,
     "oracle": [
      [
       0,
@@ -2078,6 +2119,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 830,
     "xpsr": 0
    },
@@ -2099,8 +2141,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "display",
@@ -2110,18 +2155,22 @@
   "source": "shipped image"
  },
  "pointer_arg_mask": [
-  0
+  0,
+  2
  ],
  "ret_kind": "i32",
  "search": {
-  "candidates": 199,
+  "candidates": 248,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
   "kept": 42,
   "pointer_arg_mask": [
-   0
+   0,
+   2
   ],
   "pointer_arg_mask_derived": true
  },

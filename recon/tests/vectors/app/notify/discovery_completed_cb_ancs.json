@@ -42,17 +42,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 1276959699, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 12, 4, 0, 'S', 'F', 'T', None)",
-    "('C', 2, 1276959699, 12, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 4, 0, 'S', 'F', 'T', None)",
-    "('C', 4, 1276959699, 1656661543, 4, 0, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 4, 0, 'S', 'F', 'T', None)",
+    "('C', 0, 536943568, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536948040, 536948308, 536940048, 'S', 'F', 'T', None)",
+    "('C', 2, 536943568, 536948040, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536948308, 536940048, 'S', 'F', 'T', None)",
+    "('C', 4, 536943568, 1656661543, 536948308, 536940048, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536948308, 536940048, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "559124e0a46dbf0f0d6a086eaf3a9ffaee764c6f9b503fb81b254b9f4105cf3c",
+    "events": "de65d74acc024eab81c731e9822ebe5d8dc97f918099c969a17979881342b2f3",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -61,17 +61,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1276959699,
-     12,
-     4,
-     0
+     536943568,
+     536948040,
+     536948308,
+     536940048
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -120,17 +121,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 4067469868, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 1797429778, 2147483648, 315044147, 'S', 'F', 'T', None)",
-    "('C', 2, 4067469868, 1797429778, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 2147483648, 315044147, 'S', 'F', 'T', None)",
-    "('C', 4, 4067469868, 1656661543, 2147483648, 315044147, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 2147483648, 315044147, 'S', 'F', 'T', None)",
+    "('C', 0, 536947244, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536943120, 536940476, 536949040, 'S', 'F', 'T', None)",
+    "('C', 2, 536947244, 536943120, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536940476, 536949040, 'S', 'F', 'T', None)",
+    "('C', 4, 536947244, 1656661543, 536940476, 536949040, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536940476, 536949040, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "de016e8e19eff567f9830c428371c9034925a6353f14b78b0aefe0edb78962c3",
+    "events": "1bdfdc14a3f8f3d577d6f6e906b0a97dde8f1087a55717d5f20eaa56785f512e",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -139,17 +140,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4067469868,
-     1797429778,
-     2147483648,
-     315044147
+     536947244,
+     536943120,
+     536940476,
+     536949040
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -198,17 +200,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 4290042576, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 598759513, 3677430904, 7, 'S', 'F', 'T', None)",
-    "('C', 2, 4290042576, 598759513, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 3677430904, 7, 'S', 'F', 'T', None)",
-    "('C', 4, 4290042576, 1656661543, 3677430904, 7, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 3677430904, 7, 'S', 'F', 'T', None)",
+    "('C', 0, 536943312, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536942680, 536945784, 536943396, 'S', 'F', 'T', None)",
+    "('C', 2, 536943312, 536942680, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536945784, 536943396, 'S', 'F', 'T', None)",
+    "('C', 4, 536943312, 1656661543, 536945784, 536943396, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536945784, 536943396, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "0bc6faf510dff1ef24c435b4eb6b59b1bd6348251b46fd715f58a790784a698c",
+    "events": "fa0f32ec0f3225a2ced9368d1e0ed7ad4e0dfbd830fc083b33e8521c5d4d96ca",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -217,17 +219,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4290042576,
-     598759513,
-     3677430904,
-     7
+     536943312,
+     536942680,
+     536945784,
+     536943396
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
@@ -276,17 +279,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 2618385373, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 255, 8, 3619521758, 'S', 'F', 'T', None)",
-    "('C', 2, 2618385373, 255, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 8, 3619521758, 'S', 'F', 'T', None)",
-    "('C', 4, 2618385373, 1656661543, 8, 3619521758, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 8, 3619521758, 'S', 'F', 'T', None)",
+    "('C', 0, 536945628, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536940936, 536943096, 536937692, 'S', 'F', 'T', None)",
+    "('C', 2, 536945628, 536940936, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536943096, 536937692, 'S', 'F', 'T', None)",
+    "('C', 4, 536945628, 1656661543, 536943096, 536937692, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536943096, 536937692, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "6ac16e3b78ff552162f4c9d8a37e79217deaaf8a84373d4dccb52f34ab089905",
+    "events": "1364f153b08db144bb6f99a39b9d475f44754d3f5c8de4c86283c2315f3d755d",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -295,17 +298,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2618385373,
-     255,
-     8,
-     3619521758
+     536945628,
+     536940936,
+     536943096,
+     536937692
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-3",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 3,
     "xpsr": 0
    },
@@ -354,17 +358,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 16, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 2147483647, 3842370354, 6, 'S', 'F', 'T', None)",
-    "('C', 2, 16, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 3842370354, 6, 'S', 'F', 'T', None)",
-    "('C', 4, 16, 1656661543, 3842370354, 6, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 3842370354, 6, 'S', 'F', 'T', None)",
+    "('C', 0, 536945864, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536944284, 536947504, 536951124, 'S', 'F', 'T', None)",
+    "('C', 2, 536945864, 536944284, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536947504, 536951124, 'S', 'F', 'T', None)",
+    "('C', 4, 536945864, 1656661543, 536947504, 536951124, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536947504, 536951124, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9ccfad88df3c6d081c97a84826364e9475903ea4c5f21ebe81ebb6112d1183b6",
+    "events": "ebbdfd8f54cd80b855fb23b40b66ba850b3c40eda1d060f8e24ca6121184dd9e",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -373,17 +377,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     16,
-     2147483647,
-     3842370354,
-     6
+     536945864,
+     536944284,
+     536947504,
+     536951124
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 4,
     "xpsr": 0
    },
@@ -432,17 +437,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 4, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 3188701995, 8, 7, 'S', 'F', 'T', None)",
-    "('C', 2, 4, 3188701995, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 8, 7, 'S', 'F', 'T', None)",
-    "('C', 4, 4, 1656661543, 8, 7, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 8, 7, 'S', 'F', 'T', None)",
+    "('C', 0, 536939588, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536951592, 536944168, 536942644, 'S', 'F', 'T', None)",
+    "('C', 2, 536939588, 536951592, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536944168, 536942644, 'S', 'F', 'T', None)",
+    "('C', 4, 536939588, 1656661543, 536944168, 536942644, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536944168, 536942644, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "28e59dad1c0683b1dbb622d85562ea8f34bdd6ae658c767a324aa7113532d656",
+    "events": "73e7bc6e0995d6d3192fe1c6673dcb16658a622f554aacf80f4ee450ab2fdac7",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -451,17 +456,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4,
-     3188701995,
-     8,
-     7
+     536939588,
+     536951592,
+     536944168,
+     536942644
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-5",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 5,
     "xpsr": 0
    },
@@ -510,17 +516,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 4, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 3322790363, 5, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 2, 4, 3322790363, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 5, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 4, 4, 1656661543, 5, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 5, 2147483647, 'S', 'F', 'T', None)",
+    "('C', 0, 536950900, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536936920, 536947060, 536952236, 'S', 'F', 'T', None)",
+    "('C', 2, 536950900, 536936920, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536947060, 536952236, 'S', 'F', 'T', None)",
+    "('C', 4, 536950900, 1656661543, 536947060, 536952236, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536947060, 536952236, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9760e72802709ec3eece27e74a2dc28d088d2ae7f23bbec9f45a492b6cec15f0",
+    "events": "65734db3dd9b0f5a2113db38d1d51d4bdb7a63dfc54db972bd78451583ead59d",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -529,17 +535,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4,
-     3322790363,
-     5,
-     2147483647
+     536950900,
+     536936920,
+     536947060,
+     536952236
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-6",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 6,
     "xpsr": 0
    },
@@ -588,17 +595,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 2300957721, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 1604804925, 1, 2363272863, 'S', 'F', 'T', None)",
-    "('C', 2, 2300957721, 1604804925, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 1, 2363272863, 'S', 'F', 'T', None)",
-    "('C', 4, 2300957721, 1656661543, 1, 2363272863, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 1, 2363272863, 'S', 'F', 'T', None)",
+    "('C', 0, 536941592, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536944956, 536950368, 536948380, 'S', 'F', 'T', None)",
+    "('C', 2, 536941592, 536944956, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536950368, 536948380, 'S', 'F', 'T', None)",
+    "('C', 4, 536941592, 1656661543, 536950368, 536948380, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536950368, 536948380, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c0890ab38a2c3538515071371e953e1406275e86a09bc42c29620928a7bcbb8d",
+    "events": "e2e3215137efe27945ee5950cf19c37bfab0ea72705ddc01ed5c01efb037bb37",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -607,17 +614,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2300957721,
-     1604804925,
-     1,
-     2363272863
+     536941592,
+     536944956,
+     536950368,
+     536948380
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-7",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 7,
     "xpsr": 0
    },
@@ -666,17 +674,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 2156366374, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 708972563, 558645175, 4, 'S', 'F', 'T', None)",
-    "('C', 2, 2156366374, 708972563, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 558645175, 4, 'S', 'F', 'T', None)",
-    "('C', 4, 2156366374, 1656661543, 558645175, 4, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 558645175, 4, 'S', 'F', 'T', None)",
+    "('C', 0, 536939044, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536940560, 536952756, 536949588, 'S', 'F', 'T', None)",
+    "('C', 2, 536939044, 536940560, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536952756, 536949588, 'S', 'F', 'T', None)",
+    "('C', 4, 536939044, 1656661543, 536952756, 536949588, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536952756, 536949588, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "5270bf7531afcc4ab67134f3497095de937c24a2973b85ef6edb0c118bb155a1",
+    "events": "71ab8d2a7f2d9d118b481ce8002c326e34b6682034e7e105f66f7a534d014722",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -685,17 +693,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2156366374,
-     708972563,
-     558645175,
-     4
+     536939044,
+     536940560,
+     536952756,
+     536949588
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-8",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 8,
     "xpsr": 0
    },
@@ -744,17 +753,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 1346232374, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 1556998536, 499087790, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 2, 1346232374, 1556998536, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 499087790, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 4, 1346232374, 1656661543, 499087790, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 499087790, 2147483647, 'S', 'F', 'T', None)",
+    "('C', 0, 536944692, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536947080, 536951212, 536940988, 'S', 'F', 'T', None)",
+    "('C', 2, 536944692, 536947080, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536951212, 536940988, 'S', 'F', 'T', None)",
+    "('C', 4, 536944692, 1656661543, 536951212, 536940988, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536951212, 536940988, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "1d0fb7495b5c8234927a7a6b198ddfa44538a41f609112e9c12be1c22f17a230",
+    "events": "1b9f03cd6be78d68274c821a20dfb0f57c1d85b0255b40baf03b5f86564777a8",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -763,17 +772,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1346232374,
-     1556998536,
-     499087790,
-     2147483647
+     536944692,
+     536947080,
+     536951212,
+     536940988
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 9,
     "xpsr": 0
    },
@@ -822,17 +832,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 182454980, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 995058044, 8, 1, 'S', 'F', 'T', None)",
-    "('C', 2, 182454980, 995058044, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 8, 1, 'S', 'F', 'T', None)",
-    "('C', 4, 182454980, 1656661543, 8, 1, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 8, 1, 'S', 'F', 'T', None)",
+    "('C', 0, 536939204, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536945020, 536946200, 536947328, 'S', 'F', 'T', None)",
+    "('C', 2, 536939204, 536945020, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536946200, 536947328, 'S', 'F', 'T', None)",
+    "('C', 4, 536939204, 1656661543, 536946200, 536947328, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536946200, 536947328, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "5ded6ab0d18634f8de9279b715154b64974af24ba1357a1138fc9d9f2bcebf27",
+    "events": "b48f9731c72a8ffbaace760c99b0c055343a430d2d0ebca3d3e8599a77e501ea",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -841,17 +851,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     182454980,
-     995058044,
-     8,
-     1
+     536939204,
+     536945020,
+     536946200,
+     536947328
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 10,
     "xpsr": 0
    },
@@ -900,17 +911,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 3, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 2147483648, 256, 1426281073, 'S', 'F', 'T', None)",
-    "('C', 2, 3, 2147483648, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 256, 1426281073, 'S', 'F', 'T', None)",
-    "('C', 4, 3, 1656661543, 256, 1426281073, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 256, 1426281073, 'S', 'F', 'T', None)",
+    "('C', 0, 536937040, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536948284, 536938076, 536941168, 'S', 'F', 'T', None)",
+    "('C', 2, 536937040, 536948284, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536938076, 536941168, 'S', 'F', 'T', None)",
+    "('C', 4, 536937040, 1656661543, 536938076, 536941168, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536938076, 536941168, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "858c13ad7cdc5bf98674936730be845b14c86b8c30484aa0aa6bf5a71ad12004",
+    "events": "16f28c93e0f47d18ddcb0a39f789edb9aaaf985b5438f05d60e49702d9a37e5d",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -919,17 +930,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3,
-     2147483648,
-     256,
-     1426281073
+     536937040,
+     536948284,
+     536938076,
+     536941168
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 11,
     "xpsr": 0
    },
@@ -978,17 +990,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 8, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 3217736208, 5, 1103693227, 'S', 'F', 'T', None)",
-    "('C', 2, 8, 3217736208, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 5, 1103693227, 'S', 'F', 'T', None)",
-    "('C', 4, 8, 1656661543, 5, 1103693227, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 5, 1103693227, 'S', 'F', 'T', None)",
+    "('C', 0, 536944520, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536936976, 536941268, 536937896, 'S', 'F', 'T', None)",
+    "('C', 2, 536944520, 536936976, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536941268, 536937896, 'S', 'F', 'T', None)",
+    "('C', 4, 536944520, 1656661543, 536941268, 536937896, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536941268, 536937896, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "15528764b6dd12a0a8826b754fe8087e1cf465e0691bfa8e0ba6cdd6f619f162",
+    "events": "d841796b623b10af2e8fa8330f5bf8bf8da423925f3352050af31c4825b700ae",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -997,17 +1009,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     8,
-     3217736208,
-     5,
-     1103693227
+     536944520,
+     536936976,
+     536941268,
+     536937896
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-12",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 12,
     "xpsr": 0
    },
@@ -1056,17 +1069,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 1156718256, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 1944344031, 6, 617681966, 'S', 'F', 'T', None)",
-    "('C', 2, 1156718256, 1944344031, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 6, 617681966, 'S', 'F', 'T', None)",
-    "('C', 4, 1156718256, 1656661543, 6, 617681966, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 6, 617681966, 'S', 'F', 'T', None)",
+    "('C', 0, 536944304, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536942044, 536939060, 536941612, 'S', 'F', 'T', None)",
+    "('C', 2, 536944304, 536942044, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536939060, 536941612, 'S', 'F', 'T', None)",
+    "('C', 4, 536944304, 1656661543, 536939060, 536941612, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536939060, 536941612, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "29fa2f424efa33a99c48f8055859c2a277bd2f1afb5b58aea87ef4e7a154e925",
+    "events": "3353a7f8131f871fdaf9bc1f7deeb8610ef178c38ac3e0cd53c5eabb334c5eb7",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -1075,17 +1088,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1156718256,
-     1944344031,
-     6,
-     617681966
+     536944304,
+     536942044,
+     536939060,
+     536941612
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 13,
     "xpsr": 0
    },
@@ -1134,17 +1148,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 1996365079, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 12, 3, 470668832, 'S', 'F', 'T', None)",
-    "('C', 2, 1996365079, 12, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 3, 470668832, 'S', 'F', 'T', None)",
-    "('C', 4, 1996365079, 1656661543, 3, 470668832, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 3, 470668832, 'S', 'F', 'T', None)",
+    "('C', 0, 536943892, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536949848, 536943328, 536942112, 'S', 'F', 'T', None)",
+    "('C', 2, 536943892, 536949848, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536943328, 536942112, 'S', 'F', 'T', None)",
+    "('C', 4, 536943892, 1656661543, 536943328, 536942112, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536943328, 536942112, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "017d5ac61bc8681dc2c2165240656d98fb113d770c596e998d99b3d80c61d7ae",
+    "events": "fc6bcc4c69281d6ad6320336971ed0b781c8716c5db1dcfc58a230ec576cfc7a",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -1153,17 +1167,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1996365079,
-     12,
-     3,
-     470668832
+     536943892,
+     536949848,
+     536943328,
+     536942112
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-14",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 14,
     "xpsr": 0
    },
@@ -1212,17 +1227,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 7, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 256, 5, 4, 'S', 'F', 'T', None)",
-    "('C', 2, 7, 256, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 5, 4, 'S', 'F', 'T', None)",
-    "('C', 4, 7, 1656661543, 5, 4, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 5, 4, 'S', 'F', 'T', None)",
+    "('C', 0, 536952404, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536941132, 536951236, 536949908, 'S', 'F', 'T', None)",
+    "('C', 2, 536952404, 536941132, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536951236, 536949908, 'S', 'F', 'T', None)",
+    "('C', 4, 536952404, 1656661543, 536951236, 536949908, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536951236, 536949908, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9a5441030729f8a84272421eab55139a0916cab76fe2844ba54eeb9c28a67314",
+    "events": "48943dee434c0d910c0c59001c67c546388800dec713c2d986d004b3274ee701",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -1231,17 +1246,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     7,
-     256,
-     5,
-     4
+     536952404,
+     536941132,
+     536951236,
+     536949908
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-15",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 15,
     "xpsr": 0
    },
@@ -1290,17 +1306,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 2024561310, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 2147483648, 3454407978, 16, 'S', 'F', 'T', None)",
-    "('C', 2, 2024561310, 2147483648, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 3454407978, 16, 'S', 'F', 'T', None)",
-    "('C', 4, 2024561310, 1656661543, 3454407978, 16, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 3454407978, 16, 'S', 'F', 'T', None)",
+    "('C', 0, 536943260, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536942972, 536941864, 536940136, 'S', 'F', 'T', None)",
+    "('C', 2, 536943260, 536942972, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536941864, 536940136, 'S', 'F', 'T', None)",
+    "('C', 4, 536943260, 1656661543, 536941864, 536940136, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536941864, 536940136, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "0545cb5d77c1b1dd7e6d54f7190458d552d12b561b3f08c88e4e1a6622aab7ad",
+    "events": "da58b095d327b30c15d2531623ecd01866900e0e1969ee495375406fb08df5fc",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -1309,17 +1325,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2024561310,
-     2147483648,
-     3454407978,
-     16
+     536943260,
+     536942972,
+     536941864,
+     536940136
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
@@ -1368,17 +1385,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 3, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 3254638692, 1168623309, 4252165479, 'S', 'F', 'T', None)",
-    "('C', 2, 3, 3254638692, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 1168623309, 4252165479, 'S', 'F', 'T', None)",
-    "('C', 4, 3, 1656661543, 1168623309, 4252165479, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 1168623309, 4252165479, 'S', 'F', 'T', None)",
+    "('C', 0, 536944016, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536942692, 536938188, 536946020, 'S', 'F', 'T', None)",
+    "('C', 2, 536944016, 536942692, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536938188, 536946020, 'S', 'F', 'T', None)",
+    "('C', 4, 536944016, 1656661543, 536938188, 536946020, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536938188, 536946020, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "6c2de4a1f113e51e4f15bde88b50d789428002145c4d95c7cfc3d256a824e988",
+    "events": "2b198a6abaae52e31e3f0d12246be4a261ed5b957f2bc5bd59ed9eb91fdc8782",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -1387,17 +1404,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3,
-     3254638692,
-     1168623309,
-     4252165479
+     536944016,
+     536942692,
+     536938188,
+     536946020
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-17",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 17,
     "xpsr": 0
    },
@@ -1446,17 +1464,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 3912442165, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 0, 697236451, 1, 'S', 'F', 'T', None)",
-    "('C', 2, 3912442165, 0, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 697236451, 1, 'S', 'F', 'T', None)",
-    "('C', 4, 3912442165, 1656661543, 697236451, 1, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 697236451, 1, 'S', 'F', 'T', None)",
+    "('C', 0, 536944948, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536937440, 536951776, 536945600, 'S', 'F', 'T', None)",
+    "('C', 2, 536944948, 536937440, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536951776, 536945600, 'S', 'F', 'T', None)",
+    "('C', 4, 536944948, 1656661543, 536951776, 536945600, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536951776, 536945600, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "2118947657b15498be1374ec61ebd8a958a4b43470a8e322c98000937a3f4351",
+    "events": "3e763cbe25d4979e3bcc10db47c37f4fc988d62ea0296ae1826c9cb7519aa20d",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -1465,17 +1483,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3912442165,
-     0,
-     697236451,
-     1
+     536944948,
+     536937440,
+     536951776,
+     536945600
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-18",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 18,
     "xpsr": 0
    },
@@ -1524,17 +1543,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 6, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 1536401714, 4178753371, 255, 'S', 'F', 'T', None)",
-    "('C', 2, 6, 1536401714, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 4178753371, 255, 'S', 'F', 'T', None)",
-    "('C', 4, 6, 1656661543, 4178753371, 255, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 4178753371, 255, 'S', 'F', 'T', None)",
+    "('C', 0, 536939284, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536944944, 536950616, 536947592, 'S', 'F', 'T', None)",
+    "('C', 2, 536939284, 536944944, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536950616, 536947592, 'S', 'F', 'T', None)",
+    "('C', 4, 536939284, 1656661543, 536950616, 536947592, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536950616, 536947592, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "be9629817cfde0f8d728d5dbc12e97ee6626bf0548efffd4e763215575d53e27",
+    "events": "d857951e004de2d7f8da4c5ab32692472ae827f0d7b8fb76e25af87974124477",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -1543,17 +1562,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     6,
-     1536401714,
-     4178753371,
-     255
+     536939284,
+     536944944,
+     536950616,
+     536947592
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 19,
     "xpsr": 0
    },
@@ -1602,17 +1622,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 4, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 2306919366, 2, 7, 'S', 'F', 'T', None)",
-    "('C', 2, 4, 2306919366, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 2, 7, 'S', 'F', 'T', None)",
-    "('C', 4, 4, 1656661543, 2, 7, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 2, 7, 'S', 'F', 'T', None)",
+    "('C', 0, 536952740, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536939460, 536939760, 536951108, 'S', 'F', 'T', None)",
+    "('C', 2, 536952740, 536939460, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536939760, 536951108, 'S', 'F', 'T', None)",
+    "('C', 4, 536952740, 1656661543, 536939760, 536951108, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536939760, 536951108, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "5ef4abd94c272948dcd27ed5b6115dd7d765076c297d36ab15029f613273b760",
+    "events": "9aed7f16fbd2d3efabafe25412058762b68eb59a02515a99b8c2305352911f8c",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -1621,17 +1641,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4,
-     2306919366,
-     2,
-     7
+     536952740,
+     536939460,
+     536939760,
+     536951108
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-20",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 20,
     "xpsr": 0
    },
@@ -1680,17 +1701,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 843060076, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 1, 2870852768, 0, 'S', 'F', 'T', None)",
-    "('C', 2, 843060076, 1, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 2870852768, 0, 'S', 'F', 'T', None)",
-    "('C', 4, 843060076, 1656661543, 2870852768, 0, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 2870852768, 0, 'S', 'F', 'T', None)",
+    "('C', 0, 536941420, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536936640, 536951968, 536943488, 'S', 'F', 'T', None)",
+    "('C', 2, 536941420, 536936640, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536951968, 536943488, 'S', 'F', 'T', None)",
+    "('C', 4, 536941420, 1656661543, 536951968, 536943488, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536951968, 536943488, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "8e13da1ece5656ab94666f63138d200ec95515413779a72d1be2190a1f5d771e",
+    "events": "2722abdd726b2d1fcda1b8484d75452d9a489957bea441b7ee4f441bdd2b11c5",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -1699,17 +1720,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     843060076,
-     1,
-     2870852768,
-     0
+     536941420,
+     536936640,
+     536951968,
+     536943488
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-21",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 21,
     "xpsr": 0
    },
@@ -1758,17 +1780,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 7, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 3001296298, 4294967295, 2451975022, 'S', 'F', 'T', None)",
-    "('C', 2, 7, 3001296298, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 4294967295, 2451975022, 'S', 'F', 'T', None)",
-    "('C', 4, 7, 1656661543, 4294967295, 2451975022, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 4294967295, 2451975022, 'S', 'F', 'T', None)",
+    "('C', 0, 536937396, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536946088, 536949836, 536947564, 'S', 'F', 'T', None)",
+    "('C', 2, 536937396, 536946088, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536949836, 536947564, 'S', 'F', 'T', None)",
+    "('C', 4, 536937396, 1656661543, 536949836, 536947564, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536949836, 536947564, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "83ab77768cd3dd9e404b1bbf859ce46ef1b46adf9a7dfa92c68edf7242ce59bb",
+    "events": "213ea832b2ae358a8c6f684b5d4bf37188290431b5e4542ad5f22824f434e2d7",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -1777,17 +1799,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     7,
-     3001296298,
-     4294967295,
-     2451975022
+     536937396,
+     536946088,
+     536949836,
+     536947564
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-22",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 22,
     "xpsr": 0
    },
@@ -1836,17 +1859,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 1591295399, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 241044672, 2034212132, 1515885587, 'S', 'F', 'T', None)",
-    "('C', 2, 1591295399, 241044672, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 2034212132, 1515885587, 'S', 'F', 'T', None)",
-    "('C', 4, 1591295399, 1656661543, 2034212132, 1515885587, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 2034212132, 1515885587, 'S', 'F', 'T', None)",
+    "('C', 0, 536952228, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536939712, 536943908, 536941584, 'S', 'F', 'T', None)",
+    "('C', 2, 536952228, 536939712, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536943908, 536941584, 'S', 'F', 'T', None)",
+    "('C', 4, 536952228, 1656661543, 536943908, 536941584, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536943908, 536941584, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "267f454460ad0a57d296fafedc237f301f7ee2eb1f3269420969d1bbd4f2a1ea",
+    "events": "33ea670bcc050e80559bf6c819a4840581d17d1efdfecab34c8e512790c98e00",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -1855,17 +1878,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1591295399,
-     241044672,
-     2034212132,
-     1515885587
+     536952228,
+     536939712,
+     536943908,
+     536941584
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-23",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 23,
     "xpsr": 0
    },
@@ -1914,17 +1938,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 4, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 6, 2967241396, 7, 'S', 'F', 'T', None)",
-    "('C', 2, 4, 6, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 2967241396, 7, 'S', 'F', 'T', None)",
-    "('C', 4, 4, 1656661543, 2967241396, 7, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 2967241396, 7, 'S', 'F', 'T', None)",
+    "('C', 0, 536949908, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536944852, 536937140, 536951364, 'S', 'F', 'T', None)",
+    "('C', 2, 536949908, 536944852, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536937140, 536951364, 'S', 'F', 'T', None)",
+    "('C', 4, 536949908, 1656661543, 536937140, 536951364, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536937140, 536951364, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "3f47636aa18c086b4f04fa57e6893e05b76490bfff7dd27ab593b2a0ba9a00cf",
+    "events": "5a53687c6811be9227d37038f27c1624223922c7779380f2e3aee344d06e7137",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -1933,17 +1957,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4,
-     6,
-     2967241396,
-     7
+     536949908,
+     536944852,
+     536937140,
+     536951364
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-24",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 24,
     "xpsr": 0
    },
@@ -1992,17 +2017,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 3751937804, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 12, 2149248134, 604019693, 'S', 'F', 'T', None)",
-    "('C', 2, 3751937804, 12, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 2149248134, 604019693, 'S', 'F', 'T', None)",
-    "('C', 4, 3751937804, 1656661543, 2149248134, 604019693, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 2149248134, 604019693, 'S', 'F', 'T', None)",
+    "('C', 0, 536938252, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536941512, 536947844, 536943596, 'S', 'F', 'T', None)",
+    "('C', 2, 536938252, 536941512, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536947844, 536943596, 'S', 'F', 'T', None)",
+    "('C', 4, 536938252, 1656661543, 536947844, 536943596, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536947844, 536943596, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "46a1d4a40d4339fd54d0fd02612bad0f6ad3bff198b8551dea863c2ab0e7de95",
+    "events": "b67e0f90c253813719a0891cb85819a4b94c4270bba7c0a195552646ab5095f2",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -2011,17 +2036,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3751937804,
-     12,
-     2149248134,
-     604019693
+     536938252,
+     536941512,
+     536947844,
+     536943596
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 25,
     "xpsr": 0
    },
@@ -2070,17 +2096,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 2992330384, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 12, 3037640278, 2678623347, 'S', 'F', 'T', None)",
-    "('C', 2, 2992330384, 12, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 3037640278, 2678623347, 'S', 'F', 'T', None)",
-    "('C', 4, 2992330384, 1656661543, 3037640278, 2678623347, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 3037640278, 2678623347, 'S', 'F', 'T', None)",
+    "('C', 0, 536942224, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536937032, 536950356, 536939632, 'S', 'F', 'T', None)",
+    "('C', 2, 536942224, 536937032, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536950356, 536939632, 'S', 'F', 'T', None)",
+    "('C', 4, 536942224, 1656661543, 536950356, 536939632, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536950356, 536939632, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "e0ac7a208a29534b84e8dcc0b025da04975b8b4eb54f7c60691805ae5d7c20b1",
+    "events": "17b96e67152fb9a0b69ba54ca246d894b5161e75bd56be839fd523d7a0c3fc9b",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -2089,17 +2115,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2992330384,
-     12,
-     3037640278,
-     2678623347
+     536942224,
+     536937032,
+     536950356,
+     536939632
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-26",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 26,
     "xpsr": 0
    },
@@ -2148,17 +2175,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 187818536, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 681194263, 3639365232, 4125446660, 'S', 'F', 'T', None)",
-    "('C', 2, 187818536, 681194263, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 3639365232, 4125446660, 'S', 'F', 'T', None)",
-    "('C', 4, 187818536, 1656661543, 3639365232, 4125446660, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 3639365232, 4125446660, 'S', 'F', 'T', None)",
+    "('C', 0, 536945192, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536949524, 536940144, 536941060, 'S', 'F', 'T', None)",
+    "('C', 2, 536945192, 536949524, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536940144, 536941060, 'S', 'F', 'T', None)",
+    "('C', 4, 536945192, 1656661543, 536940144, 536941060, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536940144, 536941060, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "80f812c01eb7a437f1a6b4091db386de33dc7a9544bfcad8d35112a3c36a0480",
+    "events": "239a836704f57c53292b8b11b27bfd955b35de2f4550daddf5bd683719dc225e",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -2167,17 +2194,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     187818536,
-     681194263,
-     3639365232,
-     4125446660
+     536945192,
+     536949524,
+     536940144,
+     536941060
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 27,
     "xpsr": 0
    },
@@ -2226,17 +2254,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 3711083943, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 4285183211, 1, 2592385448, 'S', 'F', 'T', None)",
-    "('C', 2, 3711083943, 4285183211, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 1, 2592385448, 'S', 'F', 'T', None)",
-    "('C', 4, 3711083943, 1656661543, 1, 2592385448, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 1, 2592385448, 'S', 'F', 'T', None)",
+    "('C', 0, 536946084, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536949992, 536946096, 536947112, 'S', 'F', 'T', None)",
+    "('C', 2, 536946084, 536949992, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536946096, 536947112, 'S', 'F', 'T', None)",
+    "('C', 4, 536946084, 1656661543, 536946096, 536947112, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536946096, 536947112, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "bd2156dbbed70a04724dc2dc6e56a1742d79309b9562fd82ed69cd44c81d4b28",
+    "events": "17f71e2df3e5d75109d6fd2a5ab21af22f28a102c8872a827751a9f823ad7f38",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -2245,17 +2273,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3711083943,
-     4285183211,
-     1,
-     2592385448
+     536946084,
+     536949992,
+     536946096,
+     536947112
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-28",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 28,
     "xpsr": 0
    },
@@ -2304,17 +2333,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 739928864, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 256, 3886541357, 8, 'S', 'F', 'T', None)",
-    "('C', 2, 739928864, 256, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 3886541357, 8, 'S', 'F', 'T', None)",
-    "('C', 4, 739928864, 1656661543, 3886541357, 8, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 3886541357, 8, 'S', 'F', 'T', None)",
+    "('C', 0, 536947488, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536937084, 536947244, 536938744, 'S', 'F', 'T', None)",
+    "('C', 2, 536947488, 536937084, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536947244, 536938744, 'S', 'F', 'T', None)",
+    "('C', 4, 536947488, 1656661543, 536947244, 536938744, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536947244, 536938744, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "97209fced115225201236458498355fdf53060f2eaaa22fbc0e914b80bbee9bc",
+    "events": "089730bf3b28fba659a87f6bf0263d6cc0f0a45b1361beab58457270d429f5f3",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -2323,17 +2352,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     739928864,
-     256,
-     3886541357,
-     8
+     536947488,
+     536937084,
+     536947244,
+     536938744
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-29",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 29,
     "xpsr": 0
    },
@@ -2382,17 +2412,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 256, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 8, 1, 7, 'S', 'F', 'T', None)",
-    "('C', 2, 256, 8, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 1, 7, 'S', 'F', 'T', None)",
-    "('C', 4, 256, 1656661543, 1, 7, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 1, 7, 'S', 'F', 'T', None)",
+    "('C', 0, 536952796, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536941720, 536945744, 536939284, 'S', 'F', 'T', None)",
+    "('C', 2, 536952796, 536941720, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536945744, 536939284, 'S', 'F', 'T', None)",
+    "('C', 4, 536952796, 1656661543, 536945744, 536939284, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536945744, 536939284, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "4be2b4b9fadf4ca3df7eb94512bf07e82592e37a51cc69243840b5dcfc99c67a",
+    "events": "0926a882fdc3fef694b6b084f48d713f9152a178095c170e6d5cd90043f84f3e",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -2401,17 +2431,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     256,
-     8,
-     1,
-     7
+     536952796,
+     536941720,
+     536945744,
+     536939284
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-30",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 30,
     "xpsr": 0
    },
@@ -2460,17 +2491,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 4294967295, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 2461003590, 7, 53351545, 'S', 'F', 'T', None)",
-    "('C', 2, 4294967295, 2461003590, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 7, 53351545, 'S', 'F', 'T', None)",
-    "('C', 4, 4294967295, 1656661543, 7, 53351545, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 7, 53351545, 'S', 'F', 'T', None)",
+    "('C', 0, 536952300, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536948548, 536938932, 536941688, 'S', 'F', 'T', None)",
+    "('C', 2, 536952300, 536948548, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536938932, 536941688, 'S', 'F', 'T', None)",
+    "('C', 4, 536952300, 1656661543, 536938932, 536941688, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536938932, 536941688, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "85d4c6b8aa655c04566f603582cf3e61ae7aa278742ed47f1048cccff82eb3ba",
+    "events": "f26d99b804d56b6dd9f5467f5a3069e492ccc406f1e0c59aff1411d7233215a2",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -2479,17 +2510,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4294967295,
-     2461003590,
-     7,
-     53351545
+     536952300,
+     536948548,
+     536938932,
+     536941688
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
@@ -2538,17 +2570,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 1839753098, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 2706821390, 3442053927, 1170652979, 'S', 'F', 'T', None)",
-    "('C', 2, 1839753098, 2706821390, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 3442053927, 1170652979, 'S', 'F', 'T', None)",
-    "('C', 4, 1839753098, 1656661543, 3442053927, 1170652979, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 3442053927, 1170652979, 'S', 'F', 'T', None)",
+    "('C', 0, 536946568, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536940812, 536941348, 536952624, 'S', 'F', 'T', None)",
+    "('C', 2, 536946568, 536940812, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536941348, 536952624, 'S', 'F', 'T', None)",
+    "('C', 4, 536946568, 1656661543, 536941348, 536952624, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536941348, 536952624, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "1e055db9f75ba7333134451e0eaa11ca32ba616071d91ad668726089eacf79c6",
+    "events": "2d67bc65d4f87c0d160f5da101a9be7ffd91500b48fe59ad630e0ba8ec5197c1",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -2557,17 +2589,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1839753098,
-     2706821390,
-     3442053927,
-     1170652979
+     536946568,
+     536940812,
+     536941348,
+     536952624
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-32",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 32,
     "xpsr": 0
    },
@@ -2616,17 +2649,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 1076094348, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 7, 7, 5, 'S', 'F', 'T', None)",
-    "('C', 2, 1076094348, 7, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 7, 5, 'S', 'F', 'T', None)",
-    "('C', 4, 1076094348, 1656661543, 7, 5, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 7, 5, 'S', 'F', 'T', None)",
+    "('C', 0, 536946060, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536942020, 536944276, 536938756, 'S', 'F', 'T', None)",
+    "('C', 2, 536946060, 536942020, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536944276, 536938756, 'S', 'F', 'T', None)",
+    "('C', 4, 536946060, 1656661543, 536944276, 536938756, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536944276, 536938756, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "7f6c0473da28cd789e3291f18c816436803a181e3d0b85e035862b6a8e644061",
+    "events": "d2c8c38ac3d4eebfa5a550d2660061849765f4cad0a6a479c24471a7a2201bc7",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -2635,17 +2668,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1076094348,
-     7,
-     7,
-     5
+     536946060,
+     536942020,
+     536944276,
+     536938756
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-33",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 33,
     "xpsr": 0
    },
@@ -2694,17 +2728,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 12, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 3990671540, 922796015, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 2, 12, 3990671540, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 922796015, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 4, 12, 1656661543, 922796015, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 922796015, 2147483647, 'S', 'F', 'T', None)",
+    "('C', 0, 536950120, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536940724, 536952812, 536936476, 'S', 'F', 'T', None)",
+    "('C', 2, 536950120, 536940724, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536952812, 536936476, 'S', 'F', 'T', None)",
+    "('C', 4, 536950120, 1656661543, 536952812, 536936476, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536952812, 536936476, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "5d38adc171f9746dd627a63b0e47101544a2ba9312a97ac5ce06b67d84684ea0",
+    "events": "232d95acd0e30d41ffce239508283621c5bdcceb8a79d80b0cdc36e3499f48d3",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -2713,17 +2747,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     12,
-     3990671540,
-     922796015,
-     2147483647
+     536950120,
+     536940724,
+     536952812,
+     536936476
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 34,
     "xpsr": 0
    },
@@ -2772,17 +2807,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 2726887024, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 3578977268, 4001652011, 1, 'S', 'F', 'T', None)",
-    "('C', 2, 2726887024, 3578977268, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 4001652011, 1, 'S', 'F', 'T', None)",
-    "('C', 4, 2726887024, 1656661543, 4001652011, 1, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 4001652011, 1, 'S', 'F', 'T', None)",
+    "('C', 0, 536952432, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536943604, 536943912, 536937872, 'S', 'F', 'T', None)",
+    "('C', 2, 536952432, 536943604, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536943912, 536937872, 'S', 'F', 'T', None)",
+    "('C', 4, 536952432, 1656661543, 536943912, 536937872, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536943912, 536937872, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "7ee291d5fc86cbec96808c5c219f17646c42d91917c0fdb77fd46ddadccd055e",
+    "events": "c1b389661818a10fb6e242e6a03382194a4bf2691f9bf7eda0ae2151c54d0a0c",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -2791,17 +2826,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2726887024,
-     3578977268,
-     4001652011,
-     1
+     536952432,
+     536943604,
+     536943912,
+     536937872
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
@@ -2850,17 +2886,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 0, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 12, 2147483647, 8, 'S', 'F', 'T', None)",
-    "('C', 2, 0, 12, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 2147483647, 8, 'S', 'F', 'T', None)",
-    "('C', 4, 0, 1656661543, 2147483647, 8, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 2147483647, 8, 'S', 'F', 'T', None)",
+    "('C', 0, 536944224, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536949832, 536945964, 536950872, 'S', 'F', 'T', None)",
+    "('C', 2, 536944224, 536949832, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536945964, 536950872, 'S', 'F', 'T', None)",
+    "('C', 4, 536944224, 1656661543, 536945964, 536950872, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536945964, 536950872, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "d079b87ae436d250cff16ec7cf9a3f45531a5eea8be59ada850f40d0b57e27f9",
+    "events": "911b061dd4bf5af246211456395f74fd63b77af897ffdddb7d63e411228642e5",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -2869,17 +2905,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     0,
-     12,
-     2147483647,
-     8
+     536944224,
+     536949832,
+     536945964,
+     536950872
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 36,
     "xpsr": 0
    },
@@ -2928,17 +2965,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 1, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 2057795936, 2725586938, 1299241558, 'S', 'F', 'T', None)",
-    "('C', 2, 1, 2057795936, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 2725586938, 1299241558, 'S', 'F', 'T', None)",
-    "('C', 4, 1, 1656661543, 2725586938, 1299241558, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 2725586938, 1299241558, 'S', 'F', 'T', None)",
+    "('C', 0, 536951728, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536951136, 536946680, 536943188, 'S', 'F', 'T', None)",
+    "('C', 2, 536951728, 536951136, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536946680, 536943188, 'S', 'F', 'T', None)",
+    "('C', 4, 536951728, 1656661543, 536946680, 536943188, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536946680, 536943188, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "49d249110b985ea5349810880cefc374b7cee78ee99a2e756c4faa87fae65666",
+    "events": "c39c3245ae7f2924ce5a988b8f11a64b15c2f49f13d1243af6d0d29d3f33945c",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -2947,17 +2984,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1,
-     2057795936,
-     2725586938,
-     1299241558
+     536951728,
+     536951136,
+     536946680,
+     536943188
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-37",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 37,
     "xpsr": 0
    },
@@ -3006,17 +3044,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 0, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 255, 1, 2, 'S', 'F', 'T', None)",
-    "('C', 2, 0, 255, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 1, 2, 'S', 'F', 'T', None)",
-    "('C', 4, 0, 1656661543, 1, 2, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 1, 2, 'S', 'F', 'T', None)",
+    "('C', 0, 536939760, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536941672, 536936976, 536945104, 'S', 'F', 'T', None)",
+    "('C', 2, 536939760, 536941672, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536936976, 536945104, 'S', 'F', 'T', None)",
+    "('C', 4, 536939760, 1656661543, 536936976, 536945104, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536936976, 536945104, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ffc38aee5e5893b71d7cce523a6d4338ebd7ee356b8aadc4d466b91aa47fc57a",
+    "events": "8eab16bf959b4057f469552e115d29a2a695e40f4b654692b4758c7b6996a246",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -3025,17 +3063,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     0,
-     255,
-     1,
-     2
+     536939760,
+     536941672,
+     536936976,
+     536945104
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-38",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 38,
     "xpsr": 0
    },
@@ -3084,17 +3123,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 3, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 1587124134, 3774328631, 1997155928, 'S', 'F', 'T', None)",
-    "('C', 2, 3, 1587124134, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 3774328631, 1997155928, 'S', 'F', 'T', None)",
-    "('C', 4, 3, 1656661543, 3774328631, 1997155928, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 3774328631, 1997155928, 'S', 'F', 'T', None)",
+    "('C', 0, 536941424, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536942500, 536948532, 536948312, 'S', 'F', 'T', None)",
+    "('C', 2, 536941424, 536942500, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536948532, 536948312, 'S', 'F', 'T', None)",
+    "('C', 4, 536941424, 1656661543, 536948532, 536948312, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536948532, 536948312, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "d69fbfc0dd430f1cea20260f7e8fc5a3b89a35cee8335c45262a33926f5aea7b",
+    "events": "2b2287369d7355d60917010c8e83ca73ed9c481ef64f9154d1edecc8263ccbd6",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -3103,17 +3142,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3,
-     1587124134,
-     3774328631,
-     1997155928
+     536941424,
+     536942500,
+     536948532,
+     536948312
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
     "xpsr": 0
    },
@@ -3162,17 +3202,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 0, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 3928041777, 1786326658, 1835695343, 'S', 'F', 'T', None)",
-    "('C', 2, 0, 3928041777, 'S', 'F', 'T', None)",
-    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 1786326658, 1835695343, 'S', 'F', 'T', None)",
-    "('C', 4, 0, 1656661543, 1786326658, 1835695343, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 1786326658, 1835695343, 'S', 'F', 'T', None)",
+    "('C', 0, 536943600, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536946992, 536948352, 536952044, 'S', 'F', 'T', None)",
+    "('C', 2, 536943600, 536946992, 'S', 'F', 'T', None)",
+    "('C', 3, ('RO', b'Could not init ANCS client object, error: %d\\n'), 1163768358, 536948352, 536952044, 'S', 'F', 'T', None)",
+    "('C', 4, 536943600, 1656661543, 536948352, 536952044, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Could not release the discovery data, error code: %d\\n'), 609312507, 536948352, 536952044, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "a9846ab7fdbbf5efb6d5ad29e98413d5565da414cda6bb2985bd7c94e96f8d4c",
+    "events": "0d873a9066c16ba673f341fbbb659f39cab15766c726432443dd102ba6037144",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -3181,17 +3221,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     0,
-     3928041777,
-     1786326658,
-     1835695343
+     536943600,
+     536946992,
+     536948352,
+     536952044
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-40",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 40,
     "xpsr": 0
    },
@@ -3240,36 +3281,41 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 2345269775, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 3092785552, 1935641720, 554330043, 'S', 'F', 'T', None)",
-    "('C', 2, 2345269775, 3092785552, 'S', 'F', 'T', None)",
-    "('W', 536898228, 4, 1056895742)",
-    "('C', 3, 3092785552, 102133, 'S', 'F', 'T', None)",
-    "('C', 4, 3092785552, 101449, 0, 536898228, 'S', 'F', 'T', None)",
-    "('C', 5, 2345269775, 0, 0, 536898228, 'S', 'F', 'T', None)",
+    "('C', 0, 536940544, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536940548, 536940552, 536940556, 'S', 'F', 'T', None)",
+    "('C', 2, 536940544, 536940548, 'S', 'F', 'T', None)",
+    "('W', 536898228, 4, 2905475507)",
+    "('C', 3, 536940548, 102133, 'S', 'F', 'T', None)",
+    "('C', 4, 536940548, 101449, 0, 536898228, 'S', 'F', 'T', None)",
+    "('C', 5, 536940544, 0, 0, 536898228, 'S', 'F', 'T', None)",
     "('C', 6, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 7, 0, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ea3d71a9be26939f19a40e10399f76724da25a62a05322b893ae9f4219d6296b",
+    "events": "452df9fd7e9d752cfeccbd05e3b2cb7c616773f62fb155d1445aed9edc64339c",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
     "returned": true
    },
    "fixture": {
-    "abs": [],
+    "abs": [
+     [
+      536940544,
+      "4110012044100120481001204c1001205110012054100120581001205c1001206110012064100120681001206c1001207110012074100120781001207c1001208110012084100120881001208c1001209110012094100120981001209c100120a1100120a4100120a8100120ac100120b1100120b4100120b8100120bc100120c1100120c4100120c8100120cc100120d1100120d4100120d8100120dc100120e1100120e4100120e8100120ec100120f1100120f4100120f8100120fc1001200111012004110120081101200c1101201111012014110120181101201c1101202111012024110120281101202c1101203111012034110120381101203c1101204111012044110120481101204c1101205111012054110120581101205c1101206111012064110120681101206c1101207111012074110120781101207c1101208111012084110120881101208c1101209111012094110120981101209c110120a1110120a4110120a8110120ac110120b1110120b4110120b8110120bc110120c1110120c4110120c8110120cc110120d1110120d4110120d8110120dc110120e1110120e4110120e8110120ec110120f1110120f4110120f8110120fc1101200110012004100120081001200c1001201110012014100120181001201c1001202110012024100120281001202c1001203110012034100120381001203c100120"
+     ]
+    ],
     "args": [
-     2345269775,
-     3092785552,
-     1935641720,
-     554330043
+     536940544,
+     536940548,
+     536940552,
+     536940556
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "orc-all-0",
+    "id": "chain0-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [
      [
       0,
@@ -3277,53 +3323,13 @@
       0
      ],
      [
-      1,
-      0,
-      0
-     ],
-     [
-      2,
-      0,
-      0
-     ],
-     [
-      3,
-      0,
-      0
-     ],
-     [
-      4,
-      0,
-      0
-     ],
-     [
-      5,
-      0,
-      0
-     ],
-     [
-      6,
-      0,
-      0
-     ],
-     [
-      7,
-      0,
-      0
-     ],
-     [
-      8,
-      0,
-      0
-     ],
-     [
-      9,
-      0,
-      0
-     ],
-     [
       0,
       1,
+      0
+     ],
+     [
+      1,
+      0,
       0
      ],
      [
@@ -3333,7 +3339,17 @@
      ],
      [
       2,
+      0,
+      0
+     ],
+     [
+      2,
       1,
+      0
+     ],
+     [
+      3,
+      0,
       0
      ],
      [
@@ -3343,7 +3359,17 @@
      ],
      [
       4,
+      0,
+      0
+     ],
+     [
+      4,
       1,
+      0
+     ],
+     [
+      5,
+      0,
       0
      ],
      [
@@ -3353,7 +3379,17 @@
      ],
      [
       6,
+      0,
+      0
+     ],
+     [
+      6,
       1,
+      0
+     ],
+     [
+      7,
+      0,
       0
      ],
      [
@@ -3363,16 +3399,47 @@
      ],
      [
       8,
+      0,
+      0
+     ],
+     [
+      8,
       1,
       0
      ],
      [
       9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
       1,
       0
      ]
     ],
-    "scratch_seed": 400,
+    "outparam": null,
+    "scratch_seed": 830,
     "xpsr": 0
    },
    "new_instructions": 40,
@@ -3432,21 +3499,21 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 3, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 93393707, 31352568, 2147483648, 'S', 'F', 'T', None)",
-    "('C', 2, 3, 93393707, 'S', 'F', 'T', None)",
+    "('C', 0, 536937744, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'The discovery procedure for ANCS succeeded\\n'), 536941352, 536946424, 536945276, 'S', 'F', 'T', None)",
+    "('C', 2, 536937744, 536941352, 'S', 'F', 'T', None)",
     "('W', 536898228, 4, 1994971731)",
-    "('C', 3, 93393707, 102133, 'S', 'F', 'T', None)",
+    "('C', 3, 536941352, 102133, 'S', 'F', 'T', None)",
     "('C', 4, ('RO', b'Failed to enable Notification Source notification (err %d)\\n'), 86613917, 0, 536898228, 'S', 'F', 'T', None)",
-    "('C', 5, 93393707, 101449, 0, 536898228, 'S', 'F', 'T', None)",
+    "('C', 5, 536941352, 101449, 0, 536898228, 'S', 'F', 'T', None)",
     "('C', 6, ('RO', b'Failed to enable Data Source notification (err %d)\\n'), 2847314981, 0, 536898228, 'S', 'F', 'T', None)",
-    "('C', 7, 3, 2842513410, 0, 536898228, 'S', 'F', 'T', None)",
+    "('C', 7, 536937744, 2842513410, 0, 536898228, 'S', 'F', 'T', None)",
     "('C', 8, ('RO', b'Could not release the discovery data, error code: %d\\n'), 1514103272, 0, 536898228, 'S', 'F', 'T', None)",
     "('C', 9, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 10, 2556510175, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c861a330c657fc44effad389c14e010fd8a1316c41df3d1d9117b3fc13128cc3",
+    "events": "4afe5b59de2556a26b316d87541829cdf1c7dbfcf5e020585623850b56c68da2",
     "kind": "return",
     "ncalls": 11,
     "ret": [],
@@ -3455,16 +3522,16 @@
    "fixture": {
     "abs": [],
     "args": [
-     3,
-     93393707,
-     31352568,
-     2147483648
+     536937744,
+     536941352,
+     536946424,
+     536945276
     ],
     "float_scratch": false,
     "fp": {},
     "id": "orc-2-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [
      [
       2,
@@ -3477,6 +3544,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 504,
     "xpsr": 0
    },
@@ -3497,8 +3565,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "notify",
@@ -3507,16 +3578,28 @@
   "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
   "source": "shipped image"
  },
- "pointer_arg_mask": [],
+ "pointer_arg_mask": [
+  0,
+  1,
+  2,
+  3
+ ],
  "ret_kind": "void",
  "search": {
-  "candidates": 171,
+  "candidates": 237,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
   "kept": 43,
-  "pointer_arg_mask": [],
+  "pointer_arg_mask": [
+   0,
+   1,
+   2,
+   3
+  ],
   "pointer_arg_mask_derived": true
  },
  "size": 128,

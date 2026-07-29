@@ -36,31 +36,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 4, 3694469211, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536948308, 3694469211, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "6da39d0294138a6ebf4d1b5c5799b4063b2c91bd14766a843ef30a7a9f637dbd",
+    "events": "80b274ac9177dfc11f1a82cee6036e89eea615e0c3fc40acbbda2a8ea6be698d",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     1276959699,
-     12,
-     4,
-     0
+     536943568,
+     536948040,
+     536948308,
+     536940048
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -103,31 +104,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 2147483648, 2429414634, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536940476, 2429414634, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "80b23dc5e429348698f386859570236263a72bafd896628970412cfd2750e080",
+    "events": "517c03187edf87530d360590d8a286124e29353cc2b85d7fda401459265b7862",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     4067469868,
-     1797429778,
-     2147483648,
-     315044147
+     536947244,
+     536943120,
+     536940476,
+     536949040
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -170,31 +172,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 3677430904, 471345317, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536945784, 471345317, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "a8eabf336d4d4e984b70d4bbbe9eaec638916e1b1ce4e2e545d51c6de490af81",
+    "events": "c60be6814a99c3d15d9e9351b412bef526908796cc570507655ad8f718564bf8",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     4290042576,
-     598759513,
-     3677430904,
-     7
+     536943312,
+     536942680,
+     536945784,
+     536943396
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
@@ -237,31 +240,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 8, 2205054065, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536943096, 2205054065, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "13f2fb0935886c4c569abe20dddf3c2f96fdbc23dd31ac4111e32ac9f38240e2",
+    "events": "578b6ac73d10fa290ec99be8ebc5c8f683408e8e22b7370f3b5d60efca2ab744",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     2618385373,
-     255,
-     8,
-     3619521758
+     536945628,
+     536940936,
+     536943096,
+     536937692
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-3",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 3,
     "xpsr": 0
    },
@@ -304,31 +308,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 3842370354, 2655161023, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536947504, 2655161023, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "5a510bff27f78fcef16476c5593149f4e775e19d9918c0faae9ebcf6a33b73e7",
+    "events": "b434fe7b5bafeecb9d84af4bd82caf68d80477afb8501af5f3da18daae75f62e",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     16,
-     2147483647,
-     3842370354,
-     6
+     536945864,
+     536944284,
+     536947504,
+     536951124
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 4,
     "xpsr": 0
    },
@@ -371,31 +376,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 8, 151242190, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536944168, 151242190, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "4b4e2df9a58ccf3ac179bb52fcabc4a375f73dc52f3ab09afd1f6195c4acbc6c",
+    "events": "fe53222e957fe495ee6316eb6e32c2a97547e17692a35d139a92fdacf57aaa6a",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     4,
-     3188701995,
-     8,
-     7
+     536939588,
+     536951592,
+     536944168,
+     536942644
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-5",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 5,
     "xpsr": 0
    },
@@ -438,31 +444,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 5, 1447905683, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536947060, 1447905683, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "291abadb239cfc06a057591ef4cdeb93cf8ddba555eec527c2dd612900906f86",
+    "events": "9241cae45c7fd689fdaed0673a4ed96de4bab612381a79799fdbad22a0789209",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     4,
-     3322790363,
-     5,
-     2147483647
+     536950900,
+     536936920,
+     536947060,
+     536952236
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-6",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 6,
     "xpsr": 0
    },
@@ -505,31 +512,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 1, 1060514798, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536950368, 1060514798, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "6d4e0651b4161e6989da3a9f327844218e2eed64c84db7cb9edd39eaa7d27707",
+    "events": "d72127d986165f57f02fcc3d6d39ac3b5ccd2765d239817b85e82a841c3f64c2",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     2300957721,
-     1604804925,
-     1,
-     2363272863
+     536941592,
+     536944956,
+     536950368,
+     536948380
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-7",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 7,
     "xpsr": 0
    },
@@ -572,31 +580,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 558645175, 2352949406, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536952756, 2352949406, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "0c3bbf0323eadbd1c459a9fbcf64a08bd133538b514ab146c352e78a7762dfae",
+    "events": "21fadb62224b990773da2d86680dcc7ff0ae700dbdc0c02a135d772616970361",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     2156366374,
-     708972563,
-     558645175,
-     4
+     536939044,
+     536940560,
+     536952756,
+     536949588
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-8",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 8,
     "xpsr": 0
    },
@@ -639,31 +648,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 499087790, 3178863954, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536951212, 3178863954, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "330a982c27db25396e3cb9d87f9e24613acdf88b396f41eb4893e848fd869e78",
+    "events": "7cc0782aa79ce3a27bb20c6a3b8d050a060c81dff3bc95e20a6a691d54b7fd88",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     1346232374,
-     1556998536,
-     499087790,
-     2147483647
+     536944692,
+     536947080,
+     536951212,
+     536940988
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 9,
     "xpsr": 0
    },
@@ -706,31 +716,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 8, 3586673693, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536946200, 3586673693, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "c446f124da2a451d55f440fb752ad145637b669fab8925b3dc05408c4b761f92",
+    "events": "6dbf473f321e30b677ee319d518370a113094d9c97c82f3082a8153c9e86cbc3",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     182454980,
-     995058044,
-     8,
-     1
+     536939204,
+     536945020,
+     536946200,
+     536947328
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 10,
     "xpsr": 0
    },
@@ -773,31 +784,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 256, 801746852, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536938076, 801746852, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "d344ade6f43af11437fea71e8d5e91ca61d7c2f992e7f6a8fb5b2c8f9ba52f21",
+    "events": "49ea8b4068837d63cc1fc24be7fe449cca8d7fbb0f075c9ceaa0e5c48c36098c",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     3,
-     2147483648,
-     256,
-     1426281073
+     536937040,
+     536948284,
+     536938076,
+     536941168
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 11,
     "xpsr": 0
    },
@@ -840,31 +852,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 5, 1542880163, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536941268, 1542880163, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "3a8b9e1cf3f1f8750400021a70b7a2538618c109bf248fe2d139657da30c07a2",
+    "events": "f4f8d2c9cbacc517a64e634623caad54c882172713f2ea1318897d6aba3c7644",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     8,
-     3217736208,
-     5,
-     1103693227
+     536944520,
+     536936976,
+     536941268,
+     536937896
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-12",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 12,
     "xpsr": 0
    },
@@ -907,31 +920,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 6, 287561451, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536939060, 287561451, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "384bd9559806a286d3a06b96ec7faf75d01e76c2cfec8111e76ff8bdf9646f06",
+    "events": "0151af77eaaa7028f9bb717b948c2c804fb11cce8b6f07b9117f510d7c0e508f",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     1156718256,
-     1944344031,
-     6,
-     617681966
+     536944304,
+     536942044,
+     536939060,
+     536941612
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 13,
     "xpsr": 0
    },
@@ -974,31 +988,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 3, 1403193323, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536943328, 1403193323, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "8af67c41c3769f8d6f18599021678db103763a04bdd5a8312c59a2e04363a019",
+    "events": "70ba46558e756fb89ecbf851c3cb4de446a802a13baaf2ba99b0dae8b540b75c",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     1996365079,
-     12,
-     3,
-     470668832
+     536943892,
+     536949848,
+     536943328,
+     536942112
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-14",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 14,
     "xpsr": 0
    },
@@ -1041,31 +1056,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 5, 2417077168, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536951236, 2417077168, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "299eedc8eac7e2f7efb0c83ec46fba878528735de91aa345a5639b60385e44ba",
+    "events": "b7cde99746db4f9078f8d01ba71f285e1ba212274c6bb761b16d6f54c6d8580d",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     7,
-     256,
-     5,
-     4
+     536952404,
+     536941132,
+     536951236,
+     536949908
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-15",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 15,
     "xpsr": 0
    },
@@ -1108,31 +1124,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 3454407978, 886755549, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536941864, 886755549, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "1c4270f3da4dfcfb51a29bb88a0c072b8edde4d6cabdf910afe7ce6ad34c1a18",
+    "events": "900e7c8a985b54c1e7583a752854357516addc5ada4e8f65135b5a61b283750c",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     2024561310,
-     2147483648,
-     3454407978,
-     16
+     536943260,
+     536942972,
+     536941864,
+     536940136
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
@@ -1175,31 +1192,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 1168623309, 3896400791, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536938188, 3896400791, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "0684c24ac17a60afca1a454a24c4addc64e6c49557173c51a93005f32dde8f38",
+    "events": "a4858d6a2488b23304e3283b5344e51889cc2e03a5ff6feda82e4bbe13197884",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     3,
-     3254638692,
-     1168623309,
-     4252165479
+     536944016,
+     536942692,
+     536938188,
+     536946020
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-17",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 17,
     "xpsr": 0
    },
@@ -1242,31 +1260,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 697236451, 2620901234, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536951776, 2620901234, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "5744a1f367c8b70c1eb95d2db2382f80994c98282aa8cddfaa5a81cfdaf63b95",
+    "events": "85189835f30ed88f7ed703a4bf43bbde148ac1ebaf187844e502e9cf4637aa6b",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     3912442165,
-     0,
-     697236451,
-     1
+     536944948,
+     536937440,
+     536951776,
+     536945600
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-18",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 18,
     "xpsr": 0
    },
@@ -1309,31 +1328,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 4178753371, 4075769455, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536950616, 4075769455, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "16be45eca2a78180f35aef45bd5ab9c1a36e74951e637318ccdd695d94984d34",
+    "events": "c600a373883bb12ac96a51af8b14b52e7e2b06b35c99d1ee41dbe0eb53d94689",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     6,
-     1536401714,
-     4178753371,
-     255
+     536939284,
+     536944944,
+     536950616,
+     536947592
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 19,
     "xpsr": 0
    },
@@ -1376,31 +1396,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 2, 3043713821, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536939760, 3043713821, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "ddd4ae95d99aae18d8cc3966c0680fc62a1704f569996038a45ff5f58d72745b",
+    "events": "685cda17e72c39bbc8fcc212e045380a3a899e11d12dcd3ae847d56b0ee2bc57",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     4,
-     2306919366,
-     2,
-     7
+     536952740,
+     536939460,
+     536939760,
+     536951108
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-20",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 20,
     "xpsr": 0
    },
@@ -1443,31 +1464,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 2870852768, 2217669457, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536951968, 2217669457, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "ea0eeeec1c1afef08d39a8a024910394b170930cb49e16b8902c068d9a9576e2",
+    "events": "29e4d2d5042bd042a97afbf72e0dae0a0d8b3e7c50619bf5329b722d67e149cb",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     843060076,
-     1,
-     2870852768,
-     0
+     536941420,
+     536936640,
+     536951968,
+     536943488
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-21",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 21,
     "xpsr": 0
    },
@@ -1510,31 +1532,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 4294967295, 1480053828, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536949836, 1480053828, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "1c7047ed612bed8dd230d774ac9924b72ae1a56d4c157e3078edbdead2482d88",
+    "events": "b897eeb479367bcbf3cc7dc39609f48d290a4b3d6e698d1fcc0c12b636c38e90",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     7,
-     3001296298,
-     4294967295,
-     2451975022
+     536937396,
+     536946088,
+     536949836,
+     536947564
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-22",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 22,
     "xpsr": 0
    },
@@ -1577,31 +1600,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 2034212132, 2142178815, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536943908, 2142178815, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "8ada12a741b6328a017af9bcb3c53f4106141f3e0b08f7acc99cfb5c489e5fbe",
+    "events": "1270e96ac5cb31850030d28b0745dad05db459f8a5b26a91e69aab2a948536c2",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     1591295399,
-     241044672,
-     2034212132,
-     1515885587
+     536952228,
+     536939712,
+     536943908,
+     536941584
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-23",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 23,
     "xpsr": 0
    },
@@ -1644,31 +1668,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 2967241396, 1304546403, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536937140, 1304546403, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "30c10956f184d53b0c57a8d27b13ed9a62500b258555c779e9ac8b9cd1b34b8b",
+    "events": "426e8cf13efa985a8bd27b32ea4f5b5305f30c6fdb026a4954cbb0cb070ace57",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     4,
-     6,
-     2967241396,
-     7
+     536949908,
+     536944852,
+     536937140,
+     536951364
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-24",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 24,
     "xpsr": 0
    },
@@ -1711,31 +1736,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 2149248134, 3712121755, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536947844, 3712121755, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "341a92ad2a7e92763efb3ab72b271876a20eb944f25d1c879ef8f43d21baed7e",
+    "events": "a683ecb9176b35b0e74511541a63a9d910a35e72a1a9bf9edad78202513b357e",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     3751937804,
-     12,
-     2149248134,
-     604019693
+     536938252,
+     536941512,
+     536947844,
+     536943596
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 25,
     "xpsr": 0
    },
@@ -1778,31 +1804,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 3037640278, 4058280526, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536950356, 4058280526, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "6547b51d32f37b58cd949880d8fb33ed5692c0fdde5a4dcfcefe2f2f260a100f",
+    "events": "0b69865d01f6f5e4f8391f95f5311f2a6a01f3868376f8ae866fd0c91fdae7a8",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     2992330384,
-     12,
-     3037640278,
-     2678623347
+     536942224,
+     536937032,
+     536950356,
+     536939632
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-26",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 26,
     "xpsr": 0
    },
@@ -1845,31 +1872,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 3639365232, 1775869161, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536940144, 1775869161, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "0823f8c2f6f233a2a56116d0f123e859756c936e73d71e5a28f4571cfc5db5bf",
+    "events": "99697ba1264f8ccbd6d4cc09320d2a4aee77f96f7250a5c08523234079929cf7",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     187818536,
-     681194263,
-     3639365232,
-     4125446660
+     536945192,
+     536949524,
+     536940144,
+     536941060
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 27,
     "xpsr": 0
    },
@@ -1912,31 +1940,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 1, 1542213390, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536946096, 1542213390, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "24ee847e73c5182736b85b6869c28066f0b6db281be853658f1c82a059aafe9e",
+    "events": "47f7d06c7f8eda6a9b40fb9423c61541b584f815e0bed1e14b404deb15920fff",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     3711083943,
-     4285183211,
-     1,
-     2592385448
+     536946084,
+     536949992,
+     536946096,
+     536947112
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-28",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 28,
     "xpsr": 0
    },
@@ -1979,31 +2008,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 3886541357, 2490855531, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536947244, 2490855531, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "99d289f83461bc867cab6fb819f0993bed71507bbf951b6a06086f9da62acf77",
+    "events": "f636cee80a2f9ef803384c473ed3640045283b37a04d509fafaee2d1fb34f9ec",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     739928864,
-     256,
-     3886541357,
-     8
+     536947488,
+     536937084,
+     536947244,
+     536938744
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-29",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 29,
     "xpsr": 0
    },
@@ -2046,31 +2076,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 1, 2417460406, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536945744, 2417460406, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "f37b86eacaf23c792ced98c6a7d022f26c07ca02adc22d90062bc5987f50e9cd",
+    "events": "720c16422adb395fd0c7108648ea331ffb0cc2e1ed8f3acc0b9cdab9ddb376e9",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     256,
-     8,
-     1,
-     7
+     536952796,
+     536941720,
+     536945744,
+     536939284
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-30",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 30,
     "xpsr": 0
    },
@@ -2113,31 +2144,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 7, 1988174091, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536938932, 1988174091, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "0ba0bae357d4944d359a4d6fdd57735becf51e99255c4c2bae511f41a2fd955a",
+    "events": "6fbf2383610eca6674d2bbc9d8a18f6fecadb888694ab128eacc94869fe36fdf",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     4294967295,
-     2461003590,
-     7,
-     53351545
+     536952300,
+     536948548,
+     536938932,
+     536941688
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
@@ -2180,31 +2212,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 3442053927, 615009301, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536941348, 615009301, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "6a246dc7fb4889178d3bddc6637d4c911d10a89001848a0696ff01d6fdc7b81f",
+    "events": "9a601eaeaa9bfb72fab0da9034f64d443156f43a440d6c816485fe4197fd444f",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     1839753098,
-     2706821390,
-     3442053927,
-     1170652979
+     536946568,
+     536940812,
+     536941348,
+     536952624
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-32",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 32,
     "xpsr": 0
    },
@@ -2247,31 +2280,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 7, 1452493058, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536944276, 1452493058, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "2842e52f8aa4bdf0a9fc6d5879683a73a543694153d5468f9104e919ed4b534b",
+    "events": "ba52990f8fa6d7af89b9e47b2df281c0fe93e1f23f6dadfacfe0ad0c50d06186",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     1076094348,
-     7,
-     7,
-     5
+     536946060,
+     536942020,
+     536944276,
+     536938756
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-33",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 33,
     "xpsr": 0
    },
@@ -2314,31 +2348,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 922796015, 2360084761, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536952812, 2360084761, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "d85e441152b7db327db665e8820e06878e8554200d02504ce9a43908193fa382",
+    "events": "09f8668c655db30e9d12cca75118af5022f0e314c646208192f6682b39ca591d",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     12,
-     3990671540,
-     922796015,
-     2147483647
+     536950120,
+     536940724,
+     536952812,
+     536936476
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 34,
     "xpsr": 0
    },
@@ -2381,31 +2416,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 4001652011, 4019880274, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536943912, 4019880274, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "6331cfe766cb13f1c40f3629731c73724b4271836aaabb13065d925cbd533da1",
+    "events": "c91b3c88016eaf6cf0a052f35ca50b53d0954fb7bcffeeaa6c49d720c12b5de0",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     2726887024,
-     3578977268,
-     4001652011,
-     1
+     536952432,
+     536943604,
+     536943912,
+     536937872
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
@@ -2448,31 +2484,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 2147483647, 823752600, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536945964, 823752600, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "fe063525ac163ebef4ec2f041208d5a66f750df10c259c1ba2cadf81e9631596",
+    "events": "07a586de77a5e7a464bb8ea34c44961e0cf2dbde40746fab4f71e33bf5f336f4",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     0,
-     12,
-     2147483647,
-     8
+     536944224,
+     536949832,
+     536945964,
+     536950872
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 36,
     "xpsr": 0
    },
@@ -2515,31 +2552,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 2725586938, 2373057660, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536946680, 2373057660, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "e06949cc82f49c5ad70efaa711ba781e8278fad1b1e845b45ef16314e76e3d7f",
+    "events": "68d42ce35372ccebe49c91e090cfc3d8194791094fcda41eb37b0c0192c60409",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     1,
-     2057795936,
-     2725586938,
-     1299241558
+     536951728,
+     536951136,
+     536946680,
+     536943188
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-37",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 37,
     "xpsr": 0
    },
@@ -2582,31 +2620,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 1, 1627783973, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536936976, 1627783973, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "0610e7ee5b6142fab3922a8bd3b7d1546d6c822cd0fbee8cb1a9b0af672da988",
+    "events": "80455b20ce047967b0ce7b6fc9cc07b61d5e2618e0100bbba7ae781a87e5ba30",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     0,
-     255,
-     1,
-     2
+     536939760,
+     536941672,
+     536936976,
+     536945104
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-38",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 38,
     "xpsr": 0
    },
@@ -2649,31 +2688,32 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 3774328631, 2944518647, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536948532, 2944518647, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "f9fb2ff4ed55183eb28d052c7ad8b9d44d0f7ee11f66f7346dbad34f5b105b7f",
+    "events": "646754bc7e8806cf9f5ae4e1574dd2a468f18b82a28e244783bb9fe33edfa455",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     3,
-     1587124134,
-     3774328631,
-     1997155928
+     536941424,
+     536942500,
+     536948532,
+     536948312
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
     "xpsr": 0
    },
@@ -2716,107 +2756,36 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 1786326658, 2382425351, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536948352, 2382425351, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "ebc8f535bed1fdf7212c3a068cf41996112d5ebde0935dbd9a8e61f685c23c1b",
+    "events": "5a202024cb366b26193f6a57496416597044bf6f3e2a07ace97d0f03f7c89bde",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     0,
-     3928041777,
-     1786326658,
-     1835695343
+     536943600,
+     536946992,
+     536948352,
+     536952044
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-40",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 40,
     "xpsr": 0
    },
    "new_instructions": 17,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    0,
-    0,
-    4,
-    0,
-    0,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i64",
-    "i32",
-    "void",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    511552,
-    214032,
-    515492,
-    214032,
-    214032,
-    92072
-   ],
-   "events_head": [
-    "('C', 0, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 4, 0, 'S', 'F', 'T', None)",
-    "('C', 3, 'S', 'F', 'T', None)",
-    "('C', 4, 'S', 'F', 'T', None)",
-    "('C', 5, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "error": "Invalid memory read",
-    "events": "ec0218d8999cef18c6719c8f5a4483a626ca8bd3f54b722dd733b5157a0841f3",
-    "kind": "fault",
-    "ncalls": 6
-   },
-   "fixture": {
-    "abs": [
-     [
-      536900948,
-      "00000000"
-     ]
-    ],
-    "args": [
-     1276959699,
-     12,
-     4,
-     0
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "glob-0-0",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 0,
-    "xpsr": 0
-   },
-   "new_instructions": 18,
    "stack_args": []
   },
   {
@@ -2867,7 +2836,7 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 0, 1935641720, 4140973137, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 0, 536940552, 272190669, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)",
@@ -2876,25 +2845,30 @@
     "('C', 8, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "e9d6aa4ceb838969c413698ac4937894b942d85df6aa6f4d4721d94079448853",
+    "events": "0180ed4bf9e0d2213dfa8bf3a9fa63b7fea8bc59b88fcb4b7574052586b91b2f",
     "kind": "return",
     "ncalls": 9,
     "ret": [],
     "returned": true
    },
    "fixture": {
-    "abs": [],
+    "abs": [
+     [
+      536940544,
+      "4110012044100120481001204c1001205110012054100120581001205c1001206110012064100120681001206c1001207110012074100120781001207c1001208110012084100120881001208c1001209110012094100120981001209c100120a1100120a4100120a8100120ac100120b1100120b4100120b8100120bc100120c1100120c4100120c8100120cc100120d1100120d4100120d8100120dc100120e1100120e4100120e8100120ec100120f1100120f4100120f8100120fc1001200111012004110120081101200c1101201111012014110120181101201c1101202111012024110120281101202c1101203111012034110120381101203c1101204111012044110120481101204c1101205111012054110120581101205c1101206111012064110120681101206c1101207111012074110120781101207c1101208111012084110120881101208c1101209111012094110120981101209c110120a1110120a4110120a8110120ac110120b1110120b4110120b8110120bc110120c1110120c4110120c8110120cc110120d1110120d4110120d8110120dc110120e1110120e4110120e8110120ec110120f1110120f4110120f8110120fc1101200110012004100120081001200c1001201110012014100120181001201c1001202110012024100120281001202c1001203110012034100120381001203c100120"
+     ]
+    ],
     "args": [
-     2345269775,
-     3092785552,
-     1935641720,
-     554330043
+     536940544,
+     536940548,
+     536940552,
+     536940556
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "orc-all-0",
+    "id": "chain0-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [
      [
       0,
@@ -2902,98 +2876,13 @@
       0
      ],
      [
-      1,
-      0,
-      0
-     ],
-     [
-      2,
-      0,
-      0
-     ],
-     [
-      3,
-      0,
-      0
-     ],
-     [
-      4,
-      0,
-      0
-     ],
-     [
-      5,
-      0,
-      0
-     ],
-     [
-      6,
-      0,
-      0
-     ],
-     [
-      7,
-      0,
-      0
-     ],
-     [
-      8,
-      0,
-      0
-     ],
-     [
-      9,
-      0,
-      0
-     ],
-     [
-      10,
-      0,
-      0
-     ],
-     [
-      11,
-      0,
-      0
-     ],
-     [
-      12,
-      0,
-      0
-     ],
-     [
-      13,
-      0,
-      0
-     ],
-     [
-      14,
-      0,
-      0
-     ],
-     [
-      15,
-      0,
-      0
-     ],
-     [
-      16,
-      0,
-      0
-     ],
-     [
-      17,
-      0,
-      0
-     ],
-     [
-      18,
-      0,
-      0
-     ],
-     [
       0,
       1,
+      0
+     ],
+     [
+      1,
+      0,
       0
      ],
      [
@@ -3003,7 +2892,17 @@
      ],
      [
       2,
+      0,
+      0
+     ],
+     [
+      2,
       1,
+      0
+     ],
+     [
+      3,
+      0,
       0
      ],
      [
@@ -3013,7 +2912,17 @@
      ],
      [
       4,
+      0,
+      0
+     ],
+     [
+      4,
       1,
+      0
+     ],
+     [
+      5,
+      0,
       0
      ],
      [
@@ -3023,7 +2932,17 @@
      ],
      [
       6,
+      0,
+      0
+     ],
+     [
+      6,
       1,
+      0
+     ],
+     [
+      7,
+      0,
       0
      ],
      [
@@ -3033,7 +2952,17 @@
      ],
      [
       8,
+      0,
+      0
+     ],
+     [
+      8,
       1,
+      0
+     ],
+     [
+      9,
+      0,
       0
      ],
      [
@@ -3043,54 +2972,103 @@
      ],
      [
       10,
+      0,
+      0
+     ],
+     [
+      10,
       1,
       0
      ],
      [
       11,
-      1,
+      0,
       0
      ],
      [
-      12,
-      1,
-      0
-     ],
-     [
-      13,
-      1,
-      0
-     ],
-     [
-      14,
-      1,
-      0
-     ],
-     [
-      15,
-      1,
-      0
-     ],
-     [
-      16,
-      1,
-      0
-     ],
-     [
-      17,
-      1,
-      0
-     ],
-     [
-      18,
+      11,
       1,
       0
      ]
     ],
-    "scratch_seed": 400,
+    "outparam": null,
+    "scratch_seed": 830,
     "xpsr": 0
    },
    "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i64",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    511552,
+    214032,
+    515492,
+    214032,
+    214032,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 1927129959, 536948308, 0, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "067bae05eb4cc1c5f669b7e96ebdfd3b8d67e3d34576ff82da80b53826733ba3",
+    "kind": "fault",
+    "ncalls": 6
+   },
+   "fixture": {
+    "abs": [
+     [
+      536900948,
+      "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+     ]
+    ],
+    "args": [
+     536943568,
+     536948040,
+     536948308,
+     536940048
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-0-0",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 18,
    "stack_args": []
   },
   {
@@ -3153,7 +3131,7 @@
    "events_head": [
     "('C', 0, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 2, 5, 1593104201, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'[csh_debug_msg] set touch key flag get_msg_show_state() %d\\n'), 2, 536947124, 1593104201, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)",
@@ -3166,7 +3144,7 @@
     "('C', 11, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "264d5a960eb53ce7ef107ff1f9865064b91f45e436d873877cb4e8a2e8ecd27e",
+    "events": "5425aa85673d5a516f8f6faa9642e414aa3e75914b5345798d434119804d71ed",
     "kind": "return",
     "ncalls": 12,
     "ret": [],
@@ -3175,16 +3153,16 @@
    "fixture": {
     "abs": [],
     "args": [
-     2301873280,
-     2147483647,
-     5,
-     888612868
+     536939648,
+     536938124,
+     536947124,
+     536946692
     ],
     "float_scratch": false,
     "fp": {},
     "id": "orc-all-2",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [
      [
       0,
@@ -3377,6 +3355,7 @@
       2
      ]
     ],
+    "outparam": null,
     "scratch_seed": 402,
     "xpsr": 0
    },
@@ -3398,8 +3377,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "sensors",
@@ -3408,16 +3390,28 @@
   "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
   "source": "shipped image"
  },
- "pointer_arg_mask": [],
+ "pointer_arg_mask": [
+  0,
+  1,
+  2,
+  3
+ ],
  "ret_kind": "void",
  "search": {
-  "candidates": 183,
+  "candidates": 251,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
   "kept": 44,
-  "pointer_arg_mask": [],
+  "pointer_arg_mask": [
+   0,
+   1,
+   2,
+   3
+  ],
   "pointer_arg_mask_derived": true
  },
  "size": 168,

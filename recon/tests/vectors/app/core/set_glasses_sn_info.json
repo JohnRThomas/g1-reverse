@@ -18,15 +18,15 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 12, 4, 0, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'set_glasses_sn_info para is NULL\\n'), 3677333764, 4, 0, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536948040, 536948308, 536940048, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536948308, 17, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "a57f0b9172bb3ff9644360c0a21679e8126de03f1caaa847658f50a4b02d3bff",
+    "events": "c34b00351042214dc88bbebad534404672d8e894692aaab751ae59b7b203a762",
     "kind": "return",
     "ncalls": 2,
     "ret": [
-     4294967295
+     4294967294
     ],
     "returned": true
    },
@@ -34,20 +34,21 @@
     "abs": [],
     "args": [
      1276959699,
-     12,
-     4,
-     0
+     536948040,
+     536948308,
+     536940048
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
-   "new_instructions": 14,
+   "new_instructions": 19,
    "stack_args": []
   },
   {
@@ -68,11 +69,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 1797429778, 2147483648, 315044147, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 2147483648, 200, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536943120, 536940476, 536949040, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536940476, 200, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "5febf466055258df9c6a698e18ad396f6942f9e37ee6e7a3a835a33a323e295e",
+    "events": "afc737bb442b56a660c03b8623011b117528fca09ba515545a75f1b293828bd7",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -84,16 +85,17 @@
     "abs": [],
     "args": [
      4067469868,
-     1797429778,
-     2147483648,
-     315044147
+     536943120,
+     536940476,
+     536949040
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -118,11 +120,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 598759513, 3677430904, 7, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3677430904, 166, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536942680, 536945784, 536943396, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536945784, 166, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ad44188abc2a5dfcb36e2b50e840bfa681b5e1883139cc7a91cc6bc98b6d180e",
+    "events": "6e3ae1bb087679a18e29057acc4d7dfb0995522a634dd680f0b527244192285d",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -134,16 +136,17 @@
     "abs": [],
     "args": [
      4290042576,
-     598759513,
-     3677430904,
-     7
+     536942680,
+     536945784,
+     536943396
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
@@ -168,11 +171,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 255, 8, 3619521758, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 8, 14, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536940936, 536943096, 536937692, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536943096, 14, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9ca2f827c29f806e4ca6589ed663db7c0ce70413e37ccf4280fc19e2740963fb",
+    "events": "2c2b7f81f25f180d1f81684914bb7fe49b5b5bf5a42416ef7f329a7e43ac65ef",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -184,16 +187,17 @@
     "abs": [],
     "args": [
      2618385373,
-     255,
-     8,
-     3619521758
+     536940936,
+     536943096,
+     536937692
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-3",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 3,
     "xpsr": 0
    },
@@ -218,11 +222,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 2147483647, 3842370354, 6, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3842370354, 188, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536944284, 536947504, 536951124, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536947504, 188, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "e2266ecfd6a39a12d4d9aa6a85d2b4852b43da5d917f2331efbacc260712df7a",
+    "events": "09fe918d7a067fa514431ed83d1c846b0d9c385dadd993d9f1c41862ace2d6c5",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -234,16 +238,17 @@
     "abs": [],
     "args": [
      16,
-     2147483647,
-     3842370354,
-     6
+     536944284,
+     536947504,
+     536951124
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 4,
     "xpsr": 0
    },
@@ -268,11 +273,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 3188701995, 8, 7, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 8, 219, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536951592, 536944168, 536942644, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536944168, 219, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9c7abe5f0556c7d8514a6f88677ee8128f35d052ff8dbf705350c6294649589d",
+    "events": "8a0735b56c08737e6a7f44ae4f88e28e1233bd052f7023f5d884dea2f86110b2",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -284,16 +289,17 @@
     "abs": [],
     "args": [
      4,
-     3188701995,
-     8,
-     7
+     536951592,
+     536944168,
+     536942644
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-5",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 5,
     "xpsr": 0
    },
@@ -318,11 +324,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 3322790363, 5, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 5, 76, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536936920, 536947060, 536952236, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536947060, 76, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "25015824ec7d29b37e77e8a667256ebba3740b5a2e47cc5558a5798a51002ee2",
+    "events": "90fac3dbcfac7f17deccdfcef9ee907ef1b830f4b8beb89b9a9b2648aa16fd86",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -334,16 +340,17 @@
     "abs": [],
     "args": [
      4,
-     3322790363,
-     5,
-     2147483647
+     536936920,
+     536947060,
+     536952236
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-6",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 6,
     "xpsr": 0
    },
@@ -368,11 +375,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 1604804925, 1, 2363272863, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 1, 177, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536944956, 536950368, 536948380, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536950368, 177, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9c44c6c7c3580704b18067a32e838899a94864051e8f11953cd8041cc346cc54",
+    "events": "032b70ad15a84da08e546f40d900e00d14fa55dffb48dedfca0791b1d7c8dd8a",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -384,16 +391,17 @@
     "abs": [],
     "args": [
      2300957721,
-     1604804925,
-     1,
-     2363272863
+     536944956,
+     536950368,
+     536948380
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-7",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 7,
     "xpsr": 0
    },
@@ -418,11 +426,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 708972563, 558645175, 4, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 558645175, 236, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536940560, 536952756, 536949588, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536952756, 236, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "08fc0fc2f37047846090e6c9000a8d733f05cb15bd3ffa53aa29d6bbe33a1abc",
+    "events": "f97200c260edb3a93a6444bf7c0a335b261be1b8e5c3db435a8f8d151cc291e8",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -434,16 +442,17 @@
     "abs": [],
     "args": [
      2156366374,
-     708972563,
-     558645175,
-     4
+     536940560,
+     536952756,
+     536949588
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-8",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 8,
     "xpsr": 0
    },
@@ -468,11 +477,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 1556998536, 499087790, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 499087790, 147, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536947080, 536951212, 536940988, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536951212, 147, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "66ab53f7d09b16430eb63811ca8608ea1a4fe3ca756d80a1082a1c205a549c02",
+    "events": "80db4e6bcc60148625879b588bd1861bec41bd19783f19cb40ce145a5a801e2e",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -484,16 +493,17 @@
     "abs": [],
     "args": [
      1346232374,
-     1556998536,
-     499087790,
-     2147483647
+     536947080,
+     536951212,
+     536940988
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 9,
     "xpsr": 0
    },
@@ -518,11 +528,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 995058044, 8, 1, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 8, 201, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536945020, 536946200, 536947328, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536946200, 201, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "79ccc400fbd51c2c75a29bb5684945e3bae25af41d035ec5935714d2eb2c0a34",
+    "events": "b12e9a37662117dc3a370c796d370868ffae8c1d71a81d85fc8046efab5c0bc7",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -534,16 +544,17 @@
     "abs": [],
     "args": [
      182454980,
-     995058044,
-     8,
-     1
+     536945020,
+     536946200,
+     536947328
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 10,
     "xpsr": 0
    },
@@ -568,11 +579,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 2147483648, 256, 1426281073, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 256, 149, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536948284, 536938076, 536941168, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536938076, 149, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "2ae48c06dd3f5a1275f5d223602d88a6705ed517c88a8eb3ab17482258e54024",
+    "events": "587cc90b06f393e9cc18bb1ec2dfdafc6701820e97c75bc4530a029d34d77fd6",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -584,16 +595,17 @@
     "abs": [],
     "args": [
      3,
-     2147483648,
-     256,
-     1426281073
+     536948284,
+     536938076,
+     536941168
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 11,
     "xpsr": 0
    },
@@ -618,11 +630,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 3217736208, 5, 1103693227, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 5, 116, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536936976, 536941268, 536937896, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536941268, 116, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c94519ff2d3a76d749048686eb5d39fcb07bf9ffc49e121d2d3bbcb0a2245ab7",
+    "events": "0a45b80abc24457e8af91468b34c9bf214ccd49de56502f23d54a6313ac7f30a",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -634,16 +646,17 @@
     "abs": [],
     "args": [
      8,
-     3217736208,
-     5,
-     1103693227
+     536936976,
+     536941268,
+     536937896
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-12",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 12,
     "xpsr": 0
    },
@@ -668,11 +681,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 1944344031, 6, 617681966, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 6, 64, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536942044, 536939060, 536941612, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536939060, 64, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "8d40055f7aecb004537b5fe4b3988e6cd89ae8642ebf489c3e96526f9f179f0b",
+    "events": "d006953ee8cd9eae7c3e94373c353af913ac8b4768b7afa3e6cc59192e9ca530",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -684,16 +697,17 @@
     "abs": [],
     "args": [
      1156718256,
-     1944344031,
-     6,
-     617681966
+     536942044,
+     536939060,
+     536941612
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 13,
     "xpsr": 0
    },
@@ -718,11 +732,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 12, 3, 470668832, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3, 101, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536949848, 536943328, 536942112, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536943328, 101, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "e47d22ba6d74ff72b8d695ea3dabaf00edd15ccc42b4a68018d4ebb2dc58cd8f",
+    "events": "40b54f61f3d0e8187a521e55a6060917028e9478048d695725917f19585464d6",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -734,16 +748,17 @@
     "abs": [],
     "args": [
      1996365079,
-     12,
-     3,
-     470668832
+     536949848,
+     536943328,
+     536942112
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-14",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 14,
     "xpsr": 0
    },
@@ -768,11 +783,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 256, 5, 4, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 5, 7, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536941132, 536951236, 536949908, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536951236, 7, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "3f2a8d2238f9658f89a9176f9afbdb3e38dd51656fe4812878146566185ba792",
+    "events": "b3ea54a48b09c47fb9cef8d53ff2d6418229b534956b77c7b13e9bcfde6aebc8",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -784,16 +799,17 @@
     "abs": [],
     "args": [
      7,
-     256,
-     5,
-     4
+     536941132,
+     536951236,
+     536949908
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-15",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 15,
     "xpsr": 0
    },
@@ -818,11 +834,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 2147483648, 3454407978, 16, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3454407978, 251, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536942972, 536941864, 536940136, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536941864, 251, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "2fa3d7a74aeaf1023192de517528418753867a4f2f5d79ac14ce952258b43638",
+    "events": "abc941bf23bbecd9682bc4398975d6f6a60055ff1560d420443f47933b81eefd",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -834,16 +850,17 @@
     "abs": [],
     "args": [
      2024561310,
-     2147483648,
-     3454407978,
-     16
+     536942972,
+     536941864,
+     536940136
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
@@ -868,11 +885,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 3254638692, 1168623309, 4252165479, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 1168623309, 176, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536942692, 536938188, 536946020, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536938188, 176, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "a0221215c30e101bb5866cad42be6bdf08ae7a976ef52208e7ee1d9882ec9b00",
+    "events": "fd7c70b35dbfa1af8d874070719e43866682a80964ab080959e8b176c0db83e5",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -884,16 +901,17 @@
     "abs": [],
     "args": [
      3,
-     3254638692,
-     1168623309,
-     4252165479
+     536942692,
+     536938188,
+     536946020
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-17",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 17,
     "xpsr": 0
    },
@@ -918,11 +936,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 0, 697236451, 1, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 697236451, 50, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536937440, 536951776, 536945600, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536951776, 50, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b5e7ab25cc84d2b440d2eb2d7dcf1322a672b507690328a320d98a69d8b54548",
+    "events": "0dc299b546edb25053ce0d02de4da47e9b2236d9d42503dcb65e0b8787c3aee1",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -934,16 +952,17 @@
     "abs": [],
     "args": [
      3912442165,
-     0,
-     697236451,
-     1
+     536937440,
+     536951776,
+     536945600
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-18",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 18,
     "xpsr": 0
    },
@@ -968,11 +987,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 1536401714, 4178753371, 255, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 4178753371, 106, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536944944, 536950616, 536947592, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536950616, 106, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9c6b90a1f63a06c030d4426e98ccd8ef50cd741c62df4a318cd91dcaf46bc1c4",
+    "events": "ba58ab8b34aac2718cf83c37b68414cd421dcd26b2ab1561abeb3bbb6ea5d848",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -984,16 +1003,17 @@
     "abs": [],
     "args": [
      6,
-     1536401714,
-     4178753371,
-     255
+     536944944,
+     536950616,
+     536947592
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 19,
     "xpsr": 0
    },
@@ -1018,11 +1038,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 2306919366, 2, 7, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 2, 183, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536939460, 536939760, 536951108, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536939760, 183, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b6e9632dc52a239038c1f5a21852000b8a75bdf2564a0b921c74e7a2c44c1974",
+    "events": "7c1d41cee1110ad07ae74bcb84df10776e335396652ff3a9843b30b49f5cad31",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1034,16 +1054,17 @@
     "abs": [],
     "args": [
      4,
-     2306919366,
-     2,
-     7
+     536939460,
+     536939760,
+     536951108
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-20",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 20,
     "xpsr": 0
    },
@@ -1068,15 +1089,15 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 1, 2870852768, 0, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'set_glasses_sn_info para is NULL\\n'), 3677333764, 2870852768, 0, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536936640, 536951968, 536943488, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536951968, 250, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "af6fb06aabe609c3752c0a3a884333bb75d16263af3a9d9d6f55470986f0013c",
+    "events": "13a46281fed7dee616d4f784e015005cae3bc65a70cce69b4c6b3da0cc4f7208",
     "kind": "return",
     "ncalls": 2,
     "ret": [
-     4294967295
+     4294967294
     ],
     "returned": true
    },
@@ -1084,20 +1105,21 @@
     "abs": [],
     "args": [
      843060076,
-     1,
-     2870852768,
-     0
+     536936640,
+     536951968,
+     536943488
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-21",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 21,
     "xpsr": 0
    },
-   "new_instructions": 14,
+   "new_instructions": 19,
    "stack_args": []
   },
   {
@@ -1118,11 +1140,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 3001296298, 4294967295, 2451975022, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 4294967295, 203, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536946088, 536949836, 536947564, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536949836, 203, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "f2db1ecce19c5aa67d1951023c6b2692e5265af92df124c30aa509e38cd4d1b4",
+    "events": "38bda8ae8ddb594233255597d9d69a7fe6ed8d84c2c08894ee4645a4d48937b4",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1134,16 +1156,17 @@
     "abs": [],
     "args": [
      7,
-     3001296298,
-     4294967295,
-     2451975022
+     536946088,
+     536949836,
+     536947564
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-22",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 22,
     "xpsr": 0
    },
@@ -1168,11 +1191,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 241044672, 2034212132, 1515885587, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 2034212132, 212, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536939712, 536943908, 536941584, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536943908, 212, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "44396b22e22f7b7f39978b44eac7df8f80feacced542328a703a084bd07815c1",
+    "events": "a1b59876da673f932a56ce31267189723641c205895b280a9d8d2a9f02be641e",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1184,16 +1207,17 @@
     "abs": [],
     "args": [
      1591295399,
-     241044672,
-     2034212132,
-     1515885587
+     536939712,
+     536943908,
+     536941584
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-23",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 23,
     "xpsr": 0
    },
@@ -1218,11 +1242,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 6, 2967241396, 7, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 2967241396, 44, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536944852, 536937140, 536951364, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536937140, 44, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "802c52e4ca2d8d366ed645ceddec039924a9452ac3c01de8e8acf3705c6057ce",
+    "events": "7ff3c78511deb1b38cb5aa7e92c7b646a48e72d744ed3a47e275a859f7686575",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1234,16 +1258,17 @@
     "abs": [],
     "args": [
      4,
-     6,
-     2967241396,
-     7
+     536944852,
+     536937140,
+     536951364
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-24",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 24,
     "xpsr": 0
    },
@@ -1268,11 +1293,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 12, 2149248134, 604019693, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 2149248134, 24, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536941512, 536947844, 536943596, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536947844, 24, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c10fdd2da072c5d624d4c28895da27db025ecadfacca383b4ace167fe7c67fde",
+    "events": "5da79ac1a64e51fba9c93e4df5bd618dd4737e02e83b1d6aeb92130962c97203",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1284,16 +1309,17 @@
     "abs": [],
     "args": [
      3751937804,
-     12,
-     2149248134,
-     604019693
+     536941512,
+     536947844,
+     536943596
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 25,
     "xpsr": 0
    },
@@ -1318,11 +1344,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 12, 3037640278, 2678623347, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3037640278, 212, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536937032, 536950356, 536939632, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536950356, 212, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ab5a80eca97c34e0a53a7df68d4f3e00c16de7ffa5c31c32e32049c4b3b0bbf9",
+    "events": "e08eb61bf5db283570a9ad0ffe4ef0c48ede062b9cbebccf29d09dc78f912766",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1334,16 +1360,17 @@
     "abs": [],
     "args": [
      2992330384,
-     12,
-     3037640278,
-     2678623347
+     536937032,
+     536950356,
+     536939632
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-26",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 26,
     "xpsr": 0
    },
@@ -1368,11 +1395,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 681194263, 3639365232, 4125446660, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3639365232, 179, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536949524, 536940144, 536941060, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536940144, 179, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "619929ec5c33a455037b8f90133a8adf977d7da49935da5e3643b1ad903756ee",
+    "events": "d5707bacc65ff8c64721b27fa9fb90487eb2919629f5e1dcf75e9166359eac4a",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1384,16 +1411,17 @@
     "abs": [],
     "args": [
      187818536,
-     681194263,
-     3639365232,
-     4125446660
+     536949524,
+     536940144,
+     536941060
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 27,
     "xpsr": 0
    },
@@ -1418,11 +1446,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 4285183211, 1, 2592385448, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 1, 253, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536949992, 536946096, 536947112, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536946096, 253, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "2d4eec48ee49b0cf5ec78be3fbb04a7359a8e5ad8055478a23e388d34abf5337",
+    "events": "f87866bb5138f46b77ea99781ada2ae09fa07df06bc161e2b0bdb5a8f9017138",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1434,16 +1462,17 @@
     "abs": [],
     "args": [
      3711083943,
-     4285183211,
-     1,
-     2592385448
+     536949992,
+     536946096,
+     536947112
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-28",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 28,
     "xpsr": 0
    },
@@ -1468,11 +1497,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 256, 3886541357, 8, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3886541357, 128, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536937084, 536947244, 536938744, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536947244, 128, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "eba938c576d0b3e5765143ef962364b1eb6b62df80010e40caae02200a307c0a",
+    "events": "b0022623a3bd4f30bb5818e8c18ecfd4b2387ab8f15a01048323ff66acafedfe",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1484,16 +1513,17 @@
     "abs": [],
     "args": [
      739928864,
-     256,
-     3886541357,
-     8
+     536937084,
+     536947244,
+     536938744
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-29",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 29,
     "xpsr": 0
    },
@@ -1518,11 +1548,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 8, 1, 7, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 1, 55, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536941720, 536945744, 536939284, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536945744, 55, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "1c3aa68dbd17be0f4a074671a65f95785d2ed4817f7c412f08aa2badc9bb27cf",
+    "events": "96846691a0a7fbbfd7b9a2e6c0e1641ce6b6a21115defb6650fed98e148dc874",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1534,16 +1564,17 @@
     "abs": [],
     "args": [
      256,
-     8,
-     1,
-     7
+     536941720,
+     536945744,
+     536939284
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-30",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 30,
     "xpsr": 0
    },
@@ -1568,11 +1599,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 2461003590, 7, 53351545, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 7, 83, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536948548, 536938932, 536941688, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536938932, 83, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c1980fe5d991f06a137458d82fce2b7f60944b8d855c0a64aead8ee0eba4cfb8",
+    "events": "c85a0ccd69403666b0e06e8f7b7a8ff9db7e514751c54d94fefb645c1f525fab",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1584,16 +1615,17 @@
     "abs": [],
     "args": [
      4294967295,
-     2461003590,
-     7,
-     53351545
+     536948548,
+     536938932,
+     536941688
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
@@ -1618,11 +1650,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 2706821390, 3442053927, 1170652979, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3442053927, 107, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536940812, 536941348, 536952624, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536941348, 107, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "91e2ce09b4da8c4a2e1969d21910e8796dfbddd071b964c3babfda103f0816e7",
+    "events": "2770ace1ddbea4d606947be452c56e63659c4e31d1954693083bc7d2a21a55db",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1634,16 +1666,17 @@
     "abs": [],
     "args": [
      1839753098,
-     2706821390,
-     3442053927,
-     1170652979
+     536940812,
+     536941348,
+     536952624
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-32",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 32,
     "xpsr": 0
    },
@@ -1668,11 +1701,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 7, 7, 5, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 7, 59, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536942020, 536944276, 536938756, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536944276, 59, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "827845e0710e3110f44c6b373c23ba8cd537389e0152ec49a79c21e00523ce4d",
+    "events": "38250a9ec1e8e1d69ba74f89203d2e1a59a765cd83576f58acaac3818a219019",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1684,16 +1717,17 @@
     "abs": [],
     "args": [
      1076094348,
-     7,
-     7,
-     5
+     536942020,
+     536944276,
+     536938756
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-33",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 33,
     "xpsr": 0
    },
@@ -1718,11 +1752,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 3990671540, 922796015, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 922796015, 97, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536940724, 536952812, 536936476, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536952812, 97, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "a44901dc0577fc6123c32af1c77ef7723f1287f2a3d7cab031a7335f90eafb85",
+    "events": "89802e174266129646194eaf170ce048436bd42b6a0807311f81be572aef2254",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1734,16 +1768,17 @@
     "abs": [],
     "args": [
      12,
-     3990671540,
-     922796015,
-     2147483647
+     536940724,
+     536952812,
+     536936476
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 34,
     "xpsr": 0
    },
@@ -1768,11 +1803,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 3578977268, 4001652011, 1, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 4001652011, 213, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536943604, 536943912, 536937872, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536943912, 213, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "1b33f572145fb1dca2133db313dc86e128d9ea4ce0d496bac205bbad58d06b35",
+    "events": "56c88f2db83c47eeecc62c42a4436f93120c0e6f90b28fde7dbe9eed146543c3",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1784,16 +1819,17 @@
     "abs": [],
     "args": [
      2726887024,
-     3578977268,
-     4001652011,
-     1
+     536943604,
+     536943912,
+     536937872
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
@@ -1818,11 +1854,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 12, 2147483647, 8, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 2147483647, 255, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536949832, 536945964, 536950872, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536945964, 255, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "0183bb12aae2a8802fe39a32877f363ebf8f89b4ed8dd60e567969a67a29dfed",
+    "events": "fc9a69fcab8106f64aebb8dc2a37e443fc2baaae3e794a799eb3787b98e75209",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1834,16 +1870,17 @@
     "abs": [],
     "args": [
      0,
-     12,
-     2147483647,
-     8
+     536949832,
+     536945964,
+     536950872
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 36,
     "xpsr": 0
    },
@@ -1868,11 +1905,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 2057795936, 2725586938, 1299241558, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 2725586938, 98, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536951136, 536946680, 536943188, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536946680, 98, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "5cb3d0bc9fcc2dac4dbf0f8c226edb5a51f5c578364bd42863721511fcbfdfb2",
+    "events": "a3749d3f896ed77bd8864e51aa9a42321e2fc3d6359feeb83899932f97cdf617",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1884,16 +1921,17 @@
     "abs": [],
     "args": [
      1,
-     2057795936,
-     2725586938,
-     1299241558
+     536951136,
+     536946680,
+     536943188
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-37",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 37,
     "xpsr": 0
    },
@@ -1918,11 +1956,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 255, 1, 2, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 1, 149, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536941672, 536936976, 536945104, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536936976, 149, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "fcb6151be2c3e42fa803a09ee45c342b41234009b9784e03ba7cfe94771e0c4f",
+    "events": "6ca787b38a8ae100254d3b881dc448cf66bd4a250ccf288f8123e053abbeb84f",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1934,16 +1972,17 @@
     "abs": [],
     "args": [
      0,
-     255,
-     1,
-     2
+     536941672,
+     536936976,
+     536945104
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-38",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 38,
     "xpsr": 0
    },
@@ -1968,11 +2007,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 1587124134, 3774328631, 1997155928, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3774328631, 227, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536942500, 536948532, 536948312, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536948532, 227, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "87b1d304d060bc03de953cd34f199db6c36a43cff6e22debea32f41e15690bd5",
+    "events": "e077f9807d1bf4c2e52637f654b5dad24ee13ba47aa6c3d3dea41b21506b7d00",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -1984,16 +2023,17 @@
     "abs": [],
     "args": [
      3,
-     1587124134,
-     3774328631,
-     1997155928
+     536942500,
+     536948532,
+     536948312
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
     "xpsr": 0
    },
@@ -2018,11 +2058,11 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 3928041777, 1786326658, 1835695343, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 1786326658, 121, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536946992, 536948352, 536952044, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 536948352, 121, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "853e94e0585462f70cf73ad4526a614c5a2f3e7f81ce071c57e6b91cc078f8f6",
+    "events": "a4683873e95249bcf47efd806645d92f5413459a5b53fdcff1aa8d1dcf80182d",
     "kind": "return",
     "ncalls": 2,
     "ret": [
@@ -2034,16 +2074,17 @@
     "abs": [],
     "args": [
      0,
-     3928041777,
-     1786326658,
-     1835695343
+     536946992,
+     536948352,
+     536952044
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-40",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 40,
     "xpsr": 0
    },
@@ -2068,83 +2109,37 @@
     515492
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 256, 3059135833, 1, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'warning: not test mode,disable setting\\n'), 3677333764, 3059135833, 225, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536948040, 0, 536940048, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'set_glasses_sn_info para is NULL\\n'), 3677333764, 0, 536940048, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "02d12f8c688849a8c858313442104ca916c6354669d95290a71e88f088e47ede",
+    "events": "05b84e21e289f63d1c2d2e09bedafe695e742cb5b3c9934225d08aec59be5a6c",
     "kind": "return",
     "ncalls": 2,
     "ret": [
-     4294967294
+     4294967295
     ],
     "returned": true
    },
    "fixture": {
     "abs": [],
     "args": [
-     3886568119,
-     256,
-     3059135833,
-     1
+     1276959699,
+     536948040,
+     0,
+     536940048
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "seed-41",
+    "id": "cfgsel-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
-    "scratch_seed": 41,
+    "outparam": null,
+    "scratch_seed": 0,
     "xpsr": 0
    },
-   "new_instructions": 19,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "void"
-   ],
-   "call_targets": [
-    515492
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 1797429778, 2147483648, 315044147, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "error": "Invalid memory read",
-    "events": "a04a061c64d42088b2b9d9ed3c9f62049436d754425cfe83fcbfc8978eac89ef",
-    "kind": "fault",
-    "ncalls": 1
-   },
-   "fixture": {
-    "abs": [
-     [
-      536977139,
-      "01000000"
-     ]
-    ],
-    "args": [
-     4067469868,
-     1797429778,
-     2147483648,
-     315044147
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "glob-0-1",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 1,
-    "xpsr": 0
-   },
-   "new_instructions": 16,
+   "new_instructions": 13,
    "stack_args": []
   },
   {
@@ -2177,21 +2172,16 @@
     142080
    ],
    "events_head": [
-    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 812981861, 2, 2147483648, 'S', 'F', 'T', None)",
-    "('C', 1, 3667252319, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The string is: %s\\n'), 3667252319, 2, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536943120, 536940476, 536949040, 'S', 'F', 'T', None)",
+    "('C', 1, 4067469872, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The string is: %s\\n'), 4067469872, 536940476, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)",
-    "('C', 4, 0, 'S', 'F', 'T', None)",
-    "('W', 0, 1, 41)",
-    "('W', 1, 1, 1)",
-    "('W', 2, 1, 3)",
-    "('W', 2147483648, 1, 5)",
-    "('W', 3, 1, 1)",
-    "('W', 4, 1, 0)"
+    "('C', 4, 86613917, 'S', 'F', 'T', None)",
+    "('W', 2347576118, 1, 41)"
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "23e537a6032fc9abbe9393bfd05febc7c4db760503e1fbde0eedf6330ae45e25",
+    "events": "ae386a556334f11750b8dcb403e4923272afffbd63e564e6fb43d61c069267d9",
     "kind": "fault",
     "ncalls": 5
    },
@@ -2199,28 +2189,120 @@
     "abs": [
      [
       536977139,
-      "01000000"
+      "01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000"
+     ]
+    ],
+    "args": [
+     4067469868,
+     536943120,
+     536940476,
+     536949040
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-0-1",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 1,
+    "xpsr": 0
+   },
+   "new_instructions": 29,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    1,
+    3,
+    0,
+    1,
+    1,
+    3,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    515492,
+    144092,
+    489456,
+    92072,
+    142080,
+    144120,
+    551908,
+    515492
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'join in set_glasses_sn_info\\n'), 536944228, 536938128, 536944236, 'S', 'F', 'T', None)",
+    "('C', 1, 3667252319, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The string is: %s\\n'), 3667252319, 536938128, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 0, 'S', 'F', 'T', None)",
+    "('W', 1088739482, 1, 41)",
+    "('W', 1088739483, 1, 1)",
+    "('W', 1088739485, 1, 1)",
+    "('W', 1088739484, 1, 3)",
+    "('W', 1088739486, 1, 0)",
+    "('W', 536944236, 1, 5)",
+    "('C', 5, ('SP', 0), 'S', 'F', 'T', None)",
+    "('C', 6, 3667252319, ('SP', 53), 11, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'SN codes updated and written to flash successfully.\\n'), 0, 11, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "afec8bfc5039a7af4268761c2309ccdd3b2454f1a2139a7c7606f480b73c9ecb",
+    "kind": "return",
+    "ncalls": 8,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536977139,
+      "01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000"
      ],
      [
       536879884,
-      "01000000"
+      "01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000"
      ],
      [
       536900948,
-      "01000000"
+      "01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000"
      ]
     ],
     "args": [
      3667252315,
-     812981861,
-     2,
-     2147483648
+     536944228,
+     536938128,
+     536944236
     ],
     "float_scratch": false,
     "fp": {},
     "id": "combo-1-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [
      [
       0,
@@ -2373,17 +2455,18 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 604,
     "xpsr": 0
    },
-   "new_instructions": 38,
+   "new_instructions": 52,
    "stack_args": []
   }
  ],
  "core": "app",
  "coverage": {
-  "covered": 47,
-  "ratio": 0.5802,
+  "covered": 59,
+  "ratio": 0.7284,
   "total": 81,
   "unresolved_indirect": 0
  },
@@ -2395,8 +2478,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "core",
@@ -2405,16 +2491,26 @@
   "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
   "source": "shipped image"
  },
- "pointer_arg_mask": [],
+ "pointer_arg_mask": [
+  1,
+  2,
+  3
+ ],
  "ret_kind": "i32",
  "search": {
-  "candidates": 195,
+  "candidates": 274,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
   "kept": 44,
-  "pointer_arg_mask": [],
+  "pointer_arg_mask": [
+   1,
+   2,
+   3
+  ],
   "pointer_arg_mask_derived": true
  },
  "size": 200,

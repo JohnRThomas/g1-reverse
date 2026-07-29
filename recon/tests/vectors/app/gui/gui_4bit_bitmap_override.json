@@ -2,29 +2,24 @@
  "cases": [
   {
    "call_arities": [
-    4,
     4
    ],
    "call_float_arities": [
-    0,
     0
    ],
    "call_return_kinds": [
-    "i32",
     "void"
    ],
    "call_targets": [
-    284812,
     105584
    ],
    "events_head": [
-    "('C', 0, 4, 1276959699, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_4bit_bitmap_override'), ('SP', 0), 3694469211, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536948040, 536948308, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "d3204868b797cf4676a808f56b97df18691fa5912611fc5e1d6a37d5c14b958a",
+    "events": "b7280e78dc93287ea24fffae8275a14ed29cb4f56fc0f434e76559e201d9d9cd",
     "kind": "return",
-    "ncalls": 2,
+    "ncalls": 1,
     "ret": [
      4294967295
     ],
@@ -34,175 +29,22 @@
     "abs": [],
     "args": [
      1276959699,
-     12,
-     4,
+     536948040,
+     536948308,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
-   "new_instructions": 36,
-   "stack_args": [
-    [
-     0,
-     [
-      [
-       2,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ],
-        [
-         4,
-         0
-        ],
-        [
-         5,
-         0
-        ],
-        [
-         6,
-         0
-        ],
-        [
-         7,
-         0
-        ],
-        [
-         8,
-         0
-        ],
-        [
-         9,
-         0
-        ],
-        [
-         10,
-         0
-        ],
-        [
-         11,
-         0
-        ]
-       ]
-      ],
-      [
-       3,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ],
-        [
-         4,
-         0
-        ],
-        [
-         5,
-         0
-        ],
-        [
-         6,
-         0
-        ],
-        [
-         7,
-         0
-        ]
-       ]
-      ]
-     ]
-    ],
-    [
-     1,
-     [
-      [
-       2,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ],
-        [
-         4,
-         0
-        ],
-        [
-         5,
-         0
-        ],
-        [
-         6,
-         0
-        ],
-        [
-         7,
-         0
-        ],
-        [
-         8,
-         0
-        ],
-        [
-         9,
-         0
-        ],
-        [
-         10,
-         0
-        ],
-        [
-         11,
-         0
-        ]
-       ]
-      ]
-     ]
-    ]
-   ]
+   "new_instructions": 25,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -223,16 +65,17 @@
     "abs": [],
     "args": [
      4067469868,
-     1797429778,
-     2147483648,
+     536943120,
+     536940476,
      315044147
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -253,10 +96,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 598759513, 3677430904, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536942680, 536945784, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "4338719a3505cead107a241892daed3731dbed77470ccc24f6c6baa495df7116",
+    "events": "d5159160abb87c3da20a269297b956c7e8b73a451c67c5280148e16d596be595",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -268,162 +111,22 @@
     "abs": [],
     "args": [
      4290042576,
-     598759513,
-     3677430904,
+     536942680,
+     536945784,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
    "new_instructions": 25,
    "stack_args": []
-  },
-  {
-   "call_arities": [
-    4
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    284812
-   ],
-   "events_head": [
-    "('C', 0, 4, 2618385373, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "abec745ba7c8330aef4c2e24aff75e0771bf8b469427c5a9783cbd958bdb783f",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     4294967295
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     2618385373,
-     255,
-     8,
-     3619521758
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-3",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 3,
-    "xpsr": 0
-   },
-   "new_instructions": 29,
-   "stack_args": [
-    [
-     0,
-     [
-      [
-       2,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ],
-        [
-         4,
-         0
-        ],
-        [
-         5,
-         0
-        ],
-        [
-         6,
-         0
-        ],
-        [
-         7,
-         0
-        ],
-        [
-         8,
-         0
-        ],
-        [
-         9,
-         0
-        ],
-        [
-         10,
-         0
-        ],
-        [
-         11,
-         0
-        ]
-       ]
-      ],
-      [
-       3,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ],
-        [
-         4,
-         0
-        ],
-        [
-         5,
-         0
-        ],
-        [
-         6,
-         0
-        ],
-        [
-         7,
-         0
-        ]
-       ]
-      ]
-     ]
-    ]
-   ]
   },
   {
    "call_arities": [
@@ -439,10 +142,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 2147483647, 3842370354, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536944284, 536947504, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "529a23d0c2fe9012f6d525a09f403c41e80f5a6e236342f5f5fd90571d850be8",
+    "events": "e0959c410e31f4f9cad6f4ec6f6cce48dd7a323a951f22f6e5f4588e907e4637",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -454,16 +157,17 @@
     "abs": [],
     "args": [
      16,
-     2147483647,
-     3842370354,
+     536944284,
+     536947504,
      6
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 4,
     "xpsr": 0
    },
@@ -484,10 +188,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 1556998536, 499087790, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536947080, 536951212, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b2aeeb1ce4667f1777c9279c06d2ea86d009b68aa288937ecb12eacf74897c23",
+    "events": "3d2545d57d72fef264b577bc769170075cc4df723a171e6008ae5fd951f7e29a",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -499,16 +203,17 @@
     "abs": [],
     "args": [
      1346232374,
-     1556998536,
-     499087790,
+     536947080,
+     536951212,
      2147483647
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 9,
     "xpsr": 0
    },
@@ -529,10 +234,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 995058044, 8, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536945020, 536946200, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ed288c2bc2f1d9185788587da8d9639a693596bbdb68b02cb3c99078c7f160d0",
+    "events": "aaea5cd3bde9036621db36c868404c1a3ed1674b4ab49c63fc0ee8de68320269",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -544,16 +249,17 @@
     "abs": [],
     "args": [
      182454980,
-     995058044,
-     8,
+     536945020,
+     536946200,
      1
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 10,
     "xpsr": 0
    },
@@ -574,10 +280,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 2147483648, 256, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536948284, 536938076, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "98a29e5aa36f474d69fcd73376f1a4610af9ebca9adfdbfd65ddf36edb15bbe4",
+    "events": "d6183a6bfb0b1c0209c022396936f1f3f93f72b90a707c7658043180cc94ed27",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -589,16 +295,17 @@
     "abs": [],
     "args": [
      3,
-     2147483648,
-     256,
+     536948284,
+     536938076,
      1426281073
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 11,
     "xpsr": 0
    },
@@ -619,10 +326,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 3217736208, 5, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536936976, 536941268, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "cc11962e558bfdb5663f8c9b62fa50df7bbadc35a8d5d0a072e9bf88d41f2247",
+    "events": "94a40e72090d6d31b4bc9305472caa6ec811cc3830afc479f0dd78bc20b3c2b9",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -634,16 +341,17 @@
     "abs": [],
     "args": [
      8,
-     3217736208,
-     5,
+     536936976,
+     536941268,
      1103693227
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-12",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 12,
     "xpsr": 0
    },
@@ -664,10 +372,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 1944344031, 6, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536942044, 536939060, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "287e1a9a570738db973fc159aaf430bdd54bf0d09b39bc39c818f6e65b57d163",
+    "events": "1a46bf96683094deb8105516935225d968f0a835b863f8b7bbea682e5788912c",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -679,303 +387,22 @@
     "abs": [],
     "args": [
      1156718256,
-     1944344031,
-     6,
+     536942044,
+     536939060,
      617681966
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 13,
     "xpsr": 0
    },
    "new_instructions": 25,
    "stack_args": []
-  },
-  {
-   "call_arities": [
-    4
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    284812
-   ],
-   "events_head": [
-    "('C', 0, 4, 1996365079, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "d1cc0d50a982c4b1be9430081452775ebb464c2b99dec46208514b57098b4441",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     4294967295
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     1996365079,
-     12,
-     3,
-     470668832
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-14",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 14,
-    "xpsr": 0
-   },
-   "new_instructions": 29,
-   "stack_args": [
-    [
-     0,
-     [
-      [
-       2,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ],
-        [
-         4,
-         0
-        ],
-        [
-         5,
-         0
-        ],
-        [
-         6,
-         0
-        ],
-        [
-         7,
-         0
-        ],
-        [
-         8,
-         0
-        ],
-        [
-         9,
-         0
-        ],
-        [
-         10,
-         0
-        ],
-        [
-         11,
-         0
-        ]
-       ]
-      ],
-      [
-       3,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ],
-        [
-         4,
-         0
-        ],
-        [
-         5,
-         0
-        ],
-        [
-         6,
-         0
-        ],
-        [
-         7,
-         0
-        ]
-       ]
-      ]
-     ]
-    ]
-   ]
-  },
-  {
-   "call_arities": [
-    4
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    284812
-   ],
-   "events_head": [
-    "('C', 0, 4, 7, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "f3a73256a066aeb2b4875717137046b3b6ca865a354f2237e3679b859409a78f",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     4294967295
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     7,
-     256,
-     5,
-     4
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-15",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 15,
-    "xpsr": 0
-   },
-   "new_instructions": 29,
-   "stack_args": [
-    [
-     0,
-     [
-      [
-       2,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ],
-        [
-         4,
-         0
-        ],
-        [
-         5,
-         0
-        ],
-        [
-         6,
-         0
-        ],
-        [
-         7,
-         0
-        ],
-        [
-         8,
-         0
-        ],
-        [
-         9,
-         0
-        ],
-        [
-         10,
-         0
-        ],
-        [
-         11,
-         0
-        ]
-       ]
-      ],
-      [
-       3,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ],
-        [
-         4,
-         0
-        ],
-        [
-         5,
-         0
-        ],
-        [
-         6,
-         0
-        ],
-        [
-         7,
-         0
-        ]
-       ]
-      ]
-     ]
-    ]
-   ]
   },
   {
    "call_arities": [
@@ -991,10 +418,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 2147483648, 3454407978, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536942972, 536941864, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "a6da1fef094386533c5ebeade4ac34138fc1863189eb15bb8010f846ce1122b4",
+    "events": "a31079c50977d9bd14f374277503e0529814fa497a1e64f93d1b6d725f186f31",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1006,16 +433,17 @@
     "abs": [],
     "args": [
      2024561310,
-     2147483648,
-     3454407978,
+     536942972,
+     536941864,
      16
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
@@ -1036,10 +464,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 1536401714, 4178753371, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536944944, 536950616, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "a0ea1475ab170d7eec04e771b5f1d2255ec33db0bb0667af7ea9aeea3a243f5b",
+    "events": "3d5da85c3123829b3b06b24f45164a1c824499bafcaff96d463eb7eb394a458d",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1051,16 +479,17 @@
     "abs": [],
     "args": [
      6,
-     1536401714,
-     4178753371,
+     536944944,
+     536950616,
      255
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 19,
     "xpsr": 0
    },
@@ -1081,10 +510,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 1, 2870852768, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536936640, 536951968, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "25ce01888cd4c4f8b02b5a2fc1e2eb312bf901ec412693b05e7b2b2f323f3646",
+    "events": "a6fc644669f38e4b3f4b7be98fb6eaf7e91fa0312556b182a2efecd3438f81e2",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1096,20 +525,21 @@
     "abs": [],
     "args": [
      843060076,
-     1,
-     2870852768,
+     536936640,
+     536951968,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-21",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 21,
     "xpsr": 0
    },
-   "new_instructions": 27,
+   "new_instructions": 25,
    "stack_args": []
   },
   {
@@ -1126,10 +556,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 12, 2149248134, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536941512, 536947844, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "0b182b2ea07c1fa21c9dcee751253cf30966533d0140b7ae26c92107991cc685",
+    "events": "3de608848c940020297ea4b2f54e931fee8e7b47a362dc092ec2b8369efd73f9",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1141,20 +571,21 @@
     "abs": [],
     "args": [
      3751937804,
-     12,
-     2149248134,
+     536941512,
+     536947844,
      604019693
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 25,
     "xpsr": 0
    },
-   "new_instructions": 27,
+   "new_instructions": 25,
    "stack_args": []
   },
   {
@@ -1171,10 +602,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 681194263, 3639365232, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536949524, 536940144, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "8588e08f794d1de4c3010cc171a2476ec8a0e44f2ee1eb7f3463a46d8670ea9b",
+    "events": "cae45e27859935d356658dbc3e5642d6523555170fe90e00978c33a666c82e7f",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1186,16 +617,17 @@
     "abs": [],
     "args": [
      187818536,
-     681194263,
-     3639365232,
+     536949524,
+     536940144,
      4125446660
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 27,
     "xpsr": 0
    },
@@ -1216,10 +648,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 4285183211, 1, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536949992, 536946096, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "2e0713462d5adc805890642beabd2f0303dd90aafac66916a2194cdfc0525a73",
+    "events": "8b00b51007b69e6abf2be89b2c81eea24f4008016f5af83c3548bcffcb7ad8d1",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1231,16 +663,17 @@
     "abs": [],
     "args": [
      3711083943,
-     4285183211,
-     1,
+     536949992,
+     536946096,
      2592385448
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-28",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 28,
     "xpsr": 0
    },
@@ -1249,29 +682,24 @@
   },
   {
    "call_arities": [
-    4,
     4
    ],
    "call_float_arities": [
-    0,
     0
    ],
    "call_return_kinds": [
-    "i32",
     "void"
    ],
    "call_targets": [
-    284812,
     105584
    ],
    "events_head": [
-    "('C', 0, 4, 256, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_4bit_bitmap_override'), ('SP', 0), 2417460406, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536941720, 536945744, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "1a2c2bd87695d055317803b70fd2f5cb0c64a36015c47c8edf57d6bd79918c65",
+    "events": "4625d53461da9d57d738824b711c79ad7ffdd8200ffc50424d93b97e54395fe7",
     "kind": "return",
-    "ncalls": 2,
+    "ncalls": 1,
     "ret": [
      4294967295
     ],
@@ -1281,175 +709,22 @@
     "abs": [],
     "args": [
      256,
-     8,
-     1,
+     536941720,
+     536945744,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-30",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 30,
     "xpsr": 0
    },
-   "new_instructions": 36,
-   "stack_args": [
-    [
-     0,
-     [
-      [
-       2,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ],
-        [
-         4,
-         0
-        ],
-        [
-         5,
-         0
-        ],
-        [
-         6,
-         0
-        ],
-        [
-         7,
-         0
-        ],
-        [
-         8,
-         0
-        ],
-        [
-         9,
-         0
-        ],
-        [
-         10,
-         0
-        ],
-        [
-         11,
-         0
-        ]
-       ]
-      ],
-      [
-       3,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ],
-        [
-         4,
-         0
-        ],
-        [
-         5,
-         0
-        ],
-        [
-         6,
-         0
-        ],
-        [
-         7,
-         0
-        ]
-       ]
-      ]
-     ]
-    ],
-    [
-     1,
-     [
-      [
-       2,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ],
-        [
-         4,
-         0
-        ],
-        [
-         5,
-         0
-        ],
-        [
-         6,
-         0
-        ],
-        [
-         7,
-         0
-        ],
-        [
-         8,
-         0
-        ],
-        [
-         9,
-         0
-        ],
-        [
-         10,
-         0
-        ],
-        [
-         11,
-         0
-        ]
-       ]
-      ]
-     ]
-    ]
-   ]
+   "new_instructions": 25,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -1465,10 +740,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 2461003590, 7, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536948548, 536938932, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "fd2eae8989c4864e7e0d1b0fd31dbe580453b9d52f518b44b0230427594d66a1",
+    "events": "4f781ece5ad67307423a3c416157c37423ac15dfadb098f7f5052ff9e8091dfc",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1480,16 +755,17 @@
     "abs": [],
     "args": [
      4294967295,
-     2461003590,
-     7,
+     536948548,
+     536938932,
      53351545
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
@@ -1510,10 +786,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 2706821390, 3442053927, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536940812, 536941348, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "677c365fa257426d2ddde1c564d62529d184189fca71dda899a99ee10e0dcc04",
+    "events": "e112f5ec34d39fb413063bbca756b49e16e1b8694884f90388821ade23190ab0",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1525,162 +801,22 @@
     "abs": [],
     "args": [
      1839753098,
-     2706821390,
-     3442053927,
+     536940812,
+     536941348,
      1170652979
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-32",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 32,
     "xpsr": 0
    },
    "new_instructions": 25,
    "stack_args": []
-  },
-  {
-   "call_arities": [
-    4
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    284812
-   ],
-   "events_head": [
-    "('C', 0, 4, 1076094348, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "2f686e49cc4c3fcf863319eb64822393ccfabeb59d89df35c999bf1d4d93f935",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     4294967295
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     1076094348,
-     7,
-     7,
-     5
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-33",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 33,
-    "xpsr": 0
-   },
-   "new_instructions": 29,
-   "stack_args": [
-    [
-     0,
-     [
-      [
-       2,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ],
-        [
-         4,
-         0
-        ],
-        [
-         5,
-         0
-        ],
-        [
-         6,
-         0
-        ],
-        [
-         7,
-         0
-        ],
-        [
-         8,
-         0
-        ],
-        [
-         9,
-         0
-        ],
-        [
-         10,
-         0
-        ],
-        [
-         11,
-         0
-        ]
-       ]
-      ],
-      [
-       3,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ],
-        [
-         4,
-         0
-        ],
-        [
-         5,
-         0
-        ],
-        [
-         6,
-         0
-        ],
-        [
-         7,
-         0
-        ]
-       ]
-      ]
-     ]
-    ]
-   ]
   },
   {
    "call_arities": [
@@ -1696,10 +832,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 3990671540, 922796015, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536940724, 536952812, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "532df9283c9ad505f195c4ba7504de4b228fabf8c05a19c16efbeb38ff037d38",
+    "events": "d00b5ce408f07944ab560308570879e2b932cb322865d65984a8672c55853ff7",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1711,16 +847,17 @@
     "abs": [],
     "args": [
      12,
-     3990671540,
-     922796015,
+     536940724,
+     536952812,
      2147483647
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 34,
     "xpsr": 0
    },
@@ -1741,10 +878,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 3578977268, 4001652011, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536943604, 536943912, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "2c6c5ba333c30637aba7c116556670d61224848e76b0b299269c1ab156d91d64",
+    "events": "fd37c9be0c357c6c8d80449c9b52f5ffd6e988b00ac4000d23f074ac46a55f7c",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1756,16 +893,17 @@
     "abs": [],
     "args": [
      2726887024,
-     3578977268,
-     4001652011,
+     536943604,
+     536943912,
      1
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
@@ -1786,10 +924,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 12, 2147483647, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536949832, 536945964, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "3e123cddce2d566a61fac159f0ae84659c7bdc25d86c6a3408a7ef01a305d3ec",
+    "events": "daf98cf5ab8e5071e55a60b3dfb854598773e19f4477d3cdb31128406b03e1a4",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1801,162 +939,22 @@
     "abs": [],
     "args": [
      0,
-     12,
-     2147483647,
+     536949832,
+     536945964,
      8
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 36,
     "xpsr": 0
    },
-   "new_instructions": 27,
+   "new_instructions": 25,
    "stack_args": []
-  },
-  {
-   "call_arities": [
-    4
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    284812
-   ],
-   "events_head": [
-    "('C', 0, 4, 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "44ba004537fb3d1eb7b8ec976c5ec7361485c1acf5b1ccf2a31fcfcbe6cf8198",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     4294967295
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     0,
-     255,
-     1,
-     2
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-38",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 38,
-    "xpsr": 0
-   },
-   "new_instructions": 29,
-   "stack_args": [
-    [
-     0,
-     [
-      [
-       2,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ],
-        [
-         4,
-         0
-        ],
-        [
-         5,
-         0
-        ],
-        [
-         6,
-         0
-        ],
-        [
-         7,
-         0
-        ],
-        [
-         8,
-         0
-        ],
-        [
-         9,
-         0
-        ],
-        [
-         10,
-         0
-        ],
-        [
-         11,
-         0
-        ]
-       ]
-      ],
-      [
-       3,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ],
-        [
-         4,
-         0
-        ],
-        [
-         5,
-         0
-        ],
-        [
-         6,
-         0
-        ],
-        [
-         7,
-         0
-        ]
-       ]
-      ]
-     ]
-    ]
-   ]
   },
   {
    "call_arities": [
@@ -1972,10 +970,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 1587124134, 3774328631, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536942500, 536948532, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "64dcc608588a411076e01326bb0819497ed708870ecd6383cf48b856d1c02ae6",
+    "events": "01331df01f7b8aa3faa7de2c7ff2bf9c5929119e58e165a511840bb5202e3b61",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -1987,16 +985,17 @@
     "abs": [],
     "args": [
      3,
-     1587124134,
-     3774328631,
+     536942500,
+     536948532,
      1997155928
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
     "xpsr": 0
    },
@@ -2017,10 +1016,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 256, 3059135833, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536950764, 536950104, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "98816ea802d6449dd8be18c60cac86641666c19657cc80e303b89f4241992bdd",
+    "events": "e48916cdb12947276377c83338cc4b454c36c524fb8e400041188e0464fa2788",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -2032,47 +1031,43 @@
     "abs": [],
     "args": [
      3886568119,
-     256,
-     3059135833,
+     536950764,
+     536950104,
      1
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-41",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 41,
     "xpsr": 0
    },
-   "new_instructions": 27,
+   "new_instructions": 25,
    "stack_args": []
   },
   {
    "call_arities": [
-    4,
     4
    ],
    "call_float_arities": [
-    0,
     0
    ],
    "call_return_kinds": [
-    "i32",
     "void"
    ],
    "call_targets": [
-    284812,
     105584
    ],
    "events_head": [
-    "('C', 0, 4, 538639782, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_4bit_bitmap_override'), ('SP', 0), 509112996, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536940324, 536943656, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "8d7cf2919882b64625d274d7367895b743c33ff268fcd67043cf455bbeea217a",
+    "events": "bf7c133c9b1d833a2d3563302bfbb61219819b1691a62b9fc219f9afa5a348bf",
     "kind": "return",
-    "ncalls": 2,
+    "ncalls": 1,
     "ret": [
      4294967295
     ],
@@ -2082,175 +1077,22 @@
     "abs": [],
     "args": [
      538639782,
-     4,
-     12,
+     536940324,
+     536943656,
      3983748582
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-42",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 42,
     "xpsr": 0
    },
-   "new_instructions": 36,
-   "stack_args": [
-    [
-     0,
-     [
-      [
-       2,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ],
-        [
-         4,
-         0
-        ],
-        [
-         5,
-         0
-        ],
-        [
-         6,
-         0
-        ],
-        [
-         7,
-         0
-        ],
-        [
-         8,
-         0
-        ],
-        [
-         9,
-         0
-        ],
-        [
-         10,
-         0
-        ],
-        [
-         11,
-         0
-        ]
-       ]
-      ],
-      [
-       3,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ],
-        [
-         4,
-         0
-        ],
-        [
-         5,
-         0
-        ],
-        [
-         6,
-         0
-        ],
-        [
-         7,
-         0
-        ]
-       ]
-      ]
-     ]
-    ],
-    [
-     1,
-     [
-      [
-       2,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ],
-        [
-         4,
-         0
-        ],
-        [
-         5,
-         0
-        ],
-        [
-         6,
-         0
-        ],
-        [
-         7,
-         0
-        ],
-        [
-         8,
-         0
-        ],
-        [
-         9,
-         0
-        ],
-        [
-         10,
-         0
-        ],
-        [
-         11,
-         0
-        ]
-       ]
-      ]
-     ]
-    ]
-   ]
+   "new_instructions": 25,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -2266,10 +1108,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 3098095624, 1643521744, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536948744, 536946384, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "4c9a28511ee403ace1555f591aacf17fc9072ce0a5b597a38b8b0087cbd4e949",
+    "events": "7b3d8fa41000e11b9360c824e4b7a13357b4645551e96e3163a0283eb7f454db",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -2281,16 +1123,17 @@
     "abs": [],
     "args": [
      0,
-     3098095624,
-     1643521744,
+     536948744,
+     536946384,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-44",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 44,
     "xpsr": 0
    },
@@ -2336,6 +1179,7 @@
     "mem": [],
     "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 700,
     "xpsr": 0
    },
@@ -2381,6 +1225,7 @@
     "mem": [],
     "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 702,
     "xpsr": 0
    },
@@ -2426,6 +1271,7 @@
     "mem": [],
     "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 703,
     "xpsr": 0
    },
@@ -2471,6 +1317,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 700,
     "xpsr": 0
    },
@@ -2516,6 +1363,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 702,
     "xpsr": 0
    },
@@ -2561,6 +1409,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 703,
     "xpsr": 0
    },
@@ -2581,10 +1430,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 641, 3677430904, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 0, 1547220657, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "4fe91d78fd134b8a712e9025a5f4d7f94a2ebda00e1e49635f0e7c764df6733a",
+    "events": "4debb6fc7d439554ad141cc2af8cf70d1802233834468b9ae70968aba262f1c9",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -2595,66 +1444,22 @@
    "fixture": {
     "abs": [],
     "args": [
-     4290042576,
-     641,
-     3677430904,
-     7
+     8,
+     0,
+     1547220657,
+     880227538
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "cfgsel-2",
+    "id": "ptr0-0",
     "mem": [],
     "nptr": 0,
     "oracle": [],
-    "scratch_seed": 2,
+    "outparam": null,
+    "scratch_seed": 700,
     "xpsr": 0
    },
-   "new_instructions": 25,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "void"
-   ],
-   "call_targets": [
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 2147483647, 480, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "197b8396f37bf6b12eadb69167026df5afda05447c9449e52dbc7e0262b8aa01",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     4294967295
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     16,
-     2147483647,
-     480,
-     6
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "cfgsel-4",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 4,
-    "xpsr": 0
-   },
-   "new_instructions": 25,
+   "new_instructions": 27,
    "stack_args": []
   },
   {
@@ -2671,10 +1476,10 @@
     284812
    ],
    "events_head": [
-    "('C', 0, 4, 4294967295, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)"
+    "('C', 0, 4, 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "e47c197f6ebeafa97d0437e9a21df5a0c3f585d4b1189fb5061ca0144c91b3cc",
+    "events": "44ba004537fb3d1eb7b8ec976c5ec7361485c1acf5b1ccf2a31fcfcbe6cf8198",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -2685,21 +1490,19 @@
    "fixture": {
     "abs": [],
     "args": [
-     4294967295,
-     256,
      0,
-     2113830739
+     6,
+     12,
+     2718928684
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 2147483648,
-     "1": 1266679808
-    },
-    "id": "fp-48",
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr0-1",
     "mem": [],
     "nptr": 0,
     "oracle": [],
-    "scratch_seed": 48,
+    "outparam": null,
+    "scratch_seed": 701,
     "xpsr": 0
    },
    "new_instructions": 29,
@@ -2815,10 +1618,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 4142138223, 2147483647, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 759482060, 16, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "560e7fd4da979c2075685b68c5e3dfc76ed70de470f43ac18839f7cc8531873a",
+    "events": "d13bffd07839a847e74c31faa5a43e34be5f86ae3e09a807a5cfac01ade48aee",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -2829,276 +1632,19 @@
    "fixture": {
     "abs": [],
     "args": [
-     4294967295,
-     4142138223,
-     2147483647,
-     2671219995
+     1426631299,
+     759482060,
+     16,
+     2236840408
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1065353216,
-     "1": 3204448256
-    },
-    "id": "fp-49",
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr0-2",
     "mem": [],
     "nptr": 0,
     "oracle": [],
-    "scratch_seed": 49,
-    "xpsr": 0
-   },
-   "new_instructions": 25,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "void"
-   ],
-   "call_targets": [
-    284812,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, 4, 271826021, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b\"%s(): can't find resource,please check resource name !\\n\"), ('RO', b'gui_4bit_bitmap_override'), ('SP', 0), 3904235970, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "af91e3e38e7247b2b061ec90b69c313e363c0a88749316ce7dbb545d02f92f57",
-    "kind": "return",
-    "ncalls": 2,
-    "ret": [
-     4294967295
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     271826021,
-     7,
-     3,
-     3948225427
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3212836864,
-     "1": 0
-    },
-    "id": "fp-50",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 50,
-    "xpsr": 0
-   },
-   "new_instructions": 36,
-   "stack_args": [
-    [
-     0,
-     [
-      [
-       2,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ],
-        [
-         4,
-         0
-        ],
-        [
-         5,
-         0
-        ],
-        [
-         6,
-         0
-        ],
-        [
-         7,
-         0
-        ],
-        [
-         8,
-         0
-        ],
-        [
-         9,
-         0
-        ],
-        [
-         10,
-         0
-        ],
-        [
-         11,
-         0
-        ]
-       ]
-      ],
-      [
-       3,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ],
-        [
-         4,
-         0
-        ],
-        [
-         5,
-         0
-        ],
-        [
-         6,
-         0
-        ],
-        [
-         7,
-         0
-        ]
-       ]
-      ]
-     ]
-    ],
-    [
-     1,
-     [
-      [
-       2,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ],
-        [
-         4,
-         0
-        ],
-        [
-         5,
-         0
-        ],
-        [
-         6,
-         0
-        ],
-        [
-         7,
-         0
-        ],
-        [
-         8,
-         0
-        ],
-        [
-         9,
-         0
-        ],
-        [
-         10,
-         0
-        ],
-        [
-         11,
-         0
-        ]
-       ]
-      ]
-     ]
-    ]
-   ]
-  },
-  {
-   "call_arities": [
-    4
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "void"
-   ],
-   "call_targets": [
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 1894272194, 2147483647, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "479514f15c757649629ea1b540896a3be60b237f3fe2b8f604a7b47e08db222f",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     4294967295
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3856939601,
-     1894272194,
-     2147483647,
-     2092907358
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3204448256,
-     "1": 3239897098
-    },
-    "id": "fp-52",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 52,
+    "outparam": null,
+    "scratch_seed": 702,
     "xpsr": 0
    },
    "new_instructions": 25,
@@ -3118,10 +1664,10 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 2393220392, 2147483647, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 123954801, 1443398446, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "22fb4c877dbe131cf2066710b985b381d713aeeca6fff0b02e548ca93be5cb38",
+    "events": "37e06c38a183fda45982c87846f3113d723d34b87c856b3809d6efc078351b3c",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -3132,21 +1678,19 @@
    "fixture": {
     "abs": [],
     "args": [
-     1740848604,
-     2393220392,
-     2147483647,
-     2556506514
+     2518475779,
+     123954801,
+     1443398446,
+     3598169178
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 2147483648,
-     "1": 3204448256
-    },
-    "id": "fp-54",
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr0-3",
     "mem": [],
     "nptr": 0,
     "oracle": [],
-    "scratch_seed": 54,
+    "outparam": null,
+    "scratch_seed": 703,
     "xpsr": 0
    },
    "new_instructions": 25,
@@ -3154,274 +1698,555 @@
   },
   {
    "call_arities": [
-    4,
-    4,
-    0
+    4
    ],
    "call_float_arities": [
-    0,
-    0,
     0
    ],
    "call_return_kinds": [
-    "i32",
-    "void",
-    "i32"
+    "void"
    ],
    "call_targets": [
-    284812,
-    513414,
-    274856
+    105584
    ],
    "events_head": [
-    "('C', 0, 4, 544061150, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, 4294967295, 0, 0, 0, 'S', 'F', 'T', None)",
-    "('C', 2, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536940548, 536940552, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "98e3a8b0d752f322204766a441fb2714e8d2e380f8a029442f13005536e097a0",
+    "events": "b1316e748533e7aeb11aa4aa87b14e527b550fca646e3ebc182b5e80687495a6",
     "kind": "return",
-    "ncalls": 3,
+    "ncalls": 1,
     "ret": [
-     0
+     4294967295
     ],
     "returned": true
    },
    "fixture": {
     "abs": [
      [
-      536879884,
-      "ffffffff"
-     ],
-     [
-      536900948,
-      "ffffffff"
-     ],
-     [
-      536911924,
-      "ffffffff"
+      536940544,
+      "4010012044100120491001204c1001205010012054100120591001205c1001206010012064100120691001206c1001207010012074100120791001207c1001208010012084100120891001208c1001209010012094100120991001209c100120a0100120a4100120a9100120ac100120b0100120b4100120b9100120bc100120c0100120c4100120c9100120cc100120d0100120d4100120d9100120dc100120e0100120e4100120e9100120ec100120f0100120f4100120f9100120fc1001200011012004110120091101200c1101201011012014110120191101201c1101202011012024110120291101202c1101203011012034110120391101203c1101204011012044110120491101204c1101205011012054110120591101205c1101206011012064110120691101206c1101207011012074110120791101207c1101208011012084110120891101208c1101209011012094110120991101209c110120a0110120a4110120a9110120ac110120b0110120b4110120b9110120bc110120c0110120c4110120c9110120cc110120d0110120d4110120d9110120dc110120e0110120e4110120e9110120ec110120f0110120f4110120f9110120fc1101200010012004100120091001200c1001201010012014100120191001201c1001202010012024100120291001202c1001203010012034100120391001203c100120"
      ]
     ],
     "args": [
-     544061150,
-     2,
-     255,
-     993234778
+     1422763229,
+     536940548,
+     536940552,
+     3232220875
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "combo-2-1",
+    "id": "chain0-2",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [
      [
       0,
       0,
-      1
+      0
      ],
      [
       0,
       1,
-      1
+      0
      ],
      [
       1,
       0,
-      1
+      0
      ],
      [
       1,
       1,
-      1
+      0
      ],
      [
       2,
       0,
-      1
+      0
      ],
      [
       2,
       1,
-      1
+      0
      ],
      [
       3,
       0,
-      1
+      0
      ],
      [
       3,
       1,
-      1
+      0
      ],
      [
       4,
       0,
-      1
+      0
      ],
      [
       4,
       1,
-      1
+      0
      ],
      [
       5,
       0,
-      1
+      0
      ],
      [
       5,
       1,
-      1
+      0
      ],
      [
       6,
       0,
-      1
+      0
      ],
      [
       6,
       1,
-      1
+      0
      ],
      [
       7,
       0,
-      1
+      0
      ],
      [
       7,
       1,
-      1
+      0
      ],
      [
       8,
       0,
-      1
+      0
      ],
      [
       8,
       1,
-      1
+      0
      ],
      [
       9,
       0,
-      1
+      0
      ],
      [
       9,
       1,
-      1
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
      ]
     ],
-    "scratch_seed": 609,
+    "outparam": null,
+    "scratch_seed": 832,
     "xpsr": 0
    },
-   "new_instructions": 33,
-   "stack_args": [
-    [
-     0,
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536938504, 536937944, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "6eae2348734e3247755eaf680362c381a5bc9f832c37874d691db09b37d42555",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     255,
+     536938504,
+     536937944,
+     3
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee-1-0",
+    "mem": [
      [
-      [
-       2,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ],
-        [
-         4,
-         0
-        ],
-        [
-         5,
-         0
-        ],
-        [
-         6,
-         0
-        ],
-        [
-         7,
-         0
-        ],
-        [
-         8,
-         0
-        ],
-        [
-         9,
-         0
-        ],
-        [
-         10,
-         0
-        ],
-        [
-         11,
-         0
-        ]
-       ]
-      ],
-      [
-       3,
-       [
-        [
-         0,
-         0
-        ],
-        [
-         1,
-         0
-        ],
-        [
-         2,
-         0
-        ],
-        [
-         3,
-         0
-        ],
-        [
-         4,
-         0
-        ],
-        [
-         5,
-         0
-        ],
-        [
-         6,
-         0
-        ],
-        [
-         7,
-         0
-        ]
-       ]
-      ]
+      1,
+      0,
+      "00000000"
      ]
-    ]
-   ]
+    ],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 900,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536938104, 536949936, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e72806c16b3468aaa74375970068013d9db4ee36b006a82bfea0883a44b94c98",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     8,
+     536938104,
+     536949936,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee4-1-0",
+    "mem": [
+     [
+      1,
+      0,
+      "00000000"
+     ],
+     [
+      1,
+      4,
+      "00000000"
+     ]
+    ],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 950,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536944028, 536951888, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "f9f8c2df1965e82a3090a2c100f196a02c69f258be1dcdf7af83745d708dfa5b",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3963074704,
+     536944028,
+     536951888,
+     1496312853
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee-1-1",
+    "mem": [
+     [
+      1,
+      0,
+      "01000000"
+     ]
+    ],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 901,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536945760, 536940504, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "994d83e0b0c91a9a4ceeaaadfaae169cc88bc0e9f8cdabb56fce3604b63ef56d",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1703220994,
+     536945760,
+     536940504,
+     256
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee-1-2",
+    "mem": [
+     [
+      1,
+      0,
+      "02000000"
+     ]
+    ],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 902,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536951644, 536940220, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "cc69a4cee00f2d2a83dada754197feb0968055b73df5038459009677283d6eba",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     536951644,
+     536940220,
+     3652382158
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee-1-4",
+    "mem": [
+     [
+      1,
+      0,
+      "04000000"
+     ]
+    ],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 904,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536943856, 536941572, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "f03629ce66e64421df25a285ba8c76e917aac60e8b154fb4285437931d87e4c0",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1797383935,
+     536943856,
+     536941572,
+     256
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee4-1-4",
+    "mem": [
+     [
+      1,
+      0,
+      "04000000"
+     ],
+     [
+      1,
+      4,
+      "04000000"
+     ]
+    ],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 954,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): gui_4bit_bitmap_override parampter overstep!!! stop draw bitmap !!! x= %d,y= %d\\n'), ('RO', b'gui_4bit_bitmap_override'), 536938860, 536947744, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "7ff3ab817290df5af8b36a6131cca364eaa196a3db6b3957f08240ab0a1a56d6",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     4294967295
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1439249207,
+     536938860,
+     536947744,
+     4
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee-1-5",
+    "mem": [
+     [
+      1,
+      0,
+      "05000000"
+     ]
+    ],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 905,
+    "xpsr": 0
+   },
+   "new_instructions": 25,
+   "stack_args": []
   }
  ],
  "core": "app",
  "coverage": {
-  "covered": 58,
-  "ratio": 0.716,
+  "covered": 41,
+  "ratio": 0.5062,
   "total": 81,
   "unresolved_indirect": 0
  },
@@ -3433,8 +2258,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "gui",
@@ -3443,16 +2271,24 @@
   "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
   "source": "shipped image"
  },
- "pointer_arg_mask": [],
+ "pointer_arg_mask": [
+  1,
+  2
+ ],
  "ret_kind": "i32",
  "search": {
-  "candidates": 193,
+  "candidates": 282,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
-  "kept": 44,
-  "pointer_arg_mask": [],
+  "kept": 43,
+  "pointer_arg_mask": [
+   1,
+   2
+  ],
   "pointer_arg_mask_derived": true
  },
  "size": 198,

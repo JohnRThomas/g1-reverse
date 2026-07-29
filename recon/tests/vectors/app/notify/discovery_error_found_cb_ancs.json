@@ -22,12 +22,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 12, 4, 0, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536948040, 536948308, 536940048, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 1276959699, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "d1a7d46302efcff16350021f1445218396761e8197a213cf9864c266a6738e4a",
+    "events": "618368748d48911f086c904e79f98a696392a2e8a13a8c871ca82a245d117673",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -37,16 +37,17 @@
     "abs": [],
     "args": [
      1276959699,
-     12,
-     4,
-     0
+     536948040,
+     536948308,
+     536940048
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -75,12 +76,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 1797429778, 2147483648, 315044147, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536943120, 536940476, 536949040, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 4067469868, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "699e7fe2269503acd76219c01a241d3534c4e3bcc4008dbb5d9010e3660100a7",
+    "events": "b03670e663befc08ab5eb6355c852e86c3c8624af7670f0b6984a115303643f1",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -90,16 +91,17 @@
     "abs": [],
     "args": [
      4067469868,
-     1797429778,
-     2147483648,
-     315044147
+     536943120,
+     536940476,
+     536949040
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -128,12 +130,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 598759513, 3677430904, 7, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536942680, 536945784, 536943396, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 4290042576, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "a6db2bdee3116ad122747fc312a1b1103f63ba99cad514a54a4e6722a33f3493",
+    "events": "d42d3c5c0df9e012de7f2d89f90ee1295a4758ef9b898cafee00a61b78a18b4b",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -143,16 +145,17 @@
     "abs": [],
     "args": [
      4290042576,
-     598759513,
-     3677430904,
-     7
+     536942680,
+     536945784,
+     536943396
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
@@ -181,12 +184,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 255, 8, 3619521758, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536940936, 536943096, 536937692, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 2618385373, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "34834978a6f8aac952d799445ab37b691c42e381e8a3dd5664458c72d202104f",
+    "events": "538cd420ce627e704818b220d0bfccb5f1a46e86d17b6d357ccca8a9c361bd3a",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -196,16 +199,17 @@
     "abs": [],
     "args": [
      2618385373,
-     255,
-     8,
-     3619521758
+     536940936,
+     536943096,
+     536937692
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-3",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 3,
     "xpsr": 0
    },
@@ -234,12 +238,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 2147483647, 3842370354, 6, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536944284, 536947504, 536951124, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 16, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "dfb469e0f33902eb019cf7567ee7848dedb643efc8cb80543d281f29bd005048",
+    "events": "eb2300fac0124f6583f214f46aec028ab6c0060a77d63ab8c61c21fe0a10a5b1",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -249,16 +253,17 @@
     "abs": [],
     "args": [
      16,
-     2147483647,
-     3842370354,
-     6
+     536944284,
+     536947504,
+     536951124
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 4,
     "xpsr": 0
    },
@@ -287,12 +292,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 3188701995, 8, 7, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536951592, 536944168, 536942644, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 4, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "e7d947a3c2f9d60789ba0ec407133dae99343091aa8b116bd1d9d0c1af8e0873",
+    "events": "0cfc6e3f8309068d226dfaf42d876f1cb3da5444dd78c8aefef0e46f85001a30",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -302,16 +307,17 @@
     "abs": [],
     "args": [
      4,
-     3188701995,
-     8,
-     7
+     536951592,
+     536944168,
+     536942644
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-5",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 5,
     "xpsr": 0
    },
@@ -340,12 +346,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 3322790363, 5, 2147483647, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536936920, 536947060, 536952236, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 4, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "008dc001eee367d3ae6883825fd53a802ca70abbeaedfde5d073d9b8a97c6bb6",
+    "events": "36765b2f545205dbcb8d979b20130c8351f5b102f4f466b08fa680539ab239a4",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -355,16 +361,17 @@
     "abs": [],
     "args": [
      4,
-     3322790363,
-     5,
-     2147483647
+     536936920,
+     536947060,
+     536952236
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-6",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 6,
     "xpsr": 0
    },
@@ -393,12 +400,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 1604804925, 1, 2363272863, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536944956, 536950368, 536948380, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 2300957721, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "caaec8780570d099fc4355b46095515d3d1ee1994b26acbc46325a84b265f56d",
+    "events": "78ab0ce78e5be2312681e675c4fa4214a8b4f721f6b8168cc5e81cfb6f61644f",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -408,16 +415,17 @@
     "abs": [],
     "args": [
      2300957721,
-     1604804925,
-     1,
-     2363272863
+     536944956,
+     536950368,
+     536948380
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-7",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 7,
     "xpsr": 0
    },
@@ -446,12 +454,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 708972563, 558645175, 4, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536940560, 536952756, 536949588, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 2156366374, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "f46b8fb23cf5a7a71f47eb5ee79ef50864e2848b9fb8e0c7f5f0adb51e98aa4a",
+    "events": "0b6128bee2e6d1436c3ed3b068b228bfb289d229e865b0b5ac7c1765688d23ea",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -461,16 +469,17 @@
     "abs": [],
     "args": [
      2156366374,
-     708972563,
-     558645175,
-     4
+     536940560,
+     536952756,
+     536949588
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-8",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 8,
     "xpsr": 0
    },
@@ -499,12 +508,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 1556998536, 499087790, 2147483647, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536947080, 536951212, 536940988, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 1346232374, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "fc399a443613ce7174016f53e6bdab7f042ff494f8e672cde23b22b2246e2bbf",
+    "events": "7f7424beb629723a349132dca1965b3622656089b324be76c1ea04371b55d363",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -514,16 +523,17 @@
     "abs": [],
     "args": [
      1346232374,
-     1556998536,
-     499087790,
-     2147483647
+     536947080,
+     536951212,
+     536940988
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 9,
     "xpsr": 0
    },
@@ -552,12 +562,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 995058044, 8, 1, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536945020, 536946200, 536947328, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 182454980, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "641093a4236e1bef79ce79cb88d4db94c76ceaeb9e4e04d697750faf4ae58a66",
+    "events": "17212e6ef763fddd505a03aa11eb5649aa3cd983021a4ba593fd0a7ec5116f80",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -567,16 +577,17 @@
     "abs": [],
     "args": [
      182454980,
-     995058044,
-     8,
-     1
+     536945020,
+     536946200,
+     536947328
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 10,
     "xpsr": 0
    },
@@ -605,12 +616,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 2147483648, 256, 1426281073, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536948284, 536938076, 536941168, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 3, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "aeee5b7aba7826041729deb5684d2c3ca86623fd4e8ba7dce8165b6b4694097c",
+    "events": "3d11f0f329551c8118dce63a6d222b527b424b777c93df47364745e4d90fb674",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -620,16 +631,17 @@
     "abs": [],
     "args": [
      3,
-     2147483648,
-     256,
-     1426281073
+     536948284,
+     536938076,
+     536941168
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 11,
     "xpsr": 0
    },
@@ -658,12 +670,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 3217736208, 5, 1103693227, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536936976, 536941268, 536937896, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 8, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "53d7186d71483102af6bdeb9bd0a4b479d9ed4095a43c43bec6243482a24408e",
+    "events": "5463ede3db6368257a94c2b9ec0882a14c7bb366cd56c99fe664cadc5da1a5d1",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -673,16 +685,17 @@
     "abs": [],
     "args": [
      8,
-     3217736208,
-     5,
-     1103693227
+     536936976,
+     536941268,
+     536937896
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-12",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 12,
     "xpsr": 0
    },
@@ -711,12 +724,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 1944344031, 6, 617681966, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536942044, 536939060, 536941612, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 1156718256, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "e4bbe30d9d985d4ffc93590fba4836cdbeda490409cee1d9d22d9078ed051ab2",
+    "events": "621de23d604e87ef498ca7055341eeb8e0f08f1a432aad87589c87f21108be07",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -726,16 +739,17 @@
     "abs": [],
     "args": [
      1156718256,
-     1944344031,
-     6,
-     617681966
+     536942044,
+     536939060,
+     536941612
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 13,
     "xpsr": 0
    },
@@ -764,12 +778,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 12, 3, 470668832, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536949848, 536943328, 536942112, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 1996365079, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "206682ce4965b3b4fe3dec65f2c088d08aed4b151525b64f67bf88c6f110dae2",
+    "events": "82401270e9af31d782b831a049a50ba41ea7d522009f2f3141ceef0fc13901b6",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -779,16 +793,17 @@
     "abs": [],
     "args": [
      1996365079,
-     12,
-     3,
-     470668832
+     536949848,
+     536943328,
+     536942112
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-14",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 14,
     "xpsr": 0
    },
@@ -817,12 +832,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 256, 5, 4, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536941132, 536951236, 536949908, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 7, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "60103f63b74390fc3c6f79320bddebbfc7ac9fe46302d004e34fedc66cf4e150",
+    "events": "39f7b637050aa31f7d48ed67e28ad3a5f6c036c6432fb8d8b271e2e450c375fd",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -832,16 +847,17 @@
     "abs": [],
     "args": [
      7,
-     256,
-     5,
-     4
+     536941132,
+     536951236,
+     536949908
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-15",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 15,
     "xpsr": 0
    },
@@ -870,12 +886,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 2147483648, 3454407978, 16, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536942972, 536941864, 536940136, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 2024561310, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9e5409d8ed69591e7e965e2ea678cfc8aa38e2d4afb52004c464f9199de91c0a",
+    "events": "2bd72db1c5ff2cdb87acac493464ac2fbcbe4556f9face246d5f044e67ff2f44",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -885,16 +901,17 @@
     "abs": [],
     "args": [
      2024561310,
-     2147483648,
-     3454407978,
-     16
+     536942972,
+     536941864,
+     536940136
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
@@ -923,12 +940,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 3254638692, 1168623309, 4252165479, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536942692, 536938188, 536946020, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 3, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9c553f2dbb5b19347e58061f8062436335162830a4aaddca1fdf78ff97f798b5",
+    "events": "32843b5f8550159c428758440a6a9e2f58d64f266b6fd203062ed141a4e394d1",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -938,16 +955,17 @@
     "abs": [],
     "args": [
      3,
-     3254638692,
-     1168623309,
-     4252165479
+     536942692,
+     536938188,
+     536946020
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-17",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 17,
     "xpsr": 0
    },
@@ -976,12 +994,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 0, 697236451, 1, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536937440, 536951776, 536945600, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 3912442165, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "be412217e75e4cfd1ab69333893a286e657dc9249d7c575f775e473ed4283327",
+    "events": "cef950fb4c4987118ed533394c6aeb0d271f0e2143b3c4b6605e5ce1edc10f2a",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -991,16 +1009,17 @@
     "abs": [],
     "args": [
      3912442165,
-     0,
-     697236451,
-     1
+     536937440,
+     536951776,
+     536945600
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-18",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 18,
     "xpsr": 0
    },
@@ -1029,12 +1048,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 1536401714, 4178753371, 255, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536944944, 536950616, 536947592, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 6, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "14df542439cab0d324352fdbf403f01eb9ae18307f2e59431332faa73c46034a",
+    "events": "b467a7fa2fa8259947b91d702ecc822a85511deec0ec902d9dc2fff41e603567",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1044,16 +1063,17 @@
     "abs": [],
     "args": [
      6,
-     1536401714,
-     4178753371,
-     255
+     536944944,
+     536950616,
+     536947592
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 19,
     "xpsr": 0
    },
@@ -1082,12 +1102,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 2306919366, 2, 7, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536939460, 536939760, 536951108, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 4, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "96f2e3238fc4729db066f894a7374d9d807b8868f47f884f4e53a2ba3cd9ef6f",
+    "events": "a96e534fc792c53d15b16bfe644eaf9ddbbf365590a7b2bc0ada18f8296f5bac",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1097,16 +1117,17 @@
     "abs": [],
     "args": [
      4,
-     2306919366,
-     2,
-     7
+     536939460,
+     536939760,
+     536951108
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-20",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 20,
     "xpsr": 0
    },
@@ -1135,12 +1156,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 1, 2870852768, 0, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536936640, 536951968, 536943488, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 843060076, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "cd856bf94866d2abfead6117222f74ccde9de31f098b804a0ef383a9c151bd91",
+    "events": "8f371cfe8df3980fa135504edd3082089c46332b3730b46a812a38bedb06196c",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1150,16 +1171,17 @@
     "abs": [],
     "args": [
      843060076,
-     1,
-     2870852768,
-     0
+     536936640,
+     536951968,
+     536943488
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-21",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 21,
     "xpsr": 0
    },
@@ -1188,12 +1210,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 3001296298, 4294967295, 2451975022, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536946088, 536949836, 536947564, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 7, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "d5ab1c1003edcafda9d6c916f467b32539e012788b5bc2df92e0f42a805d4f15",
+    "events": "115dc52a2124dc81e06b95b3df8e329122ab1f1f67ff8be9e25f85526dc1c683",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1203,16 +1225,17 @@
     "abs": [],
     "args": [
      7,
-     3001296298,
-     4294967295,
-     2451975022
+     536946088,
+     536949836,
+     536947564
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-22",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 22,
     "xpsr": 0
    },
@@ -1241,12 +1264,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 241044672, 2034212132, 1515885587, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536939712, 536943908, 536941584, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 1591295399, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "cbec40d08b1e897f35da82c2ff34769c03320b02ddfd4521da55a51f9b7ffac8",
+    "events": "4b429b41c5d80982551abbecff6e33f5ea9688ec34ef9b90dc6c183e2b08d611",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1256,16 +1279,17 @@
     "abs": [],
     "args": [
      1591295399,
-     241044672,
-     2034212132,
-     1515885587
+     536939712,
+     536943908,
+     536941584
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-23",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 23,
     "xpsr": 0
    },
@@ -1294,12 +1318,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 6, 2967241396, 7, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536944852, 536937140, 536951364, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 4, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c77db8c7e00cdaf3b3dcd8409235a01e1939a924e31e1ebb429a003c305a23b8",
+    "events": "5832a55b8cc89000224fb8b6bb1a68b0ebcbef01d02ceb5f3a4fdf92ba9fb250",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1309,16 +1333,17 @@
     "abs": [],
     "args": [
      4,
-     6,
-     2967241396,
-     7
+     536944852,
+     536937140,
+     536951364
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-24",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 24,
     "xpsr": 0
    },
@@ -1347,12 +1372,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 12, 2149248134, 604019693, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536941512, 536947844, 536943596, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 3751937804, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "7503a5bb87f4c4a6daaf0fc03389a1e31e9aec747b720ad29ea7f65e3dfda117",
+    "events": "5c3cb8d662677e59b863f2ab53c3b8f8d28a7041d9fa234ff9d4010e893114be",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1362,16 +1387,17 @@
     "abs": [],
     "args": [
      3751937804,
-     12,
-     2149248134,
-     604019693
+     536941512,
+     536947844,
+     536943596
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 25,
     "xpsr": 0
    },
@@ -1400,12 +1426,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 12, 3037640278, 2678623347, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536937032, 536950356, 536939632, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 2992330384, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "080136d572c11bbe6dec3da3395fbf066af6ce3db459a048cff908394840a8d9",
+    "events": "1e6037963ba65c26079a22796334148bc35ba19c86e635416df239c6e7f40ec3",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1415,16 +1441,17 @@
     "abs": [],
     "args": [
      2992330384,
-     12,
-     3037640278,
-     2678623347
+     536937032,
+     536950356,
+     536939632
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-26",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 26,
     "xpsr": 0
    },
@@ -1453,12 +1480,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 681194263, 3639365232, 4125446660, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536949524, 536940144, 536941060, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 187818536, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "6a647c57f8a4dab4c18599afb27aa1f2d18dc9057c9626f23f36617d1b81ee9a",
+    "events": "961b80addaa4dd4b59836139ae0565afc86c81ebcdda3e4bd5c4d7d9b34d5b0e",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1468,16 +1495,17 @@
     "abs": [],
     "args": [
      187818536,
-     681194263,
-     3639365232,
-     4125446660
+     536949524,
+     536940144,
+     536941060
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 27,
     "xpsr": 0
    },
@@ -1506,12 +1534,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 4285183211, 1, 2592385448, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536949992, 536946096, 536947112, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 3711083943, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c875cc3929bdb4b11222caee5826595cb23886fbf5c71d21f04503ee6090caa8",
+    "events": "392f3ec97143320a9142a596c3e92e676434199b7337dc473de6128fcb280616",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1521,16 +1549,17 @@
     "abs": [],
     "args": [
      3711083943,
-     4285183211,
-     1,
-     2592385448
+     536949992,
+     536946096,
+     536947112
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-28",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 28,
     "xpsr": 0
    },
@@ -1559,12 +1588,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 256, 3886541357, 8, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536937084, 536947244, 536938744, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 739928864, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c3470d230a2058da690943d3c4565b4b094cb578d4de1836b111b748da024de4",
+    "events": "7b3314d12533eab0bfdd1f59964604b048131ff36c6c5279c3f451c0212e15a1",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1574,16 +1603,17 @@
     "abs": [],
     "args": [
      739928864,
-     256,
-     3886541357,
-     8
+     536937084,
+     536947244,
+     536938744
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-29",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 29,
     "xpsr": 0
    },
@@ -1612,12 +1642,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 8, 1, 7, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536941720, 536945744, 536939284, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 256, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "d5b65634859879434f9055df09597a70c89ee17ecd74a4602375de22096e2a48",
+    "events": "bc762fc377048d52473eed59aa6256a45ec6d4889923d14bd2bd032e4232544f",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1627,16 +1657,17 @@
     "abs": [],
     "args": [
      256,
-     8,
-     1,
-     7
+     536941720,
+     536945744,
+     536939284
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-30",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 30,
     "xpsr": 0
    },
@@ -1665,12 +1696,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 2461003590, 7, 53351545, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536948548, 536938932, 536941688, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 4294967295, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "1a1b428f6137fc04354c06632f1575d3dc4a960a98ec3bcc69a0ba2f9dc31ba0",
+    "events": "beb45489f9893c9e845bc1118b7e1606a5f09658b9f07aabc0da7505b656d914",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1680,16 +1711,17 @@
     "abs": [],
     "args": [
      4294967295,
-     2461003590,
-     7,
-     53351545
+     536948548,
+     536938932,
+     536941688
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
@@ -1718,12 +1750,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 2706821390, 3442053927, 1170652979, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536940812, 536941348, 536952624, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 1839753098, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "67ae2020a45ba7133cfef716e2f9de9f5f1e4817047706f793b892a988f611d2",
+    "events": "112abe8f0295d56aad73e710971d813a6251ae82939274e9f776d7dc0f711b65",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1733,16 +1765,17 @@
     "abs": [],
     "args": [
      1839753098,
-     2706821390,
-     3442053927,
-     1170652979
+     536940812,
+     536941348,
+     536952624
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-32",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 32,
     "xpsr": 0
    },
@@ -1771,12 +1804,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 7, 7, 5, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536942020, 536944276, 536938756, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 1076094348, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "20bb63b24672ed8b5d8453330b1431bd720dfae7d368dec218dbba065dbba66e",
+    "events": "19959b0bfa184db9f013bbe9318152e692f1b3d690d645d61aba9a187776952b",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1786,16 +1819,17 @@
     "abs": [],
     "args": [
      1076094348,
-     7,
-     7,
-     5
+     536942020,
+     536944276,
+     536938756
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-33",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 33,
     "xpsr": 0
    },
@@ -1824,12 +1858,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 3990671540, 922796015, 2147483647, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536940724, 536952812, 536936476, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 12, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "0988d02684a77848d9c134eccb3facb5fd83cd6a3c4b56842768ec01e0d71b7a",
+    "events": "d23101a674cc74544ef190e89b1eb1d61f881bd090135a1fd6e20f10cc520d8f",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1839,16 +1873,17 @@
     "abs": [],
     "args": [
      12,
-     3990671540,
-     922796015,
-     2147483647
+     536940724,
+     536952812,
+     536936476
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 34,
     "xpsr": 0
    },
@@ -1877,12 +1912,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 3578977268, 4001652011, 1, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536943604, 536943912, 536937872, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 2726887024, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "3d8b9b63c86e5af0380873d55551795477f0adee2e382e8ca5c09770124ba280",
+    "events": "134e674fadc950e146a69731780d17b5be94d905f7ec690a35bd62e679790375",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1892,16 +1927,17 @@
     "abs": [],
     "args": [
      2726887024,
-     3578977268,
-     4001652011,
-     1
+     536943604,
+     536943912,
+     536937872
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
@@ -1930,12 +1966,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 12, 2147483647, 8, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536949832, 536945964, 536950872, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 0, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "891275071d798900cc48d88b9545522344a008b687501b9f5c017ec31fa0a055",
+    "events": "8de923b5a5260b954655c09d9e88ed8dcd6ebe60a8b60dcbd535f043ea92b979",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1945,16 +1981,17 @@
     "abs": [],
     "args": [
      0,
-     12,
-     2147483647,
-     8
+     536949832,
+     536945964,
+     536950872
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 36,
     "xpsr": 0
    },
@@ -1983,12 +2020,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 2057795936, 2725586938, 1299241558, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536951136, 536946680, 536943188, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 1, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "827d5ccdbf17510099914c191dc209b9a2947e914dbd319fb4cf955eebaaae13",
+    "events": "91e5bc6a952f65ca9b659d2d7abfaf697d828ed66296116a3fb1369df8276a43",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1998,16 +2035,17 @@
     "abs": [],
     "args": [
      1,
-     2057795936,
-     2725586938,
-     1299241558
+     536951136,
+     536946680,
+     536943188
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-37",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 37,
     "xpsr": 0
    },
@@ -2036,12 +2074,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 255, 1, 2, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536941672, 536936976, 536945104, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 0, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "0ea4962ed1c16ff97860df4bb320e6f72ce72c28629621d7f48819adb4ed5418",
+    "events": "609f35cc7ee1929a6c786878f7765c2626001e8bd49c4ac40738d9e004902eae",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -2051,16 +2089,17 @@
     "abs": [],
     "args": [
      0,
-     255,
-     1,
-     2
+     536941672,
+     536936976,
+     536945104
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-38",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 38,
     "xpsr": 0
    },
@@ -2089,12 +2128,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 1587124134, 3774328631, 1997155928, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536942500, 536948532, 536948312, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 3, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "1e93599f8185a1dc58c18662a5b926f4ba1be8a4997aabd9eb4a275ce0139d4b",
+    "events": "92df975ea36145de7f32678bfe20082433c201a1edd2315ad0907c283db8e104",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -2104,16 +2143,17 @@
     "abs": [],
     "args": [
      3,
-     1587124134,
-     3774328631,
-     1997155928
+     536942500,
+     536948532,
+     536948312
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
     "xpsr": 0
    },
@@ -2142,12 +2182,12 @@
     100328
    ],
    "events_head": [
-    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 3928041777, 1786326658, 1835695343, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'The discovery procedure for ANCS failed, err %d\\n'), 536946992, 536948352, 536952044, 'S', 'F', 'T', None)",
     "('C', 1, 536898228, 4294967294, 'S', 'F', 'T', None)",
     "('C', 2, 0, 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "97fd955e1ead493e4f871076f31249e76b49fcad5e223adac273d490642a7d79",
+    "events": "a3c307cc6b5dd518f41a430a5f8b60913bc93ce1e9d566b02b8cf6b8fddadb80",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -2157,16 +2197,17 @@
     "abs": [],
     "args": [
      0,
-     3928041777,
-     1786326658,
-     1835695343
+     536946992,
+     536948352,
+     536952044
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-40",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 40,
     "xpsr": 0
    },
@@ -2187,8 +2228,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "notify",
@@ -2197,16 +2241,26 @@
   "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
   "source": "shipped image"
  },
- "pointer_arg_mask": [],
+ "pointer_arg_mask": [
+  1,
+  2,
+  3
+ ],
  "ret_kind": "void",
  "search": {
-  "candidates": 155,
+  "candidates": 225,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
   "kept": 41,
-  "pointer_arg_mask": [],
+  "pointer_arg_mask": [
+   1,
+   2,
+   3
+  ],
   "pointer_arg_mask_derived": true
  },
  "size": 32,

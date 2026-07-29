@@ -42,17 +42,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 1276959699, 'S', 'F', 'T', None)",
-    "('C', 1, 1276959699, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 12, 4, 0, 'S', 'F', 'T', None)",
-    "('C', 3, 1276959699, 12, 4, 0, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 4, 0, 'S', 'F', 'T', None)",
-    "('C', 5, 1276959699, 1234500645, 4, 0, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 4, 0, 'S', 'F', 'T', None)",
+    "('C', 0, 536943568, 'S', 'F', 'T', None)",
+    "('C', 1, 536943568, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536948040, 536948308, 536940048, 'S', 'F', 'T', None)",
+    "('C', 3, 536943568, 536948040, 536948308, 536940048, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536948308, 536940048, 'S', 'F', 'T', None)",
+    "('C', 5, 536943568, 1234500645, 536948308, 536940048, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536948308, 536940048, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "911919441ed6af885e1d03b4cc5e48ca4898dca248db130c043da1221c79f6fb",
+    "events": "e39c9b2dfe63318af32b832ab47d38d9f92e64f04f031860ef765930054ad476",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -61,17 +61,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1276959699,
-     12,
-     4,
-     0
+     536943568,
+     536948040,
+     536948308,
+     536940048
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -120,17 +121,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 4067469868, 'S', 'F', 'T', None)",
-    "('C', 1, 4067469868, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 1797429778, 2147483648, 315044147, 'S', 'F', 'T', None)",
-    "('C', 3, 4067469868, 1797429778, 2147483648, 315044147, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 2147483648, 315044147, 'S', 'F', 'T', None)",
-    "('C', 5, 4067469868, 1234500645, 2147483648, 315044147, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 2147483648, 315044147, 'S', 'F', 'T', None)",
+    "('C', 0, 536947244, 'S', 'F', 'T', None)",
+    "('C', 1, 536947244, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536943120, 536940476, 536949040, 'S', 'F', 'T', None)",
+    "('C', 3, 536947244, 536943120, 536940476, 536949040, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536940476, 536949040, 'S', 'F', 'T', None)",
+    "('C', 5, 536947244, 1234500645, 536940476, 536949040, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536940476, 536949040, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "7968cc4397ee7db5f8652622762c867c4a9469e29f19d4357603994a8c0975ef",
+    "events": "941e9994b87b3393e9a993b75cda0691b81794408722c123ea75c5883f25158a",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -139,17 +140,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4067469868,
-     1797429778,
-     2147483648,
-     315044147
+     536947244,
+     536943120,
+     536940476,
+     536949040
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -198,17 +200,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 4290042576, 'S', 'F', 'T', None)",
-    "('C', 1, 4290042576, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 598759513, 3677430904, 7, 'S', 'F', 'T', None)",
-    "('C', 3, 4290042576, 598759513, 3677430904, 7, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 3677430904, 7, 'S', 'F', 'T', None)",
-    "('C', 5, 4290042576, 1234500645, 3677430904, 7, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 3677430904, 7, 'S', 'F', 'T', None)",
+    "('C', 0, 536943312, 'S', 'F', 'T', None)",
+    "('C', 1, 536943312, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536942680, 536945784, 536943396, 'S', 'F', 'T', None)",
+    "('C', 3, 536943312, 536942680, 536945784, 536943396, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536945784, 536943396, 'S', 'F', 'T', None)",
+    "('C', 5, 536943312, 1234500645, 536945784, 536943396, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536945784, 536943396, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "85952be00789b7defdd6dd50dcb96aeeee424c5101cf8f7945bc1adceda8de89",
+    "events": "2619cc40851fca186ab3b76b7e386670dc6fb6a5b80ba98c91cb64b4aec5b480",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -217,17 +219,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4290042576,
-     598759513,
-     3677430904,
-     7
+     536943312,
+     536942680,
+     536945784,
+     536943396
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
@@ -276,17 +279,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 2618385373, 'S', 'F', 'T', None)",
-    "('C', 1, 2618385373, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 255, 8, 3619521758, 'S', 'F', 'T', None)",
-    "('C', 3, 2618385373, 255, 8, 3619521758, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 8, 3619521758, 'S', 'F', 'T', None)",
-    "('C', 5, 2618385373, 1234500645, 8, 3619521758, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 8, 3619521758, 'S', 'F', 'T', None)",
+    "('C', 0, 536945628, 'S', 'F', 'T', None)",
+    "('C', 1, 536945628, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536940936, 536943096, 536937692, 'S', 'F', 'T', None)",
+    "('C', 3, 536945628, 536940936, 536943096, 536937692, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536943096, 536937692, 'S', 'F', 'T', None)",
+    "('C', 5, 536945628, 1234500645, 536943096, 536937692, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536943096, 536937692, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "be5f173b3e9bfed6880541b12301431343c31487f30134ad10130273f18c05cc",
+    "events": "39157a228295e85cb72e1f13d41621f0362714c37520e5de429db26f247f2fc5",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -295,17 +298,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2618385373,
-     255,
-     8,
-     3619521758
+     536945628,
+     536940936,
+     536943096,
+     536937692
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-3",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 3,
     "xpsr": 0
    },
@@ -354,17 +358,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 16, 'S', 'F', 'T', None)",
-    "('C', 1, 16, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 2147483647, 3842370354, 6, 'S', 'F', 'T', None)",
-    "('C', 3, 16, 2147483647, 3842370354, 6, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 3842370354, 6, 'S', 'F', 'T', None)",
-    "('C', 5, 16, 1234500645, 3842370354, 6, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 3842370354, 6, 'S', 'F', 'T', None)",
+    "('C', 0, 536945864, 'S', 'F', 'T', None)",
+    "('C', 1, 536945864, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536944284, 536947504, 536951124, 'S', 'F', 'T', None)",
+    "('C', 3, 536945864, 536944284, 536947504, 536951124, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536947504, 536951124, 'S', 'F', 'T', None)",
+    "('C', 5, 536945864, 1234500645, 536947504, 536951124, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536947504, 536951124, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "099ce91f56e95da0f5eaf66f31862296135b7c3f80f240d5f547b22fe6e69342",
+    "events": "f805a2d4dfe8c3a4b8d7ff48d09427063ea256d7d6342bdf69432afd9a6afa92",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -373,17 +377,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     16,
-     2147483647,
-     3842370354,
-     6
+     536945864,
+     536944284,
+     536947504,
+     536951124
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 4,
     "xpsr": 0
    },
@@ -432,17 +437,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 4, 'S', 'F', 'T', None)",
-    "('C', 1, 4, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 3188701995, 8, 7, 'S', 'F', 'T', None)",
-    "('C', 3, 4, 3188701995, 8, 7, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 8, 7, 'S', 'F', 'T', None)",
-    "('C', 5, 4, 1234500645, 8, 7, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 8, 7, 'S', 'F', 'T', None)",
+    "('C', 0, 536939588, 'S', 'F', 'T', None)",
+    "('C', 1, 536939588, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536951592, 536944168, 536942644, 'S', 'F', 'T', None)",
+    "('C', 3, 536939588, 536951592, 536944168, 536942644, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536944168, 536942644, 'S', 'F', 'T', None)",
+    "('C', 5, 536939588, 1234500645, 536944168, 536942644, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536944168, 536942644, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "1c6080766ce5459cfd3c70bc58ee26e3bd2cb579d743ca4223fef01f520c89c6",
+    "events": "96fe200d28d3bec1b6f924ba92770f9c514894c808e9b133212f86e6c07166e7",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -451,17 +456,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4,
-     3188701995,
-     8,
-     7
+     536939588,
+     536951592,
+     536944168,
+     536942644
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-5",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 5,
     "xpsr": 0
    },
@@ -510,17 +516,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 4, 'S', 'F', 'T', None)",
-    "('C', 1, 4, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 3322790363, 5, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 3, 4, 3322790363, 5, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 5, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 5, 4, 1234500645, 5, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 5, 2147483647, 'S', 'F', 'T', None)",
+    "('C', 0, 536950900, 'S', 'F', 'T', None)",
+    "('C', 1, 536950900, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536936920, 536947060, 536952236, 'S', 'F', 'T', None)",
+    "('C', 3, 536950900, 536936920, 536947060, 536952236, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536947060, 536952236, 'S', 'F', 'T', None)",
+    "('C', 5, 536950900, 1234500645, 536947060, 536952236, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536947060, 536952236, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "bed5658487c99bae68d5cba6bfce4c703fc8fd28b369be6f5b22876fdc9925d4",
+    "events": "549b801da6d7ed04fb338643885f18795671b593afc4cd895e7e734d1aa17905",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -529,17 +535,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4,
-     3322790363,
-     5,
-     2147483647
+     536950900,
+     536936920,
+     536947060,
+     536952236
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-6",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 6,
     "xpsr": 0
    },
@@ -588,17 +595,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 2300957721, 'S', 'F', 'T', None)",
-    "('C', 1, 2300957721, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 1604804925, 1, 2363272863, 'S', 'F', 'T', None)",
-    "('C', 3, 2300957721, 1604804925, 1, 2363272863, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 1, 2363272863, 'S', 'F', 'T', None)",
-    "('C', 5, 2300957721, 1234500645, 1, 2363272863, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 1, 2363272863, 'S', 'F', 'T', None)",
+    "('C', 0, 536941592, 'S', 'F', 'T', None)",
+    "('C', 1, 536941592, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536944956, 536950368, 536948380, 'S', 'F', 'T', None)",
+    "('C', 3, 536941592, 536944956, 536950368, 536948380, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536950368, 536948380, 'S', 'F', 'T', None)",
+    "('C', 5, 536941592, 1234500645, 536950368, 536948380, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536950368, 536948380, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b3d890c56e00e8ac2d7a5fb49a09558cd722cd337ac1ac9fe97c4dc1c299dfd6",
+    "events": "4e490998cdd58910a65d3c5ff467e8a1f7f528f23a59795844e0011afaab056d",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -607,17 +614,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2300957721,
-     1604804925,
-     1,
-     2363272863
+     536941592,
+     536944956,
+     536950368,
+     536948380
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-7",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 7,
     "xpsr": 0
    },
@@ -666,17 +674,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 2156366374, 'S', 'F', 'T', None)",
-    "('C', 1, 2156366374, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 708972563, 558645175, 4, 'S', 'F', 'T', None)",
-    "('C', 3, 2156366374, 708972563, 558645175, 4, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 558645175, 4, 'S', 'F', 'T', None)",
-    "('C', 5, 2156366374, 1234500645, 558645175, 4, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 558645175, 4, 'S', 'F', 'T', None)",
+    "('C', 0, 536939044, 'S', 'F', 'T', None)",
+    "('C', 1, 536939044, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536940560, 536952756, 536949588, 'S', 'F', 'T', None)",
+    "('C', 3, 536939044, 536940560, 536952756, 536949588, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536952756, 536949588, 'S', 'F', 'T', None)",
+    "('C', 5, 536939044, 1234500645, 536952756, 536949588, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536952756, 536949588, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b63b5695ae53885422e3058f4359a8466c6223fc313a4c4b4ef6be9ebb7fefd6",
+    "events": "32c9b003c8df09963082c4c630c9e793a2a475e26590f5a56b42a566f21f9957",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -685,17 +693,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2156366374,
-     708972563,
-     558645175,
-     4
+     536939044,
+     536940560,
+     536952756,
+     536949588
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-8",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 8,
     "xpsr": 0
    },
@@ -744,17 +753,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 1346232374, 'S', 'F', 'T', None)",
-    "('C', 1, 1346232374, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 1556998536, 499087790, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 3, 1346232374, 1556998536, 499087790, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 499087790, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 5, 1346232374, 1234500645, 499087790, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 499087790, 2147483647, 'S', 'F', 'T', None)",
+    "('C', 0, 536944692, 'S', 'F', 'T', None)",
+    "('C', 1, 536944692, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536947080, 536951212, 536940988, 'S', 'F', 'T', None)",
+    "('C', 3, 536944692, 536947080, 536951212, 536940988, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536951212, 536940988, 'S', 'F', 'T', None)",
+    "('C', 5, 536944692, 1234500645, 536951212, 536940988, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536951212, 536940988, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "e06034fd9455b6a696e96436e86fe8516ddf161131df481f91c682d5daf47043",
+    "events": "c0e266c97f4b4d84f21725ed0dc1b1f1d6f04aef1ccc42e906196949c49d6eca",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -763,17 +772,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1346232374,
-     1556998536,
-     499087790,
-     2147483647
+     536944692,
+     536947080,
+     536951212,
+     536940988
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 9,
     "xpsr": 0
    },
@@ -822,17 +832,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 182454980, 'S', 'F', 'T', None)",
-    "('C', 1, 182454980, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 995058044, 8, 1, 'S', 'F', 'T', None)",
-    "('C', 3, 182454980, 995058044, 8, 1, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 8, 1, 'S', 'F', 'T', None)",
-    "('C', 5, 182454980, 1234500645, 8, 1, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 8, 1, 'S', 'F', 'T', None)",
+    "('C', 0, 536939204, 'S', 'F', 'T', None)",
+    "('C', 1, 536939204, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536945020, 536946200, 536947328, 'S', 'F', 'T', None)",
+    "('C', 3, 536939204, 536945020, 536946200, 536947328, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536946200, 536947328, 'S', 'F', 'T', None)",
+    "('C', 5, 536939204, 1234500645, 536946200, 536947328, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536946200, 536947328, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "610c5301ba03a3d883c1e2add768920efdfe207698105872fba8f2588d2d6bee",
+    "events": "41d950687d3daa88d30cbf141a4ff4a165b4cbd722e763bf47d4fd9eefe84dcd",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -841,17 +851,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     182454980,
-     995058044,
-     8,
-     1
+     536939204,
+     536945020,
+     536946200,
+     536947328
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 10,
     "xpsr": 0
    },
@@ -900,17 +911,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 3, 'S', 'F', 'T', None)",
-    "('C', 1, 3, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 2147483648, 256, 1426281073, 'S', 'F', 'T', None)",
-    "('C', 3, 3, 2147483648, 256, 1426281073, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 256, 1426281073, 'S', 'F', 'T', None)",
-    "('C', 5, 3, 1234500645, 256, 1426281073, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 256, 1426281073, 'S', 'F', 'T', None)",
+    "('C', 0, 536937040, 'S', 'F', 'T', None)",
+    "('C', 1, 536937040, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536948284, 536938076, 536941168, 'S', 'F', 'T', None)",
+    "('C', 3, 536937040, 536948284, 536938076, 536941168, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536938076, 536941168, 'S', 'F', 'T', None)",
+    "('C', 5, 536937040, 1234500645, 536938076, 536941168, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536938076, 536941168, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "6d9c2c40a6c211943658d284082b66babb076b590f451a5eb39f5e36489dd853",
+    "events": "cca87e9c5df3cae8e06fec4d880090486dd076bfe78bc3ae68faaa33d4142a5d",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -919,17 +930,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3,
-     2147483648,
-     256,
-     1426281073
+     536937040,
+     536948284,
+     536938076,
+     536941168
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 11,
     "xpsr": 0
    },
@@ -978,17 +990,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 8, 'S', 'F', 'T', None)",
-    "('C', 1, 8, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 3217736208, 5, 1103693227, 'S', 'F', 'T', None)",
-    "('C', 3, 8, 3217736208, 5, 1103693227, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 5, 1103693227, 'S', 'F', 'T', None)",
-    "('C', 5, 8, 1234500645, 5, 1103693227, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 5, 1103693227, 'S', 'F', 'T', None)",
+    "('C', 0, 536944520, 'S', 'F', 'T', None)",
+    "('C', 1, 536944520, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536936976, 536941268, 536937896, 'S', 'F', 'T', None)",
+    "('C', 3, 536944520, 536936976, 536941268, 536937896, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536941268, 536937896, 'S', 'F', 'T', None)",
+    "('C', 5, 536944520, 1234500645, 536941268, 536937896, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536941268, 536937896, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "60b483d5da9aac2b4a16c48b20f28adc1eed39576347ddda2a79a1877bdccea3",
+    "events": "12f289cbca21b64da820dfe7c012be7f9b019f0dcdcea8b0e23301e35e44b619",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -997,17 +1009,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     8,
-     3217736208,
-     5,
-     1103693227
+     536944520,
+     536936976,
+     536941268,
+     536937896
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-12",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 12,
     "xpsr": 0
    },
@@ -1056,17 +1069,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 1156718256, 'S', 'F', 'T', None)",
-    "('C', 1, 1156718256, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 1944344031, 6, 617681966, 'S', 'F', 'T', None)",
-    "('C', 3, 1156718256, 1944344031, 6, 617681966, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 6, 617681966, 'S', 'F', 'T', None)",
-    "('C', 5, 1156718256, 1234500645, 6, 617681966, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 6, 617681966, 'S', 'F', 'T', None)",
+    "('C', 0, 536944304, 'S', 'F', 'T', None)",
+    "('C', 1, 536944304, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536942044, 536939060, 536941612, 'S', 'F', 'T', None)",
+    "('C', 3, 536944304, 536942044, 536939060, 536941612, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536939060, 536941612, 'S', 'F', 'T', None)",
+    "('C', 5, 536944304, 1234500645, 536939060, 536941612, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536939060, 536941612, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "bcf57e604415cf2cfd577d17534aad0b5dae4f62b01e1193983aabc245211cce",
+    "events": "7d2a79b8bec76ad659500e460063a81410e56fbe17f5406f8af036f05eb2d876",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -1075,17 +1088,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1156718256,
-     1944344031,
-     6,
-     617681966
+     536944304,
+     536942044,
+     536939060,
+     536941612
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 13,
     "xpsr": 0
    },
@@ -1134,17 +1148,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 1996365079, 'S', 'F', 'T', None)",
-    "('C', 1, 1996365079, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 12, 3, 470668832, 'S', 'F', 'T', None)",
-    "('C', 3, 1996365079, 12, 3, 470668832, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 3, 470668832, 'S', 'F', 'T', None)",
-    "('C', 5, 1996365079, 1234500645, 3, 470668832, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 3, 470668832, 'S', 'F', 'T', None)",
+    "('C', 0, 536943892, 'S', 'F', 'T', None)",
+    "('C', 1, 536943892, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536949848, 536943328, 536942112, 'S', 'F', 'T', None)",
+    "('C', 3, 536943892, 536949848, 536943328, 536942112, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536943328, 536942112, 'S', 'F', 'T', None)",
+    "('C', 5, 536943892, 1234500645, 536943328, 536942112, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536943328, 536942112, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b676796a602860ecc39ae11b06d3c12a7188ca0569cc908323ec33b171c307b2",
+    "events": "872060eafffed8fe5aef90837820e772067d6664668591c43805775eaa2dce2a",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -1153,17 +1167,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1996365079,
-     12,
-     3,
-     470668832
+     536943892,
+     536949848,
+     536943328,
+     536942112
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-14",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 14,
     "xpsr": 0
    },
@@ -1212,17 +1227,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 7, 'S', 'F', 'T', None)",
-    "('C', 1, 7, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 256, 5, 4, 'S', 'F', 'T', None)",
-    "('C', 3, 7, 256, 5, 4, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 5, 4, 'S', 'F', 'T', None)",
-    "('C', 5, 7, 1234500645, 5, 4, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 5, 4, 'S', 'F', 'T', None)",
+    "('C', 0, 536952404, 'S', 'F', 'T', None)",
+    "('C', 1, 536952404, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536941132, 536951236, 536949908, 'S', 'F', 'T', None)",
+    "('C', 3, 536952404, 536941132, 536951236, 536949908, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536951236, 536949908, 'S', 'F', 'T', None)",
+    "('C', 5, 536952404, 1234500645, 536951236, 536949908, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536951236, 536949908, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "bce39cbe373b6b2cf58b4b4cd6bbcb956dd188d9e02a3e6f562bcf4f8b263e27",
+    "events": "390691b26aca3d12a9bfe7926b7dd087fee799bb3101db413922c36a20e893ab",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -1231,17 +1246,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     7,
-     256,
-     5,
-     4
+     536952404,
+     536941132,
+     536951236,
+     536949908
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-15",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 15,
     "xpsr": 0
    },
@@ -1290,17 +1306,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 2024561310, 'S', 'F', 'T', None)",
-    "('C', 1, 2024561310, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 2147483648, 3454407978, 16, 'S', 'F', 'T', None)",
-    "('C', 3, 2024561310, 2147483648, 3454407978, 16, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 3454407978, 16, 'S', 'F', 'T', None)",
-    "('C', 5, 2024561310, 1234500645, 3454407978, 16, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 3454407978, 16, 'S', 'F', 'T', None)",
+    "('C', 0, 536943260, 'S', 'F', 'T', None)",
+    "('C', 1, 536943260, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536942972, 536941864, 536940136, 'S', 'F', 'T', None)",
+    "('C', 3, 536943260, 536942972, 536941864, 536940136, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536941864, 536940136, 'S', 'F', 'T', None)",
+    "('C', 5, 536943260, 1234500645, 536941864, 536940136, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536941864, 536940136, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "4829d0553491a437882009a84e103a1b7619d78ee5a1f7cce164f2c49a4239f6",
+    "events": "290bf8081b6047d700fb24d08989e1a9dc55838a0901f8d118df67bbe7a9aeac",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -1309,17 +1325,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2024561310,
-     2147483648,
-     3454407978,
-     16
+     536943260,
+     536942972,
+     536941864,
+     536940136
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
@@ -1368,17 +1385,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 3, 'S', 'F', 'T', None)",
-    "('C', 1, 3, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 3254638692, 1168623309, 4252165479, 'S', 'F', 'T', None)",
-    "('C', 3, 3, 3254638692, 1168623309, 4252165479, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 1168623309, 4252165479, 'S', 'F', 'T', None)",
-    "('C', 5, 3, 1234500645, 1168623309, 4252165479, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 1168623309, 4252165479, 'S', 'F', 'T', None)",
+    "('C', 0, 536944016, 'S', 'F', 'T', None)",
+    "('C', 1, 536944016, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536942692, 536938188, 536946020, 'S', 'F', 'T', None)",
+    "('C', 3, 536944016, 536942692, 536938188, 536946020, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536938188, 536946020, 'S', 'F', 'T', None)",
+    "('C', 5, 536944016, 1234500645, 536938188, 536946020, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536938188, 536946020, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "1ed2cae79a5cd04915caabfb78161dedd2980be71d6988e359f8c6a29bf75c30",
+    "events": "f9adb4f5941224026481328b95f5e831f4f87bd6a2df67ffabd95cf6a300f017",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -1387,17 +1404,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3,
-     3254638692,
-     1168623309,
-     4252165479
+     536944016,
+     536942692,
+     536938188,
+     536946020
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-17",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 17,
     "xpsr": 0
    },
@@ -1446,17 +1464,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 3912442165, 'S', 'F', 'T', None)",
-    "('C', 1, 3912442165, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 0, 697236451, 1, 'S', 'F', 'T', None)",
-    "('C', 3, 3912442165, 0, 697236451, 1, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 697236451, 1, 'S', 'F', 'T', None)",
-    "('C', 5, 3912442165, 1234500645, 697236451, 1, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 697236451, 1, 'S', 'F', 'T', None)",
+    "('C', 0, 536944948, 'S', 'F', 'T', None)",
+    "('C', 1, 536944948, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536937440, 536951776, 536945600, 'S', 'F', 'T', None)",
+    "('C', 3, 536944948, 536937440, 536951776, 536945600, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536951776, 536945600, 'S', 'F', 'T', None)",
+    "('C', 5, 536944948, 1234500645, 536951776, 536945600, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536951776, 536945600, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "4466cc3f165a4b5331739fa6661f53bfb8379fd39ec1575ec705dc0678dc4c86",
+    "events": "92bff8edfe06601178ccd1d34c23c9a2ff5ee0ce66d554895dbcb6a819ed2c2e",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -1465,17 +1483,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3912442165,
-     0,
-     697236451,
-     1
+     536944948,
+     536937440,
+     536951776,
+     536945600
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-18",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 18,
     "xpsr": 0
    },
@@ -1524,17 +1543,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 6, 'S', 'F', 'T', None)",
-    "('C', 1, 6, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 1536401714, 4178753371, 255, 'S', 'F', 'T', None)",
-    "('C', 3, 6, 1536401714, 4178753371, 255, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 4178753371, 255, 'S', 'F', 'T', None)",
-    "('C', 5, 6, 1234500645, 4178753371, 255, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 4178753371, 255, 'S', 'F', 'T', None)",
+    "('C', 0, 536939284, 'S', 'F', 'T', None)",
+    "('C', 1, 536939284, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536944944, 536950616, 536947592, 'S', 'F', 'T', None)",
+    "('C', 3, 536939284, 536944944, 536950616, 536947592, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536950616, 536947592, 'S', 'F', 'T', None)",
+    "('C', 5, 536939284, 1234500645, 536950616, 536947592, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536950616, 536947592, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "0be58c5c2c614d37de5b0279be2cbd3a8b07843e4ebcaa68a0b2b62016caa34c",
+    "events": "9df6c20de3f50efab9d144f270b25f5b16a9f5a9d89aed69f4b480c2b30e9100",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -1543,17 +1562,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     6,
-     1536401714,
-     4178753371,
-     255
+     536939284,
+     536944944,
+     536950616,
+     536947592
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 19,
     "xpsr": 0
    },
@@ -1602,17 +1622,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 4, 'S', 'F', 'T', None)",
-    "('C', 1, 4, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 2306919366, 2, 7, 'S', 'F', 'T', None)",
-    "('C', 3, 4, 2306919366, 2, 7, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 2, 7, 'S', 'F', 'T', None)",
-    "('C', 5, 4, 1234500645, 2, 7, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 2, 7, 'S', 'F', 'T', None)",
+    "('C', 0, 536952740, 'S', 'F', 'T', None)",
+    "('C', 1, 536952740, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536939460, 536939760, 536951108, 'S', 'F', 'T', None)",
+    "('C', 3, 536952740, 536939460, 536939760, 536951108, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536939760, 536951108, 'S', 'F', 'T', None)",
+    "('C', 5, 536952740, 1234500645, 536939760, 536951108, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536939760, 536951108, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "3a7c68a009898af8d033355ecc5358f7fa430c6d924790fddf501fb350ccba8c",
+    "events": "c056198979e8cc6b238eddb9e5a3a44676e93c5b2e977be7e3eba9c37d555034",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -1621,17 +1641,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4,
-     2306919366,
-     2,
-     7
+     536952740,
+     536939460,
+     536939760,
+     536951108
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-20",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 20,
     "xpsr": 0
    },
@@ -1680,17 +1701,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 843060076, 'S', 'F', 'T', None)",
-    "('C', 1, 843060076, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 1, 2870852768, 0, 'S', 'F', 'T', None)",
-    "('C', 3, 843060076, 1, 2870852768, 0, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 2870852768, 0, 'S', 'F', 'T', None)",
-    "('C', 5, 843060076, 1234500645, 2870852768, 0, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 2870852768, 0, 'S', 'F', 'T', None)",
+    "('C', 0, 536941420, 'S', 'F', 'T', None)",
+    "('C', 1, 536941420, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536936640, 536951968, 536943488, 'S', 'F', 'T', None)",
+    "('C', 3, 536941420, 536936640, 536951968, 536943488, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536951968, 536943488, 'S', 'F', 'T', None)",
+    "('C', 5, 536941420, 1234500645, 536951968, 536943488, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536951968, 536943488, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "4623d3ffd83facbd804651d9b9feda628006889bdd6a4a4a1ce6b3c8cc22ea4a",
+    "events": "17c4c5611cfcd01465a0ddd0410b90f1f88efc6f658e2750023f2d1680fbdfdb",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -1699,17 +1720,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     843060076,
-     1,
-     2870852768,
-     0
+     536941420,
+     536936640,
+     536951968,
+     536943488
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-21",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 21,
     "xpsr": 0
    },
@@ -1758,17 +1780,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 7, 'S', 'F', 'T', None)",
-    "('C', 1, 7, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 3001296298, 4294967295, 2451975022, 'S', 'F', 'T', None)",
-    "('C', 3, 7, 3001296298, 4294967295, 2451975022, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 4294967295, 2451975022, 'S', 'F', 'T', None)",
-    "('C', 5, 7, 1234500645, 4294967295, 2451975022, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 4294967295, 2451975022, 'S', 'F', 'T', None)",
+    "('C', 0, 536937396, 'S', 'F', 'T', None)",
+    "('C', 1, 536937396, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536946088, 536949836, 536947564, 'S', 'F', 'T', None)",
+    "('C', 3, 536937396, 536946088, 536949836, 536947564, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536949836, 536947564, 'S', 'F', 'T', None)",
+    "('C', 5, 536937396, 1234500645, 536949836, 536947564, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536949836, 536947564, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "68b3184b4b077b66fb32c05529b64c7b85d333fbd9c84a4d814697815be1913f",
+    "events": "7c0d1b3957eb5124225039af28a74e49b1dd64d58f97bdb56d538f92756d882f",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -1777,17 +1799,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     7,
-     3001296298,
-     4294967295,
-     2451975022
+     536937396,
+     536946088,
+     536949836,
+     536947564
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-22",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 22,
     "xpsr": 0
    },
@@ -1836,17 +1859,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 1591295399, 'S', 'F', 'T', None)",
-    "('C', 1, 1591295399, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 241044672, 2034212132, 1515885587, 'S', 'F', 'T', None)",
-    "('C', 3, 1591295399, 241044672, 2034212132, 1515885587, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 2034212132, 1515885587, 'S', 'F', 'T', None)",
-    "('C', 5, 1591295399, 1234500645, 2034212132, 1515885587, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 2034212132, 1515885587, 'S', 'F', 'T', None)",
+    "('C', 0, 536952228, 'S', 'F', 'T', None)",
+    "('C', 1, 536952228, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536939712, 536943908, 536941584, 'S', 'F', 'T', None)",
+    "('C', 3, 536952228, 536939712, 536943908, 536941584, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536943908, 536941584, 'S', 'F', 'T', None)",
+    "('C', 5, 536952228, 1234500645, 536943908, 536941584, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536943908, 536941584, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "f46df1c89efd5231423da7b7f07ee5bdb9e6c6acc9d0012e861731849a974a95",
+    "events": "253566b5106bda5ebe3462060a6dc93877e4c442ba5e89524010ec6488412596",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -1855,17 +1878,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1591295399,
-     241044672,
-     2034212132,
-     1515885587
+     536952228,
+     536939712,
+     536943908,
+     536941584
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-23",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 23,
     "xpsr": 0
    },
@@ -1914,17 +1938,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 4, 'S', 'F', 'T', None)",
-    "('C', 1, 4, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 6, 2967241396, 7, 'S', 'F', 'T', None)",
-    "('C', 3, 4, 6, 2967241396, 7, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 2967241396, 7, 'S', 'F', 'T', None)",
-    "('C', 5, 4, 1234500645, 2967241396, 7, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 2967241396, 7, 'S', 'F', 'T', None)",
+    "('C', 0, 536949908, 'S', 'F', 'T', None)",
+    "('C', 1, 536949908, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536944852, 536937140, 536951364, 'S', 'F', 'T', None)",
+    "('C', 3, 536949908, 536944852, 536937140, 536951364, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536937140, 536951364, 'S', 'F', 'T', None)",
+    "('C', 5, 536949908, 1234500645, 536937140, 536951364, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536937140, 536951364, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "f896c0651849376386194083042e51265ee7b3a81a0351d442fc80d9e778647c",
+    "events": "2f24c3aff749e09607c61b7253c2a89b05b5ee3a1f06bfc266afffefe4625d10",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -1933,17 +1957,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4,
-     6,
-     2967241396,
-     7
+     536949908,
+     536944852,
+     536937140,
+     536951364
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-24",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 24,
     "xpsr": 0
    },
@@ -1992,17 +2017,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 3751937804, 'S', 'F', 'T', None)",
-    "('C', 1, 3751937804, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 12, 2149248134, 604019693, 'S', 'F', 'T', None)",
-    "('C', 3, 3751937804, 12, 2149248134, 604019693, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 2149248134, 604019693, 'S', 'F', 'T', None)",
-    "('C', 5, 3751937804, 1234500645, 2149248134, 604019693, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 2149248134, 604019693, 'S', 'F', 'T', None)",
+    "('C', 0, 536938252, 'S', 'F', 'T', None)",
+    "('C', 1, 536938252, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536941512, 536947844, 536943596, 'S', 'F', 'T', None)",
+    "('C', 3, 536938252, 536941512, 536947844, 536943596, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536947844, 536943596, 'S', 'F', 'T', None)",
+    "('C', 5, 536938252, 1234500645, 536947844, 536943596, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536947844, 536943596, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9b3472875b12c8cab8195fb7c7c479706b9a3b474ab2a091017daa039a16943c",
+    "events": "06b6e3fb5a028fbdfd6562efb8d41511c56f37e2b0f31d043e53866d5c099914",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -2011,17 +2036,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3751937804,
-     12,
-     2149248134,
-     604019693
+     536938252,
+     536941512,
+     536947844,
+     536943596
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 25,
     "xpsr": 0
    },
@@ -2070,17 +2096,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 2992330384, 'S', 'F', 'T', None)",
-    "('C', 1, 2992330384, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 12, 3037640278, 2678623347, 'S', 'F', 'T', None)",
-    "('C', 3, 2992330384, 12, 3037640278, 2678623347, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 3037640278, 2678623347, 'S', 'F', 'T', None)",
-    "('C', 5, 2992330384, 1234500645, 3037640278, 2678623347, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 3037640278, 2678623347, 'S', 'F', 'T', None)",
+    "('C', 0, 536942224, 'S', 'F', 'T', None)",
+    "('C', 1, 536942224, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536937032, 536950356, 536939632, 'S', 'F', 'T', None)",
+    "('C', 3, 536942224, 536937032, 536950356, 536939632, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536950356, 536939632, 'S', 'F', 'T', None)",
+    "('C', 5, 536942224, 1234500645, 536950356, 536939632, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536950356, 536939632, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "f7be234b8935c37b1606f0fa74f170a9542358e7d175f27d573501551511ce20",
+    "events": "5dad9f79a8d77d5495024e867092c91789a9ed58f8e17dd49f73a2254e96e3f3",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -2089,17 +2115,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2992330384,
-     12,
-     3037640278,
-     2678623347
+     536942224,
+     536937032,
+     536950356,
+     536939632
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-26",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 26,
     "xpsr": 0
    },
@@ -2148,17 +2175,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 187818536, 'S', 'F', 'T', None)",
-    "('C', 1, 187818536, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 681194263, 3639365232, 4125446660, 'S', 'F', 'T', None)",
-    "('C', 3, 187818536, 681194263, 3639365232, 4125446660, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 3639365232, 4125446660, 'S', 'F', 'T', None)",
-    "('C', 5, 187818536, 1234500645, 3639365232, 4125446660, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 3639365232, 4125446660, 'S', 'F', 'T', None)",
+    "('C', 0, 536945192, 'S', 'F', 'T', None)",
+    "('C', 1, 536945192, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536949524, 536940144, 536941060, 'S', 'F', 'T', None)",
+    "('C', 3, 536945192, 536949524, 536940144, 536941060, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536940144, 536941060, 'S', 'F', 'T', None)",
+    "('C', 5, 536945192, 1234500645, 536940144, 536941060, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536940144, 536941060, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "35dd7456fdea958d6e7a4bb2ad65db89f2387a5b2be89ed6339888ff6d1f3ebd",
+    "events": "c709649400d85443972b46b6a7934f6042d39285dfd428eecc71da838850f43a",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -2167,17 +2194,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     187818536,
-     681194263,
-     3639365232,
-     4125446660
+     536945192,
+     536949524,
+     536940144,
+     536941060
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 27,
     "xpsr": 0
    },
@@ -2226,17 +2254,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 3711083943, 'S', 'F', 'T', None)",
-    "('C', 1, 3711083943, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 4285183211, 1, 2592385448, 'S', 'F', 'T', None)",
-    "('C', 3, 3711083943, 4285183211, 1, 2592385448, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 1, 2592385448, 'S', 'F', 'T', None)",
-    "('C', 5, 3711083943, 1234500645, 1, 2592385448, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 1, 2592385448, 'S', 'F', 'T', None)",
+    "('C', 0, 536946084, 'S', 'F', 'T', None)",
+    "('C', 1, 536946084, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536949992, 536946096, 536947112, 'S', 'F', 'T', None)",
+    "('C', 3, 536946084, 536949992, 536946096, 536947112, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536946096, 536947112, 'S', 'F', 'T', None)",
+    "('C', 5, 536946084, 1234500645, 536946096, 536947112, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536946096, 536947112, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "00ef0e8f8f1c150f72598b2398a2025241a383b188c757a4c3da1587519596e0",
+    "events": "7cafc9143409928333796c6cf284753690686d05ac6b0d3f40afb1386615c314",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -2245,17 +2273,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3711083943,
-     4285183211,
-     1,
-     2592385448
+     536946084,
+     536949992,
+     536946096,
+     536947112
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-28",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 28,
     "xpsr": 0
    },
@@ -2304,17 +2333,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 739928864, 'S', 'F', 'T', None)",
-    "('C', 1, 739928864, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 256, 3886541357, 8, 'S', 'F', 'T', None)",
-    "('C', 3, 739928864, 256, 3886541357, 8, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 3886541357, 8, 'S', 'F', 'T', None)",
-    "('C', 5, 739928864, 1234500645, 3886541357, 8, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 3886541357, 8, 'S', 'F', 'T', None)",
+    "('C', 0, 536947488, 'S', 'F', 'T', None)",
+    "('C', 1, 536947488, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536937084, 536947244, 536938744, 'S', 'F', 'T', None)",
+    "('C', 3, 536947488, 536937084, 536947244, 536938744, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536947244, 536938744, 'S', 'F', 'T', None)",
+    "('C', 5, 536947488, 1234500645, 536947244, 536938744, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536947244, 536938744, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "da23e68de0800f8a781ed778b8c5aecf84c2162da1abba2306ff581634ff840f",
+    "events": "870ae03386e9aff2e53606bcbe2ac3f4dcc466bfd26293f7d29004c5e6d546a3",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -2323,17 +2352,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     739928864,
-     256,
-     3886541357,
-     8
+     536947488,
+     536937084,
+     536947244,
+     536938744
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-29",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 29,
     "xpsr": 0
    },
@@ -2382,17 +2412,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 256, 'S', 'F', 'T', None)",
-    "('C', 1, 256, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 8, 1, 7, 'S', 'F', 'T', None)",
-    "('C', 3, 256, 8, 1, 7, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 1, 7, 'S', 'F', 'T', None)",
-    "('C', 5, 256, 1234500645, 1, 7, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 1, 7, 'S', 'F', 'T', None)",
+    "('C', 0, 536952796, 'S', 'F', 'T', None)",
+    "('C', 1, 536952796, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536941720, 536945744, 536939284, 'S', 'F', 'T', None)",
+    "('C', 3, 536952796, 536941720, 536945744, 536939284, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536945744, 536939284, 'S', 'F', 'T', None)",
+    "('C', 5, 536952796, 1234500645, 536945744, 536939284, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536945744, 536939284, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "466b1c2ed92e4c69e46e07aaf281dcfc775859ed89e3a7e98afee316acad46b8",
+    "events": "764d1c65526585b0c0f9ef0d2e52ae5fa9c235773e9acb695a8408d28abcf9f2",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -2401,17 +2431,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     256,
-     8,
-     1,
-     7
+     536952796,
+     536941720,
+     536945744,
+     536939284
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-30",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 30,
     "xpsr": 0
    },
@@ -2460,17 +2491,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 4294967295, 'S', 'F', 'T', None)",
-    "('C', 1, 4294967295, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 2461003590, 7, 53351545, 'S', 'F', 'T', None)",
-    "('C', 3, 4294967295, 2461003590, 7, 53351545, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 7, 53351545, 'S', 'F', 'T', None)",
-    "('C', 5, 4294967295, 1234500645, 7, 53351545, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 7, 53351545, 'S', 'F', 'T', None)",
+    "('C', 0, 536952300, 'S', 'F', 'T', None)",
+    "('C', 1, 536952300, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536948548, 536938932, 536941688, 'S', 'F', 'T', None)",
+    "('C', 3, 536952300, 536948548, 536938932, 536941688, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536938932, 536941688, 'S', 'F', 'T', None)",
+    "('C', 5, 536952300, 1234500645, 536938932, 536941688, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536938932, 536941688, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "77066847fd25cd86aa26631fbc4d2409f41d126151643622fe495580eeafd7e8",
+    "events": "8074cd78947442bd75109d0069171038054787c2d2b4bf794fe121e06f587219",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -2479,17 +2510,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4294967295,
-     2461003590,
-     7,
-     53351545
+     536952300,
+     536948548,
+     536938932,
+     536941688
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
@@ -2538,17 +2570,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 1839753098, 'S', 'F', 'T', None)",
-    "('C', 1, 1839753098, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 2706821390, 3442053927, 1170652979, 'S', 'F', 'T', None)",
-    "('C', 3, 1839753098, 2706821390, 3442053927, 1170652979, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 3442053927, 1170652979, 'S', 'F', 'T', None)",
-    "('C', 5, 1839753098, 1234500645, 3442053927, 1170652979, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 3442053927, 1170652979, 'S', 'F', 'T', None)",
+    "('C', 0, 536946568, 'S', 'F', 'T', None)",
+    "('C', 1, 536946568, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536940812, 536941348, 536952624, 'S', 'F', 'T', None)",
+    "('C', 3, 536946568, 536940812, 536941348, 536952624, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536941348, 536952624, 'S', 'F', 'T', None)",
+    "('C', 5, 536946568, 1234500645, 536941348, 536952624, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536941348, 536952624, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b1c6054fc69e72c1c2ca8b9214335b9bb5590ece98e971da3cd302cb05c3953f",
+    "events": "b1ea528467cd0748b26c39fdff9cada7b8561991b28284b5966144d448b76ac7",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -2557,17 +2589,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1839753098,
-     2706821390,
-     3442053927,
-     1170652979
+     536946568,
+     536940812,
+     536941348,
+     536952624
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-32",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 32,
     "xpsr": 0
    },
@@ -2616,17 +2649,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 1076094348, 'S', 'F', 'T', None)",
-    "('C', 1, 1076094348, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 7, 7, 5, 'S', 'F', 'T', None)",
-    "('C', 3, 1076094348, 7, 7, 5, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 7, 5, 'S', 'F', 'T', None)",
-    "('C', 5, 1076094348, 1234500645, 7, 5, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 7, 5, 'S', 'F', 'T', None)",
+    "('C', 0, 536946060, 'S', 'F', 'T', None)",
+    "('C', 1, 536946060, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536942020, 536944276, 536938756, 'S', 'F', 'T', None)",
+    "('C', 3, 536946060, 536942020, 536944276, 536938756, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536944276, 536938756, 'S', 'F', 'T', None)",
+    "('C', 5, 536946060, 1234500645, 536944276, 536938756, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536944276, 536938756, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "bf8749c8c75fde9e7aad88c42dd8629be615511292e5bb6786c0f58bc044a6d5",
+    "events": "cd30ac7727b9acfad333e6a92e46a18860f222643c94d6d7f52c323262ae69cc",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -2635,17 +2668,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1076094348,
-     7,
-     7,
-     5
+     536946060,
+     536942020,
+     536944276,
+     536938756
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-33",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 33,
     "xpsr": 0
    },
@@ -2694,17 +2728,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 12, 'S', 'F', 'T', None)",
-    "('C', 1, 12, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 3990671540, 922796015, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 3, 12, 3990671540, 922796015, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 922796015, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 5, 12, 1234500645, 922796015, 2147483647, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 922796015, 2147483647, 'S', 'F', 'T', None)",
+    "('C', 0, 536950120, 'S', 'F', 'T', None)",
+    "('C', 1, 536950120, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536940724, 536952812, 536936476, 'S', 'F', 'T', None)",
+    "('C', 3, 536950120, 536940724, 536952812, 536936476, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536952812, 536936476, 'S', 'F', 'T', None)",
+    "('C', 5, 536950120, 1234500645, 536952812, 536936476, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536952812, 536936476, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "070c3ffd01d2b4c9cea1a5ba52fc3e5ef08d56437d0a640ee132da71c572a45c",
+    "events": "2b4b76888ca20dfdbc16ab9fa9c14777dbae9d74f4c1d50c4f221c1939c251dd",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -2713,17 +2747,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     12,
-     3990671540,
-     922796015,
-     2147483647
+     536950120,
+     536940724,
+     536952812,
+     536936476
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 34,
     "xpsr": 0
    },
@@ -2772,17 +2807,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 2726887024, 'S', 'F', 'T', None)",
-    "('C', 1, 2726887024, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 3578977268, 4001652011, 1, 'S', 'F', 'T', None)",
-    "('C', 3, 2726887024, 3578977268, 4001652011, 1, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 4001652011, 1, 'S', 'F', 'T', None)",
-    "('C', 5, 2726887024, 1234500645, 4001652011, 1, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 4001652011, 1, 'S', 'F', 'T', None)",
+    "('C', 0, 536952432, 'S', 'F', 'T', None)",
+    "('C', 1, 536952432, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536943604, 536943912, 536937872, 'S', 'F', 'T', None)",
+    "('C', 3, 536952432, 536943604, 536943912, 536937872, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536943912, 536937872, 'S', 'F', 'T', None)",
+    "('C', 5, 536952432, 1234500645, 536943912, 536937872, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536943912, 536937872, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "5dac00aec44de26bbe94cae6069dc99e574341be2b526f09011855138d6c4449",
+    "events": "ba09b793afd83628f4963e654d74e790d4e5671aa511739d57406015253cf263",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -2791,17 +2826,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     2726887024,
-     3578977268,
-     4001652011,
-     1
+     536952432,
+     536943604,
+     536943912,
+     536937872
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
@@ -2850,17 +2886,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 0, 'S', 'F', 'T', None)",
-    "('C', 1, 0, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 12, 2147483647, 8, 'S', 'F', 'T', None)",
-    "('C', 3, 0, 12, 2147483647, 8, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 2147483647, 8, 'S', 'F', 'T', None)",
-    "('C', 5, 0, 1234500645, 2147483647, 8, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 2147483647, 8, 'S', 'F', 'T', None)",
+    "('C', 0, 536944224, 'S', 'F', 'T', None)",
+    "('C', 1, 536944224, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536949832, 536945964, 536950872, 'S', 'F', 'T', None)",
+    "('C', 3, 536944224, 536949832, 536945964, 536950872, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536945964, 536950872, 'S', 'F', 'T', None)",
+    "('C', 5, 536944224, 1234500645, 536945964, 536950872, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536945964, 536950872, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "81d656dfda3dab2a0db1beb2522695a97edda329d0f5a2bfce1187205c4ec2cc",
+    "events": "d1d0d2af904e3521c6e5180cc25ff62641bf857d31bca48e34460fa2df0e6119",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -2869,17 +2905,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     0,
-     12,
-     2147483647,
-     8
+     536944224,
+     536949832,
+     536945964,
+     536950872
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 36,
     "xpsr": 0
    },
@@ -2928,17 +2965,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 1, 'S', 'F', 'T', None)",
-    "('C', 1, 1, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 2057795936, 2725586938, 1299241558, 'S', 'F', 'T', None)",
-    "('C', 3, 1, 2057795936, 2725586938, 1299241558, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 2725586938, 1299241558, 'S', 'F', 'T', None)",
-    "('C', 5, 1, 1234500645, 2725586938, 1299241558, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 2725586938, 1299241558, 'S', 'F', 'T', None)",
+    "('C', 0, 536951728, 'S', 'F', 'T', None)",
+    "('C', 1, 536951728, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536951136, 536946680, 536943188, 'S', 'F', 'T', None)",
+    "('C', 3, 536951728, 536951136, 536946680, 536943188, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536946680, 536943188, 'S', 'F', 'T', None)",
+    "('C', 5, 536951728, 1234500645, 536946680, 536943188, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536946680, 536943188, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "3ea0d67890f44b8e0beb85ff4102cdbca589b693340f4bca464f7842f84505c1",
+    "events": "254397584537bc9047d9b22e6cd6e6b2fbcfb78b0baa9d39541159d70f78898c",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -2947,17 +2984,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1,
-     2057795936,
-     2725586938,
-     1299241558
+     536951728,
+     536951136,
+     536946680,
+     536943188
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-37",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 37,
     "xpsr": 0
    },
@@ -3006,17 +3044,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 0, 'S', 'F', 'T', None)",
-    "('C', 1, 0, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 255, 1, 2, 'S', 'F', 'T', None)",
-    "('C', 3, 0, 255, 1, 2, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 1, 2, 'S', 'F', 'T', None)",
-    "('C', 5, 0, 1234500645, 1, 2, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 1, 2, 'S', 'F', 'T', None)",
+    "('C', 0, 536939760, 'S', 'F', 'T', None)",
+    "('C', 1, 536939760, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536941672, 536936976, 536945104, 'S', 'F', 'T', None)",
+    "('C', 3, 536939760, 536941672, 536936976, 536945104, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536936976, 536945104, 'S', 'F', 'T', None)",
+    "('C', 5, 536939760, 1234500645, 536936976, 536945104, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536936976, 536945104, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "8d562d76b4e7bba81c085b0fa768d696f54d586ed9fb08b031d9a84cabe9b5d1",
+    "events": "436105574003365a485dcd5dae7675f0d491b51567e6b03fc3705428b00de20d",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -3025,17 +3063,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     0,
-     255,
-     1,
-     2
+     536939760,
+     536941672,
+     536936976,
+     536945104
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-38",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 38,
     "xpsr": 0
    },
@@ -3084,17 +3123,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 3, 'S', 'F', 'T', None)",
-    "('C', 1, 3, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 1587124134, 3774328631, 1997155928, 'S', 'F', 'T', None)",
-    "('C', 3, 3, 1587124134, 3774328631, 1997155928, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 3774328631, 1997155928, 'S', 'F', 'T', None)",
-    "('C', 5, 3, 1234500645, 3774328631, 1997155928, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 3774328631, 1997155928, 'S', 'F', 'T', None)",
+    "('C', 0, 536941424, 'S', 'F', 'T', None)",
+    "('C', 1, 536941424, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536942500, 536948532, 536948312, 'S', 'F', 'T', None)",
+    "('C', 3, 536941424, 536942500, 536948532, 536948312, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536948532, 536948312, 'S', 'F', 'T', None)",
+    "('C', 5, 536941424, 1234500645, 536948532, 536948312, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536948532, 536948312, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "8b128e889d4cc1462d7ba303e67e9f7560c87cfef35588247584409bf04c8c39",
+    "events": "c8cd39402bef9c45f27534a13bd4b1cca43ee61c2140f57700401eb4df52131a",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -3103,17 +3142,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     3,
-     1587124134,
-     3774328631,
-     1997155928
+     536941424,
+     536942500,
+     536948532,
+     536948312
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
     "xpsr": 0
    },
@@ -3162,17 +3202,17 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 0, 'S', 'F', 'T', None)",
-    "('C', 1, 0, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 3928041777, 1786326658, 1835695343, 'S', 'F', 'T', None)",
-    "('C', 3, 0, 3928041777, 1786326658, 1835695343, 'S', 'F', 'T', None)",
-    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 1786326658, 1835695343, 'S', 'F', 'T', None)",
-    "('C', 5, 0, 1234500645, 1786326658, 1835695343, 'S', 'F', 'T', None)",
-    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 1786326658, 1835695343, 'S', 'F', 'T', None)",
+    "('C', 0, 536943600, 'S', 'F', 'T', None)",
+    "('C', 1, 536943600, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536946992, 536948352, 536952044, 'S', 'F', 'T', None)",
+    "('C', 3, 536943600, 536946992, 536948352, 536952044, 'S', 'F', 'T', None)",
+    "('C', 4, ('RO', b'Could not init GATT Service client object, error: %d\\n'), 86613917, 536948352, 536952044, 'S', 'F', 'T', None)",
+    "('C', 5, 536943600, 1234500645, 536948352, 536952044, 'S', 'F', 'T', None)",
+    "('C', 6, ('RO', b'Could not release the discovery data, error code: %d\\n'), 2847314981, 536948352, 536952044, 'S', 'F', 'T', None)",
     "('C', 7, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "fd3025f54cb3bd239d3853308ec59303f775647ff4b224001633910c9e436b4e",
+    "events": "b6eaa06f7f907a9fad238b988c74a00948fe4b27d4a16da54009df98205e7b7e",
     "kind": "return",
     "ncalls": 8,
     "ret": [],
@@ -3181,17 +3221,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     0,
-     3928041777,
-     1786326658,
-     1835695343
+     536943600,
+     536946992,
+     536948352,
+     536952044
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-40",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 40,
     "xpsr": 0
    },
@@ -3228,32 +3269,37 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 2345269775, 'S', 'F', 'T', None)",
-    "('C', 1, 2345269775, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'GATT Service could not be found during the discovery\\n'), 3092785552, 1935641720, 554330043, 'S', 'F', 'T', None)",
-    "('C', 3, 2345269775, 0, 1935641720, 554330043, 'S', 'F', 'T', None)",
+    "('C', 0, 536940544, 'S', 'F', 'T', None)",
+    "('C', 1, 536940544, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'GATT Service could not be found during the discovery\\n'), 536940548, 536940552, 536940556, 'S', 'F', 'T', None)",
+    "('C', 3, 536940544, 0, 536940552, 536940556, 'S', 'F', 'T', None)",
     "('C', 4, 0, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "aa7fbd2cf9cd70e29e70be98e853b5f93482d29b69789930e4a24d8d6d98499d",
+    "events": "32d4f0912cc2f3454eb54c277b23438707af0ad6163220779e7669038162c0b7",
     "kind": "return",
     "ncalls": 5,
     "ret": [],
     "returned": true
    },
    "fixture": {
-    "abs": [],
+    "abs": [
+     [
+      536940544,
+      "4110012044100120481001204c1001205110012054100120581001205c1001206110012064100120681001206c1001207110012074100120781001207c1001208110012084100120881001208c1001209110012094100120981001209c100120a1100120a4100120a8100120ac100120b1100120b4100120b8100120bc100120c1100120c4100120c8100120cc100120d1100120d4100120d8100120dc100120e1100120e4100120e8100120ec100120f1100120f4100120f8100120fc1001200111012004110120081101200c1101201111012014110120181101201c1101202111012024110120281101202c1101203111012034110120381101203c1101204111012044110120481101204c1101205111012054110120581101205c1101206111012064110120681101206c1101207111012074110120781101207c1101208111012084110120881101208c1101209111012094110120981101209c110120a1110120a4110120a8110120ac110120b1110120b4110120b8110120bc110120c1110120c4110120c8110120cc110120d1110120d4110120d8110120dc110120e1110120e4110120e8110120ec110120f1110120f4110120f8110120fc1101200110012004100120081001200c1001201110012014100120181001201c1001202110012024100120281001202c1001203110012034100120381001203c100120"
+     ]
+    ],
     "args": [
-     2345269775,
-     3092785552,
-     1935641720,
-     554330043
+     536940544,
+     536940548,
+     536940552,
+     536940556
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "orc-all-0",
+    "id": "chain0-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [
      [
       0,
@@ -3261,48 +3307,13 @@
       0
      ],
      [
-      1,
-      0,
-      0
-     ],
-     [
-      2,
-      0,
-      0
-     ],
-     [
-      3,
-      0,
-      0
-     ],
-     [
-      4,
-      0,
-      0
-     ],
-     [
-      5,
-      0,
-      0
-     ],
-     [
-      6,
-      0,
-      0
-     ],
-     [
-      7,
-      0,
-      0
-     ],
-     [
-      8,
-      0,
-      0
-     ],
-     [
       0,
       1,
+      0
+     ],
+     [
+      1,
+      0,
       0
      ],
      [
@@ -3312,7 +3323,17 @@
      ],
      [
       2,
+      0,
+      0
+     ],
+     [
+      2,
       1,
+      0
+     ],
+     [
+      3,
+      0,
       0
      ],
      [
@@ -3322,7 +3343,17 @@
      ],
      [
       4,
+      0,
+      0
+     ],
+     [
+      4,
       1,
+      0
+     ],
+     [
+      5,
+      0,
       0
      ],
      [
@@ -3332,7 +3363,17 @@
      ],
      [
       6,
+      0,
+      0
+     ],
+     [
+      6,
       1,
+      0
+     ],
+     [
+      7,
+      0,
       0
      ],
      [
@@ -3342,11 +3383,47 @@
      ],
      [
       8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
       1,
       0
      ]
     ],
-    "scratch_seed": 400,
+    "outparam": null,
+    "scratch_seed": 830,
     "xpsr": 0
    },
    "new_instructions": 20,
@@ -3398,18 +3475,18 @@
     100328
    ],
    "events_head": [
-    "('C', 0, 2304217289, 'S', 'F', 'T', None)",
-    "('C', 1, 2304217289, 'S', 'F', 'T', None)",
-    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 5, 1, 614573091, 'S', 'F', 'T', None)",
-    "('C', 3, 2304217289, 5, 1, 614573091, 'S', 'F', 'T', None)",
-    "('C', 4, 5, 100921, 'S', 'F', 'T', None)",
-    "('C', 5, ('RO', b'Cannot subscribe to Service Changed indication (err %d)\\n'), 609312507, 1, 614573091, 'S', 'F', 'T', None)",
-    "('C', 6, 2304217289, 3283205934, 1, 614573091, 'S', 'F', 'T', None)",
-    "('C', 7, ('RO', b'Could not release the discovery data, error code: %d\\n'), 1254795386, 1, 614573091, 'S', 'F', 'T', None)",
+    "('C', 0, 536940744, 'S', 'F', 'T', None)",
+    "('C', 1, 536940744, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'The discovery procedure for GATT Service succeeded\\n'), 536941796, 536951216, 536945696, 'S', 'F', 'T', None)",
+    "('C', 3, 536940744, 536941796, 536951216, 536945696, 'S', 'F', 'T', None)",
+    "('C', 4, 536941796, 100921, 'S', 'F', 'T', None)",
+    "('C', 5, ('RO', b'Cannot subscribe to Service Changed indication (err %d)\\n'), 609312507, 536951216, 536945696, 'S', 'F', 'T', None)",
+    "('C', 6, 536940744, 3283205934, 536951216, 536945696, 'S', 'F', 'T', None)",
+    "('C', 7, ('RO', b'Could not release the discovery data, error code: %d\\n'), 1254795386, 536951216, 536945696, 'S', 'F', 'T', None)",
     "('C', 8, 2556510175, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "93d044b9103220dbf2fdd907e82028a84ca17faa48d8361e8b6142db2dbd07b8",
+    "events": "9e74f1e50b660ce319fa18aa37f59383b51c7ba06a61bea9ab10294ee3258f3f",
     "kind": "return",
     "ncalls": 9,
     "ret": [],
@@ -3418,16 +3495,16 @@
    "fixture": {
     "abs": [],
     "args": [
-     2304217289,
-     5,
-     1,
-     614573091
+     536940744,
+     536941796,
+     536951216,
+     536945696
     ],
     "float_scratch": false,
     "fp": {},
     "id": "orc-3-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 4,
     "oracle": [
      [
       3,
@@ -3440,6 +3517,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 506,
     "xpsr": 0
    },
@@ -3458,8 +3536,11 @@
  "globals": [],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "ble",
@@ -3468,16 +3549,28 @@
   "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
   "source": "shipped image"
  },
- "pointer_arg_mask": [],
+ "pointer_arg_mask": [
+  0,
+  1,
+  2,
+  3
+ ],
  "ret_kind": "void",
  "search": {
-  "candidates": 145,
+  "candidates": 209,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
   "kept": 43,
-  "pointer_arg_mask": [],
+  "pointer_arg_mask": [
+   0,
+   1,
+   2,
+   3
+  ],
   "pointer_arg_mask_derived": true
  },
  "size": 100,

@@ -1853,6 +1853,26 @@ DERIVED_ARITY on (callee arity from the image)  ALL reaching a narrowed callee (
 --nptr default -1 (derived mask) + ptr bands    ALL (fixture inputs changed)
 --------------------------------------------------------------------------------------
 harness fingerprint at the end of this pass:    c9132a14658714d0
+--------------------------------------------------------------------------------------
+2026-07-29 (2nd pass) -- ONE BURST, applied BEFORE any `gen`, then frozen:
+  -fno-ipa-vrp in UNIT_BOUNDARY_CFLAGS           ALL merged-TU candidates (call deleted)
+  read-only pointer in a stack record -> content ALL with a record holding a .rodata ptr
+  _expose_target accepts preprocessor lines      ALL stage-09 symbols behind a directive
+  vector_staleness FAILS CLOSED (+ env dict)     nothing semantically; refuses unstamped
+  cmd_run per-symbol guard; no .text -> CCFAIL   nothing semantically
+  OUT-PARAMETER FILL (deterministic, both sides) ALL that read an unwritten out-param byte
+  pointer_arg_mask keeps a PASS-THROUGH pointer  ALL (fixture inputs changed; 512 of 891)
+  pointee ladder / out-param ladder dimensions   ALL (fixture inputs changed)
+  GLOBAL_SPAN 4 -> 0x400, global-equals-argument ALL with a literal global
+  cli --budget default 400 -> 600                ALL with > 400 candidate fixtures
+--------------------------------------------------------------------------------------
+★ FINAL FINGERPRINT OF THIS PASS:               956e29213dbbde89
+  harness_env(): outparam_fill=True derived_arity=True oracle_preserve=True
+                 stack_arg_window=48 outparam_window=512 drop_outparam_uninit=False
+  ALL 924 app vectors are regenerated and stamped at it (measured: 0 stale).
+  `.modtest_pin/` at 936cee0b67396ca5 is the net agent's and was NOT touched.
+  ⚠ `--budget` and `max_insns` are still NOT in `harness_env()`, so this pass's
+  400 -> 600 change is invisible to the guard.  See 29.11.
 (c74709bc69344793 was the rev before the three net-core patches of 26.3 landed;
  the vectors measured in 27 were produced by that one and are UNSTAMPED, so
  `run` accepts them -- regenerating stamps them and the guard takes effect.)
@@ -3221,3 +3241,830 @@ undecidable. The number of app symbols this harness can point at and say
    pair a body-local `typedef unsigned int uint32_t;` with a refactor-injected
    generated header (`get_audio_msgq_used_count` joins the seven). One build
    command settles whether the ladder record or the harness is wrong.
+
+---
+
+# 29. ★ 2026-07-29 (second pass) — THE DEFERRED HARNESS FIXES, LANDED AND MEASURED
+
+Written by the pass that took §28.10 item 1 ("apply the four deferred harness
+fixes, in one commit, before any `gen`"). It also takes the four patches the
+net pass specified in `net_test_coverage.md` §12 and §9.1 but could not apply,
+because it was barred from `tools/modtest/`.
+
+**This section is appended incrementally as the work happens, not written at
+the end.** Numbers appear when the command that produced them has been run.
+
+## 29.1 The burst — what landed, in one edit window, before any `gen`
+
+`harness_rev()` hashes whole files, so an edit mid-sweep invalidates every
+vector generated before it (§28.9). Everything below therefore landed FIRST,
+in one window, and `tools/modtest/` was then left alone.
+
+```
+harness_rev BEFORE   e556ab5692bf509d   (§28's fan-out)
+harness_rev AFTER    950823ab6c3bd815
+harness_env AFTER    outparam_fill=True derived_arity=True oracle_preserve=True
+                     stack_arg_window=48 outparam_window=512
+                     drop_outparam_uninit=False
+```
+
+| # | fix | source | file |
+|---|-----|--------|------|
+| 0 | `-fno-ipa-vrp` in `UNIT_BOUNDARY_CFLAGS` | §28.6.3 | `core.py` |
+| 1 | read-only pointer inside a stack record → content marker | §28.6.1 | `core.py` |
+| 2 | `_expose_target` walks over a `#include` | §28.6.2 | `core.py` |
+| 3 | `vector_staleness` FAILS CLOSED + `cmd_run` counts unstamped | §28.9 item 3, net §9.1 | `core.py`, `cli.py` |
+| 4 | per-symbol guard in `cmd_run`; no `.text` → `RuntimeError` | §28.8.4 | `cli.py`, `core.py` |
+| 5 | unmodelled out-parameter — **FILLED**, not dropped | §28.5.2, net §12.1 | `core.py`, `generate.py` |
+| 6 | `pointer_arg_mask` keeps a PASS-THROUGH pointer | net §12.2 | `generate.py` |
+
+Declined, with the measurement that decided it, in §29.6: net §12.3
+(`for(;;) panic()`) and net §12.4 (ordered read trace).
+
+## 29.2 ★ THE OUT-PARAMETER IS NOW FILLED, NOT DROPPED — and that DECIDES the class
+
+The net pass specified a safe patch (drop any fixture whose golden read an
+unwritten byte of a buffer it handed to an opaque callee) and named a stronger
+one it did not build (have the oracle WRITE that buffer). **The safe version
+was built first, measured, and then replaced**, because the measurement showed
+what it costs:
+
+```
+                              DROP (net's safe patch)      FILL (landed)
+md5_process_block             41 cases -> 1,   cov 0%      41 cases, cov 99%
+battery_model_state_update    46 cases -> 1,   cov 0%      41 cases, cov 15%
+battery_soc_curve_model_init  49 cases -> 3,   cov 17%     47 cases, cov 89%
+```
+
+Dropping cannot manufacture a failure, but it converts the three symbols that
+carry every open "real defect" on this core into symbols with **no test at
+all**. That is honest and useless.
+
+**The fill, and why it is frame-independent.** At the moment a stack byte
+inside a buffer this run passed to an oracled call is READ, and nothing in the
+run has written it, the byte is given a deterministic value keyed by
+`(call ordinal, argument index, offset FROM THE POINTER)` — on both sides.
+The key is the point. `emu` seeds all of RAM from a PRNG, so those bytes were
+never random: they were deterministic **by address**, and the shipped frame and
+the candidate's frame put the same buffer at different addresses. Keying on
+the offset from the pointer the callee received is what the real callee's
+output is like.
+
+Two implementation facts, both checked rather than assumed:
+
+* **Writing memory inside a `UC_HOOK_MEM_READ` callback does change the value
+  the access returns.** Verified against unicorn directly, in isolation, before
+  any of this was relied on (`ldr r1,[r0]` with a hook that rewrites the word:
+  `r1 = 0x11223344`, not the pre-existing `0xdeadbeef`).
+* **`written` is the wrong set to test "initialised" against, and using it
+  would have flagged almost everything.** A byte the prologue pushed is
+  classified into `pushed`, so the epilogue's `pop` reads a byte not in
+  `written`, and a 512-byte window from a stack local reaches the frame's own
+  saved registers on most functions. The test is `not in written and not in
+  pushed`. Rule 6's `inherited` set is left with exactly its previous meaning,
+  because it defines what a stored record contains.
+
+**Overlapping windows are resolved by the CLOSEST PRECEDING pointer**, then by
+the most recent call — not by "the last region registered", which would be
+decided by how far apart the frame put two arguments, i.e. by the very thing
+the fill exists to be independent of.
+
+### 29.2.1 ★ `md5_process_block` IS DECIDABLE, AND IT DIVERGES — §28.5.2 is corrected
+
+§28.5.2 withdrew `md5_process_block` as a failure and reported it UNDECIDABLE,
+because "the entire 64-byte MD5 message block is uninitialised frame memory on
+both sides". With the fill that is no longer true, and the comparison is
+well-posed. It was verified to be well-posed rather than assumed:
+
+```
+golden   reads 16 block words in [base, base+64)  -- 0 differ from the fill pattern
+candidate reads 16 block words in [base, base+64) -- 0 differ from the fill pattern
+golden   uninit stack reads = 64, all filled;  candidate = 64, all filled
+initial state words (scratch, seeded by address) -- identical on both sides
+```
+
+Both sides consume the **same block and the same state**, and still produce
+different output:
+
+```
+golden     0x91f37843 0xab26d489 0xd0f175ff 0x67da44ff
+candidate  0x28a00344 0x3b112568 0x4a5c50da 0xce951013
+```
+
+An independent Python MD5 compression function over the same state and the same
+block returns the **candidate's** four words exactly. So the reconstruction is
+textbook MD5 and the shipped bytes are computing something else on this input.
+
+> **`md5_process_block` is restored to the failure list as a DECIDED
+> divergence.** It is not the harness. Whether the shipped function is a
+> modified MD5 or the reconstruction has a defect is not settled here — what is
+> settled is that this harness can now tell them apart, which it could not
+> yesterday.
+
+The same machinery applies to `battery_model_state_update`, whose coverage goes
+from 6 instructions (0 %) to 200 (15 %) — the oldest open item in AGENTS.md is
+now being executed rather than faulting at its first out-parameter read.
+
+## 29.3 ★ WHY COVERAGE IS LOW — diagnosed against the corpus, not guessed
+
+§28.8.2 reported "not one of the five modules passes §8.2 on coverage" and
+§28.10 item 4 asked for it to be raised. The first thing to establish is what
+the number is measuring, because the two obvious readings differ by thirty
+points.
+
+```
+                    instruction-WEIGHTED      per-symbol MEAN
+audio    (135)              57.7 %                 84.6 %
+ble       (96)              48.4 %                 83.2 %
+core     (140)              58.2 %                 82.0 %
+display   (86)              56.2 %                 81.1 %
+sensors   (87)              47.0 %                 84.9 %
+ui        (16)               9.5 %                 77.6 %
+unsorted (137)              70.2 %                 89.4 %
+lib       (15)              97.3 %                 98.0 %
+ALL      (924)              52.4 %                 82.5 %
+```
+
+**§28.8's column is instruction-weighted, and it is carried by a handful of
+very long functions.** `ui` is 9.5 % weighted and 77.6 % mean because
+`DashBoard_Reflash` alone is 4,911 CFG instructions at 3 % — more than the
+whole rest of the module.
+
+```
+symbols below 70 % coverage      206 of 924  (22 % of symbols)
+  instructions they hold      30,335 of 50,040  (61 % of the corpus)
+the 20 worst hold             14,799            (30 % of the corpus)
+```
+
+The 20 are `DashBoard_Reflash`, `battery_model_state_update`,
+`spec_ble_command_hook`, `imu_fusion_thread`, `audioStreamFileManagerHandler`,
+`main`, `display_dispatch_thread`, `check_work_mode`, `sync_to_slave`,
+`hci_vs_init`, `master_process_audio_fw_load_req`, `display_thread_handler`,
+`dmic_stream_start`, `fuel_gauge_update`,
+`low_speed_peripheral_dispatch_thread`, `uarte_nrfx_isr`,
+`flash_firmware_update_transfer`, `local_esbs_ipc_service_recv`,
+`touch_key_thread`, `try_enter_low_power_mode`. **Every one of them is a
+thread body, a dispatcher, an ISR or a command hook.** That is a shape, and it
+points at a channel rather than at a difficulty.
+
+### 29.3.1 Two hypotheses tested and REJECTED, before the one that held
+
+Recorded because rejecting them is what made the third one credible.
+
+* **"The candidate budget truncates the search."** `select` runs
+  `fixtures[:budget]` with `budget=400`, in a fixed dimension order, so a
+  symbol with more candidates would silently lose the LAST dimensions — which
+  are the callee-result and global x callee-result sweeps the generator's own
+  docstring calls dominant. Measured: **0 of 924 symbols reached 400
+  candidates** (worst 325). Rejected. *(It becomes true after this pass's
+  additions, which is why the default is raised to 600 in the same burst.)*
+* **"`literal_globals`' 24-address limit binds on the big functions."**
+  Measured: **0 of 924 symbols hit the limit**; `DashBoard_Reflash` names 9
+  globals, `spec_ble_command_hook` 9, `check_work_mode` 16. Rejected.
+
+### 29.3.2 ★ THE POINTEE DIMENSION EXISTED AND WAS NEVER USED — 0 of 25,524
+
+`Fixture` has carried a `mem` dimension — *"[[arg_index, offset, hex]] pointee
+writes"* — since the pilot. Counted over every fixture on disk:
+
+```
+fixtures in the app corpus                       25,524
+  with a pointee override ('mem')                     0
+```
+
+So the content behind every pointer argument was always `emu`'s PRNG seeding of
+SCRATCH: a uniformly random word. **That is AGENTS.md finding #1 one level of
+indirection out.** A command dispatcher reads its opcode out of a packet the
+caller points at; a random opcode selects one arbitrary switch case; every
+other case is unreachable by construction, at any number of fixtures. It is
+the same defect the `orc` (callee-result) dimension was added to fix, on the
+other input channel, and it explains the shape of the 20-symbol list exactly.
+
+### 29.3.3 ★ AND A GLOBAL IS A STRUCT — the sweep addressed four bytes of it
+
+Worked through on `confirm_message`: 229 instructions, **4 %** coverage, 322
+candidate fixtures, of which the coverage-greedy selector kept **one**, because
+all 322 produced the identical nine-instruction outcome. The nine instructions
+are its gate:
+
+```
+00034528  ldr    r6, [pc, #0x274]     <- the literal the global sweep finds
+0003452a  ldrb.w r3, [r6, #0x118]     <- the byte the branch actually reads
+0003452e  cmp    r3, #0   /  beq  <exit>
+00034534  ldr.w  r4, [r6, #0x110]  ;  cmp r4, r0  /  bne <exit>
+0003453e  ldrb.w r3, [r6, #0x115]  ;  cmp r3, #4  /  bne <exit>
+```
+
+`GLOBAL_LADDER` wrote **four bytes at `[r6, #0]`** and nothing at +0x110,
++0x115 or +0x118. Every fixture took the same exit.
+
+### 29.3.4 What landed, and what it moved
+
+Three dimensions, in the same frozen burst:
+
+1. **pointee ladder** — the first two words behind each of the first two
+   pointer arguments, over `(0,1,2,3,4,5,0xff,0xffffffff)` plus the constants
+   the shipped code actually compares against (`compare_immediates`, recovered
+   over the CFG-reachable set so a literal pool is never decoded as a `cmp`);
+2. **out-parameter ladder** — the same values as the content an oracled callee
+   is modelled as writing (§29.2), which is what a `k_msgq_get(&msg)` loop's
+   command selector reads;
+3. **global SPAN, and global-equals-argument** — the ladder value written
+   across `GLOBAL_SPAN = 0x400` from the literal (clamped so it can never spill
+   into SCRATCH or the stack), plus a small dimension that fills a global with
+   the fixture's OWN argument word, for the `if (ctx->current == conn)` shape.
+
+Measured on the worked example, step by step, which is also the honest limit:
+
+```
+confirm_message   before                      cov 4 %   1 fixture kept
+                  + pointee/out-param ladder  cov 4 %   1
+                  + global SPAN               cov 4 %   1
+                  + global-equals-argument    cov 5 %   2   <- clears gate 2
+```
+
+**Its third gate is not reachable by any ladder** and that is worth stating
+plainly rather than burying: passing gate 2 requires `global+0x110 == r0`,
+passing gate 3 requires `global+0x115 == 4`, and the two constraints are on the
+same object at different offsets. A one-value-per-object sweep can satisfy
+either but not both. The next mechanism is per-OFFSET assignment — the read
+offsets are recoverable (`ldrb.w r3,[r6,#0x115]` names both the object and the
+offset) and so are the immediates, so a fixture that sets each read offset to
+each compared immediate is a static construction, not a solver. It is
+specified here and NOT built.
+
+## 29.6 ★ TWO OF THE NET PASS'S PATCHES ARE DECLINED — with the measurement
+
+The brief said to read the net pass's four patches, judge them, and apply what
+is sound. Two are applied (§29.2 out-parameter, §29.1 item 6 pointer mask).
+Two are declined, and the reasons are measurements rather than preferences.
+
+### 29.6.1 `for (;;) panic()` against a returning oracle (net §12.3) — DECLINED HERE
+
+The class is real on net: 21 of its 86 failures use the idiom, a 36 % failure
+rate against 5.9 % elsewhere. Exposure on the core this pass owns:
+
+```
+app sources containing `for (;;)`                          140
+app sources containing `for (;;) <call>(...)`  -- the idiom   1
+   recon/symbolized/app/try_enter_low_power_mode.c
+```
+
+**One symbol.** Against that, the sound implementation is not small and its
+error direction is the dangerous one. It needs a `callee_noreturn` analysis
+(conservative: a complete CFG walk with no reachable return, `None` on anything
+unclassifiable, exactly like `callee_gpr_defs`), and it must terminate the
+GOLDEN and the CANDIDATE at the same call — `emu` already has
+`terminal_targets`, `terminal_ordinal` and `detect_repeated_terminal` for
+precisely this, so the machinery exists and `modtest` simply does not use it.
+A wrong "this callee never returns" TRUNCATES BOTH TRACES and hides everything
+after the call, which is a false-PASS direction. Every other change in this
+pass errs toward false failure.
+
+Landing a semantic change of that shape for one app symbol, on a harness the
+net core shares, while unable to regenerate or re-measure a single net vector
+(concurrency rule), is not a trade this pass is willing to make silently. It
+is recorded as specified-and-not-built, with the exact mechanism above.
+
+### 29.6.2 Order-normalising the READ trace (net §12.4) — DECLINED, and the patch as written is UNSOUND
+
+net §12.4 proposes applying `_sort_independent_write_runs`' canonicalisation to
+runs of consecutive READS, on the argument that "reads have no side effects".
+**In this harness a read event is only ever an MMIO read.** `emu._mr` appends
+an `("R", …)` event if and only if `_is_nrf53_mmio(address, size)`; ordinary
+RAM reads are not in the trace at all. So the proposed rule would order-
+normalise exactly the accesses whose order is semantics — a read-to-clear
+status register, a FIFO pop — and `emu`'s own comment states the criterion it
+would break: *reordering a volatile MMIO access must fail parity*.
+
+The three net examples are reads at `0x503DE43C` and neighbours. That is inside
+the coarse `0x50000000-0x51000000` CPUAPP window but is not a peripheral: it is
+a garbage pointer, seeded into a fixture, that happened to land in the window
+and got classified as MMIO. **The defect is at the input end, not the
+comparison end** — the same conclusion §28.4 reached for computed NaNs. A
+sound fix narrows the MMIO windows to real peripheral extents, or drops a
+fixture whose golden dereferences an unseeded pointer into an MMIO window; both
+are fixture/model changes, neither is a trace-canonicalisation change.
+
+Exposure on the app core: of the 43 surviving app FAILs triaged in §28.6, none
+is labelled with an address-delta first divergence (the class is `esb`/net
+shaped). Declining costs this core nothing measurable.
+
+## 29.4 Per-fix evidence, before the corpus numbers
+
+Each fix is checked on the symbol that motivated it, so a corpus-level move can
+be attributed rather than inferred.
+
+**`-fno-ipa-vrp` (§28.6.3).** The one BEHAVIOUR tree disagreement of the
+593-symbol fan-out:
+
+```
+read_appearance   before   canonical=OK(41/41)  refactored=FAIL(0/41)
+                  after    canonical=OK(41/41)  refactored=OK(41/41)   cov=100%
+```
+
+**`_expose_target` over a preprocessor directive (§28.6.2).** Run directly on
+stage 09's merged text, counting what it de-staticises and what it leaves:
+
+```
+symbol                        de-staticised   static forms left   (§28.6.2 before)
+get_demo_image_source               2                 0            1 / 1
+refresh_box_field_timer             1                 0            (sibling failed)
+is_box_field_timer_expired          2                 0            -- the sibling
+set_misc_286c_value                 1                 0            0 / 1
+uarte_nrfx_init                     1                 0            0 / 1
+```
+
+Both symptoms of §28.6.2 — "static declaration follows non-static" and "symbol
+not found after link" — come from the same skipped declaration, and all five
+are now clean.
+
+**Read-only pointer inside a stack record (§28.6.1).** The precondition is that
+`emu.ReadOnlyPointees`' deliberately narrow test actually resolves the golden's
+words. Checked before relying on it, because if the address were a string
+INTERIOR the test would return `None` and the fix would silently do nothing:
+
+```
+0x000f31a9  ('RO', b'Identity%s: %s')                           preceding byte 0x00
+0x000f471e  ('RO', b'Invalid key')                              preceding byte 0x00
+0x000f322e  ('RO', b'No ID address. App must call settings_load()')  0x00
+0x000f6521  ('RO', b'Bus device is not ready')                  preceding byte 0x00
+```
+
+All four are proper string heads and all four are `printf`/log format strings,
+which confirms §28.6.1's reading. (Its quoted decodes — `b'tead of expected
+0x%04x'` and so on — were read at a shifted offset; the conclusion was right,
+the bytes it printed were not. Corrected here.)
+
+### 29.4.1 ★ `main` — the crash is gone, and the CAUSE is now visible
+
+§28.8.4's per-symbol guard turned `main` from "the one symbol of 634 with no
+result at all, which also silently killed 23 others in its batch" into an
+ordinary CCFAIL. The `RuntimeError` it now raises carries the diagnosis:
+
+```
+linked object for main has no .text section
+  (sections: .rodata, .siblings, .oracle_stubs, .comment, .ARM.attributes, ...)
+```
+
+`_compile_candidate`'s linker script is
+`.text : { *(.text.main) *(.text.main.*) }` and everything else falls into
+`.siblings`. **GCC does not emit `main` into `.text.main`** — a function it
+considers startup-only goes into `.text.startup.main`, which the pattern does
+not match, so `.text` is empty, the section is dropped, and the target is not
+first. The fix is one line — add `*(.text.startup.%s)`, `*(.text.unlikely.%s)`
+and `*(.text.hot.%s)` to the same output section — and it is **NOT applied
+here**, because the harness is frozen for this pass's sweep and it would
+invalidate every vector for the sake of one symbol. Specified, with the
+evidence, for the next burst.
+
+Worth checking then rather than assuming: any CCFAIL whose message is "no
+`.text` section" is this same class, not a compile error in the tree.
+
+### 29.4.2 The read-only-pointer class, measured on its four members
+
+```
+symbol                        §28.6 verdict     after the content marker
+ccc_set_direct                FAIL(0/1)      -> OK(1/1)     cov 75 %
+bt_id_addr_check_and_enable   FAIL(1/2)      -> OK(2/2)     cov 100 %
+opt3001_chip_init             FAIL(14/15)    -> (see §29.5)
+bt_dev_show_info              FAIL(0/41)     -> FAIL(0/41)  cov 100 %  -- but see below
+```
+
+`bt_dev_show_info` is the interesting one. Its divergence has **moved**: it was
+`arg 2, offset 4` — the format-string pointer — on 41 of 41 fixtures; it is now
+
+```
+{"call_ordinal": 4, "arg": 2, "offset": 18, "expected": 1, "got": 42}
+                                            "expected": 1, "got": 158}
+                                            "expected": 1, "got": 130}
+```
+
+The golden writes the constant `1` at offset 18 of the record; the candidate's
+byte there **varies with the fixture seed**, which is the signature of a slot
+the candidate never wrote (rule 7 reads the candidate's window raw). A missing
+store is exactly what this mechanism exists to catch, and it was hidden behind
+the address comparison. It is carried into §29.5's list as a candidate defect,
+not counted as a fix.
+
+### 29.4.3 ★ NEGATIVE CONTROLS — the two "make failures disappear" changes are shown not to have bought blindness
+
+Both the read-only content marker and the out-parameter fill turn FAILs into
+OKs, so both have to be shown still to kill.
+
+**The read-only marker compares WHICH string.** `ccc_set_direct`'s baseline is
+now OK; swapping the first character of the first string literal in its member
+body (through `mutate.member_span`, never a whole-file regex):
+
+```
+ccc_set_direct   baseline=OK   mutant(string swapped)=FAIL   killed
+```
+
+That is the property that distinguishes this fix from blanking the word: a
+candidate that stores a *different* string still fails.
+
+**Graded, on the symbols the two fixes moved:**
+
+```
+symbol                        tree        baseline  mutants  killed  survived  rate
+battery_soc_from_curve        canonical   OK        10        9       1        90%
+   (out-parameter EXPOSED and passing -- the fill's blindness test)
+ccc_set_direct                canonical   OK        10        7       3        70%
+bt_id_addr_check_and_enable   canonical   OK         8        7       1        88%
+```
+
+**One of my own controls was broken first, and it is the THIRD time this
+document records that mistake.** A hand-written "bump the first integer"
+mutation reported `battery_soc_from_curve` as SURVIVED. The regex matched a
+number inside the member's own `/*=0xADDR*/` provenance comment, so the mutant
+was inert. `mutate.generate` has `_inert_mask` for exactly this and reports
+9 of 10 killed on the same symbol. The lesson §21.1 and §28.3.1 already
+recorded, once more: **do not hand-roll a mutation when the mutation engine is
+right there.**
+
+### 29.4.4 ★ BOTH battery symbols are now attributed to ONE named limitation — the FRAME-RELATIVE OFFSET
+
+§28.5 could not separate two limitations on `battery_soc_curve_model_init`
+(unmodelled out-parameter AND frame-relative layout) and §28.5.1 recorded
+`battery_model_state_update` as "not root-caused". With the out-parameter
+confound removed, both resolve to the same single cause, and the coverage they
+are decided at is no longer trivial:
+
+```
+battery_soc_curve_model_init   FAIL(0/49)  cov 93 % -> 95 %
+   the ONE primary divergence, every fixture, at call ordinal 6:
+     G ('C', 6, ('SP', 0), ('SP', 24), ('SP', 4), ...)
+     C ('C', 6, ('SP', 0), ('SP', 12), ('SP', 4), ...)
+   events 76..86 are all downstream of it (a value computed from the object)
+
+battery_model_state_update     FAIL(0/46)  cov 62 % -> 89 %  (see §29.2.2)
+   first divergence, every fixture, at call ordinal 4:
+     G ('C', 4, ('SP', 0), ('SP', 76), ('SP', 20), ...)
+     C ('C', 4, ('SP', 0), ('SP', 24), ('SP', 16), ...)
+```
+
+Same shape: the first stack argument agrees, the others sit at different
+distances from it. `normalise_events` normalises every stack address to its
+delta from the FIRST stack address in the trace, and its own docstring names
+this as a false-failure mode. **The oldest open item in AGENTS.md is a frame
+layout difference, not a behaviour difference** — as far as this harness can
+show, and it is now showing it at 89 % coverage rather than the 62 % committed
+at `HEAD`. (⚠ an earlier draft of this paragraph said "instead of 0 %", which
+was the rejected DROP variant, not the baseline — §29.2.2.)
+
+> **SPECIFIED, NOT BUILT — object identity instead of frame delta.** Normalise a
+> stack address to `(object ordinal by first appearance, offset within that
+> object)` rather than to a signed delta from an arbitrary anchor. That compares
+> WHICH local was passed and WHERE INSIDE it, and stops comparing how far the
+> compiler put two unrelated locals apart. The weakening is real and must be
+> measured before adopting: two distinct objects the golden passes 4 bytes apart
+> would no longer be distinguishable from two objects 40 bytes apart. `emu`
+> already has `_stack_object_pointer` for reviewed cases, which is where the
+> object boundaries would come from.
+
+## 29.5 ★ THE 20 "NO KNOWN LIMITATION" FAILURES — worked, and a NEW limitation found in them
+
+§28.6's list of 20 `value`-only failures was the first list this project had of
+failures consistent with no known harness limitation. Twelve of them had a
+regenerated vector at the time of writing; the remaining eight are in §29.8.
+
+```
+symbol                                §28.6       this pass
+load_sys_setting                      FAIL(41/43) -> OK(43/43)   cov 91 %
+gui_bmp_bitmap_draw_ex                FAIL(41/44) -> OK(43/43)   cov 85 %
+fuel_gauge_update                     FAIL(42/43) -> OK(44/44)   cov 48 %
+gui_draw_timer_hms                    FAIL(1/8)   -> FAIL(1/9)
+discovery_completed_cb_ancs           FAIL(41/43) -> FAIL(41/43)
+get_notification_counts_cmd_process   FAIL(20/41) -> FAIL(20/41)
+build_status_notify_packet            FAIL(9/12)  -> FAIL(9/12)
+button_init                           FAIL(0/43)  -> FAIL(0/43)
+click_event_dispatch_loop             FAIL(43/46) -> FAIL(43/46)
+bt_dev_settings_commit                FAIL(42/44) -> FAIL(41/44)
+ext_flash_api_init                    FAIL(22/43) -> FAIL(22/43)
+key_event_thread                      FAIL(6/22)  -> FAIL(6/22)
+```
+
+**Three of twelve were the harness after all.** Every one of the nine survivors
+has its first divergence in a CALL ARGUMENT REGISTER.
+
+### 29.5.1 `button_init` is a DECLARED BUILD DEVIATION, not a defect
+
+```
+ev15  G ('C', 15, 559568, 65536, ...)      559568 = 0x88A50, shipped .rodata
+      C ('C', 15,  98265, 65536, ...)       98265 = 0x17FD9, the candidate's own
+```
+
+`button_init.c` carries a banner: *"BRING-UP WIRING FIX (P4 iteration 5) — the
+three `struct gpio_dt_spec` tables this function used to read from the
+unrelocated absolute pins rodata_88340 / rodata_889d0 / rodata_889e0 are now
+emitted by the build in recon/application/app/src/g1_gpio_dt_specs.c"*. The
+deviation is deliberate, documented, and present in the tested tree
+(`stage_00_snapshot/tree/.../button_init.c`). The harness is reporting it
+correctly; it is not a reconstruction defect.
+
+Swept over the other 19: **`button_init` is the only one** of the 20 whose
+source carries a bring-up/wiring/deviation banner.
+
+### 29.5.2 ★ NEW NAMED CLASS — `live_in_arity` IS OVER-WIDE AT A `bl`, and dead registers are compared
+
+`gui_draw_timer_hms` fails 8 of 9 fixtures, always at call ordinal 1, always
+like this:
+
+```
+G ('C', 1, 4, 288, 3600, 0, ...)
+C ('C', 1, 4, 288,    0, 60, ...)
+```
+
+Arguments r0 and r1 agree (`4`, `0x120`); r2 and r3 differ. The callee is
+`0x47a4c`, whose whole body is 44 bytes:
+
+```
+00047a4c cmp r0,#4 / push {r3,lr} / bne 0x47a62
+00047a52 mov.w r2,#0x120 / ldr r1,[pc] / ldr r0,[pc] / bl 0x86c04 / ldr r0,[pc] / pop
+00047a62 cmp r1,#0 / ldr r3,[pc] / it lt / addlt r1,#3 / asrs r1,r1,#2
+         mla r0,r1,r0,r3 / ldr r2,[pc] / bl 0x4790c / b
+```
+
+**r2 and r3 are written before any read on every path**; the only inputs are r0
+and r1. Its true arity is 2. `core.live_in_arity` returns **4**, so the harness
+compares two registers holding whatever the caller left there — `0xe10` and `0`
+in the shipped frame, `0` and `0x3c` in the candidate's, both leftovers of a
+different register allocation.
+
+The cause is the `bl` rule: the walk stops at the FIRST `bl` in address order
+and declares every argument register not yet written to be forwarded. On the
+first path r3 is unwritten at `bl 0x86c04`, so r3 becomes live-in and the arity
+widens to 4. `live_in_arity` exists to NARROW Ghidra's over-wide arities
+(§22.7) and here it produces one of its own.
+
+**The fix is not one line and is not applied.** A refinement that resolves the
+forwarded set through the callee (implemented offline to test the idea) reports
+`0x47a4c` as arity **1**, which is too NARROW — it inherits the same
+address-order `break` and never reaches the `cmp r1,#0` on the second path. The
+sound version is a proper backward liveness pass over the CFG with
+interprocedural forwarding at calls (bounded depth, cycle guard, `None` on
+anything unclassifiable, exactly like `callee_gpr_defs`). Specified, measured
+on one worked example, **NOT built** — the brief's rule is one harness burst per
+pass and this pass's burst is closed.
+
+> **CAUTION, stated because the evidence does not reach further.** Eight other
+> surviving failures also diverge in a call-argument slot, and it is *plausible*
+> that several are this class. That is not established: proving it per symbol
+> needs the sound analysis above. They are listed as OPEN, not as harness.
+
+## 29.7 A self-test file, and it is SHOWN to fail without the guards
+
+`recon/tests/test_modtest_guards.py` (new) asserts the pure-Python halves of
+this burst — the properties a future edit could silently undo without any
+vector noticing. 30 checks, all passing at `harness_rev=956e29213dbbde89`:
+staleness fails closed on an unstamped vector and on a MISSING or changed value
+of every one of the six `harness_env()` switches; `_expose_target`
+de-staticises after `#include`, after `#define`, after a backslash-continued
+`#define`, after a comment and after `}`, and still refuses when real code
+precedes the `static`; `outparam_bytes` is deterministic and distinct per
+(ordinal, index); `-fno-ipa-vrp` is in `UNIT_BOUNDARY_CFLAGS`.
+
+**Asserting is not testing, so both load-bearing guards were re-broken and the
+tests were watched to fail:**
+
+```
+with the OLD fail-OPEN staleness   unstamped refused? False   (test FAILS, as it must)
+with the OLD walk-back predicate   de-staticised after #include: 0   (test FAILS)
+with the new predicate                                          1
+```
+
+### 29.2.2 ⚠ A NUMBER I GOT WRONG IN §29.2, CORRECTED FROM `git HEAD`
+
+§29.2's table compares the DROP variant against the FILL variant, both measured
+during the burst. Read carelessly — and I wrote the AGENTS.md note carelessly —
+it suggests the DROP column is the pre-pass baseline. **It is not.** The
+pre-pass baseline is the corpus committed at `HEAD`, and it is much higher than
+either intermediate:
+
+```
+symbol                         HEAD (before)   DROP variant   FINAL (this pass)
+md5_process_block               99 % 41 cases    0 %  1 case    99 % 41 cases
+battery_model_state_update      62 % 46 cases    0 %  1 case    89 % 46 cases
+battery_soc_curve_model_init    93 % 49 cases   17 %  3 cases   95 % 49 cases
+```
+
+So the honest statements are: **the fill does not raise `md5_process_block`'s
+coverage at all — it changes what the comparison MEANS** (§29.2.1), and
+`battery_model_state_update` moves 62 % → 89 %, not 0 % → 89 %. The DROP
+column is what the net pass's "safe patch" would have cost, which is why it was
+rejected; it is not a before-number. AGENTS.md is corrected in place.
+
+## 29.8 ★ COVERAGE — the A/B against `git HEAD`, RE-DERIVED
+
+⚠ **RE-DERIVED, not re-quoted, after §29.2.2.** An earlier version of this
+section was computed over 680 regenerated symbols and reported
+`52.6 % -> 53.6 %`. The numbers below are the same script over **890**
+symbols. **The two differ because the SUBSET differs, not because the baseline
+was wrong** — and that distinction is the whole point of re-deriving, because
+this project has already lost a structural recommendation to two numbers
+compared at different granularities.
+
+**Provenance of the BEFORE column, stated because §29.2.2 was a baseline
+error.** It is not a remembered module average and it is not any intermediate
+variant built during the burst. It is read per symbol out of git:
+
+```
+scratchpad/cov_ab.py:13   old = json.loads(subprocess.run(["git","show","HEAD:"+f], ...))
+$ git rev-parse --short HEAD                 13ec6e3d
+$ git status --porcelain recon/tests/vectors/app | wc -l      891
+```
+
+Every one of the 924 app vectors is committed at `13ec6e3d`, so for each symbol
+the comparison is that symbol's own pre-pass vector against its own new one.
+The §29.2.2 error was in PROSE about three symbols, and it never entered this
+computation. Nothing in the table below moves as a result of that correction;
+what moved is the sample size.
+
+```
+module          n |   wt-BEFORE   wt-AFTER | mean-BEFORE  mean-AFTER
+analytics      14 |     64.5%       64.5%  |    78.2%       78.2%
+audio         127 |     57.2%       59.1%  |    84.2%       85.3%
+ble            95 |     48.2%       48.9%  |    83.0%       82.8%
+common          3 |    100.0%      100.0%  |   100.0%      100.0%
+core          133 |     61.2%       60.6%  |    82.9%       82.7%
+display        78 |     56.9%       57.6%  |    82.0%       82.2%
+esb            24 |     46.2%       45.8%  |    73.4%       75.7%
+gui            36 |     57.9%       57.1%  |    66.1%       64.9%
+ipc            46 |     77.5%       76.3%  |    91.0%       90.4%
+lib            14 |     97.2%       97.2%  |    97.9%       97.9%
+notify         53 |     60.3%       58.7%  |    83.1%       82.2%
+sensors        84 |     57.9%       63.8%  |    86.4%       86.7%
+storage        35 |     64.1%       63.5%  |    84.4%       84.4%
+ui             16 |     10.1%        9.5%  |    77.0%       77.6%
+unsorted      132 |     69.9%       70.9%  |    89.0%       89.8%
+TOTAL         890 |     54.1%       54.9%  |    83.9%       84.1%
+```
+
+**+0.8 points of instruction-weighted coverage, +0.2 of the per-symbol mean.**
+That is the honest headline and it is far short of what §28.10 item 4 asked
+for. Six modules went DOWN. The three new dimensions are sound and they work
+where the channel they open is the one that was blocked —
+
+```
+battery_model_state_update  sensors  1365 insns   62% -> 89%
+display_reflash             display   105 insns   58% -> 90%
+qspi_nor_write              audio     129 insns   30% -> 67%
+opt_list_encode             audio      40 insns   65% -> 100%
+mpu_region_index_lookup     unsorted   22 insns   27% -> 100%
+```
+
+— and they do nothing at all for a function gated by a correlated multi-field
+guard (§29.3.4), which is what the twenty biggest instruction-holders are.
+**No module passes the §8.2 70 % coverage bar except `ipc`, `lib` and
+`unsorted`, exactly as before this pass.**
+
+### 29.8.1 ⚠ THE PASS-THROUGH POINTER PATCH COSTS COVERAGE — measured, and it is MINE
+
+net §12.2's patch is applied (§29.1 item 6) and it is much more aggressive on
+this core than its own measurement suggested. Comparing the derived mask
+against the HEAD corpus:
+
+```
+symbols compared (first 250)                            250
+  mask unchanged                                         95
+  mask WIDER                                            155   (62 %)
+    of which the mask was previously EMPTY              103
+```
+
+Every one of the biggest coverage losses in the corpus is this:
+
+```
+symbol                            mask  HEAD -> NOW        coverage
+dev_write_config_word              [0] -> [0,1,2,3]        91 % -> 19 %
+ancs_connected                     [0] -> [0,1,2,3]        69 % -> 37 %
+rate_limited_elapsed_seconds_tick  [0] -> [0,1,3]          92 % -> 42 %
+ccc_find_cfg                       [0] -> [0,1,2]          93 % -> 57 %
+```
+
+The mechanism is obvious once seen: an `int` parameter that the function merely
+FORWARDS to a callee is now marked a pointer, `make_args` gives it a SCRATCH
+ADDRESS instead of a small integer, and every predicate on it goes the same way
+— the exact defect `pointer_arg_mask`'s own docstring says a fixed prefix count
+causes, reintroduced from the other side.
+
+**Attributed, so the decision is not a guess:**
+
+```
+                              n     weighted BEFORE -> AFTER   net instructions
+symbols whose mask CHANGED   430        49.0%  ->  49.8%            +300
+symbols whose mask unchanged 306        69.7%  ->  71.0%            +114
+```
+
+The group the patch touches still improves overall, because the new fixture
+dimensions gain more than the mask loses *within that group*. **So it stays,
+and the refinement is specified rather than the patch reverted:** at a `bl`,
+mark argument *i* a pointer only if the CALLEE dereferences the argument
+position it lands in — i.e. `pointer_arg_mask` applied to the callee,
+recursively, bounded depth, cycle guard, and "mark it" on anything
+unclassifiable. That is the same shape as `callee_gpr_defs` and it is the
+difference between "this value is passed on" and "this value is a pointer".
+
+## 29.11 WHAT THIS PASS DID NOT DO, AND WHY
+
+Enumerated, not implied.
+
+**Harness fixes specified with evidence and deliberately NOT built** (the
+brief's rule is one edit burst per pass, at the start; this pass's burst closed
+before the sweep and was not reopened):
+
+1. **Sound interprocedural live-in arity** (§29.5.2). `live_in_arity` stops at
+   the first `bl` in ADDRESS order and forwards every unwritten argument
+   register, so `0x47a4c` — whose r2/r3 are written before any read on every
+   path — derives arity 4 and the harness compares two dead registers. A
+   refinement that resolves the forwarded set through the callee was written
+   offline and is too NARROW (it reports arity 1 for the same callee), because
+   it inherits the same address-order break. The sound version is a backward
+   liveness pass with interprocedural forwarding.
+2. **Recursive pointer-mask at a `bl`** (§29.8.1) — the refinement of the
+   patch this pass landed, which currently over-marks 62 % of symbols.
+3. **`*(.text.startup.%s)` in the link script** (§29.4.1) — one line, would give
+   `main` a result for the first time.
+4. **Object identity instead of frame delta in `normalise_events`** (§29.4.4) —
+   the single remaining cause of both battery symbols' failures. It is a
+   WEAKENING and must be measured before adoption.
+5. **Per-offset global/pointee assignment** (§29.3.4) — the mechanism that
+   would crack a correlated multi-field guard like `confirm_message`'s. The
+   read offsets and the compared immediates are both statically recoverable, so
+   it is a construction, not a solver.
+
+**Net patches declined, with measurements**: `for(;;) panic()` (§29.6.1, one
+app source uses the idiom, and a wrong "noreturn" truncates both traces, which
+is a false-PASS direction) and read-trace order normalisation (§29.6.2, `R`
+events are MMIO-only in this harness and reordering them is the one thing
+`emu` says must fail parity).
+
+**Not attempted at all**:
+
+* the net core — vectors, sources and `net_test_coverage.md` are the other
+  agent's under the concurrency rule, and nothing under `recon/net/**`,
+  `recon/symbolized/net/**`, `recon/tests/vectors/net/**` or `recon/refactor/**`
+  was read for writing or changed. `.modtest_pin/` was not touched;
+* `cfg_verify` was not run and is not cited anywhere in §29, per the standing
+  rule;
+* no reconstruction defect was REPAIRED. This pass produced a shorter, better
+  attributed list of candidates (§29.5, §29.9) and repaired none of them: every
+  repair touches a canonical address-keyed tree and needs its own proof, and
+  the pass's budget went to the harness and the regeneration;
+* nothing was committed to git.
+
+**A hole this pass did NOT close, and it is the same shape as the one it did.**
+`select`'s `budget` and `max_insns` are CLI arguments, not `harness_env()`
+entries, so two vectors generated with different budgets are indistinguishable
+at the same fingerprint — exactly the defect §28.1.1 found for `DERIVED_ARITY`.
+This pass changed the default budget from 400 to 600, which makes the hole
+live. It belongs in `harness_env()`.
+
+### 29.8.2 ★ THE PASS-THROUGH POINTER PATCH — DECIDED, and the decision is KEEP-WITH-A-CAVEAT
+
+A known-harmful patch may not be left unresolved, so it is decided here on
+three measurements rather than on the coverage number alone.
+
+**(a) Did it do the job it was applied for?** Its purpose is to stop the GOLDEN
+faulting on a pointer parameter that `make_args` seeded with a random integer —
+a frozen expectation recording a fault the hardware never takes. Counted over
+every regenerated vector, splitting by whether the mask actually changed:
+
+```
+                  n     golden-FAULT fixtures BEFORE -> AFTER        instructions
+mask CHANGED    512   3979/16074 (24.8%) -> 3965/16295 (24.3%)          +283
+mask unchanged  379    899/8408  (10.7%) ->  944/8580  (11.0%)          +210
+```
+
+**Fourteen fixtures.** On the app core the patch removes 14 false golden faults
+out of 16,074 — half a percentage point — while widening the mask on 512 of
+891 symbols. Its own justification is very nearly absent here. (On net it was
+measured as 47 of 370 vectors missing a pointer parameter and 21 of 86
+failures; this core is simply not the one it was diagnosed on.)
+
+**(b) What does it cost?** The largest per-symbol coverage losses in the entire
+corpus are all this patch (§29.8.1). The `+283` above is NOT the patch's
+credit — three other fixture dimensions landed in the same burst, and the
+mask-changed group is where they also apply.
+
+**(c) The verdict, and why it is not "revert".**
+
+* It cannot cause a FALSE PASS. It changes fixture INPUTS only, identically on
+  both sides; a candidate that behaves differently on the new inputs still
+  fails. Its entire cost is coverage and its entire benefit is removing false
+  failures. That asymmetry is what makes keeping it safe and reverting it
+  merely better.
+* Reverting is a `tools/modtest/` edit. `harness_rev()` hashes whole files, so
+  it would invalidate all 924 vectors this pass has just regenerated and
+  restart a multi-hour sweep — for a patch whose measured harm is bounded and
+  whose measured benefit is small but real. The brief's rule is one burst per
+  pass, and the net agent is blocked until this harness settles.
+* **It is kept, and the refinement is specified as the FIRST item of the next
+  burst** (§29.11 item 2): at a `bl`, mark argument *i* a pointer only if the
+  CALLEE dereferences the position it lands in. That is the version that keeps
+  the benefit (a wrapper's pointers are still found) and drops the cost (a
+  forwarded `int` is no longer called a pointer).
+
+**Anyone re-measuring after that refinement should expect the mask-changed
+group to shrink from 512 symbols to something much smaller, and
+`dev_write_config_word` to return to 91 %.** If it does not, the refinement is
+wrong and this decision should be revisited.

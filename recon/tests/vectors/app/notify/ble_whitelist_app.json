@@ -50,19 +50,19 @@
     61182
    ],
    "events_head": [
-    "('C', 0, 1276959699, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 1276959699, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 1276959699, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 1276959699, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 1276959699, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 1276959699, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 1276959699, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 1276959699, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 1276959699, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 1276959699, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+    "('C', 0, 536943568, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536943568, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536943568, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536943568, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536943568, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536943568, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536943568, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536943568, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536943568, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536943568, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b5e2b5b70027d6a1747ef8f7980993330125b5ffe38228d516a68edae10d0f74",
+    "events": "ddddd3d456bdf27f52e065e42d67a1ebec2a5ac6ffdd90c7efa9e880b4fa8536",
     "kind": "return",
     "ncalls": 10,
     "ret": [
@@ -73,17 +73,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1276959699,
+     536943568,
      12,
-     4,
-     0
+     536948308,
+     536940048
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -140,19 +141,19 @@
     61182
    ],
    "events_head": [
-    "('C', 0, 4067469868, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 4067469868, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 4067469868, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 4067469868, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 4067469868, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 4067469868, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 4067469868, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 4067469868, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 4067469868, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 4067469868, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+    "('C', 0, 536947244, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536947244, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536947244, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536947244, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536947244, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536947244, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536947244, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536947244, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536947244, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536947244, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "0e15a151f37b0c6046e7a92d0a4955914c3be928639d412c8f766b7773c0f867",
+    "events": "0cfaedca3dc6e0f6debc309df86f183c7aae1b8edb873854e89c49845bf5469f",
     "kind": "return",
     "ncalls": 10,
     "ret": [
@@ -163,3258 +164,19 @@
    "fixture": {
     "abs": [],
     "args": [
-     4067469868,
+     536947244,
      1797429778,
-     2147483648,
-     315044147
+     536940476,
+     536949040
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 4290042576, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 4290042576, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 4290042576, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 4290042576, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 4290042576, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 4290042576, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 4290042576, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 4290042576, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 4290042576, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 4290042576, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "ae7ad8d078033d5e71fbfec89527a35dfdf10979038f622a4f2bb07c9e676a78",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     4290042576,
-     598759513,
-     3677430904,
-     7
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-2",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 2,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 2618385373, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 2618385373, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 2618385373, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 2618385373, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 2618385373, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 2618385373, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 2618385373, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 2618385373, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 2618385373, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 2618385373, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "98b7bcbd331347282d541b23fca664421bc1f220c47b98988e47cf446c628d2b",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     2618385373,
-     255,
-     8,
-     3619521758
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-3",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 3,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 16, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 16, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 16, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 16, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 16, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 16, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 16, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 16, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 16, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 16, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "a0782a9f31eaa77f5f2ba84a6d7731afb25e454f20c5cd52a5a053993a1bd2f0",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     16,
-     2147483647,
-     3842370354,
-     6
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-4",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 4,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 4, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 4, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 4, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 4, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 4, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 4, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 4, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 4, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 4, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 4, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "a3f69d93f01672bd95cd3121210ae05d6a2cc037ce5b6b5c53d2519257fe9cd9",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     4,
-     3188701995,
-     8,
-     7
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-5",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 5,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 2300957721, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 2300957721, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 2300957721, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 2300957721, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 2300957721, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 2300957721, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 2300957721, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 2300957721, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 2300957721, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 2300957721, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "22c8add9f0c5096d98396d90c9f83808c7a646c039507ab1c30d70bb084f1a0e",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     2300957721,
-     1604804925,
-     1,
-     2363272863
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-7",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 7,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 2156366374, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 2156366374, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 2156366374, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 2156366374, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 2156366374, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 2156366374, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 2156366374, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 2156366374, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 2156366374, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 2156366374, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "11256360ee9f08f67d31646bc63068ddf25d0ac27b894844cad9a43f92ebb22e",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     2156366374,
-     708972563,
-     558645175,
-     4
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-8",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 8,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 1346232374, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 1346232374, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 1346232374, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 1346232374, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 1346232374, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 1346232374, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 1346232374, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 1346232374, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 1346232374, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 1346232374, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "aaaea40d4ea6d623c526f42d56dcc1d8f392ff7af8cf602e2de4e014a2dc4790",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     1346232374,
-     1556998536,
-     499087790,
-     2147483647
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-9",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 9,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 182454980, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 182454980, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 182454980, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 182454980, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 182454980, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 182454980, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 182454980, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 182454980, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 182454980, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 182454980, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "081d3d3b04a54341ce8dac7391bf2521da5fb0917c6933ed82970512cdf3f77b",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     182454980,
-     995058044,
-     8,
-     1
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-10",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 10,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 3, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 3, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 3, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 3, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 3, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 3, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 3, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 3, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 3, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 3, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "4c4aa2071c314be11042a8cd974096beadc2ce33de0f13c6e5567e0b8195c2de",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3,
-     2147483648,
-     256,
-     1426281073
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-11",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 11,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 8, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 8, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 8, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 8, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 8, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 8, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 8, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 8, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 8, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 8, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "92686888bdc9d31b4e4788fb435e58ed3ccd4b9d20c1d8575089440d48b668e9",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     8,
-     3217736208,
-     5,
-     1103693227
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-12",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 12,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 1156718256, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 1156718256, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 1156718256, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 1156718256, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 1156718256, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 1156718256, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 1156718256, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 1156718256, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 1156718256, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 1156718256, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "aba0bf2bd953a3425dfc7f5f4bb339ba32c54bba0380fe7bfbb62ad3d9bfcb1a",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     1156718256,
-     1944344031,
-     6,
-     617681966
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-13",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 13,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 1996365079, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 1996365079, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 1996365079, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 1996365079, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 1996365079, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 1996365079, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 1996365079, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 1996365079, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 1996365079, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 1996365079, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "7d24fb2146b630516eb8d66adb1fda784b3d67e262ee99e6fb37ab511312eeb1",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     1996365079,
-     12,
-     3,
-     470668832
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-14",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 14,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 7, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 7, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 7, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 7, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 7, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 7, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 7, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 7, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 7, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 7, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "3934fe09a2a70fbbb2c9639f3531422c5f7948a907e14d8602405cb209804bf2",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     7,
-     256,
-     5,
-     4
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-15",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 15,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 2024561310, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 2024561310, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 2024561310, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 2024561310, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 2024561310, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 2024561310, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 2024561310, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 2024561310, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 2024561310, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 2024561310, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "b9032ebc41e7c6af1135f64126bb3fa5e691d1205d74bb8ed25988e9c3ae435c",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     2024561310,
-     2147483648,
-     3454407978,
-     16
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-16",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 16,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 3912442165, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 3912442165, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 3912442165, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 3912442165, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 3912442165, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 3912442165, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 3912442165, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 3912442165, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 3912442165, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 3912442165, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "c65e2fa879f05fd9dc26bd878030ac139915855bfb6a81045b034949c706b978",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3912442165,
-     0,
-     697236451,
-     1
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-18",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 18,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 6, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 6, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 6, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 6, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 6, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 6, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 6, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 6, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 6, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 6, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "0cc3e7ba8bdf51528bdfaa80ac15b85a58df01d339028e8bd3b3cf94bd29bbb6",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     6,
-     1536401714,
-     4178753371,
-     255
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-19",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 19,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 843060076, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 843060076, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 843060076, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 843060076, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 843060076, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 843060076, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 843060076, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 843060076, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 843060076, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 843060076, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "a1415c5437dfefa66aae76594142e35b74d8635d64e719d25b53c7924192129e",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     843060076,
-     1,
-     2870852768,
-     0
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-21",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 21,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 1591295399, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 1591295399, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 1591295399, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 1591295399, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 1591295399, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 1591295399, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 1591295399, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 1591295399, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 1591295399, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 1591295399, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "eda9574a0d7f062b5cfd03f621a084451e51d2279c113c87310509a48e3351c8",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     1591295399,
-     241044672,
-     2034212132,
-     1515885587
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-23",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 23,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 3751937804, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 3751937804, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 3751937804, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 3751937804, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 3751937804, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 3751937804, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 3751937804, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 3751937804, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 3751937804, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 3751937804, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "e778d354692da1d518bd43ab6704fc8b0314cb08d4a0c60e066f632336d93f00",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3751937804,
-     12,
-     2149248134,
-     604019693
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-25",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 25,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 2992330384, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 2992330384, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 2992330384, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 2992330384, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 2992330384, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 2992330384, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 2992330384, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 2992330384, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 2992330384, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 2992330384, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "260b4ae25518bb9f1dc34d98639bf2e6dc1683e8689d364a107b5af4b422fb6e",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     2992330384,
-     12,
-     3037640278,
-     2678623347
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-26",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 26,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 187818536, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 187818536, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 187818536, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 187818536, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 187818536, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 187818536, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 187818536, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 187818536, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 187818536, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 187818536, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "31e16f6accce4d2a2ab64348fcf2e5bfbf33d6ca8cf71197390ee0bce34d6953",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     187818536,
-     681194263,
-     3639365232,
-     4125446660
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-27",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 27,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 3711083943, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 3711083943, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 3711083943, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 3711083943, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 3711083943, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 3711083943, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 3711083943, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 3711083943, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 3711083943, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 3711083943, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "149643d3ee8fe3f0a6bd585961a5eee37d9acad15f9bded7767be5f0c916c5c2",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3711083943,
-     4285183211,
-     1,
-     2592385448
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-28",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 28,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 739928864, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 739928864, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 739928864, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 739928864, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 739928864, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 739928864, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 739928864, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 739928864, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 739928864, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 739928864, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "5fba2545466bf7634cdf1140f0088a0152220f2b82a12d534e5f776d3b91f14a",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     739928864,
-     256,
-     3886541357,
-     8
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-29",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 29,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 256, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 256, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 256, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 256, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 256, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 256, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 256, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 256, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 256, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 256, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "1e8e7eaf54852b6a917049ea1605e1a8bc4519b01407209c8aafd612656487ea",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     256,
-     8,
-     1,
-     7
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-30",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 30,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 4294967295, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 4294967295, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 4294967295, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 4294967295, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 4294967295, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 4294967295, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 4294967295, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 4294967295, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 4294967295, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 4294967295, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "72c2090aa69e57d69c982acd24a9eab240c2d0db85e0d03fb5857f83fdab3f5d",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     4294967295,
-     2461003590,
-     7,
-     53351545
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-31",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 31,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 1839753098, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 1839753098, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 1839753098, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 1839753098, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 1839753098, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 1839753098, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 1839753098, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 1839753098, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 1839753098, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 1839753098, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "defc0f2870b3ca776dd7aaee380935d5431851aa3aeba45aae98e70c4e99e13d",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     1839753098,
-     2706821390,
-     3442053927,
-     1170652979
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-32",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 32,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 1076094348, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 1076094348, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 1076094348, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 1076094348, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 1076094348, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 1076094348, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 1076094348, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 1076094348, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 1076094348, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 1076094348, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "64a3c3633b2c78f4a60ab337c1ed46e80d2dc5967f4c9fa179f199b1d473451c",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     1076094348,
-     7,
-     7,
-     5
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-33",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 33,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 12, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 12, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 12, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 12, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 12, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 12, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 12, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 12, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 12, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 12, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "9d852cb781d729a17540d7518eaa47c9152cf9775a9094378bb95f9f1a957610",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     12,
-     3990671540,
-     922796015,
-     2147483647
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-34",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 34,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 2726887024, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 2726887024, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 2726887024, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 2726887024, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 2726887024, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 2726887024, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 2726887024, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 2726887024, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 2726887024, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 2726887024, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "befb2986e63017af8e44b17a084a6a7971e22731712c30ddcda1cffadedf5b2b",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     2726887024,
-     3578977268,
-     4001652011,
-     1
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-35",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 35,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 0, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 0, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 0, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 0, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 0, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 0, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 0, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 0, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 0, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 0, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "79fc0281e46f9f141e09c1cc60f9460591a515f40c56d86fcf194e7b771440a4",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     0,
-     12,
-     2147483647,
-     8
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-36",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 36,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 1, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 1, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 1, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 1, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 1, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 1, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 1, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 1, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 1, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 1, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "2f2436ecd5c04a419fe89fb1917165560aed23a75ced2d32afd00b81b222aad7",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     1,
-     2057795936,
-     2725586938,
-     1299241558
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-37",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 37,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 3886568119, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 3886568119, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 3886568119, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 3886568119, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 3886568119, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 3886568119, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 3886568119, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 3886568119, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 3886568119, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 3886568119, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "5afd482376cf24e3838f9b30b6e259e832231af3bcaf74eab18b591cbb53828e",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3886568119,
-     256,
-     3059135833,
-     1
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-41",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 41,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 538639782, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 538639782, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 538639782, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 538639782, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 538639782, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 538639782, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 538639782, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 538639782, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 538639782, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 538639782, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "cbe78337e7c728d5370d98dba1fd312f32b4e540a75a6b4a303d6c70694449e8",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     538639782,
-     4,
-     12,
-     3983748582
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-42",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 42,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 2311625221, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 2311625221, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 2311625221, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 2311625221, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 2311625221, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 2311625221, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 2311625221, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 2311625221, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 2311625221, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 2311625221, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "aed85aee8ec63949b13b079e3a02f040e266df954ab4180b06706fa6fa05660e",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     2311625221,
-     2147483648,
-     2205369221,
-     2288169737
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-46",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 46,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 2147483647, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 2147483647, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 2147483647, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 2147483647, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 2147483647, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 2147483647, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 2147483647, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 2147483647, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 2147483647, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 2147483647, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "3b9021822f2a1d3672d16ee21b25cba223dcef5a3eeb6bb9952ed0009d89cd69",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     2147483647,
-     1010879855,
-     16,
-     6
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-47",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 47,
-    "xpsr": 0
-   },
-   "new_instructions": 48,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182,
-    61182
-   ],
-   "events_head": [
-    "('C', 0, 536941384, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 536941384, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 536941384, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 536941384, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 536941384, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 536941384, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 536941384, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 536941384, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 536941384, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 536941384, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "ad95a50c9466f3922dafc227c3baabf5f8ce8c5172cb11e24c1f50b6c2559aa9",
-    "kind": "return",
-    "ncalls": 10,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536941384,
-     536952304,
-     536950448,
-     536949968
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "ptr4-0",
-    "mem": [],
-    "nptr": 4,
-    "oracle": [],
-    "scratch_seed": 700,
     "xpsr": 0
    },
    "new_instructions": 48,
@@ -3494,17 +256,18 @@
     "abs": [],
     "args": [
      536943312,
-     536948372,
-     536948184,
-     536940332
+     598759513,
+     536945784,
+     536943396
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "ptr4-1",
+    "id": "seed-2",
     "mem": [],
-    "nptr": 4,
+    "nptr": 3,
     "oracle": [],
-    "scratch_seed": 701,
+    "outparam": null,
+    "scratch_seed": 2,
     "xpsr": 0
    },
    "new_instructions": 48,
@@ -3560,19 +323,19 @@
     61182
    ],
    "events_head": [
-    "('C', 0, 536947328, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 536947328, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 536947328, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 536947328, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 536947328, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 536947328, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 536947328, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 536947328, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 536947328, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 536947328, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+    "('C', 0, 536945628, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536945628, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536945628, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536945628, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536945628, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536945628, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536945628, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536945628, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536945628, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536945628, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "a6f23e0f6d1ce8ef3db65ab071f8744058d6116971eb7d4f314052fbdd4ac850",
+    "events": "9e067aca7a73fa522e0bfc9fd794a5699e29567e20afa664bf83a9d6b2669df7",
     "kind": "return",
     "ncalls": 10,
     "ret": [
@@ -3583,18 +346,1293 @@
    "fixture": {
     "abs": [],
     "args": [
-     536947328,
+     536945628,
+     255,
+     536943096,
+     536937692
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-3",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 3,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536945864, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536945864, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536945864, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536945864, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536945864, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536945864, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536945864, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536945864, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536945864, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536945864, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "a440a6590e33d4071a22dee6cfd043ead02adc25b7f817469588657380c464ef",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945864,
+     2147483647,
+     536947504,
+     536951124
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-4",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 4,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536939588, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536939588, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536939588, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536939588, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536939588, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536939588, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536939588, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536939588, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536939588, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536939588, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c0b24e78c305031d1784f68c93fa469377aaa964f18046db3ea1743fdcdb5afb",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939588,
+     3188701995,
+     536944168,
+     536942644
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-5",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 5,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536950900, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536950900, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536950900, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536950900, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536950900, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536950900, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536950900, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536950900, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536950900, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536950900, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "5bdb40b11bc6147acf598302099463e2071b9829546195a1d0402478fe726c60",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536950900,
+     3322790363,
+     536947060,
+     536952236
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-6",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 6,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536941592, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536941592, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536941592, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536941592, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536941592, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536941592, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536941592, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536941592, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536941592, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536941592, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "7f750a31bf2afb22cd78d4eefa3abe028aca7324ce6e07b046ac80132e404970",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941592,
+     1604804925,
+     536950368,
+     536948380
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-7",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 7,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536939044, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536939044, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536939044, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536939044, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536939044, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536939044, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536939044, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536939044, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536939044, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536939044, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "2327a957815018072ea9a58c61ed6987e7a00c53dfc32810d3fa0a455ec1f275",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939044,
+     708972563,
+     536952756,
+     536949588
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-8",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 8,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536944692, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536944692, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536944692, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536944692, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536944692, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536944692, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536944692, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536944692, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536944692, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536944692, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ba26a45a3d1c94dfbd33bfda3b936c3e95f79f0cb92d4564b99a2e93b36f5b17",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944692,
+     1556998536,
+     536951212,
+     536940988
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-9",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 9,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536939204, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536939204, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536939204, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536939204, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536939204, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536939204, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536939204, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536939204, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536939204, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536939204, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "3b8f4121e411dd2b377a05c726d3de6319c4d33afdf0d04be2c3dd17e49f3558",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939204,
+     995058044,
+     536946200,
+     536947328
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-10",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 10,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536937040, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536937040, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536937040, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536937040, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536937040, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536937040, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536937040, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536937040, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536937040, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536937040, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "09d1594a498a332a5fe551c05fbeabdd868257c46fca18f515e8f8889c52d9d4",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536937040,
+     2147483648,
+     536938076,
+     536941168
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-11",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 11,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536944520, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536944520, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536944520, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536944520, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536944520, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536944520, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536944520, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536944520, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536944520, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536944520, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ecb0d00decb3182de2dcb54fd10dc2256f1650a0888f47697d7f15b867ac7600",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944520,
+     3217736208,
+     536941268,
+     536937896
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-12",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 12,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536944304, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536944304, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536944304, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536944304, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536944304, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536944304, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536944304, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536944304, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536944304, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536944304, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "2499a9cf22b7682ec5e43bdb1d82c8ad26b4201d8a5c4d1871bfe74523adec57",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944304,
+     1944344031,
+     536939060,
+     536941612
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-13",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 13,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536943892, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536943892, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536943892, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536943892, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536943892, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536943892, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536943892, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536943892, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536943892, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536943892, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "91f8f37b52e0c675ba29ae9a1b2ed68f68f5357f323c4f95af324eea3e931a6f",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943892,
+     12,
+     536943328,
+     536942112
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-14",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 14,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536952404, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536952404, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536952404, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536952404, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536952404, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536952404, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536952404, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536952404, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536952404, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536952404, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "aa09f8b14a7027825c5b209e2d4213d9d730d78aab1e4ae9cb44906c3c1c62e7",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952404,
+     256,
+     536951236,
+     536949908
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-15",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 15,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536943260, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536943260, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536943260, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536943260, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536943260, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536943260, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536943260, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536943260, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536943260, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536943260, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "cf70b9b6cfbbb11d51f14093fd70dc7e14162a5cab969ddce81a5daedb4646b2",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943260,
+     2147483648,
+     536941864,
+     536940136
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-16",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 16,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536944016, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536944016, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536944016, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536944016, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536944016, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536944016, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536944016, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536944016, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536944016, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536944016, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "6d741140a5b569fdfa3563959955ea9d4b8b05be121bda3eeb2a3b6fd3a03117",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944016,
+     3254638692,
      536938188,
-     536947944,
-     536951256
+     536946020
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "ptr4-2",
+    "id": "seed-17",
     "mem": [],
-    "nptr": 4,
+    "nptr": 3,
     "oracle": [],
-    "scratch_seed": 702,
+    "outparam": null,
+    "scratch_seed": 17,
     "xpsr": 0
    },
    "new_instructions": 48,
@@ -3650,19 +1688,19 @@
     61182
    ],
    "events_head": [
-    "('C', 0, 536945664, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 536945664, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 536945664, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 536945664, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 536945664, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 536945664, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 536945664, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 536945664, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 536945664, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 536945664, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+    "('C', 0, 536944948, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536944948, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536944948, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536944948, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536944948, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536944948, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536944948, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536944948, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536944948, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536944948, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "84463246ba3ce65a7e75023143da242b4fba079abfb361ebb42d25e4b3bb7bb3",
+    "events": "d5a867de699291f1d8ea40fffd5ce4accd515f358fed658397d38b755fc5e75b",
     "kind": "return",
     "ncalls": 10,
     "ret": [
@@ -3673,18 +1711,2021 @@
    "fixture": {
     "abs": [],
     "args": [
-     536945664,
-     536946288,
-     536937260,
-     536949848
+     536944948,
+     0,
+     536951776,
+     536945600
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "ptr4-3",
+    "id": "seed-18",
     "mem": [],
-    "nptr": 4,
+    "nptr": 3,
     "oracle": [],
-    "scratch_seed": 703,
+    "outparam": null,
+    "scratch_seed": 18,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536939284, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536939284, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536939284, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536939284, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536939284, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536939284, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536939284, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536939284, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536939284, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536939284, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "63dee30d1717e42cefbcbd6b4bd3783749bfeb91c929078a175601511c878a55",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939284,
+     1536401714,
+     536950616,
+     536947592
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-19",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 19,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536952740, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536952740, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536952740, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536952740, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536952740, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536952740, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536952740, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536952740, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536952740, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536952740, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "a8ea9b32ff27f0c9355905cf06c032be54a08e6e69a55856ba598bf258b45ddc",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952740,
+     2306919366,
+     536939760,
+     536951108
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-20",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 20,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536941420, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536941420, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536941420, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536941420, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536941420, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536941420, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536941420, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536941420, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536941420, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536941420, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "7b6c7f925bda4d3d85b7a3fbee2260f794deb244e71103af1e9959919332fd34",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941420,
+     1,
+     536951968,
+     536943488
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-21",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 21,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536937396, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536937396, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536937396, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536937396, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536937396, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536937396, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536937396, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536937396, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536937396, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536937396, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "8f6cc5ae586e1e8b4de899644ff3080ecf49c0c97296cb4bdead5c43904346b7",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536937396,
+     3001296298,
+     536949836,
+     536947564
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-22",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 22,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536952228, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536952228, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536952228, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536952228, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536952228, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536952228, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536952228, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536952228, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536952228, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536952228, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "f6b5032dedfc04718d687f29db5e4e3c41d55b158f9bfd694dd538a20fb0f339",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952228,
+     241044672,
+     536943908,
+     536941584
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-23",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 23,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536949908, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536949908, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536949908, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536949908, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536949908, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536949908, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536949908, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536949908, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536949908, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536949908, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "fdc2dc9f8f2aaa0ae3ef5eb0f0b1a9614656523e12e7df4c15b454032215817a",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536949908,
+     6,
+     536937140,
+     536951364
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-24",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 24,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536938252, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536938252, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536938252, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536938252, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536938252, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536938252, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536938252, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536938252, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536938252, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536938252, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c9cf21f55ec9af7d124000a420eeb303699c340eb70f1326c51c9c259fff268f",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536938252,
+     12,
+     536947844,
+     536943596
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-25",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 25,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536942224, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536942224, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536942224, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536942224, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536942224, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536942224, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536942224, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536942224, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536942224, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536942224, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "3e573a03d98f977fe1cd49bbdcd7a4c67fc257986ce43a771e21affacbb19d12",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536942224,
+     12,
+     536950356,
+     536939632
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-26",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 26,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536945192, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536945192, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536945192, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536945192, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536945192, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536945192, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536945192, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536945192, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536945192, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536945192, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "48e325f0713cebefee851acb7e8c8822b3ee1b225d14390add99e906b8b6a8cb",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945192,
+     681194263,
+     536940144,
+     536941060
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-27",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 27,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536946084, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536946084, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536946084, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536946084, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536946084, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536946084, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536946084, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536946084, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536946084, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536946084, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "fac26888d43a2cbb6f2e93cbad340b395776cc2dc5dcafd61e02a1da678ee8b0",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946084,
+     4285183211,
+     536946096,
+     536947112
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-28",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 28,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536947488, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536947488, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536947488, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536947488, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536947488, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536947488, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536947488, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536947488, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536947488, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536947488, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "9b59f93804cbf59a225bf0056f1432139c1b8128c0eabe2955172bfee6fb3de3",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536947488,
+     256,
+     536947244,
+     536938744
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-29",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 29,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536952796, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536952796, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536952796, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536952796, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536952796, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536952796, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536952796, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536952796, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536952796, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536952796, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "873dd029b880d9f726be00a3bf3b931566f1cede309a4edb26ba2261a754a52f",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952796,
+     8,
+     536945744,
+     536939284
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-30",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 30,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536952300, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536952300, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536952300, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536952300, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536952300, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536952300, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536952300, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536952300, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536952300, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536952300, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "d86d3d4b789cfe312254209730354f58695b27609d1f57b71af075ece3ecd8cd",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952300,
+     2461003590,
+     536938932,
+     536941688
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-31",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 31,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536946568, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536946568, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536946568, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536946568, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536946568, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536946568, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536946568, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536946568, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536946568, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536946568, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "8e3b20f98c80182d75dd8be8355fa7e17c423ee058aef5d7f763d158df3d2c1e",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946568,
+     2706821390,
+     536941348,
+     536952624
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-32",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 32,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536946060, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536946060, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536946060, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536946060, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536946060, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536946060, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536946060, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536946060, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536946060, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536946060, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "38ad2c4021ec737c54c05aea4ca9501ffb83b65e03aeca504188ff4b3c2de31c",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946060,
+     7,
+     536944276,
+     536938756
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-33",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 33,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536950120, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536950120, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536950120, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536950120, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536950120, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536950120, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536950120, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536950120, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536950120, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536950120, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "002b8d9ce0b6587e9c20900ecd303036af555ef3ea9af3be9835b777e871dafc",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536950120,
+     3990671540,
+     536952812,
+     536936476
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-34",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 34,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536952432, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536952432, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536952432, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536952432, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536952432, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536952432, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536952432, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536952432, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536952432, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536952432, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "3c3c3acfe3f8492c25f7c2a6714740204d6e7461bab119050cdb8ec0a39eff57",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952432,
+     3578977268,
+     536943912,
+     536937872
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-35",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 35,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536944224, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536944224, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536944224, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536944224, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536944224, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536944224, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536944224, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536944224, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536944224, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536944224, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "5126a9da5a59c3a69334d7b1e4309d04a1c935269a2fbbc0192ac9ea7c64e97f",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944224,
+     12,
+     536945964,
+     536950872
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-36",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 36,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536951728, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536951728, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536951728, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536951728, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536951728, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536951728, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536951728, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536951728, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536951728, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536951728, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "297c71f3e04abcf7ee8610bbb027a0d6b7bea66ef2b0612fec0beec456f2815e",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536951728,
+     2057795936,
+     536946680,
+     536943188
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-37",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 37,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536939760, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536939760, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536939760, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536939760, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536939760, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536939760, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536939760, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536939760, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536939760, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536939760, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "04e6c222db9f00c62a1d9bb25acbeb315887f6c1244a39a1a67aba5dd6a2e427",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939760,
+     255,
+     536936976,
+     536945104
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-38",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 38,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536941424, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536941424, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536941424, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536941424, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536941424, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536941424, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536941424, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536941424, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536941424, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536941424, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1311803ee8e60bf85f9bf0d21f93bfe86d1db52ca73b3a8a33776014c3bed46b",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941424,
+     1587124134,
+     536948532,
+     536948312
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-39",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 39,
+    "xpsr": 0
+   },
+   "new_instructions": 48,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182,
+    61182
+   ],
+   "events_head": [
+    "('C', 0, 536943600, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536943600, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536943600, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536943600, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536943600, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536943600, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536943600, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536943600, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536943600, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536943600, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "1e8f2105fef5752dd43875d4e78e101ab0a25a0c7451d01b7615eeed7ff0733c",
+    "kind": "return",
+    "ncalls": 10,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943600,
+     3928041777,
+     536948352,
+     536952044
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-40",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 40,
     "xpsr": 0
    },
    "new_instructions": 48,
@@ -3708,28 +3749,33 @@
     216012
    ],
    "events_head": [
-    "('C', 0, 2345269775, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 0, 536940544, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "error": "Invalid memory fetch",
-    "events": "1aff2ea2c6067067a60fb5e73eaa4e1cd18619cbe4643b2f08c0bf78573c7f2f",
+    "error": "Invalid instruction",
+    "events": "76ba744a9202c916a5ceff87da270a1f06adfcd822d1cc71a0489d4b04dcce33",
     "kind": "fault",
     "ncalls": 2
    },
    "fixture": {
-    "abs": [],
+    "abs": [
+     [
+      536940544,
+      "4110012044100120481001204c1001205110012054100120581001205c1001206110012064100120681001206c1001207110012074100120781001207c1001208110012084100120881001208c1001209110012094100120981001209c100120a1100120a4100120a8100120ac100120b1100120b4100120b8100120bc100120c1100120c4100120c8100120cc100120d1100120d4100120d8100120dc100120e1100120e4100120e8100120ec100120f1100120f4100120f8100120fc1001200111012004110120081101200c1101201111012014110120181101201c1101202111012024110120281101202c1101203111012034110120381101203c1101204111012044110120481101204c1101205111012054110120581101205c1101206111012064110120681101206c1101207111012074110120781101207c1101208111012084110120881101208c1101209111012094110120981101209c110120a1110120a4110120a8110120ac110120b1110120b4110120b8110120bc110120c1110120c4110120c8110120cc110120d1110120d4110120d8110120dc110120e1110120e4110120e8110120ec110120f1110120f4110120f8110120fc1101200110012004100120081001200c1001201110012014100120181001201c1001202110012024100120281001202c1001203110012034100120381001203c100120"
+     ]
+    ],
     "args": [
-     2345269775,
-     3092785552,
-     1935641720,
-     554330043
+     536940544,
+     558208872,
+     536940552,
+     536940556
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "orc-all-0",
+    "id": "chain0-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [
      [
       0,
@@ -3737,243 +3783,13 @@
       0
      ],
      [
-      1,
-      0,
-      0
-     ],
-     [
-      2,
-      0,
-      0
-     ],
-     [
-      3,
-      0,
-      0
-     ],
-     [
-      4,
-      0,
-      0
-     ],
-     [
-      5,
-      0,
-      0
-     ],
-     [
-      6,
-      0,
-      0
-     ],
-     [
-      7,
-      0,
-      0
-     ],
-     [
-      8,
-      0,
-      0
-     ],
-     [
-      9,
-      0,
-      0
-     ],
-     [
-      10,
-      0,
-      0
-     ],
-     [
-      11,
-      0,
-      0
-     ],
-     [
-      12,
-      0,
-      0
-     ],
-     [
-      13,
-      0,
-      0
-     ],
-     [
-      14,
-      0,
-      0
-     ],
-     [
-      15,
-      0,
-      0
-     ],
-     [
-      16,
-      0,
-      0
-     ],
-     [
-      17,
-      0,
-      0
-     ],
-     [
-      18,
-      0,
-      0
-     ],
-     [
-      19,
-      0,
-      0
-     ],
-     [
-      20,
-      0,
-      0
-     ],
-     [
-      21,
-      0,
-      0
-     ],
-     [
-      22,
-      0,
-      0
-     ],
-     [
-      23,
-      0,
-      0
-     ],
-     [
-      24,
-      0,
-      0
-     ],
-     [
-      25,
-      0,
-      0
-     ],
-     [
-      26,
-      0,
-      0
-     ],
-     [
-      27,
-      0,
-      0
-     ],
-     [
-      28,
-      0,
-      0
-     ],
-     [
-      29,
-      0,
-      0
-     ],
-     [
-      30,
-      0,
-      0
-     ],
-     [
-      31,
-      0,
-      0
-     ],
-     [
-      32,
-      0,
-      0
-     ],
-     [
-      33,
-      0,
-      0
-     ],
-     [
-      34,
-      0,
-      0
-     ],
-     [
-      35,
-      0,
-      0
-     ],
-     [
-      36,
-      0,
-      0
-     ],
-     [
-      37,
-      0,
-      0
-     ],
-     [
-      38,
-      0,
-      0
-     ],
-     [
-      39,
-      0,
-      0
-     ],
-     [
-      40,
-      0,
-      0
-     ],
-     [
-      41,
-      0,
-      0
-     ],
-     [
-      42,
-      0,
-      0
-     ],
-     [
-      43,
-      0,
-      0
-     ],
-     [
-      44,
-      0,
-      0
-     ],
-     [
-      45,
-      0,
-      0
-     ],
-     [
-      46,
-      0,
-      0
-     ],
-     [
-      47,
-      0,
-      0
-     ],
-     [
       0,
       1,
+      0
+     ],
+     [
+      1,
+      0,
       0
      ],
      [
@@ -3983,7 +3799,17 @@
      ],
      [
       2,
+      0,
+      0
+     ],
+     [
+      2,
       1,
+      0
+     ],
+     [
+      3,
+      0,
       0
      ],
      [
@@ -3993,7 +3819,17 @@
      ],
      [
       4,
+      0,
+      0
+     ],
+     [
+      4,
       1,
+      0
+     ],
+     [
+      5,
+      0,
       0
      ],
      [
@@ -4003,7 +3839,17 @@
      ],
      [
       6,
+      0,
+      0
+     ],
+     [
+      6,
       1,
+      0
+     ],
+     [
+      7,
+      0,
       0
      ],
      [
@@ -4013,7 +3859,17 @@
      ],
      [
       8,
+      0,
+      0
+     ],
+     [
+      8,
       1,
+      0
+     ],
+     [
+      9,
+      0,
       0
      ],
      [
@@ -4023,196 +3879,27 @@
      ],
      [
       10,
+      0,
+      0
+     ],
+     [
+      10,
       1,
       0
      ],
      [
       11,
-      1,
+      0,
       0
      ],
      [
-      12,
-      1,
-      0
-     ],
-     [
-      13,
-      1,
-      0
-     ],
-     [
-      14,
-      1,
-      0
-     ],
-     [
-      15,
-      1,
-      0
-     ],
-     [
-      16,
-      1,
-      0
-     ],
-     [
-      17,
-      1,
-      0
-     ],
-     [
-      18,
-      1,
-      0
-     ],
-     [
-      19,
-      1,
-      0
-     ],
-     [
-      20,
-      1,
-      0
-     ],
-     [
-      21,
-      1,
-      0
-     ],
-     [
-      22,
-      1,
-      0
-     ],
-     [
-      23,
-      1,
-      0
-     ],
-     [
-      24,
-      1,
-      0
-     ],
-     [
-      25,
-      1,
-      0
-     ],
-     [
-      26,
-      1,
-      0
-     ],
-     [
-      27,
-      1,
-      0
-     ],
-     [
-      28,
-      1,
-      0
-     ],
-     [
-      29,
-      1,
-      0
-     ],
-     [
-      30,
-      1,
-      0
-     ],
-     [
-      31,
-      1,
-      0
-     ],
-     [
-      32,
-      1,
-      0
-     ],
-     [
-      33,
-      1,
-      0
-     ],
-     [
-      34,
-      1,
-      0
-     ],
-     [
-      35,
-      1,
-      0
-     ],
-     [
-      36,
-      1,
-      0
-     ],
-     [
-      37,
-      1,
-      0
-     ],
-     [
-      38,
-      1,
-      0
-     ],
-     [
-      39,
-      1,
-      0
-     ],
-     [
-      40,
-      1,
-      0
-     ],
-     [
-      41,
-      1,
-      0
-     ],
-     [
-      42,
-      1,
-      0
-     ],
-     [
-      43,
-      1,
-      0
-     ],
-     [
-      44,
-      1,
-      0
-     ],
-     [
-      45,
-      1,
-      0
-     ],
-     [
-      46,
-      1,
-      0
-     ],
-     [
-      47,
+      11,
       1,
       0
      ]
     ],
-    "scratch_seed": 400,
+    "outparam": null,
+    "scratch_seed": 830,
     "xpsr": 0
    },
    "new_instructions": 12,
@@ -4240,29 +3927,29 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 255, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 255, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 0, 536946536, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536946536, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "d33d30d70b8f81e4a35b0b6fc5bdf8be4e15f4cb5566c6683852ec1057abef67",
+    "events": "bc960b5a2c4c770411c7669d4673dab33e6599dff6ec9470b5907cb09238a3ac",
     "kind": "fault",
     "ncalls": 3
    },
    "fixture": {
     "abs": [],
     "args": [
-     255,
+     536946536,
      952824504,
-     1118673106,
-     4294967295
+     536942800,
+     536941356
     ],
     "float_scratch": false,
     "fp": {},
     "id": "orc-1-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [
      [
       1,
@@ -4275,6 +3962,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 502,
     "xpsr": 0
    },
@@ -4307,30 +3995,30 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 3, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 3, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 3, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 0, 536937744, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536937744, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536937744, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "0ff07d1f33634d720943b007ee5dcb477e2fb0c6d352292640c65746a64b9e9b",
+    "events": "cab48750a48eb386d83b95c20d3926cb56724622a1b2f6cf8ef2dce9e0730f9b",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     3,
+     536937744,
      93393707,
-     31352568,
-     2147483648
+     536946424,
+     536945276
     ],
     "float_scratch": false,
     "fp": {},
     "id": "orc-2-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [
      [
       2,
@@ -4343,6 +4031,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 504,
     "xpsr": 0
    },
@@ -4379,31 +4068,31 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 2304217289, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 2304217289, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 2304217289, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 2304217289, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 0, 536940744, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536940744, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536940744, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536940744, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
     "('C', 4, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "dc1edf7014b665211008fadc5525331d3f2533757713a4b819c9c765c377a943",
+    "error": "Invalid instruction",
+    "events": "2e58b63bb84c98ef61d0cbafb13d34f3a6f04f26cdc5d5a910f25e9a47cb5144",
     "kind": "fault",
     "ncalls": 5
    },
    "fixture": {
     "abs": [],
     "args": [
-     2304217289,
+     536940744,
      5,
-     1,
-     614573091
+     536951216,
+     536945696
     ],
     "float_scratch": false,
     "fp": {},
     "id": "orc-3-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [
      [
       3,
@@ -4416,6 +4105,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 506,
     "xpsr": 0
    },
@@ -4456,32 +4146,32 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 3421057399, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 3421057399, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 3421057399, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 3421057399, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 3421057399, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 0, 536949108, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536949108, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536949108, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536949108, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536949108, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
     "('C', 5, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "edb5688ec9af0a32076e9010739f149d30b17e3f5cb8dfa70cb6b4e12c203f3a",
+    "error": "Invalid instruction",
+    "events": "809ca9f9f68a497f77f0bb34a2f75a9f98e8b17e336dd80fa50c919ec9e7eb5e",
     "kind": "fault",
     "ncalls": 6
    },
    "fixture": {
     "abs": [],
     "args": [
-     3421057399,
+     536949108,
      1978855942,
-     3520601422,
-     2147483647
+     536943948,
+     536941116
     ],
     "float_scratch": false,
     "fp": {},
     "id": "orc-4-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [
      [
       4,
@@ -4494,6 +4184,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 508,
     "xpsr": 0
    },
@@ -4538,33 +4229,33 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 1084867268, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 1084867268, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 1084867268, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 1084867268, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 1084867268, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 1084867268, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 0, 536937156, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536937156, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536937156, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536937156, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536937156, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536937156, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "431d3a743e16c70b50504295cdeb095ea4514111c818c49e9cc6f191194a2370",
+    "error": "Invalid instruction",
+    "events": "607d23b5c320b876ec56876d31b2e2367f964f7865bb667baaad79984634c237",
     "kind": "fault",
     "ncalls": 7
    },
    "fixture": {
     "abs": [],
     "args": [
-     1084867268,
+     536937156,
      277086345,
-     3464610088,
-     2147483648
+     536936744,
+     536943180
     ],
     "float_scratch": false,
     "fp": {},
     "id": "orc-5-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [
      [
       5,
@@ -4577,6 +4268,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 510,
     "xpsr": 0
    },
@@ -4625,34 +4317,34 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 2766855018, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 2766855018, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 2766855018, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 2766855018, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 2766855018, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 2766855018, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 2766855018, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 0, 536943464, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536943464, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536943464, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536943464, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536943464, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536943464, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536943464, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
     "('C', 7, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "error": "Invalid memory fetch",
-    "events": "b376b09496a1169116fffd20a84a5d1673985314bd45083407390d9843c7ad33",
+    "error": "Invalid instruction",
+    "events": "8386a0fad90d88f707a09a20b7cf9addf6ec25db973550d9239c7865d6e4a244",
     "kind": "fault",
     "ncalls": 8
    },
    "fixture": {
     "abs": [],
     "args": [
-     2766855018,
+     536943464,
      1748172745,
-     2147483648,
-     7
+     536950156,
+     536951108
     ],
     "float_scratch": false,
     "fp": {},
     "id": "orc-6-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [
      [
       6,
@@ -4665,6 +4357,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 512,
     "xpsr": 0
    },
@@ -4717,35 +4410,35 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 1873699316, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 1873699316, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 1873699316, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 1873699316, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 1873699316, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 1873699316, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 1873699316, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 1873699316, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 0, 536945140, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536945140, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536945140, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536945140, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536945140, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536945140, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536945140, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536945140, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
     "('C', 8, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "error": "Invalid memory fetch",
-    "events": "62ae4075613194861eda2b0f17c2f3f1288f32529184a3135d82d6377abc0664",
+    "error": "Invalid instruction",
+    "events": "af2f88f9d73a3c8943cd332c6de6d198319052042a0cd149f7c794ae9abcc905",
     "kind": "fault",
     "ncalls": 9
    },
    "fixture": {
     "abs": [],
     "args": [
-     1873699316,
+     536945140,
      3287383068,
-     2147483648,
-     2440982338
+     536940972,
+     536948544
     ],
     "float_scratch": false,
     "fp": {},
     "id": "orc-7-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [
      [
       7,
@@ -4758,6 +4451,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 514,
     "xpsr": 0
    },
@@ -4814,36 +4508,36 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 2974244326, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 2974244326, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 2974244326, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 2974244326, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 2974244326, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 2974244326, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 2974244326, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 2974244326, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 2974244326, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 0, 536944100, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536944100, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536944100, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536944100, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536944100, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536944100, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536944100, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536944100, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536944100, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
     "('C', 9, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "617c8595c11fd39f3759185cb85bfe62dac05ecc9ac7d46c9fe4f74be485dad1",
+    "events": "bce748f31441a50f7d9d150b0ae7772ff9b3c0920fd5a1cec1b2b06bc3f5f4bc",
     "kind": "fault",
     "ncalls": 10
    },
    "fixture": {
     "abs": [],
     "args": [
-     2974244326,
+     536944100,
      8,
-     196267312,
-     2147483647
+     536939824,
+     536936572
     ],
     "float_scratch": false,
     "fp": {},
     "id": "orc-8-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [
      [
       8,
@@ -4856,6 +4550,7 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 516,
     "xpsr": 0
    },
@@ -4916,37 +4611,37 @@
     92072
    ],
    "events_head": [
-    "('C', 0, 2147483648, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 2147483648, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
-    "('C', 2, 2147483648, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
-    "('C', 3, 2147483648, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
-    "('C', 4, 2147483648, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
-    "('C', 5, 2147483648, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
-    "('C', 6, 2147483648, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
-    "('C', 7, 2147483648, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
-    "('C', 8, 2147483648, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
-    "('C', 9, 2147483648, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)",
+    "('C', 0, 536939580, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
+    "('C', 1, 536939580, ('RO', b'dashboard_ts'), 'S', 'F', 'T', None)",
+    "('C', 2, 536939580, ('RO', b'countdown_ts'), 'S', 'F', 'T', None)",
+    "('C', 3, 536939580, ('RO', b'first_enter_flag'), 'S', 'F', 'T', None)",
+    "('C', 4, 536939580, ('RO', b'brightness_level'), 'S', 'F', 'T', None)",
+    "('C', 5, 536939580, ('RO', b'3dof_enable'), 'S', 'F', 'T', None)",
+    "('C', 6, 536939580, ('RO', b'display_mode'), 'S', 'F', 'T', None)",
+    "('C', 7, 536939580, ('RO', b'runtime_mode'), 'S', 'F', 'T', None)",
+    "('C', 8, 536939580, ('RO', b'user_sched_info'), 'S', 'F', 'T', None)",
+    "('C', 9, 536939580, ('RO', b'wakeup_angle'), 'S', 'F', 'T', None)",
     "('C', 10, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "d9600bb5c869dae204b5115c0dffddc45d7bd5461d5a2f0db253f05ab07d0121",
+    "error": "Invalid instruction",
+    "events": "dc9bf8cf4f8666587d693a8981ac99a0890e873c650893f8606e41ffea8c3dd4",
     "kind": "fault",
     "ncalls": 11
    },
    "fixture": {
     "abs": [],
     "args": [
+     536939580,
      2147483648,
-     2147483648,
-     1,
-     7
+     536939136,
+     536944852
     ],
     "float_scratch": false,
     "fp": {},
     "id": "orc-9-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [
      [
       9,
@@ -4959,562 +4654,18 @@
       0
      ]
     ],
+    "outparam": null,
     "scratch_seed": 518,
     "xpsr": 0
    },
    "new_instructions": 50,
    "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    0,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    61182,
-    216012,
-    6
-   ],
-   "events_head": [
-    "('C', 0, 8, ('RO', b'ble_whitelist_app'), 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 1937427917, 0, 5602, 1937427917, 'S', 'F', 'T', 6, 'T', 6)"
-   ],
-   "expect": {
-    "events": "7049a3fb9604905dc29ca2f64e53ba80729ac0dc2c1e52c556fb43f739f24530",
-    "kind": "return",
-    "ncalls": 3,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [
-     [
-      536879884,
-      "00000000"
-     ],
-     [
-      536900948,
-      "00000000"
-     ]
-    ],
-    "args": [
-     8,
-     1164329427,
-     7,
-     1937427917
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "combo-0-0",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [
-     [
-      0,
-      0,
-      0
-     ],
-     [
-      0,
-      1,
-      0
-     ],
-     [
-      1,
-      0,
-      0
-     ],
-     [
-      1,
-      1,
-      0
-     ],
-     [
-      2,
-      0,
-      0
-     ],
-     [
-      2,
-      1,
-      0
-     ],
-     [
-      3,
-      0,
-      0
-     ],
-     [
-      3,
-      1,
-      0
-     ],
-     [
-      4,
-      0,
-      0
-     ],
-     [
-      4,
-      1,
-      0
-     ],
-     [
-      5,
-      0,
-      0
-     ],
-     [
-      5,
-      1,
-      0
-     ],
-     [
-      6,
-      0,
-      0
-     ],
-     [
-      6,
-      1,
-      0
-     ],
-     [
-      7,
-      0,
-      0
-     ],
-     [
-      7,
-      1,
-      0
-     ],
-     [
-      8,
-      0,
-      0
-     ],
-     [
-      8,
-      1,
-      0
-     ],
-     [
-      9,
-      0,
-      0
-     ],
-     [
-      9,
-      1,
-      0
-     ],
-     [
-      10,
-      0,
-      0
-     ],
-     [
-      10,
-      1,
-      0
-     ],
-     [
-      11,
-      0,
-      0
-     ],
-     [
-      11,
-      1,
-      0
-     ],
-     [
-      12,
-      0,
-      0
-     ],
-     [
-      12,
-      1,
-      0
-     ],
-     [
-      13,
-      0,
-      0
-     ],
-     [
-      13,
-      1,
-      0
-     ],
-     [
-      14,
-      0,
-      0
-     ],
-     [
-      14,
-      1,
-      0
-     ],
-     [
-      15,
-      0,
-      0
-     ],
-     [
-      15,
-      1,
-      0
-     ],
-     [
-      16,
-      0,
-      0
-     ],
-     [
-      16,
-      1,
-      0
-     ],
-     [
-      17,
-      0,
-      0
-     ],
-     [
-      17,
-      1,
-      0
-     ],
-     [
-      18,
-      0,
-      0
-     ],
-     [
-      18,
-      1,
-      0
-     ],
-     [
-      19,
-      0,
-      0
-     ],
-     [
-      19,
-      1,
-      0
-     ],
-     [
-      20,
-      0,
-      0
-     ],
-     [
-      20,
-      1,
-      0
-     ],
-     [
-      21,
-      0,
-      0
-     ],
-     [
-      21,
-      1,
-      0
-     ],
-     [
-      22,
-      0,
-      0
-     ],
-     [
-      22,
-      1,
-      0
-     ],
-     [
-      23,
-      0,
-      0
-     ],
-     [
-      23,
-      1,
-      0
-     ],
-     [
-      24,
-      0,
-      0
-     ],
-     [
-      24,
-      1,
-      0
-     ],
-     [
-      25,
-      0,
-      0
-     ],
-     [
-      25,
-      1,
-      0
-     ],
-     [
-      26,
-      0,
-      0
-     ],
-     [
-      26,
-      1,
-      0
-     ],
-     [
-      27,
-      0,
-      0
-     ],
-     [
-      27,
-      1,
-      0
-     ],
-     [
-      28,
-      0,
-      0
-     ],
-     [
-      28,
-      1,
-      0
-     ],
-     [
-      29,
-      0,
-      0
-     ],
-     [
-      29,
-      1,
-      0
-     ],
-     [
-      30,
-      0,
-      0
-     ],
-     [
-      30,
-      1,
-      0
-     ],
-     [
-      31,
-      0,
-      0
-     ],
-     [
-      31,
-      1,
-      0
-     ],
-     [
-      32,
-      0,
-      0
-     ],
-     [
-      32,
-      1,
-      0
-     ],
-     [
-      33,
-      0,
-      0
-     ],
-     [
-      33,
-      1,
-      0
-     ],
-     [
-      34,
-      0,
-      0
-     ],
-     [
-      34,
-      1,
-      0
-     ],
-     [
-      35,
-      0,
-      0
-     ],
-     [
-      35,
-      1,
-      0
-     ],
-     [
-      36,
-      0,
-      0
-     ],
-     [
-      36,
-      1,
-      0
-     ],
-     [
-      37,
-      0,
-      0
-     ],
-     [
-      37,
-      1,
-      0
-     ],
-     [
-      38,
-      0,
-      0
-     ],
-     [
-      38,
-      1,
-      0
-     ],
-     [
-      39,
-      0,
-      0
-     ],
-     [
-      39,
-      1,
-      0
-     ],
-     [
-      40,
-      0,
-      0
-     ],
-     [
-      40,
-      1,
-      0
-     ],
-     [
-      41,
-      0,
-      0
-     ],
-     [
-      41,
-      1,
-      0
-     ],
-     [
-      42,
-      0,
-      0
-     ],
-     [
-      42,
-      1,
-      0
-     ],
-     [
-      43,
-      0,
-      0
-     ],
-     [
-      43,
-      1,
-      0
-     ],
-     [
-      44,
-      0,
-      0
-     ],
-     [
-      44,
-      1,
-      0
-     ],
-     [
-      45,
-      0,
-      0
-     ],
-     [
-      45,
-      1,
-      0
-     ],
-     [
-      46,
-      0,
-      0
-     ],
-     [
-      46,
-      1,
-      0
-     ],
-     [
-      47,
-      0,
-      0
-     ],
-     [
-      47,
-      1,
-      0
-     ]
-    ],
-    "scratch_seed": 600,
-    "xpsr": 0
-   },
-   "new_instructions": 17,
-   "stack_args": []
   }
  ],
  "core": "app",
  "coverage": {
-  "covered": 92,
-  "ratio": 0.3472,
+  "covered": 90,
+  "ratio": 0.3396,
   "total": 265,
   "unresolved_indirect": 0
  },
@@ -5525,8 +4676,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "notify",
@@ -5535,16 +4689,26 @@
   "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
   "source": "shipped image"
  },
- "pointer_arg_mask": [],
+ "pointer_arg_mask": [
+  0,
+  2,
+  3
+ ],
  "ret_kind": "i32",
  "search": {
-  "candidates": 183,
+  "candidates": 260,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
-  "kept": 52,
-  "pointer_arg_mask": [],
+  "kept": 51,
+  "pointer_arg_mask": [
+   0,
+   2,
+   3
+  ],
   "pointer_arg_mask_derived": true
  },
  "size": 760,

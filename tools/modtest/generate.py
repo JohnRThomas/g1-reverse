@@ -46,6 +46,40 @@ from core import Fixture, cfg_instructions, run_original      # noqa: E402
 #: enum, a level threshold, a bit mask, or a pointer being NULL.
 GLOBAL_LADDER = (0, 1, 2, 3, 0xff, 0x7fffffff, 0xffffffff, emu.SCRATCH + 0x2000)
 
+#: ★ A GLOBAL IS A STRUCT, and the sweep was writing FOUR BYTES at its base.
+#:
+#: Measured on `confirm_message` (229 instructions, 4 % coverage, 322 candidate
+#: fixtures of which the selector kept ONE because every fixture produced the
+#: identical 9-instruction outcome).  Its gate is:
+#:
+#:     ldr   r6, [pc, #0x274]        <- the literal the sweep finds
+#:     ldrb.w r3, [r6, #0x118]       <- and the byte the branch actually reads
+#:     cmp   r3, #0  /  beq  <exit>
+#:     ldr.w r4, [r6, #0x110]  ...   cmp r4, r0   /  bne <exit>
+#:     ldrb.w r3, [r6, #0x115]  ...  cmp r3, #4   /  bne <exit>
+#:
+#: The ladder set `[r6, #0]` and nothing at +0x110, +0x115 or +0x118, so all
+#: three guards took the same branch under every one of the 322 fixtures.  This
+#: is the GLOBAL analogue of the pointee blind spot below: the dimension
+#: existed, and it addressed one word of an object that is hundreds of bytes
+#: wide.  The ladder value is now written across a SPAN.
+GLOBAL_SPAN = 0x400
+
+
+def _global_span(address):
+    """How far to write the ladder value from a global's base.
+
+    Clamped so a global sitting just below the argument-pointer SCRATCH region
+    or the stack cannot have its sweep spill into either -- that would overwrite
+    the fixture's own pointee and the frame, which is not a global sweep, it is
+    corruption.
+    """
+    high = address + GLOBAL_SPAN
+    for barrier in (emu.SCRATCH, emu.STACK_TOP - 0x9000):
+        if address < barrier < high:
+            high = barrier
+    return max(high - address, 4)
+
 _LDR_PC = re.compile(r'^(?:r\d+|sb|sl|fp|ip),\s*\[pc,\s*#(?:0x)?([0-9a-fA-F]+)\]')
 
 
@@ -148,6 +182,26 @@ def pointer_arg_mask(core, va, size):
         operands = insn.op_str
         if head in ("bl", "blx"):
             for name in _ARG_REGS:
+                # ★ A PASS-THROUGH POINTER IS STILL A POINTER (net §12.2).
+                # A value sitting in an ARGUMENT register at a call site is
+                # being PASSED.  A wrapper never dereferences its own pointer
+                # parameters, so clearing the origin here reported an EMPTY
+                # mask, `make_args` seeded the parameter with a random integer,
+                # and the shipped bytes faulted dereferencing it -- freezing a
+                # golden that records a fault the hardware never takes.
+                # Measured by the net pass against the reconstructed
+                # signatures, which are an independent derivation: 47 of 370
+                # vectors (12.7 %) missed at least one pointer parameter, and
+                # 21 of its 86 failures are among them.
+                #
+                # The direction of error matters and is the opposite of
+                # `callee_gpr_defs`'.  Over-marking costs a fixture band --
+                # `candidate_fixtures` keeps ptr0/ptr2/ptr4 bands precisely so
+                # a wrong mask loses coverage rather than truth, and the
+                # coverage-greedy selector drops what adds nothing.
+                # Under-marking freezes a false expectation.
+                if origin.get(name) is not None:
+                    mask.add(origin[name])
                 origin.pop(name, None)
             continue
         if insn.mnemonic in _DEREF or head in _DEREF:
@@ -182,6 +236,58 @@ def pointer_arg_mask(core, va, size):
                                  "it", "ite", "itt"):
             origin.pop(dest.group(1), None)
     return mask
+
+
+#: ★ THE POINTEE LADDER (2026-07-29).  `Fixture` has had a `mem` dimension --
+#: "[[arg_index, offset, hex]] pointee writes" -- since the pilot, and MEASURED
+#: over the corpus on disk, **0 of 25,524 generated fixtures ever used it**.
+#: So the content behind a pointer argument was always `emu`'s PRNG seeding of
+#: SCRATCH, i.e. a uniformly random word.  That is AGENTS.md finding #1 exactly,
+#: one level of indirection out: a command dispatcher reads its opcode from a
+#: packet the caller points at, a random opcode selects one arbitrary switch
+#: case, and every other case is unreachable by construction.
+#:
+#: It is not a small effect.  The instruction-weighted coverage of this corpus
+#: is 52 % against a per-symbol mean of 82 %, and the gap is carried by exactly
+#: this shape: `spec_ble_command_hook` 1221 instructions at 6 %,
+#: `audioStreamFileManagerHandler` 700 at 7 %, `confirm_message` 229 at 4 %.
+#: Twenty symbols hold 30 % of all instructions at <= 63 % coverage and they are
+#: all `*_thread` / `*_handler` / `*_hook` / `*_dispatch` bodies.
+POINTEE_LADDER = (0, 1, 2, 3, 4, 5, 0xff, 0xffffffff)
+
+_CMP_IMM = re.compile(r',\s*#(?:0x)?([0-9a-fA-F]+)\s*$')
+_CMP_HEADS = ("cmp", "cmn", "subs", "teq", "tst", "and", "adds", "sub")
+
+
+def compare_immediates(core, va, size, cap=8):
+    """Constants the SHIPPED code compares a value against.
+
+    The same recovery cfg_verify does for argument registers, aimed at MEMORY
+    instead: a `cmp rN, #7` guarding a jump table names the exact selector
+    domain, and the ladder above only reaches a dense switch by accident.
+    Walked over the CFG-reachable set, so a literal pool is never decoded as a
+    `cmp` (AGENTS.md finding #2 in miniature -- the same reason
+    `pointer_arg_mask` walks the CFG).
+    """
+    ctx = mtcore.core_ctx(core)
+    base = va & ~1
+    reachable, _unresolved = cfg_instructions(core, va, size)
+    blob = ctx["rawread"](base, size + 8)
+    found = []
+    for address in sorted(reachable):
+        offset = address - base
+        if not (0 <= offset < size):
+            continue
+        insn = next(mtcore._MD.disasm(blob[offset:offset + 4], address), None)
+        if insn is None or insn.mnemonic.split(".")[0] not in _CMP_HEADS:
+            continue
+        match = _CMP_IMM.search(insn.op_str)
+        if not match:
+            continue
+        value = int(match.group(1), 16) & 0xffffffff
+        if value not in found:
+            found.append(value)
+    return found[:cap]
 
 
 def _masked_args(seed, mask):
@@ -378,6 +484,35 @@ def candidate_fixtures(core, va, size, nptr=None, seeds=48, float_words=None):
                     scratch_seed=830 + t, abs_mem=chain,
                     oracle=[(k, r, 0) for k in range(12) for r in (0, 1)]))
                 t += 1
+    calls = _call_count(core, va, size)
+    # ★ POINTEE CONTENT.  Drive the first two words behind each of the first
+    # two pointer arguments over the ladder and over the constants the shipped
+    # code actually compares against.  Offset 0 and offset 4 because a message
+    # or packet record is overwhelmingly {opcode, payload} or {len, opcode}.
+    values = list(POINTEE_LADDER) + [v for v in compare_immediates(core, va, size)
+                                     if v not in POINTEE_LADDER]
+    for slot in sorted(mask)[:2]:
+        for vi, value in enumerate(values):
+            word = int(value & 0xffffffff).to_bytes(4, "little")
+            out.append(Fixture.make(
+                "ptee-%d-%d" % (slot, vi), _masked_args(900 + vi, mask),
+                nptr=nptr_meta, scratch_seed=900 + vi,
+                mem=[(slot, 0, word)]))
+            out.append(Fixture.make(
+                "ptee4-%d-%d" % (slot, vi), _masked_args(950 + vi, mask),
+                nptr=nptr_meta, scratch_seed=950 + vi,
+                mem=[(slot, 0, word), (slot, 4, word)]))
+    # ★ OUT-PARAMETER CONTENT.  What the opaque callee is modelled as writing
+    # into a caller-supplied buffer (core.OUTPARAM_FILL) is a fixed hash
+    # pattern; a message loop that fetches its command with `k_msgq_get(&msg)`
+    # therefore sees exactly ONE command for every fixture.  Sweep it with the
+    # same values, for the same reason the `orc` dimension sweeps a callee's
+    # RETURN value -- this is the other half of the same channel.
+    if calls:
+        for vi, value in enumerate(values):
+            out.append(Fixture.make(
+                "opw-%d" % vi, _masked_args(980 + vi, mask), nptr=nptr_meta,
+                scratch_seed=980 + vi, outparam=value))
     for index, override in enumerate(_cfg_selector_overrides(core, va, size)):
         args = _masked_args(index, mask)
         for slot, value in override.items():
@@ -399,10 +534,28 @@ def candidate_fixtures(core, va, size, nptr=None, seeds=48, float_words=None):
     globals_ = literal_globals(core, va, size)
     for gi, address in enumerate(globals_):
         for vi, value in enumerate(GLOBAL_LADDER):
+            word = int(value).to_bytes(4, "little")
+            span = _global_span(address)
             out.append(Fixture.make(
                 "glob-%d-%d" % (gi, vi), _masked_args(gi * 4 + vi, mask),
                 nptr=nptr_meta, scratch_seed=gi * 8 + vi,
-                abs_mem=[(address, int(value).to_bytes(4, "little"))]))
+                abs_mem=[(address, word * (span // 4))]))
+    # ★ A GLOBAL COMPARED AGAINST AN ARGUMENT.  `confirm_message`'s second
+    # gate is `ldr r4,[r6,#0x110]; cmp r4,r0; bne <exit>` -- the global holds a
+    # handle and the branch asks whether it is THIS caller's handle.  No
+    # one-dimensional ladder can satisfy that: the value that passes is not a
+    # constant, it is whatever the fixture happened to put in r0.  Firmware is
+    # full of the shape (`if (ctx->current == conn)`, `if (state->owner ==
+    # dev)`), so it gets its own small dimension rather than a lucky ladder
+    # entry.
+    for gi, address in enumerate(globals_[:8]):
+        for ai in range(2):
+            args = _masked_args(1000 + gi * 2 + ai, mask)
+            word = int(args[ai]).to_bytes(4, "little")
+            out.append(Fixture.make(
+                "globarg-%d-%d" % (gi, ai), args, nptr=nptr_meta,
+                scratch_seed=1000 + gi * 2 + ai,
+                abs_mem=[(address, word * (_global_span(address) // 4))]))
     # All globals at once, both extremes: catches a predicate that needs two
     # globals set together (a level AND an enable flag), which the one-at-a-time
     # sweep above structurally cannot reach.
@@ -411,7 +564,8 @@ def candidate_fixtures(core, va, size, nptr=None, seeds=48, float_words=None):
             out.append(Fixture.make(
                 "globall-%d" % vi, _masked_args(100 + vi, mask), nptr=nptr_meta,
                 scratch_seed=200 + vi,
-                abs_mem=[(a, int(value).to_bytes(4, "little"))
+                abs_mem=[(a, int(value).to_bytes(4, "little")
+                          * (_global_span(a) // 4))
                          for a in globals_]))
     # CALLEE RESULTS.  In call-heavy application code this is the DOMINANT
     # branch selector -- `if (k_msgq_put(...) != 0)`, `if (dev == NULL)`,
@@ -423,7 +577,6 @@ def candidate_fixtures(core, va, size, nptr=None, seeds=48, float_words=None):
     # Measured before this dimension existed: `fuel_gauge_update` (1,064 bytes,
     # 319 CFG instructions) reached 20 instructions -- 6 % -- across 41
     # fixtures.
-    calls = _call_count(core, va, size)
     if calls:
         span = min(max(calls, 1), 48)
         for vi, value in enumerate((0, 1, 2, 0xffffffff, 0xfffffff5, 0x7fffffff)):
@@ -454,7 +607,8 @@ def candidate_fixtures(core, va, size, nptr=None, seeds=48, float_words=None):
                     "combo-%d-%d" % (gi, oi),
                     _masked_args(600 + gi * 4 + oi, mask), nptr=nptr_meta,
                     scratch_seed=600 + gi * 4 + oi,
-                    abs_mem=[(a, int(gvalue).to_bytes(4, "little"))
+                    abs_mem=[(a, int(gvalue).to_bytes(4, "little")
+                              * (_global_span(a) // 4))
                              for a in globals_],
                     oracle=[(k, r, ovalue)
                             for k in range(span) for r in (0, 1)]))
@@ -508,6 +662,8 @@ def select(core, va, size, ret_kind="i32", nptr=None, budget=400, max_insns=2000
     disputed = tail_branch_entries(core, va, size)
     dropped = 0
     capped = 0
+    outparam = 0
+    uninit_reads = 0
     from core import observable_key
     for fixture in fixtures[:budget]:
         try:
@@ -531,6 +687,22 @@ def select(core, va, size, ret_kind="i32", nptr=None, budget=400, max_insns=2000
             # false, candidate 22222 -- FAIL on BOTH trees, meaning nothing.
             capped += 1
             continue
+        if state.get("uninit_stack_reads"):
+            uninit_reads += 1
+        if mtcore.DROP_OUTPARAM_UNINIT and state.get("outparam_uninit"):
+            # ★ UNMODELLED OUT-PARAMETER (core.OUTPARAM_WINDOW, §28.5.2).  The
+            # GOLDEN read back a byte of a buffer it handed to an opaque callee
+            # that nothing in the run wrote.  Both sides then read uninitialised
+            # frame memory, and their frames are not the same frame, so the
+            # comparison is decided by garbage.  Measured instances:
+            # `md5_process_block` (the whole 64-byte MD5 block),
+            # `battery_soc_curve_model_init`, `battery_model_state_update` --
+            # which are THE ENTIRE LIST of open "real defects" this harness has
+            # ever named on the app core.  Dropping the fixture reports the
+            # symbol as VACUOUS/uncovered rather than as a failure: undecidable,
+            # which is what it is.
+            outparam += 1
+            continue
         new = hit - covered
         # The stack RECORD is part of the outcome.  Without this a fixture that
         # builds a different record but reaches no new instruction and returns
@@ -552,6 +724,8 @@ def select(core, va, size, ret_kind="i32", nptr=None, budget=400, max_insns=2000
     denominator = denominator | covered
     stats = {"candidates": len(fixtures), "kept": len(kept),
              "harness_errors": errors,
+             "dropped_outparam_uninit": outparam,
+             "fixtures_reading_uninit_stack": uninit_reads,
              "pointer_arg_mask": sorted(mask),
              "pointer_arg_mask_derived": nptr is None,
              "dropped_extent_dispute": dropped,

@@ -18,11 +18,11 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 4, 3694469211, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 4, 0, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536948308, 3694469211, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 536948308, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "1bcfbf9506a19fdea72370512f9773c3c0e99fdeeaa374310ef15c04f9e6dae2",
+    "events": "0026fcc65d066eb8f40e4d60c686d41ca0975b5be9c87c303f7874d53c1d17df",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -31,17 +31,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     1276959699,
+     536943568,
      12,
-     4,
+     536948308,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -64,17 +65,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4067469868,
+     536947244,
      1797429778,
-     2147483648,
+     536940476,
      315044147
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -99,11 +101,11 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 3677430904, 471345317, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 3677430904, 7, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536945784, 471345317, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 536945784, 7, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "f496254baf74744c45532631a2244826e67f8bc41bf460c3a1024522d8bf85a4",
+    "events": "fad9e8dd073d52c7e9015fd0a0853f10d3f2f7b02658f2763c98e13ae4dee742",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -112,17 +114,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4290042576,
+     536943312,
      598759513,
-     3677430904,
+     536945784,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
@@ -147,11 +150,11 @@
     105584
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 3842370354, 2655161023, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 3842370354, 6, 'S', 'F', 'T', None)"
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536947504, 2655161023, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 536947504, 6, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "59ab084a9d77f14bce67828c51bf2ae07cf864476ca8b7bb4b7b3f480a0047da",
+    "events": "ec90bfef46a0574891b7729e155ca2feadf4135a79103325c345ac0d527a0c16",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -160,18 +163,1048 @@
    "fixture": {
     "abs": [],
     "args": [
-     16,
+     536945864,
      2147483647,
-     3842370354,
+     536947504,
      6
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 4,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536951212, 3178863954, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 536951212, 2147483647, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "eee7663d9586d725ccabd099671ba8151350935fd7843ff4ce5cb7d29d651351",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944692,
+     1556998536,
+     536951212,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-9",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 9,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536946200, 3586673693, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 536946200, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "a71b1ad06fbb2ee92baabb97512bd8eaaf58c4b40b393451d808e7685625c164",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939204,
+     995058044,
+     536946200,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-10",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 10,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536938076, 801746852, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 536938076, 1426281073, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "84c00fe6e07fbdf595c64fd1d5c8ff8751ff26af2a21456da8521280274d19ff",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536937040,
+     2147483648,
+     536938076,
+     1426281073
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-11",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 11,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536941268, 1542880163, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 536941268, 1103693227, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "3d0454597185667cf23a96390cd227bbece5c078ec51441b1dce8cc0baba87c4",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944520,
+     3217736208,
+     536941268,
+     1103693227
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-12",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 12,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536939060, 287561451, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 536939060, 617681966, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "dda21a25ac4126a888261749a7961bc96ae0d560e1e328f0a17f9683a580e62c",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944304,
+     1944344031,
+     536939060,
+     617681966
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-13",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 13,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536941864, 886755549, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 536941864, 16, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "03add52cd1272a5e0c9e118b3d68151fb5951c87440152322a59b319d07f4de2",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536943260,
+     2147483648,
+     536941864,
+     16
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-16",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 16,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536950616, 4075769455, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 536950616, 255, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "bcd685a7476c2d7eeffbc5b40f8ac7e80c292865e065252188de838befe37782",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939284,
+     1536401714,
+     536950616,
+     255
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-19",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 19,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536951968, 2217669457, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 536951968, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c23f8344114b3a06e83f75c446fef147792820d845226bc590e21fe5f3cb10e1",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941420,
+     1,
+     536951968,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-21",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 21,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536947844, 3712121755, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 536947844, 604019693, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "660b107bab5b9b531257fe867c5d9bfc4d08528641af9b061c3dde80831f70c5",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536938252,
+     12,
+     536947844,
+     604019693
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-25",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 25,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536940144, 1775869161, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 536940144, 4125446660, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "90138d33d23d736c21d68b3aa7c525856f2a5498691ffe8cf3a0ac4d1b84fa28",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536945192,
+     681194263,
+     536940144,
+     4125446660
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-27",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 27,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536946096, 1542213390, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 536946096, 2592385448, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "b53bb207e0c44e2c274d339fcbe8bb17848dfc32a8c235331e464ebfb10685b9",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946084,
+     4285183211,
+     536946096,
+     2592385448
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-28",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 28,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536945744, 2417460406, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 536945744, 7, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "f78a731462b351bb18804bdc23b464bd5028991f95e07bfda88a22ab61a298fa",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952796,
+     8,
+     536945744,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-30",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 30,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536938932, 1988174091, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 536938932, 53351545, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "fd651d568a94fda3d853b63d510714c43e85230a3d5cbb7a33bddd5dd15cb9eb",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952300,
+     2461003590,
+     536938932,
+     53351545
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-31",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 31,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536941348, 615009301, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 536941348, 1170652979, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "f1e9cdb20379f3c9bdcee2701b7af61a927e5754b9b6e6a98957b33a56becfb1",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536946568,
+     2706821390,
+     536941348,
+     1170652979
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-32",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 32,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536952812, 2360084761, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 536952812, 2147483647, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "afb2c0649629bd25e6ef54b3762422bbdf8df00afa629ca95282c93c061c0533",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536950120,
+     3990671540,
+     536952812,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-34",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 34,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536943912, 4019880274, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 536943912, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "e33d82b6731888f6a3ee60b5d93737257742b11a685fcf6f1c4ef49e32150e18",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952432,
+     3578977268,
+     536943912,
+     1
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-35",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 35,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536945964, 823752600, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 536945964, 8, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "30ff9c48940cf970f52740c3abc3bc1d3846b0986425977d4003dbeb840bc213",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536944224,
+     12,
+     536945964,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-36",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 36,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536948532, 2944518647, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 536948532, 1997155928, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "128bf848f90982b496aa2d978788792d005ad0d95a917c4398bec75de677dce3",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941424,
+     1587124134,
+     536948532,
+     1997155928
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-39",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 39,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536950104, 2096484019, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 536950104, 1, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0f9dcbbae0c04e41199eded87cd25454063b58f06bcc571a4113ba94a62778a0",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941236,
+     256,
+     536950104,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-41",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 41,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536943656, 509112996, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 536943656, 3983748582, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "32af0a3de12fc1e95956150b76f64a511b1effcd1498ecad7d36b81be91f58b3",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536952228,
+     4,
+     536943656,
+     3983748582
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-42",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 42,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536946384, 217414738, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 536946384, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "690e6accf8cd8d518f3c9eabbb7a92d87b5df064490919bfd29b75a59f7c00d0",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536939280,
+     3098095624,
+     536946384,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-44",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 44,
     "xpsr": 0
    },
    "new_instructions": 27,
@@ -212,1065 +1245,22 @@
    "fixture": {
     "abs": [],
     "args": [
-     4,
-     3188701995,
-     8,
-     7
+     536943108,
+     2147483648,
+     536937348,
+     2288169737
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "seed-5",
+    "id": "seed-46",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
     "oracle": [],
-    "scratch_seed": 5,
+    "outparam": null,
+    "scratch_seed": 46,
     "xpsr": 0
    },
    "new_instructions": 24,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 499087790, 3178863954, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 499087790, 2147483647, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "0353dbe3658782d46caf68777e2f8304f173eabd59ddb87c020fbe2bcf6ca1d9",
-    "kind": "return",
-    "ncalls": 2,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     1346232374,
-     1556998536,
-     499087790,
-     2147483647
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-9",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 9,
-    "xpsr": 0
-   },
-   "new_instructions": 27,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 8, 3586673693, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 8, 1, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "b6e456fbf2f91a400d77a5388696acc521b6ea60207cb21fcfac11002d326947",
-    "kind": "return",
-    "ncalls": 2,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     182454980,
-     995058044,
-     8,
-     1
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-10",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 10,
-    "xpsr": 0
-   },
-   "new_instructions": 27,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    0,
-    3,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32",
-    "void",
-    "i32"
-   ],
-   "call_targets": [
-    105584,
-    549772,
-    552056,
-    92072
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 256, 801746852, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 536972714, 0, 4096, 'S', 'F', 'T', None)",
-    "('C', 3, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "error": "Invalid memory read",
-    "events": "55bef6f8c801931500bb46f980093e1a91a14262efad5b35e786b380b81f8c89",
-    "kind": "fault",
-    "ncalls": 4
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3,
-     2147483648,
-     256,
-     1426281073
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-11",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 11,
-    "xpsr": 0
-   },
-   "new_instructions": 30,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 5, 1542880163, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 5, 1103693227, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "509c3e18042a0eb14e0b27ee77bdf705733c5d94fdf4190a9a836ac305635cb4",
-    "kind": "return",
-    "ncalls": 2,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     8,
-     3217736208,
-     5,
-     1103693227
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-12",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 12,
-    "xpsr": 0
-   },
-   "new_instructions": 27,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 6, 287561451, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 6, 617681966, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "6948a5d28e718238030a44e6ff1f5d93c283dc90bfa820d2c166638c28849628",
-    "kind": "return",
-    "ncalls": 2,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     1156718256,
-     1944344031,
-     6,
-     617681966
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-13",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 13,
-    "xpsr": 0
-   },
-   "new_instructions": 27,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 3454407978, 886755549, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 3454407978, 16, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "37557960f1ba66eb6ae22f807c83a0a45aca0009a4d254918face49eb4d5a6cc",
-    "kind": "return",
-    "ncalls": 2,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     2024561310,
-     2147483648,
-     3454407978,
-     16
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-16",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 16,
-    "xpsr": 0
-   },
-   "new_instructions": 27,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 4178753371, 4075769455, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 4178753371, 255, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "e024c3b000151935fb9969a5bbd0f08dfbc71cfcf85c0e202cc3331c637b2509",
-    "kind": "return",
-    "ncalls": 2,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     6,
-     1536401714,
-     4178753371,
-     255
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-19",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 19,
-    "xpsr": 0
-   },
-   "new_instructions": 27,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 2870852768, 2217669457, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 2870852768, 0, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "9e6c148ca4b799a57261ff39ae5a6b5767b4221e7fd492c4d617656caf9fa508",
-    "kind": "return",
-    "ncalls": 2,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     843060076,
-     1,
-     2870852768,
-     0
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-21",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 21,
-    "xpsr": 0
-   },
-   "new_instructions": 27,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 2149248134, 3712121755, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 2149248134, 604019693, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "9481d26dee896faae55acd14a0096e77c9ffd38d615f4aca4b6fb9a7d52cd813",
-    "kind": "return",
-    "ncalls": 2,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3751937804,
-     12,
-     2149248134,
-     604019693
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-25",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 25,
-    "xpsr": 0
-   },
-   "new_instructions": 27,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 3639365232, 1775869161, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 3639365232, 4125446660, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "19094eff12c1fed769df5022f42bd42a8e74b168a0781c798158ea4105402992",
-    "kind": "return",
-    "ncalls": 2,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     187818536,
-     681194263,
-     3639365232,
-     4125446660
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-27",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 27,
-    "xpsr": 0
-   },
-   "new_instructions": 27,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 1, 1542213390, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 1, 2592385448, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "31656eed659c2cfd2ebd58ca1273fbd0b102cb74008b32a1d266a752a6d3e774",
-    "kind": "return",
-    "ncalls": 2,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3711083943,
-     4285183211,
-     1,
-     2592385448
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-28",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 28,
-    "xpsr": 0
-   },
-   "new_instructions": 27,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    0,
-    3,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32",
-    "void",
-    "i32"
-   ],
-   "call_targets": [
-    105584,
-    549772,
-    552056,
-    92072
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 1, 2417460406, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 536972714, 0, 4096, 'S', 'F', 'T', None)",
-    "('C', 3, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "error": "Invalid memory read",
-    "events": "61a8c7020ff738ae7a4a3eba622de145c2a8a918176f46ae5e5f54a716b28e38",
-    "kind": "fault",
-    "ncalls": 4
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     256,
-     8,
-     1,
-     7
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-30",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 30,
-    "xpsr": 0
-   },
-   "new_instructions": 30,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    0,
-    3,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32",
-    "void",
-    "i32"
-   ],
-   "call_targets": [
-    105584,
-    549772,
-    552056,
-    92072
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 7, 1988174091, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 536972714, 0, 4096, 'S', 'F', 'T', None)",
-    "('C', 3, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "error": "Invalid memory read",
-    "events": "83d95804071415640c53247b58c6be58ab29acd180b4152e2bc7d9c0eb4d6da8",
-    "kind": "fault",
-    "ncalls": 4
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     4294967295,
-     2461003590,
-     7,
-     53351545
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-31",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 31,
-    "xpsr": 0
-   },
-   "new_instructions": 30,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 3442053927, 615009301, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 3442053927, 1170652979, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "49ebc040d5e9b0ef031e0ff89b80d41e1ea1c4d168c302cf1b439ea0d8bd13c3",
-    "kind": "return",
-    "ncalls": 2,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     1839753098,
-     2706821390,
-     3442053927,
-     1170652979
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-32",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 32,
-    "xpsr": 0
-   },
-   "new_instructions": 27,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 922796015, 2360084761, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 922796015, 2147483647, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "6b75e8c8a05bdc4c732d035d784e691f24ab27c38a886328bcf3a2203642cf1c",
-    "kind": "return",
-    "ncalls": 2,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     12,
-     3990671540,
-     922796015,
-     2147483647
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-34",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 34,
-    "xpsr": 0
-   },
-   "new_instructions": 27,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 4001652011, 4019880274, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 4001652011, 1, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "4957ad095854d9d29fd95d0e2946250b2555fd844955974b846ad531a4f8cc45",
-    "kind": "return",
-    "ncalls": 2,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     2726887024,
-     3578977268,
-     4001652011,
-     1
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-35",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 35,
-    "xpsr": 0
-   },
-   "new_instructions": 27,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 2147483647, 823752600, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 2147483647, 8, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "6753501bf41f48817f1840ba8d60e68d5ccac0f740af4a03f0080e58745e7c29",
-    "kind": "return",
-    "ncalls": 2,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     0,
-     12,
-     2147483647,
-     8
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-36",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 36,
-    "xpsr": 0
-   },
-   "new_instructions": 29,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    0,
-    3,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32",
-    "void",
-    "i32"
-   ],
-   "call_targets": [
-    105584,
-    549772,
-    552056,
-    92072
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 3774328631, 2944518647, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 536972714, 0, 4096, 'S', 'F', 'T', None)",
-    "('C', 3, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "error": "Invalid memory read",
-    "events": "adce1bc55274503fea19211f947eb077ac6a216928eb28e228a67c39f91a85b8",
-    "kind": "fault",
-    "ncalls": 4
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3,
-     1587124134,
-     3774328631,
-     1997155928
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-39",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 39,
-    "xpsr": 0
-   },
-   "new_instructions": 30,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 3059135833, 2096484019, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 3059135833, 1, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "d347f7c21a3c1a1bcd5ca229b4ae0b64ecbfda00a676b9d89b3afdac438477b5",
-    "kind": "return",
-    "ncalls": 2,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3886568119,
-     256,
-     3059135833,
-     1
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-41",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 41,
-    "xpsr": 0
-   },
-   "new_instructions": 27,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 12, 509112996, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 12, 3983748582, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "a2ae28bc3faba142508dcba62738e3caed9f956de1a96a2f85e7eb28d6577915",
-    "kind": "return",
-    "ncalls": 2,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     538639782,
-     4,
-     12,
-     3983748582
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-42",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 42,
-    "xpsr": 0
-   },
-   "new_instructions": 27,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 1643521744, 217414738, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 1643521744, 0, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "8e42eca524f5cbeccc3f311aef9c91dde6f8374258b27aa5a682f3476c043dca",
-    "kind": "return",
-    "ncalls": 2,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     0,
-     3098095624,
-     1643521744,
-     0
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-44",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 44,
-    "xpsr": 0
-   },
-   "new_instructions": 29,
    "stack_args": []
   },
   {
@@ -1315,6 +1305,7 @@
     "mem": [],
     "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 700,
     "xpsr": 0
    },
@@ -1363,6 +1354,7 @@
     "mem": [],
     "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 702,
     "xpsr": 0
    },
@@ -1420,6 +1412,7 @@
     "mem": [],
     "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 703,
     "xpsr": 0
    },
@@ -1468,6 +1461,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 700,
     "xpsr": 0
    },
@@ -1516,6 +1510,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 702,
     "xpsr": 0
    },
@@ -1573,6 +1568,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 703,
     "xpsr": 0
    },
@@ -1581,59 +1577,352 @@
   },
   {
    "call_arities": [
-    4,
-    0,
-    3,
     0
    ],
    "call_float_arities": [
-    0,
-    0,
-    0,
     0
    ],
    "call_return_kinds": [
-    "void",
-    "i32",
-    "void",
     "i32"
    ],
    "call_targets": [
-    105584,
-    549772,
-    552056,
-    92072
+    549772
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 3677430904, 471345317, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 536972714, 0, 4096, 'S', 'F', 'T', None)",
-    "('C', 3, 'S', 'F', 'T', None)"
+    "('C', 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "error": "Invalid memory read",
-    "events": "0fc96086ac745c3905541e2b688bed1396f525f5fdb15a616183a82f849e7958",
-    "kind": "fault",
-    "ncalls": 4
+    "events": "224e60b24cfba8ccbb749ad0735912f56546fc3b88ccc22503219362cc1fd656",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [],
+    "returned": true
    },
    "fixture": {
-    "abs": [],
+    "abs": [
+     [
+      536940544,
+      "4110012044100120481001204c1001205110012054100120581001205c1001206110012064100120681001206c1001207110012074100120781001207c1001208110012084100120881001208c1001209110012094100120981001209c100120a1100120a4100120a8100120ac100120b1100120b4100120b8100120bc100120c1100120c4100120c8100120cc100120d1100120d4100120d8100120dc100120e1100120e4100120e8100120ec100120f1100120f4100120f8100120fc1001200111012004110120081101200c1101201111012014110120181101201c1101202111012024110120281101202c1101203111012034110120381101203c1101204111012044110120481101204c1101205111012054110120581101205c1101206111012064110120681101206c1101207111012074110120781101207c1101208111012084110120881101208c1101209111012094110120981101209c110120a1110120a4110120a8110120ac110120b1110120b4110120b8110120bc110120c1110120c4110120c8110120cc110120d1110120d4110120d8110120dc110120e1110120e4110120e8110120ec110120f1110120f4110120f8110120fc1101200110012004100120081001200c1001201110012014100120181001201c1001202110012024100120281001202c1001203110012034100120381001203c100120"
+     ]
+    ],
     "args": [
-     3,
-     598759513,
-     3677430904,
-     7
+     536940544,
+     558208872,
+     536940552,
+     3003667676
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "cfgsel-2",
+    "id": "chain0-0",
     "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 2,
+    "nptr": 2,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 830,
     "xpsr": 0
    },
-   "new_instructions": 30,
+   "new_instructions": 20,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536940552, 1114733997, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s():  [%s] device not ready.\\n\\n'), ('RO', b'delVoiceBlock'), 0, 3232220875, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "f44f687677c8770867a02ece942fd5b2af240f5ce292dcf6a10ca74bedb62700",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "4010012044100120491001204c1001205010012054100120591001205c1001206010012064100120691001206c1001207010012074100120791001207c1001208010012084100120891001208c1001209010012094100120991001209c100120a0100120a4100120a9100120ac100120b0100120b4100120b9100120bc100120c0100120c4100120c9100120cc100120d0100120d4100120d9100120dc100120e0100120e4100120e9100120ec100120f0100120f4100120f9100120fc1001200011012004110120091101200c1101201011012014110120191101201c1101202011012024110120291101202c1101203011012034110120391101203c1101204011012044110120491101204c1101205011012054110120591101205c1101206011012064110120691101206c1101207011012074110120791101207c1101208011012084110120891101208c1101209011012094110120991101209c110120a0110120a4110120a9110120ac110120b0110120b4110120b9110120bc110120c0110120c4110120c9110120cc110120d0110120d4110120d9110120dc110120e0110120e4110120e9110120ec110120f0110120f4110120f9110120fc1101200010012004100120091001200c1001201010012014100120191001201c1001202010012024100120291001202c1001203010012034100120391001203c100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     2951236948,
+     536940552,
+     3232220875
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-2",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 832,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
    "stack_args": []
   },
   {
@@ -1662,764 +1951,1255 @@
     92072
    ],
    "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 2147483647, 2987881189, 'S', 'F', 'T', None)",
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536940552, 2322744795, 'S', 'F', 'T', None)",
     "('C', 1, 'S', 'F', 'T', None)",
     "('C', 2, 536972714, 0, 4096, 'S', 'F', 'T', None)",
     "('C', 3, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Invalid memory read",
-    "events": "008cc83077411771a09465a3fd3e69740bcfd46e22d254593a899f41ce896d22",
-    "kind": "fault",
-    "ncalls": 4
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     4294967295,
-     4142138223,
-     2147483647,
-     2671219995
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1065353216,
-     "1": 3204448256
-    },
-    "id": "fp-49",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 49,
-    "xpsr": 0
-   },
-   "new_instructions": 30,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 3, 3904235970, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 3, 3948225427, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "bb03fdf3e6c1bf48172bf712d3c53c6e182d6f036b86881b450854235a0f51e1",
-    "kind": "return",
-    "ncalls": 2,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     271826021,
-     7,
-     3,
-     3948225427
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3212836864,
-     "1": 0
-    },
-    "id": "fp-50",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 50,
-    "xpsr": 0
-   },
-   "new_instructions": 27,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 2147483647, 735384069, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 2147483647, 2092907358, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "3b4527dec600d9b3cbd6a9d6d3fe422e67f5d9c60902dfd9c0e673ceae5cc41d",
-    "kind": "return",
-    "ncalls": 2,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3856939601,
-     1894272194,
-     2147483647,
-     2092907358
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3204448256,
-     "1": 3239897098
-    },
-    "id": "fp-52",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 52,
-    "xpsr": 0
-   },
-   "new_instructions": 27,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 2147483647, 3921118200, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 2147483647, 2556506514, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "a79076c1b71b40ab3fb00e7011a4e5e6e3d588d4e4624f6776e5361d38414adc",
-    "kind": "return",
-    "ncalls": 2,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     1740848604,
-     2393220392,
-     2147483647,
-     2556506514
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 2147483648,
-     "1": 3204448256
-    },
-    "id": "fp-54",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 54,
-    "xpsr": 0
-   },
-   "new_instructions": 27,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 3578670822, 1028059815, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 3578670822, 8, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "5e44404c39f8e105270e294096c6a096ab4adf0e4de8af6abc1690171fce8228",
-    "kind": "return",
-    "ncalls": 2,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     8,
-     3577755483,
-     3578670822,
-     8
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1065353216,
-     "1": 0
-    },
-    "id": "fp-55",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 55,
-    "xpsr": 0
-   },
-   "new_instructions": 27,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 206381930, 480847480, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 206381930, 1, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "d3d35b7d8d198bc6575e68fa7116b726413b621caa1c04d4d34a93eb90312d18",
-    "kind": "return",
-    "ncalls": 2,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     5,
-     3291529428,
-     206381930,
-     1
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3212836864,
-     "1": 3184315597
-    },
-    "id": "fp-56",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 56,
-    "xpsr": 0
-   },
-   "new_instructions": 27,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 1677850251, 2444602602, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 1677850251, 7, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "806c2e8ed40477d13e7e2f0668ac4fafdd1178a59d142a85d09fcd3500098a2a",
-    "kind": "return",
-    "ncalls": 2,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3720324128,
-     2846093838,
-     1677850251,
-     7
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1056964608,
-     "1": 3239897098
-    },
-    "id": "fp-57",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 57,
-    "xpsr": 0
-   },
-   "new_instructions": 27,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 4, 2059510718, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 4, 2495041172, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "4e1faa08376706a7d7f5391564b1955f03a15601c4fa2adaa604051d27c7bdf4",
-    "kind": "return",
-    "ncalls": 2,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     8,
-     2,
-     4,
-     2495041172
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3204448256,
-     "1": 1266679808
-    },
-    "id": "fp-58",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 58,
-    "xpsr": 0
-   },
-   "new_instructions": 27,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    4
-   ],
-   "call_float_arities": [
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    105584,
-    105584
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 1966003740, 913139319, 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 1966003740, 0, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "events": "2d192c5799d4dcd29b19dafcaa6f0d5ac4a0aa4de2f886e7f2b78661e9a6d58f",
-    "kind": "return",
-    "ncalls": 2,
-    "ret": [],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     2684056074,
-     2147483647,
-     1966003740,
-     0
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 2147483648,
-     "1": 0
-    },
-    "id": "fp-60",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 60,
-    "xpsr": 0
-   },
-   "new_instructions": 27,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    4,
-    0,
-    3,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "i32",
-    "void",
-    "i32"
-   ],
-   "call_targets": [
-    105584,
-    549772,
-    552056,
-    92072
-   ],
-   "events_head": [
-    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 1, 3330584012, 'S', 'F', 'T', None)",
-    "('C', 1, 'S', 'F', 'T', None)",
-    "('C', 2, 536972714, 0, 4096, 'S', 'F', 'T', None)",
-    "('C', 3, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "error": "Invalid memory read",
-    "events": "b0e7e8b33086e901ea49261a840d0afa36d40fedaf5605b458652dd32f583052",
-    "kind": "fault",
-    "ncalls": 4
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     256,
-     3605787990,
-     1,
-     0
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1065353216,
-     "1": 3184315597
-    },
-    "id": "fp-61",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 61,
-    "xpsr": 0
-   },
-   "new_instructions": 30,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    0,
-    3,
-    0,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "i32",
-    "void",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    549772,
-    552056,
-    92072,
-    92072
-   ],
-   "events_head": [
-    "('C', 0, 'S', 'F', 'T', None)",
-    "('C', 1, 536972714, 0, 4096, 'S', 'F', 'T', None)",
-    "('C', 2, 'S', 'F', 'T', None)",
-    "('C', 3, 'S', 'F', 'T', None)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "346ef3cc1041bcdc74402212c77f6b2dbcadce4a84419836b453e9a05f3588f0",
+    "events": "5f66a0d02bb9a06ef02e21e3a3c61b7ec3ef3cc81b010f909d45813061408635",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [
      [
-      536879884,
-      "01000000"
-     ],
-     [
-      536900948,
-      "01000000"
-     ],
-     [
-      536972714,
-      "01000000"
+      536940544,
+      "4010012044100120481001204d1001205010012054100120581001205d1001206010012064100120681001206d1001207010012074100120781001207d1001208010012084100120881001208d1001209010012094100120981001209d100120a0100120a4100120a8100120ad100120b0100120b4100120b8100120bd100120c0100120c4100120c8100120cd100120d0100120d4100120d8100120dd100120e0100120e4100120e8100120ed100120f0100120f4100120f8100120fd1001200011012004110120081101200d1101201011012014110120181101201d1101202011012024110120281101202d1101203011012034110120381101203d1101204011012044110120481101204d1101205011012054110120581101205d1101206011012064110120681101206d1101207011012074110120781101207d1101208011012084110120881101208d1101209011012094110120981101209d110120a0110120a4110120a8110120ad110120b0110120b4110120b8110120bd110120c0110120c4110120c8110120cd110120d0110120d4110120d8110120dd110120e0110120e4110120e8110120ed110120f0110120f4110120f8110120fd1101200010012004100120081001200d1001201010012014100120181001201d1001202010012024100120281001202d1001203010012034100120381001203d100120"
      ]
     ],
     "args": [
-     4294967295,
-     5,
-     3514336102,
-     6
+     536940544,
+     540395309,
+     536940552,
+     5
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "combo-1-1",
+    "id": "chain-3",
     "mem": [],
-    "nptr": 0,
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 803,
+    "xpsr": 0
+   },
+   "new_instructions": 30,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536940552, 124486711, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 536972714, 0, 4096, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "04bb8126760717873777d8d1cd6ee6ad0f16d3aa0c4f1be6a224526e1ea2c69b",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "05100120081001200c1001201010012015100120181001201c1001202010012025100120281001202c1001203010012035100120381001203c1001204010012045100120481001204c1001205010012055100120581001205c1001206010012065100120681001206c1001207010012075100120781001207c1001208010012085100120881001208c1001209010012095100120981001209c100120a0100120a5100120a8100120ac100120b0100120b5100120b8100120bc100120c0100120c5100120c8100120cc100120d0100120d5100120d8100120dc100120e0100120e5100120e8100120ec100120f0100120f5100120f8100120fc1001200011012005110120081101200c1101201011012015110120181101201c1101202011012025110120281101202c1101203011012035110120381101203c1101204011012045110120481101204c1101205011012055110120581101205c1101206011012065110120681101206c1101207011012075110120781101207c1101208011012085110120881101208c1101209011012095110120981101209c110120a0110120a5110120a8110120ac110120b0110120b5110120b8110120bc110120c0110120c5110120c8110120cc110120d0110120d5110120d8110120dc110120e0110120e5110120e8110120ec110120f0110120f5110120f8110120fc11012000100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     3541054321,
+     536940552,
+     4294967295
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-4",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 804,
+    "xpsr": 0
+   },
+   "new_instructions": 30,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536940552, 3811744857, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 536972714, 0, 4096, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "a073ce41459b6f77e7029c298834a9de863a1cfc56db73f75feecba44716c441",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "04100120091001200c1001201010012014100120191001201c1001202010012024100120291001202c1001203010012034100120391001203c1001204010012044100120491001204c1001205010012054100120591001205c1001206010012064100120691001206c1001207010012074100120791001207c1001208010012084100120891001208c1001209010012094100120991001209c100120a0100120a4100120a9100120ac100120b0100120b4100120b9100120bc100120c0100120c4100120c9100120cc100120d0100120d4100120d9100120dc100120e0100120e4100120e9100120ec100120f0100120f4100120f9100120fc1001200011012004110120091101200c1101201011012014110120191101201c1101202011012024110120291101202c1101203011012034110120391101203c1101204011012044110120491101204c1101205011012054110120591101205c1101206011012064110120691101206c1101207011012074110120791101207c1101208011012084110120891101208c1101209011012094110120991101209c110120a0110120a4110120a9110120ac110120b0110120b4110120b9110120bc110120c0110120c4110120c9110120cc110120d0110120d4110120d9110120dc110120e0110120e4110120e9110120ec110120f0110120f4110120f9110120fc11012000100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     2147483647,
+     536940552,
+     1831443650
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-5",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 805,
+    "xpsr": 0
+   },
+   "new_instructions": 30,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536940552, 3204408865, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s():  [%s] device not ready.\\n\\n'), ('RO', b'delVoiceBlock'), 0, 1831443650, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "25b25bc49036ee94d04e3464a6a2bed3ebb48c206b8d559b0becdd4e6ec6c340",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "04100120091001200c1001201010012014100120191001201c1001202010012024100120291001202c1001203010012034100120391001203c1001204010012044100120491001204c1001205010012054100120591001205c1001206010012064100120691001206c1001207010012074100120791001207c1001208010012084100120891001208c1001209010012094100120991001209c100120a0100120a4100120a9100120ac100120b0100120b4100120b9100120bc100120c0100120c4100120c9100120cc100120d0100120d4100120d9100120dc100120e0100120e4100120e9100120ec100120f0100120f4100120f9100120fc1001200011012004110120091101200c1101201011012014110120191101201c1101202011012024110120291101202c1101203011012034110120391101203c1101204011012044110120491101204c1101205011012054110120591101205c1101206011012064110120691101206c1101207011012074110120791101207c1101208011012084110120891101208c1101209011012094110120991101209c110120a0110120a4110120a9110120ac110120b0110120b4110120b9110120bc110120c0110120c4110120c9110120cc110120d0110120d4110120d9110120dc110120e0110120e4110120e9110120ec110120f0110120f4110120f9110120fc11012000100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     2147483647,
+     536940552,
+     1831443650
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-5",
+    "mem": [],
+    "nptr": 2,
     "oracle": [
      [
       0,
       0,
-      1
+      0
      ],
      [
       0,
       1,
-      1
+      0
      ],
      [
       1,
       0,
-      1
+      0
      ],
      [
       1,
       1,
-      1
+      0
      ],
      [
       2,
       0,
-      1
+      0
      ],
      [
       2,
       1,
-      1
+      0
      ],
      [
       3,
       0,
-      1
+      0
      ],
      [
       3,
       1,
-      1
+      0
      ],
      [
       4,
       0,
-      1
+      0
      ],
      [
       4,
       1,
-      1
+      0
      ],
      [
       5,
       0,
-      1
+      0
      ],
      [
       5,
       1,
-      1
+      0
      ],
      [
       6,
       0,
-      1
+      0
      ],
      [
       6,
       1,
-      1
+      0
      ],
      [
       7,
       0,
-      1
+      0
      ],
      [
       7,
       1,
-      1
+      0
      ],
      [
       8,
       0,
-      1
+      0
      ],
      [
       8,
       1,
-      1
+      0
      ],
      [
       9,
       0,
-      1
+      0
      ],
      [
       9,
       1,
-      1
+      0
      ],
      [
       10,
       0,
-      1
+      0
      ],
      [
       10,
       1,
-      1
+      0
      ],
      [
       11,
       0,
-      1
+      0
      ],
      [
       11,
       1,
-      1
-     ],
-     [
-      12,
-      0,
-      1
-     ],
-     [
-      12,
-      1,
-      1
-     ],
-     [
-      13,
-      0,
-      1
-     ],
-     [
-      13,
-      1,
-      1
-     ],
-     [
-      14,
-      0,
-      1
-     ],
-     [
-      14,
-      1,
-      1
-     ],
-     [
-      15,
-      0,
-      1
-     ],
-     [
-      15,
-      1,
-      1
-     ],
-     [
-      16,
-      0,
-      1
-     ],
-     [
-      16,
-      1,
-      1
-     ],
-     [
-      17,
-      0,
-      1
-     ],
-     [
-      17,
-      1,
-      1
+      0
      ]
     ],
-    "scratch_seed": 605,
+    "outparam": null,
+    "scratch_seed": 835,
     "xpsr": 0
    },
-   "new_instructions": 29,
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536940552, 3753546315, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 536972714, 0, 4096, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "6bdc64683310441c24d667f81ab407ef3feeed63f1a550051a619fb7267174c8",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "04100120081001200d1001201010012014100120181001201d1001202010012024100120281001202d1001203010012034100120381001203d1001204010012044100120481001204d1001205010012054100120581001205d1001206010012064100120681001206d1001207010012074100120781001207d1001208010012084100120881001208d1001209010012094100120981001209d100120a0100120a4100120a8100120ad100120b0100120b4100120b8100120bd100120c0100120c4100120c8100120cd100120d0100120d4100120d8100120dd100120e0100120e4100120e8100120ed100120f0100120f4100120f8100120fd1001200011012004110120081101200d1101201011012014110120181101201d1101202011012024110120281101202d1101203011012034110120381101203d1101204011012044110120481101204d1101205011012054110120581101205d1101206011012064110120681101206d1101207011012074110120781101207d1101208011012084110120881101208d1101209011012094110120981101209d110120a0110120a4110120a8110120ad110120b0110120b4110120b8110120bd110120c0110120c4110120c8110120cd110120d0110120d4110120d8110120dd110120e0110120e4110120e8110120ed110120f0110120f4110120f8110120fd11012000100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     1756652880,
+     536940552,
+     1979409823
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-6",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 806,
+    "xpsr": 0
+   },
+   "new_instructions": 30,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536940552, 2629500200, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s():  [%s] device not ready.\\n\\n'), ('RO', b'delVoiceBlock'), 0, 6, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "9cf6a2421b1d107958b775cab6c40da22e0e0d703157c065c969c3d9992c2eea",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "0111012004110120081101200c1101201111012014110120181101201c1101202111012024110120281101202c1101203111012034110120381101203c1101204111012044110120481101204c1101205111012054110120581101205c1101206111012064110120681101206c1101207111012074110120781101207c1101208111012084110120881101208c1101209111012094110120981101209c110120a1110120a4110120a8110120ac110120b1110120b4110120b8110120bc110120c1110120c4110120c8110120cc110120d1110120d4110120d8110120dc110120e1110120e4110120e8110120ec110120f1110120f4110120f8110120fc1101200110012004100120081001200c1001201110012014100120181001201c1001202110012024100120281001202c1001203110012034100120381001203c1001204110012044100120481001204c1001205110012054100120581001205c1001206110012064100120681001206c1001207110012074100120781001207c1001208110012084100120881001208c1001209110012094100120981001209c100120a1100120a4100120a8100120ac100120b1100120b4100120b8100120bc100120c1100120c4100120c8100120cc100120d1100120d4100120d8100120dc100120e1100120e4100120e8100120ec100120f1100120f4100120f8100120fc100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     0,
+     536940552,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-8",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 838,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    3,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void",
+    "i32"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    552056,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536940552, 4129539460, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 536972714, 0, 4096, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "b3c5f78410ae6560672b9194fe70d50dfea98ae01c6240f81587c1a58d68c7c3",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "0011012005110120081101200c1101201011012015110120181101201c1101202011012025110120281101202c1101203011012035110120381101203c1101204011012045110120481101204c1101205011012055110120581101205c1101206011012065110120681101206c1101207011012075110120781101207c1101208011012085110120881101208c1101209011012095110120981101209c110120a0110120a5110120a8110120ac110120b0110120b5110120b8110120bc110120c0110120c5110120c8110120cc110120d0110120d5110120d8110120dc110120e0110120e5110120e8110120ec110120f0110120f5110120f8110120fc1101200010012005100120081001200c1001201010012015100120181001201c1001202010012025100120281001202c1001203010012035100120381001203c1001204010012045100120481001204c1001205010012055100120581001205c1001206010012065100120681001206c1001207010012075100120781001207c1001208010012085100120881001208c1001209010012095100120981001209c100120a0100120a5100120a8100120ac100120b0100120b5100120b8100120bc100120c0100120c5100120c8100120cc100120d0100120d5100120d8100120dc100120e0100120e5100120e8100120ec100120f0100120f5100120f8100120fc100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     2147483648,
+     536940552,
+     3945435217
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-9",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 809,
+    "xpsr": 0
+   },
+   "new_instructions": 30,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536940552, 1229008232, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s():  [%s] device not ready.\\n\\n'), ('RO', b'delVoiceBlock'), 0, 3945435217, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "640fce98993c9d17ebfc860c6e61f4da3f68c314807ab7f6205b9b1df41298be",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "0011012005110120081101200c1101201011012015110120181101201c1101202011012025110120281101202c1101203011012035110120381101203c1101204011012045110120481101204c1101205011012055110120581101205c1101206011012065110120681101206c1101207011012075110120781101207c1101208011012085110120881101208c1101209011012095110120981101209c110120a0110120a5110120a8110120ac110120b0110120b5110120b8110120bc110120c0110120c5110120c8110120cc110120d0110120d5110120d8110120dc110120e0110120e5110120e8110120ec110120f0110120f5110120f8110120fc1101200010012005100120081001200c1001201010012015100120181001201c1001202010012025100120281001202c1001203010012035100120381001203c1001204010012045100120481001204c1001205010012055100120581001205c1001206010012065100120681001206c1001207010012075100120781001207c1001208010012085100120881001208c1001209010012095100120981001209c100120a0100120a5100120a8100120ac100120b0100120b5100120b8100120bc100120c0100120c5100120c8100120cc100120d0100120d5100120d8100120dc100120e0100120e5100120e8100120ec100120f0100120f5100120f8100120fc100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     2147483648,
+     536940552,
+     3945435217
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-9",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 839,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536940552, 111899093, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s():  [%s] device not ready.\\n\\n'), ('RO', b'delVoiceBlock'), 0, 1542803971, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ed8ec66af337af158f9b3e51b3e6267e9f2217fbdcf5dfd63765d8ae3ec2204f",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "0011012004110120091101200c1101201011012014110120191101201c1101202011012024110120291101202c1101203011012034110120391101203c1101204011012044110120491101204c1101205011012054110120591101205c1101206011012064110120691101206c1101207011012074110120791101207c1101208011012084110120891101208c1101209011012094110120991101209c110120a0110120a4110120a9110120ac110120b0110120b4110120b9110120bc110120c0110120c4110120c9110120cc110120d0110120d4110120d9110120dc110120e0110120e4110120e9110120ec110120f0110120f4110120f9110120fc1101200010012004100120091001200c1001201010012014100120191001201c1001202010012024100120291001202c1001203010012034100120391001203c1001204010012044100120491001204c1001205010012054100120591001205c1001206010012064100120691001206c1001207010012074100120791001207c1001208010012084100120891001208c1001209010012094100120991001209c100120a0100120a4100120a9100120ac100120b0100120b4100120b9100120bc100120c0100120c4100120c9100120cc100120d0100120d4100120d9100120dc100120e0100120e4100120e9100120ec100120f0100120f4100120f9100120fc100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     2147483647,
+     536940552,
+     1542803971
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-10",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 840,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    0,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    549772,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536940552, 277593939, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, ('RO', b'%s():  [%s] device not ready.\\n\\n'), ('RO', b'delVoiceBlock'), 0, 256, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "edae80b7acb7d9684000a90933f9f4fb1e9133a29ca0d7bf6fbdbea7f210dbc6",
+    "kind": "return",
+    "ncalls": 3,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "0011012004110120081101200d1101201011012014110120181101201d1101202011012024110120281101202d1101203011012034110120381101203d1101204011012044110120481101204d1101205011012054110120581101205d1101206011012064110120681101206d1101207011012074110120781101207d1101208011012084110120881101208d1101209011012094110120981101209d110120a0110120a4110120a8110120ad110120b0110120b4110120b8110120bd110120c0110120c4110120c8110120cd110120d0110120d4110120d8110120dd110120e0110120e4110120e8110120ed110120f0110120f4110120f8110120fd1101200010012004100120081001200d1001201010012014100120181001201d1001202010012024100120281001202d1001203010012034100120381001203d1001204010012044100120481001204d1001205010012054100120581001205d1001206010012064100120681001206d1001207010012074100120781001207d1001208010012084100120881001208d1001209010012094100120981001209d100120a0100120a4100120a8100120ad100120b0100120b4100120b8100120bd100120c0100120c4100120c8100120cd100120d0100120d4100120d8100120dd100120e0100120e4100120e8100120ed100120f0100120f4100120f8100120fd100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     2147483647,
+     536940552,
+     256
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-11",
+    "mem": [],
+    "nptr": 2,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 841,
+    "xpsr": 0
+   },
+   "new_instructions": 34,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    4,
+    4
+   ],
+   "call_float_arities": [
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    105584,
+    105584
+   ],
+   "events_head": [
+    "('C', 0, ('RO', b'%s(): received audio delete command\\n'), ('RO', b'delVoiceBlock'), 536937944, 464893221, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): input parameter error...\\n'), ('RO', b'delVoiceBlock'), 536937944, 3, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "0a461156f804f475d351eeb6b916149bdf31dc5df0867ad17baa1a6a7b6567af",
+    "kind": "return",
+    "ncalls": 2,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536949608,
+     620054538,
+     536937944,
+     3
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptee-0-0",
+    "mem": [
+     [
+      0,
+      0,
+      "00000000"
+     ]
+    ],
+    "nptr": 2,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 900,
+    "xpsr": 0
+   },
+   "new_instructions": 27,
    "stack_args": []
   }
  ],
  "core": "app",
  "coverage": {
-  "covered": 47,
-  "ratio": 0.2798,
+  "covered": 54,
+  "ratio": 0.3214,
   "total": 168,
   "unresolved_indirect": 0
  },
@@ -2431,8 +3211,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "audio",
@@ -2441,16 +3224,24 @@
   "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
   "source": "shipped image"
  },
- "pointer_arg_mask": [],
+ "pointer_arg_mask": [
+  0,
+  2
+ ],
  "ret_kind": "void",
  "search": {
-  "candidates": 196,
+  "candidates": 275,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
-  "kept": 44,
-  "pointer_arg_mask": [],
+  "kept": 45,
+  "pointer_arg_mask": [
+   0,
+   2
+  ],
   "pointer_arg_mask_derived": true
  },
  "size": 418,

@@ -139,6 +139,26 @@ how the arguments vary).
   (`emu.oracle_memory_writes` / `stack_objects`, which `modtest` does not populate). Until
   then **none of the three is evidence of a reconstruction defect.**
   `recon/analysis/test_architecture.md` §28.5.2.
+  ★ **SUPERSEDED 2026-07-29 (second pass) — the out-parameter class is FIXED, not
+  worked around.** `modtest` now FILLS an unwritten byte of a buffer the run passed to an
+  oracled call with a deterministic value keyed by (call ordinal, argument index, OFFSET
+  FROM THE POINTER) at the moment it is read, on BOTH sides — the counterpart of the r0/r1
+  preservation of §28.1, and frame-independent where `emu`'s PRNG RAM seeding is
+  address-dependent. Consequences, each measured (`test_architecture.md` §29.2, §29.4.4):
+  * `md5_process_block` is **DECIDABLE and DIVERGES** — both sides now consume a verified
+    byte-identical 64-byte block and identical state and produce different output; an
+    independent Python MD5 compression reproduces the CANDIDATE exactly. Its withdrawal in
+    §28.5.2 is reversed; it is a real open divergence.
+  * `battery_model_state_update` coverage **62 % → 89 %** (⚠ an earlier draft of this
+    note said "0 % → 89 %"; 0 % was the *drop-the-fixture* variant that was built, measured
+    and then rejected, NOT the pre-pass baseline, which git HEAD records as 845/1365), and
+    its cause is now identified:
+    a FRAME-RELATIVE OFFSET difference in the stack objects passed at call ordinal 4
+    (`('SP',76),('SP',20)` vs `('SP',24),('SP',16)`), the documented false-failure mode of
+    `normalise_events`. It is NOT an out-parameter problem and NOT established as a defect.
+  * `battery_soc_curve_model_init` is the identical shape at call ordinal 6, at 95 %
+    coverage. Its `NOT ESTABLISHED` status above stands, with the cause now singular.
+  The hand-written reviewed fixtures are therefore **no longer needed for these six**.
 
 ### 2. Ghidra data-inflation — many "huge" functions are small code + a trailing DATA table
 Ghidra folds a trailing rodata table into the function symbol. CFG-reachable analysis (BFS from

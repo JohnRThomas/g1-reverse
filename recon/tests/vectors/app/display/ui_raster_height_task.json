@@ -27,7 +27,7 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 4, 3694469211, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536948308, 3694469211, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('W', 536880444, 4, 4294967295)",
     "('W', 536880448, 4, 4294967295)",
@@ -36,24 +36,25 @@
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "07dec42d3aee1fd654f2afd577745dd1ae78825c637ceca3b30b3e1d527f95e6",
+    "events": "cd98f4a5dc1c9a29655b26f86b03fa02d1642a9e1eb61921391bb4e8cc5d07a6",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     1276959699,
-     12,
-     4,
+     536943568,
+     536948040,
+     536948308,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 0,
     "xpsr": 0
    },
@@ -162,17 +163,18 @@
    "fixture": {
     "abs": [],
     "args": [
-     4067469868,
-     1797429778,
-     2147483648,
+     536947244,
+     536943120,
+     536940476,
      315044147
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 1,
     "xpsr": 0
    },
@@ -270,7 +272,7 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 3677430904, 471345317, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536945784, 471345317, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('W', 536880444, 4, 4294967295)",
     "('W', 536880448, 4, 4294967295)",
@@ -279,24 +281,25 @@
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "49784e611c39943b3726496beabe793f376973e97b68d795740bb6119fa4c3bd",
+    "events": "e0c4104d352e4aaef1fe9686ddc165136487d2b074a3d7b22254436662d1cdfd",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     4290042576,
-     598759513,
-     3677430904,
+     536943312,
+     536942680,
+     536945784,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 2,
     "xpsr": 0
    },
@@ -394,7 +397,7 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 3842370354, 2655161023, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536947504, 2655161023, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('W', 536880444, 4, 4294967295)",
     "('W', 536880448, 4, 4294967295)",
@@ -403,24 +406,25 @@
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "7aac49962ecf55d110897be839663e60e5e8ac8ad0b3425fcfa28f5a43ba9813",
+    "events": "23cca65ecdeefa9456603bdc28f06de71200a7e09927ec3c85a16bf9b0dff4ec",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     16,
-     2147483647,
-     3842370354,
+     536945864,
+     536944284,
+     536947504,
      6
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 4,
     "xpsr": 0
    },
@@ -518,7 +522,7 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 499087790, 3178863954, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536951212, 3178863954, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('W', 536880444, 4, 4294967295)",
     "('W', 536880448, 4, 4294967295)",
@@ -527,24 +531,25 @@
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "0cf70350066c9e23f7c619e9021d141c5a06fb70b4be20642723c64b02077f5b",
+    "events": "a1dfc9dc80ef65245d706641ca6469b43e7f8f1656eadc27a070b033368b0d5e",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     1346232374,
-     1556998536,
-     499087790,
+     536944692,
+     536947080,
+     536951212,
      2147483647
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 9,
     "xpsr": 0
    },
@@ -642,7 +647,7 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 8, 3586673693, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536946200, 3586673693, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('W', 536880444, 4, 4294967295)",
     "('W', 536880448, 4, 4294967295)",
@@ -651,24 +656,25 @@
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "1abe61bd0d5158cd6c965953ee3008a240fb824d29c167fe1750d71bb3cf19cd",
+    "events": "02730662077aea19edddc55cb4eaadbe270f4e71f71cabf16f648ee8381dd802",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     182454980,
-     995058044,
-     8,
+     536939204,
+     536945020,
+     536946200,
      1
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 10,
     "xpsr": 0
    },
@@ -766,7 +772,7 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 256, 801746852, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536938076, 801746852, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('W', 536880444, 4, 4294967295)",
     "('W', 536880448, 4, 4294967295)",
@@ -775,24 +781,25 @@
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "62f4422340517d2afd4bcd8d6b3567d7f5c4ef5fc09f39315dcfc23a2df0e35e",
+    "events": "08f163444b134a2c646f8e753f325e863a8cfe8fa3c8a781f7caa03766fdf9e8",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     3,
-     2147483648,
-     256,
+     536937040,
+     536948284,
+     536938076,
      1426281073
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 11,
     "xpsr": 0
    },
@@ -890,7 +897,7 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 5, 1542880163, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536941268, 1542880163, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('W', 536880444, 4, 4294967295)",
     "('W', 536880448, 4, 4294967295)",
@@ -899,24 +906,25 @@
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "cf9741005b39ccd28f14c2c2d25722279c5f8c1347de788072c1d84fe0f44c1e",
+    "events": "6e7e7d566d53401431d27e0c243bc955acd0d8d19cee9382585f9569abacb123",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     8,
-     3217736208,
-     5,
+     536944520,
+     536936976,
+     536941268,
      1103693227
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-12",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 12,
     "xpsr": 0
    },
@@ -1014,7 +1022,7 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 6, 287561451, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536939060, 287561451, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('W', 536880444, 4, 4294967295)",
     "('W', 536880448, 4, 4294967295)",
@@ -1023,24 +1031,25 @@
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "7d4c3deb9f9025d3231625c01b2f0be37921209e43fbc1da680fa5a6e09af7db",
+    "events": "2e20348bbad97ea59f37fa694f26f4e06f39c418a72fa994573086e389a5776d",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     1156718256,
-     1944344031,
-     6,
+     536944304,
+     536942044,
+     536939060,
      617681966
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 13,
     "xpsr": 0
    },
@@ -1138,7 +1147,7 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 3454407978, 886755549, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536941864, 886755549, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('W', 536880444, 4, 4294967295)",
     "('W', 536880448, 4, 4294967295)",
@@ -1147,24 +1156,25 @@
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "78b5835a4f61093a620cc79ddbc620cf12e368cce96f1a20789d95d7278348c7",
+    "events": "5c278f9c1fbaa7bfc7da171b18bd27328703ee516c5da9e74ddfbff950afea6a",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     2024561310,
-     2147483648,
-     3454407978,
+     536943260,
+     536942972,
+     536941864,
      16
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 16,
     "xpsr": 0
    },
@@ -1262,7 +1272,7 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 4178753371, 4075769455, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536950616, 4075769455, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('W', 536880444, 4, 4294967295)",
     "('W', 536880448, 4, 4294967295)",
@@ -1271,24 +1281,25 @@
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "16945c7dcbf3a5ddbe04922d1a3d691f5314cfe69d28a91b623ed40b8fccf2da",
+    "events": "3e16bec5e2788a8af6e43edc1a7fd9261f788c677e82c542a0b55c9de37ec732",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     6,
-     1536401714,
-     4178753371,
+     536939284,
+     536944944,
+     536950616,
      255
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 19,
     "xpsr": 0
    },
@@ -1361,53 +1372,6 @@
   },
   {
    "call_arities": [
-    3
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    241528
-   ],
-   "events_head": [
-    "('C', 0, 4, 2306919366, 2, 'S', 'F', 'T', None)",
-    "('W', 536880444, 4, 4294967295)",
-    "('W', 536880448, 4, 4294967295)"
-   ],
-   "expect": {
-    "events": "e4cc6aa4f8ccdcb0dd4b5661d0a59f5449baad1e9097aae9e2abc614000e9196",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     4,
-     2306919366,
-     2,
-     7
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-20",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 20,
-    "xpsr": 0
-   },
-   "new_instructions": 23,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
     2,
     4,
     0,
@@ -1433,7 +1397,7 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 2870852768, 2217669457, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536951968, 2217669457, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('W', 536880444, 4, 4294967295)",
     "('W', 536880448, 4, 4294967295)",
@@ -1442,24 +1406,25 @@
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "1f40a0ed545bcbee1f328c829dedf86c5f1168f8ee2c11d1d64e298390f29962",
+    "events": "87408198d52cdaf4e02fcefe383a7857cd65cff220acfca78190c7a8eba82812",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     843060076,
-     1,
-     2870852768,
+     536941420,
+     536936640,
+     536951968,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-21",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 21,
     "xpsr": 0
    },
@@ -1557,7 +1522,7 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 2149248134, 3712121755, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536947844, 3712121755, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('W', 536880444, 4, 4294967295)",
     "('W', 536880448, 4, 4294967295)",
@@ -1566,24 +1531,25 @@
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "e78b7ff22d82c1145b39d9c30c8eb1fbdfb4f9ab1102ac3dbd173bfa43a84506",
+    "events": "f431c9c0be1b295933a1b576201b6c251b1db575aaca5945739c66470651195a",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     3751937804,
-     12,
-     2149248134,
+     536938252,
+     536941512,
+     536947844,
      604019693
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 25,
     "xpsr": 0
    },
@@ -1681,7 +1647,7 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 3639365232, 1775869161, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536940144, 1775869161, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('W', 536880444, 4, 4294967295)",
     "('W', 536880448, 4, 4294967295)",
@@ -1690,24 +1656,25 @@
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "b043edf7e1dd2611981fa67fd3d437ca5bcee054026dc124d768488aeede9641",
+    "events": "c18912a2b2bfbc50f6e7dff3caea8401f90abcc57a1f35f7fbe8a2f7f275f8af",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     187818536,
-     681194263,
-     3639365232,
+     536945192,
+     536949524,
+     536940144,
      4125446660
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 27,
     "xpsr": 0
    },
@@ -1805,7 +1772,7 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 1, 1542213390, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536946096, 1542213390, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('W', 536880444, 4, 4294967295)",
     "('W', 536880448, 4, 4294967295)",
@@ -1814,24 +1781,25 @@
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "2a6274b29e648ff763e7b8ec503e09ca0ea9728819408cb0e9ea59a93eec20f0",
+    "events": "d2f7862897df7901e8c4c17abbb87ac3424cfc084b1f86c33decae145cc04cd8",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     3711083943,
-     4285183211,
-     1,
+     536946084,
+     536949992,
+     536946096,
      2592385448
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-28",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 28,
     "xpsr": 0
    },
@@ -1929,7 +1897,7 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 1, 2417460406, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536945744, 2417460406, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('W', 536880444, 4, 4294967295)",
     "('W', 536880448, 4, 4294967295)",
@@ -1938,24 +1906,25 @@
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "925aa5e53f79a2cd624f87a530a266efca7169a4cdf1c1f551d4ac2302a19a01",
+    "events": "3d5e7fae85b3fd1454e8e4ff5fbf604c15361dcaed0d35abb79963222ec487b7",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     256,
-     8,
-     1,
+     536952796,
+     536941720,
+     536945744,
      7
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-30",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 30,
     "xpsr": 0
    },
@@ -2053,7 +2022,7 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 7, 1988174091, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536938932, 1988174091, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('W', 536880444, 4, 4294967295)",
     "('W', 536880448, 4, 4294967295)",
@@ -2062,24 +2031,25 @@
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "6c69a5509fadb82e5b79cae22a18e895a6cebc2b9ebba551cdba3125ca35f13f",
+    "events": "cae846563b60dfad7388dacb2db6445f4110bbf1006e2df696691fe1247fc99e",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     4294967295,
-     2461003590,
-     7,
+     536952300,
+     536948548,
+     536938932,
      53351545
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 31,
     "xpsr": 0
    },
@@ -2177,7 +2147,7 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 3442053927, 615009301, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536941348, 615009301, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('W', 536880444, 4, 4294967295)",
     "('W', 536880448, 4, 4294967295)",
@@ -2186,24 +2156,25 @@
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "d4c62cbb1bd9bdc21d4c3ff58d85a5350060931450d4d718a4e51bc674639cc9",
+    "events": "2273ac73be6310e22e9b7de2b5e64f9b6b9e921f7f18599d994e8366e3c2bbaa",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     1839753098,
-     2706821390,
-     3442053927,
+     536946568,
+     536940812,
+     536941348,
      1170652979
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-32",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 32,
     "xpsr": 0
    },
@@ -2301,7 +2272,7 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 922796015, 2360084761, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536952812, 2360084761, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('W', 536880444, 4, 4294967295)",
     "('W', 536880448, 4, 4294967295)",
@@ -2310,24 +2281,25 @@
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "3fd2db83cbb24f31192e8d18eccacfa73dc6e167ec68d9d885bde22edddd017c",
+    "events": "aca41e910f034ac7d35a805fd09382a51557247bcec113e2183c405fa8665c42",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     12,
-     3990671540,
-     922796015,
+     536950120,
+     536940724,
+     536952812,
      2147483647
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 34,
     "xpsr": 0
    },
@@ -2425,7 +2397,7 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 4001652011, 4019880274, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536943912, 4019880274, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('W', 536880444, 4, 4294967295)",
     "('W', 536880448, 4, 4294967295)",
@@ -2434,24 +2406,25 @@
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "a85f9671240662fb2097fdde27f69966e50357e7905d0fd3d08fc3dc6afc66a0",
+    "events": "68ba087f1eb1cdc1e3fac60d6e00a765983d455b1ecb8a2acec5d93845646c51",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     2726887024,
-     3578977268,
-     4001652011,
+     536952432,
+     536943604,
+     536943912,
      1
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 35,
     "xpsr": 0
    },
@@ -2549,7 +2522,7 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 2147483647, 823752600, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536945964, 823752600, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('W', 536880444, 4, 4294967295)",
     "('W', 536880448, 4, 4294967295)",
@@ -2558,24 +2531,25 @@
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "cb5695233c5c3485213472075be9297831c0b55e745c465abd1108d403576e47",
+    "events": "40e2b999831475a83bd02c68e4d72a5c6e1a56ed56e802daeae07998a1cc7568",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     0,
-     12,
-     2147483647,
+     536944224,
+     536949832,
+     536945964,
      8
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 36,
     "xpsr": 0
    },
@@ -2673,7 +2647,7 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 3774328631, 2944518647, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536948532, 2944518647, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('W', 536880444, 4, 4294967295)",
     "('W', 536880448, 4, 4294967295)",
@@ -2682,24 +2656,25 @@
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "7d58a4058db028f95fe8a00d546c4eb3d912868f449b3822b99d4d3d0acf7c34",
+    "events": "90d01bd94a50d22d814f5630c892ab71da7e4a65b435fbe9aac475c03464281d",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     3,
-     1587124134,
-     3774328631,
+     536941424,
+     536942500,
+     536948532,
      1997155928
     ],
     "float_scratch": true,
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 39,
     "xpsr": 0
    },
@@ -2797,7 +2772,7 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 3059135833, 2096484019, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536950104, 2096484019, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('W', 536880444, 4, 4294967295)",
     "('W', 536880448, 4, 4294967295)",
@@ -2806,24 +2781,25 @@
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "65774eabd8f8d9c0e60f548d98ad8489f05e66b5dfb80598efec80d681856993",
+    "events": "a771744a539eff2485a5879083a55639f5170f5f8b26c6e9d5f03952b9a579ff",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     3886568119,
-     256,
-     3059135833,
+     536941236,
+     536950764,
+     536950104,
      1
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-41",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 41,
     "xpsr": 0
    },
@@ -2921,7 +2897,7 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 12, 509112996, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536943656, 509112996, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('W', 536880444, 4, 4294967295)",
     "('W', 536880448, 4, 4294967295)",
@@ -2930,24 +2906,25 @@
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "cfc76fa13fbe151715244c3e3566ea706474c286c96818b7b79aa4fc37b69e12",
+    "events": "fadb6cd12e9ec94931c994bf7db260401cf724dc9f8c5d0b7d874a595a579aca",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     538639782,
-     4,
-     12,
+     536952228,
+     536940324,
+     536943656,
      3983748582
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-42",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 42,
     "xpsr": 0
    },
@@ -3045,7 +3022,7 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 1643521744, 217414738, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536946384, 217414738, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('W', 536880444, 4, 4294967295)",
     "('W', 536880448, 4, 4294967295)",
@@ -3054,24 +3031,25 @@
    ],
    "expect": {
     "error": "Invalid memory write",
-    "events": "bab9cc23d2080622e85ea13cc7145c9d6635339b0207448a11d3b1b5985c8cc3",
+    "events": "937808448258aadc1b6b9c892dd26d31593cf0191d47d55771c3c094846b9ec2",
     "kind": "fault",
     "ncalls": 4
    },
    "fixture": {
     "abs": [],
     "args": [
-     0,
-     3098095624,
-     1643521744,
+     536939280,
+     536948744,
+     536946384,
      0
     ],
     "float_scratch": false,
     "fp": {},
     "id": "seed-44",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 44,
     "xpsr": 0
    },
@@ -3196,6 +3174,7 @@
     "mem": [],
     "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 700,
     "xpsr": 0
    },
@@ -3320,6 +3299,7 @@
     "mem": [],
     "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 702,
     "xpsr": 0
    },
@@ -3444,6 +3424,7 @@
     "mem": [],
     "nptr": 4,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 703,
     "xpsr": 0
    },
@@ -3568,6 +3549,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 700,
     "xpsr": 0
    },
@@ -3692,6 +3674,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 702,
     "xpsr": 0
    },
@@ -3816,6 +3799,7 @@
     "mem": [],
     "nptr": 2,
     "oracle": [],
+    "outparam": null,
     "scratch_seed": 703,
     "xpsr": 0
    },
@@ -3889,1194 +3873,20 @@
   {
    "call_arities": [
     2,
-    4,
     0,
-    0
+    0,
+    0,
+    3,
+    0,
+    0,
+    1
    ],
    "call_float_arities": [
     0,
     0,
     0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    274352,
-    105584,
-    274880,
-    92072
-   ],
-   "events_head": [
-    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 1, 3694469211, 'S', 'F', 'T', None)",
-    "('C', 2, 'S', 'F', 'T', None)",
-    "('W', 536880444, 4, 4294967295)",
-    "('W', 536880448, 4, 4294967295)",
-    "('C', 3, 'S', 'F', 'T', None)",
-    "('W', 86617697, 4, 4294967295)"
-   ],
-   "expect": {
-    "error": "Invalid memory write",
-    "events": "19bd000af475933c33aaf174a56082f009a5d0d27922a4f35206a3a415dc2cd5",
-    "kind": "fault",
-    "ncalls": 4
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     1276959699,
-     12,
-     1,
-     0
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "cfgsel-0",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 0,
-    "xpsr": 0
-   },
-   "new_instructions": 32,
-   "stack_args": [
-    [
-     0,
-     [
-      [
-       0,
-       [
-        [
-         0,
-         255
-        ],
-        [
-         1,
-         255
-        ],
-        [
-         2,
-         255
-        ],
-        [
-         3,
-         255
-        ],
-        [
-         4,
-         255
-        ],
-        [
-         5,
-         255
-        ],
-        [
-         6,
-         255
-        ],
-        [
-         7,
-         255
-        ]
-       ]
-      ],
-      [
-       1,
-       [
-        [
-         0,
-         255
-        ],
-        [
-         1,
-         255
-        ],
-        [
-         2,
-         255
-        ],
-        [
-         3,
-         255
-        ]
-       ]
-      ]
-     ]
-    ]
-   ]
-  },
-  {
-   "call_arities": [
-    3
-   ],
-   "call_float_arities": [
-    0
-   ],
-   "call_return_kinds": [
-    "i32"
-   ],
-   "call_targets": [
-    241528
-   ],
-   "events_head": [
-    "('C', 0, 4067469868, 1797429778, 2, 'S', 'F', 'T', None)",
-    "('W', 536880444, 4, 4294967295)",
-    "('W', 536880448, 4, 4294967295)"
-   ],
-   "expect": {
-    "events": "40c41e32ecc5d00eb01c0c6969b0c5989e5a783f05630bd9fd5fb5cbc5b6aa75",
-    "kind": "return",
-    "ncalls": 1,
-    "ret": [
-     0
-    ],
-    "returned": true
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     4067469868,
-     1797429778,
-     2,
-     315044147
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "cfgsel-1",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 1,
-    "xpsr": 0
-   },
-   "new_instructions": 23,
-   "stack_args": []
-  },
-  {
-   "call_arities": [
-    2,
-    4,
-    0,
-    0
-   ],
-   "call_float_arities": [
     0,
     0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    274352,
-    105584,
-    274880,
-    92072
-   ],
-   "events_head": [
-    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 3, 471345317, 'S', 'F', 'T', None)",
-    "('C', 2, 'S', 'F', 'T', None)",
-    "('W', 536880444, 4, 4294967295)",
-    "('W', 536880448, 4, 4294967295)",
-    "('C', 3, 'S', 'F', 'T', None)",
-    "('W', 86617697, 4, 4294967295)"
-   ],
-   "expect": {
-    "error": "Invalid memory write",
-    "events": "36fd5688ed0865d37f5c66291af1d04edb231e1e0a99b0ec45746ea4aa90677b",
-    "kind": "fault",
-    "ncalls": 4
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     4290042576,
-     598759513,
-     3,
-     7
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "cfgsel-2",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 2,
-    "xpsr": 0
-   },
-   "new_instructions": 32,
-   "stack_args": [
-    [
-     0,
-     [
-      [
-       0,
-       [
-        [
-         0,
-         255
-        ],
-        [
-         1,
-         255
-        ],
-        [
-         2,
-         255
-        ],
-        [
-         3,
-         255
-        ],
-        [
-         4,
-         255
-        ],
-        [
-         5,
-         255
-        ],
-        [
-         6,
-         255
-        ],
-        [
-         7,
-         255
-        ]
-       ]
-      ],
-      [
-       1,
-       [
-        [
-         0,
-         255
-        ],
-        [
-         1,
-         255
-        ],
-        [
-         2,
-         255
-        ],
-        [
-         3,
-         255
-        ]
-       ]
-      ]
-     ]
-    ]
-   ]
-  },
-  {
-   "call_arities": [
-    2,
-    4,
-    0,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    274352,
-    105584,
-    274880,
-    92072
-   ],
-   "events_head": [
-    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 2147483647, 2987881189, 'S', 'F', 'T', None)",
-    "('C', 2, 'S', 'F', 'T', None)",
-    "('W', 536880444, 4, 4294967295)",
-    "('W', 536880448, 4, 4294967295)",
-    "('C', 3, 'S', 'F', 'T', None)",
-    "('W', 86617697, 4, 4294967295)"
-   ],
-   "expect": {
-    "error": "Invalid memory write",
-    "events": "87d64fcfe6457d716030600e3ac4d808f2b91e8571e0f8eec68aa9534edb5500",
-    "kind": "fault",
-    "ncalls": 4
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     4294967295,
-     4142138223,
-     2147483647,
-     2671219995
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1065353216,
-     "1": 3204448256
-    },
-    "id": "fp-49",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 49,
-    "xpsr": 0
-   },
-   "new_instructions": 32,
-   "stack_args": [
-    [
-     0,
-     [
-      [
-       0,
-       [
-        [
-         0,
-         255
-        ],
-        [
-         1,
-         255
-        ],
-        [
-         2,
-         255
-        ],
-        [
-         3,
-         255
-        ],
-        [
-         4,
-         255
-        ],
-        [
-         5,
-         255
-        ],
-        [
-         6,
-         255
-        ],
-        [
-         7,
-         255
-        ]
-       ]
-      ],
-      [
-       1,
-       [
-        [
-         0,
-         255
-        ],
-        [
-         1,
-         255
-        ],
-        [
-         2,
-         255
-        ],
-        [
-         3,
-         255
-        ]
-       ]
-      ]
-     ]
-    ]
-   ]
-  },
-  {
-   "call_arities": [
-    2,
-    4,
-    0,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    274352,
-    105584,
-    274880,
-    92072
-   ],
-   "events_head": [
-    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 3, 3904235970, 'S', 'F', 'T', None)",
-    "('C', 2, 'S', 'F', 'T', None)",
-    "('W', 536880444, 4, 4294967295)",
-    "('W', 536880448, 4, 4294967295)",
-    "('C', 3, 'S', 'F', 'T', None)",
-    "('W', 86617697, 4, 4294967295)"
-   ],
-   "expect": {
-    "error": "Invalid memory write",
-    "events": "c16cad8a077674d646aa2e00a63caf0f4454b6676d961fe53d8f152c402f6455",
-    "kind": "fault",
-    "ncalls": 4
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     271826021,
-     7,
-     3,
-     3948225427
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3212836864,
-     "1": 0
-    },
-    "id": "fp-50",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 50,
-    "xpsr": 0
-   },
-   "new_instructions": 32,
-   "stack_args": [
-    [
-     0,
-     [
-      [
-       0,
-       [
-        [
-         0,
-         255
-        ],
-        [
-         1,
-         255
-        ],
-        [
-         2,
-         255
-        ],
-        [
-         3,
-         255
-        ],
-        [
-         4,
-         255
-        ],
-        [
-         5,
-         255
-        ],
-        [
-         6,
-         255
-        ],
-        [
-         7,
-         255
-        ]
-       ]
-      ],
-      [
-       1,
-       [
-        [
-         0,
-         255
-        ],
-        [
-         1,
-         255
-        ],
-        [
-         2,
-         255
-        ],
-        [
-         3,
-         255
-        ]
-       ]
-      ]
-     ]
-    ]
-   ]
-  },
-  {
-   "call_arities": [
-    2,
-    4,
-    0,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    274352,
-    105584,
-    274880,
-    92072
-   ],
-   "events_head": [
-    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 2147483647, 735384069, 'S', 'F', 'T', None)",
-    "('C', 2, 'S', 'F', 'T', None)",
-    "('W', 536880444, 4, 4294967295)",
-    "('W', 536880448, 4, 4294967295)",
-    "('C', 3, 'S', 'F', 'T', None)",
-    "('W', 86617697, 4, 4294967295)"
-   ],
-   "expect": {
-    "error": "Invalid memory write",
-    "events": "284cf6c16fd2157d18fe2d38ee4a978a09deeb3f3fa7842785390e4ef0149101",
-    "kind": "fault",
-    "ncalls": 4
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3856939601,
-     1894272194,
-     2147483647,
-     2092907358
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3204448256,
-     "1": 3239897098
-    },
-    "id": "fp-52",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 52,
-    "xpsr": 0
-   },
-   "new_instructions": 32,
-   "stack_args": [
-    [
-     0,
-     [
-      [
-       0,
-       [
-        [
-         0,
-         255
-        ],
-        [
-         1,
-         255
-        ],
-        [
-         2,
-         255
-        ],
-        [
-         3,
-         255
-        ],
-        [
-         4,
-         255
-        ],
-        [
-         5,
-         255
-        ],
-        [
-         6,
-         255
-        ],
-        [
-         7,
-         255
-        ]
-       ]
-      ],
-      [
-       1,
-       [
-        [
-         0,
-         255
-        ],
-        [
-         1,
-         255
-        ],
-        [
-         2,
-         255
-        ],
-        [
-         3,
-         255
-        ]
-       ]
-      ]
-     ]
-    ]
-   ]
-  },
-  {
-   "call_arities": [
-    2,
-    4,
-    0,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    274352,
-    105584,
-    274880,
-    92072
-   ],
-   "events_head": [
-    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 2147483647, 3921118200, 'S', 'F', 'T', None)",
-    "('C', 2, 'S', 'F', 'T', None)",
-    "('W', 536880444, 4, 4294967295)",
-    "('W', 536880448, 4, 4294967295)",
-    "('C', 3, 'S', 'F', 'T', None)",
-    "('W', 86617697, 4, 4294967295)"
-   ],
-   "expect": {
-    "error": "Invalid memory write",
-    "events": "2157103aa316978deafe21e26eb9dbada90233ed49ef664d530259cceed0a247",
-    "kind": "fault",
-    "ncalls": 4
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     1740848604,
-     2393220392,
-     2147483647,
-     2556506514
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 2147483648,
-     "1": 3204448256
-    },
-    "id": "fp-54",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 54,
-    "xpsr": 0
-   },
-   "new_instructions": 32,
-   "stack_args": [
-    [
-     0,
-     [
-      [
-       0,
-       [
-        [
-         0,
-         255
-        ],
-        [
-         1,
-         255
-        ],
-        [
-         2,
-         255
-        ],
-        [
-         3,
-         255
-        ],
-        [
-         4,
-         255
-        ],
-        [
-         5,
-         255
-        ],
-        [
-         6,
-         255
-        ],
-        [
-         7,
-         255
-        ]
-       ]
-      ],
-      [
-       1,
-       [
-        [
-         0,
-         255
-        ],
-        [
-         1,
-         255
-        ],
-        [
-         2,
-         255
-        ],
-        [
-         3,
-         255
-        ]
-       ]
-      ]
-     ]
-    ]
-   ]
-  },
-  {
-   "call_arities": [
-    2,
-    4,
-    0,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    274352,
-    105584,
-    274880,
-    92072
-   ],
-   "events_head": [
-    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 3578670822, 1028059815, 'S', 'F', 'T', None)",
-    "('C', 2, 'S', 'F', 'T', None)",
-    "('W', 536880444, 4, 4294967295)",
-    "('W', 536880448, 4, 4294967295)",
-    "('C', 3, 'S', 'F', 'T', None)",
-    "('W', 86617697, 4, 4294967295)"
-   ],
-   "expect": {
-    "error": "Invalid memory write",
-    "events": "317239933bf3229fdee8adce6cd8f203a5b4148cab4c1e118c584bf8b6293968",
-    "kind": "fault",
-    "ncalls": 4
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     8,
-     3577755483,
-     3578670822,
-     8
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1065353216,
-     "1": 0
-    },
-    "id": "fp-55",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 55,
-    "xpsr": 0
-   },
-   "new_instructions": 32,
-   "stack_args": [
-    [
-     0,
-     [
-      [
-       0,
-       [
-        [
-         0,
-         255
-        ],
-        [
-         1,
-         255
-        ],
-        [
-         2,
-         255
-        ],
-        [
-         3,
-         255
-        ],
-        [
-         4,
-         255
-        ],
-        [
-         5,
-         255
-        ],
-        [
-         6,
-         255
-        ],
-        [
-         7,
-         255
-        ]
-       ]
-      ],
-      [
-       1,
-       [
-        [
-         0,
-         255
-        ],
-        [
-         1,
-         255
-        ],
-        [
-         2,
-         255
-        ],
-        [
-         3,
-         255
-        ]
-       ]
-      ]
-     ]
-    ]
-   ]
-  },
-  {
-   "call_arities": [
-    2,
-    4,
-    0,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    274352,
-    105584,
-    274880,
-    92072
-   ],
-   "events_head": [
-    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 206381930, 480847480, 'S', 'F', 'T', None)",
-    "('C', 2, 'S', 'F', 'T', None)",
-    "('W', 536880444, 4, 4294967295)",
-    "('W', 536880448, 4, 4294967295)",
-    "('C', 3, 'S', 'F', 'T', None)",
-    "('W', 86617697, 4, 4294967295)"
-   ],
-   "expect": {
-    "error": "Invalid memory write",
-    "events": "28668b0ac82a6f12f5123b3407fedc9c3d42b19a552d28554e00b825c838ae39",
-    "kind": "fault",
-    "ncalls": 4
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     5,
-     3291529428,
-     206381930,
-     1
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 3212836864,
-     "1": 3184315597
-    },
-    "id": "fp-56",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 56,
-    "xpsr": 0
-   },
-   "new_instructions": 32,
-   "stack_args": [
-    [
-     0,
-     [
-      [
-       0,
-       [
-        [
-         0,
-         255
-        ],
-        [
-         1,
-         255
-        ],
-        [
-         2,
-         255
-        ],
-        [
-         3,
-         255
-        ],
-        [
-         4,
-         255
-        ],
-        [
-         5,
-         255
-        ],
-        [
-         6,
-         255
-        ],
-        [
-         7,
-         255
-        ]
-       ]
-      ],
-      [
-       1,
-       [
-        [
-         0,
-         255
-        ],
-        [
-         1,
-         255
-        ],
-        [
-         2,
-         255
-        ],
-        [
-         3,
-         255
-        ]
-       ]
-      ]
-     ]
-    ]
-   ]
-  },
-  {
-   "call_arities": [
-    2,
-    4,
-    0,
-    0
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "i32",
-    "i32"
-   ],
-   "call_targets": [
-    274352,
-    105584,
-    274880,
-    92072
-   ],
-   "events_head": [
-    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 1677850251, 2444602602, 'S', 'F', 'T', None)",
-    "('C', 2, 'S', 'F', 'T', None)",
-    "('W', 536880444, 4, 4294967295)",
-    "('W', 536880448, 4, 4294967295)",
-    "('C', 3, 'S', 'F', 'T', None)",
-    "('W', 86617697, 4, 4294967295)"
-   ],
-   "expect": {
-    "error": "Invalid memory write",
-    "events": "5617bf292c68f78b0dd5d065b2d4347f98cd45e0fba268b3f0af434b1e9587d5",
-    "kind": "fault",
-    "ncalls": 4
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     3720324128,
-     2846093838,
-     1677850251,
-     7
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1056964608,
-     "1": 3239897098
-    },
-    "id": "fp-57",
-    "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 57,
-    "xpsr": 0
-   },
-   "new_instructions": 32,
-   "stack_args": [
-    [
-     0,
-     [
-      [
-       0,
-       [
-        [
-         0,
-         255
-        ],
-        [
-         1,
-         255
-        ],
-        [
-         2,
-         255
-        ],
-        [
-         3,
-         255
-        ],
-        [
-         4,
-         255
-        ],
-        [
-         5,
-         255
-        ],
-        [
-         6,
-         255
-        ],
-        [
-         7,
-         255
-        ]
-       ]
-      ],
-      [
-       1,
-       [
-        [
-         0,
-         255
-        ],
-        [
-         1,
-         255
-        ],
-        [
-         2,
-         255
-        ],
-        [
-         3,
-         255
-        ]
-       ]
-      ]
-     ]
-    ]
-   ]
-  },
-  {
-   "call_arities": [
-    2,
-    0,
-    0
-   ],
-   "call_float_arities": [
     0,
     0,
     0
@@ -5084,12 +3894,22 @@
    "call_return_kinds": [
     "void",
     "i32",
-    "i32"
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
    ],
    "call_targets": [
     274352,
     274880,
-    92072
+    92072,
+    92072,
+    241528,
+    92072,
+    92072,
+    469120
    ],
    "events_head": [
     "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
@@ -5097,37 +3917,169 @@
     "('W', 536880444, 4, 4294967295)",
     "('W', 536880448, 4, 4294967295)",
     "('C', 2, 'S', 'F', 'T', None)",
-    "('W', 1163772138, 4, 4294967295)"
+    "('W', 3780, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 3768, 4, 4294967295)",
+    "('C', 4, 536940544, 536940548, 1, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)",
+    "('W', 4172, 4, 38)",
+    "('C', 6, 'S', 'F', 'T', None)",
+    "('C', 7, 128, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "error": "Invalid memory write",
-    "events": "033d3fae64ead938f3242d2c00f61305c44c54754750cc755c84e0ffc5d93486",
-    "kind": "fault",
-    "ncalls": 3
+    "events": "ecf3804d3749766a6183e382b95e9ecf099032f422c01808c4fec6a208a57ccc",
+    "kind": "return",
+    "ncalls": 8,
+    "ret": [
+     0
+    ],
+    "returned": true
    },
    "fixture": {
     "abs": [
      [
-      536880448,
-      "ffffffff"
+      536940544,
+      "4110012044100120481001204c1001205110012054100120581001205c1001206110012064100120681001206c1001207110012074100120781001207c1001208110012084100120881001208c1001209110012094100120981001209c100120a1100120a4100120a8100120ac100120b1100120b4100120b8100120bc100120c1100120c4100120c8100120cc100120d1100120d4100120d8100120dc100120e1100120e4100120e8100120ec100120f1100120f4100120f8100120fc1001200111012004110120081101200c1101201111012014110120181101201c1101202111012024110120281101202c1101203111012034110120381101203c1101204111012044110120481101204c1101205111012054110120581101205c1101206111012064110120681101206c1101207111012074110120781101207c1101208111012084110120881101208c1101209111012094110120981101209c110120a1110120a4110120a8110120ac110120b1110120b4110120b8110120bc110120c1110120c4110120c8110120cc110120d1110120d4110120d8110120dc110120e1110120e4110120e8110120ec110120f1110120f4110120f8110120fc1101200110012004100120081001200c1001201110012014100120181001201c1001202110012024100120281001202c1001203110012034100120381001203c100120"
      ]
     ],
     "args": [
-     4,
-     3322790363,
-     5,
-     2147483647
+     536940544,
+     536940548,
+     536940552,
+     3003667676
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "glob-0-6",
+    "id": "chain0-0",
     "mem": [],
-    "nptr": 0,
-    "oracle": [],
-    "scratch_seed": 6,
+    "nptr": 3,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 830,
     "xpsr": 0
    },
-   "new_instructions": 30,
+   "new_instructions": 43,
    "stack_args": [
     [
      0,
@@ -5241,7 +4193,7 @@
    ],
    "events_head": [
     "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
-    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 1935641720, 4140973137, 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536940552, 1114733997, 'S', 'F', 'T', None)",
     "('C', 2, 'S', 'F', 'T', None)",
     "('W', 536880444, 4, 4294967295)",
     "('W', 536880448, 4, 4294967295)",
@@ -5249,14 +4201,14 @@
     "('W', 3780, 4, 4294967295)",
     "('C', 4, 'S', 'F', 'T', None)",
     "('W', 3768, 4, 4294967295)",
-    "('C', 5, 2345269775, 3092785552, 1, 'S', 'F', 'T', None)",
+    "('C', 5, 536940544, 536940548, 1, 'S', 'F', 'T', None)",
     "('C', 6, 'S', 'F', 'T', None)",
     "('W', 4172, 4, 38)",
     "('C', 7, 'S', 'F', 'T', None)",
     "('C', 8, 128, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "1090209257b624bb14a9a1fb8a1fdc2ede95965e638d854c786ccd1ab8d8541b",
+    "events": "f8c8654cc71372b486fce99626dce2ca4603ac8b7626b2d107d84ce74b57c721",
     "kind": "return",
     "ncalls": 9,
     "ret": [
@@ -5265,18 +4217,23 @@
     "returned": true
    },
    "fixture": {
-    "abs": [],
+    "abs": [
+     [
+      536940544,
+      "4010012044100120491001204c1001205010012054100120591001205c1001206010012064100120691001206c1001207010012074100120791001207c1001208010012084100120891001208c1001209010012094100120991001209c100120a0100120a4100120a9100120ac100120b0100120b4100120b9100120bc100120c0100120c4100120c9100120cc100120d0100120d4100120d9100120dc100120e0100120e4100120e9100120ec100120f0100120f4100120f9100120fc1001200011012004110120091101200c1101201011012014110120191101201c1101202011012024110120291101202c1101203011012034110120391101203c1101204011012044110120491101204c1101205011012054110120591101205c1101206011012064110120691101206c1101207011012074110120791101207c1101208011012084110120891101208c1101209011012094110120991101209c110120a0110120a4110120a9110120ac110120b0110120b4110120b9110120bc110120c0110120c4110120c9110120cc110120d0110120d4110120d9110120dc110120e0110120e4110120e9110120ec110120f0110120f4110120f9110120fc1101200010012004100120091001200c1001201010012014100120191001201c1001202010012024100120291001202c1001203010012034100120391001203c100120"
+     ]
+    ],
     "args": [
-     2345269775,
-     3092785552,
-     1935641720,
-     554330043
+     536940544,
+     536940548,
+     536940552,
+     3232220875
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "orc-all-0",
+    "id": "chain0-2",
     "mem": [],
-    "nptr": 0,
+    "nptr": 3,
     "oracle": [
      [
       0,
@@ -5284,68 +4241,13 @@
       0
      ],
      [
-      1,
-      0,
-      0
-     ],
-     [
-      2,
-      0,
-      0
-     ],
-     [
-      3,
-      0,
-      0
-     ],
-     [
-      4,
-      0,
-      0
-     ],
-     [
-      5,
-      0,
-      0
-     ],
-     [
-      6,
-      0,
-      0
-     ],
-     [
-      7,
-      0,
-      0
-     ],
-     [
-      8,
-      0,
-      0
-     ],
-     [
-      9,
-      0,
-      0
-     ],
-     [
-      10,
-      0,
-      0
-     ],
-     [
-      11,
-      0,
-      0
-     ],
-     [
-      12,
-      0,
-      0
-     ],
-     [
       0,
       1,
+      0
+     ],
+     [
+      1,
+      0,
       0
      ],
      [
@@ -5355,7 +4257,17 @@
      ],
      [
       2,
+      0,
+      0
+     ],
+     [
+      2,
       1,
+      0
+     ],
+     [
+      3,
+      0,
       0
      ],
      [
@@ -5365,7 +4277,17 @@
      ],
      [
       4,
+      0,
+      0
+     ],
+     [
+      4,
       1,
+      0
+     ],
+     [
+      5,
+      0,
       0
      ],
      [
@@ -5375,7 +4297,17 @@
      ],
      [
       6,
+      0,
+      0
+     ],
+     [
+      6,
       1,
+      0
+     ],
+     [
+      7,
+      0,
       0
      ],
      [
@@ -5385,7 +4317,17 @@
      ],
      [
       8,
+      0,
+      0
+     ],
+     [
+      8,
       1,
+      0
+     ],
+     [
+      9,
+      0,
       0
      ],
      [
@@ -5395,24 +4337,1977 @@
      ],
      [
       10,
+      0,
+      0
+     ],
+     [
+      10,
       1,
       0
      ],
      [
       11,
-      1,
+      0,
       0
      ],
      [
-      12,
+      11,
       1,
       0
      ]
     ],
-    "scratch_seed": 400,
+    "outparam": null,
+    "scratch_seed": 832,
     "xpsr": 0
    },
    "new_instructions": 49,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536940552, 2322744795, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "36e3195e304a51384981f53e1d63470c31d19adf57b8f6ac8ba464e6fcfecc06",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "4010012044100120481001204d1001205010012054100120581001205d1001206010012064100120681001206d1001207010012074100120781001207d1001208010012084100120881001208d1001209010012094100120981001209d100120a0100120a4100120a8100120ad100120b0100120b4100120b8100120bd100120c0100120c4100120c8100120cd100120d0100120d4100120d8100120dd100120e0100120e4100120e8100120ed100120f0100120f4100120f8100120fd1001200011012004110120081101200d1101201011012014110120181101201d1101202011012024110120281101202d1101203011012034110120381101203d1101204011012044110120481101204d1101205011012054110120581101205d1101206011012064110120681101206d1101207011012074110120781101207d1101208011012084110120881101208d1101209011012094110120981101209d110120a0110120a4110120a8110120ad110120b0110120b4110120b8110120bd110120c0110120c4110120c8110120cd110120d0110120d4110120d8110120dd110120e0110120e4110120e8110120ed110120f0110120f4110120f8110120fd1101200010012004100120081001200d1001201010012014100120181001201d1001202010012024100120281001202d1001203010012034100120381001203d100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     536940548,
+     536940552,
+     5
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-3",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 803,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536940552, 124486711, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "cfd12e959a19bb40174ed8343471ed23f42c4622d356296c97044377d07accb8",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "05100120081001200c1001201010012015100120181001201c1001202010012025100120281001202c1001203010012035100120381001203c1001204010012045100120481001204c1001205010012055100120581001205c1001206010012065100120681001206c1001207010012075100120781001207c1001208010012085100120881001208c1001209010012095100120981001209c100120a0100120a5100120a8100120ac100120b0100120b5100120b8100120bc100120c0100120c5100120c8100120cc100120d0100120d5100120d8100120dc100120e0100120e5100120e8100120ec100120f0100120f5100120f8100120fc1001200011012005110120081101200c1101201011012015110120181101201c1101202011012025110120281101202c1101203011012035110120381101203c1101204011012045110120481101204c1101205011012055110120581101205c1101206011012065110120681101206c1101207011012075110120781101207c1101208011012085110120881101208c1101209011012095110120981101209c110120a0110120a5110120a8110120ac110120b0110120b5110120b8110120bc110120c0110120c5110120c8110120cc110120d0110120d5110120d8110120dc110120e0110120e5110120e8110120ec110120f0110120f5110120f8110120fc11012000100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     536940548,
+     536940552,
+     4294967295
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-4",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 804,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536940552, 3811744857, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "3f0609ea722d96c335e8da1941f1d5a2e9e36da90a7e8b759c9fbd671808cc32",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "04100120091001200c1001201010012014100120191001201c1001202010012024100120291001202c1001203010012034100120391001203c1001204010012044100120491001204c1001205010012054100120591001205c1001206010012064100120691001206c1001207010012074100120791001207c1001208010012084100120891001208c1001209010012094100120991001209c100120a0100120a4100120a9100120ac100120b0100120b4100120b9100120bc100120c0100120c4100120c9100120cc100120d0100120d4100120d9100120dc100120e0100120e4100120e9100120ec100120f0100120f4100120f9100120fc1001200011012004110120091101200c1101201011012014110120191101201c1101202011012024110120291101202c1101203011012034110120391101203c1101204011012044110120491101204c1101205011012054110120591101205c1101206011012064110120691101206c1101207011012074110120791101207c1101208011012084110120891101208c1101209011012094110120991101209c110120a0110120a4110120a9110120ac110120b0110120b4110120b9110120bc110120c0110120c4110120c9110120cc110120d0110120d4110120d9110120dc110120e0110120e4110120e9110120ec110120f0110120f4110120f9110120fc11012000100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     536940548,
+     536940552,
+     1831443650
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-5",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 805,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0,
+    0,
+    3,
+    0,
+    0,
+    1
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072,
+    92072,
+    241528,
+    92072,
+    92072,
+    469120
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536940552, 3204408865, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 3780, 4, 4294967295)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('W', 3768, 4, 4294967295)",
+    "('C', 5, 536940544, 536940548, 1, 'S', 'F', 'T', None)",
+    "('C', 6, 'S', 'F', 'T', None)",
+    "('W', 4172, 4, 38)",
+    "('C', 7, 'S', 'F', 'T', None)",
+    "('C', 8, 128, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "cfc2c49bde25fdbff0f5df4efa373982b6c58654117254792db6b21c299ba344",
+    "kind": "return",
+    "ncalls": 9,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "04100120091001200c1001201010012014100120191001201c1001202010012024100120291001202c1001203010012034100120391001203c1001204010012044100120491001204c1001205010012054100120591001205c1001206010012064100120691001206c1001207010012074100120791001207c1001208010012084100120891001208c1001209010012094100120991001209c100120a0100120a4100120a9100120ac100120b0100120b4100120b9100120bc100120c0100120c4100120c9100120cc100120d0100120d4100120d9100120dc100120e0100120e4100120e9100120ec100120f0100120f4100120f9100120fc1001200011012004110120091101200c1101201011012014110120191101201c1101202011012024110120291101202c1101203011012034110120391101203c1101204011012044110120491101204c1101205011012054110120591101205c1101206011012064110120691101206c1101207011012074110120791101207c1101208011012084110120891101208c1101209011012094110120991101209c110120a0110120a4110120a9110120ac110120b0110120b4110120b9110120bc110120c0110120c4110120c9110120cc110120d0110120d4110120d9110120dc110120e0110120e4110120e9110120ec110120f0110120f4110120f9110120fc11012000100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     536940548,
+     536940552,
+     1831443650
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-5",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 835,
+    "xpsr": 0
+   },
+   "new_instructions": 49,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536940552, 3753546315, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "261cf994089ced4631d1fd361490925b6c71f7aa144cffeb7d50902474436192",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "04100120081001200d1001201010012014100120181001201d1001202010012024100120281001202d1001203010012034100120381001203d1001204010012044100120481001204d1001205010012054100120581001205d1001206010012064100120681001206d1001207010012074100120781001207d1001208010012084100120881001208d1001209010012094100120981001209d100120a0100120a4100120a8100120ad100120b0100120b4100120b8100120bd100120c0100120c4100120c8100120cd100120d0100120d4100120d8100120dd100120e0100120e4100120e8100120ed100120f0100120f4100120f8100120fd1001200011012004110120081101200d1101201011012014110120181101201d1101202011012024110120281101202d1101203011012034110120381101203d1101204011012044110120481101204d1101205011012054110120581101205d1101206011012064110120681101206d1101207011012074110120781101207d1101208011012084110120881101208d1101209011012094110120981101209d110120a0110120a4110120a8110120ad110120b0110120b4110120b8110120bd110120c0110120c4110120c8110120cd110120d0110120d4110120d8110120dd110120e0110120e4110120e8110120ed110120f0110120f4110120f8110120fd11012000100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     536940548,
+     536940552,
+     1979409823
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-6",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 806,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0,
+    0,
+    3,
+    0,
+    0,
+    1
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072,
+    92072,
+    241528,
+    92072,
+    92072,
+    469120
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536940552, 2629500200, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 3780, 4, 4294967295)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('W', 3768, 4, 4294967295)",
+    "('C', 5, 536940544, 536940548, 1, 'S', 'F', 'T', None)",
+    "('C', 6, 'S', 'F', 'T', None)",
+    "('W', 4172, 4, 38)",
+    "('C', 7, 'S', 'F', 'T', None)",
+    "('C', 8, 128, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "c0f9c6f6b820fc5a07e7129be0d0c43c7f0a712ffc966c6f4481020e7e505852",
+    "kind": "return",
+    "ncalls": 9,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "0111012004110120081101200c1101201111012014110120181101201c1101202111012024110120281101202c1101203111012034110120381101203c1101204111012044110120481101204c1101205111012054110120581101205c1101206111012064110120681101206c1101207111012074110120781101207c1101208111012084110120881101208c1101209111012094110120981101209c110120a1110120a4110120a8110120ac110120b1110120b4110120b8110120bc110120c1110120c4110120c8110120cc110120d1110120d4110120d8110120dc110120e1110120e4110120e8110120ec110120f1110120f4110120f8110120fc1101200110012004100120081001200c1001201110012014100120181001201c1001202110012024100120281001202c1001203110012034100120381001203c1001204110012044100120481001204c1001205110012054100120581001205c1001206110012064100120681001206c1001207110012074100120781001207c1001208110012084100120881001208c1001209110012094100120981001209c100120a1100120a4100120a8100120ac100120b1100120b4100120b8100120bc100120c1100120c4100120c8100120cc100120d1100120d4100120d8100120dc100120e1100120e4100120e8100120ec100120f1100120f4100120f8100120fc100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     536940548,
+     536940552,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-8",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 838,
+    "xpsr": 0
+   },
+   "new_instructions": 49,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536940552, 4129539460, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 86617697, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "589381e2b0b32c9edf41d59ead90ef89969b1eff3582191a8c07debcebbfee9e",
+    "kind": "fault",
+    "ncalls": 4
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "0011012005110120081101200c1101201011012015110120181101201c1101202011012025110120281101202c1101203011012035110120381101203c1101204011012045110120481101204c1101205011012055110120581101205c1101206011012065110120681101206c1101207011012075110120781101207c1101208011012085110120881101208c1101209011012095110120981101209c110120a0110120a5110120a8110120ac110120b0110120b5110120b8110120bc110120c0110120c5110120c8110120cc110120d0110120d5110120d8110120dc110120e0110120e5110120e8110120ec110120f0110120f5110120f8110120fc1101200010012005100120081001200c1001201010012015100120181001201c1001202010012025100120281001202c1001203010012035100120381001203c1001204010012045100120481001204c1001205010012055100120581001205c1001206010012065100120681001206c1001207010012075100120781001207c1001208010012085100120881001208c1001209010012095100120981001209c100120a0100120a5100120a8100120ac100120b0100120b5100120b8100120bc100120c0100120c5100120c8100120cc100120d0100120d5100120d8100120dc100120e0100120e5100120e8100120ec100120f0100120f5100120f8100120fc100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     536940548,
+     536940552,
+     3945435217
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-9",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 809,
+    "xpsr": 0
+   },
+   "new_instructions": 32,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0,
+    0,
+    3,
+    0,
+    0,
+    1
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072,
+    92072,
+    241528,
+    92072,
+    92072,
+    469120
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536940552, 1229008232, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 3780, 4, 4294967295)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('W', 3768, 4, 4294967295)",
+    "('C', 5, 536940544, 536940548, 1, 'S', 'F', 'T', None)",
+    "('C', 6, 'S', 'F', 'T', None)",
+    "('W', 4172, 4, 38)",
+    "('C', 7, 'S', 'F', 'T', None)",
+    "('C', 8, 128, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "7effe5bb611dff7e2f8f43c6fde35f12e1b27f82adb6e441fc69a152a3a5904e",
+    "kind": "return",
+    "ncalls": 9,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "0011012005110120081101200c1101201011012015110120181101201c1101202011012025110120281101202c1101203011012035110120381101203c1101204011012045110120481101204c1101205011012055110120581101205c1101206011012065110120681101206c1101207011012075110120781101207c1101208011012085110120881101208c1101209011012095110120981101209c110120a0110120a5110120a8110120ac110120b0110120b5110120b8110120bc110120c0110120c5110120c8110120cc110120d0110120d5110120d8110120dc110120e0110120e5110120e8110120ec110120f0110120f5110120f8110120fc1101200010012005100120081001200c1001201010012015100120181001201c1001202010012025100120281001202c1001203010012035100120381001203c1001204010012045100120481001204c1001205010012055100120581001205c1001206010012065100120681001206c1001207010012075100120781001207c1001208010012085100120881001208c1001209010012095100120981001209c100120a0100120a5100120a8100120ac100120b0100120b5100120b8100120bc100120c0100120c5100120c8100120cc100120d0100120d5100120d8100120dc100120e0100120e5100120e8100120ec100120f0100120f5100120f8100120fc100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     536940548,
+     536940552,
+     3945435217
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-9",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 839,
+    "xpsr": 0
+   },
+   "new_instructions": 49,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    2,
+    4,
+    0,
+    0,
+    0,
+    3,
+    0,
+    0,
+    1
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "i32",
+    "void"
+   ],
+   "call_targets": [
+    274352,
+    105584,
+    274880,
+    92072,
+    92072,
+    241528,
+    92072,
+    92072,
+    469120
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, ('RO', b'%s(): ui_raster_height_task reflash...\\n'), ('RO', b'ui_raster_height_task'), 536940552, 111899093, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('W', 3780, 4, 4294967295)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('W', 3768, 4, 4294967295)",
+    "('C', 5, 536940544, 536940548, 1, 'S', 'F', 'T', None)",
+    "('C', 6, 'S', 'F', 'T', None)",
+    "('W', 4172, 4, 38)",
+    "('C', 7, 'S', 'F', 'T', None)",
+    "('C', 8, 128, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "455cefa9db176e1830413eb7f13d3e11441ad309ded3334429936732aa9f4a84",
+    "kind": "return",
+    "ncalls": 9,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "0011012004110120091101200c1101201011012014110120191101201c1101202011012024110120291101202c1101203011012034110120391101203c1101204011012044110120491101204c1101205011012054110120591101205c1101206011012064110120691101206c1101207011012074110120791101207c1101208011012084110120891101208c1101209011012094110120991101209c110120a0110120a4110120a9110120ac110120b0110120b4110120b9110120bc110120c0110120c4110120c9110120cc110120d0110120d4110120d9110120dc110120e0110120e4110120e9110120ec110120f0110120f4110120f9110120fc1101200010012004100120091001200c1001201010012014100120191001201c1001202010012024100120291001202c1001203010012034100120391001203c1001204010012044100120491001204c1001205010012054100120591001205c1001206010012064100120691001206c1001207010012074100120791001207c1001208010012084100120891001208c1001209010012094100120991001209c100120a0100120a4100120a9100120ac100120b0100120b4100120b9100120bc100120c0100120c4100120c9100120cc100120d0100120d4100120d9100120dc100120e0100120e4100120e9100120ec100120f0100120f4100120f9100120fc100120"
+     ]
+    ],
+    "args": [
+     536940544,
+     536940548,
+     536940552,
+     1542803971
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain0-10",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      1,
+      1,
+      0
+     ],
+     [
+      2,
+      0,
+      0
+     ],
+     [
+      2,
+      1,
+      0
+     ],
+     [
+      3,
+      0,
+      0
+     ],
+     [
+      3,
+      1,
+      0
+     ],
+     [
+      4,
+      0,
+      0
+     ],
+     [
+      4,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      0
+     ],
+     [
+      5,
+      1,
+      0
+     ],
+     [
+      6,
+      0,
+      0
+     ],
+     [
+      6,
+      1,
+      0
+     ],
+     [
+      7,
+      0,
+      0
+     ],
+     [
+      7,
+      1,
+      0
+     ],
+     [
+      8,
+      0,
+      0
+     ],
+     [
+      8,
+      1,
+      0
+     ],
+     [
+      9,
+      0,
+      0
+     ],
+     [
+      9,
+      1,
+      0
+     ],
+     [
+      10,
+      0,
+      0
+     ],
+     [
+      10,
+      1,
+      0
+     ],
+     [
+      11,
+      0,
+      0
+     ],
+     [
+      11,
+      1,
+      0
+     ]
+    ],
+    "outparam": null,
+    "scratch_seed": 840,
+    "xpsr": 0
+   },
+   "new_instructions": 49,
+   "stack_args": [
+    [
+     0,
+     [
+      [
+       0,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ],
+        [
+         4,
+         255
+        ],
+        [
+         5,
+         255
+        ],
+        [
+         6,
+         255
+        ],
+        [
+         7,
+         255
+        ]
+       ]
+      ],
+      [
+       1,
+       [
+        [
+         0,
+         255
+        ],
+        [
+         1,
+         255
+        ],
+        [
+         2,
+         255
+        ],
+        [
+         3,
+         255
+        ]
+       ]
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "call_arities": [
+    3
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    241528
+   ],
+   "events_head": [
+    "('C', 0, 536947244, 536943120, 2, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)"
+   ],
+   "expect": {
+    "events": "9b50e5649c01e38d2e1ce7c1976b63e1aeff984966f357ad7214cc6983623921",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536947244,
+     536943120,
+     2,
+     315044147
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "cfgsel-1",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 1,
+    "xpsr": 0
+   },
+   "new_instructions": 23,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    2,
+    0,
+    0
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "i32",
+    "i32"
+   ],
+   "call_targets": [
+    274352,
+    274880,
+    92072
+   ],
+   "events_head": [
+    "('C', 0, ('SP', 0), ('SP', 4), 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('W', 536880444, 4, 4294967295)",
+    "('W', 536880448, 4, 4294967295)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('W', 1163772138, 4, 4294967295)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "033d3fae64ead938f3242d2c00f61305c44c54754750cc755c84e0ffc5d93486",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [
+     [
+      536880448,
+      "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+     ]
+    ],
+    "args": [
+     536950900,
+     536936920,
+     536947060,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-0-6",
+    "mem": [],
+    "nptr": 3,
+    "oracle": [],
+    "outparam": null,
+    "scratch_seed": 6,
+    "xpsr": 0
+   },
+   "new_instructions": 30,
    "stack_args": [
     [
      0,
@@ -5496,8 +6391,11 @@
  ],
  "harness": {
   "derived_arity": true,
+  "drop_outparam_uninit": false,
   "oracle_preserve": true,
-  "rev": "e556ab5692bf509d",
+  "outparam_fill": true,
+  "outparam_window": 512,
+  "rev": "956e29213dbbde89",
   "stack_arg_window": 48
  },
  "module": "display",
@@ -5506,16 +6404,26 @@
   "image_sha256": "e0614feb3609fc2f251a00c16ca66f01c9fb8153de81ca1818cab5f79b42fd3b",
   "source": "shipped image"
  },
- "pointer_arg_mask": [],
+ "pointer_arg_mask": [
+  0,
+  1,
+  2
+ ],
  "ret_kind": "i32",
  "search": {
-  "candidates": 202,
+  "candidates": 283,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
+  "dropped_outparam_uninit": 0,
   "extent_dispute_targets": [],
+  "fixtures_reading_uninit_stack": 0,
   "harness_errors": 0,
   "kept": 44,
-  "pointer_arg_mask": [],
+  "pointer_arg_mask": [
+   0,
+   1,
+   2
+  ],
   "pointer_arg_mask_derived": true
  },
  "size": 202,
