@@ -4,7 +4,7 @@
    "call_arities": [
     0,
     0,
-    4
+    2
    ],
    "call_float_arities": [
     0,
@@ -26,19 +26,19 @@
     "('C', 1, 'S', 'F', 'T', None)",
     "('W', 553654008, 4, 4294967295)",
     "('W', 553654012, 4, 4294967295)",
-    "('C', 2, 0, 560, 4294967295, 0, 'S', 'F', 'T', None)"
+    "('C', 2, 0, 560, 'S', 'F', 'T', None)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "ef54f61ee033ae8e3373be992eb746ce77e291df0ef1a028eb49e4e156e46a7a",
+    "events": "2977689ada11278638051b25d97091f0fc4ad0142482328674cd9676bff38ffe",
     "kind": "fault",
     "ncalls": 3
    },
    "fixture": {
     "abs": [],
     "args": [
-     536943568,
-     536948040,
+     1276959699,
+     12,
      4,
      0
     ],
@@ -46,12 +46,13 @@
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 0,
     "xpsr": 0
    },
-   "new_instructions": 39
+   "new_instructions": 39,
+   "stack_args": []
   }
  ],
  "core": "net",
@@ -65,20 +66,29 @@
  "globals": [
   "0x210016f0"
  ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "936cee0b67396ca5",
+  "stack_arg_window": 48
+ },
  "module": "unsorted",
- "nptr": 2,
+ "nptr": -1,
  "oracle": {
   "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
   "source": "shipped image"
  },
+ "pointer_arg_mask": [],
  "ret_kind": "void",
  "search": {
-  "candidates": 167,
+  "candidates": 175,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 1,
   "extent_dispute_targets": [],
   "harness_errors": 0,
-  "kept": 1
+  "kept": 1,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
  },
  "size": 944,
  "symbol": "FUN_01022a84",

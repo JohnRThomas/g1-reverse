@@ -47,8 +47,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536943568,
-     536948040,
+     1276959699,
+     12,
      4,
      0
     ],
@@ -56,12 +56,13 @@
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 0,
     "xpsr": 0
    },
-   "new_instructions": 43
+   "new_instructions": 43,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -109,8 +110,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536951308,
-     536947088,
+     2345269775,
+     3092785552,
      1935641720,
      554330043
     ],
@@ -118,7 +119,7 @@
     "fp": {},
     "id": "orc-all-0",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [
      [
       0,
@@ -194,7 +195,8 @@
     "scratch_seed": 400,
     "xpsr": 0
    },
-   "new_instructions": 40
+   "new_instructions": 40,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -243,8 +245,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536943352,
-     536946944,
+     3358579451,
+     2876352768,
      168044460,
      6
     ],
@@ -252,7 +254,7 @@
     "fp": {},
     "id": "orc-all-1",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [
      [
       0,
@@ -328,7 +330,8 @@
     "scratch_seed": 401,
     "xpsr": 0
    },
-   "new_instructions": 43
+   "new_instructions": 43,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -377,8 +380,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536939648,
-     536938124,
+     2301873280,
+     2147483647,
      5,
      888612868
     ],
@@ -386,7 +389,7 @@
     "fp": {},
     "id": "orc-all-2",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [
      [
       0,
@@ -462,7 +465,8 @@
     "scratch_seed": 402,
     "xpsr": 0
    },
-   "new_instructions": 43
+   "new_instructions": 43,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -511,8 +515,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536949348,
-     536938964,
+     5,
+     5,
      2896198881,
      256
     ],
@@ -520,7 +524,7 @@
     "fp": {},
     "id": "orc-all-3",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [
      [
       0,
@@ -596,7 +600,8 @@
     "scratch_seed": 403,
     "xpsr": 0
    },
-   "new_instructions": 43
+   "new_instructions": 43,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -645,8 +650,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536948664,
-     536945952,
+     684158906,
+     917497122,
      62306477,
      4
     ],
@@ -654,7 +659,7 @@
     "fp": {},
     "id": "orc-all-4",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [
      [
       0,
@@ -730,7 +735,8 @@
     "scratch_seed": 404,
     "xpsr": 0
    },
-   "new_instructions": 43
+   "new_instructions": 43,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -779,8 +785,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536941872,
-     536940132,
+     122934576,
+     1925238373,
      4000909504,
      4235762602
     ],
@@ -788,7 +794,7 @@
     "fp": {},
     "id": "orc-all-5",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [
      [
       0,
@@ -864,7 +870,8 @@
     "scratch_seed": 405,
     "xpsr": 0
    },
-   "new_instructions": 43
+   "new_instructions": 43,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -922,8 +929,8 @@
      ]
     ],
     "args": [
-     536942356,
-     536952828,
+     6,
+     1592279039,
      2201720285,
      2147483648
     ],
@@ -931,7 +938,7 @@
     "fp": {},
     "id": "combo-0-3",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [
      [
       0,
@@ -1007,7 +1014,8 @@
     "scratch_seed": 603,
     "xpsr": 0
    },
-   "new_instructions": 43
+   "new_instructions": 43,
+   "stack_args": []
   }
  ],
  "core": "net",
@@ -1022,20 +1030,29 @@
   "0x41008000",
   "0x210015f0"
  ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "936cee0b67396ca5",
+  "stack_arg_window": 48
+ },
  "module": "sdc",
- "nptr": 2,
+ "nptr": -1,
  "oracle": {
   "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
   "source": "shipped image"
  },
+ "pointer_arg_mask": [],
  "ret_kind": "i32",
  "search": {
-  "candidates": 165,
+  "candidates": 173,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
   "extent_dispute_targets": [],
   "harness_errors": 0,
-  "kept": 8
+  "kept": 8,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
  },
  "size": 308,
  "symbol": "sdc_llcp_note_unsupported_pdu",

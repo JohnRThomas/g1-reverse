@@ -1,0 +1,6675 @@
+{
+ "schema": 1,
+ "core": "net",
+ "produced_by": "recon/analysis/net_test_coverage.md pass 2, 2026-07-29",
+ "what_this_is": "Subsystem ATTRIBUTION (not names) for the retained net functions, derived from the shipped image.  Evidence class per function: A0 name-implied (accepted as given), A1 witnessed nRF5340 NET peripheral register block, A2 descriptive global-name prefix, A2b global ownership learned from A0/A1/A2 co-occurrence, A3 every attributed direct neighbour agrees.  A3 is the weakest and is separable.  NOTHING here is applied to any source tree; see net_test_coverage.md section 10 for the measurement that justifies it and for the correction it makes to section 5.6.",
+ "address_space": "analysis base 0x01008000 (Ghidra import), NOT the 0x01008800 runtime/link base",
+ "metric": {
+  "intra_module_call_edges_all": "449/1597 = 28.1 %",
+  "intra_module_call_edges_covered": "449/706 = 63.6 %",
+  "random_control_same_class_sizes": "158/1597 = 9.9 %",
+  "link_order_10_way_slice": "483/1597 = 30.2 %",
+  "hybrid_attribution_then_link_order": "552/1597 = 34.6 %"
+ },
+ "functions": {
+  "FUN_01008a58": {
+   "va": "0x01008a58",
+   "size": 662,
+   "subsystem": "sdc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_sdc_optfeat_fp_a",
+     "sdc"
+    ],
+    [
+     "g_net_sdc_optfeat_fp_b",
+     "sdc"
+    ],
+    [
+     "g_net_sdc_optfeat_fp_c",
+     "sdc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_layout_count_table",
+    "g_net_mac_pib_ext",
+    "g_net_sdc_optfeat_fp_a",
+    "g_net_sdc_optfeat_fp_b",
+    "g_net_sdc_optfeat_fp_c"
+   ]
+  },
+  "FUN_01008ddc": {
+   "va": "0x01008ddc",
+   "size": 142,
+   "subsystem": "ppi",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ppi",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_21000a58",
+    "g_21000a5c",
+    "g_net_layout_count_table",
+    "g_net_mac_pib_ext"
+   ]
+  },
+  "FUN_01008e74": {
+   "va": "0x01008e74",
+   "size": 322,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_21000a5c",
+    "g_net_layout_count_table",
+    "g_net_mac_pib_ext"
+   ]
+  },
+  "FUN_0100902c": {
+   "va": "0x0100902c",
+   "size": 34,
+   "subsystem": "ppi",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ppi",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_21000a5c"
+   ]
+  },
+  "FUN_01009668": {
+   "va": "0x01009668",
+   "size": 142,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_bump_alloc_cursor",
+    "g_net_bump_alloc_offset",
+    "g_net_bump_alloc_state"
+   ]
+  },
+  "FUN_010098d8": {
+   "va": "0x010098d8",
+   "size": 694,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_bump_alloc_cursor",
+    "g_net_bump_alloc_state",
+    "rodata_1016591",
+    "rodata_101e0e9",
+    "rodata_101e879",
+    "rodata_101e961",
+    "rodata_101e9e1",
+    "rodata_10203c9"
+   ]
+  },
+  "FUN_01009d64": {
+   "va": "0x01009d64",
+   "size": 110,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01009dd8": {
+   "va": "0x01009dd8",
+   "size": 128,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01009ea4": {
+   "va": "0x01009ea4",
+   "size": 174,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_obj_table_root_ptr"
+   ]
+  },
+  "FUN_0100a1e0": {
+   "va": "0x0100a1e0",
+   "size": 304,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_bufpool_base_ptr",
+    "g_net_bufpool_slot_cnt",
+    "g_net_storage_area_id"
+   ]
+  },
+  "FUN_0100a31c": {
+   "va": "0x0100a31c",
+   "size": 286,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_storage_area_id"
+   ]
+  },
+  "FUN_0100a440": {
+   "va": "0x0100a440",
+   "size": 134,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_bufpool_base_ptr",
+    "g_net_bufpool_slot_cnt"
+   ]
+  },
+  "FUN_0100a4d0": {
+   "va": "0x0100a4d0",
+   "size": 54,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_storage_area_id"
+   ]
+  },
+  "FUN_0100a50c": {
+   "va": "0x0100a50c",
+   "size": 96,
+   "subsystem": "sdc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_sdc_last_cfg_param3",
+     "sdc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_retry_handle",
+    "g_net_retry_param2",
+    "g_sdc_last_cfg_param3"
+   ]
+  },
+  "FUN_0100a578": {
+   "va": "0x0100a578",
+   "size": 26,
+   "subsystem": "sdc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_sdc_last_cfg_param3",
+     "sdc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_retry_handle",
+    "g_net_retry_param2",
+    "g_sdc_last_cfg_param3"
+   ]
+  },
+  "FUN_0100a5b4": {
+   "va": "0x0100a5b4",
+   "size": 16,
+   "subsystem": "sdc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_sdc_last_cfg_param3",
+     "sdc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_sdc_last_cfg_param3"
+   ]
+  },
+  "FUN_0100a664": {
+   "va": "0x0100a664",
+   "size": 132,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_pool_blk_cnt",
+    "g_net_pool_blk_size"
+   ]
+  },
+  "FUN_0100a718": {
+   "va": "0x0100a718",
+   "size": 66,
+   "subsystem": "crypto",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "ECB"
+   ],
+   "named": false,
+   "mmio": [
+    "ECB->TASKS_STARTECB"
+   ],
+   "globals": []
+  },
+  "FUN_0100a760": {
+   "va": "0x0100a760",
+   "size": 44,
+   "subsystem": "ppi",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ppi",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0100a790": {
+   "va": "0x0100a790",
+   "size": 26,
+   "subsystem": "ppi",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "DPPIC"
+   ],
+   "named": false,
+   "mmio": [
+    "DPPIC+0x0"
+   ],
+   "globals": []
+  },
+  "FUN_0100a7b0": {
+   "va": "0x0100a7b0",
+   "size": 22,
+   "subsystem": "ppi",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "DPPIC"
+   ],
+   "named": false,
+   "mmio": [
+    "DPPIC+0x0"
+   ],
+   "globals": []
+  },
+  "FUN_0100a8c4": {
+   "va": "0x0100a8c4",
+   "size": 20,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_net_ctrl_pending_req_busy_flag",
+    "g_net_ctrl_pending_req_id",
+    "g_net_ctrl_pending_req_target_id"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_21000c2e",
+    "g_net_ctrl_pending_req_busy_flag",
+    "g_net_ctrl_pending_req_id",
+    "g_net_ctrl_pending_req_target_id"
+   ]
+  },
+  "FUN_0100a8dc": {
+   "va": "0x0100a8dc",
+   "size": 22,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_net_ctrl_pending_req_busy_flag",
+    "g_net_ctrl_pending_req_id"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ctrl_pending_req_busy_flag",
+    "g_net_ctrl_pending_req_id"
+   ]
+  },
+  "FUN_0100a904": {
+   "va": "0x0100a904",
+   "size": 42,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_net_ctrl_pending_req_busy_flag",
+    "g_net_ctrl_pending_req_id"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ctrl_pending_req_busy_flag",
+    "g_net_ctrl_pending_req_id"
+   ]
+  },
+  "FUN_0100a934": {
+   "va": "0x0100a934",
+   "size": 28,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_net_ctrl_pending_req_busy_flag",
+    "g_net_ctrl_pending_req_id"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_21000c2e",
+    "g_net_ctrl_pending_req_busy_flag",
+    "g_net_ctrl_pending_req_id"
+   ]
+  },
+  "FUN_0100a954": {
+   "va": "0x0100a954",
+   "size": 6,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_net_ctrl_pending_req_target_id"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ctrl_pending_req_target_id"
+   ]
+  },
+  "FUN_0100a984": {
+   "va": "0x0100a984",
+   "size": 38,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_net_ctrl_pending_req_busy_flag",
+    "g_net_ctrl_pending_req_id",
+    "g_net_ctrl_pending_req_target_id"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ctrl_pending_req_busy_flag",
+    "g_net_ctrl_pending_req_id",
+    "g_net_ctrl_pending_req_target_id"
+   ]
+  },
+  "FUN_0100a9b0": {
+   "va": "0x0100a9b0",
+   "size": 26,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_net_ctrl_pending_req_busy_flag",
+    "g_net_ctrl_pending_req_id",
+    "g_net_ctrl_pending_req_target_id"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ctrl_pending_req_busy_flag",
+    "g_net_ctrl_pending_req_id",
+    "g_net_ctrl_pending_req_target_id"
+   ]
+  },
+  "FUN_0100a9d0": {
+   "va": "0x0100a9d0",
+   "size": 2,
+   "subsystem": "ll_conn",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll_conn",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0100ac34": {
+   "va": "0x0100ac34",
+   "size": 70,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_drv_ctx",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_radio_drv_ctx"
+   ]
+  },
+  "FUN_0100ac98": {
+   "va": "0x0100ac98",
+   "size": 510,
+   "subsystem": "ll_conn",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_ll_conn_empty_pdu_buf",
+     "ll_conn"
+    ],
+    [
+     "g_ll_conn_pdu_hdr_ptr",
+     "ll_conn"
+    ],
+    [
+     "g_ll_conn_tx_ctx_addr",
+     "ll_conn"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_ll_conn_empty_pdu_buf",
+    "g_ll_conn_pdu_hdr_ptr",
+    "g_ll_conn_tx_ctx_addr",
+    "g_net_link_drv_ctx_0x24"
+   ]
+  },
+  "FUN_0100aeac": {
+   "va": "0x0100aeac",
+   "size": 96,
+   "subsystem": "ll_conn",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_ll_conn_pdu_hdr_ptr",
+     "ll_conn"
+    ],
+    [
+     "g_ll_conn_tx_ctx_addr",
+     "ll_conn"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_ll_conn_pdu_hdr_ptr",
+    "g_ll_conn_tx_ctx_addr",
+    "g_net_link_drv_ctx_0x24"
+   ]
+  },
+  "FUN_0100aff4": {
+   "va": "0x0100aff4",
+   "size": 272,
+   "subsystem": "ll_conn",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_ll_conn_trace_ctx_addr",
+     "ll_conn"
+    ],
+    [
+     "g_ll_conn_tx_ctx_addr",
+     "ll_conn"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_ll_conn_trace_ctx_addr",
+    "g_ll_conn_tx_ctx_addr",
+    "g_net_link_drv_ctx_0x24"
+   ]
+  },
+  "FUN_0100b180": {
+   "va": "0x0100b180",
+   "size": 1000,
+   "subsystem": "radio",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "RADIO"
+   ],
+   "named": false,
+   "mmio": [
+    "RADIO->TASKS_TXEN"
+   ],
+   "globals": [
+    "g_21000050",
+    "g_ll_conn_trace_ctx_addr",
+    "g_net_link_drv_ctx_0x24",
+    "g_net_radio_drv_ctx"
+   ]
+  },
+  "FUN_0100b6b4": {
+   "va": "0x0100b6b4",
+   "size": 848,
+   "subsystem": "ll_conn",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_ll_conn_trace_ctx_addr",
+     "ll_conn"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_ll_conn_trace_ctx_addr",
+    "g_net_link_drv_ctx_0x24"
+   ]
+  },
+  "FUN_0100bc50": {
+   "va": "0x0100bc50",
+   "size": 8,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0100bc5c": {
+   "va": "0x0100bc5c",
+   "size": 854,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_addr_match_tbl",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_radio_addr_match_tbl"
+   ]
+  },
+  "FUN_0100c744": {
+   "va": "0x0100c744",
+   "size": 798,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_addr_match_tbl",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_radio_addr_match_tbl"
+   ]
+  },
+  "FUN_0100ca98": {
+   "va": "0x0100ca98",
+   "size": 54,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0100cb10": {
+   "va": "0x0100cb10",
+   "size": 62,
+   "subsystem": "crypto",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_ccm_op_status",
+     "crypto"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ccm_op_status"
+   ]
+  },
+  "FUN_0100cb70": {
+   "va": "0x0100cb70",
+   "size": 70,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_addr_match_tbl",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_radio_addr_match_tbl"
+   ]
+  },
+  "FUN_0100cbbc": {
+   "va": "0x0100cbbc",
+   "size": 34,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0100cc20": {
+   "va": "0x0100cc20",
+   "size": 894,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_addr_match_tbl",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_radio_addr_match_tbl"
+   ]
+  },
+  "FUN_0100d14c": {
+   "va": "0x0100d14c",
+   "size": 324,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0100d584": {
+   "va": "0x0100d584",
+   "size": 8,
+   "subsystem": "ll_conn",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll_conn",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0100d5d0": {
+   "va": "0x0100d5d0",
+   "size": 40,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0100d64c": {
+   "va": "0x0100d64c",
+   "size": 32,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0100d688": {
+   "va": "0x0100d688",
+   "size": 32,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0100d6b0": {
+   "va": "0x0100d6b0",
+   "size": 46,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0100d7ac": {
+   "va": "0x0100d7ac",
+   "size": 10,
+   "subsystem": "ll_conn",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll_conn",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_21000ea7",
+    "g_net_rssi_cal_offset"
+   ]
+  },
+  "FUN_0100d7bc": {
+   "va": "0x0100d7bc",
+   "size": 30,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_net_esb_own_addr",
+    "g_net_esb_own_addr_valid"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_esb_own_addr",
+    "g_net_esb_own_addr_valid"
+   ]
+  },
+  "FUN_0100d840": {
+   "va": "0x0100d840",
+   "size": 56,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0100d878": {
+   "va": "0x0100d878",
+   "size": 924,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0100dfbc": {
+   "va": "0x0100dfbc",
+   "size": 66,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0100e008": {
+   "va": "0x0100e008",
+   "size": 14,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0100e018": {
+   "va": "0x0100e018",
+   "size": 14,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0100e028": {
+   "va": "0x0100e028",
+   "size": 14,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0100e038": {
+   "va": "0x0100e038",
+   "size": 18,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0100e04c": {
+   "va": "0x0100e04c",
+   "size": 8,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0100e054": {
+   "va": "0x0100e054",
+   "size": 14,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0100e064": {
+   "va": "0x0100e064",
+   "size": 6,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0100e634": {
+   "va": "0x0100e634",
+   "size": 36,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "rodata_103c190"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "rodata_103c190"
+   ]
+  },
+  "FUN_0100e95c": {
+   "va": "0x0100e95c",
+   "size": 386,
+   "subsystem": "sdc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_sdc_max_frag_len",
+     "sdc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_sdc_max_frag_len"
+   ]
+  },
+  "FUN_0100ebf4": {
+   "va": "0x0100ebf4",
+   "size": 38,
+   "subsystem": "ll_conn",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll_conn",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ctrl_timeout_node_addr"
+   ]
+  },
+  "FUN_0100ec40": {
+   "va": "0x0100ec40",
+   "size": 60,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ctrl_timeout_node_addr",
+    "g_net_pending_work_list"
+   ]
+  },
+  "FUN_0100f100": {
+   "va": "0x0100f100",
+   "size": 14,
+   "subsystem": "radio",
+   "evidence_class": "A3-neighbour",
+   "evidence": "radio",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0100f110": {
+   "va": "0x0100f110",
+   "size": 136,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0100f1a8": {
+   "va": "0x0100f1a8",
+   "size": 72,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0100f66c": {
+   "va": "0x0100f66c",
+   "size": 40,
+   "subsystem": "sdc",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_net_prng_state",
+    "g_net_prng_state_s1"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_prng_state",
+    "g_net_prng_state_s1"
+   ]
+  },
+  "FUN_0100f7e0": {
+   "va": "0x0100f7e0",
+   "size": 30,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0100f86c": {
+   "va": "0x0100f86c",
+   "size": 50,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0100ff4a": {
+   "va": "0x0100ff4a",
+   "size": 20,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01010470": {
+   "va": "0x01010470",
+   "size": 258,
+   "subsystem": "sdc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_sdc_rssi_filter_cfg",
+     "sdc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_sdc_rssi_filter_cfg"
+   ]
+  },
+  "FUN_01010578": {
+   "va": "0x01010578",
+   "size": 342,
+   "subsystem": "sdc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_sdc_rssi_filter_cfg",
+     "sdc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_sdc_rssi_filter_cfg"
+   ]
+  },
+  "FUN_0101077c": {
+   "va": "0x0101077c",
+   "size": 30,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_lookup_table_desc"
+   ]
+  },
+  "FUN_010107a0": {
+   "va": "0x010107a0",
+   "size": 8,
+   "subsystem": "ll_conn",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll_conn",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_lookup_table_desc"
+   ]
+  },
+  "FUN_01010890": {
+   "va": "0x01010890",
+   "size": 40,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_010108b8": {
+   "va": "0x010108b8",
+   "size": 70,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01010990": {
+   "va": "0x01010990",
+   "size": 82,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "rodata_103c1bc"
+   ]
+  },
+  "FUN_01010ff0": {
+   "va": "0x01010ff0",
+   "size": 110,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_own_addr_info",
+    "rodata_101113d"
+   ]
+  },
+  "FUN_010122a8": {
+   "va": "0x010122a8",
+   "size": 10,
+   "subsystem": "ll_conn",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll_conn",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0101232c": {
+   "va": "0x0101232c",
+   "size": 4,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01012694": {
+   "va": "0x01012694",
+   "size": 18,
+   "subsystem": "ll_conn",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll_conn",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_010126b0": {
+   "va": "0x010126b0",
+   "size": 8,
+   "subsystem": "ll_conn",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll_conn",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_010126c0": {
+   "va": "0x010126c0",
+   "size": 8,
+   "subsystem": "ll_conn",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll_conn",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_010126c8": {
+   "va": "0x010126c8",
+   "size": 32,
+   "subsystem": "ll_conn",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll_conn",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_010126e8": {
+   "va": "0x010126e8",
+   "size": 8,
+   "subsystem": "ll_conn",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll_conn",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01012700": {
+   "va": "0x01012700",
+   "size": 4,
+   "subsystem": "ll_conn",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll_conn",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01012714": {
+   "va": "0x01012714",
+   "size": 24,
+   "subsystem": "ll_conn",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll_conn",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0101272c": {
+   "va": "0x0101272c",
+   "size": 196,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_21000f24",
+    "rodata_1011add"
+   ]
+  },
+  "FUN_010128bc": {
+   "va": "0x010128bc",
+   "size": 156,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "rodata_1011869",
+    "rodata_1011add"
+   ]
+  },
+  "FUN_010129b8": {
+   "va": "0x010129b8",
+   "size": 48,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01012ba4": {
+   "va": "0x01012ba4",
+   "size": 82,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01013d90": {
+   "va": "0x01013d90",
+   "size": 24,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01013e98": {
+   "va": "0x01013e98",
+   "size": 28,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_010141d4": {
+   "va": "0x010141d4",
+   "size": 6,
+   "subsystem": "ll_conn",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll_conn",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01014884": {
+   "va": "0x01014884",
+   "size": 12,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01014a50": {
+   "va": "0x01014a50",
+   "size": 196,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01016250": {
+   "va": "0x01016250",
+   "size": 28,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_010162e0": {
+   "va": "0x010162e0",
+   "size": 322,
+   "subsystem": "sdc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_sdc_ll_ctx_param",
+     "sdc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ctrlblk_chan_field",
+    "g_sdc_ll_ctx_param"
+   ]
+  },
+  "FUN_010166c0": {
+   "va": "0x010166c0",
+   "size": 286,
+   "subsystem": "sdc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_sdc_ll_ctx_param",
+     "sdc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_sdc_ll_ctx_param"
+   ]
+  },
+  "FUN_01016cc8": {
+   "va": "0x01016cc8",
+   "size": 90,
+   "subsystem": "ll",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_ble_pending_channel_idx",
+     "ll"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ble_pending_channel_idx"
+   ]
+  },
+  "FUN_01016e6c": {
+   "va": "0x01016e6c",
+   "size": 158,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_pending_proc_flag",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_2100104c",
+    "g_net_radio_pending_proc_flag"
+   ]
+  },
+  "FUN_01017018": {
+   "va": "0x01017018",
+   "size": 126,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_pending_proc_flag",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_2100104c",
+    "g_net_radio_pending_proc_flag"
+   ]
+  },
+  "FUN_0101709c": {
+   "va": "0x0101709c",
+   "size": 172,
+   "subsystem": "ll",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_ble_pending_channel_idx",
+     "ll"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ble_pending_channel_idx"
+   ]
+  },
+  "FUN_01017154": {
+   "va": "0x01017154",
+   "size": 108,
+   "subsystem": "ll",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_ble_pending_channel_idx",
+     "ll"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ble_pending_channel_idx"
+   ]
+  },
+  "FUN_010171c8": {
+   "va": "0x010171c8",
+   "size": 354,
+   "subsystem": "radio",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "RADIO"
+   ],
+   "named": false,
+   "mmio": [
+    "RADIO->TASKS_TXEN"
+   ],
+   "globals": []
+  },
+  "FUN_01017658": {
+   "va": "0x01017658",
+   "size": 226,
+   "subsystem": "sdc",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_net_ctrlblk_chan_field"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ctrlblk_chan_field"
+   ]
+  },
+  "FUN_01017f7c": {
+   "va": "0x01017f7c",
+   "size": 234,
+   "subsystem": "sdc",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_net_ctrlblk_chan_field"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ctrlblk_chan_field"
+   ]
+  },
+  "FUN_01018bf8": {
+   "va": "0x01018bf8",
+   "size": 42,
+   "subsystem": "ll",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_ble_pending_channel_idx",
+     "ll"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ble_pending_channel_idx"
+   ]
+  },
+  "FUN_01018c28": {
+   "va": "0x01018c28",
+   "size": 42,
+   "subsystem": "ll",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_ble_pending_channel_idx",
+     "ll"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ble_pending_channel_idx"
+   ]
+  },
+  "FUN_01018c58": {
+   "va": "0x01018c58",
+   "size": 14,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01018de8": {
+   "va": "0x01018de8",
+   "size": 10,
+   "subsystem": "radio",
+   "evidence_class": "A3-neighbour",
+   "evidence": "radio",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_010190d0": {
+   "va": "0x010190d0",
+   "size": 62,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_pending_proc_flag",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_2100104c",
+    "g_net_radio_pending_proc_flag"
+   ]
+  },
+  "FUN_0101920c": {
+   "va": "0x0101920c",
+   "size": 62,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_pending_proc_flag",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_2100104c",
+    "g_net_radio_pending_proc_flag"
+   ]
+  },
+  "FUN_01019254": {
+   "va": "0x01019254",
+   "size": 42,
+   "subsystem": "ppi",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "DPPIC"
+   ],
+   "named": false,
+   "mmio": [
+    "DPPIC+0x0"
+   ],
+   "globals": []
+  },
+  "FUN_01019588": {
+   "va": "0x01019588",
+   "size": 106,
+   "subsystem": "ll_conn",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_ll_conn_default_ctx",
+     "ll_conn"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_2100109c",
+    "g_ll_conn_default_ctx"
+   ]
+  },
+  "FUN_010195f8": {
+   "va": "0x010195f8",
+   "size": 98,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_2100109c"
+   ]
+  },
+  "FUN_01019750": {
+   "va": "0x01019750",
+   "size": 368,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_010198cc": {
+   "va": "0x010198cc",
+   "size": 250,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_010199cc": {
+   "va": "0x010199cc",
+   "size": 38,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_010199f4": {
+   "va": "0x010199f4",
+   "size": 170,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01019eb4": {
+   "va": "0x01019eb4",
+   "size": 68,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01019ef8": {
+   "va": "0x01019ef8",
+   "size": 58,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0101a218": {
+   "va": "0x0101a218",
+   "size": 196,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_net_session_queue_obj",
+    "g_net_session_state_block"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_session_queue_obj",
+    "g_net_session_state_block"
+   ]
+  },
+  "FUN_0101a2e0": {
+   "va": "0x0101a2e0",
+   "size": 164,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_net_session_queue_obj",
+    "g_net_session_state_block"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_session_queue_obj",
+    "g_net_session_state_block"
+   ]
+  },
+  "FUN_0101ab20": {
+   "va": "0x0101ab20",
+   "size": 656,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_pending_proc_flag",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_2100104c",
+    "g_net_radio_pending_proc_flag",
+    "g_net_session_queue_obj",
+    "g_net_session_state_block"
+   ]
+  },
+  "FUN_0101ad38": {
+   "va": "0x0101ad38",
+   "size": 272,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_net_session_queue_obj",
+    "g_net_session_state_block"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_session_queue_obj",
+    "g_net_session_state_block"
+   ]
+  },
+  "FUN_0101aee0": {
+   "va": "0x0101aee0",
+   "size": 192,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_net_session_state_block"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_session_state_block",
+    "rodata_101b321"
+   ]
+  },
+  "FUN_0101b088": {
+   "va": "0x0101b088",
+   "size": 186,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_net_session_state_block"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_session_state_block",
+    "rodata_101b321"
+   ]
+  },
+  "FUN_0101b54c": {
+   "va": "0x0101b54c",
+   "size": 496,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_net_session_queue_obj",
+    "g_net_session_state_block"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_session_queue_obj",
+    "g_net_session_state_block"
+   ]
+  },
+  "FUN_0101b74c": {
+   "va": "0x0101b74c",
+   "size": 6,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_net_session_state_block"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_session_state_block"
+   ]
+  },
+  "FUN_0101ba58": {
+   "va": "0x0101ba58",
+   "size": 1352,
+   "subsystem": "ll",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_ble_session_key_buf",
+     "ll"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_2100111d",
+    "g_21001120",
+    "g_210015f7",
+    "g_21001614",
+    "g_net_ble_session_key_buf"
+   ]
+  },
+  "FUN_0101c420": {
+   "va": "0x0101c420",
+   "size": 130,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0101c6d0": {
+   "va": "0x0101c6d0",
+   "size": 3040,
+   "subsystem": "sdc",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "rodata_10101cd"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_210001e0",
+    "g_21000208",
+    "g_21000210",
+    "g_210004ac",
+    "g_210004bc",
+    "g_net_link_ctx_b",
+    "rodata_10100a1",
+    "rodata_10101cd"
+   ]
+  },
+  "FUN_0101da18": {
+   "va": "0x0101da18",
+   "size": 450,
+   "subsystem": "sdc",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "rodata_10101cd"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "rodata_10101cd"
+   ]
+  },
+  "FUN_0101dd0c": {
+   "va": "0x0101dd0c",
+   "size": 54,
+   "subsystem": "timing",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_timeout_list",
+     "timing"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_timeout_list"
+   ]
+  },
+  "FUN_0101dd9c": {
+   "va": "0x0101dd9c",
+   "size": 6,
+   "subsystem": "timing",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_timeout_list",
+     "timing"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_timeout_list"
+   ]
+  },
+  "FUN_0101ded0": {
+   "va": "0x0101ded0",
+   "size": 176,
+   "subsystem": "timing",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_timeout_list",
+     "timing"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_timeout_list"
+   ]
+  },
+  "FUN_0101e090": {
+   "va": "0x0101e090",
+   "size": 20,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0101e2cc": {
+   "va": "0x0101e2cc",
+   "size": 38,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0101e2fc": {
+   "va": "0x0101e2fc",
+   "size": 156,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0101e398": {
+   "va": "0x0101e398",
+   "size": 102,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0101e660": {
+   "va": "0x0101e660",
+   "size": 70,
+   "subsystem": "ll_conn",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_ble_conn_create_ctx",
+     "ll_conn"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ble_conn_create_ctx"
+   ]
+  },
+  "FUN_0101e828": {
+   "va": "0x0101e828",
+   "size": 78,
+   "subsystem": "ll_conn",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_ble_conn_create_ctx",
+     "ll_conn"
+    ],
+    [
+     "g_net_ble_conn_role_cfg",
+     "ll_conn"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ble_conn_create_ctx",
+    "g_net_ble_conn_role_cfg",
+    "g_net_bufpool_id_tag"
+   ]
+  },
+  "FUN_0101e888": {
+   "va": "0x0101e888",
+   "size": 18,
+   "subsystem": "ll_conn",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_ble_conn_create_ctx",
+     "ll_conn"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ble_conn_create_ctx"
+   ]
+  },
+  "FUN_0101f440": {
+   "va": "0x0101f440",
+   "size": 408,
+   "subsystem": "ll_conn",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_ble_conn_setup_err_cb",
+     "ll_conn"
+    ],
+    [
+     "g_net_ble_conn_setup_ok_cb",
+     "ll_conn"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ble_conn_setup_err_cb",
+    "g_net_ble_conn_setup_ok_cb"
+   ]
+  },
+  "FUN_0101f624": {
+   "va": "0x0101f624",
+   "size": 40,
+   "subsystem": "ll_conn",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_ble_conn_create_ctx",
+     "ll_conn"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ble_conn_create_ctx"
+   ]
+  },
+  "FUN_0101f73c": {
+   "va": "0x0101f73c",
+   "size": 28,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0101f764": {
+   "va": "0x0101f764",
+   "size": 38,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0101f7a8": {
+   "va": "0x0101f7a8",
+   "size": 38,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0101f7e0": {
+   "va": "0x0101f7e0",
+   "size": 38,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0101f850": {
+   "va": "0x0101f850",
+   "size": 38,
+   "subsystem": "ll_conn",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll_conn",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0101f87c": {
+   "va": "0x0101f87c",
+   "size": 8,
+   "subsystem": "ll_conn",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll_conn",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0101f8cc": {
+   "va": "0x0101f8cc",
+   "size": 8,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_flags_bitmap64"
+   ]
+  },
+  "FUN_0101f8f4": {
+   "va": "0x0101f8f4",
+   "size": 40,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_tx_power_level",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_radio_tx_power_level",
+    "rodata_103c3b0"
+   ]
+  },
+  "FUN_0101f924": {
+   "va": "0x0101f924",
+   "size": 10,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_tx_power_level",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_radio_tx_power_level"
+   ]
+  },
+  "FUN_0101fc14": {
+   "va": "0x0101fc14",
+   "size": 32,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_pending_reset_flag",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_radio_pending_reset_flag"
+   ]
+  },
+  "FUN_0101fc2c": {
+   "va": "0x0101fc2c",
+   "size": 16,
+   "subsystem": "crypto",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_ccm_op_status",
+     "crypto"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ccm_op_status"
+   ]
+  },
+  "FUN_0101fc40": {
+   "va": "0x0101fc40",
+   "size": 38,
+   "subsystem": "crypto",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "AAR"
+   ],
+   "named": false,
+   "mmio": [
+    "AAR->TASKS_START"
+   ],
+   "globals": [
+    "g_net_ccm_op_status"
+   ]
+  },
+  "FUN_0101fc70": {
+   "va": "0x0101fc70",
+   "size": 42,
+   "subsystem": "crypto",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "AAR"
+   ],
+   "named": false,
+   "mmio": [
+    "AAR->TASKS_START"
+   ],
+   "globals": [
+    "g_net_ccm_op_status"
+   ]
+  },
+  "FUN_0101fcf4": {
+   "va": "0x0101fcf4",
+   "size": 34,
+   "subsystem": "crypto",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "AAR"
+   ],
+   "named": false,
+   "mmio": [
+    "AAR->TASKS_START"
+   ],
+   "globals": [
+    "g_net_ccm_op_status"
+   ]
+  },
+  "FUN_0101fd20": {
+   "va": "0x0101fd20",
+   "size": 100,
+   "subsystem": "crypto",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "AAR"
+   ],
+   "named": false,
+   "mmio": [
+    "AAR->TASKS_START"
+   ],
+   "globals": [
+    "g_net_ccm_op_status"
+   ]
+  },
+  "FUN_0101fe98": {
+   "va": "0x0101fe98",
+   "size": 158,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_pending_reset_flag",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [
+    "AAR->TASKS_START",
+    "RADIO->TASKS_TXEN",
+    "DPPIC+0x0"
+   ],
+   "globals": [
+    "g_net_radio_pending_reset_flag"
+   ]
+  },
+  "FUN_0101ff4c": {
+   "va": "0x0101ff4c",
+   "size": 66,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_pending_reset_flag",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [
+    "AAR->TASKS_START",
+    "DPPIC+0x0"
+   ],
+   "globals": [
+    "g_net_radio_pending_reset_flag"
+   ]
+  },
+  "FUN_0101ff9c": {
+   "va": "0x0101ff9c",
+   "size": 48,
+   "subsystem": "crypto",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "AAR"
+   ],
+   "named": false,
+   "mmio": [
+    "AAR->TASKS_START"
+   ],
+   "globals": [
+    "g_net_radio_pending_reset_flag"
+   ]
+  },
+  "FUN_0101ffd4": {
+   "va": "0x0101ffd4",
+   "size": 98,
+   "subsystem": "crypto",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "AAR"
+   ],
+   "named": false,
+   "mmio": [
+    "AAR->TASKS_START"
+   ],
+   "globals": [
+    "g_net_radio_pending_reset_flag"
+   ]
+  },
+  "FUN_01020048": {
+   "va": "0x01020048",
+   "size": 8,
+   "subsystem": "crypto",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "AAR"
+   ],
+   "named": false,
+   "mmio": [
+    "AAR->TASKS_START"
+   ],
+   "globals": []
+  },
+  "FUN_01020054": {
+   "va": "0x01020054",
+   "size": 42,
+   "subsystem": "crypto",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "AAR"
+   ],
+   "named": false,
+   "mmio": [
+    "AAR->TASKS_START"
+   ],
+   "globals": []
+  },
+  "FUN_01020088": {
+   "va": "0x01020088",
+   "size": 76,
+   "subsystem": "crypto",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "AAR"
+   ],
+   "named": false,
+   "mmio": [
+    "AAR->TASKS_START"
+   ],
+   "globals": []
+  },
+  "FUN_01020108": {
+   "va": "0x01020108",
+   "size": 84,
+   "subsystem": "radio",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "RADIO"
+   ],
+   "named": false,
+   "mmio": [
+    "RADIO->TASKS_TXEN"
+   ],
+   "globals": []
+  },
+  "FUN_01020168": {
+   "va": "0x01020168",
+   "size": 186,
+   "subsystem": "radio",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "RADIO"
+   ],
+   "named": false,
+   "mmio": [
+    "RADIO->TASKS_TXEN"
+   ],
+   "globals": [
+    "g_21001609",
+    "g_2100160a",
+    "rodata_103c4d0"
+   ]
+  },
+  "FUN_0102023c": {
+   "va": "0x0102023c",
+   "size": 44,
+   "subsystem": "radio",
+   "evidence_class": "A3-neighbour",
+   "evidence": "radio",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0102028c": {
+   "va": "0x0102028c",
+   "size": 10,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "rodata_103c4d0"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "rodata_103c4d0"
+   ]
+  },
+  "FUN_0102029c": {
+   "va": "0x0102029c",
+   "size": 8,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_010202a8": {
+   "va": "0x010202a8",
+   "size": 48,
+   "subsystem": "radio",
+   "evidence_class": "A3-neighbour",
+   "evidence": "radio",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_21001614"
+   ]
+  },
+  "FUN_010202f0": {
+   "va": "0x010202f0",
+   "size": 6,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_21001614"
+   ]
+  },
+  "FUN_010202fc": {
+   "va": "0x010202fc",
+   "size": 76,
+   "subsystem": "radio",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "RADIO"
+   ],
+   "named": false,
+   "mmio": [
+    "RADIO->TASKS_TXEN"
+   ],
+   "globals": []
+  },
+  "FUN_01020368": {
+   "va": "0x01020368",
+   "size": 86,
+   "subsystem": "radio",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "RADIO"
+   ],
+   "named": false,
+   "mmio": [
+    "RADIO->TASKS_TXEN"
+   ],
+   "globals": []
+  },
+  "FUN_010203d0": {
+   "va": "0x010203d0",
+   "size": 224,
+   "subsystem": "radio",
+   "evidence_class": "A3-neighbour",
+   "evidence": "radio",
+   "named": false,
+   "mmio": [
+    "RADIO->TASKS_TXEN",
+    "TIMER0->TASKS_START",
+    "DPPIC+0x0"
+   ],
+   "globals": [
+    "g_21001614"
+   ]
+  },
+  "FUN_010204d4": {
+   "va": "0x010204d4",
+   "size": 6,
+   "subsystem": "radio",
+   "evidence_class": "A3-neighbour",
+   "evidence": "radio",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_21001609"
+   ]
+  },
+  "FUN_010204e0": {
+   "va": "0x010204e0",
+   "size": 16,
+   "subsystem": "radio",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "RADIO"
+   ],
+   "named": false,
+   "mmio": [
+    "RADIO->TASKS_TXEN"
+   ],
+   "globals": []
+  },
+  "FUN_010204f4": {
+   "va": "0x010204f4",
+   "size": 6,
+   "subsystem": "radio",
+   "evidence_class": "A3-neighbour",
+   "evidence": "radio",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_2100160a"
+   ]
+  },
+  "FUN_0102072c": {
+   "va": "0x0102072c",
+   "size": 8,
+   "subsystem": "radio",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "RADIO"
+   ],
+   "named": false,
+   "mmio": [
+    "RADIO->TASKS_TXEN"
+   ],
+   "globals": []
+  },
+  "FUN_01020738": {
+   "va": "0x01020738",
+   "size": 34,
+   "subsystem": "ll",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_ble_session_key_buf",
+     "ll"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ble_session_key_buf",
+    "rodata_10208e1"
+   ]
+  },
+  "FUN_01020764": {
+   "va": "0x01020764",
+   "size": 92,
+   "subsystem": "radio",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "RADIO"
+   ],
+   "named": false,
+   "mmio": [
+    "RADIO->TASKS_TXEN"
+   ],
+   "globals": []
+  },
+  "FUN_010207cc": {
+   "va": "0x010207cc",
+   "size": 72,
+   "subsystem": "timing",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "TIMER0"
+   ],
+   "named": false,
+   "mmio": [
+    "TIMER0->TASKS_START"
+   ],
+   "globals": [
+    "g_21001614"
+   ]
+  },
+  "FUN_01020820": {
+   "va": "0x01020820",
+   "size": 60,
+   "subsystem": "timing",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "TIMER0"
+   ],
+   "named": false,
+   "mmio": [
+    "TIMER0->TASKS_START"
+   ],
+   "globals": [
+    "g_21001614"
+   ]
+  },
+  "FUN_01020898": {
+   "va": "0x01020898",
+   "size": 20,
+   "subsystem": "radio",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "RADIO"
+   ],
+   "named": false,
+   "mmio": [
+    "RADIO->TASKS_TXEN"
+   ],
+   "globals": []
+  },
+  "FUN_010208cc": {
+   "va": "0x010208cc",
+   "size": 20,
+   "subsystem": "radio",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "RADIO"
+   ],
+   "named": false,
+   "mmio": [
+    "RADIO->TASKS_TXEN"
+   ],
+   "globals": []
+  },
+  "FUN_010208e4": {
+   "va": "0x010208e4",
+   "size": 6,
+   "subsystem": "radio",
+   "evidence_class": "A3-neighbour",
+   "evidence": "radio",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_210015f7"
+   ]
+  },
+  "FUN_010208f0": {
+   "va": "0x010208f0",
+   "size": 182,
+   "subsystem": "radio",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "RADIO"
+   ],
+   "named": false,
+   "mmio": [
+    "RADIO->TASKS_TXEN"
+   ],
+   "globals": [
+    "g_210015f7",
+    "g_21001609",
+    "g_2100160a"
+   ]
+  },
+  "FUN_010209b8": {
+   "va": "0x010209b8",
+   "size": 10,
+   "subsystem": "timing",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "TIMER0"
+   ],
+   "named": false,
+   "mmio": [
+    "TIMER0->TASKS_START"
+   ],
+   "globals": []
+  },
+  "FUN_01020a00": {
+   "va": "0x01020a00",
+   "size": 88,
+   "subsystem": "radio",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "RADIO"
+   ],
+   "named": false,
+   "mmio": [
+    "RADIO->TASKS_TXEN"
+   ],
+   "globals": []
+  },
+  "FUN_010215a8": {
+   "va": "0x010215a8",
+   "size": 40,
+   "subsystem": "radio",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "RADIO"
+   ],
+   "named": false,
+   "mmio": [
+    "RADIO->TASKS_TXEN"
+   ],
+   "globals": []
+  },
+  "FUN_01021654": {
+   "va": "0x01021654",
+   "size": 54,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "rodata_103c5c4"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "rodata_103c5c4"
+   ]
+  },
+  "FUN_010216d4": {
+   "va": "0x010216d4",
+   "size": 172,
+   "subsystem": "timing",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_clk_conv_cache_ext",
+     "timing"
+    ],
+    [
+     "g_net_clk_conv_cache_key",
+     "timing"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_clk_conv_cache_ext",
+    "g_net_clk_conv_cache_key"
+   ]
+  },
+  "FUN_010217ac": {
+   "va": "0x010217ac",
+   "size": 26,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_frame_desc",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_radio_frame_desc"
+   ]
+  },
+  "FUN_01021820": {
+   "va": "0x01021820",
+   "size": 6,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_21001680"
+   ]
+  },
+  "FUN_0102182c": {
+   "va": "0x0102182c",
+   "size": 6,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_2100167c"
+   ]
+  },
+  "FUN_0102185c": {
+   "va": "0x0102185c",
+   "size": 74,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_res_reg_handle",
+    "g_net_res_reg_key",
+    "g_net_res_reg_param16"
+   ]
+  },
+  "FUN_010218b4": {
+   "va": "0x010218b4",
+   "size": 8,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_ops_table_ptr",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_radio_ops_table_ptr"
+   ]
+  },
+  "FUN_010218c0": {
+   "va": "0x010218c0",
+   "size": 8,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_ops_table_ptr",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_radio_ops_table_ptr"
+   ]
+  },
+  "FUN_010218cc": {
+   "va": "0x010218cc",
+   "size": 8,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_ops_table_ptr",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_radio_ops_table_ptr"
+   ]
+  },
+  "FUN_010218f0": {
+   "va": "0x010218f0",
+   "size": 8,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_ops_table_ptr",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_radio_ops_table_ptr"
+   ]
+  },
+  "FUN_010218fc": {
+   "va": "0x010218fc",
+   "size": 8,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_ops_table_ptr",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_radio_ops_table_ptr"
+   ]
+  },
+  "FUN_01021908": {
+   "va": "0x01021908",
+   "size": 8,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_ops_table_ptr",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_radio_ops_table_ptr"
+   ]
+  },
+  "FUN_01021914": {
+   "va": "0x01021914",
+   "size": 8,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_ops_table_ptr",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_radio_ops_table_ptr"
+   ]
+  },
+  "FUN_01021920": {
+   "va": "0x01021920",
+   "size": 14,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_ops_table_ptr",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_radio_ops_table_ptr"
+   ]
+  },
+  "FUN_01021934": {
+   "va": "0x01021934",
+   "size": 6,
+   "subsystem": "timing",
+   "evidence_class": "A3-neighbour",
+   "evidence": "timing",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_210016dc"
+   ]
+  },
+  "FUN_01021a1c": {
+   "va": "0x01021a1c",
+   "size": 22,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_deferred_cb_fn"
+   ]
+  },
+  "FUN_01021df0": {
+   "va": "0x01021df0",
+   "size": 234,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01021ee0": {
+   "va": "0x01021ee0",
+   "size": 1704,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_libc_tz_calc_state"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_libc_tz_calc_state"
+   ]
+  },
+  "FUN_01022a84": {
+   "va": "0x01022a84",
+   "size": 934,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_libc_tz_calc_state"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_libc_tz_calc_state"
+   ]
+  },
+  "FUN_01022ebc": {
+   "va": "0x01022ebc",
+   "size": 70,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_010237b0": {
+   "va": "0x010237b0",
+   "size": 770,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_libc_tz_calc_state"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_libc_tz_calc_state"
+   ]
+  },
+  "FUN_01023dec": {
+   "va": "0x01023dec",
+   "size": 150,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_libc_tz_calc_state"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_libc_tz_calc_state"
+   ]
+  },
+  "FUN_01023ea8": {
+   "va": "0x01023ea8",
+   "size": 618,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_libc_tz_calc_state"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_libc_tz_calc_state"
+   ]
+  },
+  "FUN_010244cc": {
+   "va": "0x010244cc",
+   "size": 82,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01024524": {
+   "va": "0x01024524",
+   "size": 158,
+   "subsystem": "mpsl",
+   "evidence_class": "A3-neighbour",
+   "evidence": "mpsl",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0102460c": {
+   "va": "0x0102460c",
+   "size": 32,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_deferred_irq_num"
+   ]
+  },
+  "FUN_01024644": {
+   "va": "0x01024644",
+   "size": 6,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_21001bce"
+   ]
+  },
+  "FUN_01024650": {
+   "va": "0x01024650",
+   "size": 16,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_link_state"
+   ]
+  },
+  "FUN_01024664": {
+   "va": "0x01024664",
+   "size": 16,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_link_state"
+   ]
+  },
+  "FUN_010246cc": {
+   "va": "0x010246cc",
+   "size": 6,
+   "subsystem": "radio",
+   "evidence_class": "A3-neighbour",
+   "evidence": "radio",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_21001bd4"
+   ]
+  },
+  "FUN_010246d8": {
+   "va": "0x010246d8",
+   "size": 6,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_21001bd2"
+   ]
+  },
+  "FUN_0102470c": {
+   "va": "0x0102470c",
+   "size": 48,
+   "subsystem": "power",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "CLOCK"
+   ],
+   "named": false,
+   "mmio": [
+    "CLOCK->TASKS_HFCLKSTART"
+   ],
+   "globals": [
+    "g_154_critical_section_nest_cnt"
+   ]
+  },
+  "FUN_01024744": {
+   "va": "0x01024744",
+   "size": 42,
+   "subsystem": "power",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "CLOCK"
+   ],
+   "named": false,
+   "mmio": [
+    "CLOCK->TASKS_HFCLKSTART"
+   ],
+   "globals": []
+  },
+  "FUN_010247dc": {
+   "va": "0x010247dc",
+   "size": 72,
+   "subsystem": "power",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "CLOCK"
+   ],
+   "named": false,
+   "mmio": [
+    "CLOCK->TASKS_HFCLKSTART"
+   ],
+   "globals": []
+  },
+  "FUN_010248d0": {
+   "va": "0x010248d0",
+   "size": 20,
+   "subsystem": "power",
+   "evidence_class": "A3-neighbour",
+   "evidence": "power",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01024a9c": {
+   "va": "0x01024a9c",
+   "size": 8,
+   "subsystem": "power",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "CLOCK"
+   ],
+   "named": false,
+   "mmio": [
+    "CLOCK->TASKS_HFCLKSTART"
+   ],
+   "globals": []
+  },
+  "FUN_01024aa8": {
+   "va": "0x01024aa8",
+   "size": 18,
+   "subsystem": "power",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "CLOCK"
+   ],
+   "named": false,
+   "mmio": [
+    "CLOCK->TASKS_HFCLKSTART"
+   ],
+   "globals": [
+    "g_net_radio_timer_active_flag"
+   ]
+  },
+  "FUN_01024ad0": {
+   "va": "0x01024ad0",
+   "size": 22,
+   "subsystem": "power",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "CLOCK"
+   ],
+   "named": false,
+   "mmio": [
+    "CLOCK->TASKS_HFCLKSTART"
+   ],
+   "globals": [
+    "g_net_radio_timer_active_flag"
+   ]
+  },
+  "FUN_01024b20": {
+   "va": "0x01024b20",
+   "size": 32,
+   "subsystem": "power",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "CLOCK"
+   ],
+   "named": false,
+   "mmio": [
+    "CLOCK->TASKS_HFCLKSTART"
+   ],
+   "globals": []
+  },
+  "FUN_01024e1c": {
+   "va": "0x01024e1c",
+   "size": 186,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_timer_sync_state",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [
+    "DPPIC+0x0",
+    "RTC0->TASKS_START",
+    "TIMER0->TASKS_START"
+   ],
+   "globals": [
+    "g_net_radio_timer_sync_state"
+   ]
+  },
+  "FUN_01024ef0": {
+   "va": "0x01024ef0",
+   "size": 272,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_timer_sync_state",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [
+    "RTC0->TASKS_START",
+    "TIMER0->TASKS_START",
+    "DPPIC+0x0"
+   ],
+   "globals": [
+    "g_21001c08",
+    "g_net_radio_timer_sync_state"
+   ]
+  },
+  "FUN_0102501c": {
+   "va": "0x0102501c",
+   "size": 8,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01025028": {
+   "va": "0x01025028",
+   "size": 8,
+   "subsystem": "timing",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "RTC0"
+   ],
+   "named": false,
+   "mmio": [
+    "RTC0->TASKS_START"
+   ],
+   "globals": []
+  },
+  "FUN_01025034": {
+   "va": "0x01025034",
+   "size": 66,
+   "subsystem": "timing",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "RTC0"
+   ],
+   "named": false,
+   "mmio": [
+    "RTC0->TASKS_START"
+   ],
+   "globals": [
+    "g_21001c08"
+   ]
+  },
+  "FUN_01025084": {
+   "va": "0x01025084",
+   "size": 66,
+   "subsystem": "timing",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "RTC0"
+   ],
+   "named": false,
+   "mmio": [
+    "RTC0->TASKS_START"
+   ],
+   "globals": [
+    "g_21001c08"
+   ]
+  },
+  "FUN_010250d0": {
+   "va": "0x010250d0",
+   "size": 258,
+   "subsystem": "timing",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "RTC0",
+    "TIMER0"
+   ],
+   "named": false,
+   "mmio": [
+    "TIMER0->TASKS_START",
+    "RTC0->TASKS_START",
+    "RTC0->EVENTS_COMPARE[0]"
+   ],
+   "globals": [
+    "g_net_radio_timer_sync_state"
+   ]
+  },
+  "FUN_010251ec": {
+   "va": "0x010251ec",
+   "size": 40,
+   "subsystem": "timing",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "RTC0",
+    "TIMER0"
+   ],
+   "named": false,
+   "mmio": [
+    "TIMER0->EVENTS_COMPARE[0]",
+    "RTC0->EVENTS_COMPARE[0]"
+   ],
+   "globals": []
+  },
+  "FUN_0102521c": {
+   "va": "0x0102521c",
+   "size": 40,
+   "subsystem": "timing",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "RTC0",
+    "TIMER0"
+   ],
+   "named": false,
+   "mmio": [
+    "TIMER0->PUBLISH_COMPARE[0]",
+    "RTC0->PUBLISH_COMPARE[0]"
+   ],
+   "globals": []
+  },
+  "FUN_01025344": {
+   "va": "0x01025344",
+   "size": 84,
+   "subsystem": "timing",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "RTC0",
+    "TIMER0"
+   ],
+   "named": false,
+   "mmio": [
+    "RTC0->TASKS_START",
+    "TIMER0->TASKS_START"
+   ],
+   "globals": [
+    "g_net_radio_timer_sync_state"
+   ]
+  },
+  "FUN_01025b5c": {
+   "va": "0x01025b5c",
+   "size": 40,
+   "subsystem": "radio",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "RADIO"
+   ],
+   "named": false,
+   "mmio": [
+    "RADIO->TASKS_TXEN"
+   ],
+   "globals": []
+  },
+  "FUN_01025b8c": {
+   "va": "0x01025b8c",
+   "size": 30,
+   "subsystem": "radio",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "RADIO"
+   ],
+   "named": false,
+   "mmio": [
+    "RADIO->TASKS_TXEN"
+   ],
+   "globals": []
+  },
+  "FUN_01025bb0": {
+   "va": "0x01025bb0",
+   "size": 8,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_net_driver_api_ptr"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_driver_api_ptr"
+   ]
+  },
+  "FUN_01025bbc": {
+   "va": "0x01025bbc",
+   "size": 8,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_net_driver_api_ptr"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_driver_api_ptr"
+   ]
+  },
+  "FUN_01025bc8": {
+   "va": "0x01025bc8",
+   "size": 8,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_net_driver_api_ptr"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_driver_api_ptr"
+   ]
+  },
+  "FUN_01025bd4": {
+   "va": "0x01025bd4",
+   "size": 8,
+   "subsystem": "ll",
+   "evidence_class": "A2b-global-cooccurrence",
+   "evidence": [
+    "g_net_driver_api_ptr"
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_driver_api_ptr"
+   ]
+  },
+  "FUN_01025d28": {
+   "va": "0x01025d28",
+   "size": 12,
+   "subsystem": "radio",
+   "evidence_class": "A3-neighbour",
+   "evidence": "radio",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01025fd4": {
+   "va": "0x01025fd4",
+   "size": 28,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_010267fe": {
+   "va": "0x010267fe",
+   "size": 54,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_010268ce": {
+   "va": "0x010268ce",
+   "size": 68,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01026912": {
+   "va": "0x01026912",
+   "size": 40,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0102693a": {
+   "va": "0x0102693a",
+   "size": 148,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01026b58": {
+   "va": "0x01026b58",
+   "size": 166,
+   "subsystem": "ll_conn",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll_conn",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_010270e8": {
+   "va": "0x010270e8",
+   "size": 98,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01027258": {
+   "va": "0x01027258",
+   "size": 106,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01027302": {
+   "va": "0x01027302",
+   "size": 196,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_010275d2": {
+   "va": "0x010275d2",
+   "size": 52,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01027662": {
+   "va": "0x01027662",
+   "size": 40,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_010276e6": {
+   "va": "0x010276e6",
+   "size": 52,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01027742": {
+   "va": "0x01027742",
+   "size": 40,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01027846": {
+   "va": "0x01027846",
+   "size": 78,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_010278e4": {
+   "va": "0x010278e4",
+   "size": 144,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01027974": {
+   "va": "0x01027974",
+   "size": 114,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01028256": {
+   "va": "0x01028256",
+   "size": 64,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_010283a4": {
+   "va": "0x010283a4",
+   "size": 20,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_010283fe": {
+   "va": "0x010283fe",
+   "size": 20,
+   "subsystem": "radio",
+   "evidence_class": "A3-neighbour",
+   "evidence": "radio",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01028464": {
+   "va": "0x01028464",
+   "size": 26,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01028486": {
+   "va": "0x01028486",
+   "size": 26,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01028656": {
+   "va": "0x01028656",
+   "size": 308,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01029882": {
+   "va": "0x01029882",
+   "size": 38,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01029d76": {
+   "va": "0x01029d76",
+   "size": 234,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0102a1e2": {
+   "va": "0x0102a1e2",
+   "size": 8,
+   "subsystem": "ll",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ll",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0102a394": {
+   "va": "0x0102a394",
+   "size": 94,
+   "subsystem": "sdc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_sdc_hci_transport_obj",
+     "sdc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ctrl_report_field0",
+    "g_net_ctrl_report_field1",
+    "g_net_ctrl_report_field2",
+    "g_net_ctrl_status_byte",
+    "g_sdc_hci_transport_obj"
+   ]
+  },
+  "FUN_0102a498": {
+   "va": "0x0102a498",
+   "size": 8,
+   "subsystem": "sdc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_sdc_hci_transport_obj",
+     "sdc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_sdc_hci_transport_obj"
+   ]
+  },
+  "FUN_0102a4b0": {
+   "va": "0x0102a4b0",
+   "size": 18,
+   "subsystem": "sdc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_sdc_hci_transport_obj",
+     "sdc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_sdc_hci_transport_obj"
+   ]
+  },
+  "FUN_0102ac0c": {
+   "va": "0x0102ac0c",
+   "size": 122,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_dev_ready_flag",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_radio_dev_ready_flag",
+    "g_zephyr_log_level",
+    "rodata_103bfac",
+    "rodata_103ce92",
+    "rodata_103ceac",
+    "rodata_103cec3",
+    "rodata_103ced0",
+    "rodata_103cef6"
+   ]
+  },
+  "FUN_0102b15c": {
+   "va": "0x0102b15c",
+   "size": 96,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ctrl_rx_ready_flag",
+    "g_zephyr_log_level",
+    "rodata_103d11b"
+   ]
+  },
+  "FUN_0102b31c": {
+   "va": "0x0102b31c",
+   "size": 162,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_op_state",
+     "radio"
+    ],
+    [
+     "g_net_radio_sched_param_a",
+     "radio"
+    ],
+    [
+     "g_net_radio_sched_param_b",
+     "radio"
+    ],
+    [
+     "g_net_radio_sched_param_c",
+     "radio"
+    ],
+    [
+     "g_net_radio_temp_raw",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_radio_op_state",
+    "g_net_radio_sched_param_a",
+    "g_net_radio_sched_param_b",
+    "g_net_radio_sched_param_c",
+    "g_net_radio_temp_raw",
+    "g_zephyr_log_level",
+    "rodata_103d14a"
+   ]
+  },
+  "FUN_0102b5bc": {
+   "va": "0x0102b5bc",
+   "size": 132,
+   "subsystem": "ppi",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "P0"
+   ],
+   "named": false,
+   "mmio": [
+    "P0+0x500"
+   ],
+   "globals": [
+    "g_net_ipc_msg_data",
+    "g_net_ipc_msg_type",
+    "g_zephyr_log_level",
+    "rodata_103d18c",
+    "rodata_103d19e",
+    "rodata_103d1b8"
+   ]
+  },
+  "FUN_0102b7b8": {
+   "va": "0x0102b7b8",
+   "size": 6,
+   "subsystem": "radio",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_radio_op_state",
+     "radio"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_radio_op_state"
+   ]
+  },
+  "FUN_0102bba8": {
+   "va": "0x0102bba8",
+   "size": 22,
+   "subsystem": "ppi",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ppi",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_evt_callback_fn"
+   ]
+  },
+  "FUN_0102cfec": {
+   "va": "0x0102cfec",
+   "size": 28,
+   "subsystem": "ipc",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "IPC"
+   ],
+   "named": false,
+   "mmio": [
+    "IPC->TASKS_SEND[0]"
+   ],
+   "globals": []
+  },
+  "FUN_0102d0c4": {
+   "va": "0x0102d0c4",
+   "size": 216,
+   "subsystem": "ipc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ipc",
+   "named": false,
+   "mmio": [
+    "RTC0->TASKS_START",
+    "IPC->TASKS_SEND[0]",
+    "WDT->TASKS_START"
+   ],
+   "globals": [
+    "g_net_rtc_timer_sync_valid",
+    "g_sdc_clock_calc_lock",
+    "g_sdc_clock_calc_valid"
+   ]
+  },
+  "FUN_0102d1c0": {
+   "va": "0x0102d1c0",
+   "size": 106,
+   "subsystem": "sdc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_sdc_clock_calc_lock",
+     "sdc"
+    ],
+    [
+     "g_sdc_clock_calc_valid",
+     "sdc"
+    ],
+    [
+     "g_sdc_clock_history_idx",
+     "sdc"
+    ],
+    [
+     "g_sdc_clock_recalc_flag",
+     "sdc"
+    ]
+   ],
+   "named": false,
+   "mmio": [
+    "CLOCK->TASKS_HFCLKSTART",
+    "IPC->TASKS_SEND[0]"
+   ],
+   "globals": [
+    "g_sdc_clock_calc_lock",
+    "g_sdc_clock_calc_valid",
+    "g_sdc_clock_history_idx",
+    "g_sdc_clock_recalc_flag"
+   ]
+  },
+  "FUN_0102d558": {
+   "va": "0x0102d558",
+   "size": 80,
+   "subsystem": "radio",
+   "evidence_class": "A3-neighbour",
+   "evidence": "radio",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "rodata_103c074",
+    "rodata_103d53d"
+   ]
+  },
+  "FUN_0102ec10": {
+   "va": "0x0102ec10",
+   "size": 44,
+   "subsystem": "ipc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_ipc_shm_pool_desc_ptr",
+     "ipc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ipc_shm_pool_desc_ptr",
+    "rodata_103cb30"
+   ]
+  },
+  "FUN_0102ece0": {
+   "va": "0x0102ece0",
+   "size": 52,
+   "subsystem": "ipc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ipc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0102ed18": {
+   "va": "0x0102ed18",
+   "size": 40,
+   "subsystem": "ipc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_ipc_shm_pool_desc_ptr",
+     "ipc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ipc_shm_pool_desc_ptr"
+   ]
+  },
+  "FUN_0102edac": {
+   "va": "0x0102edac",
+   "size": 74,
+   "subsystem": "ipc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ipc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "rodata_103c0fc"
+   ]
+  },
+  "FUN_0102f080": {
+   "va": "0x0102f080",
+   "size": 320,
+   "subsystem": "ipc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ipc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "rodata_103c0c4",
+    "rodata_103d2a7",
+    "rodata_103d922",
+    "rodata_103da8d",
+    "rodata_103daa3",
+    "rodata_103dad6",
+    "rodata_103daee",
+    "rodata_103db04"
+   ]
+  },
+  "FUN_0102f580": {
+   "va": "0x0102f580",
+   "size": 340,
+   "subsystem": "ipc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_ipc_shm_pool_desc_ptr",
+     "ipc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ipc_shm_pool_desc_ptr",
+    "g_zephyr_sched_thread_field",
+    "rodata_103d2a7",
+    "rodata_103eb0e"
+   ]
+  },
+  "FUN_0103037c": {
+   "va": "0x0103037c",
+   "size": 10,
+   "subsystem": "ppi",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ppi",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01030a50": {
+   "va": "0x01030a50",
+   "size": 334,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "rodata_103d2a7",
+    "rodata_103dfbc"
+   ]
+  },
+  "FUN_01030dd0": {
+   "va": "0x01030dd0",
+   "size": 70,
+   "subsystem": "ppi",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "P0"
+   ],
+   "named": false,
+   "mmio": [
+    "P0+0x500",
+    "P0+0x800"
+   ],
+   "globals": [
+    "rodata_103d2a7",
+    "rodata_103df89"
+   ]
+  },
+  "FUN_01030e28": {
+   "va": "0x01030e28",
+   "size": 204,
+   "subsystem": "ppi",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ppi",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01031804": {
+   "va": "0x01031804",
+   "size": 10,
+   "subsystem": "ipc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ipc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01031814": {
+   "va": "0x01031814",
+   "size": 212,
+   "subsystem": "ipc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_ipc_shm_pool_desc_ptr",
+     "ipc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ipc_shm_pool_desc_ptr",
+    "rodata_103d2a7",
+    "rodata_103eaab"
+   ]
+  },
+  "FUN_01031a68": {
+   "va": "0x01031a68",
+   "size": 232,
+   "subsystem": "ipc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ipc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "rodata_10320d9",
+    "rodata_103bf70",
+    "rodata_103c044",
+    "rodata_103c11c",
+    "rodata_103d73e",
+    "rodata_103e216",
+    "rodata_103e23d",
+    "rodata_103e25d"
+   ]
+  },
+  "FUN_01034328": {
+   "va": "0x01034328",
+   "size": 30,
+   "subsystem": "sdc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_sdc_res_pool_free_bitmap",
+     "sdc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_sdc_res_pool_free_bitmap"
+   ]
+  },
+  "FUN_01034368": {
+   "va": "0x01034368",
+   "size": 26,
+   "subsystem": "sdc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_sdc_res_pool_free_bitmap",
+     "sdc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_sdc_res_pool_free_bitmap"
+   ]
+  },
+  "FUN_010343a0": {
+   "va": "0x010343a0",
+   "size": 8,
+   "subsystem": "ppi",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "DPPIC"
+   ],
+   "named": false,
+   "mmio": [
+    "DPPIC+0x0"
+   ],
+   "globals": []
+  },
+  "FUN_01034458": {
+   "va": "0x01034458",
+   "size": 8,
+   "subsystem": "sdc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_sdc_res_pool_free_bitmap",
+     "sdc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_sdc_res_pool_free_bitmap"
+   ]
+  },
+  "FUN_01034464": {
+   "va": "0x01034464",
+   "size": 18,
+   "subsystem": "ppi",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "DPPIC"
+   ],
+   "named": false,
+   "mmio": [
+    "DPPIC+0x0"
+   ],
+   "globals": [
+    "g_sdc_res_pool_free_bitmap"
+   ]
+  },
+  "FUN_01034480": {
+   "va": "0x01034480",
+   "size": 8,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0103448c": {
+   "va": "0x0103448c",
+   "size": 22,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_010344d4": {
+   "va": "0x010344d4",
+   "size": 20,
+   "subsystem": "ppi",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ppi",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_010344ec": {
+   "va": "0x010344ec",
+   "size": 24,
+   "subsystem": "sdc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_sdc_res_pool_slot_tbl",
+     "sdc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_sdc_res_pool_slot_tbl"
+   ]
+  },
+  "FUN_01034520": {
+   "va": "0x01034520",
+   "size": 18,
+   "subsystem": "ppi",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ppi",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01034538": {
+   "va": "0x01034538",
+   "size": 58,
+   "subsystem": "sdc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_sdc_res_pool_slot_tbl",
+     "sdc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_sdc_res_pool_slot_tbl"
+   ]
+  },
+  "FUN_01034578": {
+   "va": "0x01034578",
+   "size": 102,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "rodata_103d2a7",
+    "rodata_103e66f"
+   ]
+  },
+  "FUN_010345f4": {
+   "va": "0x010345f4",
+   "size": 76,
+   "subsystem": "ppi",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "P0"
+   ],
+   "named": false,
+   "mmio": [
+    "P0+0x500",
+    "P0+0x800"
+   ],
+   "globals": [
+    "rodata_103d2a7",
+    "rodata_103df89"
+   ]
+  },
+  "FUN_01034650": {
+   "va": "0x01034650",
+   "size": 36,
+   "subsystem": "ppi",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ppi",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "rodata_103d2a7",
+    "rodata_103e6ad"
+   ]
+  },
+  "FUN_0103467c": {
+   "va": "0x0103467c",
+   "size": 88,
+   "subsystem": "ppi",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "GPIOTE"
+   ],
+   "named": false,
+   "mmio": [
+    "GPIOTE->TASKS_OUT[0]"
+   ],
+   "globals": []
+  },
+  "FUN_010346d8": {
+   "va": "0x010346d8",
+   "size": 342,
+   "subsystem": "sdc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_sdc_res_pool_slot_tbl",
+     "sdc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_sdc_res_pool_slot_tbl"
+   ]
+  },
+  "FUN_01034840": {
+   "va": "0x01034840",
+   "size": 244,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0103499c": {
+   "va": "0x0103499c",
+   "size": 104,
+   "subsystem": "ppi",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "GPIOTE"
+   ],
+   "named": false,
+   "mmio": [
+    "GPIOTE->TASKS_OUT[0]"
+   ],
+   "globals": [
+    "g_net_conn_teardown_ctx_b"
+   ]
+  },
+  "FUN_01034a28": {
+   "va": "0x01034a28",
+   "size": 8,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01034b18": {
+   "va": "0x01034b18",
+   "size": 70,
+   "subsystem": "ppi",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "GPIOTE"
+   ],
+   "named": false,
+   "mmio": [
+    "GPIOTE->TASKS_OUT[0]"
+   ],
+   "globals": []
+  },
+  "FUN_01034b64": {
+   "va": "0x01034b64",
+   "size": 112,
+   "subsystem": "ppi",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ppi",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01034be4": {
+   "va": "0x01034be4",
+   "size": 402,
+   "subsystem": "ppi",
+   "evidence_class": "A1-mmio",
+   "evidence": [
+    "GPIOTE",
+    "P0"
+   ],
+   "named": false,
+   "mmio": [
+    "GPIOTE->TASKS_OUT[0]",
+    "P0+0x500",
+    "P0+0x800"
+   ],
+   "globals": [
+    "g_sdc_res_pool_slot_tbl",
+    "rodata_103e6f2"
+   ]
+  },
+  "FUN_010359b8": {
+   "va": "0x010359b8",
+   "size": 240,
+   "subsystem": "ipc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ipc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "rodata_103c0c4",
+    "rodata_103d2a7",
+    "rodata_103e921",
+    "rodata_103e929",
+    "rodata_103e951",
+    "rodata_103e972",
+    "rodata_103e98a"
+   ]
+  },
+  "FUN_01035edc": {
+   "va": "0x01035edc",
+   "size": 178,
+   "subsystem": "ipc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_ipc_shm_pool_desc_ptr",
+     "ipc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ipc_shm_pool_desc_ptr",
+    "rodata_103d2a7",
+    "rodata_103ea45"
+   ]
+  },
+  "FUN_01035fa0": {
+   "va": "0x01035fa0",
+   "size": 110,
+   "subsystem": "ipc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ipc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "rodata_103bac9",
+    "rodata_103d2a7",
+    "rodata_103ea45"
+   ]
+  },
+  "FUN_0103601c": {
+   "va": "0x0103601c",
+   "size": 356,
+   "subsystem": "ipc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_ipc_shm_pool_desc_ptr",
+     "ipc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ipc_shm_pool_desc_ptr",
+    "rodata_103bac9",
+    "rodata_103bfc0",
+    "rodata_103d2a7",
+    "rodata_103ea45",
+    "rodata_103eb0e"
+   ]
+  },
+  "FUN_0103610c": {
+   "va": "0x0103610c",
+   "size": 24,
+   "subsystem": "ipc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ipc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_21004b38"
+   ]
+  },
+  "FUN_01036128": {
+   "va": "0x01036128",
+   "size": 24,
+   "subsystem": "ipc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_ipc_shm_pool_desc_ptr",
+     "ipc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_21004b38",
+    "g_net_ipc_shm_pool_desc_ptr"
+   ]
+  },
+  "FUN_01036144": {
+   "va": "0x01036144",
+   "size": 12,
+   "subsystem": "ipc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_ipc_shm_pool_desc_ptr",
+     "ipc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_21004b38",
+    "g_net_ipc_shm_pool_desc_ptr"
+   ]
+  },
+  "FUN_01036410": {
+   "va": "0x01036410",
+   "size": 342,
+   "subsystem": "ipc",
+   "evidence_class": "A2-global",
+   "evidence": [
+    [
+     "g_net_ipc_shm_pool_desc_ptr",
+     "ipc"
+    ]
+   ],
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_net_ipc_shm_pool_desc_ptr",
+    "rodata_103d2a7",
+    "rodata_103eaab"
+   ]
+  },
+  "FUN_010378c4": {
+   "va": "0x010378c4",
+   "size": 142,
+   "subsystem": "ipc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ipc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "rodata_103d2a7"
+   ]
+  },
+  "FUN_0103961c": {
+   "va": "0x0103961c",
+   "size": 32,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0103963c": {
+   "va": "0x0103963c",
+   "size": 50,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_01039fe6": {
+   "va": "0x01039fe6",
+   "size": 174,
+   "subsystem": "ipc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ipc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "rodata_103a749"
+   ]
+  },
+  "FUN_0103a44c": {
+   "va": "0x0103a44c",
+   "size": 378,
+   "subsystem": "ipc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ipc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "rodata_103d2a7",
+    "rodata_103de3f"
+   ]
+  },
+  "FUN_0103a6c6": {
+   "va": "0x0103a6c6",
+   "size": 8,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0103a8ea": {
+   "va": "0x0103a8ea",
+   "size": 36,
+   "subsystem": "ppi",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ppi",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0103a90e": {
+   "va": "0x0103a90e",
+   "size": 22,
+   "subsystem": "sdc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "sdc",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0103a9be": {
+   "va": "0x0103a9be",
+   "size": 30,
+   "subsystem": "ppi",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ppi",
+   "named": false,
+   "mmio": [],
+   "globals": []
+  },
+  "FUN_0103b1c4": {
+   "va": "0x0103b1c4",
+   "size": 240,
+   "subsystem": "ipc",
+   "evidence_class": "A3-neighbour",
+   "evidence": "ipc",
+   "named": false,
+   "mmio": [],
+   "globals": [
+    "g_zephyr_sched_thread_field",
+    "rodata_103d2a7",
+    "rodata_103eb0e"
+   ]
+  },
+  "ble_ext_adv_header_field_get": {
+   "va": "0x0100e294",
+   "size": 214,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "ble_ext_adv_header_field_get",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "ble_phy_masks_are_one_hot_or_zero": {
+   "va": "0x0100e8c8",
+   "size": 30,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "ble_phy_masks_are_one_hot_or_zero",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_boot_defaults_load": {
+   "va": "0x0100d808",
+   "size": 44,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_boot_defaults_load",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_net_esb_own_addr",
+    "g_net_esb_own_addr_valid",
+    "rodata_103cc60"
+   ]
+  },
+  "controller_buffer_is_zero": {
+   "va": "0x0100d2c8",
+   "size": 216,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_buffer_is_zero",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_byte_popcount": {
+   "va": "0x0100f6e8",
+   "size": 34,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_byte_popcount",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_count_to_duration": {
+   "va": "0x0100d624",
+   "size": 38,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_count_to_duration",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_default_bounds_build": {
+   "va": "0x010282fc",
+   "size": 126,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_default_bounds_build",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_descriptor_array_encode": {
+   "va": "0x0100a5c8",
+   "size": 152,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_descriptor_array_encode",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_21000be4",
+    "g_21000be8"
+   ]
+  },
+  "controller_descriptor_octet_product": {
+   "va": "0x01012b24",
+   "size": 36,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_descriptor_octet_product",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_descriptor_timing_copy": {
+   "va": "0x0100e83c",
+   "size": 64,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_descriptor_timing_copy",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_duration_to_units": {
+   "va": "0x0100d538",
+   "size": 76,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_duration_to_units",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_entry_links_release": {
+   "va": "0x0101df84",
+   "size": 242,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_entry_links_release",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_feature_bit_enabled": {
+   "va": "0x0100938c",
+   "size": 28,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_feature_bit_enabled",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_halfword_transition_count": {
+   "va": "0x0100f748",
+   "size": 58,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_halfword_transition_count",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_handle_slot_byte_offset": {
+   "va": "0x010274d0",
+   "size": 26,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_handle_slot_byte_offset",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_handle_slot_find": {
+   "va": "0x01027470",
+   "size": 96,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_handle_slot_find",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_handle_slot_find_from": {
+   "va": "0x0102741e",
+   "size": 82,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_handle_slot_find_from",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_handle_slot_value_ptr": {
+   "va": "0x010274ea",
+   "size": 48,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_handle_slot_value_ptr",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_handle_slot_value_set": {
+   "va": "0x0102751a",
+   "size": 50,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_handle_slot_value_set",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_indexed_record_get": {
+   "va": "0x0100ca80",
+   "size": 20,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_indexed_record_get",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_indexed_state_byte_get": {
+   "va": "0x0100bc04",
+   "size": 20,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_indexed_state_byte_get",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_indexed_status_byte_get": {
+   "va": "0x0100bbec",
+   "size": 20,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_indexed_status_byte_get",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_interval_code_to_duration": {
+   "va": "0x0100d600",
+   "size": 34,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_interval_code_to_duration",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_interval_half_saturating": {
+   "va": "0x01027b0c",
+   "size": 38,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_interval_half_saturating",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_intrusive_list_append_unique": {
+   "va": "0x010294d2",
+   "size": 28,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_intrusive_list_append_unique",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_masked_pair_sample_store": {
+   "va": "0x010100f4",
+   "size": 24,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_masked_pair_sample_store",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_mode1_state_validate": {
+   "va": "0x010218d8",
+   "size": 8,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_mode1_state_validate",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_net_radio_ops_table_ptr"
+   ]
+  },
+  "controller_mode2_state_validate": {
+   "va": "0x010218e4",
+   "size": 8,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_mode2_state_validate",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_net_radio_ops_table_ptr"
+   ]
+  },
+  "controller_packed_cursor_advance": {
+   "va": "0x0100951c",
+   "size": 160,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_packed_cursor_advance",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_packet_airtime_compute": {
+   "va": "0x010109ec",
+   "size": 1332,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_packet_airtime_compute",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_packet_build_next": {
+   "va": "0x0100ec88",
+   "size": 540,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_packet_build_next",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_21000054",
+    "g_21000058",
+    "g_2100005c"
+   ]
+  },
+  "controller_packet_completion_update": {
+   "va": "0x0100aba4",
+   "size": 140,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_packet_completion_update",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_packet_config_apply_if_active": {
+   "va": "0x0100cb4c",
+   "size": 32,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_packet_config_apply_if_active",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_packet_duration_calculate": {
+   "va": "0x010122b4",
+   "size": 70,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_packet_duration_calculate",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_packet_duration_lookup": {
+   "va": "0x01012b50",
+   "size": 68,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_packet_duration_lookup",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "rodata_103c1d4"
+   ]
+  },
+  "controller_packet_length_matches_type": {
+   "va": "0x0100e610",
+   "size": 32,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_packet_length_matches_type",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "rodata_103c190"
+   ]
+  },
+  "controller_packet_overhead_span_get": {
+   "va": "0x01026856",
+   "size": 28,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_packet_overhead_span_get",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_packet_payload_claim_begin": {
+   "va": "0x010269ce",
+   "size": 176,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_packet_payload_claim_begin",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_packet_payload_copy": {
+   "va": "0x0100e65c",
+   "size": 32,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_packet_payload_copy",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_packet_payload_extract": {
+   "va": "0x01026c94",
+   "size": 130,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_packet_payload_extract",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_packet_payload_length_set": {
+   "va": "0x0100e8f8",
+   "size": 20,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_packet_payload_length_set",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_packet_payload_reserve": {
+   "va": "0x01026e48",
+   "size": 234,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_packet_payload_reserve",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_packet_rendering_budget_remaining": {
+   "va": "0x0100f368",
+   "size": 288,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_packet_rendering_budget_remaining",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_21000ef2"
+   ]
+  },
+  "controller_packet_result_prepare": {
+   "va": "0x0100f2d0",
+   "size": 198,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_packet_result_prepare",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_net_pending_work_list",
+    "rodata_100f805"
+   ]
+  },
+  "controller_packet_space_limit": {
+   "va": "0x0101dc50",
+   "size": 118,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_packet_space_limit",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_packet_type29_init": {
+   "va": "0x01029bda",
+   "size": 16,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_packet_type29_init",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_packet_type30_init": {
+   "va": "0x01029bea",
+   "size": 16,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_packet_type30_init",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_payload_copy_after_nine_byte_header": {
+   "va": "0x0100e06c",
+   "size": 30,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_payload_copy_after_nine_byte_header",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_phase_finalize": {
+   "va": "0x010129f4",
+   "size": 222,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_phase_finalize",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_procedure_counters_reset": {
+   "va": "0x0100f784",
+   "size": 18,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_procedure_counters_reset",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_procedure_generation_advance": {
+   "va": "0x0100f798",
+   "size": 22,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_procedure_generation_advance",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_procedure_reference_release": {
+   "va": "0x0100f7b0",
+   "size": 32,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_procedure_reference_release",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_procedure_slot_reserve": {
+   "va": "0x0100f834",
+   "size": 54,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_procedure_slot_reserve",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_radio_event_cleanup": {
+   "va": "0x01020634",
+   "size": 228,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_radio_event_cleanup",
+   "named": true,
+   "mmio": [
+    "TIMER0->TASKS_START",
+    "RADIO->TASKS_TXEN",
+    "DPPIC+0x0"
+   ],
+   "globals": [
+    "g_21001614"
+   ]
+  },
+  "controller_radio_request_configure": {
+   "va": "0x0101fdd0",
+   "size": 176,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_radio_request_configure",
+   "named": true,
+   "mmio": [
+    "AAR->TASKS_START",
+    "DPPIC+0x0",
+    "RADIO->TASKS_TXEN"
+   ],
+   "globals": [
+    "g_net_radio_pending_reset_flag",
+    "rodata_103c4cc"
+   ]
+  },
+  "controller_radio_state_get": {
+   "va": "0x01019204",
+   "size": 4,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_radio_state_get",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_radio_state_release": {
+   "va": "0x0100a7cc",
+   "size": 24,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_radio_state_release",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_radio_time_mode1_to_mode1": {
+   "va": "0x01021614",
+   "size": 22,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_radio_time_mode1_to_mode1",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "rodata_103c5c4"
+   ]
+  },
+  "controller_radio_time_mode1_to_mode2": {
+   "va": "0x010215f4",
+   "size": 24,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_radio_time_mode1_to_mode2",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "rodata_103c5c4"
+   ]
+  },
+  "controller_radio_time_mode2_to_mode1": {
+   "va": "0x010215d8",
+   "size": 22,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_radio_time_mode2_to_mode1",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_radio_time_mode2_to_mode2": {
+   "va": "0x01021634",
+   "size": 28,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_radio_time_mode2_to_mode2",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_radio_timer_capture_get": {
+   "va": "0x01023de8",
+   "size": 4,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_radio_timer_capture_get",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_radio_transition_schedule": {
+   "va": "0x01020a6c",
+   "size": 654,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_radio_transition_schedule",
+   "named": true,
+   "mmio": [
+    "RADIO->TASKS_TXEN",
+    "TIMER0->TASKS_START"
+   ],
+   "globals": [
+    "g_210015f7",
+    "g_21001609",
+    "g_2100160a",
+    "rodata_103c4d0",
+    "rodata_103c578",
+    "rodata_103c5b0"
+   ]
+  },
+  "controller_radio_work_pending": {
+   "va": "0x01025be0",
+   "size": 14,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_radio_work_pending",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_net_driver_api_ptr"
+   ]
+  },
+  "controller_random_window_step": {
+   "va": "0x010295d6",
+   "size": 68,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_random_window_step",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_record_tail_ptr": {
+   "va": "0x010277a6",
+   "size": 28,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_record_tail_ptr",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_resolved_address_matches": {
+   "va": "0x0100aaac",
+   "size": 102,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_resolved_address_matches",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_six_byte_record_store": {
+   "va": "0x0100cbe4",
+   "size": 24,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_six_byte_record_store",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_slot_offsets_recompute": {
+   "va": "0x010095c0",
+   "size": 164,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_slot_offsets_recompute",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_state_mode_is_invalid": {
+   "va": "0x01029b24",
+   "size": 20,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_state_mode_is_invalid",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_status_defaults_reset": {
+   "va": "0x0100bc1c",
+   "size": 36,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_status_defaults_reset",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_time_now": {
+   "va": "0x01022f08",
+   "size": 4,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_time_now",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_timing_defaults_apply": {
+   "va": "0x0101e1e4",
+   "size": 144,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_timing_defaults_apply",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_timing_delta_clamp": {
+   "va": "0x01027b32",
+   "size": 58,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_timing_delta_clamp",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_timing_quarter_get": {
+   "va": "0x01027af2",
+   "size": 26,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_timing_quarter_get",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_timing_request_schedule": {
+   "va": "0x0100d4d0",
+   "size": 104,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_timing_request_schedule",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_timing_request_submit": {
+   "va": "0x01022f3c",
+   "size": 630,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_timing_request_submit",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_libc_tz_calc_state"
+   ]
+  },
+  "controller_timing_snapshot_build": {
+   "va": "0x0101a38c",
+   "size": 1874,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_timing_snapshot_build",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_net_session_queue_obj",
+    "g_net_session_state_block"
+   ]
+  },
+  "controller_timing_snapshot_enqueue": {
+   "va": "0x0100f300",
+   "size": 100,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_timing_snapshot_enqueue",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_timing_state_reset": {
+   "va": "0x0101e274",
+   "size": 88,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_timing_state_reset",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_timing_window_is_large": {
+   "va": "0x0100e7e0",
+   "size": 38,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_timing_window_is_large",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_timing_windows_clamp": {
+   "va": "0x0100f1f8",
+   "size": 214,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_timing_windows_clamp",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_timing_windows_store": {
+   "va": "0x0100f198",
+   "size": 16,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_timing_windows_store",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_tx_buffer_ready_get": {
+   "va": "0x0100a960",
+   "size": 32,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_tx_buffer_ready_get",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_net_ctrl_pending_req_busy_flag",
+    "g_net_ctrl_pending_req_id",
+    "g_net_ctrl_pending_req_target_id"
+   ]
+  },
+  "controller_typed_handle_lookup": {
+   "va": "0x01009d18",
+   "size": 70,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_typed_handle_lookup",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_word_transition_count": {
+   "va": "0x0100f70c",
+   "size": 60,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_word_transition_count",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_work_duplicate_enqueue_assert": {
+   "va": "0x0100ebb8",
+   "size": 12,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_work_duplicate_enqueue_assert",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "controller_work_enqueue_state4": {
+   "va": "0x0100ef48",
+   "size": 60,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_work_enqueue_state4",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_net_pending_work_list"
+   ]
+  },
+  "controller_work_update_or_enqueue": {
+   "va": "0x0100efc8",
+   "size": 56,
+   "subsystem": "ll",
+   "evidence_class": "A0-name",
+   "evidence": "controller_work_update_or_enqueue",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_net_pending_work_list"
+   ]
+  },
+  "ipc_rpmsg_static_vrings_open": {
+   "va": "0x0102d708",
+   "size": 18,
+   "subsystem": "ipc",
+   "evidence_class": "A0-name",
+   "evidence": "ipc_rpmsg_static_vrings_open",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "mpsl_timeslot_distance_get": {
+   "va": "0x010243c0",
+   "size": 114,
+   "subsystem": "mpsl",
+   "evidence_class": "A0-name",
+   "evidence": "mpsl_timeslot_distance_get",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "mpsl_timeslot_window_get": {
+   "va": "0x010209c8",
+   "size": 20,
+   "subsystem": "mpsl",
+   "evidence_class": "A0-name",
+   "evidence": "mpsl_timeslot_window_get",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "ocrypto_constant_time_equal": {
+   "va": "0x01008810",
+   "size": 38,
+   "subsystem": "crypto",
+   "evidence_class": "A0-name",
+   "evidence": "ocrypto_constant_time_equal",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "ocrypto_constant_time_is_zero": {
+   "va": "0x01008838",
+   "size": 26,
+   "subsystem": "crypto",
+   "evidence_class": "A0-name",
+   "evidence": "ocrypto_constant_time_is_zero",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "radio_phy_airtime_base_get": {
+   "va": "0x010209f0",
+   "size": 10,
+   "subsystem": "radio",
+   "evidence_class": "A0-name",
+   "evidence": "radio_phy_airtime_base_get",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "radio_phy_airtime_tail_get": {
+   "va": "0x010209e0",
+   "size": 10,
+   "subsystem": "radio",
+   "evidence_class": "A0-name",
+   "evidence": "radio_phy_airtime_tail_get",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "radio_slot_margin_get": {
+   "va": "0x0101a130",
+   "size": 84,
+   "subsystem": "radio",
+   "evidence_class": "A0-name",
+   "evidence": "radio_slot_margin_get",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "radio_transition_overhead_get": {
+   "va": "0x0101a0e8",
+   "size": 72,
+   "subsystem": "radio",
+   "evidence_class": "A0-name",
+   "evidence": "radio_transition_overhead_get",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "rtc_compare_int_lock": {
+   "va": "0x01031248",
+   "size": 10,
+   "subsystem": "timing",
+   "evidence_class": "A0-name",
+   "evidence": "rtc_compare_int_lock",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "rtc_compare_int_unlock": {
+   "va": "0x010312d0",
+   "size": 10,
+   "subsystem": "timing",
+   "evidence_class": "A0-name",
+   "evidence": "rtc_compare_int_unlock",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "rtc_compare_set": {
+   "va": "0x010313ec",
+   "size": 256,
+   "subsystem": "timing",
+   "evidence_class": "A0-name",
+   "evidence": "rtc_compare_set",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "schedule_node_find_at_or_after": {
+   "va": "0x0101ddc0",
+   "size": 74,
+   "subsystem": "timing",
+   "evidence_class": "A0-name",
+   "evidence": "schedule_node_find_at_or_after",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_timeout_list"
+   ]
+  },
+  "schedule_node_insert_after": {
+   "va": "0x0101dd48",
+   "size": 78,
+   "subsystem": "timing",
+   "evidence_class": "A0-name",
+   "evidence": "schedule_node_insert_after",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_timeout_list"
+   ]
+  },
+  "schedule_node_list_is_locked": {
+   "va": "0x0101dec4",
+   "size": 6,
+   "subsystem": "timing",
+   "evidence_class": "A0-name",
+   "evidence": "schedule_node_list_is_locked",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_21001140"
+   ]
+  },
+  "schedule_node_list_lock": {
+   "va": "0x0101deac",
+   "size": 8,
+   "subsystem": "timing",
+   "evidence_class": "A0-name",
+   "evidence": "schedule_node_list_lock",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_21001140"
+   ]
+  },
+  "schedule_node_list_unlock": {
+   "va": "0x0101deb8",
+   "size": 8,
+   "subsystem": "timing",
+   "evidence_class": "A0-name",
+   "evidence": "schedule_node_list_unlock",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_21001140"
+   ]
+  },
+  "schedule_node_split_insert": {
+   "va": "0x0101de60",
+   "size": 72,
+   "subsystem": "timing",
+   "evidence_class": "A0-name",
+   "evidence": "schedule_node_split_insert",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_timeout_list"
+   ]
+  },
+  "schedule_node_tail_get": {
+   "va": "0x0101dda8",
+   "size": 20,
+   "subsystem": "timing",
+   "evidence_class": "A0-name",
+   "evidence": "schedule_node_tail_get",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_timeout_list"
+   ]
+  },
+  "schedule_phase_offset_get": {
+   "va": "0x0101de10",
+   "size": 78,
+   "subsystem": "timing",
+   "evidence_class": "A0-name",
+   "evidence": "schedule_phase_offset_get",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "sdc_assertion_fail": {
+   "va": "0x01008d00",
+   "size": 110,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_assertion_fail",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_21000a58"
+   ]
+  },
+  "sdc_ble_address_equal": {
+   "va": "0x0100aa3c",
+   "size": 82,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_ble_address_equal",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "sdc_block_chain_layout_init": {
+   "va": "0x010279e6",
+   "size": 100,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_block_chain_layout_init",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "sdc_buffer_accumulate": {
+   "va": "0x01026f32",
+   "size": 274,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_buffer_accumulate",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "sdc_buffer_data_get": {
+   "va": "0x01027790",
+   "size": 22,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_buffer_data_get",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "sdc_buffer_descriptor_resolve": {
+   "va": "0x0102714a",
+   "size": 76,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_buffer_descriptor_resolve",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "sdc_buffer_elapsed_units_get": {
+   "va": "0x01026d3e",
+   "size": 112,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_buffer_elapsed_units_get",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "sdc_buffer_payload_get": {
+   "va": "0x010270d2",
+   "size": 22,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_buffer_payload_get",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "sdc_conn_event_timing_prepare": {
+   "va": "0x01012f18",
+   "size": 1808,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_conn_event_timing_prepare",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_21000f58",
+    "g_net_radio_ack_pending_flag",
+    "rodata_103c1f8"
+   ]
+  },
+  "sdc_conn_radio_overhead_set": {
+   "va": "0x0100f48c",
+   "size": 292,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_conn_radio_overhead_set",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_21000ef2"
+   ]
+  },
+  "sdc_conn_recovery_state_restore": {
+   "va": "0x0101618c",
+   "size": 88,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_conn_recovery_state_restore",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "rodata_10101cd"
+   ]
+  },
+  "sdc_conn_recovery_window_update": {
+   "va": "0x0100d6e8",
+   "size": 42,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_conn_recovery_window_update",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "sdc_conn_timing_fault": {
+   "va": "0x01012c08",
+   "size": 12,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_conn_timing_fault",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "sdc_conn_timing_guard_enabled": {
+   "va": "0x01016160",
+   "size": 12,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_conn_timing_guard_enabled",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "sdc_controller_random_get": {
+   "va": "0x0100f63c",
+   "size": 40,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_controller_random_get",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_net_esb_prng_state_hi",
+    "g_net_esb_prng_state_lo"
+   ]
+  },
+  "sdc_controller_random_init": {
+   "va": "0x0100f5d8",
+   "size": 90,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_controller_random_init",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_net_esb_prng_state_hi",
+    "g_net_esb_prng_state_lo",
+    "g_net_prng_state",
+    "g_net_prng_state_s1"
+   ]
+  },
+  "sdc_cpu_relax": {
+   "va": "0x0102a21e",
+   "size": 2,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_cpu_relax",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "sdc_ecb_run_blocking": {
+   "va": "0x0100a7e8",
+   "size": 178,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_ecb_run_blocking",
+   "named": true,
+   "mmio": [
+    "ECB->TASKS_STARTECB"
+   ],
+   "globals": []
+  },
+  "sdc_ext_adv_reschedule": {
+   "va": "0x010140ec",
+   "size": 230,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_ext_adv_reschedule",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "sdc_hci_event_suppressed": {
+   "va": "0x0101f888",
+   "size": 8,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_hci_event_suppressed",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "sdc_llcp_apply_rx_transition": {
+   "va": "0x0101746c",
+   "size": 476,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_llcp_apply_rx_transition",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_net_conn_event_cb",
+    "g_net_ctrlblk_chan_field",
+    "g_sdc_ll_ctx_param"
+   ]
+  },
+  "sdc_llcp_decode_control_pdu": {
+   "va": "0x0101a070",
+   "size": 110,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_llcp_decode_control_pdu",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "sdc_llcp_get_active_link_index": {
+   "va": "0x0100d760",
+   "size": 72,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_llcp_get_active_link_index",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_21000ea7"
+   ]
+  },
+  "sdc_llcp_handle_control_opcode": {
+   "va": "0x010168e4",
+   "size": 972,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_llcp_handle_control_opcode",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_net_ble_pending_channel_idx",
+    "g_net_ctrlblk_chan_field",
+    "g_net_link_ctx_field_buf"
+   ]
+  },
+  "sdc_llcp_handle_unknown_response": {
+   "va": "0x010183e0",
+   "size": 670,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_llcp_handle_unknown_response",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_net_ble_pending_channel_idx",
+    "g_net_ctrlblk_chan_field",
+    "g_net_link_ctx_field_buf"
+   ]
+  },
+  "sdc_llcp_note_unsupported_pdu": {
+   "va": "0x01020500",
+   "size": 296,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_llcp_note_unsupported_pdu",
+   "named": true,
+   "mmio": [
+    "RADIO->TASKS_TXEN"
+   ],
+   "globals": [
+    "g_210015f7"
+   ]
+  },
+  "sdc_llcp_procedure_slot_get": {
+   "va": "0x0100ca68",
+   "size": 20,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_llcp_procedure_slot_get",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "sdc_llcp_process_rx_control_pdu": {
+   "va": "0x01018690",
+   "size": 262,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_llcp_process_rx_control_pdu",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_net_ble_pending_channel_idx"
+   ]
+  },
+  "sdc_llcp_release_rx_context": {
+   "va": "0x0101fca8",
+   "size": 66,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_llcp_release_rx_context",
+   "named": true,
+   "mmio": [
+    "AAR->TASKS_START"
+   ],
+   "globals": [
+    "g_net_ccm_op_status"
+   ]
+  },
+  "sdc_llcp_stop_rx_timeout": {
+   "va": "0x010208b0",
+   "size": 22,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_llcp_stop_rx_timeout",
+   "named": true,
+   "mmio": [
+    "RADIO->TASKS_TXEN"
+   ],
+   "globals": []
+  },
+  "sdc_packet_header_decode": {
+   "va": "0x01019f9c",
+   "size": 210,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_packet_header_decode",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "sdc_pdu_type_bits_set": {
+   "va": "0x0100e5dc",
+   "size": 16,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_pdu_type_bits_set",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "sdc_phy_timing_offset_get": {
+   "va": "0x0100d58c",
+   "size": 52,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_phy_timing_offset_get",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "sdc_radio_context_fixed_time_get": {
+   "va": "0x0100f0fc",
+   "size": 4,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_radio_context_fixed_time_get",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "sdc_rand_poll": {
+   "va": "0x01009204",
+   "size": 6,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_rand_poll",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_21000a68"
+   ]
+  },
+  "sdc_timing_compensation_enabled": {
+   "va": "0x010247cc",
+   "size": 12,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_timing_compensation_enabled",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "sdc_timing_compensation_get": {
+   "va": "0x01029638",
+   "size": 4,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_timing_compensation_get",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "sdc_timing_scale": {
+   "va": "0x01024678",
+   "size": 74,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_timing_scale",
+   "named": true,
+   "mmio": [],
+   "globals": []
+  },
+  "sdc_work_submit": {
+   "va": "0x0100ef88",
+   "size": 64,
+   "subsystem": "sdc",
+   "evidence_class": "A0-name",
+   "evidence": "sdc_work_submit",
+   "named": true,
+   "mmio": [],
+   "globals": [
+    "g_net_pending_work_list"
+   ]
+  }
+ },
+ "mechanically_nameable_accessors": [
+  {
+   "symbol": "FUN_010091f8",
+   "va": "0x010091f8",
+   "size": 6,
+   "proposed": "net_addr_record_at04_get",
+   "global": "g_net_addr_record",
+   "width": "u32",
+   "direction": "load",
+   "displacement": 4,
+   "n_callers": 3
+  },
+  {
+   "symbol": "FUN_0100b170",
+   "va": "0x0100b170",
+   "size": 10,
+   "proposed": "net_radio_drv_ctx_at3c_set",
+   "global": "g_net_radio_drv_ctx",
+   "width": "u8",
+   "direction": "store",
+   "displacement": 60,
+   "n_callers": 2
+  },
+  {
+   "symbol": "FUN_0100b608",
+   "va": "0x0100b608",
+   "size": 8,
+   "proposed": "net_radio_drv_ctx_atb0_get",
+   "global": "g_net_radio_drv_ctx",
+   "width": "u8",
+   "direction": "load",
+   "displacement": 176,
+   "n_callers": 1
+  },
+  {
+   "symbol": "FUN_0100b624",
+   "va": "0x0100b624",
+   "size": 8,
+   "proposed": "net_radio_drv_ctx_atc4_get",
+   "global": "g_net_radio_drv_ctx",
+   "width": "u8",
+   "direction": "load",
+   "displacement": 196,
+   "n_callers": 1
+  },
+  {
+   "symbol": "FUN_0100bc44",
+   "va": "0x0100bc44",
+   "size": 8,
+   "proposed": "net_radio_addr_match_tbl_at18b_set",
+   "global": "g_net_radio_addr_match_tbl",
+   "width": "u8",
+   "direction": "store",
+   "displacement": 395,
+   "n_callers": 1
+  },
+  {
+   "symbol": "FUN_0100bc50",
+   "va": "0x0100bc50",
+   "size": 8,
+   "proposed": "net_radio_addr_match_tbl_at18b_get",
+   "global": "g_net_radio_addr_match_tbl",
+   "width": "u8",
+   "direction": "load",
+   "displacement": 395,
+   "n_callers": 1
+  },
+  {
+   "symbol": "FUN_0100c738",
+   "va": "0x0100c738",
+   "size": 8,
+   "proposed": "net_radio_addr_match_tbl_at18c_get",
+   "global": "g_net_radio_addr_match_tbl",
+   "width": "u16",
+   "direction": "load",
+   "displacement": 396,
+   "n_callers": 3
+  },
+  {
+   "symbol": "FUN_010107a0",
+   "va": "0x010107a0",
+   "size": 8,
+   "proposed": "net_lookup_table_desc_set",
+   "global": "g_net_lookup_table_desc",
+   "width": "u8",
+   "direction": "store",
+   "displacement": 0,
+   "n_callers": 1
+  },
+  {
+   "symbol": "FUN_01013d28",
+   "va": "0x01013d28",
+   "size": 6,
+   "proposed": "net_radio_ack_pending_flag_at08_set",
+   "global": "g_net_radio_ack_pending_flag",
+   "width": "u8",
+   "direction": "store",
+   "displacement": 8,
+   "n_callers": 1
+  },
+  {
+   "symbol": "FUN_010141dc",
+   "va": "0x010141dc",
+   "size": 6,
+   "proposed": "net_radio_ack_pending_flag_at12_set",
+   "global": "g_net_radio_ack_pending_flag",
+   "width": "u16",
+   "direction": "store",
+   "displacement": 18,
+   "n_callers": 1
+  },
+  {
+   "symbol": "FUN_0101b74c",
+   "va": "0x0101b74c",
+   "size": 6,
+   "proposed": "net_session_state_block_get",
+   "global": "g_net_session_state_block",
+   "width": "u8",
+   "direction": "load",
+   "displacement": 0,
+   "n_callers": 2
+  },
+  {
+   "symbol": "FUN_0101bbb4",
+   "va": "0x0101bbb4",
+   "size": 6,
+   "proposed": "net_conn_teardown_busy_flag_at01_set",
+   "global": "g_net_conn_teardown_busy_flag",
+   "width": "u8",
+   "direction": "store",
+   "displacement": 1,
+   "n_callers": 1
+  },
+  {
+   "symbol": "FUN_0101dd9c",
+   "va": "0x0101dd9c",
+   "size": 6,
+   "proposed": "timeout_list_get",
+   "global": "g_timeout_list",
+   "width": "u32",
+   "direction": "load",
+   "displacement": 0,
+   "n_callers": 1
+  },
+  {
+   "symbol": "FUN_0101f668",
+   "va": "0x0101f668",
+   "size": 8,
+   "proposed": "net_ble_conn_role_cfg_at18_set",
+   "global": "g_net_ble_conn_role_cfg",
+   "width": "u8",
+   "direction": "store",
+   "displacement": 24,
+   "n_callers": 1
+  },
+  {
+   "symbol": "FUN_0101f674",
+   "va": "0x0101f674",
+   "size": 8,
+   "proposed": "net_ble_conn_role_cfg_at19_set",
+   "global": "g_net_ble_conn_role_cfg",
+   "width": "u8",
+   "direction": "store",
+   "displacement": 25,
+   "n_callers": 1
+  },
+  {
+   "symbol": "FUN_01024644",
+   "va": "0x01024644",
+   "size": 6,
+   "proposed": "net_link_state_at02_get",
+   "global": "g_net_link_state",
+   "width": "u16",
+   "direction": "load",
+   "displacement": 2,
+   "n_callers": 5
+  },
+  {
+   "symbol": "FUN_010246cc",
+   "va": "0x010246cc",
+   "size": 6,
+   "proposed": "154_critical_section_nest_cnt_at04_get",
+   "global": "g_154_critical_section_nest_cnt",
+   "width": "u16",
+   "direction": "load",
+   "displacement": 4,
+   "n_callers": 2
+  },
+  {
+   "symbol": "FUN_010246d8",
+   "va": "0x010246d8",
+   "size": 6,
+   "proposed": "154_critical_section_nest_cnt_at02_get",
+   "global": "g_154_critical_section_nest_cnt",
+   "width": "u16",
+   "direction": "load",
+   "displacement": 2,
+   "n_callers": 9
+  },
+  {
+   "symbol": "FUN_01025c38",
+   "va": "0x01025c38",
+   "size": 8,
+   "proposed": "net_task_state_struct_at1e_set",
+   "global": "g_net_task_state_struct",
+   "width": "u8",
+   "direction": "store",
+   "displacement": 30,
+   "n_callers": 1
+  },
+  {
+   "symbol": "FUN_0102a468",
+   "va": "0x0102a468",
+   "size": 6,
+   "proposed": "net_ctrl_report_len_get",
+   "global": "g_net_ctrl_report_len",
+   "width": "u32",
+   "direction": "load",
+   "displacement": 0,
+   "n_callers": 1
+  },
+  {
+   "symbol": "FUN_0102b794",
+   "va": "0x0102b794",
+   "size": 8,
+   "proposed": "net_radio_op_state_set",
+   "global": "g_net_radio_op_state",
+   "width": "u32",
+   "direction": "store",
+   "displacement": 0,
+   "n_callers": 0
+  },
+  {
+   "symbol": "FUN_0102b7a0",
+   "va": "0x0102b7a0",
+   "size": 8,
+   "proposed": "net_radio_op_state_set",
+   "global": "g_net_radio_op_state",
+   "width": "u32",
+   "direction": "store",
+   "displacement": 0,
+   "n_callers": 0
+  },
+  {
+   "symbol": "FUN_0102b7ac",
+   "va": "0x0102b7ac",
+   "size": 8,
+   "proposed": "net_radio_op_state_set",
+   "global": "g_net_radio_op_state",
+   "width": "u32",
+   "direction": "store",
+   "displacement": 0,
+   "n_callers": 0
+  },
+  {
+   "symbol": "FUN_0102b7b8",
+   "va": "0x0102b7b8",
+   "size": 6,
+   "proposed": "net_radio_op_state_get",
+   "global": "g_net_radio_op_state",
+   "width": "u32",
+   "direction": "load",
+   "displacement": 0,
+   "n_callers": 1
+  }
+ ]
+}

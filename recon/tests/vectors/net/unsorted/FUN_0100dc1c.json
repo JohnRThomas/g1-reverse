@@ -32,7 +32,8 @@
     "scratch_seed": 0,
     "xpsr": 0
    },
-   "new_instructions": 6
+   "new_instructions": 6,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -66,7 +67,8 @@
     "scratch_seed": 17,
     "xpsr": 0
    },
-   "new_instructions": 13
+   "new_instructions": 13,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -103,7 +105,40 @@
     "scratch_seed": 35,
     "xpsr": 0
    },
-   "new_instructions": 142
+   "new_instructions": 142,
+   "stack_args": []
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "kind": "fault",
+    "ncalls": 0
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1426631299,
+     759482060,
+     16,
+     2236840408
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr0-2",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 702,
+    "xpsr": 0
+   },
+   "new_instructions": 1,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -142,7 +177,8 @@
     "scratch_seed": 21,
     "xpsr": 0
    },
-   "new_instructions": 105
+   "new_instructions": 105,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -182,7 +218,8 @@
     "scratch_seed": 36,
     "xpsr": 0
    },
-   "new_instructions": 62
+   "new_instructions": 62,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -221,7 +258,8 @@
     "scratch_seed": 42,
     "xpsr": 0
    },
-   "new_instructions": 73
+   "new_instructions": 73,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -260,7 +298,8 @@
     "scratch_seed": 63,
     "xpsr": 0
    },
-   "new_instructions": 135
+   "new_instructions": 135,
+   "stack_args": []
   }
  ],
  "core": "net",
@@ -272,20 +311,35 @@
  },
  "ghidra_size": 920,
  "globals": [],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "936cee0b67396ca5",
+  "stack_arg_window": 48
+ },
  "module": "unsorted",
- "nptr": 2,
+ "nptr": -1,
  "oracle": {
   "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
   "source": "shipped image"
  },
+ "pointer_arg_mask": [
+  0,
+  1
+ ],
  "ret_kind": "i32",
  "search": {
-  "candidates": 123,
+  "candidates": 155,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
   "extent_dispute_targets": [],
   "harness_errors": 0,
-  "kept": 7
+  "kept": 8,
+  "pointer_arg_mask": [
+   0,
+   1
+  ],
+  "pointer_arg_mask_derived": true
  },
  "size": 920,
  "symbol": "FUN_0100dc1c",

@@ -1,0 +1,133 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16820688,
+    16825372,
+    16906484,
+    16837620,
+    16832428,
+    16844704,
+    16832520,
+    16906364
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
+    "('C', 2, 'S', 'F', 'T', None)",
+    "('C', 3, 'S', 'F', 'T', None)",
+    "('C', 4, 'S', 'F', 'T', None)",
+    "('C', 5, 'S', 'F', 'T', None)",
+    "('C', 6, 'S', 'F', 'T', None)",
+    "('C', 7, 1, 'S', 'F', 'T', None)",
+    "('W', 553651884, 4, 1769987)",
+    "('W', 553651888, 2, 27)",
+    "('W', 553651900, 1, 0)",
+    "('W', 553651902, 2, 0)",
+    "('W', 553651906, 2, 0)",
+    "('W', 553651908, 2, 0)",
+    "('W', 553652744, 4, 21495835)",
+    "('W', 553652748, 2, 0)",
+    "('W', 553652766, 1, 0)",
+    "('W', 553652768, 2, 249)",
+    "('W', 553652770, 1, 1)",
+    "('W', 553652773, 1, 0)"
+   ],
+   "expect": {
+    "events": "95d924754079c811ecaaeb61d98a080a75d83e8370602186e9a62c3b052fbbe8",
+    "kind": "return",
+    "ncalls": 8,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1276959699,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 31,
+   "stack_args": []
+  }
+ ],
+ "core": "net",
+ "coverage": {
+  "covered": 31,
+  "ratio": 1.0,
+  "total": 31,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 78,
+ "globals": [
+  "0x21000eac",
+  "0x21001208"
+ ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "936cee0b67396ca5",
+  "stack_arg_window": 48
+ },
+ "module": "unsorted",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "void",
+ "search": {
+  "candidates": 175,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 1,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 78,
+ "symbol": "FUN_0101e828",
+ "va": "0x0101e828"
+}

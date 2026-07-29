@@ -1,0 +1,139 @@
+{
+ "cases": [
+  {
+   "call_arities": [
+    1
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    16908424
+   ],
+   "events_head": [
+    "('C', 0, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "ec986018d7f3653d9ab5458f2e95217d939144df2b21c2f7985c84dc6c99a165",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1276959699,
+     12,
+     4,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 0,
+    "xpsr": 0
+   },
+   "new_instructions": 5,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    1
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "void"
+   ],
+   "call_targets": [
+    16908424
+   ],
+   "events_head": [
+    "('W', 1090576512, 4, 0)",
+    "('R', 1090576640, 4, 0)",
+    "('W', 553653464, 1, 0)",
+    "('W', 553653465, 1, 0)",
+    "('W', 553653466, 1, 16)",
+    "('C', 0, 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "cdae5afedee9fb7b11f311b594f659013aca26cf14c746dd2ca9cf414e0bc747",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      553653464,
+      "01000000"
+     ]
+    ],
+    "args": [
+     4067469868,
+     1797429778,
+     2147483648,
+     315044147
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "glob-0-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 1,
+    "xpsr": 0
+   },
+   "new_instructions": 15,
+   "stack_args": []
+  }
+ ],
+ "core": "net",
+ "coverage": {
+  "covered": 15,
+  "ratio": 0.5556,
+  "total": 27,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 66,
+ "globals": [
+  "0x210014d8",
+  "0x4100e000"
+ ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "936cee0b67396ca5",
+  "stack_arg_window": 48
+ },
+ "module": "sdc",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "void",
+ "search": {
+  "candidates": 141,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 0,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 2,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 66,
+ "symbol": "sdc_llcp_release_rx_context",
+ "va": "0x0101fca8"
+}

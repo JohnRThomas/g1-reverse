@@ -1,0 +1,1 @@
+/Users/freedomcoder/Projects/G1disasm2/tools/assemble_struct_catalog.py

@@ -18,8 +18,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536943568,
-     536948040,
+     1276959699,
+     12,
      4,
      0
     ],
@@ -27,16 +27,17 @@
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 0,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
-    2
+    0
    ],
    "call_float_arities": [
     0
@@ -98,7 +99,7 @@
     "('R', 1090576640, 4, 0)"
    ],
    "expect": {
-    "events": "e90b76fe498af76deb6d9c6435cb2914fac19df3f0cfca7b59fa7fbe6dc49abb",
+    "events": "42c0da048caceff5edb1a844c686caa482b43bc1778f874caa75be9e4e7a62f3",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -114,8 +115,8 @@
      ]
     ],
     "args": [
-     536947244,
-     536943120,
+     4067469868,
+     1797429778,
      2147483648,
      315044147
     ],
@@ -123,16 +124,17 @@
     "fp": {},
     "id": "glob-0-1",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 1,
     "xpsr": 0
    },
-   "new_instructions": 35
+   "new_instructions": 35,
+   "stack_args": []
   },
   {
    "call_arities": [
-    2
+    0
    ],
    "call_float_arities": [
     0
@@ -194,7 +196,7 @@
     "('R', 1090576640, 4, 0)"
    ],
    "expect": {
-    "events": "e90b76fe498af76deb6d9c6435cb2914fac19df3f0cfca7b59fa7fbe6dc49abb",
+    "events": "42c0da048caceff5edb1a844c686caa482b43bc1778f874caa75be9e4e7a62f3",
     "kind": "return",
     "ncalls": 1,
     "ret": [
@@ -214,8 +216,8 @@
      ]
     ],
     "args": [
-     536943484,
-     536950468,
+     4294967295,
+     5,
      3514336102,
      6
     ],
@@ -223,7 +225,7 @@
     "fp": {},
     "id": "combo-1-1",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [
      [
       0,
@@ -239,7 +241,8 @@
     "scratch_seed": 605,
     "xpsr": 0
    },
-   "new_instructions": 35
+   "new_instructions": 35,
+   "stack_args": []
   }
  ],
  "core": "net",
@@ -254,20 +257,29 @@
   "0x210014d8",
   "0x4100e000"
  ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "936cee0b67396ca5",
+  "stack_arg_window": 48
+ },
  "module": "sdc",
- "nptr": 2,
+ "nptr": -1,
  "oracle": {
   "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
   "source": "shipped image"
  },
+ "pointer_arg_mask": [],
  "ret_kind": "i32",
  "search": {
-  "candidates": 153,
+  "candidates": 161,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
   "extent_dispute_targets": [],
   "harness_errors": 0,
-  "kept": 3
+  "kept": 3,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
  },
  "size": 100,
  "symbol": "FUN_0101fd20",

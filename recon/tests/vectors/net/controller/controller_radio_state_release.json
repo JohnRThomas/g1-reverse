@@ -3,7 +3,7 @@
   {
    "call_arities": [
     1,
-    2
+    0
    ],
    "call_float_arities": [
     0,
@@ -19,11 +19,11 @@
    ],
    "events_head": [
     "('C', 0, 553651188, 'S', 'F', 'T', None)",
-    "('C', 1, 29, 48, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
     "('W', 553651189, 1, 103)"
    ],
    "expect": {
-    "events": "e2708c710066123c172ff60747acfa47b0f9afb59d145dadcc7ede64215a9b3e",
+    "events": "aa55e366ce59d94ae771bb5fb337248fd8cf48a39051efea6de1c9ecfa4372ed",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -32,8 +32,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536943568,
-     536948040,
+     1276959699,
+     12,
      4,
      0
     ],
@@ -41,12 +41,13 @@
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 0,
     "xpsr": 0
    },
-   "new_instructions": 10
+   "new_instructions": 10,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -75,8 +76,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536951308,
-     536947088,
+     2345269775,
+     3092785552,
      1935641720,
      554330043
     ],
@@ -84,7 +85,7 @@
     "fp": {},
     "id": "orc-all-0",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [
      [
       0,
@@ -110,12 +111,13 @@
     "scratch_seed": 400,
     "xpsr": 0
    },
-   "new_instructions": 7
+   "new_instructions": 7,
+   "stack_args": []
   },
   {
    "call_arities": [
     1,
-    2
+    0
    ],
    "call_float_arities": [
     0,
@@ -131,11 +133,11 @@
    ],
    "events_head": [
     "('C', 0, 553651188, 'S', 'F', 'T', None)",
-    "('C', 1, 29, 48, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
     "('W', 553651189, 1, 1)"
    ],
    "expect": {
-    "events": "0b7e6da1fcb7aa6a1548eb8fb002daa9cec1e8ac9c910b205c0c030af0d38ed1",
+    "events": "bd77c252ac896f6be3cd7d35ecb96b5c72339619f5a76b80886c6c3a3e854290",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -144,8 +146,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536943352,
-     536946944,
+     3358579451,
+     2876352768,
      168044460,
      6
     ],
@@ -153,7 +155,7 @@
     "fp": {},
     "id": "orc-all-1",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [
      [
       0,
@@ -179,12 +181,13 @@
     "scratch_seed": 401,
     "xpsr": 0
    },
-   "new_instructions": 10
+   "new_instructions": 10,
+   "stack_args": []
   },
   {
    "call_arities": [
     1,
-    2
+    0
    ],
    "call_float_arities": [
     0,
@@ -200,11 +203,11 @@
    ],
    "events_head": [
     "('C', 0, 553651188, 'S', 'F', 'T', None)",
-    "('C', 1, 29, 48, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
     "('W', 553651189, 1, 2)"
    ],
    "expect": {
-    "events": "1de1c319696400dd84f5735151367fbbefb66228e1d2ba7d493ced43c5778272",
+    "events": "f95a0f560c91d9b5066bd51a8858893c9b69ce924815cf305d2a406a389b3770",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -213,8 +216,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536939648,
-     536938124,
+     2301873280,
+     2147483647,
      5,
      888612868
     ],
@@ -222,7 +225,7 @@
     "fp": {},
     "id": "orc-all-2",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [
      [
       0,
@@ -248,12 +251,13 @@
     "scratch_seed": 402,
     "xpsr": 0
    },
-   "new_instructions": 10
+   "new_instructions": 10,
+   "stack_args": []
   },
   {
    "call_arities": [
     1,
-    2
+    0
    ],
    "call_float_arities": [
     0,
@@ -269,11 +273,11 @@
    ],
    "events_head": [
     "('C', 0, 553651188, 'S', 'F', 'T', None)",
-    "('C', 1, 29, 48, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
     "('W', 553651189, 1, 255)"
    ],
    "expect": {
-    "events": "6be5a2e57f11b440e7f46aa327b4417b53fa008fca84db6a8d0e9dbc6d7b7a67",
+    "events": "5696973a72b8e95537c14548af9c76323c34d28e28e7bcd1014a82fe955c7096",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -282,8 +286,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536949348,
-     536938964,
+     5,
+     5,
      2896198881,
      256
     ],
@@ -291,7 +295,7 @@
     "fp": {},
     "id": "orc-all-3",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [
      [
       0,
@@ -317,12 +321,13 @@
     "scratch_seed": 403,
     "xpsr": 0
    },
-   "new_instructions": 10
+   "new_instructions": 10,
+   "stack_args": []
   },
   {
    "call_arities": [
     1,
-    2
+    0
    ],
    "call_float_arities": [
     0,
@@ -338,11 +343,11 @@
    ],
    "events_head": [
     "('C', 0, 553651188, 'S', 'F', 'T', None)",
-    "('C', 1, 29, 48, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
     "('W', 553651189, 1, 245)"
    ],
    "expect": {
-    "events": "c32aaa176b3c17064ae5104d21f9816468dcf7c932f03259515f6fa02bfc818e",
+    "events": "1ae155068732fba4c1f2044aa0238222e60980f9dfeebb1924e8ed430e182d2f",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -351,8 +356,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536948664,
-     536945952,
+     684158906,
+     917497122,
      62306477,
      4
     ],
@@ -360,7 +365,7 @@
     "fp": {},
     "id": "orc-all-4",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [
      [
       0,
@@ -386,12 +391,13 @@
     "scratch_seed": 404,
     "xpsr": 0
    },
-   "new_instructions": 10
+   "new_instructions": 10,
+   "stack_args": []
   },
   {
    "call_arities": [
     1,
-    2
+    0
    ],
    "call_float_arities": [
     0,
@@ -407,11 +413,11 @@
    ],
    "events_head": [
     "('C', 0, 553651188, 'S', 'F', 'T', None)",
-    "('C', 1, 29, 48, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
     "('W', 553651189, 1, 0)"
    ],
    "expect": {
-    "events": "3e59f0bbcf00f3b582077c7cca50bcb25214d6c087173c276ab56808442941ae",
+    "events": "6f0f6c5a7c218d57df11e2c9ffafbe63f8f0e0e9b641500141fe2d0e28aabe13",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -420,8 +426,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536946536,
-     536949432,
+     255,
+     952824504,
      1118673106,
      4294967295
     ],
@@ -429,7 +435,7 @@
     "fp": {},
     "id": "orc-1-0",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [
      [
       1,
@@ -445,12 +451,13 @@
     "scratch_seed": 502,
     "xpsr": 0
    },
-   "new_instructions": 10
+   "new_instructions": 10,
+   "stack_args": []
   },
   {
    "call_arities": [
     1,
-    2
+    0
    ],
    "call_float_arities": [
     0,
@@ -466,11 +473,11 @@
    ],
    "events_head": [
     "('C', 0, 553651188, 'S', 'F', 'T', None)",
-    "('C', 1, 29, 48, 'S', 'F', 'T', None)",
+    "('C', 1, 'S', 'F', 'T', None)",
     "('W', 553651189, 1, 160)"
    ],
    "expect": {
-    "events": "816ed2eb468adc58a6a810acff20d43c1d4569b6e39580dda1ffebb4a4e3490f",
+    "events": "b359705182fd71a13fe34a2deaabac588f1544ce45ff9f972dd4b0f6bec385e5",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -484,8 +491,8 @@
      ]
     ],
     "args": [
-     536942356,
-     536952828,
+     6,
+     1592279039,
      2201720285,
      2147483648
     ],
@@ -493,7 +500,7 @@
     "fp": {},
     "id": "combo-0-3",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [
      [
       0,
@@ -519,7 +526,8 @@
     "scratch_seed": 603,
     "xpsr": 0
    },
-   "new_instructions": 10
+   "new_instructions": 10,
+   "stack_args": []
   }
  ],
  "core": "net",
@@ -533,20 +541,29 @@
  "globals": [
   "0x21000bf4"
  ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "936cee0b67396ca5",
+  "stack_arg_window": 48
+ },
  "module": "controller",
- "nptr": 2,
+ "nptr": -1,
  "oracle": {
   "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
   "source": "shipped image"
  },
+ "pointer_arg_mask": [],
  "ret_kind": "void",
  "search": {
-  "candidates": 147,
+  "candidates": 155,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
   "extent_dispute_targets": [],
   "harness_errors": 0,
-  "kept": 8
+  "kept": 8,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
  },
  "size": 24,
  "symbol": "controller_radio_state_release",

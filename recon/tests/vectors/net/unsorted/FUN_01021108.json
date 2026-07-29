@@ -1,0 +1,44 @@
+{
+ "cases": [],
+ "core": "net",
+ "coverage": {
+  "covered": 0,
+  "ratio": 0.0,
+  "total": 159,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 460,
+ "globals": [
+  "0x210015f0",
+  "0x41008000",
+  "0x4100c000",
+  "0x21000028"
+ ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "936cee0b67396ca5",
+  "stack_arg_window": 48
+ },
+ "module": "unsorted",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "void",
+ "search": {
+  "candidates": 202,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 202,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 0,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 468,
+ "symbol": "FUN_01021108",
+ "va": "0x01021108"
+}

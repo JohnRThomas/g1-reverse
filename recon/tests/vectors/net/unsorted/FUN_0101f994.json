@@ -29,7 +29,8 @@
     "scratch_seed": 0,
     "xpsr": 0
    },
-   "new_instructions": 5
+   "new_instructions": 5,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -66,7 +67,8 @@
     "scratch_seed": 11,
     "xpsr": 0
    },
-   "new_instructions": 13
+   "new_instructions": 13,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -103,7 +105,8 @@
     "scratch_seed": 47,
     "xpsr": 0
    },
-   "new_instructions": 13
+   "new_instructions": 13,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -123,24 +126,22 @@
    "fixture": {
     "abs": [],
     "args": [
-     536943312,
-     536942680,
-     3677430904,
-     7
+     8,
+     0,
+     1547220657,
+     880227538
     ],
-    "float_scratch": true,
-    "fp": {
-     "0": 1065353216,
-     "1": 3239897098
-    },
-    "id": "fp-2",
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr0-0",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
-    "scratch_seed": 2,
+    "scratch_seed": 700,
     "xpsr": 0
    },
-   "new_instructions": 13
+   "new_instructions": 13,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -180,7 +181,8 @@
     "scratch_seed": 32,
     "xpsr": 0
    },
-   "new_instructions": 13
+   "new_instructions": 13,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -220,7 +222,8 @@
     "scratch_seed": 53,
     "xpsr": 0
    },
-   "new_instructions": 13
+   "new_instructions": 13,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -260,7 +263,8 @@
     "scratch_seed": 57,
     "xpsr": 0
    },
-   "new_instructions": 13
+   "new_instructions": 13,
+   "stack_args": []
   }
  ],
  "core": "net",
@@ -272,20 +276,35 @@
  },
  "ghidra_size": 522,
  "globals": [],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "936cee0b67396ca5",
+  "stack_arg_window": 48
+ },
  "module": "unsorted",
- "nptr": 2,
+ "nptr": -1,
  "oracle": {
   "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
   "source": "shipped image"
  },
+ "pointer_arg_mask": [
+  0,
+  1
+ ],
  "ret_kind": "i32",
  "search": {
-  "candidates": 143,
+  "candidates": 175,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
   "extent_dispute_targets": [],
   "harness_errors": 0,
-  "kept": 7
+  "kept": 7,
+  "pointer_arg_mask": [
+   0,
+   1
+  ],
+  "pointer_arg_mask_derived": true
  },
  "size": 528,
  "symbol": "FUN_0101f994",

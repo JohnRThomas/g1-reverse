@@ -1,0 +1,1 @@
+/Users/freedomcoder/Projects/G1disasm2/tools/verify_app_newlib_stock_normal_link.py

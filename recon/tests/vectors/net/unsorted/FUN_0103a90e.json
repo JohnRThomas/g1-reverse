@@ -33,8 +33,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536943568,
-     536948040,
+     1276959699,
+     12,
      4,
      0
     ],
@@ -42,12 +42,13 @@
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 0,
     "xpsr": 0
    },
-   "new_instructions": 8
+   "new_instructions": 8,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -77,8 +78,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536951308,
-     536947088,
+     2345269775,
+     3092785552,
      1935641720,
      554330043
     ],
@@ -86,7 +87,7 @@
     "fp": {},
     "id": "orc-all-0",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [
      [
       0,
@@ -112,7 +113,8 @@
     "scratch_seed": 400,
     "xpsr": 0
    },
-   "new_instructions": 6
+   "new_instructions": 6,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -147,8 +149,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536939648,
-     536938124,
+     2301873280,
+     2147483647,
      5,
      888612868
     ],
@@ -156,7 +158,7 @@
     "fp": {},
     "id": "orc-all-2",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [
      [
       0,
@@ -182,7 +184,8 @@
     "scratch_seed": 402,
     "xpsr": 0
    },
-   "new_instructions": 8
+   "new_instructions": 8,
+   "stack_args": []
   }
  ],
  "core": "net",
@@ -194,20 +197,29 @@
  },
  "ghidra_size": 22,
  "globals": [],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "936cee0b67396ca5",
+  "stack_arg_window": 48
+ },
  "module": "unsorted",
- "nptr": 2,
+ "nptr": -1,
  "oracle": {
   "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
   "source": "shipped image"
  },
+ "pointer_arg_mask": [],
  "ret_kind": "i32",
  "search": {
-  "candidates": 123,
+  "candidates": 131,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
   "extent_dispute_targets": [],
   "harness_errors": 0,
-  "kept": 3
+  "kept": 3,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
  },
  "size": 22,
  "symbol": "FUN_0103a90e",

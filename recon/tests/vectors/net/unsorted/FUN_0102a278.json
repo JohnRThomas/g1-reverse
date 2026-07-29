@@ -18,7 +18,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     536943568,
+     1276959699,
      536948040,
      4,
      0
@@ -27,12 +27,13 @@
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 0,
     "xpsr": 0
    },
-   "new_instructions": 13
+   "new_instructions": 13,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -40,9 +41,8 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536939588, 4, 246)",
-    "('W', 536939592, 4, 48)",
-    "('W', 536939596, 4, 210)",
+    "('W', 12, 4, 210)",
+    "('W', 4, 4, 246)",
     "('W', 553650017, 1, 182)",
     "('W', 553650018, 1, 137)",
     "('W', 553650019, 1, 137)",
@@ -52,18 +52,19 @@
     "('W', 553650023, 1, 182)",
     "('W', 553650024, 1, 182)",
     "('W', 553650025, 1, 182)",
-    "('W', 553650026, 1, 182)"
+    "('W', 553650026, 1, 182)",
+    "('W', 8, 4, 48)"
    ],
    "expect": {
-    "error": "Invalid memory fetch",
-    "events": "9734bb737f9f546efed5a1a7620e577cc42490cfffe873212ba85d86b4fbc39c",
+    "error": "Unhandled CPU exception",
+    "events": "93136185b4f73adb43f3d771ba58970f8b5c2a0da129203ca386835a7fc215eb",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536939588,
+     4,
      536951592,
      8,
      7
@@ -72,12 +73,13 @@
     "fp": {},
     "id": "seed-5",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 5,
     "xpsr": 0
    },
-   "new_instructions": 45
+   "new_instructions": 45,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -107,7 +109,7 @@
    "fixture": {
     "abs": [],
     "args": [
-     536941592,
+     2300957721,
      536944956,
      1,
      2363272863
@@ -116,12 +118,13 @@
     "fp": {},
     "id": "seed-7",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 7,
     "xpsr": 0
    },
-   "new_instructions": 19
+   "new_instructions": 19,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -129,9 +132,8 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536937040, 4, 0)",
-    "('W', 536937044, 4, 0)",
-    "('W', 536937048, 4, 128)",
+    "('W', 11, 4, 128)",
+    "('W', 3, 4, 0)",
     "('W', 553650017, 1, 219)",
     "('W', 553650018, 1, 15)",
     "('W', 553650019, 1, 15)",
@@ -141,18 +143,19 @@
     "('W', 553650023, 1, 219)",
     "('W', 553650024, 1, 219)",
     "('W', 553650025, 1, 219)",
-    "('W', 553650026, 1, 219)"
+    "('W', 553650026, 1, 219)",
+    "('W', 7, 4, 0)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "ab6ff12dac21be3fc763c63c2a8560a3b538cd9b0d840f5abfe34fd9f5a932e1",
+    "events": "5c378c93f41a2c0f106dd8aa55cea86b9edf529fd42f732e64a0b300c6f36f8c",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536937040,
+     3,
      536948284,
      256,
      1426281073
@@ -161,12 +164,13 @@
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 11,
     "xpsr": 0
    },
-   "new_instructions": 45
+   "new_instructions": 45,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -174,20 +178,20 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536952404, 4, 0)",
-    "('W', 536952408, 4, 128)",
-    "('W', 536952412, 4, 63)"
+    "('W', 11, 4, 128)",
+    "('W', 15, 4, 63)",
+    "('W', 7, 4, 0)"
    ],
    "expect": {
-    "error": "Invalid memory fetch",
-    "events": "8347b360dca67f746c16de25679ad913951b39b0068ac7103646d7fd302a8f4d",
+    "error": "Unhandled CPU exception",
+    "events": "7a4d6aae8502b6c3deab2178019868aa5b8d422afd7e9f4911f35f14fd96c0b7",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536952404,
+     7,
      536941132,
      5,
      4
@@ -196,12 +200,13 @@
     "fp": {},
     "id": "seed-15",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 15,
     "xpsr": 0
    },
-   "new_instructions": 31
+   "new_instructions": 31,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -209,20 +214,18 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536952300, 4, 0)",
-    "('W', 536952304, 4, 0)",
-    "('W', 536952308, 4, 63)"
+    "('W', 4294967295, 4, 0)"
    ],
    "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "725f63793721383c5d5149b4531ec809d4f5584d276daf9848cb30a11ecfdfba",
+    "error": "Invalid memory write",
+    "events": "b0a928575160df98f42b079af1dbc1fe142bcbfd449bd7a692adf2da26118ef7",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536952300,
+     4294967295,
      536948548,
      7,
      53351545
@@ -231,12 +234,13 @@
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 31,
     "xpsr": 0
    },
-   "new_instructions": 31
+   "new_instructions": 13,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -244,20 +248,18 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536952432, 4, 0)",
-    "('W', 536952436, 4, 52)",
-    "('W', 536952440, 4, 67)"
+    "('W', 2726887024, 4, 0)"
    ],
    "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "02757b1a6b5f76adf065daa5da1432f6b6d30bcea93413b2c110b720e4916719",
+    "error": "Invalid memory write",
+    "events": "746d0d45b561f8b483d7ed86e6fd051369ddac91b7b7c17ae0fb70372d0fd85a",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536952432,
+     2726887024,
      536943604,
      4001652011,
      1
@@ -266,12 +268,13 @@
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 35,
     "xpsr": 0
    },
-   "new_instructions": 31
+   "new_instructions": 13,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -279,20 +282,20 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536941424, 4, 0)",
-    "('W', 536941428, 4, 128)",
-    "('W', 536941432, 4, 191)"
+    "('W', 11, 4, 191)",
+    "('W', 3, 4, 0)",
+    "('W', 7, 4, 128)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "a0a9a8bae66bd31a451da970857e97c9373ff78756205137cf06a827c0507a03",
+    "events": "bc1f970110ca67c74c221eb8c37ab7fab1fdab930fa7ed695fdd12ea9fb1df9d",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536941424,
+     3,
      536942500,
      3774328631,
      1997155928
@@ -301,12 +304,13 @@
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 39,
     "xpsr": 0
    },
-   "new_instructions": 26
+   "new_instructions": 26,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -314,30 +318,18 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536942764, 4, 0)",
-    "('W', 536942768, 4, 128)",
-    "('W', 536942772, 4, 63)",
-    "('W', 553650017, 1, 193)",
-    "('W', 553650018, 1, 133)",
-    "('W', 553650019, 1, 133)",
-    "('W', 553650020, 1, 133)",
-    "('W', 553650021, 1, 133)",
-    "('W', 553650022, 1, 133)",
-    "('W', 553650023, 1, 193)",
-    "('W', 553650024, 1, 193)",
-    "('W', 553650025, 1, 193)",
-    "('W', 553650026, 1, 193)"
+    "('W', 2147483647, 4, 0)"
    ],
    "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "43b0669da33fd68fac4dcd5f6e11dda62d6429e9e7473b0a1ad9bf7db64ed346",
+    "error": "Invalid memory write",
+    "events": "0135e37e75ddb93734a6c92fa51f84de5f587becd42f8564e7bdbd2660c62141",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536942764,
+     2147483647,
      536939884,
      16,
      6
@@ -346,12 +338,13 @@
     "fp": {},
     "id": "seed-47",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 47,
     "xpsr": 0
    },
-   "new_instructions": 45
+   "new_instructions": 13,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -359,20 +352,173 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536943568, 4, 0)",
-    "('W', 536943572, 4, 0)",
-    "('W', 536943576, 4, 191)"
+    "('W', 12, 4, 0)",
+    "('W', 16, 4, 0)",
+    "('W', 8, 4, 0)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "0d003ea84843f205b4c905b7a66dc6933cee6baec0c5e0a55b9b0736e025c4c5",
+    "events": "5ff744d65294a5544d48f5de5f65cfbaf4852f5507d316e146e9b3a3b7d462ea",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536943568,
+     8,
+     0,
+     1547220657,
+     880227538
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr0-0",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 700,
+    "xpsr": 0
+   },
+   "new_instructions": 31,
+   "stack_args": []
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [
+    "('W', 0, 4, 0)",
+    "('W', 4, 4, 0)",
+    "('W', 8, 4, 0)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "ed2309a2fc55bdc2a8c7a4f89522931bedb2de3cfb70d02a12f6ea42aca89d3a",
+    "kind": "fault",
+    "ncalls": 0
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     6,
+     12,
+     2718928684
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr0-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 701,
+    "xpsr": 0
+   },
+   "new_instructions": 31,
+   "stack_args": []
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [],
+   "expect": {
+    "error": "Invalid memory read",
+    "events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "kind": "fault",
+    "ncalls": 0
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1426631299,
+     759482060,
+     16,
+     2236840408
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr0-2",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 702,
+    "xpsr": 0
+   },
+   "new_instructions": 6,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0
+   ],
+   "call_float_arities": [
+    0
+   ],
+   "call_return_kinds": [
+    "i32"
+   ],
+   "call_targets": [
+    16956356
+   ],
+   "events_head": [
+    "('W', 4, 4, 1)",
+    "('C', 0, 'S', 'F', 'T', None)"
+   ],
+   "expect": {
+    "events": "eab081f7d1cc7b3a7479adb839fcda8f857cefb67d56a676a0e21ac515daccea",
+    "kind": "return",
+    "ncalls": 1,
+    "ret": [
+     0
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      536940544,
+      "05100120081001200c1001201010012015100120181001201c1001202010012025100120281001202c1001203010012035100120381001203c1001204010012045100120481001204c1001205010012055100120581001205c1001206010012065100120681001206c1001207010012075100120781001207c1001208010012085100120881001208c1001209010012095100120981001209c100120a0100120a5100120a8100120ac100120b0100120b5100120b8100120bc100120c0100120c5100120c8100120cc100120d0100120d5100120d8100120dc100120e0100120e5100120e8100120ec100120f0100120f5100120f8100120fc1001200011012005110120081101200c1101201011012015110120181101201c1101202011012025110120281101202c1101203011012035110120381101203c1101204011012045110120481101204c1101205011012055110120581101205c1101206011012065110120681101206c1101207011012075110120781101207c1101208011012085110120881101208c1101209011012095110120981101209c110120a0110120a5110120a8110120ac110120b0110120b5110120b8110120bc110120c0110120c5110120c8110120cc110120d0110120d5110120d8110120dc110120e0110120e5110120e8110120ec110120f0110120f5110120f8110120fc11012000100120"
+     ]
+    ],
+    "args": [
+     4294967295,
+     536940548,
+     256,
+     4294967295
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "chain-4",
+    "mem": [],
+    "nptr": 1,
+    "oracle": [],
+    "scratch_seed": 804,
+    "xpsr": 0
+   },
+   "new_instructions": 23,
+   "stack_args": []
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [
+    "('W', 1276959699, 4, 0)"
+   ],
+   "expect": {
+    "error": "Invalid memory write",
+    "events": "78033af5c416b11a5908f452f6a51eb4b17b19c52382a3cf86cf35803b2d0e8e",
+    "kind": "fault",
+    "ncalls": 0
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1276959699,
      536948040,
      4,
      0
@@ -384,12 +530,13 @@
     },
     "id": "fp-0",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 0,
     "xpsr": 0
    },
-   "new_instructions": 31
+   "new_instructions": 13,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -397,20 +544,21 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536944692, 4, 0)",
-    "('W', 536944696, 4, 64)",
-    "('W', 536944700, 4, 192)"
+    "('W', 1346232374, 4, 0)",
+    "('W', 1346232378, 4, 64)",
+    "('W', 1346232382, 4, 192)",
+    "('R', 1346232542, 4, 0)"
    ],
    "expect": {
-    "error": "Invalid memory fetch",
-    "events": "958d7b162aa3c1e6f785e634c7fef2efd01137a3579559e29eb48030f38b0d06",
+    "error": "Unhandled CPU exception",
+    "events": "8c783c5765bbf8690925ce369d0244875b9ec7fb9b1dcfc841b74be2b8825117",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536944692,
+     1346232374,
      536947080,
      499087790,
      2147483647
@@ -422,12 +570,13 @@
     },
     "id": "fp-9",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 9,
     "xpsr": 0
    },
-   "new_instructions": 31
+   "new_instructions": 31,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -435,20 +584,20 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536944520, 4, 0)",
-    "('W', 536944524, 4, 128)",
-    "('W', 536944528, 4, 191)"
+    "('W', 12, 4, 128)",
+    "('W', 16, 4, 191)",
+    "('W', 8, 4, 0)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "a13558381157a968b52be90ab52a13bd9d7beda03052632516f1e308f6c1ff78",
+    "events": "0e50a53e5a60a4ebed6a042b8c4b78625e3925a20f30f411fa55b71f77ab0e0c",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536944520,
+     8,
      536936976,
      5,
      1103693227
@@ -460,12 +609,13 @@
     },
     "id": "fp-12",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 12,
     "xpsr": 0
    },
-   "new_instructions": 31
+   "new_instructions": 31,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -473,20 +623,18 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536944304, 4, 0)",
-    "('W', 536944308, 4, 0)",
-    "('W', 536944312, 4, 128)"
+    "('W', 1156718256, 4, 0)"
    ],
    "expect": {
-    "error": "Invalid memory fetch",
-    "events": "7bb445f24d1bbab62ae722cbd252ec62387f10e40b0d3c9281e2f140192d4a8a",
+    "error": "Invalid memory write",
+    "events": "0e35a2fc91507b18851e14aca52f6da87d6ef902d62fc473bd0215853cbc01ae",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536944304,
+     1156718256,
      536942044,
      6,
      617681966
@@ -498,12 +646,13 @@
     },
     "id": "fp-13",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 13,
     "xpsr": 0
    },
-   "new_instructions": 31
+   "new_instructions": 13,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -511,20 +660,20 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536944016, 4, 0)",
-    "('W', 536944020, 4, 0)",
-    "('W', 536944024, 4, 0)"
+    "('W', 11, 4, 0)",
+    "('W', 3, 4, 0)",
+    "('W', 7, 4, 0)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "5ef5061f0a42f9b3af7bfd765ac9e1364f41c21bc1271abc589b63653d07a801",
+    "events": "8a2c82e69023900f6e77c3e3833dc214cb83ea1dd3afb0961db4c27ef5e501bb",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536944016,
+     3,
      536942692,
      1168623309,
      4252165479
@@ -536,12 +685,13 @@
     },
     "id": "fp-17",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 17,
     "xpsr": 0
    },
-   "new_instructions": 31
+   "new_instructions": 31,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -549,20 +699,18 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536944948, 4, 0)",
-    "('W', 536944952, 4, 128)",
-    "('W', 536944956, 4, 191)"
+    "('W', 3912442165, 4, 0)"
    ],
    "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "47f44cf4c549882aadd506afff74c4669da5011194a19bc0993cc30bb0c4e874",
+    "error": "Invalid memory write",
+    "events": "52b1882682bb976bd4251b72c6c7274794d1eb3b10f0f1a7646af9b0119b4faf",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536944948,
+     3912442165,
      536937440,
      697236451,
      1
@@ -574,12 +722,13 @@
     },
     "id": "fp-18",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 18,
     "xpsr": 0
    },
-   "new_instructions": 31
+   "new_instructions": 13,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -587,20 +736,20 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536952740, 4, 0)",
-    "('W', 536952744, 4, 0)",
-    "('W', 536952748, 4, 128)"
+    "('W', 12, 4, 128)",
+    "('W', 4, 4, 0)",
+    "('W', 8, 4, 0)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "54f238403b702e34d63b149c499fc54987d018dea23e843e9841748b308d2882",
+    "events": "d3d8552327331947d8c62314bd27dbd17d5c765e5d5ff591b383fee8abc1d94d",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536952740,
+     4,
      536939460,
      2,
      7
@@ -612,12 +761,13 @@
     },
     "id": "fp-20",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 20,
     "xpsr": 0
    },
-   "new_instructions": 31
+   "new_instructions": 31,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -625,20 +775,18 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536938252, 4, 0)",
-    "('W', 536938256, 4, 0)",
-    "('W', 536938260, 4, 128)"
+    "('W', 3751937804, 4, 0)"
    ],
    "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "d81e513c4e083f17040923e0ec89818334ac6c50abe7d80b61a834006ddddc32",
+    "error": "Invalid memory write",
+    "events": "052cf4550e9ab2db75b6dab40b42b828139b51903569f7736e1640ef6426530b",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536938252,
+     3751937804,
      536941512,
      2149248134,
      604019693
@@ -650,12 +798,13 @@
     },
     "id": "fp-25",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 25,
     "xpsr": 0
    },
-   "new_instructions": 31
+   "new_instructions": 13,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -663,20 +812,18 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536942224, 4, 0)",
-    "('W', 536942228, 4, 128)",
-    "('W', 536942232, 4, 68)"
+    "('W', 2992330384, 4, 0)"
    ],
    "expect": {
-    "error": "Invalid memory fetch",
-    "events": "260e47baa868ee2666ae0849a15ff61937a835b6b31c7aacc896036d0c035095",
+    "error": "Invalid memory write",
+    "events": "db9af3760de3938d866711bc4ec7e633a5cd0bb958e8ca3d419fabf77fabe946",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536942224,
+     2992330384,
      536937032,
      3037640278,
      2678623347
@@ -688,12 +835,13 @@
     },
     "id": "fp-26",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 26,
     "xpsr": 0
    },
-   "new_instructions": 31
+   "new_instructions": 13,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -701,20 +849,18 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536947488, 4, 0)",
-    "('W', 536947492, 4, 0)",
-    "('W', 536947496, 4, 191)"
+    "('W', 739928864, 4, 0)"
    ],
    "expect": {
-    "error": "Invalid memory fetch",
-    "events": "af92b678af936050ddd2daa85f00592d737aca2f8f7b00de21d2b6ceb37a263e",
+    "error": "Invalid memory write",
+    "events": "876cd0f0d5b48dd60c8334ef4219b848027542b762b0d2686042c056b7711bf5",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536947488,
+     739928864,
      536937084,
      3886541357,
      8
@@ -726,12 +872,13 @@
     },
     "id": "fp-29",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 29,
     "xpsr": 0
    },
-   "new_instructions": 31
+   "new_instructions": 13,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -739,20 +886,20 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536952796, 4, 36)",
-    "('W', 536952800, 4, 116)",
-    "('W', 536952804, 4, 73)"
+    "('W', 256, 4, 36)",
+    "('W', 260, 4, 116)",
+    "('W', 264, 4, 73)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "130fa863fd26d37c5ed11a71bc7c296207a3c51801d604b7074f06cbd9798cb5",
+    "events": "b7f72d4462b25d9fcef91e40e1c40ef5d01faddc8843fa26cf5e06474d52d464",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536952796,
+     256,
      536941720,
      1,
      7
@@ -764,12 +911,13 @@
     },
     "id": "fp-30",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 30,
     "xpsr": 0
    },
-   "new_instructions": 31
+   "new_instructions": 31,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -777,20 +925,18 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536946568, 4, 0)",
-    "('W', 536946572, 4, 0)",
-    "('W', 536946576, 4, 0)"
+    "('W', 1839753098, 4, 0)"
    ],
    "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "0979bacfbf63fdc96da5cb14a3afc232041de4d533c86610b57e220e7965ab43",
+    "error": "Invalid memory write",
+    "events": "4696d6856bae1d2ffa49cb4b6db57d841d58077891cb3c88ff1b0d51688c307a",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536946568,
+     1839753098,
      536940812,
      3442053927,
      1170652979
@@ -802,12 +948,13 @@
     },
     "id": "fp-32",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 32,
     "xpsr": 0
    },
-   "new_instructions": 31
+   "new_instructions": 13,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -815,20 +962,20 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536950120, 4, 0)",
-    "('W', 536950124, 4, 64)",
-    "('W', 536950128, 4, 64)"
+    "('W', 12, 4, 0)",
+    "('W', 16, 4, 64)",
+    "('W', 20, 4, 64)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "a96d163cb6471c0be7c52909cd62fab444d5dd461aa7ebcf8653980739077daf",
+    "events": "7f03614c23a814aa4775a3165f4c32b23680f3eeeedf66a84555f37971333175",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536950120,
+     12,
      536940724,
      922796015,
      2147483647
@@ -840,12 +987,13 @@
     },
     "id": "fp-34",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 34,
     "xpsr": 0
    },
-   "new_instructions": 31
+   "new_instructions": 31,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -853,9 +1001,8 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536944224, 4, 0)",
-    "('W', 536944228, 4, 128)",
-    "('W', 536944232, 4, 191)",
+    "('W', 0, 4, 0)",
+    "('W', 4, 4, 128)",
     "('W', 553650017, 1, 39)",
     "('W', 553650018, 1, 79)",
     "('W', 553650019, 1, 79)",
@@ -865,18 +1012,19 @@
     "('W', 553650023, 1, 39)",
     "('W', 553650024, 1, 39)",
     "('W', 553650025, 1, 39)",
-    "('W', 553650026, 1, 39)"
+    "('W', 553650026, 1, 39)",
+    "('W', 8, 4, 191)"
    ],
    "expect": {
-    "error": "Invalid memory fetch",
-    "events": "c6bfaf76bf1c1693278bcb7fda57bbbaa0697f561964f6063e51fc6186fa46f9",
+    "error": "Unhandled CPU exception",
+    "events": "8113e50264a62ea1e0ee0294e754ef2abe5476728c411cdebee6e52780b2ab0a",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536944224,
+     0,
      536949832,
      2147483647,
      8
@@ -888,12 +1036,13 @@
     },
     "id": "fp-36",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 36,
     "xpsr": 0
    },
-   "new_instructions": 45
+   "new_instructions": 45,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -901,9 +1050,8 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536939760, 4, 0)",
-    "('W', 536939764, 4, 128)",
-    "('W', 536939768, 4, 191)",
+    "('W', 0, 4, 0)",
+    "('W', 4, 4, 128)",
     "('W', 553650017, 1, 205)",
     "('W', 553650018, 1, 204)",
     "('W', 553650019, 1, 204)",
@@ -913,18 +1061,19 @@
     "('W', 553650023, 1, 205)",
     "('W', 553650024, 1, 205)",
     "('W', 553650025, 1, 205)",
-    "('W', 553650026, 1, 205)"
+    "('W', 553650026, 1, 205)",
+    "('W', 8, 4, 191)"
    ],
    "expect": {
-    "error": "Invalid memory fetch",
-    "events": "c82e28562f85fa39f2059917d095a7a8cb21d474555b1f730f5149b22a32032a",
+    "error": "Unhandled CPU exception",
+    "events": "084d56af25c3fb43439eb33521eeeaf464e96ecd9f101cc41e41973bc621b694",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536939760,
+     0,
      536941672,
      1,
      2
@@ -936,12 +1085,13 @@
     },
     "id": "fp-38",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 38,
     "xpsr": 0
    },
-   "new_instructions": 45
+   "new_instructions": 45,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -949,20 +1099,20 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536939280, 4, 0)",
-    "('W', 536939284, 4, 128)",
-    "('W', 536939288, 4, 63)"
+    "('W', 0, 4, 0)",
+    "('W', 4, 4, 128)",
+    "('W', 8, 4, 63)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "bd7f57fd1535e90f25916dfb8fb0d4d1a5c5cbf7ee1ca6dac35550476c9128ed",
+    "events": "166442852b2590010962c04a7492218492a099f9c763ebc9740d7966dcdfb645",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536939280,
+     0,
      536948744,
      1643521744,
      0
@@ -974,12 +1124,13 @@
     },
     "id": "fp-44",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 44,
     "xpsr": 0
    },
-   "new_instructions": 31
+   "new_instructions": 31,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -987,30 +1138,18 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536943108, 4, 0)",
-    "('W', 536943112, 4, 128)",
-    "('W', 536943116, 4, 191)",
-    "('W', 553650017, 1, 119)",
-    "('W', 553650018, 1, 233)",
-    "('W', 553650019, 1, 233)",
-    "('W', 553650020, 1, 233)",
-    "('W', 553650021, 1, 233)",
-    "('W', 553650022, 1, 233)",
-    "('W', 553650023, 1, 119)",
-    "('W', 553650024, 1, 119)",
-    "('W', 553650025, 1, 119)",
-    "('W', 553650026, 1, 119)"
+    "('W', 2311625221, 4, 0)"
    ],
    "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "f282e64cf24670c2f26d14a706d2c27fc0766eaf4078a20dd1c593a37232c773",
+    "error": "Invalid memory write",
+    "events": "72a66ff20054fff70cdef58fe339f635b37691c1cb0978d88eded8c8daacd280",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536943108,
+     2311625221,
      536941484,
      2205369221,
      2288169737
@@ -1022,12 +1161,13 @@
     },
     "id": "fp-46",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 46,
     "xpsr": 0
    },
-   "new_instructions": 45
+   "new_instructions": 13,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -1035,78 +1175,18 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536943756, 4, 0)",
-    "('W', 536943760, 4, 128)",
-    "('W', 536943764, 4, 63)",
-    "('W', 553650017, 1, 53)",
-    "('W', 553650018, 1, 250)",
-    "('W', 553650019, 1, 250)",
-    "('W', 553650020, 1, 250)",
-    "('W', 553650021, 1, 250)",
-    "('W', 553650022, 1, 250)",
-    "('W', 553650023, 1, 53)",
-    "('W', 553650024, 1, 53)",
-    "('W', 553650025, 1, 53)",
-    "('W', 553650026, 1, 53)"
+    "('W', 271826021, 4, 0)"
    ],
    "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "1521f6cb011720a80a26b48ce94be178a51aa003b2898716a0ef3339d8369aee",
+    "error": "Invalid memory write",
+    "events": "5fe2c221936286549aedafd55659ae5bd32a9b294c835af29f2fe8705c1341fc",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536943756,
-     536943580,
-     0,
-     2113830739
-    ],
-    "float_scratch": true,
-    "fp": {
-     "0": 2147483648,
-     "1": 1266679808
-    },
-    "id": "fp-48",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 48,
-    "xpsr": 0
-   },
-   "new_instructions": 45
-  },
-  {
-   "call_arities": [],
-   "call_float_arities": [],
-   "call_return_kinds": [],
-   "call_targets": [],
-   "events_head": [
-    "('W', 536951908, 4, 0)",
-    "('W', 536951912, 4, 52)",
-    "('W', 536951916, 4, 67)",
-    "('W', 553650017, 1, 243)",
-    "('W', 553650018, 1, 4)",
-    "('W', 553650019, 1, 4)",
-    "('W', 553650020, 1, 4)",
-    "('W', 553650021, 1, 4)",
-    "('W', 553650022, 1, 4)",
-    "('W', 553650023, 1, 243)",
-    "('W', 553650024, 1, 243)",
-    "('W', 553650025, 1, 243)",
-    "('W', 553650026, 1, 243)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "38ba89ed8229c4cd62db67a1781e494af6786446b63040d352e75529588734d5",
-    "kind": "fault",
-    "ncalls": 0
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536951908,
+     271826021,
      536937524,
      3,
      3948225427
@@ -1118,12 +1198,13 @@
     },
     "id": "fp-50",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 50,
     "xpsr": 0
    },
-   "new_instructions": 45
+   "new_instructions": 13,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -1131,20 +1212,18 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536937120, 4, 36)",
-    "('W', 536937124, 4, 116)",
-    "('W', 536937128, 4, 73)"
+    "('W', 3834725026, 4, 36)"
    ],
    "expect": {
-    "error": "Invalid memory fetch",
-    "events": "df3a9de78a4bedf9fe1a7937ec321fb15f4cf917c5d225155918867315026dd1",
+    "error": "Invalid memory write",
+    "events": "fbfa4456db4e579a3bec0593e050cf5155efe3ac39766ada0215306fd73db4be",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536937120,
+     3834725026,
      536950924,
      8,
      319156785
@@ -1156,12 +1235,13 @@
     },
     "id": "fp-51",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 51,
     "xpsr": 0
    },
-   "new_instructions": 31
+   "new_instructions": 13,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -1169,20 +1249,18 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536941052, 4, 0)",
-    "('W', 536941056, 4, 128)",
-    "('W', 536941060, 4, 191)"
+    "('W', 3947008508, 4, 0)"
    ],
    "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "339e74c3afdcf106d53c8a3ed8daa07e3be16ac6373a21e393ecd43dd50943da",
+    "error": "Invalid memory write",
+    "events": "920ea230a859a1e893e2011379c05c5636808f0ece8852f066f1adb57799e746",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536941052,
+     3947008508,
      536942968,
      3371576678,
      3924997939
@@ -1194,12 +1272,13 @@
     },
     "id": "fp-53",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 53,
     "xpsr": 0
    },
-   "new_instructions": 31
+   "new_instructions": 13,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -1207,20 +1286,18 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536952284, 4, 0)",
-    "('W', 536952288, 4, 200)",
-    "('W', 536952292, 4, 66)"
+    "('W', 1740848604, 4, 0)"
    ],
    "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "cf6b2489f59455bf22528576ba13906666170348a0ac96f31a92a784184b38f6",
+    "error": "Invalid memory write",
+    "events": "488282756bd1cb1d3de0197dbd26ccdf1a48928fc5e3a095541ec0dd8ec11d13",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536952284,
+     1740848604,
      536945960,
      2147483647,
      2556506514
@@ -1232,12 +1309,13 @@
     },
     "id": "fp-54",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 54,
     "xpsr": 0
    },
-   "new_instructions": 31
+   "new_instructions": 13,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -1245,20 +1323,18 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536945696, 4, 0)",
-    "('W', 536945700, 4, 200)",
-    "('W', 536945704, 4, 66)"
+    "('W', 3720324128, 4, 0)"
    ],
    "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "b7239189ab7568959faafdc3cdc13947c0b1b2ec3ca6f70405c7e624bb3e640e",
+    "error": "Invalid memory write",
+    "events": "c0dd8d06637c10c5152f7c3f7691d3e34940e4f6ddbd6692ff6af5077e2715e5",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536945696,
+     3720324128,
      536949260,
      1677850251,
      7
@@ -1270,12 +1346,13 @@
     },
     "id": "fp-57",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 57,
     "xpsr": 0
    },
-   "new_instructions": 31
+   "new_instructions": 13,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -1283,30 +1360,18 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536949256, 4, 0)",
-    "('W', 536949260, 4, 0)",
-    "('W', 536949264, 4, 128)",
-    "('W', 553650017, 1, 189)",
-    "('W', 553650018, 1, 55)",
-    "('W', 553650019, 1, 55)",
-    "('W', 553650020, 1, 55)",
-    "('W', 553650021, 1, 55)",
-    "('W', 553650022, 1, 55)",
-    "('W', 553650023, 1, 189)",
-    "('W', 553650024, 1, 189)",
-    "('W', 553650025, 1, 189)",
-    "('W', 553650026, 1, 189)"
+    "('W', 2684056074, 4, 0)"
    ],
    "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "4c28d481240a5f87428e7808670ab6314fd0331e6f2caf87de4721c088b4f089",
+    "error": "Invalid memory write",
+    "events": "a25f2443e77342193aa06adbe298e3b691b790959a3770dbcc15bd3efb815e4a",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536949256,
+     2684056074,
      536943660,
      1966003740,
      0
@@ -1318,12 +1383,13 @@
     },
     "id": "fp-60",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 60,
     "xpsr": 0
    },
-   "new_instructions": 45
+   "new_instructions": 13,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -1331,20 +1397,20 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536949424, 4, 0)",
-    "('W', 536949428, 4, 64)",
-    "('W', 536949432, 4, 192)"
+    "('W', 0, 4, 0)",
+    "('W', 4, 4, 64)",
+    "('W', 8, 4, 192)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "2e21f4b3a85af283ac0361d7e338b633c3c2b904e1fbc2a3b1e1ba8a25700ef1",
+    "events": "d4390526c13977a96e3c5034225c0e24631f7466a90c85ad51d0455d77d64838",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536949424,
+     0,
      536938800,
      2463392783,
      0
@@ -1356,12 +1422,13 @@
     },
     "id": "fp-64",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 64,
     "xpsr": 0
    },
-   "new_instructions": 31
+   "new_instructions": 31,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -1369,30 +1436,18 @@
    "call_return_kinds": [],
    "call_targets": [],
    "events_head": [
-    "('W', 536949108, 4, 68)",
-    "('W', 536949112, 4, 184)",
-    "('W', 536949116, 4, 17)",
-    "('W', 553650017, 1, 5)",
-    "('W', 553650018, 1, 89)",
-    "('W', 553650019, 1, 89)",
-    "('W', 553650020, 1, 89)",
-    "('W', 553650021, 1, 89)",
-    "('W', 553650022, 1, 89)",
-    "('W', 553650023, 1, 5)",
-    "('W', 553650024, 1, 5)",
-    "('W', 553650025, 1, 5)",
-    "('W', 553650026, 1, 5)"
+    "('W', 3421057399, 4, 68)"
    ],
    "expect": {
-    "error": "Invalid memory fetch",
-    "events": "324ddf71895d29688a82b7c13775f82f45500a9c7f29048058e8a9beeb59d38d",
+    "error": "Invalid memory write",
+    "events": "508993c2138a9ac889687680cf0cd67304a6ced12fb84cfffe2d58a723ad7db1",
     "kind": "fault",
     "ncalls": 0
    },
    "fixture": {
     "abs": [],
     "args": [
-     536949108,
+     3421057399,
      536949252,
      3520601422,
      2147483647
@@ -1401,7 +1456,7 @@
     "fp": {},
     "id": "orc-4-0",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [
      [
       4,
@@ -1417,14 +1472,15 @@
     "scratch_seed": 508,
     "xpsr": 0
    },
-   "new_instructions": 45
+   "new_instructions": 13,
+   "stack_args": []
   }
  ],
  "core": "net",
  "coverage": {
-  "covered": 53,
+  "covered": 62,
   "ratio": 1.0,
-  "total": 53,
+  "total": 62,
   "unresolved_indirect": 1
  },
  "ghidra_size": 240,
@@ -1436,20 +1492,33 @@
   "0x21000580",
   "0x210045f4"
  ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "936cee0b67396ca5",
+  "stack_arg_window": 48
+ },
  "module": "unsorted",
- "nptr": 2,
+ "nptr": -1,
  "oracle": {
   "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
   "source": "shipped image"
  },
+ "pointer_arg_mask": [
+  1
+ ],
  "ret_kind": "i32",
  "search": {
-  "candidates": 199,
+  "candidates": 235,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
   "extent_dispute_targets": [],
   "harness_errors": 0,
-  "kept": 35
+  "kept": 38,
+  "pointer_arg_mask": [
+   1
+  ],
+  "pointer_arg_mask_derived": true
  },
  "size": 240,
  "symbol": "FUN_0102a278",

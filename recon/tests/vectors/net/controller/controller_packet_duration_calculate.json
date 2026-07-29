@@ -24,10 +24,10 @@
    "events_head": [
     "('C', 0, 536943608, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 57, 'S', 'F', 'T', None)",
-    "('C', 2, 1513, 1927129959, 16, 536948040, 'S', 'F', 'T', None)"
+    "('C', 2, 1513, 1927129959, 16, 12, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "e7a36537f0a5c63a13ab2ca449a0694280de9e9aa639a1851ad9657a526375c5",
+    "events": "76e00802496f9cc01e23c09f54375bd5a7cd72feb7217897c3782a34740ed4fc",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -37,7 +37,7 @@
     "abs": [],
     "args": [
      536943568,
-     536948040,
+     12,
      4,
      0
     ],
@@ -45,12 +45,13 @@
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 0,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -76,10 +77,10 @@
    "events_head": [
     "('C', 0, 536947284, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 242, 'S', 'F', 'T', None)",
-    "('C', 2, 33724, 1927129959, 10, 536943120, 'S', 'F', 'T', None)"
+    "('C', 2, 33724, 1927129959, 10, 1797429778, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "5b5408c0c08fd1ddeb660927d593c612e8e6cc9503a3ccdd03c15bc6534e285f",
+    "events": "e56799a26cad59555bc0d3a5dd709d2bf30637c49cb822aa60187f30cff200bc",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -89,7 +90,7 @@
     "abs": [],
     "args": [
      536947244,
-     536943120,
+     1797429778,
      2147483648,
      315044147
     ],
@@ -97,12 +98,13 @@
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 1,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -128,10 +130,10 @@
    "events_head": [
     "('C', 0, 536943352, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 224, 'S', 'F', 'T', None)",
-    "('C', 2, 63703, 1927129959, 183, 536942680, 'S', 'F', 'T', None)"
+    "('C', 2, 63703, 1927129959, 183, 598759513, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "592367e1b13a1d39e4ea58b2ba3fbd24f0fad51c40ee3f6ee0ef1cb0799df8e9",
+    "events": "d034b78fce50d0834e721469332fafb6dc4e5e1bf2c6c179aeecbb8404dadd85",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -141,7 +143,7 @@
     "abs": [],
     "args": [
      536943312,
-     536942680,
+     598759513,
      3677430904,
      7
     ],
@@ -149,12 +151,13 @@
     "fp": {},
     "id": "seed-2",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 2,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -180,10 +183,10 @@
    "events_head": [
     "('C', 0, 536945668, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 219, 'S', 'F', 'T', None)",
-    "('C', 2, 22193, 1927129959, 15, 536940936, 'S', 'F', 'T', None)"
+    "('C', 2, 22193, 1927129959, 15, 255, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "afd84f5bd16c7ddd5d6c7b168ea6f96c44dec3f2a44c8528de89ed6223951735",
+    "events": "9bd12d9e2d6ba4137b99d38889ed6523c11b4f43debba2fee4d9a9337afcbd27",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -193,7 +196,7 @@
     "abs": [],
     "args": [
      536945628,
-     536940936,
+     255,
      8,
      3619521758
     ],
@@ -201,17 +204,18 @@
     "fp": {},
     "id": "seed-3",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 3,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
     1,
-    4
+    3
    ],
    "call_float_arities": [
     0,
@@ -227,10 +231,10 @@
    ],
    "events_head": [
     "('C', 0, 536945904, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 59572, 40, 6, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 59572, 40, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "5a071ad49ada963d092f9d7186687e7829328ded085054717008c9d9c7984218",
+    "events": "b78109c929e6edc64a185f29415f36bad0962e56c5f313d24983c014e3a42c26",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -240,7 +244,7 @@
     "abs": [],
     "args": [
      536945864,
-     536944284,
+     2147483647,
      3842370354,
      6
     ],
@@ -248,12 +252,13 @@
     "fp": {},
     "id": "seed-4",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 4,
     "xpsr": 0
    },
-   "new_instructions": 14
+   "new_instructions": 14,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -279,10 +284,10 @@
    "events_head": [
     "('C', 0, 536939628, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 199, 'S', 'F', 'T', None)",
-    "('C', 2, 55082, 1927129959, 46, 536951592, 'S', 'F', 'T', None)"
+    "('C', 2, 55082, 1927129959, 46, 3188701995, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "de2a08e7887136cd6a7766cdc5a4877e0b4ba2f3586cc6847c7381aa98c6997a",
+    "events": "71d40bdd62cf6851837848a2366c8d39b6d2822dc02373570cff024e713c707c",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -292,7 +297,7 @@
     "abs": [],
     "args": [
      536939588,
-     536951592,
+     3188701995,
      8,
      7
     ],
@@ -300,17 +305,18 @@
     "fp": {},
     "id": "seed-5",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 5,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
     1,
-    4
+    3
    ],
    "call_float_arities": [
     0,
@@ -326,10 +332,10 @@
    ],
    "events_head": [
     "('C', 0, 536950940, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 35537, 40, 2147483647, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 35537, 40, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "543a1d95d1ef89e89d33cff3b36dd7abe808f124715b54cca1756217ae878539",
+    "events": "dcc4d34a2b7549676b6887d075f0051bd9c8c708c2a38fa75c7092c152277616",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -339,7 +345,7 @@
     "abs": [],
     "args": [
      536950900,
-     536936920,
+     3322790363,
      5,
      2147483647
     ],
@@ -347,12 +353,13 @@
     "fp": {},
     "id": "seed-6",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 6,
     "xpsr": 0
    },
-   "new_instructions": 14
+   "new_instructions": 14,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -378,10 +385,10 @@
    "events_head": [
     "('C', 0, 536941632, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 219, 'S', 'F', 'T', None)",
-    "('C', 2, 0, 1927129959, 15, 536944956, 'S', 'F', 'T', None)"
+    "('C', 2, 0, 1927129959, 15, 1604804925, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "b2f7aed952b2664e89314b5b23404c008e2b9c9371f18fffc050304514beefbb",
+    "events": "0cf4241fc5ec1f3ed000de8094e288d3d8726b48895fec917c6a05f9beb09129",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -391,7 +398,7 @@
     "abs": [],
     "args": [
      536941592,
-     536944956,
+     1604804925,
      1,
      2363272863
     ],
@@ -399,12 +406,13 @@
     "fp": {},
     "id": "seed-7",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 7,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -430,10 +438,10 @@
    "events_head": [
     "('C', 0, 536939084, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 187, 'S', 'F', 'T', None)",
-    "('C', 2, 2285, 1927129959, 243, 536940560, 'S', 'F', 'T', None)"
+    "('C', 2, 2285, 1927129959, 243, 708972563, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "87e88e0f05b8c50064238887f326be2426c9759d9501cdbfacf6c1e75dc82d78",
+    "events": "81df8e4d928c7f3d40b5bf5206767b7029f992c15a5ec0eb6002a833d656ff60",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -443,7 +451,7 @@
     "abs": [],
     "args": [
      536939044,
-     536940560,
+     708972563,
      558645175,
      4
     ],
@@ -451,12 +459,13 @@
     "fp": {},
     "id": "seed-8",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 8,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -482,10 +491,10 @@
    "events_head": [
     "('C', 0, 536944732, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 36, 'S', 'F', 'T', None)",
-    "('C', 2, 58098, 1927129959, 106, 536947080, 'S', 'F', 'T', None)"
+    "('C', 2, 58098, 1927129959, 106, 1556998536, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "4d9601e0855ecd9f28adfbce97f9c8c45dfdb353641c1f8ba79dddcd01506216",
+    "events": "ac45a433c47e5649fe74ddc94ea934c3d24e82242e34a4e7da874ccb0833029f",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -495,7 +504,7 @@
     "abs": [],
     "args": [
      536944692,
-     536947080,
+     1556998536,
      499087790,
      2147483647
     ],
@@ -503,12 +512,13 @@
     "fp": {},
     "id": "seed-9",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 9,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -534,10 +544,10 @@
    "events_head": [
     "('C', 0, 536939244, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 199, 'S', 'F', 'T', None)",
-    "('C', 2, 11217, 1927129959, 58, 536945020, 'S', 'F', 'T', None)"
+    "('C', 2, 11217, 1927129959, 58, 995058044, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "7ce6ca2ac939d65e89bd34ebfc9162dd2a8eea996b4f72afd1f9c687fe1d9caa",
+    "events": "3bfcea80e6527850118e428b23af5c1c15fd6bd992f6ac96b3e3b6baacb2d1c5",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -547,7 +557,7 @@
     "abs": [],
     "args": [
      536939204,
-     536945020,
+     995058044,
      8,
      1
     ],
@@ -555,12 +565,13 @@
     "fp": {},
     "id": "seed-10",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 10,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -586,10 +597,10 @@
    "events_head": [
     "('C', 0, 536937080, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 245, 'S', 'F', 'T', None)",
-    "('C', 2, 0, 1927129959, 181, 536948284, 'S', 'F', 'T', None)"
+    "('C', 2, 0, 1927129959, 181, 2147483648, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9a5da1ad24390ebb95fec04fd44aaf6f6ad582447dbc306ab16d4deb74586d09",
+    "events": "8cb06ae3cab68102638ec36b321b70d2f95ee06d2cf2f036ff9456503b0eb1a0",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -599,7 +610,7 @@
     "abs": [],
     "args": [
      536937040,
-     536948284,
+     2147483648,
      256,
      1426281073
     ],
@@ -607,12 +618,13 @@
     "fp": {},
     "id": "seed-11",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 11,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -638,10 +650,10 @@
    "events_head": [
     "('C', 0, 536944560, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 79, 'S', 'F', 'T', None)",
-    "('C', 2, 31956, 1927129959, 34, 536936976, 'S', 'F', 'T', None)"
+    "('C', 2, 31956, 1927129959, 34, 3217736208, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "3fd731a1e7f7f424c407c5fd10335a28f51c2c7f545c72626a4f8f56601a2699",
+    "events": "e498caa110a77bd57a752e1134ed8895e37da65a2732dc827e76c8a210f4e295",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -651,7 +663,7 @@
     "abs": [],
     "args": [
      536944520,
-     536936976,
+     3217736208,
      5,
      1103693227
     ],
@@ -659,17 +671,18 @@
     "fp": {},
     "id": "seed-12",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 12,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
     1,
-    4
+    3
    ],
    "call_float_arities": [
     0,
@@ -685,10 +698,10 @@
    ],
    "events_head": [
     "('C', 0, 536944344, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 27127, 40, 617681966, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 27127, 40, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "8d4d80673816e45cc7604c3c2ede23507258d8782dde379fda612c3f2ed1db3b",
+    "events": "8e11329411e64c8178d139a744d01fee9bcd588ecd69fc41fee054a27bdeaa9d",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -698,7 +711,7 @@
     "abs": [],
     "args": [
      536944304,
-     536942044,
+     1944344031,
      6,
      617681966
     ],
@@ -706,17 +719,18 @@
     "fp": {},
     "id": "seed-13",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 13,
     "xpsr": 0
    },
-   "new_instructions": 14
+   "new_instructions": 14,
+   "stack_args": []
   },
   {
    "call_arities": [
     1,
-    4
+    3
    ],
    "call_float_arities": [
     0,
@@ -732,10 +746,10 @@
    ],
    "events_head": [
     "('C', 0, 536943932, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 13727, 40, 470668832, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 13727, 40, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "f54c7ecca73134bdd14d01a672c94366156ab6a146f147a7818ce8ace7b6eee5",
+    "events": "7848b8dda152dcaf128979bbb8e03d19504347b110efcb0a3b210abcd097998c",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -745,7 +759,7 @@
     "abs": [],
     "args": [
      536943892,
-     536949848,
+     12,
      3,
      470668832
     ],
@@ -753,12 +767,13 @@
     "fp": {},
     "id": "seed-14",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 14,
     "xpsr": 0
    },
-   "new_instructions": 14
+   "new_instructions": 14,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -784,10 +799,10 @@
    "events_head": [
     "('C', 0, 536952444, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 255, 'S', 'F', 'T', None)",
-    "('C', 2, 0, 1927129959, 255, 536941132, 'S', 'F', 'T', None)"
+    "('C', 2, 0, 1927129959, 255, 256, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "0c1d038e2a07b4d948c88f2aa7ec63a81444a5b77707c3f76cbae0fac18acb1d",
+    "events": "c66496813397d5ae67ca9f7f4c174724edcfdfa88c5b48a29a1e6b73c4b9111b",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -797,7 +812,7 @@
     "abs": [],
     "args": [
      536952404,
-     536941132,
+     256,
      5,
      4
     ],
@@ -805,12 +820,13 @@
     "fp": {},
     "id": "seed-15",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 15,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -836,10 +852,10 @@
    "events_head": [
     "('C', 0, 536943300, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 187, 'S', 'F', 'T', None)",
-    "('C', 2, 21432, 1927129959, 9, 536942972, 'S', 'F', 'T', None)"
+    "('C', 2, 21432, 1927129959, 9, 2147483648, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "45bad41c6b399f48fa42aa045c0382e62f5377298d09bde7a14aab555355cf18",
+    "events": "2bae8d4d6caca08708cd4688bc240e8a38f25d8ba41f8a56a07222898fba2acb",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -849,7 +865,7 @@
     "abs": [],
     "args": [
      536943260,
-     536942972,
+     2147483648,
      3454407978,
      16
     ],
@@ -857,17 +873,18 @@
     "fp": {},
     "id": "seed-16",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 16,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
     1,
-    4
+    3
    ],
    "call_float_arities": [
     0,
@@ -883,10 +900,10 @@
    ],
    "events_head": [
     "('C', 0, 536944056, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 22105, 40, 4252165479, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 22105, 40, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "ee9869f1c61757166a62e1fdad9adb7648e4b93fc8345d4adfa1853c06886a0c",
+    "events": "3cdd039d60bb1d280f90578e46ad9e7b010cb1163c1db5f756aeb6ad2c2830bb",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -896,7 +913,7 @@
     "abs": [],
     "args": [
      536944016,
-     536942692,
+     3254638692,
      1168623309,
      4252165479
     ],
@@ -904,12 +921,13 @@
     "fp": {},
     "id": "seed-17",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 17,
     "xpsr": 0
    },
-   "new_instructions": 14
+   "new_instructions": 14,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -935,10 +953,10 @@
    "events_head": [
     "('C', 0, 536944988, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 206, 'S', 'F', 'T', None)",
-    "('C', 2, 19707, 1927129959, 125, 536937440, 'S', 'F', 'T', None)"
+    "('C', 2, 19707, 1927129959, 125, 0, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "dba5157f66f24f6cf2bb3377328c9f170e089870efe4296fb72f1fe51a7de32d",
+    "events": "6dc6badb2b91b11e498b28dac045400f911c3bd8482352c4f2fbd9f833613b12",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -948,7 +966,7 @@
     "abs": [],
     "args": [
      536944948,
-     536937440,
+     0,
      697236451,
      1
     ],
@@ -956,12 +974,13 @@
     "fp": {},
     "id": "seed-18",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 18,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -987,10 +1006,10 @@
    "events_head": [
     "('C', 0, 536939324, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 164, 'S', 'F', 'T', None)",
-    "('C', 2, 0, 1927129959, 76, 536944944, 'S', 'F', 'T', None)"
+    "('C', 2, 0, 1927129959, 76, 1536401714, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "104890aa097a18b7d72280d38514199dd4dda1c618990850dcbe8eaff2e73319",
+    "events": "ed507959f37f4a3a74248635b7eda5124abb9eaa6a9d582690526d52b81c7ac9",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1000,7 +1019,7 @@
     "abs": [],
     "args": [
      536939284,
-     536944944,
+     1536401714,
      4178753371,
      255
     ],
@@ -1008,12 +1027,13 @@
     "fp": {},
     "id": "seed-19",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 19,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -1039,10 +1059,10 @@
    "events_head": [
     "('C', 0, 536952780, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 117, 'S', 'F', 'T', None)",
-    "('C', 2, 21199, 1927129959, 230, 536939460, 'S', 'F', 'T', None)"
+    "('C', 2, 21199, 1927129959, 230, 2306919366, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "2c33e74dd5b9614578b333f5c225617fd712d0646dc73eb902d5295f197ec694",
+    "events": "2b39771e1e567e3162810f5c4c6930970cfa0ec30d9a7983eaa590aef8fd5519",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1052,7 +1072,7 @@
     "abs": [],
     "args": [
      536952740,
-     536939460,
+     2306919366,
      2,
      7
     ],
@@ -1060,17 +1080,18 @@
     "fp": {},
     "id": "seed-20",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 20,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
     1,
-    4
+    3
    ],
    "call_float_arities": [
     0,
@@ -1086,10 +1107,10 @@
    ],
    "events_head": [
     "('C', 0, 536941460, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 40252, 40, 0, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 40252, 40, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "17cdfc42bc6022a06edfcfcdb8af98af14e494ec88e879c1920bc0b503f0aac2",
+    "events": "b0adf295ebc67d891ea26c6e580dc935272d71b77f0535d5784260cae21d67b5",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1099,7 +1120,7 @@
     "abs": [],
     "args": [
      536941420,
-     536936640,
+     1,
      2870852768,
      0
     ],
@@ -1107,17 +1128,18 @@
     "fp": {},
     "id": "seed-21",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 21,
     "xpsr": 0
    },
-   "new_instructions": 14
+   "new_instructions": 14,
+   "stack_args": []
   },
   {
    "call_arities": [
     1,
-    4
+    3
    ],
    "call_float_arities": [
     0,
@@ -1133,10 +1155,10 @@
    ],
    "events_head": [
     "('C', 0, 536937436, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 6078, 40, 2451975022, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 6078, 40, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "f72acf3d3c18b16809c61ff8573a25bdb31676b0593e13278fd517ce7333a33b",
+    "events": "d75402c252aa3c823d0e5268b093188db2d15c7c160f8f0e7653156124b4ee2f",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1146,7 +1168,7 @@
     "abs": [],
     "args": [
      536937396,
-     536946088,
+     3001296298,
      4294967295,
      2451975022
     ],
@@ -1154,12 +1176,13 @@
     "fp": {},
     "id": "seed-22",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 22,
     "xpsr": 0
    },
-   "new_instructions": 14
+   "new_instructions": 14,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -1185,10 +1208,10 @@
    "events_head": [
     "('C', 0, 536952268, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 0, 'S', 'F', 'T', None)",
-    "('C', 2, 0, 1927129959, 0, 536939712, 'S', 'F', 'T', None)"
+    "('C', 2, 0, 1927129959, 0, 241044672, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "724e9bf8c3bee86dfa8301312ee7d65743457f65ffcfc8e2a5ced481b7fa52c2",
+    "events": "c0696e9c0ed14ea63a61bb21e5e7b17579d002bee01109204de729993eb439be",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1198,7 +1221,7 @@
     "abs": [],
     "args": [
      536952228,
-     536939712,
+     241044672,
      2034212132,
      1515885587
     ],
@@ -1206,12 +1229,13 @@
     "fp": {},
     "id": "seed-23",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 23,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -1237,10 +1261,10 @@
    "events_head": [
     "('C', 0, 536949948, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 25, 'S', 'F', 'T', None)",
-    "('C', 2, 5015, 1927129959, 208, 536944852, 'S', 'F', 'T', None)"
+    "('C', 2, 5015, 1927129959, 208, 6, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "6fb1f0865a12ba54601b0aa94a1a93436ebdb2599880d2b5e301b717565d23de",
+    "events": "4c9a598e5af9437c3c781d1377831f040bdba254119e54da20532a016cab1439",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1250,7 +1274,7 @@
     "abs": [],
     "args": [
      536949908,
-     536944852,
+     6,
      2967241396,
      7
     ],
@@ -1258,17 +1282,18 @@
     "fp": {},
     "id": "seed-24",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 24,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
     1,
-    4
+    3
    ],
    "call_float_arities": [
     0,
@@ -1284,10 +1309,10 @@
    ],
    "events_head": [
     "('C', 0, 536938292, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 34128, 40, 604019693, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 34128, 40, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c128c075646a56e7d2f799525d89250dafa538589c5b5806e36898c35260f8fb",
+    "events": "d6edf14b2d616dfc664ddd8f9099aeea37f6a2e278375e5e3ca6d8229aab1d4a",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1297,7 +1322,7 @@
     "abs": [],
     "args": [
      536938252,
-     536941512,
+     12,
      2149248134,
      604019693
     ],
@@ -1305,17 +1330,18 @@
     "fp": {},
     "id": "seed-25",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 25,
     "xpsr": 0
    },
-   "new_instructions": 14
+   "new_instructions": 14,
+   "stack_args": []
   },
   {
    "call_arities": [
     1,
-    4
+    3
    ],
    "call_float_arities": [
     0,
@@ -1331,10 +1357,10 @@
    ],
    "events_head": [
     "('C', 0, 536942264, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 15059, 40, 2678623347, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 15059, 40, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "8a58e811ed166dd47c75102657d466e55d29ca6a87124fe1528e79d2301c3e4c",
+    "events": "3c98b915dc6588cb90366b99ca87c561cf0a3ecb78ab737f8b3ca0864a46487a",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1344,7 +1370,7 @@
     "abs": [],
     "args": [
      536942224,
-     536937032,
+     12,
      3037640278,
      2678623347
     ],
@@ -1352,12 +1378,13 @@
     "fp": {},
     "id": "seed-26",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 26,
     "xpsr": 0
    },
-   "new_instructions": 14
+   "new_instructions": 14,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -1383,10 +1410,10 @@
    "events_head": [
     "('C', 0, 536945232, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 111, 'S', 'F', 'T', None)",
-    "('C', 2, 52429, 1927129959, 18, 536949524, 'S', 'F', 'T', None)"
+    "('C', 2, 52429, 1927129959, 18, 681194263, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9013e1668e2d2bde10b11c9e3b3a21c054adf6f93251b9708dd22c5a4bb90116",
+    "events": "97c1772320d043fc8131b6126fa614437323dfb299224df60481624dcc2e633a",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1396,7 +1423,7 @@
     "abs": [],
     "args": [
      536945192,
-     536949524,
+     681194263,
      3639365232,
      4125446660
     ],
@@ -1404,17 +1431,18 @@
     "fp": {},
     "id": "seed-27",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 27,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
     1,
-    4
+    3
    ],
    "call_float_arities": [
     0,
@@ -1430,10 +1458,10 @@
    ],
    "events_head": [
     "('C', 0, 536946124, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 14588, 40, 2592385448, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 14588, 40, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "6b2cf3a55d01340153f0f21fb5dda32369a344b8559dfa2b56d103102b5ba88f",
+    "events": "ef1d2b9a4d115a5708be1363a86e3c147c395f2fdc55d0deb05de524938cc4b0",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1443,7 +1471,7 @@
     "abs": [],
     "args": [
      536946084,
-     536949992,
+     4285183211,
      1,
      2592385448
     ],
@@ -1451,12 +1479,13 @@
     "fp": {},
     "id": "seed-28",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 28,
     "xpsr": 0
    },
-   "new_instructions": 14
+   "new_instructions": 14,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -1482,10 +1511,10 @@
    "events_head": [
     "('C', 0, 536947528, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 107, 'S', 'F', 'T', None)",
-    "('C', 2, 50136, 1927129959, 21, 536937084, 'S', 'F', 'T', None)"
+    "('C', 2, 50136, 1927129959, 21, 256, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c38f2438caf770975e33bb34594fb74e7cee3b4953dd22fad56d914440394781",
+    "events": "b746c3eeb1a7362bd424cb402a71bb3eaba7b1f63a06f2e595a3126070d0d0bd",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1495,7 +1524,7 @@
     "abs": [],
     "args": [
      536947488,
-     536937084,
+     256,
      3886541357,
      8
     ],
@@ -1503,17 +1532,18 @@
     "fp": {},
     "id": "seed-29",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 29,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
     1,
-    4
+    3
    ],
    "call_float_arities": [
     0,
@@ -1529,10 +1559,10 @@
    ],
    "events_head": [
     "('C', 0, 536952836, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 25712, 40, 7, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 25712, 40, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "5b344acda6d9263eb7a57c279244c8411d24700096e970386a25b72683197d2b",
+    "events": "45b4f38ae9b289f7430532487a4635756358bccdce7462fc26135c60fae62239",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1542,7 +1572,7 @@
     "abs": [],
     "args": [
      536952796,
-     536941720,
+     8,
      1,
      7
     ],
@@ -1550,17 +1580,18 @@
     "fp": {},
     "id": "seed-30",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 30,
     "xpsr": 0
    },
-   "new_instructions": 14
+   "new_instructions": 14,
+   "stack_args": []
   },
   {
    "call_arities": [
     1,
-    4
+    3
    ],
    "call_float_arities": [
     0,
@@ -1576,10 +1607,10 @@
    ],
    "events_head": [
     "('C', 0, 536952340, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 16153, 40, 53351545, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 16153, 40, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c961733474c2cdf82fb760b9c37f380382f8a545fb0c4257d88785ef286bfee4",
+    "events": "0c279d50c78ff2d1f370143f244e6f43c8aaaa132c3bf82d9efc844acfdc32a4",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1589,7 +1620,7 @@
     "abs": [],
     "args": [
      536952300,
-     536948548,
+     2461003590,
      7,
      53351545
     ],
@@ -1597,12 +1628,13 @@
     "fp": {},
     "id": "seed-31",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 31,
     "xpsr": 0
    },
-   "new_instructions": 14
+   "new_instructions": 14,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -1628,10 +1660,10 @@
    "events_head": [
     "('C', 0, 536946608, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 97, 'S', 'F', 'T', None)",
-    "('C', 2, 18092, 1927129959, 103, 536940812, 'S', 'F', 'T', None)"
+    "('C', 2, 18092, 1927129959, 103, 2706821390, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "1dc685f0ec33e9533b4a3da14da6766c0639da582e1d25a08a667cf1af723f78",
+    "events": "442a29cbfe9f349ed91ed03d112c19ef60f24e43810b5b4ef0b06efb9a22e02a",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1641,7 +1673,7 @@
     "abs": [],
     "args": [
      536946568,
-     536940812,
+     2706821390,
      3442053927,
      1170652979
     ],
@@ -1649,12 +1681,13 @@
     "fp": {},
     "id": "seed-32",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 32,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -1680,10 +1713,10 @@
    "events_head": [
     "('C', 0, 536946100, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 108, 'S', 'F', 'T', None)",
-    "('C', 2, 23469, 1927129959, 8, 536942020, 'S', 'F', 'T', None)"
+    "('C', 2, 23469, 1927129959, 8, 7, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "4f8afe12fc666a58501e3da7a4144943654c8597fa12c0e2ec4733178c7ab713",
+    "events": "e0309bbaa7e3501924c12dc8f8901cae92af063913408b10396f70477bef2004",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1693,7 +1726,7 @@
     "abs": [],
     "args": [
      536946060,
-     536942020,
+     7,
      7,
      5
     ],
@@ -1701,17 +1734,18 @@
     "fp": {},
     "id": "seed-33",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 33,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
     1,
-    4
+    3
    ],
    "call_float_arities": [
     0,
@@ -1727,10 +1761,10 @@
    ],
    "events_head": [
     "('C', 0, 536950160, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 53876, 40, 2147483647, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 53876, 40, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "5838fb87a43edd4dbcdce9aec8948b966462be57528d5f3d7784d96fd75ebaa5",
+    "events": "b11d88e63fb8f7ece3853381e19ea1b0fe5448aae2de126d5a5afafe180e6c37",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1740,7 +1774,7 @@
     "abs": [],
     "args": [
      536950120,
-     536940724,
+     3990671540,
      922796015,
      2147483647
     ],
@@ -1748,17 +1782,18 @@
     "fp": {},
     "id": "seed-34",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 34,
     "xpsr": 0
    },
-   "new_instructions": 14
+   "new_instructions": 14,
+   "stack_args": []
   },
   {
    "call_arities": [
     1,
-    4
+    3
    ],
    "call_float_arities": [
     0,
@@ -1774,10 +1809,10 @@
    ],
    "events_head": [
     "('C', 0, 536952472, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 17530, 40, 1, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 17530, 40, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "abb52def085e2712fe22d69d1fcc9b5f881bd4e6a1f666fbbfdffaa4b196891b",
+    "events": "242e20adb57becb4390c540106d6b85a43ca1c00f9a392d1bf021eb81d6450fe",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -1787,7 +1822,7 @@
     "abs": [],
     "args": [
      536952432,
-     536943604,
+     3578977268,
      4001652011,
      1
     ],
@@ -1795,12 +1830,13 @@
     "fp": {},
     "id": "seed-35",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 35,
     "xpsr": 0
    },
-   "new_instructions": 14
+   "new_instructions": 14,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -1826,10 +1862,10 @@
    "events_head": [
     "('C', 0, 536944264, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 74, 'S', 'F', 'T', None)",
-    "('C', 2, 35043, 1927129959, 249, 536949832, 'S', 'F', 'T', None)"
+    "('C', 2, 35043, 1927129959, 249, 12, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c7cd0fe7246089c6229e9e159c5b14b2eaa3489c52975e3477a506fae6c06943",
+    "events": "7a9a14c79fe3fdf851684ee890b4c3461468fbbafee7f03d669de80732feda30",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1839,7 +1875,7 @@
     "abs": [],
     "args": [
      536944224,
-     536949832,
+     12,
      2147483647,
      8
     ],
@@ -1847,12 +1883,13 @@
     "fp": {},
     "id": "seed-36",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 36,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -1878,10 +1915,10 @@
    "events_head": [
     "('C', 0, 536951768, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 152, 'S', 'F', 'T', None)",
-    "('C', 2, 46260, 1927129959, 92, 536951136, 'S', 'F', 'T', None)"
+    "('C', 2, 46260, 1927129959, 92, 2057795936, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "2877fdb106281cd53abc11ae9adaa000c6631f6271b4dbdfe9c5356892dfc590",
+    "events": "6f8293ad7a04385b1cde8c0212f568b419860a242e9fcdff8303384409fa2660",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1891,7 +1928,7 @@
     "abs": [],
     "args": [
      536951728,
-     536951136,
+     2057795936,
      2725586938,
      1299241558
     ],
@@ -1899,12 +1936,13 @@
     "fp": {},
     "id": "seed-37",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 37,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -1930,10 +1968,10 @@
    "events_head": [
     "('C', 0, 536939800, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 75, 'S', 'F', 'T', None)",
-    "('C', 2, 38969, 1927129959, 99, 536941672, 'S', 'F', 'T', None)"
+    "('C', 2, 38969, 1927129959, 99, 255, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "afc4960237f025067788c595dfd3aea56d2f6f2ae1d04106b226b6ccfa15c920",
+    "events": "5f272dd5c3e11d65e1eb14e43a9559d1899d65481d46423a71e607a2571c0330",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1943,7 +1981,7 @@
     "abs": [],
     "args": [
      536939760,
-     536941672,
+     255,
      1,
      2
     ],
@@ -1951,12 +1989,13 @@
     "fp": {},
     "id": "seed-38",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 38,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -1982,10 +2021,10 @@
    "events_head": [
     "('C', 0, 536941464, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 8, 'S', 'F', 'T', None)",
-    "('C', 2, 0, 1927129959, 52, 536942500, 'S', 'F', 'T', None)"
+    "('C', 2, 0, 1927129959, 52, 1587124134, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "c524ecd4740c0340f25bd72088c840d811845d266776e634e860990b87e4fcba",
+    "events": "b3e7f72c148145d4fea3fe8d8c2f100e9ef7f9010ffae048823eb11a49dd5a98",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -1995,7 +2034,7 @@
     "abs": [],
     "args": [
      536941424,
-     536942500,
+     1587124134,
      3774328631,
      1997155928
     ],
@@ -2003,17 +2042,18 @@
     "fp": {},
     "id": "seed-39",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 39,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   },
   {
    "call_arities": [
     1,
-    4
+    3
    ],
    "call_float_arities": [
     0,
@@ -2029,10 +2069,10 @@
    ],
    "events_head": [
     "('C', 0, 536943640, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 17531, 40, 1835695343, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 17531, 40, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "7285d2554eb309a6138557719377fa81a3405edf03cfbca2e7f4b426fa113b7b",
+    "events": "8219e395fd34b3d830c36f83dc112519550ace792ac603a0d63e650083e804fa",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -2042,7 +2082,7 @@
     "abs": [],
     "args": [
      536943600,
-     536946992,
+     3928041777,
      1786326658,
      1835695343
     ],
@@ -2050,17 +2090,18 @@
     "fp": {},
     "id": "seed-40",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 40,
     "xpsr": 0
    },
-   "new_instructions": 14
+   "new_instructions": 14,
+   "stack_args": []
   },
   {
    "call_arities": [
     1,
-    4
+    3
    ],
    "call_float_arities": [
     0,
@@ -2076,10 +2117,10 @@
    ],
    "events_head": [
     "('C', 0, 536941276, 'S', 'F', 'T', None)",
-    "('C', 1, 2556510175, 4665, 40, 1, 'S', 'F', 'T', None)"
+    "('C', 1, 2556510175, 4665, 40, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "60ee0f51d90283921182c558610040a21aa704c7695d87f1259baab336707108",
+    "events": "53ff04dbb764e5b8d94cab4b2f1a18de8386a86baf88ecc66ce3a022aff30233",
     "kind": "return",
     "ncalls": 2,
     "ret": [],
@@ -2089,7 +2130,7 @@
     "abs": [],
     "args": [
      536941236,
-     536950764,
+     256,
      3059135833,
      1
     ],
@@ -2097,12 +2138,13 @@
     "fp": {},
     "id": "seed-41",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 41,
     "xpsr": 0
    },
-   "new_instructions": 14
+   "new_instructions": 14,
+   "stack_args": []
   },
   {
    "call_arities": [
@@ -2128,10 +2170,10 @@
    "events_head": [
     "('C', 0, 536952268, 'S', 'F', 'T', None)",
     "('C', 1, 2556510175, 122, 'S', 'F', 'T', None)",
-    "('C', 2, 7416, 1927129959, 67, 536940324, 'S', 'F', 'T', None)"
+    "('C', 2, 7416, 1927129959, 67, 4, 'S', 'F', 'T', None)"
    ],
    "expect": {
-    "events": "9d23286e6e16c0400d1b5e70f7f8d78903e093c069ab3757393bd8f6eb7d5b62",
+    "events": "00e5582d164be835af28cddbc2d26e34f9ae594a5d39407a258127786d7eee31",
     "kind": "return",
     "ncalls": 3,
     "ret": [],
@@ -2141,7 +2183,7 @@
     "abs": [],
     "args": [
      536952228,
-     536940324,
+     4,
      12,
      3983748582
     ],
@@ -2149,12 +2191,13 @@
     "fp": {},
     "id": "seed-42",
     "mem": [],
-    "nptr": 2,
+    "nptr": 1,
     "oracle": [],
     "scratch_seed": 42,
     "xpsr": 0
    },
-   "new_instructions": 22
+   "new_instructions": 22,
+   "stack_args": []
   }
  ],
  "core": "net",
@@ -2166,20 +2209,33 @@
  },
  "ghidra_size": 70,
  "globals": [],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "936cee0b67396ca5",
+  "stack_arg_window": 48
+ },
  "module": "controller",
- "nptr": 2,
+ "nptr": -1,
  "oracle": {
   "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
   "source": "shipped image"
  },
+ "pointer_arg_mask": [
+  0
+ ],
  "ret_kind": "void",
  "search": {
-  "candidates": 125,
+  "candidates": 161,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
   "extent_dispute_targets": [],
   "harness_errors": 0,
-  "kept": 43
+  "kept": 43,
+  "pointer_arg_mask": [
+   0
+  ],
+  "pointer_arg_mask_derived": true
  },
  "size": 70,
  "symbol": "controller_packet_duration_calculate",

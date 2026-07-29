@@ -2,7 +2,7 @@
  "cases": [
   {
    "call_arities": [
-    2,
+    0,
     2,
     2
    ],
@@ -22,7 +22,7 @@
     16836060
    ],
    "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
+    "('C', 0, 'S', 'F', 'T', None)",
     "('W', 553648208, 4, 16826908)",
     "('W', 553651296, 1, 0)",
     "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
@@ -33,20 +33,20 @@
     "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
     "('W', 553651456, 4, 0)",
     "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536943568)",
+    "('W', 553651456, 4, 1276959699)",
     "('W', 553651404, 4, 168)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "8adafcdf59d4773020994560a9bdd2714490426b3463c3717812f1351c5fbab4",
+    "events": "48a4cbea04360673052b3598181e93ee85f9b5382d6c0b1d903ae80cd8735de7",
     "kind": "fault",
     "ncalls": 3
    },
    "fixture": {
     "abs": [],
     "args": [
-     536943568,
-     536948040,
+     1276959699,
+     12,
      4,
      0
     ],
@@ -54,16 +54,17 @@
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 0,
     "xpsr": 0
    },
-   "new_instructions": 35
+   "new_instructions": 35,
+   "stack_args": []
   },
   {
    "call_arities": [
-    2,
+    0,
     2,
     2
    ],
@@ -83,7 +84,7 @@
     16836060
    ],
    "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
+    "('C', 0, 'S', 'F', 'T', None)",
     "('W', 553648208, 4, 16826908)",
     "('W', 553651296, 1, 0)",
     "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
@@ -94,20 +95,20 @@
     "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
     "('W', 553651456, 4, 0)",
     "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536947244)",
+    "('W', 553651456, 4, 4067469868)",
     "('W', 553651404, 4, 168)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "095b64ec3cad08e0096143824fa37cd7d9346fb1f60d65a9a01ad80108eb4fcf",
+    "events": "953f2fc58f2e2fc4f621448074d32e8786b93dae07a0e92bc69dea284746e52b",
     "kind": "fault",
     "ncalls": 3
    },
    "fixture": {
     "abs": [],
     "args": [
-     536947244,
-     536943120,
+     4067469868,
+     1797429778,
      2147483648,
      315044147
     ],
@@ -115,16 +116,17 @@
     "fp": {},
     "id": "seed-1",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 1,
     "xpsr": 0
    },
-   "new_instructions": 35
+   "new_instructions": 35,
+   "stack_args": []
   },
   {
    "call_arities": [
-    2,
+    0,
     2,
     2
    ],
@@ -144,7 +146,2239 @@
     16836060
    ],
    "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 4290042576)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "aabc6be3f877bf93c9d4786d1349ad9a86f75531b09df3295e18e5959f6a3c91",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4290042576,
+     598759513,
+     3677430904,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-2",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 2,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 2618385373)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "1ca21ec2a96ec9683d8fd87918b6f6ee8609d7e9c4ca17a90338f73f8cc5ae65",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2618385373,
+     255,
+     8,
+     3619521758
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-3",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 3,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 16)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "ff62f1b55ecd9bd7124e172014856404545f31095be3cfc2685cb948f9759be5",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     16,
+     2147483647,
+     3842370354,
+     6
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-4",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 4,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 4)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "bd2eef997f2614fdea991bf9921ad7d67ff84ea206f299edaea91b11691d9b84",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4,
+     3188701995,
+     8,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-5",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 5,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 2300957721)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "f491345103a952b0a3884f7f30e76dc1c078d06d3134991d2e377f79ad1dfe18",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2300957721,
+     1604804925,
+     1,
+     2363272863
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-7",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 7,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 2156366374)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "db7537d04e1e31664de1f6a6cb280ae38defbed93d629f1ce23cd8255398b8cd",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2156366374,
+     708972563,
+     558645175,
+     4
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-8",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 8,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 1346232374)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "ba9a129e7a60a39280dad7cf4885cdf13566b20c300331930690581daccac07b",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1346232374,
+     1556998536,
+     499087790,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-9",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 9,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 182454980)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "e60cbffac970a3c8aaa339d5f764ec1118f3d6afb9913d4a649b51ef6380d436",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     182454980,
+     995058044,
+     8,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-10",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 10,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 3)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "33239421d447214b502d74265285edbbc8f57b2d0c07a45b8c019e178b933563",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3,
+     2147483648,
+     256,
+     1426281073
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-11",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 11,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 8)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "be014fa059bc93d08ac6775a6ffcdf42dff6dafedaeadcf7013bba90f56012e1",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     8,
+     3217736208,
+     5,
+     1103693227
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-12",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 12,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 1156718256)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "1a1a049247448c95f50df9e2952daca8f0257849e4a979b30217b1ef1fbbab51",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1156718256,
+     1944344031,
+     6,
+     617681966
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-13",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 13,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 1996365079)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "216b10310d58b9c17b1744fa459d8061ccbb3a70bc862da08327eb182aba16bb",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1996365079,
+     12,
+     3,
+     470668832
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-14",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 14,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 7)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "faacc6908d43c77dcb22b9dc320c400066f3d1668442c1beacab59afa62acaef",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     7,
+     256,
+     5,
+     4
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-15",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 15,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 2024561310)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "9dcbf120047b9a39eeeffbabaa75e88b68f29654c6856b4340eedd87f0e62a97",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2024561310,
+     2147483648,
+     3454407978,
+     16
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-16",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 16,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 3912442165)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "a493674397d59b3ffcfa892994e28b37bebbc501f51f1b956fd4b60f04841e63",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3912442165,
+     0,
+     697236451,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-18",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 18,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 6)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "abd7791442758beae386bdeed7233712ade7dbb60a12e6ec42b9a8277b133297",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     6,
+     1536401714,
+     4178753371,
+     255
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-19",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 19,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 843060076)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "fffac28cdb37de3686ca65b73227896bf6243174f513f594c0bbcd9ab00deb38",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     843060076,
+     1,
+     2870852768,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-21",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 21,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 1591295399)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "447c030ce1d3e4d10013de893216d11d0dc0e60ad6d385cef65862219a0b9fa8",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1591295399,
+     241044672,
+     2034212132,
+     1515885587
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-23",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 23,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 3751937804)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "552b1bd28e3d33e3e7c0cd11664c0eea0dce87b2a5e75d98346d7e354b286b6a",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3751937804,
+     12,
+     2149248134,
+     604019693
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-25",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 25,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 2992330384)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "ad3270bfbff5c4880cf28bc98b2a1ca9235d59c196f1f208776be16e57f80b14",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2992330384,
+     12,
+     3037640278,
+     2678623347
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-26",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 26,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 187818536)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "145c163e5e6d28228e6e0fd73e6616f3489ca05c89ef4a0f23492360b558419e",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     187818536,
+     681194263,
+     3639365232,
+     4125446660
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-27",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 27,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 3711083943)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "ae11c92752e39cb29e65990928a64db237792edd1c970017e3afc7d4530363ee",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3711083943,
+     4285183211,
+     1,
+     2592385448
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-28",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 28,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 739928864)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "3cb00959efaeb405561946b94762eb63f9b49230b8a818f387234ea549887caf",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     739928864,
+     256,
+     3886541357,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-29",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 29,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 256)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "df75560920c37e7c544b959902823fdfb76d1d179c39f868adfe0613d4bc90e1",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     256,
+     8,
+     1,
+     7
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-30",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 30,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 4294967295)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "87403fc5220359c65be28391060b9b88c132500636ce0c68dd9799ccadbcd9af",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     4294967295,
+     2461003590,
+     7,
+     53351545
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-31",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 31,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 1839753098)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "7172387506f14d1568fcb0693a6aec60bf4b70ee809db81e282020e5b7a1530b",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1839753098,
+     2706821390,
+     3442053927,
+     1170652979
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-32",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 32,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 1076094348)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "27b8877efbf072bc14d1a97b47f4a4fd5dd9398eeb4ce5c8f054b43ae0525913",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1076094348,
+     7,
+     7,
+     5
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-33",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 33,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 12)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "4bc62967debfa7f93171c5e722cc07da0510738903a3470732ecdee266e84395",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     12,
+     3990671540,
+     922796015,
+     2147483647
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-34",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 34,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 2726887024)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "2d45ac75f8374af6c1c91fbc76e6d3c3ebedc73f87b692c6ded0740aaadf8103",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2726887024,
+     3578977268,
+     4001652011,
+     1
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-35",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 35,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "f306e8f63a5c9fcaeadb3b9956cd9d950736019b274e2e3678c015c35ad3cb2f",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     0,
+     12,
+     2147483647,
+     8
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-36",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 36,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 1)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "5df6bbb486db6e08134b2dcf84ee681aabc4b124bafa6d07ac88e9b80aef9808",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     1,
+     2057795936,
+     2725586938,
+     1299241558
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-37",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 37,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 3886568119)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "79876d65b650e088e24f71ea7f55191797ac4753d69d6f26eeb3aa53fee1c903",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     3886568119,
+     256,
+     3059135833,
+     1
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-41",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 41,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 538639782)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "ed83e90367abf17713cee410ebd3595d4c5bdd445fc1fb401420edf69587b22f",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     538639782,
+     4,
+     12,
+     3983748582
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-42",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 42,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 2311625221)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "99bf5c6d5a8da7b581eb6096f5fbcb924be5d57bec973e25df12ebc47d985a19",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2311625221,
+     2147483648,
+     2205369221,
+     2288169737
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "seed-46",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 46,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 2147483647)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "4facbaabb6e1bc56386076aecc3188767ce335071c9da22ef8c7cbe034afa5e1",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     2147483647,
+     1010879855,
+     16,
+     6
+    ],
+    "float_scratch": true,
+    "fp": {},
+    "id": "seed-47",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 47,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553648208, 4, 16826908)",
+    "('W', 553651296, 1, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 0)",
+    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
+    "('W', 553651456, 4, 0)",
+    "('W', 553651404, 4, 0)",
+    "('W', 553651456, 4, 536941384)",
+    "('W', 553651404, 4, 168)"
+   ],
+   "expect": {
+    "error": "Unhandled CPU exception",
+    "events": "7d569e29de32388438a74788c2644c7199d33bdc3139d65f397e8307583de795",
+    "kind": "fault",
+    "ncalls": 3
+   },
+   "fixture": {
+    "abs": [],
+    "args": [
+     536941384,
+     536952304,
+     536950448,
+     536949968
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "ptr4-0",
+    "mem": [],
+    "nptr": 4,
+    "oracle": [],
+    "scratch_seed": 700,
+    "xpsr": 0
+   },
+   "new_instructions": 35,
+   "stack_args": []
+  },
+  {
+   "call_arities": [
+    0,
+    2,
+    2
+   ],
+   "call_float_arities": [
+    0,
+    0,
+    0
+   ],
+   "call_return_kinds": [
+    "void",
+    "void",
+    "void"
+   ],
+   "call_targets": [
+    16813312,
+    16836060,
+    16836060
+   ],
+   "events_head": [
+    "('C', 0, 'S', 'F', 'T', None)",
     "('W', 553648208, 4, 16826908)",
     "('W', 553651296, 1, 0)",
     "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
@@ -160,7 +2394,7 @@
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "ad1837943581ccc21a2d5adbf0ff2cc64b28e3173caf660d7ba87f454c2db34d",
+    "events": "2052796e0bb4414830d9f00b585b4366c40f0173ce6c4f3abfd34297b5f47cdf",
     "kind": "fault",
     "ncalls": 3
    },
@@ -168,24 +2402,25 @@
     "abs": [],
     "args": [
      536943312,
-     536942680,
-     3677430904,
-     7
+     536948372,
+     536948184,
+     536940332
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "seed-2",
+    "id": "ptr4-1",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
-    "scratch_seed": 2,
+    "scratch_seed": 701,
     "xpsr": 0
    },
-   "new_instructions": 35
+   "new_instructions": 35,
+   "stack_args": []
   },
   {
    "call_arities": [
-    2,
+    0,
     2,
     2
    ],
@@ -205,7 +2440,7 @@
     16836060
    ],
    "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
+    "('C', 0, 'S', 'F', 'T', None)",
     "('W', 553648208, 4, 16826908)",
     "('W', 553651296, 1, 0)",
     "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
@@ -216,98 +2451,38 @@
     "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
     "('W', 553651456, 4, 0)",
     "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536945628)",
+    "('W', 553651456, 4, 536947328)",
     "('W', 553651404, 4, 168)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "ddf1f49199f4b11dfa6a1617ed0f35f2d078406aa40040e7f75fb1d81845d630",
+    "events": "80fd6630549a39843c4f5a731823c740b6ad15b981821cff07987ca35eb576fa",
     "kind": "fault",
     "ncalls": 3
    },
    "fixture": {
     "abs": [],
     "args": [
-     536945628,
-     536940936,
-     8,
-     3619521758
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-3",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 3,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536945864)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "f11c12cf8bfa64b1dd4fd2899d87fd6c728dca8cc3ae1449b1eca2dcbd7583e6",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536945864,
-     536944284,
-     3842370354,
-     6
+     536947328,
+     536938188,
+     536947944,
+     536951256
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "seed-4",
+    "id": "ptr4-2",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
-    "scratch_seed": 4,
+    "scratch_seed": 702,
     "xpsr": 0
    },
-   "new_instructions": 35
+   "new_instructions": 35,
+   "stack_args": []
   },
   {
    "call_arities": [
-    2,
+    0,
     2,
     2
    ],
@@ -327,7 +2502,7 @@
     16836060
    ],
    "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
+    "('C', 0, 'S', 'F', 'T', None)",
     "('W', 553648208, 4, 16826908)",
     "('W', 553651296, 1, 0)",
     "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
@@ -338,2168 +2513,34 @@
     "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
     "('W', 553651456, 4, 0)",
     "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536939588)",
+    "('W', 553651456, 4, 536945664)",
     "('W', 553651404, 4, 168)"
    ],
    "expect": {
     "error": "Unhandled CPU exception",
-    "events": "33deb18d203cbd838f4114f66d84c1f7413d92454b62c117556c8f4fbea74194",
+    "events": "015947b628b137eceb20e4dddac6e1e96d6135c9abd59e740877237a08d9c113",
     "kind": "fault",
     "ncalls": 3
    },
    "fixture": {
     "abs": [],
     "args": [
-     536939588,
-     536951592,
-     8,
-     7
+     536945664,
+     536946288,
+     536937260,
+     536949848
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "seed-5",
+    "id": "ptr4-3",
     "mem": [],
-    "nptr": 2,
+    "nptr": 4,
     "oracle": [],
-    "scratch_seed": 5,
+    "scratch_seed": 703,
     "xpsr": 0
    },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536950900)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "a96a4385024ce3f90148c8e7d4313b73bc4aae52ffe33a1981410df1062eb1bf",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536950900,
-     536936920,
-     5,
-     2147483647
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-6",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 6,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536941592)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "68f0d990f68cbf1b76cb6ffda7555dd93908119211c0187305de499d7fabc72e",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536941592,
-     536944956,
-     1,
-     2363272863
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-7",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 7,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536939044)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "19cf82837c4dbc78ea84e1d53987302f6d9a5fe4b0663f17c4a3b088b2e4e7d8",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536939044,
-     536940560,
-     558645175,
-     4
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-8",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 8,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536944692)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "f5b0a814a3c4e81673a72679fd565b8487171ef91001c014ac7184d80de33fef",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536944692,
-     536947080,
-     499087790,
-     2147483647
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-9",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 9,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536939204)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "b4b9205eb637703841b655923559cd2d77639e1f827504f8a2517e18671fc846",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536939204,
-     536945020,
-     8,
-     1
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-10",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 10,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536937040)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "a975caa54a408c824eb87df43209e8d5952171bcc970d49e44782ef06e0e9962",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536937040,
-     536948284,
-     256,
-     1426281073
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-11",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 11,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536944520)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "d947b72cde1fdaa364dfaf6191b1f567297c38208fc4b7ae3492d318fdcf97ad",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536944520,
-     536936976,
-     5,
-     1103693227
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-12",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 12,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536944304)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "a64e4e45db4d5ff8b2afdc37d72ca5e7bbd128a52ad60eff9d65a1c2e08f06c0",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536944304,
-     536942044,
-     6,
-     617681966
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-13",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 13,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536943892)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "d2d71d51fcc4fb772fae14f38564fa276a4d41c143f06f05cea53ae42cfe1d94",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536943892,
-     536949848,
-     3,
-     470668832
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-14",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 14,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536952404)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "370849a273301c0946690ccf539b214a7b8652712aae92122da3083be05bce01",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536952404,
-     536941132,
-     5,
-     4
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-15",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 15,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536943260)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "e58848038783f977792106f78742b2abb5637c878fa3d697c79349badac80f4f",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536943260,
-     536942972,
-     3454407978,
-     16
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-16",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 16,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536944016)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "193ffc31dce86036beb7bd3fc42c19db39ecd5b0d7a4114c203c0ebcbf954e88",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536944016,
-     536942692,
-     1168623309,
-     4252165479
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-17",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 17,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536944948)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "59f5675449f7d243ef086a7295fe9ea58152c6cb262869e62999b43aa34dd631",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536944948,
-     536937440,
-     697236451,
-     1
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-18",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 18,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536939284)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "110a3f590d4bc1e5a954733c5d49cfff72c36eb1cc534f6f64b6ab245effd766",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536939284,
-     536944944,
-     4178753371,
-     255
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-19",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 19,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536952740)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "531499939d7f3285950f540e7ca5c7b939651b6e0e41779901928074ad6dd19c",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536952740,
-     536939460,
-     2,
-     7
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-20",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 20,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536941420)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "3a08e3b943599267feeb609644041381da8207858de2a68111ad84099a7a0f1c",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536941420,
-     536936640,
-     2870852768,
-     0
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-21",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 21,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536937396)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "1a136f86d764c76effe923ed336f9ebc70fd25c96a967b384541da421a2e26af",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536937396,
-     536946088,
-     4294967295,
-     2451975022
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-22",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 22,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536952228)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "20cde4d616649904c02457a96835fbf87413b377ed4c5835a4adf90deda4ad06",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536952228,
-     536939712,
-     2034212132,
-     1515885587
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-23",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 23,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536949908)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "308364a919d08919679ef4dfb5005f75f6e5d1f7da31e75a52aa013ef1d98997",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536949908,
-     536944852,
-     2967241396,
-     7
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-24",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 24,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536938252)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "448a1db3dd293f231c761d901da3a58743cc48c80e662d9ee789becdbaf85dba",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536938252,
-     536941512,
-     2149248134,
-     604019693
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-25",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 25,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536942224)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "282f888cb1f49ace9de49f7d77adbb18cf760faad5643216f6ec4f5ab6a25c86",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536942224,
-     536937032,
-     3037640278,
-     2678623347
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-26",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 26,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536945192)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "dd2a29fcef07b639afadcd62f3fc2af0c0110bea1d5ed0a5ed8ebb1e22019e77",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536945192,
-     536949524,
-     3639365232,
-     4125446660
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-27",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 27,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536946084)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "5305274ee79fb8a0310b35c2ef1efbed1e8846ec3ace98a56e2e05f5c0089440",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536946084,
-     536949992,
-     1,
-     2592385448
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-28",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 28,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536947488)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "799d21706df2eebe3fb64aea57d439afa0a3b3f916298648efd00804627149b0",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536947488,
-     536937084,
-     3886541357,
-     8
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-29",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 29,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536952796)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "56afb3078afd636236c282e89373cd67af873e5f50fe51cbe0c556373bd883f4",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536952796,
-     536941720,
-     1,
-     7
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-30",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 30,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536952300)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "b4942f093d487c6f69f4446f643817b3acfdfee61df156e3168007898c7b3792",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536952300,
-     536948548,
-     7,
-     53351545
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-31",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 31,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536946568)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "b2cd7240a21cabad16f32a572e2f62e9780b8ba7766b6f47b7276c8ec6919f41",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536946568,
-     536940812,
-     3442053927,
-     1170652979
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-32",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 32,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536946060)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "090bb7951fde063a2f74da32f6e933b1794aaa7e5ea31f69e0e6213e7e45deb4",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536946060,
-     536942020,
-     7,
-     5
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-33",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 33,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536950120)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "a46d9b7ae9752513f268c2b6ba66892748402fd5d9274e83a90767c354c5e0b5",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536950120,
-     536940724,
-     922796015,
-     2147483647
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-34",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 34,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536952432)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "9164decd33b83d6390830489e64b7d834835ae29bd481b6f42a8f2f8eefbfe6c",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536952432,
-     536943604,
-     4001652011,
-     1
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-35",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 35,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536944224)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "29df58d1dbd754b5b28ee4c229fa901520bdbd60a77a6ec951c3512ed81a11e4",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536944224,
-     536949832,
-     2147483647,
-     8
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-36",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 36,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536951728)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "db955173a2dd0616da81a955ea2bc5364dc7814f1c89841119131062ec4d3fe9",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536951728,
-     536951136,
-     2725586938,
-     1299241558
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-37",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 37,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536939760)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "015c6caeefd8a42bc0164189f71a6b4eca5d3b331bf7a3a57845a104edbd4dc5",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536939760,
-     536941672,
-     1,
-     2
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-38",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 38,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536941424)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "bcfc45e25302715821980b435bee46b164f84f9861305590745af7869ba12d36",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536941424,
-     536942500,
-     3774328631,
-     1997155928
-    ],
-    "float_scratch": true,
-    "fp": {},
-    "id": "seed-39",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 39,
-    "xpsr": 0
-   },
-   "new_instructions": 35
-  },
-  {
-   "call_arities": [
-    2,
-    2,
-    2
-   ],
-   "call_float_arities": [
-    0,
-    0,
-    0
-   ],
-   "call_return_kinds": [
-    "void",
-    "void",
-    "void"
-   ],
-   "call_targets": [
-    16813312,
-    16836060,
-    16836060
-   ],
-   "events_head": [
-    "('C', 0, 39, 1134, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('C', 1, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553648208, 4, 16826908)",
-    "('W', 553651296, 1, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 0)",
-    "('C', 2, 553651344, 1, 'S', 'F', 'T', None)",
-    "('W', 553651456, 4, 0)",
-    "('W', 553651404, 4, 0)",
-    "('W', 553651456, 4, 536943600)",
-    "('W', 553651404, 4, 168)"
-   ],
-   "expect": {
-    "error": "Unhandled CPU exception",
-    "events": "8684e585286bdf27b917fbff45ed2afffac5ae442d164b76f40997a33f6e37e6",
-    "kind": "fault",
-    "ncalls": 3
-   },
-   "fixture": {
-    "abs": [],
-    "args": [
-     536943600,
-     536946992,
-     1786326658,
-     1835695343
-    ],
-    "float_scratch": false,
-    "fp": {},
-    "id": "seed-40",
-    "mem": [],
-    "nptr": 2,
-    "oracle": [],
-    "scratch_seed": 40,
-    "xpsr": 0
-   },
-   "new_instructions": 35
+   "new_instructions": 35,
+   "stack_args": []
   }
  ],
  "core": "net",
@@ -2515,20 +2556,29 @@
   "0x21000cd0",
   "0x21000050"
  ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "936cee0b67396ca5",
+  "stack_arg_window": 48
+ },
  "module": "unsorted",
- "nptr": 2,
+ "nptr": -1,
  "oracle": {
   "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
   "source": "shipped image"
  },
+ "pointer_arg_mask": [],
  "ret_kind": "void",
  "search": {
-  "candidates": 182,
+  "candidates": 190,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
   "extent_dispute_targets": [],
   "harness_errors": 0,
-  "kept": 41
+  "kept": 41,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
  },
  "size": 356,
  "symbol": "FUN_0100aff4",

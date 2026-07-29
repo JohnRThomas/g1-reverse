@@ -1,0 +1,1 @@
+/Users/freedomcoder/Projects/G1disasm2/tools/test_app_bt_settings_delete_adoption.py

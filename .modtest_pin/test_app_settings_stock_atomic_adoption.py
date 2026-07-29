@@ -1,0 +1,1 @@
+/Users/freedomcoder/Projects/G1disasm2/tools/test_app_settings_stock_atomic_adoption.py

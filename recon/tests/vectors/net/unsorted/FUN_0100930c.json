@@ -18,8 +18,8 @@
    "fixture": {
     "abs": [],
     "args": [
-     536943568,
-     536948040,
+     1276959699,
+     12,
      4,
      0
     ],
@@ -27,12 +27,13 @@
     "fp": {},
     "id": "seed-0",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
     "scratch_seed": 0,
     "xpsr": 0
    },
-   "new_instructions": 13
+   "new_instructions": 13,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -52,21 +53,22 @@
    "fixture": {
     "abs": [],
     "args": [
-     62,
-     536948040,
-     4,
-     0
+     16,
+     2147483647,
+     3842370354,
+     6
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "cfgsel-0",
+    "id": "seed-4",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
-    "scratch_seed": 0,
+    "scratch_seed": 4,
     "xpsr": 0
    },
-   "new_instructions": 10
+   "new_instructions": 10,
+   "stack_args": []
   },
   {
    "call_arities": [],
@@ -86,32 +88,77 @@
    "fixture": {
     "abs": [
      [
-      553651056,
-      "00200120"
+      553648128,
+      "ffffff7f"
      ]
     ],
     "args": [
-     536937040,
-     536948284,
-     256,
-     1426281073
+     4,
+     3188701995,
+     8,
+     7
     ],
     "float_scratch": false,
     "fp": {},
-    "id": "glob-1-7",
+    "id": "glob-0-5",
     "mem": [],
-    "nptr": 2,
+    "nptr": 0,
     "oracle": [],
-    "scratch_seed": 15,
+    "scratch_seed": 5,
     "xpsr": 0
    },
-   "new_instructions": 13
+   "new_instructions": 10,
+   "stack_args": []
+  },
+  {
+   "call_arities": [],
+   "call_float_arities": [],
+   "call_return_kinds": [],
+   "call_targets": [],
+   "events_head": [],
+   "expect": {
+    "events": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "kind": "return",
+    "ncalls": 0,
+    "ret": [
+     1
+    ],
+    "returned": true
+   },
+   "fixture": {
+    "abs": [
+     [
+      553648128,
+      "01000000"
+     ],
+     [
+      553651056,
+      "01000000"
+     ]
+    ],
+    "args": [
+     255,
+     2214493044,
+     1563857409,
+     0
+    ],
+    "float_scratch": false,
+    "fp": {},
+    "id": "globall-1",
+    "mem": [],
+    "nptr": 0,
+    "oracle": [],
+    "scratch_seed": 201,
+    "xpsr": 0
+   },
+   "new_instructions": 6,
+   "stack_args": []
   }
  ],
  "core": "net",
  "coverage": {
-  "covered": 17,
-  "ratio": 0.8947,
+  "covered": 19,
+  "ratio": 1.0,
   "total": 19,
   "unresolved_indirect": 0
  },
@@ -120,20 +167,29 @@
   "0x21000000",
   "0x21000b70"
  ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "936cee0b67396ca5",
+  "stack_arg_window": 48
+ },
  "module": "unsorted",
- "nptr": 2,
+ "nptr": -1,
  "oracle": {
   "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
   "source": "shipped image"
  },
+ "pointer_arg_mask": [],
  "ret_kind": "i32",
  "search": {
-  "candidates": 136,
+  "candidates": 144,
   "dropped_extent_dispute": 0,
   "dropped_instruction_cap": 0,
   "extent_dispute_targets": [],
   "harness_errors": 0,
-  "kept": 3
+  "kept": 4,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
  },
  "size": 52,
  "symbol": "FUN_0100930c",

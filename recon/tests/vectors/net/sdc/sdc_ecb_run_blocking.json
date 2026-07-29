@@ -1,0 +1,44 @@
+{
+ "cases": [],
+ "core": "net",
+ "coverage": {
+  "covered": 0,
+  "ratio": 0.0,
+  "total": 59,
+  "unresolved_indirect": 0
+ },
+ "ghidra_size": 178,
+ "globals": [
+  "0x21000bf4",
+  "0x4100d000",
+  "0xe000ed00",
+  "0xe000e100"
+ ],
+ "harness": {
+  "derived_arity": true,
+  "oracle_preserve": true,
+  "rev": "936cee0b67396ca5",
+  "stack_arg_window": 48
+ },
+ "module": "sdc",
+ "nptr": -1,
+ "oracle": {
+  "image_sha256": "ec4e4b60f3efa5c830084c9dd3ca516f70cfeb81620306e2ebd8a2af158f7ca4",
+  "source": "shipped image"
+ },
+ "pointer_arg_mask": [],
+ "ret_kind": "void",
+ "search": {
+  "candidates": 181,
+  "dropped_extent_dispute": 0,
+  "dropped_instruction_cap": 181,
+  "extent_dispute_targets": [],
+  "harness_errors": 0,
+  "kept": 0,
+  "pointer_arg_mask": [],
+  "pointer_arg_mask_derived": true
+ },
+ "size": 178,
+ "symbol": "sdc_ecb_run_blocking",
+ "va": "0x0100a7e8"
+}
