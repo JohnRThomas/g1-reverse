@@ -1,0 +1,140 @@
+#include "g1_app_symbols.h"
+#include <zephyr/sys_clock.h>
+/* readable reconstruction; identity: FUN_0005ffa4 @ 0x0005ffa4
+ * public-name: pdm_mic_event_handler
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   onoff_release                            <= FUN_0004ba38 @ 0x0004ba38
+ *   pdm_mic_event_handler                    <= FUN_0005ffa4 @ 0x0005ffa4
+ *   nrfx_pdm_buffer_set                      <= FUN_00066270 @ 0x00066270
+ *   nrfx_pdm_stop                            <= FUN_00066300 @ 0x00066300
+ *   k_mem_slab_alloc                         <= FUN_00071c20 @ 0x00071c20
+ *   k_mem_slab_free                          <= FUN_00071cf4 @ 0x00071cf4
+ *   k_msgq_put                               <= FUN_000720d0 @ 0x000720d0
+ *   log_forward_zero_arg                     <= FUN_000837a2 @ 0x000837a2
+ * address symbols (name @ address):
+ *   rodata_881a0                             @ 0x000881a0
+ *   rodata_f5822                             @ 0x000f5822   [INLINED -- G6 literal batch]
+ *   rodata_f5840                             @ 0x000f5840   [INLINED -- G6 literal batch]
+ *   rodata_f585d                             @ 0x000f585d   [INLINED -- G6 literal batch]
+ *   g_pdm_mic_ctrl_blk                       @ 0x2000b008
+ *   g_pdm_mic_rx_msgq                        @ 0x2000b024
+ */
+/* Reconstructed FUN_0005ffa4 @ 0x0005ffa4 (316-byte executable extent). */
+#include <stdint.h>
+#include "g1_audio.h"
+
+extern void onoff_release(uint32_t handle);
+extern int nrfx_pdm_buffer_set(uint32_t decoded, uint32_t selector);
+extern int k_mem_slab_alloc(struct k_mem_slab *, void **, k_timeout_t);
+extern void k_mem_slab_free(uint32_t handle, ...);
+extern int k_msgq_put(struct k_msgq *, const void *, k_timeout_t);
+extern void log_forward_zero_arg(uintptr_t source, uint32_t level, const void *record);
+
+struct notification {
+    uint8_t response_ready;
+    uint8_t reserved[3];
+    uint32_t payload;
+};
+
+struct decoded_status {
+    uint32_t words[4];
+};
+
+struct log2 {
+    uint32_t count;
+    uintptr_t format;
+};
+
+struct log3 {
+    uint32_t count;
+    uintptr_t format;
+    int32_t value;
+};
+
+#define STATE_WORD(off) (*(volatile uint32_t *)(((unsigned long)&g_pdm_mic_ctrl_blk) /*=0x2000b008*/ + (off)))
+#define STATE_BYTE(off) (*(volatile uint8_t *)(((unsigned long)&g_pdm_mic_ctrl_blk) /*=0x2000b008*/ + (off)))
+
+static __attribute__((always_inline)) inline void clear_pending_activity(void)
+{
+    if (STATE_BYTE(0x51) != 0) {
+        STATE_BYTE(0x51) = 0;
+        if ((STATE_BYTE(0x50) & 1u) != 0)
+            onoff_release(STATE_WORD(0));
+    }
+}
+
+void pdm_mic_event_handler(struct notification *notification)
+{
+    uint8_t wake_recovery = notification->response_ready;
+
+    if (notification->response_ready != 0) {
+        struct decoded_status decoded;
+        int status = k_mem_slab_alloc(STATE_WORD(0x14), &decoded, (k_timeout_t){ .ticks = 0LL });
+        uintptr_t diagnostic = ((unsigned long)"Failed to allocate buffer: %d") /*=0xf5822*/;
+
+        if (status >= 0) {
+            status = nrfx_pdm_buffer_set(decoded.words[0],
+                                  (STATE_WORD(0x18) >> 1) & 0xffffu);
+            diagnostic = ((unsigned long)"Failed to set buffer: 0x%08x") /*=0xf5840*/;
+        }
+
+        if (status < 0 || status != 0x0bad0000) {
+            const struct log3 record = {3, diagnostic, status};
+            log_forward_zero_arg(((unsigned long)&rodata_881a0) /*=0x881a0*/, 0x1840u, &record);
+
+            if (STATE_BYTE(0x52) == 0) {
+                if (notification->payload == 0)
+                    goto recover;
+                goto transfer;
+            }
+
+            wake_recovery = STATE_BYTE(0x52);
+            if (notification->payload == 0) {
+                clear_pending_activity();
+                goto recover;
+            }
+        } else {
+            if (STATE_BYTE(0x52) == 0) {
+                if (notification->payload == 0)
+                    return;
+                wake_recovery = 0;
+                goto transfer;
+            }
+            if (notification->payload == 0) {
+                clear_pending_activity();
+                return;
+            }
+            wake_recovery = 0;
+        }
+
+        k_mem_slab_free(STATE_WORD(0x14));
+        clear_pending_activity();
+    } else {
+        if (STATE_BYTE(0x52) != 0) {
+            if (notification->payload == 0) {
+                clear_pending_activity();
+                return;
+            }
+            k_mem_slab_free(STATE_WORD(0x14));
+            clear_pending_activity();
+            return;
+        }
+        if (notification->payload == 0)
+            return;
+        wake_recovery = 0;
+transfer:
+        if (k_msgq_put(((unsigned long)&g_pdm_mic_rx_msgq) /*=0x2000b024*/, &notification->payload, (k_timeout_t){ .ticks = 0LL }) < 0) {
+            const struct log2 record = {2, ((unsigned long)"No room in RX queue") /*=0xf585d*/};
+            log_forward_zero_arg(((unsigned long)&rodata_881a0) /*=0x881a0*/, 0x1040u, &record);
+            k_mem_slab_free(STATE_WORD(0x14), notification->payload);
+            goto recover;
+        }
+    }
+
+    if (wake_recovery == 0)
+        return;
+recover:
+    STATE_BYTE(0x52) = 1;
+    nrfx_pdm_stop();
+}

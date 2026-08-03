@@ -1,0 +1,48 @@
+#include "g1_app_symbols.h"
+#include "../../../headers/g1_log.h"
+#include "../../../headers/g1_dedupe.h"
+#include "g1_storage.h"
+/* readable reconstruction; identity: FUN_0002c0e8 @ 0x0002c0e8
+ * public-name: update_persist_task_status_to_idle
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   display_close_screen                     <= FUN_00049858 @ 0x00049858
+ *   log_message                              <= FUN_0007dda4 @ 0x0007dda4
+ *   signal_persist_task_event                <= FUN_0007cdf8 @ 0x0007cdf8
+ * address symbols (name @ address):
+ *   rodata_a25d9                             @ 0x000a25d9
+ *   rodata_a2625                             @ 0x000a2625   [INLINED -- G6 literal batch]
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ *   g_persist_task_status_lock               @ 0x20018d9c
+ *   g_persist_task_status                    @ 0x20018d9d
+ */
+/* Reconstructed update_persist_task_status_to_idle @ 0x2c0e8  (parity: CFG state-case proven, 5/5 cases) */
+
+typedef unsigned char u8;
+extern void display_close_screen(unsigned int);
+
+int update_persist_task_status_to_idle(int param_1)
+{
+    volatile u8 *lock = (volatile u8*)((unsigned long)&g_persist_task_status_lock) /*=0x20018d9c*/;
+    while (*lock != 0) {
+        signal_persist_task_event();
+    }
+    *lock = 1;
+    if ((*(char*)(param_1+0xd5) != 0) || (*(char*)(*(int*)(param_1+0x1054)+4) != 1)) {
+        if ((*(char*)(param_1+0xd5) != 0) && (*(char*)(param_1+0xd5) != 1)) {
+            display_close_screen(*(u8*)(param_1+0xd5));
+        }
+        if (*(char*)(param_1+0xd5) == 0x10) {
+            *(u8*)(param_1+0xf98) = *(volatile u8 *)((unsigned long)&g_persist_task_status) /*=0x20018d9d*/;
+        }
+        if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ > 0) {
+            G1_LOG_ROUTE(*(volatile unsigned int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0, ((unsigned long)&rodata_a25d9) /*=0xa25d9*/, ((unsigned long)"update_persist_task_status_to_idle") /*=0xa2625*/, 0);
+        }
+        *(u8*)(param_1+0xd5) = 0;
+        *(u8*)(*(int*)(param_1+0x1054)+4) = 1;
+    }
+    *lock = 0;
+    return 0;
+}

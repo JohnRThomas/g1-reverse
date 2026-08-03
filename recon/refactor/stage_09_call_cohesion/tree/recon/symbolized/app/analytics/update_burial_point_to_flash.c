@@ -1,0 +1,63 @@
+#include "g1_app_symbols.h"
+#include <stddef.h>
+#include "../../../headers/g1_log.h"
+#include "../../../headers/g1_dedupe.h"
+#include "g1_analytics.h"
+/* readable reconstruction; identity: FUN_00023014 @ 0x00023014
+ * public-name: update_burial_point_to_flash
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   debug_print                              <= FUN_00019c70 @ 0x00019c70
+ *   flash_settings_read                      <= FUN_000225b4 @ 0x000225b4
+ *   flash_settings_write_and_verify          <= FUN_00022658 @ 0x00022658
+ *   memcmp                                   <= FUN_00086be4 @ 0x00086be4
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ * address symbols (name @ address):
+ *   rodata_9e655                             @ 0x0009e655   [INLINED -- G6 literal batch]
+ *   rodata_9e67c                             @ 0x0009e67c   [INLINED -- G6 literal batch]
+ *   rodata_9e789                             @ 0x0009e789   [INLINED -- G6 literal batch]
+ *   g_log_level                              @ 0x2000230c
+ *   g_log_use_alt_sink                       @ 0x20007554
+ */
+/* Reconstructed update_burial_point_to_flash @ 0x23014  (parity: 300/300 trials, PROVEN) */
+
+extern int flash_settings_read(unsigned long, void*, unsigned long);
+extern int flash_settings_write_and_verify(unsigned int a, void *b, unsigned int n);
+extern int memcmp(const void *, const void *, size_t);
+
+unsigned int update_burial_point_to_flash(char *param_1)
+{
+    unsigned char buf[196];
+    int iVar2;
+    unsigned int format_string;
+
+    memset_bytes(buf, 0, 0xc0);
+    if (1 < *(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/) {
+        G1_LOG_ROUTE(*(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/ == 0, ((unsigned long)"%s(): update_burial_point_to_flash!!!\n") /*=0x9e655*/, ((unsigned long)"update_burial_point_to_flash") /*=0x9e789*/);
+    }
+    iVar2 = flash_settings_read(0x135000U, buf, 0xc0);
+    if (iVar2 == 0) {
+        char *p = param_1 + 0x10c6;
+        iVar2 = memcmp(buf, p, 0xc0);
+        if (iVar2 == 0) {
+            return 0;
+        }
+        iVar2 = flash_settings_write_and_verify(0x135000U, p, 0xc0);
+        if (iVar2 == 0) {
+            return 0;
+        }
+        if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ < 2) {
+            return 0xffffffff;
+        }
+        iVar2 = *(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
+        format_string = 0x9e69cU;
+    } else {
+        if (*(volatile int *)((unsigned long)&g_log_level) /*=0x2000230c*/ < 2) {
+            return 0xffffffff;
+        }
+        iVar2 = *(volatile int *)((unsigned long)&g_log_use_alt_sink) /*=0x20007554*/;
+        format_string = ((unsigned long)"%s(): burial_point read error!\n") /*=0x9e67c*/;
+    }
+    G1_LOG_ROUTE(iVar2 == 0, format_string, ((unsigned long)"update_burial_point_to_flash") /*=0x9e789*/);
+    return 0xffffffff;
+}

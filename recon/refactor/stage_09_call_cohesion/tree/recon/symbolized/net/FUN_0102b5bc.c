@@ -1,0 +1,130 @@
+#include "g1_net_symbols.h"
+#include "../../headers/g1_nrf_regs.h"
+#include "../../headers/g1_log.h"
+/* readable reconstruction; identity: FUN_0102b5bc @ 0x0102b5bc
+ * public-name: FUN_0102b5bc
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   onoff_request                            <= FUN_0102ca80 @ 0x0102ca80
+ *   printk                                   <= FUN_01039722 @ 0x01039722
+ * address symbols (name @ address):
+ *   rodata_103d18c                           @ 0x0103d18c
+ *   rodata_103d19e                           @ 0x0103d19e
+ *   rodata_103d1b8                           @ 0x0103d1b8
+ *   g_zephyr_log_level                       @ 0x21000580
+ *   g_net_ipc_msg_data                       @ 0x21004628
+ *   g_net_ipc_msg_type                       @ 0x21004fa2
+ */
+/* net-core FUN_0102b5bc @ 0x102b5bc  (parity 300 trials PROVEN)
+ * CFG_VERIFY_PREFIX_FIRST: the successful submission path busy-waits for an
+ * asynchronous completion flag written by hardware/ISR code. */
+#define P_0102b640 ((unsigned long)&g_net_ipc_msg_data) /*=0x21004628*/
+#define C_0102b644 0xf0000010
+#define P_0102b648 ((unsigned long)&g_net_ipc_msg_type) /*=0x21004fa2*/
+#define C_0102b64c G1_NRF_P0_NS_BASE
+#define P_0102b650 ((unsigned long)&g_zephyr_log_level) /*=0x21000580*/
+#define P_0102b654 ((unsigned long)&rodata_103d18c) /*=0x103d18c*/
+#define P_0102b658 ((unsigned long)&rodata_103d19e) /*=0x103d19e*/
+#define P_0102b65c ((unsigned long)&rodata_103d1b8) /*=0x103d1b8*/
+/* P4 iteration 23 — the ESB clock-transition CALLBACK POINTER.
+ * The shipped literal at analysis 0x0102b660 is the runtime Thumb pointer
+ * 0x0102bf59 = (analysis 0x0102b758 + 0x800) | 1, i.e. FUN_0102b758, this
+ * core's `g1_esb_clock_transition` (recon/net/src/FUN_0102b758.c documents the
+ * same identity).  It is a CODE address, so in the relocated cohesive build the
+ * original literal points at unrelated bytes: measured on
+ * /private/tmp/g1-i23-net, FUN_0102b758 links at 0x0102cf14 while 0x0102bf58
+ * lands elsewhere entirely.  Consequence, measured with block hooks on OUR
+ * build's own symbols (all real instruction boundaries): `esb_service_init`
+ * (FUN_0102b5bc) and the registration `FUN_0102bba8` each ran exactly once,
+ * and `g1_esb_clock_transition`, `g1_esb_transport_start`,
+ * `g1_esb_radio_configure`, the ESB enable and the RADIO TX keying ran ZERO
+ * times — so the net core never transmitted an ESB PTX frame
+ * (`esbslave MasterFramesSeen` 0 vs the oracle's 0x175).
+ * commit 0a7dee8c rebound the `ADDR_*_THUMB` macro class; this pointer is a
+ * per-file `P_` literal and was never in that class.  Parity keeps the shipped
+ * literal; the cohesive build binds the linker-resolved address (GCC yields the
+ * Thumb-flagged value for a function symbol's address). */
+#ifdef G1_COHESIVE_BUILD
+extern void FUN_0102b758(unsigned int);
+#define P_0102b660 ((unsigned long)&FUN_0102b758)
+#else
+#define P_0102b660 0x0102bf59
+#endif
+
+extern int FUN_0103037c(int);
+extern int onoff_request(int, void *);
+extern void FUN_0102bba8(int);
+
+/* P4 iteration 21 - the on-stack `struct onoff_client` must be ONE contiguous
+ * 16-byte object.  The shipped prologue is `push {r0, r1, r2, r3, r4, lr}`,
+ * i.e. the four incoming arguments ARE the client's initial image, and every
+ * later access is an sp-relative field of that same object:
+ *     sp+0x00  sys_snode_t node
+ *     sp+0x04  sys_notify.method   (str r3,[sp,#4]   with r3 = 0)
+ *     sp+0x08  sys_notify.flags    (str r3,[sp,#8]   with r3 = 1 = SPINWAIT)
+ *     sp+0x0c  sys_notify.result   (str r3,[sp,#0xc] with r3 = 0)
+ * and `mov r1, sp` passes &client to onoff_request.
+ * The previous rendering declared four INDEPENDENT locals and took the address
+ * of the first one only, so the compiler was free to place `method`, `flags`
+ * and `result` anywhere; measured in /private/tmp/g1-i20d-net the client that
+ * reached onoff_request had notify.flags = 0x2100C370 (a stack address) and
+ * validate_args() returned -EINVAL, which made esb_service_init() fail and
+ * CPUNET main() return before it could send the 0x0601 IPC message.
+ * The shipped code also reloads `result` from sp+0xc AFTER the spin-wait
+ * (0x102b61e `ldr r4,[sp,#0xc]`); Ghidra hoisted that read above the loop. */
+struct g1_onoff_client {
+    unsigned int node;              /* +0x00 */
+    unsigned int method;            /* +0x04 */
+    volatile unsigned int flags;    /* +0x08 */
+    volatile int result;            /* +0x0c */
+};
+
+int FUN_0102b5bc(unsigned int param_1, unsigned int param_2, unsigned int param_3, unsigned int param_4)
+{
+  struct g1_onoff_client client;
+  int manager;
+  int status;
+  int result;
+
+  *(volatile unsigned int *)P_0102b640 = param_2;
+  *(volatile unsigned char *)P_0102b648 = (unsigned char)param_1;
+  *(volatile unsigned int *)(C_0102b64c + 0x18) = C_0102b644;
+  *(volatile unsigned int *)(C_0102b64c + 0xc) = 0xf0000000;
+
+  client.node = param_1;
+  client.method = param_2;
+  client.flags = param_3;
+  client.result = (int)param_4;
+
+  manager = FUN_0103037c(0);
+  if (manager == 0) {
+    if (0 < *(volatile int *)P_0102b650) {
+      printk(P_0102b654, 0);
+    }
+    return -6;
+  }
+
+  client.method = 0;
+  client.result = 0;
+  client.flags = 1;
+  status = onoff_request(manager, &client);
+  if (status < 0) {
+    if (0 < *(volatile int *)P_0102b650) {
+      printk(P_0102b658, status);
+    }
+    return status;
+  }
+
+  while ((client.flags & 3) != 0) { }
+  result = client.result;
+  if (result != 0) {
+    if (0 < *(volatile int *)P_0102b650) {
+      printk(P_0102b65c, result);
+    }
+    if (result < 0) {
+      return result;
+    }
+  }
+  FUN_0102bba8(P_0102b660);
+  return 0;
+}

@@ -8,3 +8,18 @@
 # QUARANTINE.json -- the evidence that a stage produced what it says it produced.
 stage_*/tree/
 __pycache__/
+
+# EXCEPTION, 2026-07-29: stage_09_call_cohesion/tree's REAL FILES are tracked so
+# the finished refactor is browsable on GitHub without cloning and regenerating.
+# The ~2,505 relative symlinks in that tree remain ignored -- only the 1,694 real
+# files (~14 MB) are committed, i.e. the content the ladder actually produced.
+#
+# They were added with `git add -f`, so this ignore rule still applies to
+# UNTRACKED paths there.  CONSEQUENCE: after `driver.py materialize 9`, edits to
+# already-tracked files are picked up normally, but any NEWLY CREATED file will
+# be silently ignored by `git add -A`.  To re-sync the tracked set:
+#
+#   find recon/refactor/stage_09_call_cohesion/tree -type f \
+#        -not -path '*__pycache__*' -print0 | xargs -0 git add -f
+#
+# Stages 00-08 remain evidence-only (MANIFEST/PARITY_MAP/QUARANTINE/SIZE_GATE).

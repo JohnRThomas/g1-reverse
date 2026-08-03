@@ -1,0 +1,9 @@
+#include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01023de8 @ 0x01023de8
+ * public-name: controller_radio_timer_capture_get
+ * durable-map: recon/catalogs/function_names_net.json
+ */
+/* net-core thunk_FUN_01025028 @ 0x01023de8: exact tail alias of FUN_01025028. */
+#include <stdint.h>
+extern uint32_t FUN_01025028(void);
+uint32_t controller_radio_timer_capture_get(void){return FUN_01025028();}

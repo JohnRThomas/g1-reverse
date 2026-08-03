@@ -1,0 +1,15 @@
+#include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01018de8 @ 0x01018de8
+ * public-name: FUN_01018de8
+ * durable-map: recon/catalogs/function_names_net.json
+ */
+/* net-core FUN_01018de8 @ 0x1018de8  (parity 300 trials PROVEN) */
+
+typedef void (*fnptr)(void);
+void FUN_01018de8(void)
+{
+  volatile unsigned char *base = (volatile unsigned char *)G1N_21000f90;
+  unsigned int p1 = *(volatile unsigned int *)(base + 0xc4);
+  fnptr f = (fnptr)(*(volatile unsigned int *)(p1 + 4));
+  f();
+}

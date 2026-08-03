@@ -1,0 +1,125 @@
+#include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_01017f7c @ 0x01017f7c
+ * public-name: FUN_01017f7c
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   sdc_assertion_fail                       <= FUN_01008d00 @ 0x01008d00
+ *   controller_packet_config_apply_if_active <= FUN_0100cb4c @ 0x0100cb4c
+ *   sdc_llcp_release_rx_context              <= FUN_0101fca8 @ 0x0101fca8
+ *   sdc_llcp_stop_rx_timeout                 <= FUN_010208b0 @ 0x010208b0
+ *   controller_packet_payload_reserve        <= FUN_01026e48 @ 0x01026e48
+ * address symbols (name @ address):
+ *   g_net_radio_pending_proc_flag            @ 0x2100104a
+ */
+/* net-core FUN_01017f7c @ 0x1017f7c  (parity 300 trials PROVEN) */
+#include <stdint.h>
+
+extern unsigned int FUN_0100a5a0(void);
+extern unsigned int FUN_0100a5b4(void);
+extern unsigned int controller_packet_payload_reserve(unsigned int a, unsigned short b);
+extern void FUN_010195f8(void);
+extern int FUN_0101b15c(unsigned int a);
+extern unsigned int controller_packet_config_apply_if_active(unsigned int a);
+extern void FUN_01016430(unsigned int a, unsigned int b);
+extern void FUN_0101fc70(void);
+extern void FUN_01020898(unsigned int a);
+extern void sdc_llcp_stop_rx_timeout(void);
+extern void sdc_llcp_release_rx_context(void);
+extern void FUN_010208f0(unsigned int a, unsigned int b, unsigned int c);
+extern __attribute__((noreturn)) void sdc_assertion_fail(unsigned int module,
+                                                   unsigned int line);
+
+#define DAT_18084 G1N_21000f90
+#define DAT_18088 ((unsigned long)&g_net_radio_pending_proc_flag) /*=0x2100104a*/
+
+void FUN_01017f7c(void)
+{
+    unsigned int uVar4, uVar3;
+    unsigned int iVar5;
+    int iVar6;
+    int iVar2;
+    unsigned char bVar1;
+    volatile unsigned char *selected;
+    unsigned int r5;
+
+    uVar4 = FUN_0100a5a0();
+    uVar3 = FUN_0100a5b4();
+    iVar5 = controller_packet_payload_reserve(uVar4, (unsigned short)uVar3);
+    if (iVar5 == 0) {
+        /* 0x01018078 is the function's fatal assertion island. */
+        sdc_assertion_fail(0x32, 0x509);
+    }
+    r5 = iVar5;
+    iVar2 = DAT_18084;
+    FUN_010195f8();
+    selected = (volatile unsigned char *)(iVar2 +
+                 *(volatile unsigned char *)(iVar2 + 0x98));
+    bVar1 = selected[0xbd];
+    *(volatile unsigned char *)(iVar2 + 0xb9) = bVar1;
+    iVar6 = FUN_0101b15c(0);
+
+    if (iVar6 == 0) {
+        if (*(volatile signed char *)(iVar2 + 0x7c) != 0) {
+            sdc_llcp_stop_rx_timeout();
+            sdc_llcp_release_rx_context();
+            for (;;) {
+                sdc_llcp_release_rx_context();
+            }
+        }
+        *(volatile unsigned short *)(iVar2 + 0xba) = 0;
+        *(volatile unsigned char *)(iVar2 + 0x70) = 1;
+        *(volatile unsigned char *)(DAT_18088 + 2) = 0;
+        return; /* real: tail branch b.w 0x101b4f4 with LR restored -> clean return */
+    }
+
+    if (*(volatile unsigned char *)(iVar2 + 0x70) == 2) {
+        if (bVar1 == 1) {
+            goto LAB_fc4;
+        }
+        goto LAB_8006;
+    } else {
+        FUN_01016430(0, r5);
+        if (bVar1 == 1) {
+            goto LAB_fc4;
+        }
+        goto LAB_8006;
+    }
+
+LAB_fc4:
+    iVar5 = controller_packet_config_apply_if_active(r5 + 3);
+    *(volatile signed char *)(iVar2 + 0x7c) = (signed char)iVar5;
+    if (iVar5 == 0) {
+        goto LAB_tail;
+    }
+    uVar4 = 0x40;
+    goto LAB_fc70;
+
+LAB_8006:
+    iVar5 = controller_packet_config_apply_if_active(r5 + 5);
+    *(volatile signed char *)(iVar2 + 0x7c) = (signed char)iVar5;
+    if (iVar5 == 0) {
+        goto LAB_tail;
+    }
+    if ((bVar1 & 0xc) == 0) {
+        uVar4 = 0x50;
+    } else {
+        uVar4 = 0x55;
+    }
+
+LAB_fc70:
+    FUN_0101fc70();
+    FUN_01020898(uVar4);
+
+LAB_tail:
+    if ((unsigned int)(*(volatile unsigned char *)(iVar2 + 0x54) - 2) < 2) {
+        if (*(volatile signed char *)((unsigned int)*(volatile unsigned char *)(iVar2 + 0x98) + iVar2 + 0xbd) == 1) {
+            /* 0x0101806e: r0=0, r1=0, while the compared byte remains in r2. */
+            FUN_010208f0(0, 0, 1);
+        }
+    }
+    *(volatile unsigned short *)(iVar2 + 0x78) = 0xffff;
+    *(volatile unsigned int *)(iVar2 + 0x80) = 0;
+    *(volatile unsigned char *)(iVar2 + 0xa8) = 0;
+    *(volatile unsigned char *)(iVar2 + 0x70) = 5;
+    return;
+}

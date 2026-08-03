@@ -1,0 +1,39 @@
+#include "g1_net_symbols.h"
+/* readable reconstruction; identity: FUN_0102fbd0 @ 0x0102fbd0
+ * public-name: FUN_0102fbd0
+ * durable-map: recon/catalogs/function_names_net.json
+ * callees (readable <= raw @ address):
+ *   z_impl_z_log_msg_static_create           <= FUN_0102e284 @ 0x0102e284
+ *   net_buf_simple_reserve                   <= FUN_01030014 @ 0x01030014
+ * address symbols (name @ address):
+ *   rodata_103c024                           @ 0x0103c024
+ *   rodata_103ddb9                           @ 0x0103ddb9
+ */
+/* net-core FUN_0102fbd0 @ 0x102fbd0  (parity 300 trials PROVEN) */
+#include <stdint.h>
+
+extern int32_t z_impl_z_log_msg_static_create(uint32_t a, uint32_t b, void *c, uint32_t d);
+extern void net_buf_simple_reserve(int32_t a, uint32_t b);
+extern int32_t FUN_0103a44c(uint32_t a);
+
+int32_t FUN_0102fbd0(uint32_t param_1)
+{
+    int32_t iVar1;
+
+    if ((param_1 < 6) && (((int32_t)((0x2aU >> (param_1 & 0xff)) << 0x1f)) < 0)) {
+        iVar1 = FUN_0103a44c(G1N_210009fc);
+        if (iVar1 != 0) {
+            net_buf_simple_reserve(iVar1 + 0xc, 1);
+            *(volatile int8_t *)(iVar1 + 0x18) = (int8_t)param_1;
+        }
+    } else {
+        struct {
+            uint32_t type;
+            uint32_t format;
+            uint32_t argument;
+        } record = {3, ((unsigned long)&rodata_103ddb9) /*=0x103ddb9*/, param_1};
+        z_impl_z_log_msg_static_create(((unsigned long)&rodata_103c024) /*=0x103c024*/, 0x1840, &record, 0);
+        iVar1 = 0;
+    }
+    return iVar1;
+}

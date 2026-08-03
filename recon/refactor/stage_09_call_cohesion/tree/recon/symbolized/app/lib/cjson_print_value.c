@@ -1,0 +1,365 @@
+#include "g1_app_symbols.h"
+/* readable reconstruction; identity: FUN_000646c0 @ 0x000646c0
+ * public-name: cjson_print_value
+ * durable-map: recon/catalogs/function_names_app.json
+ * callees (readable <= raw @ address):
+ *   dcmp_negate_rhs                          <= FUN_0000d588 @ 0x0000d588
+ *   __muldf3                                 <= FUN_0000d8f8 @ 0x0000d8f8
+ *   __aeabi_dcmplt                           <= FUN_0000dddc @ 0x0000dddc
+ *   __aeabi_dcmple                           <= FUN_0000ddf0 @ 0x0000ddf0
+ *   double_is_unordered                      <= FUN_0000de2c @ 0x0000de2c
+ *   strlen                                   <= FUN_0000ef12 @ 0x0000ef12
+ *   cjson_print_string                       <= FUN_000644f8 @ 0x000644f8
+ *   cjson_print_value                        <= FUN_000646c0 @ 0x000646c0
+ *   snprintf                                 <= FUN_00077914 @ 0x00077914
+ *   vsnprintf_setup                          <= FUN_000779bc @ 0x000779bc
+ *   cursor_advance_past_cstring              <= FUN_00084f16 @ 0x00084f16
+ *   growbuf_ensure_capacity                  <= FUN_00084f58 @ 0x00084f58
+ *   memcpy                                   <= FUN_00086c04 @ 0x00086c04
+ *   memset_bytes                             <= FUN_00086c78 @ 0x00086c78
+ *   strcpy                                   <= FUN_00086fee @ 0x00086fee
+ *   strncpy_zero_pad                         <= FUN_0008705a @ 0x0008705a
+ * address symbols (name @ address):
+ *   rodata_f6977                             @ 0x000f6977
+ *   rodata_f697c                             @ 0x000f697c   [INLINED -- G6 literal batch]
+ *   rodata_f6983                             @ 0x000f6983
+ *   rodata_f6987                             @ 0x000f6987   [INLINED -- G6 literal batch]
+ *   rodata_f698e                             @ 0x000f698e
+ *   rodata_f6994                             @ 0x000f6994
+ */
+/* Reconstructed FUN_000646c0 @ 0x646c0  (parity: 150/150 trials, PROVEN) */
+#pragma GCC diagnostic ignored "-Wint-conversion"
+#pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
+#pragma GCC diagnostic ignored "-Wint-to-pointer-cast"
+#pragma GCC diagnostic ignored "-Wincompatible-pointer-types"
+typedef unsigned char undefined,undefined1,byte,uchar,uint1;
+typedef unsigned short undefined2,ushort,uint2,wchar_t;
+typedef unsigned int undefined4,uint,uint3,code_t;
+typedef unsigned long long undefined8,ulonglong;
+typedef long long longlong; typedef unsigned long ulong; typedef signed char sbyte;
+typedef long long(*code)();
+#define bool int
+#define false 0
+#define true 1
+#include "../../../headers/g1_ghidra_ops.h"
+
+#define CONCAT11(a,b) ((unsigned short)(((unsigned)(unsigned char)(a)<<8)|(unsigned char)(b)))
+#define CONCAT21(a,b) (((unsigned)(unsigned short)(a)<<8)|(unsigned char)(b))
+#define CONCAT12(a,b) (((unsigned)(unsigned char)(a)<<16)|(unsigned short)(b))
+#define CONCAT31(a,b) (((unsigned)(a)<<8)|(unsigned char)(b))
+#define CONCAT13(a,b) (((unsigned)(unsigned char)(a)<<24)|((unsigned)(b)&0xffffffu))
+#define CONCAT22(a,b) (((unsigned)(unsigned short)(a)<<16)|(unsigned short)(b))
+#define CONCAT41(a,b) (((unsigned long long)(unsigned)(a)<<8)|(unsigned char)(b))
+#define CONCAT44(a,b) (((unsigned long long)(unsigned)(a)<<32)|(unsigned)(b))
+#define CONCAT62(a,b) (((unsigned long long)(a)<<16)|(unsigned short)(b))
+#define CONCAT71(a,b) (((unsigned long long)(a)<<8)|(unsigned char)(b))
+#define CONCAT53(a,b) (((unsigned long long)(a)<<24)|((unsigned)(b)&0xffffffu))
+#define CONCAT61(a,b) (((unsigned long long)(a)<<8)|(unsigned char)(b))
+#define SUB41(x,n) ((unsigned char)((unsigned)(x)>>((n)*8)))
+#define SUB42(x,n) ((unsigned short)((unsigned)(x)>>((n)*8)))
+#define SUB84(x,n) ((unsigned)((unsigned long long)(x)>>((n)*8)))
+#define SUB81(x,n) ((unsigned char)((unsigned long long)(x)>>((n)*8)))
+#define SUB82(x,n) ((unsigned short)((unsigned long long)(x)>>((n)*8)))
+#define SUB83(x,n) ((unsigned)(((unsigned long long)(x)>>((n)*8))&0xffffffu))
+#define SUB168(x,n) ((unsigned long long)(x))
+#define ZEXT14(a) ((unsigned)(unsigned char)(a))
+#define ZEXT18(a) ((unsigned long long)(unsigned char)(a))
+#define ZEXT24(a) ((unsigned)(unsigned short)(a))
+#define ZEXT28(a) ((unsigned long long)(unsigned short)(a))
+#define ZEXT48(a) ((unsigned long long)(unsigned)(a))
+#define ZEXT12(a) ((unsigned short)(unsigned char)(a))
+#define ZEXT816(a) ((unsigned long long)(a))
+#define SEXT14(a) ((unsigned)(int)(signed char)(a))
+#define SEXT18(a) ((unsigned long long)(long long)(signed char)(a))
+#define SEXT24(a) ((unsigned)(int)(short)(a))
+#define SEXT48(a) ((unsigned long long)(long long)(int)(a))
+#define __ROL4(x,n) (((unsigned)(x)<<((n)&31))|((unsigned)(x)>>((32-((n)&31))&31)))
+#define __ROR4(x,n) (((unsigned)(x)>>((n)&31))|((unsigned)(x)<<((32-((n)&31))&31)))
+#define __ROL1(x,n) ((unsigned char)(((unsigned)(unsigned char)(x)<<((n)&7))|((unsigned)(unsigned char)(x)>>((8-((n)&7))&7))))
+
+extern long long dcmp_negate_rhs(int,int,int,int);
+extern long long __muldf3(int,int,int,int);
+extern long long __aeabi_dcmplt(int,int,int,int,int,int);
+extern long long __aeabi_dcmple(int,int,int,int);
+extern int double_is_unordered(int, unsigned int, int, unsigned int);
+extern long long strlen(void);
+extern long long cjson_print_string(int, ...);
+extern long long snprintf(int,int,int);
+extern long long vsnprintf_setup(int,int,int);
+extern long long cursor_advance_past_cstring(int);
+extern long long growbuf_ensure_capacity(int,int);
+extern void memcpy(int, int, int);
+extern void memset_bytes(void*, int, int);
+extern long long strcpy(int,int);
+extern long long strncpy_zero_pad(int,int,int);
+#define DAT_0006498c ((unsigned long)&rodata_f6977) /*=0xf6977*/
+#define DAT_00064990 ((volatile int*)((unsigned long)&rodata_f698e) /*=0xf698e*/)
+#define DAT_00064994 ((unsigned long)&rodata_f6994) /*=0xf6994*/
+#define DAT_00064998 0x7fefffffUL
+#define DAT_0006499c ((unsigned long)"%1.15g") /*=0xf697c*/
+#define DAT_000649a0 ((unsigned long)&rodata_f6983) /*=0xf6983*/
+#define DAT_000649a4 0x3cb00000UL
+#define DAT_000649a8 ((unsigned long)"%1.17g") /*=0xf6987*/
+
+
+uint cjson_print_value(int param_1,int param_2)
+
+{
+  byte bVar1;
+  undefined4 uVar2;
+  uint uVar3;
+  int iVar4;
+  undefined1 *puVar5;
+  int iVar6;
+  undefined4 *puVar7;
+  undefined1 *puVar8;
+  uint uVar9;
+  int *piVar10;
+  uint uVar11;
+  undefined4 uVar12;
+  undefined4 uVar13;
+  uint uVar14;
+  undefined8 uVar15;
+  undefined8 uVar16;
+  uint uVar17;
+  undefined4 local_50;
+  uint uStack_4c;
+  undefined4 local_44;
+  undefined2 local_40 [14];
+
+  if ((param_1 == 0) || (param_2 == 0)) goto switchD_000646e2_caseD_3;
+  bVar1 = *(byte *)(param_1 + 0xc);
+  uVar9 = (uint)bVar1;
+  if (uVar9 == 0x10) {
+    uVar9 = cjson_print_string(*(undefined4 *)(param_1 + 0x10));
+    return uVar9;
+  }
+  if (0x10 < uVar9) {
+    if (uVar9 == 0x40) {
+      piVar10 = *(int **)(param_1 + 8);
+      if (*(int *)(param_2 + 0x14) == 0) {
+        iVar6 = 1;
+      }
+      else {
+        iVar6 = 2;
+      }
+      puVar5 = (undefined1 *)growbuf_ensure_capacity(param_2,iVar6 + 1);
+      if (puVar5 != (undefined1 *)0x0) {
+        *puVar5 = 0x7b;
+        *(int *)(param_2 + 0xc) = *(int *)(param_2 + 0xc) + 1;
+        if (*(int *)(param_2 + 0x14) != 0) {
+          puVar5[1] = 10;
+        }
+        *(int *)(param_2 + 8) = *(int *)(param_2 + 8) + iVar6;
+        for (; piVar10 != (int *)0x0; piVar10 = (int *)*piVar10) {
+          if (*(int *)(param_2 + 0x14) != 0) {
+            puVar8 = (undefined1 *)growbuf_ensure_capacity(param_2,*(undefined4 *)(param_2 + 0xc));
+            puVar5 = puVar8;
+            if (puVar8 == (undefined1 *)0x0) goto switchD_000646e2_caseD_3;
+            for (; (uint)((int)puVar5 - (int)puVar8) < *(uint *)(param_2 + 0xc); puVar5 = puVar5 + 1
+                ) {
+              *puVar5 = 9;
+            }
+            *(uint *)(param_2 + 8) = *(int *)(param_2 + 8) + *(uint *)(param_2 + 0xc);
+          }
+          iVar6 = cjson_print_string(piVar10[8],param_2);
+          if (iVar6 == 0) goto switchD_000646e2_caseD_3;
+          cursor_advance_past_cstring(param_2);
+          if (*(int *)(param_2 + 0x14) == 0) {
+            iVar6 = 1;
+          }
+          else {
+            iVar6 = 2;
+          }
+          puVar5 = (undefined1 *)growbuf_ensure_capacity(param_2,iVar6);
+          if (puVar5 == (undefined1 *)0x0) goto switchD_000646e2_caseD_3;
+          *puVar5 = 0x3a;
+          if (*(int *)(param_2 + 0x14) != 0) {
+            puVar5[1] = 9;
+          }
+          *(int *)(param_2 + 8) = *(int *)(param_2 + 8) + iVar6;
+          iVar6 = cjson_print_value(piVar10,param_2);
+          if (iVar6 == 0) goto switchD_000646e2_caseD_3;
+          cursor_advance_past_cstring(param_2);
+          iVar6 = *(int *)(param_2 + 0x14);
+          if (iVar6 != 0) {
+            iVar6 = 1;
+          }
+          if (*piVar10 != 0) {
+            iVar6 = iVar6 + 1;
+          }
+          puVar5 = (undefined1 *)growbuf_ensure_capacity(param_2,iVar6 + 1);
+          if (puVar5 == (undefined1 *)0x0) goto switchD_000646e2_caseD_3;
+          puVar8 = puVar5;
+          if (*piVar10 != 0) {
+            puVar8 = puVar5 + 1;
+            *puVar5 = 0x2c;
+          }
+          puVar5 = puVar8;
+          if (*(int *)(param_2 + 0x14) != 0) {
+            puVar5 = puVar8 + 1;
+            *puVar8 = 10;
+          }
+          *puVar5 = 0;
+          *(int *)(param_2 + 8) = *(int *)(param_2 + 8) + iVar6;
+        }
+        if (*(int *)(param_2 + 0x14) == 0) {
+          iVar6 = 2;
+        }
+        else {
+          iVar6 = *(int *)(param_2 + 0xc) + 1;
+        }
+        puVar5 = (undefined1 *)growbuf_ensure_capacity(param_2,iVar6);
+        if (puVar5 != (undefined1 *)0x0) {
+          puVar8 = puVar5;
+          if (*(int *)(param_2 + 0x14) != 0) {
+            for (; (uint)((int)puVar8 - (int)puVar5) < *(int *)(param_2 + 0xc) - 1U;
+                puVar8 = puVar8 + 1) {
+              *puVar8 = 9;
+            }
+          }
+          *puVar8 = 0x7d;
+          puVar8[1] = 0;
+LAB_000648d0:
+          *(int *)(param_2 + 0xc) = *(int *)(param_2 + 0xc) + -1;
+          goto LAB_00064728;
+        }
+      }
+    }
+    else if (uVar9 == 0x80) {
+      if (*(int *)(param_1 + 0x10) != 0) {
+        iVar6 = strlen();
+        iVar4 = growbuf_ensure_capacity(param_2,iVar6 + 1);
+        if (iVar4 != 0) {
+          memcpy(iVar4,*(undefined4 *)(param_1 + 0x10),iVar6 + 1);
+          goto LAB_00064728;
+        }
+      }
+    }
+    else if (uVar9 == 0x20) {
+      piVar10 = *(int **)(param_1 + 8);
+      puVar5 = (undefined1 *)growbuf_ensure_capacity(param_2,1);
+      if (puVar5 != (undefined1 *)0x0) {
+        *puVar5 = 0x5b;
+        *(int *)(param_2 + 8) = *(int *)(param_2 + 8) + 1;
+        *(int *)(param_2 + 0xc) = *(int *)(param_2 + 0xc) + 1;
+        for (; piVar10 != (int *)0x0; piVar10 = (int *)*piVar10) {
+          iVar6 = cjson_print_value(piVar10,param_2);
+          if (iVar6 == 0) goto switchD_000646e2_caseD_3;
+          cursor_advance_past_cstring(param_2);
+          if (*piVar10 != 0) {
+            if (*(int *)(param_2 + 0x14) == 0) {
+              iVar6 = 1;
+            }
+            else {
+              iVar6 = 2;
+            }
+            puVar5 = (undefined1 *)growbuf_ensure_capacity(param_2,iVar6 + 1);
+            if (puVar5 == (undefined1 *)0x0) goto switchD_000646e2_caseD_3;
+            *puVar5 = 0x2c;
+            if (*(int *)(param_2 + 0x14) == 0) {
+              puVar8 = puVar5 + 1;
+            }
+            else {
+              puVar8 = puVar5 + 2;
+              puVar5[1] = bVar1;
+            }
+            *puVar8 = 0;
+            *(int *)(param_2 + 8) = *(int *)(param_2 + 8) + iVar6;
+          }
+        }
+        puVar5 = (undefined1 *)growbuf_ensure_capacity(param_2,2);
+        if (puVar5 != (undefined1 *)0x0) {
+          puVar5[1] = 0;
+          *puVar5 = 0x5d;
+          goto LAB_000648d0;
+        }
+      }
+    }
+    goto switchD_000646e2_caseD_3;
+  }
+  switch(uVar9) {
+  case 1:
+    local_44 = *DAT_00064990;
+    local_40[0] = *(undefined2 *)(DAT_00064990 + 1);
+    iVar6 = growbuf_ensure_capacity(param_2,6);
+    if (iVar6 != 0) {
+      strncpy_zero_pad(iVar6,&local_44,*(int *)(param_2 + 4) - *(int *)(param_2 + 8));
+      return uVar9;
+    }
+  default:
+switchD_000646e2_caseD_3:
+    uVar9 = 0;
+    break;
+  case 2:
+    puVar7 = DAT_00064994;
+    goto LAB_00064706;
+  case 4:
+    puVar7 = DAT_0006498c;
+LAB_00064706:
+    local_44 = *puVar7;
+    local_40[0] = CONCAT11(((unsigned long long)(local_40[0])>>8 & 0xffULL),*(undefined1 *)(puVar7 + 1));
+    uVar9 = growbuf_ensure_capacity(param_2,5);
+    if (uVar9 != 0) {
+      strncpy_zero_pad(uVar9,&local_44,*(int *)(param_2 + 4) - *(int *)(param_2 + 8));
+LAB_00064728:
+      uVar9 = 1;
+    }
+    break;
+  case 8:
+    uVar12 = *(undefined4 *)(param_1 + 0x18);
+    uVar9 = *(uint *)(param_1 + 0x1c);
+    local_44 = 0;
+    memset_bytes(local_40,0,0x16);
+    local_50 = 0;
+    uStack_4c = 0;
+    iVar6 = double_is_unordered(uVar12,uVar9,uVar12,uVar9);
+    if (iVar6 == 0) {
+      uVar14 = uVar9 & 0x7fffffff;
+      iVar6 = double_is_unordered(uVar12,uVar14,0xffffffff,DAT_00064998);
+      if ((iVar6 == 0) && (iVar6 = __aeabi_dcmple(uVar12,uVar14,0xffffffff,DAT_00064998), iVar6 == 0))
+      goto LAB_000647a8;
+      uVar13 = uVar12;
+      uVar17 = uVar9;
+      iVar6 = snprintf(&local_44,0x1a,DAT_0006499c);
+      iVar4 = vsnprintf_setup(&local_44,DAT_000649a0,&local_50);
+      uVar3 = uStack_4c;
+      uVar2 = local_50;
+      if (iVar4 == 1) {
+        uVar11 = uStack_4c & 0x7fffffff;
+        iVar4 = __aeabi_dcmplt(uVar12,uVar14,local_50,uVar11,uVar13,uVar17);
+        uVar13 = uVar12;
+        if (iVar4 != 0) {
+          uVar13 = uVar2;
+          uVar14 = uVar11;
+        }
+        uVar15 = dcmp_negate_rhs(uVar2,uVar3,uVar12,uVar9);
+        uVar16 = __muldf3(uVar13,uVar14,0,DAT_000649a4);
+        iVar4 = __aeabi_dcmple((int)uVar15,(uint)((ulonglong)uVar15 >> 0x20) & 0x7fffffff,(int)uVar16,
+                             (int)((ulonglong)uVar16 >> 0x20));
+        if (iVar4 == 0) goto LAB_00064840;
+      }
+      else {
+LAB_00064840:
+        iVar6 = snprintf(&local_44,0x1a,DAT_000649a8);
+      }
+      if (0x19 < iVar6) goto switchD_000646e2_caseD_3;
+    }
+    else {
+LAB_000647a8:
+      strcpy(&local_44,DAT_0006498c);
+      iVar6 = 4;
+    }
+    puVar5 = (undefined1 *)growbuf_ensure_capacity(param_2,iVar6 + 1);
+    if (puVar5 == (undefined1 *)0x0) goto switchD_000646e2_caseD_3;
+    puVar7 = &local_44;
+    for (puVar8 = puVar5; puVar5 + iVar6 != puVar8; puVar8 = puVar8 + 1) {
+      *puVar8 = *(undefined1 *)puVar7;
+      puVar7 = (undefined4 *)((int)puVar7 + 1);
+    }
+    puVar5[iVar6] = 0;
+    *(int *)(param_2 + 8) = *(int *)(param_2 + 8) + iVar6;
+    goto LAB_00064728;
+  }
+  return uVar9;
+}
